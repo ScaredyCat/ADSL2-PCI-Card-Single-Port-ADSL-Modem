@@ -1,0 +1,11 @@
+prefix=
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: 0.9.7e
+Requires: 
+Libs: -L${libdir} -lssl -lcrypto  -L/opt/uclibc-toolchain/gcc-3.3.6/toolchain-mips/lib -ldl -ldl
+Cflags: -I${includedir} 
