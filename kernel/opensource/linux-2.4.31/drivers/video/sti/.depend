@@ -1,0 +1,47 @@
+sticon.o: sticon.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console_struct.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console_struct.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   sticore.h $(dep_sticore.h)
+sticore.o: sticore.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/font.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/font.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h) \
+   sticore.h $(dep_sticore.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h)
+dep_sticore.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h)
+stifb.o: stifb.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   sticore.h $(dep_sticore.h)

@@ -1,0 +1,222 @@
+a3d.o: a3d.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+adi.o: adi.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+amijoy.o: amijoy.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h)
+analog.o: analog.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/timex.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/timex.h)
+cobra.o: cobra.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+cs461x.o: cs461x.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h)
+db9.o: db9.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+emu10k1-gp.o: emu10k1-gp.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h)
+gamecon.o: gamecon.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+gameport.o: gameport.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isapnp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isapnp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+gf2k.o: gf2k.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h)
+grip.o: grip.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+iforce.o: iforce.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/input/iforce/232.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/input/iforce/232/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/input/iforce/usb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/input/iforce/usb/module.h)
+interact.o: interact.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+lightning.o: lightning.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+magellan.o: magellan.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+ns558.o: ns558.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isapnp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isapnp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isapnp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isapnp/module.h)
+pcigame.o: pcigame.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci_gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci_gameport.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/sound/trident.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/sound/trident/module.h)
+serio.o: serio.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h)
+serport.o: serport.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/devfs/fs.h)
+sidewinder.o: sidewinder.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h)
+spaceball.o: spaceball.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h)
+spaceorb.o: spaceorb.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h)
+stinger.o: stinger.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+tmdc.o: tmdc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/gameport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h)
+turbografx.o: turbografx.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+warrior.o: warrior.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/input.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)

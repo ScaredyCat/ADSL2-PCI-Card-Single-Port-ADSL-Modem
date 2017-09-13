@@ -1,0 +1,73 @@
+sm_afsk1200.o: sm_afsk1200.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_afsk1200.h $(dep_sm_tbl_afsk1200.h)
+sm_afsk2400_7.o: sm_afsk2400_7.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_afsk2400_7.h $(dep_sm_tbl_afsk2400_7.h)
+sm_afsk2400_8.o: sm_afsk2400_8.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_afsk2400_8.h $(dep_sm_tbl_afsk2400_8.h)
+sm_afsk2666.o: sm_afsk2666.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_afsk2666.h $(dep_sm_tbl_afsk2666.h)
+sm.o: sm.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   sm.h $(dep_sm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/afsk1200.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/afsk2400/7.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/afsk2400/8.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/afsk2666.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/psk4800.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/hapn4800.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/fsk9600.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/sbc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/soundmodem/wss.h)
+dep_smdma.h += \
+   sm.h $(dep_sm.h)
+sm_fsk9600.o: sm_fsk9600.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_fsk9600.h $(dep_sm_tbl_fsk9600.h)
+dep_sm.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdlcdrv.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdlcdrv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/parport.h)
+sm_hapn4800.o: sm_hapn4800.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_hapn4800.h $(dep_sm_tbl_hapn4800.h)
+sm_psk4800.o: sm_psk4800.c \
+   sm.h $(dep_sm.h) \
+   sm_tbl_psk4800.h $(dep_sm_tbl_psk4800.h)
+sm_sbc.o: sm_sbc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   sm.h $(dep_sm.h) \
+   smdma.h $(dep_smdma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)
+sm_wss.o: sm_wss.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/soundmodem.h) \
+   sm.h $(dep_sm.h) \
+   smdma.h $(dep_smdma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)

@@ -1,0 +1,260 @@
+ac.o: ac.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+acpi_ksyms.o: acpi_ksyms.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/interpreter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/bus.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/ec.h)
+asus_acpi.o: asus_acpi.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)
+battery.o: battery.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+blacklist.o: blacklist.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h)
+bus.o: bus.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acinterp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acinterp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ldm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/ec.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pm.h)
+button.o: button.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+ec.o: ec.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actypes.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actypes.h)
+fan.o: fan.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+motherboard.o: motherboard.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+numa.o: numa.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h)
+osl.o: osl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nmi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nmi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/efi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/efi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/efi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ia64.h)
+pci_bind.o: pci_bind.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+pci_irq.o: pci_irq.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86/io/apic.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/iosapic.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86.h)
+pci_link.o: pci_link.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+pci_root.o: pci_root.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86.h)
+power.o: power.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+processor.o: processor.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/smp.h)
+system.o: system.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysrq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysrq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/sleep.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mc146818rtc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mc146818rtc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/hw_irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/hw_irq.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/magic/sysrq.h)
+tables.o: tables.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bootmem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bootmem.h)
+thermal.o: thermal.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+toshiba_acpi.o: toshiba_acpi.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)
+utils.o: utils.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_bus.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi_drivers.h)

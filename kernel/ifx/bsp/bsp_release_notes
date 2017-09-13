@@ -1,0 +1,253 @@
+*********************************
+*  DANUBE BSP VERSION 1.5.1     *
+*********************************
+
+--------------------------------------------------------------------------------
+5 Oct 2006 Xu Liang
+file: danube_ppa_api.c danube_ppa_ppe_hal.c danube_ppa_stack_al.c
+      danube_ppa_api.h danube_ppa_ppe_hal.h danube_ppa_stack_al.h
+      danube_ppa_eth_d2.c danube_ppa_eth_fw_d2.h
+      ppp_generic.c netfilter.c ip_output.c ip_conntrack_core.c
+      (last 4 files are kernel part, need TAIWAN to checkin)
+integrate PPA support in kernel, support unicast acceleration
+pending: multicast need more test
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+4 Oct 2006 Xu Liang
+file: danube_ppe.c
+1. add support for DSL LED
+2. increase TX descriptor number to 64 to handle VBR-RT burst
+   in kernel file br2684.c, need to remove "atm_may_send" check
+3. remove several debug message in function "ppe_send"
+4. change set cell function name to "ifx_atm_set_cell_rate"
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+3 Oct 2006 Xu Liang
+file: danube_led.c
+add support for USB power
+--------------------------------------------------------------------------------
+
+*********************************
+*  DANUBE BSP VERSION 1.5.0     *
+*********************************
+
+--------------------------------------------------------------------------------
+18 Sep 2006 Lee Yao Chye
+file: drivers/crypto/ifxdeu-aes.c drivers/crypto/ifxdeu-des.c
+max_nbytes is changed
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+17 Sep 2006 Xu Liang
+file: danube_ppa_api.c danube_ppa_ppe_hal.c danube_ppa_stack_al.c
+      danube_ppa_api.h danube_ppa_ppe_hal.h danube_ppa_stack_al.h
+      ppp_generic.c (this file is kernel part, need TAIWAN to checkin)
+add PPA support
+pending: PPPoE (in multicast session, it's src MAC replace)
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+14 Sep 2006 Xu Liang
+file: danube_ppe.c
+add TR067 support
+add reconfigure QSB everytime function "danube_ppe_set_cell_rate" is called
+--------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+14 Sep 2006 Huang Xiaogang
+update to USB device driver release 0.73 
+update to USB host driver release 0.4
+-------------------------------------------------------------------------------
+
+*********************************
+*  DANUBE BSP VERSION 1.1.1     *
+*********************************
+
+--------------------------------------------------------------------------------
+31 Auguest 2006 Chen Tai Cheng
+file: danube_mei_core.c
+add ADSL LED support in MEI driver
+add Dual Latency Path
+add AUTOBOOT_ENABLE_SET ioctl for autoboot mode enable/disable
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+31 Auguest 2006 Xu Liang
+file: danube_ppe.c
+add ADSL LED support in PPE driver
+--------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+31 Auguest 2006 Huang Xiaogang
+check in Emsys USB host driver release 0.3, USB device driver 0.7
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+31 Auguest 2006 Xu Liang
+file: pci.c, danube.c
+add work around for EBU and PCI software arbitor, only for chip ver A11. This bug is fixed for A12 in chip.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+30 Auguest 2006 Xu Liang
+file: danube_led.c
+change default setting for LED controller
+--------------------------------------------------------------------------------
+
+*********************************
+*  DANUBE BSP VERSION 1.1.0     *
+*********************************
+--------------------------------------------------------------------------------
+25 Auguest 2006 Xu Liang
+file: danube_eth2.c
+add support to ETH D1 mode (share DPLUS with switch driver
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+25 Auguest 2006 Xu Liang
+check in ETH D2 driver to support ethernet acceleration mode
+--------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+2 Auguest 2006 Huang Xiaogang
+WDT driver: danube_wdt.c 
+replace "ffpi = cgu_get_cpu_clock();" with  "ffpi = cgu_get_io_region_clock();"
+--------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+1 Auguest 2006 Huang Xiaogang
+check in USB device driver version 0.6 and host driver version 0.2
+---------------------------------------------------------------------------------
+
+*********************************
+*  DANUBE BSP VERSION 1.0.2     *
+*********************************
+----------------------------------------------------------------------------------
+21 July 2006 Huang Xiaogang
+change the register definition regarding mftd bits of MSP_VCStatReg_s in mps.h,  the change is made my INCAIP2 team.
+update to new mps_device.c from INCAIP2 team, which includes the fix for missing interrupt.
+----------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------
+13 July 2006 Lee Yao Chye
+Fixed DEU AES driver in FPI mode for nbytes > 16.
+Remove udelay() for DES and AES drivers.
+---------------------------------------------------------------------------------
+
+
+
+*********************************
+*  DANUBE BSP VERSION 1.0.1     *
+*********************************
+---------------------------------------------------------------------------------
+13 July 2006 Huang Xiaogang
+add mftd2 and mftd1 to MSP_VCStatReg_s structure in mps.h, which is requested by TAPI team
+----------------------------------------------------------------------------------
+13 July 2006 Lee Yao Chye
+Fixed the compilation of DEU drivers.
+Fixed memory leakage issue due to DEU drivers.
+
+-----------------------------------------------------------------------------------
+13 July 2006 Taicheng
+add support for reading physical link cell rate (MEI driver)
+
+-------------------------------------------------------------------------------------
+13 July 2006 Xu Liang
+add function danube_ppe_set_cell_rate to support physical link cell rate change (PPE driver)
+
+
+-------------------------------------------------------------------------------------------
+27 June 2006    Wu QiMing
+Added adm6996 driver modification for danube(admmod.c).//requested by Hsu Henry
+Merged danube_sw.c for vlan support.//requested by Hsu Henry
+-------------------------------------------------------------------------------------------
+21 June 2006	Huang XiaoGang
+add ifx_mps.h to /vobs/project/comac/comac_amazon_lxdb1.1/source/kernel/ifx/danube_bsp/include/asm-mips/danube/
+add symbolic link "ifx" to "danube" in /vobs/project/comac/comac_amazon_lxdb1.1/source/kernel/opensource/linux-2.4.31/include/asm-mips
+-------------------------------------------------------------------------------------------
+
+1.0.0 : Release on 20 June 2006	
+============================================================
+19 June 2006	Lee Yao Chye
+Import DEU driver to BSP package
+
+19 June 2006 	Liu Peng	
+change to 33M PCI clock & give reset
+--------------------------------------
+18 June 2006	Liu Peng 	
+use level-triggered interrupt for PCI
+-------------------------------------
+18 June 2006 	Xu Liang 	
+fix ATM QoS support for RTVBR
+------------------------------------
+16 June 2006	Huang XiaoGang	
+Integrate new MPS driver 
+------------------------------------
+
+0.5.0
+============================================================
+5 June 2006	Huang XiaoGang
+Integrate new MPS driver
+------------------------------------------------------------
+3  June 2006	Xu Liang
+Change GPTU driver solve FSC clock sync issue
+------------------------------------------------------------
+1  June 2006	Wu QiMing
+DMA bug fix for race condition of accessing share resource 
+-----------------------------------------------------------
+
+Up to Date BSP Feature List:
+===========================================================
+Board Support Package:
+Name                    Status(x--implemented)          description
+uboot                           x                       Bootloader ( TFTP support)
+Ethernet driver 1               x                       Ethernet driver for MII0 (traffic go through Central DMA)
+Ethernet driver 2               x                       Ethernet driver for MII1 (traffic go through EMA in PPE)
+DMA driver                      x                       Central DMA engine driver
+Console / UART0/1               x                       UART0 is identical with Amazon, UART1 has new Features like Flow Con
+trol
+PPE  ATM                        x
+PPE  EFM
+PPE  Protocol Acceleration
+PPE  Bonding
+Misc(GPIO/WDT/GPTC/CGU/RCU)     x
+TDM
+MEI driver(ADSL MIB)            x
+LED Controller                  x
+DEU (Data encryption unit)      x                       Data Encryption Unit with DMA support(Preliminary version)
+PCI                             x                       PCI Controller
+ICU                             x                       Interrupt Controller
+BCU CoS                         x
+PMU                             x                       Power management driver
+MPS                             x                       Mailbox driver for data transfer betwwen CPU0 and CPU1
+ADSL firmware                   x
+Voice firmware
+PPE firmware - ATM              x
+PPE firmware - EFM
+PPE firmware - Protocol Acceleration
+PPE firmware - Bonding
+SSC  driver                     x                       SPI Interface without DMA support
+Flash driver                    x                       NOR/NAND FLASH support
+SDIO driver                     x                       Preliminary version
+
+-----------------------------------------------------------------------------------------
+External Components
+
+TAPI v3.0 driver                                        First version   Limited testing. Partial feature support
+USB 2.0 Host driver             ?                       Will be ready at the beginning of July
+USB 2.0  slave device driver    ?
+Vinetic Driver - LL with TAPIv3                        "use the Amazon driver:
+in combination with Voice MIPS clarification is required how this works together [Contact Robert M.]"
+SLICOFI-1 driver                FXO
+DAA (CP Clare) Driver
+5-port SWITCH ADM6996I/LC       x
+Bluemoon Bluetooth driver
+Atheros WLAN driver             x                       Atheros Super-G WLAN
+Wildcard-G WLAN driver          x
+ISDN (ISAC - SX)
+DECT
+AC97 codec
+
+

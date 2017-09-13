@@ -1,0 +1,1 @@
+#define CONFIG_IFX_NF_ADDONS 1

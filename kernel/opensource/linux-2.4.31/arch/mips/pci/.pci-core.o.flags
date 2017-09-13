@@ -1,0 +1,3 @@
+ifeq (pci.o pci_auto.o ops-danube.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += pci-core.o
+endif

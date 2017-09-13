@@ -1,0 +1,38 @@
+dep_autofs_i.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/auto_fs4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/auto_fs4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)
+expire.o: expire.c \
+   autofs_i.h $(dep_autofs_i.h)
+init.o: init.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   autofs_i.h $(dep_autofs_i.h)
+inode.o: inode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   autofs_i.h $(dep_autofs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h)
+root.o: root.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stat.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stat.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/param.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/param.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   autofs_i.h $(dep_autofs_i.h)
+symlink.o: symlink.c \
+   autofs_i.h $(dep_autofs_i.h)
+waitq.o: waitq.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h) \
+   autofs_i.h $(dep_autofs_i.h)

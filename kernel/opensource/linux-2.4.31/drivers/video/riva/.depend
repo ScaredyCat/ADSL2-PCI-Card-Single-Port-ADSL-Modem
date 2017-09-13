@@ -1,0 +1,35 @@
+accel.o: accel.c \
+   rivafb.h $(dep_rivafb.h)
+fbdev.o: fbdev.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h) \
+   rivafb.h $(dep_rivafb.h) \
+   nvreg.h $(dep_nvreg.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/all/ppc.h)
+dep_rivafb.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   riva_hw.h $(dep_riva_hw.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h)
+riva_hw.o: riva_hw.c \
+   riva_hw.h $(dep_riva_hw.h) \
+   riva_tbl.h $(dep_riva_tbl.h)
+dep_riva_hw.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h)

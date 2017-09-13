@@ -1,0 +1,24 @@
+divert_init.o: divert_init.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   isdn_divert.h $(dep_isdn_divert.h)
+divert_procfs.o: divert_procfs.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdnif.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdnif.h) \
+   isdn_divert.h $(dep_isdn_divert.h)
+isdn_divert.o: isdn_divert.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   isdn_divert.h $(dep_isdn_divert.h)
+dep_isdn_divert.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdnif.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdnif.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_divertif.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_divertif.h)

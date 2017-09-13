@@ -1,0 +1,364 @@
+act200l.o: act200l.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h)
+actisys.o: actisys.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h)
+ali-ircc.o: ali-ircc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/ali-ircc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/ali-ircc.h)
+au1k_ir.o: au1k_ir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/au1000.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/au1000.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mips/pb1000.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mips/pb1100.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pb1000.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pb1000.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mips/db1000.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mips/db1100.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/db1x00.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/db1x00.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/au1000_ircc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/au1000_ircc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/cpu/little/endian.h)
+donauboe.o: donauboe.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/crc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/crc.h) \
+   donauboe.h $(dep_donauboe.h)
+ep7211_ir.o: ep7211_ir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h)
+esi.o: esi.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h)
+girbil.o: girbil.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h)
+irda-usb.o: irda-usb.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda-usb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda-usb.h)
+irport.o: irport.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irport.h)
+irtty.o: irtty.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h)
+litelink.o: litelink.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h)
+ma600.o: ma600.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h)
+mcp2120.o: mcp2120.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h)
+nsc-ircc.o: nsc-ircc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/nsc-ircc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/nsc-ircc.h)
+old_belkin.o: old_belkin.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h)
+sa1100_ir.o: sa1100_ir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/sa1100/h3600.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pm.h)
+smc-ircc.o: smc-ircc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/serial_reg.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/smc-ircc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/smc-ircc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irport.h)
+tekram.o: tekram.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irtty.h)
+toshoboe.o: toshoboe.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap_frame.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/toshoboe.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/toshoboe.h)
+via-ircc.o: via-ircc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   via-ircc.h $(dep_via-ircc.h)
+dep_via-ircc.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/addr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/data.h)
+vlsi_ir.o: vlsi_ir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/vlsi_ir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/vlsi_ir.h)
+w83977af_ir.o: w83977af_ir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda_device.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/w83977af.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/w83977af.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/w83977af_ir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/w83977af_ir.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/arch/netwinder.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/use/w977/pnp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/use/internal/timer.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netwinder/tx/dma/problems.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netwinder/rx/dma/problems.h)

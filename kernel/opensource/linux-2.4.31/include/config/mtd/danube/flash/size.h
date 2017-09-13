@@ -1,0 +1,1 @@
+#define CONFIG_MTD_DANUBE_FLASH_SIZE (4)

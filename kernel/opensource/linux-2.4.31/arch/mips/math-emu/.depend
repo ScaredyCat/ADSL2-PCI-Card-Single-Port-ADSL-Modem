@@ -1,0 +1,128 @@
+cp1emu.o: cp1emu.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/inst.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/inst.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/cpu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/cpu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ptrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ptrace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mipsregs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mipsregs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/branch.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/branch.h) \
+   ieee754.h $(dep_ieee754.h) \
+   dsemul.h $(dep_dsemul.h)
+dp_add.o: dp_add.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_cmp.o: dp_cmp.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_div.o: dp_div.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_fint.o: dp_fint.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_flong.o: dp_flong.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_frexp.o: dp_frexp.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_fsp.o: dp_fsp.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_logb.o: dp_logb.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_modf.o: dp_modf.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_mul.o: dp_mul.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_scalb.o: dp_scalb.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_simple.o: dp_simple.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_sqrt.o: dp_sqrt.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_sub.o: dp_sub.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_tint.o: dp_tint.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   ieee754dp.h $(dep_ieee754dp.h)
+dp_tlong.o: dp_tlong.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dsemul.o: dsemul.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compiler.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compiler.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/asm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/asm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/cpu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/cpu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/inst.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/inst.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/branch.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/branch.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mipsregs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mipsregs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h) \
+   ieee754.h $(dep_ieee754.h) \
+   dsemul.h $(dep_dsemul.h)
+ieee754.o: ieee754.c \
+   ieee754int.h $(dep_ieee754int.h)
+ieee754d.o: ieee754d.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   ieee754.h $(dep_ieee754.h)
+ieee754dp.o: ieee754dp.c \
+   ieee754dp.h $(dep_ieee754dp.h)
+dep_ieee754dp.h += \
+   ieee754int.h $(dep_ieee754int.h)
+dep_ieee754.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h)
+dep_ieee754int.h += \
+   ieee754.h $(dep_ieee754.h)
+ieee754m.o: ieee754m.c \
+   ieee754.h $(dep_ieee754.h)
+ieee754sp.o: ieee754sp.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+dep_ieee754sp.h += \
+   ieee754int.h $(dep_ieee754int.h)
+ieee754xcpt.o: ieee754xcpt.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   ieee754.h $(dep_ieee754.h)
+kernel_linkage.o: kernel_linkage.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/processor.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/fpu_emulator.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mips64.h)
+sp_add.o: sp_add.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_cmp.o: sp_cmp.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_div.o: sp_div.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_fdp.o: sp_fdp.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_fint.o: sp_fint.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_flong.o: sp_flong.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_frexp.o: sp_frexp.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_logb.o: sp_logb.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_modf.o: sp_modf.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_mul.o: sp_mul.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_scalb.o: sp_scalb.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_simple.o: sp_simple.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_sqrt.o: sp_sqrt.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_sub.o: sp_sub.c \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_tint.o: sp_tint.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   ieee754sp.h $(dep_ieee754sp.h)
+sp_tlong.o: sp_tlong.c \
+   ieee754sp.h $(dep_ieee754sp.h)

@@ -1,0 +1,3 @@
+ifeq (br.o br_device.o br_fdb.o br_forward.o br_if.o br_input.o br_ioctl.o br_notify.o br_stp.o br_stp_bpdu.o br_stp_if.o br_stp_timer.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += bridge.o
+endif

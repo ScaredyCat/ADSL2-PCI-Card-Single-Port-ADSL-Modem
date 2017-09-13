@@ -1,0 +1,1 @@
+#define CONFIG_PPPOATM 1

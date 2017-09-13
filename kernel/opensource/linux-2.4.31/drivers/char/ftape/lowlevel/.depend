@@ -1,0 +1,281 @@
+fc-10.o: fc-10.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/fc-10.h $(dep_../lowlevel/fc-10.h)
+fdc-io.o: fdc-io.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/fdc-isr.h $(dep_../lowlevel/fdc-isr.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-calibr.h $(dep_../lowlevel/ftape-calibr.h) \
+   ../lowlevel/fc-10.h $(dep_../lowlevel/fc-10.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/base.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/irq.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/dma.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/thr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/max/rate.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/probe/fc10.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/mach2.h)
+dep_fdc-io.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fdreg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fdreg.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h)
+fdc-isr.o: fdc-isr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/fdc-isr.h $(dep_../lowlevel/fdc-isr.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-calibr.h $(dep_../lowlevel/ftape-calibr.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h)
+ftape-bsm.o: ftape-bsm.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h)
+dep_ftape-bsm.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-header-segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-header-segment.h)
+ftape-buffer.o: ftape-buffer.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h)
+ftape-calibr.o: ftape-calibr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/timex.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/timex.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timex.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timex.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-calibr.h $(dep_../lowlevel/ftape-calibr.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h)
+ftape-ctl.o: ftape-ctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/two/drives.h)
+dep_ftape-ctl.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-vendors.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-vendors.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-header-segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-header-segment.h)
+ftape-ecc.o: ftape-ecc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-ecc.h $(dep_../lowlevel/ftape-ecc.h)
+dep_ftape-ecc.h += \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h)
+ftape-format.o: ftape-format.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-ecc.h $(dep_../lowlevel/ftape-ecc.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   ../lowlevel/ftape-format.h $(dep_../lowlevel/ftape-format.h)
+ftape-init.o: ftape-init.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/zftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zftape.h) \
+   ../lowlevel/ftape-init.h $(dep_../lowlevel/ftape-init.h) \
+   ../lowlevel/ftape_syms.h $(dep_../lowlevel/ftape_syms.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-buffer.h $(dep_../lowlevel/ftape-buffer.h) \
+   ../lowlevel/ftape-proc.h $(dep_../lowlevel/ftape-proc.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/nr/buffers.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/no/trace/at/all.h)
+dep_ftape-init.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/linkage.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/linkage.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h)
+ftape-io.o: ftape-io.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-init.h $(dep_../lowlevel/ftape-init.h) \
+   ../lowlevel/ftape-calibr.h $(dep_../lowlevel/ftape-calibr.h)
+dep_ftape-io.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-vendors.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape-vendors.h)
+ftape-proc.o: ftape-proc.c \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/proc/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-proc.h $(dep_../lowlevel/ftape-proc.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h)
+dep_ftape-proc.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h)
+ftape-read.o: ftape-read.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-ecc.h $(dep_../lowlevel/ftape-ecc.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h)
+ftape-rw.o: ftape-rw.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-init.h $(dep_../lowlevel/ftape-init.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-ecc.h $(dep_../lowlevel/ftape-ecc.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h)
+dep_ftape-rw.h += \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-init.h $(dep_../lowlevel/ftape-init.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h)
+ftape-setup.o: ftape-setup.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/no/trace/at/all.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/base.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/irq.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/dma.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/thr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/fdc/max/rate.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/probe/fc10.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/mach2.h)
+ftape_syms.o: ftape_syms.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-init.h $(dep_../lowlevel/ftape-init.h) \
+   ../lowlevel/fdc-io.h $(dep_../lowlevel/fdc-io.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   ../lowlevel/ftape-buffer.h $(dep_../lowlevel/ftape-buffer.h) \
+   ../lowlevel/ftape-format.h $(dep_../lowlevel/ftape-format.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/no/trace/at/all.h)
+dep_ftape_syms.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h)
+ftape-tracing.o: ftape-tracing.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h)
+dep_ftape-tracing.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/no/trace/at/all.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/no/trace.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ft/full/debug.h)
+ftape-write.o: ftape-write.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/qic117.h) \
+   ../lowlevel/ftape-tracing.h $(dep_../lowlevel/ftape-tracing.h) \
+   ../lowlevel/ftape-write.h $(dep_../lowlevel/ftape-write.h) \
+   ../lowlevel/ftape-read.h $(dep_../lowlevel/ftape-read.h) \
+   ../lowlevel/ftape-io.h $(dep_../lowlevel/ftape-io.h) \
+   ../lowlevel/ftape-ctl.h $(dep_../lowlevel/ftape-ctl.h) \
+   ../lowlevel/ftape-rw.h $(dep_../lowlevel/ftape-rw.h) \
+   ../lowlevel/ftape-ecc.h $(dep_../lowlevel/ftape-ecc.h) \
+   ../lowlevel/ftape-bsm.h $(dep_../lowlevel/ftape-bsm.h) \
+   ../lowlevel/fdc-isr.h $(dep_../lowlevel/fdc-isr.h)

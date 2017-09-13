@@ -1,0 +1,46 @@
+infblock.o: infblock.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   infblock.h $(dep_infblock.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infcodes.h $(dep_infcodes.h) \
+   infutil.h $(dep_infutil.h)
+infcodes.o: infcodes.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infblock.h $(dep_infblock.h) \
+   infcodes.h $(dep_infcodes.h) \
+   infutil.h $(dep_infutil.h) \
+   inffast.h $(dep_inffast.h)
+dep_infcodes.h += \
+   infblock.h $(dep_infblock.h)
+inffast.o: inffast.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infblock.h $(dep_infblock.h) \
+   infcodes.h $(dep_infcodes.h) \
+   infutil.h $(dep_infutil.h) \
+   inffast.h $(dep_inffast.h)
+inflate.o: inflate.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   infblock.h $(dep_infblock.h) \
+   infutil.h $(dep_infutil.h)
+inflate_syms.o: inflate_syms.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h)
+inftrees.o: inftrees.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infutil.h $(dep_infutil.h) \
+   inffixed.h $(dep_inffixed.h)
+infutil.o: infutil.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   infblock.h $(dep_infblock.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infcodes.h $(dep_infcodes.h) \
+   infutil.h $(dep_infutil.h)
+dep_infutil.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zconf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zconf.h) \
+   inftrees.h $(dep_inftrees.h) \
+   infcodes.h $(dep_infcodes.h)

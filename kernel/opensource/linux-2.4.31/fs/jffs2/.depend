@@ -1,0 +1,161 @@
+background.o: background.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h) \
+   nodelist.h $(dep_nodelist.h)
+build.o: build.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   nodelist.h $(dep_nodelist.h)
+compr.o: compr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h)
+compr_rtime.o: compr_rtime.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h)
+compr_rubin.o: compr_rubin.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   compr_rubin.h $(dep_compr_rubin.h) \
+   histo_mips.h $(dep_histo_mips.h)
+dep_compr_rubin.h += \
+   pushpull.h $(dep_pushpull.h)
+comprtest.o: comprtest.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h)
+compr_zlib.o: compr_zlib.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h) \
+   nodelist.h $(dep_nodelist.h)
+dir.o: dir.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_sb.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+erase.o: erase.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+file.o: file.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/compatmac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+gc.o: gc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+ioctl.o: ioctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h)
+malloc.o: malloc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   nodelist.h $(dep_nodelist.h)
+nodelist.o: nodelist.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   nodelist.h $(dep_nodelist.h)
+dep_nodelist.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2_fs_i.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jffs2/fs/debug.h)
+nodemgmt.o: nodemgmt.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   nodelist.h $(dep_nodelist.h)
+pushpull.o: pushpull.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   pushpull.h $(dep_pushpull.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h)
+read.o: read.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+readinode.o: readinode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+scan.o: scan.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)
+super.o: super.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   nodelist.h $(dep_nodelist.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jffs2/fs/debug.h)
+symlink.o: symlink.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   nodelist.h $(dep_nodelist.h)
+write.o: write.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jffs2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mtd/mtd.h) \
+   nodelist.h $(dep_nodelist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crc32.h)

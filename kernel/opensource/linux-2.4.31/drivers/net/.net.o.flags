@@ -1,0 +1,3 @@
+ifeq (Space.o setup.o net_init.o loopback.o ppp_generic.o slhc.o pppox.o pppoe.o danube_sw.o auto_irq.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += net.o
+endif

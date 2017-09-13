@@ -1,0 +1,1 @@
+#define CONFIG_DANUBE_MEI_MIB 1

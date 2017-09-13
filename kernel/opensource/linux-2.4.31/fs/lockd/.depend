@@ -1,0 +1,150 @@
+clntlock.o: clntlock.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h)
+clntproc.o: clntproc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)
+host.o: host.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h)
+lockd_syms.o: lockd_syms.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/modules.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/socket.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/socket.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h)
+mon.o: mon.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h)
+svc4proc.o: svc4proc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h)
+svc.o: svc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svcsock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svcsock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/nfsd/tcp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)
+svclock.o: svclock.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/nlm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/nlm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)
+svcproc.o: svcproc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)
+svcshare.o: svcshare.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/unistd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h)
+svcsubs.o: svcsubs.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsfh.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/nfsfh.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/export.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfsd/export.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/share.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)
+xdr4.o: xdr4.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/xdr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/xdr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h)
+xdr.o: xdr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/utsname.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/xdr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/xdr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/svc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sunrpc/stats.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/lockd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/lockd/sm_inter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/lockd/v4.h)

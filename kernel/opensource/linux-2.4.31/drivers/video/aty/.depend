@@ -1,0 +1,87 @@
+atyfb_base.o: atyfb_base.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   mach64.h $(dep_mach64.h) \
+   atyfb.h $(dep_atyfb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/macmodes.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/macmodes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/adb/pmu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/adb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/adb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pmu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pmu.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bootx/text.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/nvram.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nvram.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nvram.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/compat/xpmac.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pmac/backlight.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/atari.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ppc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/gx.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/ct.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pmac/pbook.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/generic/lcd.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/panel.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/chip/id.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/stat0.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/all/ppc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/stat1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h)
+dep_atyfb.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compiler.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/compiler.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/generic/lcd.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/ct.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pmac/pbook.h)
+mach64_accel.o: mach64_accel.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   mach64.h $(dep_mach64.h) \
+   atyfb.h $(dep_atyfb.h)
+mach64_ct.o: mach64_ct.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   mach64.h $(dep_mach64.h) \
+   atyfb.h $(dep_atyfb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/aty/generic/lcd.h)
+mach64_cursor.o: mach64_cursor.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   mach64.h $(dep_mach64.h) \
+   atyfb.h $(dep_atyfb.h)
+mach64_gx.o: mach64_gx.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   mach64.h $(dep_mach64.h) \
+   atyfb.h $(dep_atyfb.h)

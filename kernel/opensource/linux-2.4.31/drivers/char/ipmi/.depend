@@ -1,0 +1,71 @@
+ipmi_devintf.o: ipmi_devintf.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/devfs_fs_kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/devfs_fs_kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+ipmi_kcs_intf.o: ipmi_kcs_intf.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/high/res/timers.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hrtime.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hrtime.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   ipmi_kcs_sm.h $(dep_ipmi_kcs_sm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ipmi/kcs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/acpi/interpreter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/acpi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actypes.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actypes.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actbl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/acpi/actbl.h)
+ipmi_kcs_sm.o: ipmi_kcs_sm.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/string.h) \
+   ipmi_kcs_sm.h $(dep_ipmi_kcs_sm.h)
+ipmi_msghandler.o: ipmi_msghandler.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/notifier.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/notifier.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ipmi/panic/event.h)
+ipmi_watchdog.o: ipmi_watchdog.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ipmi_smi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/watchdog.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/watchdog.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/notifier.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/notifier.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nmi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nmi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/reboot.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/reboot.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86/local/apic.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/watchdog/nowayout.h)

@@ -1,0 +1,6 @@
+#define UTS_VERSION "#4 д@ 12ды 14 13:45:04 CST 2009"
+#define LINUX_COMPILE_TIME "13:45:04"
+#define LINUX_COMPILE_BY "root"
+#define LINUX_COMPILE_HOST "localhost.localdomain"
+#define LINUX_COMPILE_DOMAIN "localdomain"
+#define LINUX_COMPILER "gcc version 3.3.6"

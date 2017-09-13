@@ -1,0 +1,3 @@
+ifeq (af_unix.o garbage.o sysctl_net_unix.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += unix.o
+endif

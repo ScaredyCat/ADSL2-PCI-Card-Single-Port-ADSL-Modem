@@ -1,0 +1,130 @@
+ifxdeu-aes.o: ifxdeu-aes.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/aes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/aes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/aes.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/irq.h)
+ifxdeu-des.o: ifxdeu-des.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/des.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/des.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/des.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/irq.h)
+ifxdeu-dma.o: ifxdeu-dma.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h)
+dep_ifxdeu-dma.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h)
+ifxdeu-generic.o: ifxdeu-generic.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/modversions.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/modversions.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/modversions.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_pmu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_pmu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/md5.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/des.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/des.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/des.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/aes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/aes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/aes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/sha1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/sha1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/md5.h)
+ifxdeu-md5.o: ifxdeu-md5.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/md5.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/md5.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/md5.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h)
+ifxdeu-sha1.o: ifxdeu-sha1.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/crypto.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/scatterlist.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip1/sha1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/incaip2/sha1.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/sha1.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_deu_structs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/crypto/dev/danube/dma.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_dma.h) \
+   ifxdeu-dma.h $(dep_ifxdeu-dma.h)

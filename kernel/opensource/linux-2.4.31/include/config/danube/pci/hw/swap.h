@@ -1,0 +1,1 @@
+#define CONFIG_DANUBE_PCI_HW_SWAP 1

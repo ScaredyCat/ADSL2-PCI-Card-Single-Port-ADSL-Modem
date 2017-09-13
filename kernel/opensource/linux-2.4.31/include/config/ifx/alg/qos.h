@@ -1,0 +1,1 @@
+#undef  CONFIG_IFX_ALG_QOS

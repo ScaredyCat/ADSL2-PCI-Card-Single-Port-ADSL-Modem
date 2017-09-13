@@ -1,0 +1,125 @@
+attr.o: attr.c \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   attr.h $(dep_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h) \
+   macros.h $(dep_macros.h) \
+   support.h $(dep_support.h) \
+   util.h $(dep_util.h) \
+   super.h $(dep_super.h) \
+   inode.h $(dep_inode.h) \
+   unistr.h $(dep_unistr.h)
+dep_attr.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h)
+dir.o: dir.c \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   dir.h $(dep_dir.h) \
+   macros.h $(dep_macros.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   super.h $(dep_super.h) \
+   inode.h $(dep_inode.h) \
+   attr.h $(dep_attr.h) \
+   support.h $(dep_support.h) \
+   util.h $(dep_util.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h)
+fs.o: fs.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   util.h $(dep_util.h) \
+   inode.h $(dep_inode.h) \
+   super.h $(dep_super.h) \
+   dir.h $(dep_dir.h) \
+   support.h $(dep_support.h) \
+   macros.h $(dep_macros.h) \
+   sysctl.h $(dep_sysctl.h) \
+   attr.h $(dep_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ntfs/rw.h)
+inode.o: inode.c \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   ntfsendian.h $(dep_ntfsendian.h) \
+   struct.h $(dep_struct.h) \
+   inode.h $(dep_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   macros.h $(dep_macros.h) \
+   attr.h $(dep_attr.h) \
+   super.h $(dep_super.h) \
+   dir.h $(dep_dir.h) \
+   support.h $(dep_support.h) \
+   util.h $(dep_util.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h)
+dep_macros.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h)
+dep_ntfsendian.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h)
+dep_ntfstypes.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   ntfsendian.h $(dep_ntfsendian.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/posix_types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/posix_types.h)
+dep_struct.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h)
+super.o: super.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ntfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   super.h $(dep_super.h) \
+   macros.h $(dep_macros.h) \
+   inode.h $(dep_inode.h) \
+   support.h $(dep_support.h) \
+   util.h $(dep_util.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h)
+support.o: support.c \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   support.h $(dep_support.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   util.h $(dep_util.h) \
+   inode.h $(dep_inode.h) \
+   macros.h $(dep_macros.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h) \
+   sysctl.h $(dep_sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h)
+dep_support.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h)
+sysctl.o: sysctl.c \
+   sysctl.h $(dep_sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h)
+unistr.o: unistr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   unistr.h $(dep_unistr.h) \
+   macros.h $(dep_macros.h)
+dep_unistr.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h)
+util.o: util.c \
+   ntfstypes.h $(dep_ntfstypes.h) \
+   struct.h $(dep_struct.h) \
+   util.h $(dep_util.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h) \
+   support.h $(dep_support.h)

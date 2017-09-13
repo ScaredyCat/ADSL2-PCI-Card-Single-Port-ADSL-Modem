@@ -1,0 +1,152 @@
+br.o: br.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/brlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/brlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/atm/lane.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/atm/lane/module.h) \
+   ../atm/lec.h $(dep_../atm/lec.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge/module.h)
+br_device.o: br_device.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/igmp/proxy.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/igmp/proxy/module.h)
+br_fdb.o: br_fdb.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h)
+br_forward.o: br_forward.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h) \
+   br_private.h $(dep_br_private.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/igmp/proxy.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/igmp/proxy/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/netfilter/procfs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/br/wan/isolation.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/br/opt.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/nf/turbonat.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netfilter/debug.h)
+br_if.o: br_if.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/brlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/brlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h)
+br_input.o: br_input.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h) \
+   br_private.h $(dep_br_private.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/netfilter/procfs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/nf/turbonat.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netfilter/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/br/opt.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables/module.h)
+br_ioctl.o: br_ioctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rtnetlink.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h)
+br_netfilter.o: br_netfilter.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_vlan.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_vlan.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv6.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv6.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in_route.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in_route.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ipv6.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ipv6.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/checksum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/checksum.h) \
+   br_private.h $(dep_br_private.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/netfilter/procfs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netfilter/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/vlan/8021q.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/vlan/8021q/module.h)
+br_notify.o: br_notify.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   br_private.h $(dep_br_private.h)
+dep_br_private.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   br_private_timer.h $(dep_br_private_timer.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/nfext/vbridge/module.h)
+br_stp_bpdu.o: br_stp_bpdu.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_bridge.h) \
+   br_private.h $(dep_br_private.h) \
+   br_private_stp.h $(dep_br_private_stp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ifx/netfilter/procfs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/bridge/nf/ebtables.h)
+br_stp.o: br_stp.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h) \
+   br_private_stp.h $(dep_br_private_stp.h)
+br_stp_if.o: br_stp_if.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h) \
+   br_private_stp.h $(dep_br_private_stp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_led.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/danube/danube_led.h)
+br_stp_timer.o: br_stp_timer.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_bridge.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   br_private.h $(dep_br_private.h) \
+   br_private_stp.h $(dep_br_private_stp.h)

@@ -1,0 +1,237 @@
+file.o: file.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h) \
+   jfs_xattr.h $(dep_jfs_xattr.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+inode.o: inode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_extent.h $(dep_jfs_extent.h) \
+   jfs_unicode.h $(dep_jfs_unicode.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+jfs_debug.o: jfs_debug.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ctype.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ctype.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h)
+dep_jfs_debug.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/kernel/asserts.h)
+jfs_dmap.o: jfs_dmap.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_lock.h $(dep_jfs_lock.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+dep_jfs_dmap.h += \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h)
+jfs_dtree.o: jfs_dtree.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_unicode.h $(dep_jfs_unicode.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+dep_jfs_dtree.h += \
+   jfs_btree.h $(dep_jfs_btree.h)
+jfs_extent.o: jfs_extent.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_extent.h $(dep_jfs_extent.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+jfs_imap.o: jfs_imap.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+dep_jfs_imap.h += \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h)
+dep_jfs_incore.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/rwsem.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   jfs_types.h $(dep_jfs_types.h) \
+   jfs_xtree.h $(dep_jfs_xtree.h) \
+   jfs_dtree.h $(dep_jfs_dtree.h)
+jfs_inode.o: jfs_inode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+dep_jfs_lock.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h)
+jfs_logmgr.o: jfs_logmgr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h)
+dep_jfs_logmgr.h += \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_lock.h $(dep_jfs_lock.h)
+jfs_metapage.o: jfs_metapage.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h)
+dep_jfs_metapage.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h)
+jfs_mount.o: jfs_mount.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+jfs_txnmgr.o: jfs_txnmgr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/debug.h)
+dep_jfs_txnmgr.h += \
+   jfs_logmgr.h $(dep_jfs_logmgr.h)
+dep_jfs_types.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/nls.h)
+jfs_umount.o: jfs_umount.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+jfs_unicode.o: jfs_unicode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_unicode.h $(dep_jfs_unicode.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+dep_jfs_unicode.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   jfs_types.h $(dep_jfs_types.h)
+jfs_uniupr.o: jfs_uniupr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_unicode.h $(dep_jfs_unicode.h)
+jfs_xtree.o: jfs_xtree.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/statistics.h)
+dep_jfs_xtree.h += \
+   jfs_btree.h $(dep_jfs_btree.h)
+namei.o: namei.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_inode.h $(dep_jfs_inode.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_unicode.h $(dep_jfs_unicode.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_xattr.h $(dep_jfs_xattr.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+resize.o: resize.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_txnmgr.h $(dep_jfs_txnmgr.h) \
+   jfs_debug.h $(dep_jfs_debug.h)
+super.o: super.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_filsys.h $(dep_jfs_filsys.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_imap.h $(dep_jfs_imap.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/jfs/debug.h)
+symlink.o: symlink.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_xattr.h $(dep_jfs_xattr.h)
+xattr.o: xattr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/xattr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/xattr.h) \
+   jfs_incore.h $(dep_jfs_incore.h) \
+   jfs_superblock.h $(dep_jfs_superblock.h) \
+   jfs_dmap.h $(dep_jfs_dmap.h) \
+   jfs_debug.h $(dep_jfs_debug.h) \
+   jfs_dinode.h $(dep_jfs_dinode.h) \
+   jfs_extent.h $(dep_jfs_extent.h) \
+   jfs_metapage.h $(dep_jfs_metapage.h) \
+   jfs_xattr.h $(dep_jfs_xattr.h)

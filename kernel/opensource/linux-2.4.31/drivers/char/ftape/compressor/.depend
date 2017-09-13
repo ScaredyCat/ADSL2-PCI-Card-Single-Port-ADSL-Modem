@@ -1,0 +1,25 @@
+lzrw3.o: lzrw3.c \
+   ../compressor/lzrw3.h $(dep_../compressor/lzrw3.h)
+dep_lzrw3.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h)
+zftape-compress.o: zftape-compress.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zftape.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zftape.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   ../zftape/zftape-init.h $(dep_../zftape/zftape-init.h) \
+   ../zftape/zftape-eof.h $(dep_../zftape/zftape-eof.h) \
+   ../zftape/zftape-ctl.h $(dep_../zftape/zftape-ctl.h) \
+   ../zftape/zftape-write.h $(dep_../zftape/zftape-write.h) \
+   ../zftape/zftape-read.h $(dep_../zftape/zftape-read.h) \
+   ../zftape/zftape-rw.h $(dep_../zftape/zftape-rw.h) \
+   ../compressor/zftape-compress.h $(dep_../compressor/zftape-compress.h) \
+   ../zftape/zftape-vtbl.h $(dep_../zftape/zftape-vtbl.h) \
+   ../compressor/lzrw3.h $(dep_../compressor/lzrw3.h)
+dep_zftape-compress.h += \
+   ../zftape/zftape-buffers.h $(dep_../zftape/zftape-buffers.h) \
+   ../zftape/zftape-vtbl.h $(dep_../zftape/zftape-vtbl.h) \
+   ../compressor/lzrw3.h $(dep_../compressor/lzrw3.h)

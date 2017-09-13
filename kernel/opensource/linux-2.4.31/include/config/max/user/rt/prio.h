@@ -1,0 +1,1 @@
+#define CONFIG_MAX_USER_RT_PRIO (100)

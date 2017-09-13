@@ -1,0 +1,1 @@
+#define CONFIG_MAX_RT_PRIO (0)

@@ -1,0 +1,13 @@
+//#define KSEG1                         0xA0000000
+#define DEU_BASE   (KSEG1+0x1E103100)
+
+#define DES_CON		(DEU_BASE+0x10)
+#define AES_CON		(DEU_BASE+0x50)
+#define HASH_CON	(DEU_BASE+0xB0)
+#define DMA_CON		(DEU_BASE+0xEC)
+#define INT_CON		(DEU_BASE+0xF4)
+
+#define DANUBE_DEU_IOC_MAGIC		'd'
+#define DANUBE_DEU_IOC_MD5_TEST		_IO(DANUBE_DEU_IOC_MAGIC, 0)
+#define DANUBE_DEU_IOC_MD5_GET_STAT 	_IO(DANUBE_DEU_IOC_MAGIC, 1)
+#define DANUBE_DEU_IOC_MAXNR		10

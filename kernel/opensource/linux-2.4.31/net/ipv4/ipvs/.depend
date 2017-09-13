@@ -1,0 +1,149 @@
+ip_vs_app.o: ip_vs_app.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/protocol.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/protocol.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stat.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stat.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_conn.o: ip_vs_conn.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/softirq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/softirq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/udp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/udp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/icmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/icmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/route.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/route.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jhash.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/jhash.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netfilter/debug.h)
+ip_vs_core.o: ip_vs_core.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/icmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/icmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/udp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/udp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/icmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/icmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/route.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/route.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/debug.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netfilter/debug.h)
+ip_vs_ctl.o: ip_vs_ctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netfilter_ipv4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/sock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/sock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/debug.h)
+ip_vs_dh.o: ip_vs_dh.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/dh/tab/bits.h)
+ip_vs_est.o: ip_vs_est.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_ftp.o: ip_vs_ftp.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/protocol.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/protocol.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/debug.h)
+ip_vs_lblc.o: ip_vs_lblc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/lblc/tab/bits.h)
+ip_vs_lblcr.o: ip_vs_lblcr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/lblcr/tab/bits.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/lblcr/debug.h)
+ip_vs_lc.o: ip_vs_lc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_nq.o: ip_vs_nq.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_rr.o: ip_vs_rr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_sched.o: ip_vs_sched.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/softirq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/softirq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_sed.o: ip_vs_sed.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_sh.o: ip_vs_sh.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ip/vs/sh/tab/bits.h)
+ip_vs_sync.o: ip_vs_sync.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/net.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/net.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/igmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/igmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/sock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/sock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_wlc.o: ip_vs_wlc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)
+ip_vs_wrr.o: ip_vs_wrr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/ip_vs.h)

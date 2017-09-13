@@ -1,0 +1,1 @@
+#undef  CONFIG_ADM6996_SUPPORT

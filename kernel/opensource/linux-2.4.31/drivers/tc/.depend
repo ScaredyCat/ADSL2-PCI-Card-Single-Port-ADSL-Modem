@@ -1,0 +1,73 @@
+lk201.o: lk201.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kbd_ll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kbd_ll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kbd_kern.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kbd_kern.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/keyboard.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/keyboard.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h) \
+   lk201.h $(dep_lk201.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/magic/sysrq.h)
+tc.o: tc.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/addrspace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/addrspace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/prom.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/prom.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tcinfo.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tcinfo.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tcmodule.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tcmodule.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/interrupts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/interrupts.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/paccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/paccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ptrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ptrace.h)
+zs.o: zs.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty_flip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty_flip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fcntl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fcntl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/serial/dec/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/irq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bootinfo.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/decstation.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/interrupts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/interrupts.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/machtype.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/tc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/ioasic_addrs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/ioasic_addrs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/baget/mips.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/baget/baget.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/baget/baget.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/kgdb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/magic/sysrq.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysrq.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysrq.h) \
+   zs.h $(dep_zs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/devfs/fs.h)
+dep_zs.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/dec/serial.h)

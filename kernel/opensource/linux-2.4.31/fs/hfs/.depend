@@ -1,0 +1,95 @@
+balloc.o: balloc.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+bdelete.o: bdelete.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+bfind.o: bfind.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+bins_del.o: bins_del.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+binsert.o: binsert.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+bitmap.o: bitmap.c \
+   hfs.h $(dep_hfs.h)
+bitops.o: bitops.c \
+   hfs.h $(dep_hfs.h)
+bnode.o: bnode.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+brec.o: brec.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+btree.o: btree.c \
+   hfs_btree.h $(dep_hfs_btree.h)
+catalog.o: catalog.c \
+   hfs.h $(dep_hfs.h)
+dir.o: dir.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+dir_cap.o: dir_cap.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+dir_dbl.o: dir_dbl.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+dir_nat.o: dir_nat.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+extent.o: extent.c \
+   hfs.h $(dep_hfs.h)
+file.o: file.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+file_cap.o: file_cap.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+file_hdr.o: file_hdr.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)
+dep_hfs_btree.h += \
+   hfs.h $(dep_hfs.h)
+dep_hfs.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_sysdep.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_sysdep.h)
+inode.o: inode.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h)
+mdb.o: mdb.c \
+   hfs.h $(dep_hfs.h)
+part_tbl.o: part_tbl.c \
+   hfs.h $(dep_hfs.h)
+string.o: string.c \
+   hfs.h $(dep_hfs.h)
+super.o: super.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mac/partition.h)
+sysdep.o: sysdep.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h)
+trans.o: trans.c \
+   hfs.h $(dep_hfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs_i.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hfs_fs.h)

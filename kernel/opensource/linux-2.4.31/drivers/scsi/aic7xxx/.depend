@@ -1,0 +1,147 @@
+aic7770.o: aic7770.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   aic7xxx_93cx6.h $(dep_aic7xxx_93cx6.h)
+aic7770_osm.o: aic7770_osm.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h)
+aic79xx_core.o: aic79xx_core.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h) \
+   aic79xx_inline.h $(dep_aic79xx_inline.h) \
+   aicasm/aicasm_insformat.h $(dep_aicasm/aicasm_insformat.h) \
+   aic79xx_seq.h $(dep_aic79xx_seq.h)
+dep_aic79xx.h += \
+   aic79xx_reg.h $(dep_aic79xx_reg.h)
+aic79xx_osm.o: aic79xx_osm.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h) \
+   aic79xx_inline.h $(dep_aic79xx_inline.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/scsi/scsicam.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/scsi/scsicam.h) \
+   aiclib.c $(dep_aiclib.c) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/sd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/sd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/reset/delay/ms.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/cmds/per/device.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/enable/rd/strm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/dv/setting.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/highio.h)
+dep_aic79xx_osm.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/malloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/malloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h) \
+   cam.h $(dep_cam.h) \
+   queue.h $(dep_queue.h) \
+   scsi_message.h $(dep_scsi_message.h) \
+   scsi_iu.h $(dep_scsi_iu.h) \
+   aiclib.h $(dep_aiclib.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/debug/enable.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/debug/mask.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic79xx/reg/pretty/print.h) \
+   aic79xx.h $(dep_aic79xx.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h)
+aic79xx_osm_pci.o: aic79xx_osm_pci.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h) \
+   aic79xx_inline.h $(dep_aic79xx_inline.h)
+aic79xx_pci.o: aic79xx_pci.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h) \
+   aic79xx_inline.h $(dep_aic79xx_inline.h)
+aic79xx_proc.o: aic79xx_proc.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h) \
+   aic79xx_inline.h $(dep_aic79xx_inline.h)
+aic79xx_reg_print.o: aic79xx_reg_print.c \
+   aic79xx_osm.h $(dep_aic79xx_osm.h)
+aic7xxx_93cx6.o: aic7xxx_93cx6.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   aic7xxx_93cx6.h $(dep_aic7xxx_93cx6.h)
+aic7xxx_core.o: aic7xxx_core.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   aicasm/aicasm_insformat.h $(dep_aicasm/aicasm_insformat.h) \
+   aic7xxx_seq.h $(dep_aic7xxx_seq.h)
+dep_aic7xxx.h += \
+   aic7xxx_reg.h $(dep_aic7xxx_reg.h)
+aic7xxx_osm.o: aic7xxx_osm.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/scsi/scsicam.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/scsi/scsicam.h) \
+   aiclib.c $(dep_aiclib.c) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/sd.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/sd.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/reset/delay/ms.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/proc/stats.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/cmds/per/device.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/dv/setting.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/probe/eisa/vl.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/eisa.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/highio.h)
+dep_aic7xxx_osm.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/malloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/malloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h) \
+   cam.h $(dep_cam.h) \
+   queue.h $(dep_queue.h) \
+   scsi_message.h $(dep_scsi_message.h) \
+   aiclib.h $(dep_aiclib.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/debug/enable.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/debug/mask.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/aic7xxx/reg/pretty/print.h) \
+   aic7xxx.h $(dep_aic7xxx.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/eisa.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/pci.h)
+aic7xxx_osm_pci.o: aic7xxx_osm_pci.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h)
+aic7xxx_pci.o: aic7xxx_pci.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   aic7xxx_93cx6.h $(dep_aic7xxx_93cx6.h)
+aic7xxx_proc.o: aic7xxx_proc.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h) \
+   aic7xxx_inline.h $(dep_aic7xxx_inline.h) \
+   aic7xxx_93cx6.h $(dep_aic7xxx_93cx6.h)
+aic7xxx_reg_print.o: aic7xxx_reg_print.c \
+   aic7xxx_osm.h $(dep_aic7xxx_osm.h)
+aiclib.o: aiclib.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h) \
+   aiclib.h $(dep_aiclib.h) \
+   cam.h $(dep_cam.h)
+dep_cam.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h)

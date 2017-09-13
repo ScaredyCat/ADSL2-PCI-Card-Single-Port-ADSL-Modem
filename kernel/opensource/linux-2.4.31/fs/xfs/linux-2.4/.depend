@@ -1,0 +1,364 @@
+kmem.o: kmem.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h) \
+   time.h $(dep_time.h) \
+   kmem.h $(dep_kmem.h)
+dep_kmem.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+mrlock.o: mrlock.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/current.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/current.h) \
+   mrlock.h $(dep_mrlock.h)
+dep_mrlock.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h)
+dep_mutex.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h)
+dep_sema.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/semaphore.h)
+dep_spin.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h)
+dep_sv.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wait.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h)
+dep_time.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/time.h)
+xfs_aops.o: xfs_aops.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_iomap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_iomap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h)
+xfs_buf.o: xfs_buf.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/stddef.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   xfs_linux.h $(dep_xfs_linux.h)
+dep_xfs_buf.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/uio.h)
+xfs_file.o: xfs_file.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/dcache.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/dcache.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mman.h)
+xfs_fs_subr.o: xfs_fs_subr.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h)
+xfs_globals.o: xfs_globals.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   xfs_cred.h $(dep_xfs_cred.h) \
+   xfs_sysctl.h $(dep_xfs_sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h)
+xfs_ioctl.o: xfs_ioctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dfrag.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dfrag.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fsops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fsops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/dcache.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/dcache.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/iobuf.h)
+xfs_iops.o: xfs_iops.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/xattr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/xattr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/posix/acl.h)
+dep_xfs_linux.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_arch.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_arch.h) \
+   kmem.h $(dep_kmem.h) \
+   mrlock.h $(dep_mrlock.h) \
+   spin.h $(dep_spin.h) \
+   sv.h $(dep_sv.h) \
+   mutex.h $(dep_mutex.h) \
+   sema.h $(dep_sema.h) \
+   time.h $(dep_time.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/qsort.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/qsort.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/ktrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/ktrace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/debug.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/debug.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/move.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/move.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/uuid.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/support/uuid.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blkdev.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/swap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/locks.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/major.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/seq_file.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/seq_file.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/list.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/page.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/param.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/param.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_behavior.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_behavior.h) \
+   xfs_vfs.h $(dep_xfs_vfs.h) \
+   xfs_cred.h $(dep_xfs_cred.h) \
+   xfs_vnode.h $(dep_xfs_vnode.h) \
+   xfs_stats.h $(dep_xfs_stats.h) \
+   xfs_sysctl.h $(dep_xfs_sysctl.h) \
+   xfs_iops.h $(dep_xfs_iops.h) \
+   xfs_super.h $(dep_xfs_super.h) \
+   xfs_globals.h $(dep_xfs_globals.h) \
+   xfs_fs_subr.h $(dep_xfs_fs_subr.h) \
+   xfs_lrw.h $(dep_xfs_lrw.h) \
+   xfs_buf.h $(dep_xfs_buf.h)
+xfs_lrw.o: xfs_lrw.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode_item.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode_item.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_iomap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_iomap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h)
+xfs_stats.o: xfs_stats.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h)
+dep_xfs_stats.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h)
+xfs_super.o: xfs_super.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_btree.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ialloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2_sf.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dinode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inode.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bmap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_bit.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rtalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_error.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_itable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_rw.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_acl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_cap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mac.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_attr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_buf_item.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_utils.h) \
+   xfs_version.h $(dep_xfs_version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h)
+dep_xfs_super.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/dmapi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/quota.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/posix/acl.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/security.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/rt.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfs/trace.h)
+xfs_sysctl.o: xfs_sysctl.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_refcache.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h)
+dep_xfs_sysctl.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sysctl.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/sysctl.h)
+xfs_vfs.o: xfs_vfs.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_macros.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_macros.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_inum.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_log.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_clnt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_clnt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_trans.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_sb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_ag.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dir2.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_imap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_imap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_alloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_dmapi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_mount.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_quota.h)
+dep_xfs_vfs.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vfs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs_fs.h)
+xfs_vnode.o: xfs_vnode.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/fs/xfs/xfs.h)

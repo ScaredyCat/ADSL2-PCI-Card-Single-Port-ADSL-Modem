@@ -1,0 +1,474 @@
+dep_ati_pcigart.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_agpsupport.h += \
+   drmP.h $(dep_drmP.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h)
+dep_drm_auth.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_bufs.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   drmP.h $(dep_drmP.h)
+dep_drm_context.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_dma.h += \
+   drmP.h $(dep_drmP.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h)
+dep_drm_drawable.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_fops.h += \
+   drmP.h $(dep_drmP.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h)
+dep_drm.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/ioctl.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfree86/version.h) \
+   mga_drm.h $(dep_mga_drm.h) \
+   i810_drm.h $(dep_i810_drm.h) \
+   r128_drm.h $(dep_r128_drm.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   sis_drm.h $(dep_sis_drm.h) \
+   i830_drm.h $(dep_i830_drm.h) \
+   savage_drm.h $(dep_savage_drm.h) \
+   via_drm.h $(dep_via_drm.h)
+dep_drm_init.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_ioctl.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_lists.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_lock.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_memory.h += \
+   drmP.h $(dep_drmP.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h)
+dep_drm_os_linux.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+dep_drmP.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/current.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/current.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/miscdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/file.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wrapper.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgtable.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mman.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/mman.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/agp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/agp/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/agp_backend.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/agp_backend.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tqueue.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tqueue.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/pgalloc.h) \
+   drm.h $(dep_drm.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h)
+dep_drm_proc.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_scatter.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   drmP.h $(dep_drmP.h)
+dep_drm_stub.h += \
+   drmP.h $(dep_drmP.h)
+dep_drm_vm.h += \
+   drmP.h $(dep_drmP.h)
+ffb_context.o: ffb_context.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   ffb.h $(dep_ffb.h) \
+   drmP.h $(dep_drmP.h) \
+   ffb_drv.h $(dep_ffb_drv.h)
+ffb_drv.o: ffb_drv.c \
+   ffb.h $(dep_ffb.h) \
+   drmP.h $(dep_drmP.h) \
+   ffb_drv.h $(dep_ffb_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/shmparam.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/shmparam.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+gamma_dma.o: gamma_dma.c \
+   gamma.h $(dep_gamma.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   gamma_drm.h $(dep_gamma_drm.h) \
+   gamma_drv.h $(dep_gamma_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+gamma_drv.o: gamma_drv.c \
+   gamma.h $(dep_gamma.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   gamma_drm.h $(dep_gamma_drm.h) \
+   gamma_drv.h $(dep_gamma_drv.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lists.h $(dep_drm_lists.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+i810_dma.o: i810_dma.c \
+   i810.h $(dep_i810.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   i810_drm.h $(dep_i810_drm.h) \
+   i810_drv.h $(dep_i810_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/drm/i810/xfree/41.h)
+dep_i810_drm.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfree86/version.h)
+i810_drv.o: i810_drv.c \
+   i810.h $(dep_i810.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   i810_drm.h $(dep_i810_drm.h) \
+   i810_drv.h $(dep_i810_drv.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_lists.h $(dep_drm_lists.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+i830_dma.o: i830_dma.c \
+   i830.h $(dep_i830.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   i830_drm.h $(dep_i830_drm.h) \
+   i830_drv.h $(dep_i830_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pagemap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+i830_drv.o: i830_drv.c \
+   i830.h $(dep_i830.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   i830_drm.h $(dep_i830_drm.h) \
+   i830_drv.h $(dep_i830_drv.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_lists.h $(dep_drm_lists.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+i830_irq.o: i830_irq.c \
+   i830.h $(dep_i830.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   i830_drm.h $(dep_i830_drm.h) \
+   i830_drv.h $(dep_i830_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+mga_dma.o: mga_dma.c \
+   mga.h $(dep_mga.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   mga_drm.h $(dep_mga_drm.h) \
+   mga_drv.h $(dep_mga_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h)
+mga_drv.o: mga_drv.c \
+   mga.h $(dep_mga.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   mga_drm.h $(dep_mga_drm.h) \
+   mga_drv.h $(dep_mga_drv.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+mga_state.o: mga_state.c \
+   mga.h $(dep_mga.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   mga_drm.h $(dep_mga_drm.h) \
+   mga_drv.h $(dep_mga_drv.h)
+mga_warp.o: mga_warp.c \
+   mga.h $(dep_mga.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   mga_drm.h $(dep_mga_drm.h) \
+   mga_drv.h $(dep_mga_drv.h) \
+   mga_ucode.h $(dep_mga_ucode.h)
+r128_cce.o: r128_cce.c \
+   r128.h $(dep_r128.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   r128_drm.h $(dep_r128_drm.h) \
+   r128_drv.h $(dep_r128_drv.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h)
+dep_r128_drm.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/xfree86/version.h)
+r128_drv.o: r128_drv.c \
+   r128.h $(dep_r128.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   r128_drm.h $(dep_r128_drm.h) \
+   r128_drv.h $(dep_r128_drv.h) \
+   ati_pcigart.h $(dep_ati_pcigart.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h) \
+   drm_scatter.h $(dep_drm_scatter.h)
+dep_r128_drv.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/delay.h)
+r128_state.o: r128_state.c \
+   r128.h $(dep_r128.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   r128_drm.h $(dep_r128_drm.h) \
+   r128_drv.h $(dep_r128_drv.h)
+radeon_cp.o: radeon_cp.c \
+   radeon.h $(dep_radeon.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   radeon_drv.h $(dep_radeon_drv.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+radeon_drv.o: radeon_drv.c \
+   radeon.h $(dep_radeon.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   radeon_drv.h $(dep_radeon_drv.h) \
+   ati_pcigart.h $(dep_ati_pcigart.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h) \
+   drm_scatter.h $(dep_drm_scatter.h)
+radeon_irq.o: radeon_irq.c \
+   radeon.h $(dep_radeon.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   radeon_drv.h $(dep_radeon_drv.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h)
+radeon_mem.o: radeon_mem.c \
+   radeon.h $(dep_radeon.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   radeon_drv.h $(dep_radeon_drv.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h)
+radeon_state.o: radeon_state.c \
+   radeon.h $(dep_radeon.h) \
+   drmP.h $(dep_drmP.h) \
+   drm.h $(dep_drm.h) \
+   drm_sarea.h $(dep_drm_sarea.h) \
+   radeon_drm.h $(dep_radeon_drm.h) \
+   radeon_drv.h $(dep_radeon_drv.h) \
+   drm_os_linux.h $(dep_drm_os_linux.h)
+savage_dma.o: savage_dma.c \
+   savage.h $(dep_savage.h) \
+   drmP.h $(dep_drmP.h) \
+   savage_drv.h $(dep_savage_drv.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h)
+savage_drv.o: savage_drv.c \
+   savage.h $(dep_savage.h) \
+   drmP.h $(dep_drmP.h) \
+   savage_drv.h $(dep_savage_drv.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+sis_drv.o: sis_drv.c \
+   sis.h $(dep_sis.h) \
+   drmP.h $(dep_drmP.h) \
+   sis_drm.h $(dep_sis_drm.h) \
+   sis_drv.h $(dep_sis_drv.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lists.h $(dep_drm_lists.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+sis_ds.o: sis_ds.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   sis_ds.h $(dep_sis_ds.h)
+sis_mm.o: sis_mm.c \
+   sis.h $(dep_sis.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h) \
+   drmP.h $(dep_drmP.h) \
+   sis_drm.h $(dep_sis_drm.h) \
+   sis_drv.h $(dep_sis_drv.h) \
+   sis_ds.h $(dep_sis_ds.h)
+tdfx_drv.o: tdfx_drv.c \
+   tdfx.h $(dep_tdfx.h) \
+   drmP.h $(dep_drmP.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+via_drv.o: via_drv.c \
+   via.h $(dep_via.h) \
+   drmP.h $(dep_drmP.h) \
+   via_drm.h $(dep_via_drm.h) \
+   via_drv.h $(dep_via_drv.h) \
+   drm_auth.h $(dep_drm_auth.h) \
+   drm_agpsupport.h $(dep_drm_agpsupport.h) \
+   drm_bufs.h $(dep_drm_bufs.h) \
+   drm_context.h $(dep_drm_context.h) \
+   drm_dma.h $(dep_drm_dma.h) \
+   drm_drawable.h $(dep_drm_drawable.h) \
+   drm_drv.h $(dep_drm_drv.h) \
+   drm_fops.h $(dep_drm_fops.h) \
+   drm_init.h $(dep_drm_init.h) \
+   drm_ioctl.h $(dep_drm_ioctl.h) \
+   drm_lists.h $(dep_drm_lists.h) \
+   drm_lock.h $(dep_drm_lock.h) \
+   drm_memory.h $(dep_drm_memory.h) \
+   drm_proc.h $(dep_drm_proc.h) \
+   drm_vm.h $(dep_drm_vm.h) \
+   drm_stub.h $(dep_drm_stub.h)
+dep_via_drv.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/smp.h)
+via_ds.o: via_ds.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   via_ds.h $(dep_via_ds.h)
+via_map.o: via_map.c \
+   via.h $(dep_via.h) \
+   drmP.h $(dep_drmP.h) \
+   via_drv.h $(dep_via_drv.h)
+via_mm.o: via_mm.c \
+   via.h $(dep_via.h) \
+   drmP.h $(dep_drmP.h) \
+   via_drm.h $(dep_via_drm.h) \
+   via_drv.h $(dep_via_drv.h) \
+   via_ds.h $(dep_via_ds.h) \
+   via_mm.h $(dep_via_mm.h)

@@ -1,0 +1,5 @@
+These modules belong to linux/driver/atm directory. koam should actually be a linux/net/atm member, but this is easier.
+
+In the kernel, there is a CONFIG_ATM_OAM option which will turn on these compiles :-)
+
+Ritesh

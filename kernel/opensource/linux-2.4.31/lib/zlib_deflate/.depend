@@ -1,0 +1,11 @@
+deflate.o: deflate.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   defutil.h $(dep_defutil.h)
+deflate_syms.o: deflate_syms.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zlib.h)
+deftree.o: deftree.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/zutil.h) \
+   defutil.h $(dep_defutil.h)

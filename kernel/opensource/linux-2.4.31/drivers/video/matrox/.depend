@@ -1,0 +1,143 @@
+g450_pll.o: g450_pll.c \
+   g450_pll.h $(dep_g450_pll.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h)
+dep_g450_pll.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h)
+i2c-matroxfb.o: i2c-matroxfb.c \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   matroxfb_maven.h $(dep_matroxfb_maven.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h)
+matroxfb_accel.o: matroxfb_accel.c \
+   matroxfb_accel.h $(dep_matroxfb_accel.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   matroxfb_Ti3026.h $(dep_matroxfb_Ti3026.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h)
+dep_matroxfb_accel.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h)
+matroxfb_base.o: matroxfb_base.c \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_accel.h $(dep_matroxfb_accel.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   matroxfb_Ti3026.h $(dep_matroxfb_Ti3026.h) \
+   matroxfb_maven.h $(dep_matroxfb_maven.h) \
+   matroxfb_crtc2.h $(dep_matroxfb_crtc2.h) \
+   matroxfb_g450.h $(dep_matroxfb_g450.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ppc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/32mb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/multihead.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/compat/xpmac.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/millenium.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/mystique.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g100.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/all/ppc.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/nvram.h)
+dep_matroxfb_base.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/unaligned.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb4.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb4.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/compat/xpmac.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ppc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/macmodes.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/macmodes.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/mystique.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g100.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/millenium.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/32mb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/multihead.h)
+matroxfb_crtc2.o: matroxfb_crtc2.c \
+   matroxfb_maven.h $(dep_matroxfb_maven.h) \
+   matroxfb_crtc2.h $(dep_matroxfb_crtc2.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)
+dep_matroxfb_crtc2.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h) \
+   matroxfb_base.h $(dep_matroxfb_base.h)
+matroxfb_DAC1064.o: matroxfb_DAC1064.c \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_accel.h $(dep_matroxfb_accel.h) \
+   g450_pll.h $(dep_g450_pll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g450.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/mystique.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g100.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/32mb.h)
+dep_matroxfb_DAC1064.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/mystique.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g100.h)
+matroxfb_g450.o: matroxfb_g450.c \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   g450_pll.h $(dep_g450_pll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h)
+dep_matroxfb_g450.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/g450.h)
+matroxfb_maven.o: matroxfb_maven.c \
+   matroxfb_maven.h $(dep_matroxfb_maven.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_DAC1064.h $(dep_matroxfb_DAC1064.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/div64.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h)
+dep_matroxfb_maven.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/i2c-algo-bit.h) \
+   matroxfb_base.h $(dep_matroxfb_base.h)
+matroxfb_misc.o: matroxfb_misc.c \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/x86.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/multihead.h)
+dep_matroxfb_misc.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h)
+matroxfb_proc.o: matroxfb_proc.c \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h)
+matroxfb_Ti3026.o: matroxfb_Ti3026.c \
+   matroxfb_Ti3026.h $(dep_matroxfb_Ti3026.h) \
+   matroxfb_misc.h $(dep_matroxfb_misc.h) \
+   matroxfb_accel.h $(dep_matroxfb_accel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/matroxfb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/millenium.h)
+dep_matroxfb_Ti3026.h += \
+   matroxfb_base.h $(dep_matroxfb_base.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/matrox/millenium.h)

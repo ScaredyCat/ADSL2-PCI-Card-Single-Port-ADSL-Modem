@@ -1,0 +1,5 @@
+#define LSP_BUILD_ID   "1.5.1"
+#define LSP_REVISION   "1"
+#define LSP_NAME       "danube-mips-linux"
+#define LSP_BOARD_NAME "Infineon Danube (MIPS 24Kec) Processor (big endian)"
+#define LSP_MVL_ARCH   "mips-linux"

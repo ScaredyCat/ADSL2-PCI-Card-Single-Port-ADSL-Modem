@@ -1,0 +1,177 @@
+datafab.o: datafab.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   datafab.h $(dep_datafab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+debug.o: debug.c \
+   debug.h $(dep_debug.h)
+dep_debug.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/cdrom.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/cdrom.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/debug.h)
+dpcm.o: dpcm.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   dpcm.h $(dep_dpcm.h) \
+   sddr09.h $(dep_sddr09.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr09.h)
+freecom.o: freecom.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   freecom.h $(dep_freecom.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdreg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdreg.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/debug.h)
+initializers.o: initializers.c \
+   initializers.h $(dep_initializers.h) \
+   debug.h $(dep_debug.h) \
+   transport.h $(dep_transport.h)
+dep_initializers.h += \
+   usb.h $(dep_usb.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr09.h)
+isd200.o: isd200.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   scsiglue.h $(dep_scsiglue.h) \
+   isd200.h $(dep_isd200.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdreg.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/hdreg.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ide.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ide.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/debug.h)
+jumpshot.o: jumpshot.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   jumpshot.h $(dep_jumpshot.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+protocol.o: protocol.c \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   scsiglue.h $(dep_scsiglue.h) \
+   transport.h $(dep_transport.h)
+dep_protocol.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   usb.h $(dep_usb.h)
+scsiglue.o: scsiglue.c \
+   scsiglue.h $(dep_scsiglue.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   transport.h $(dep_transport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+dep_scsiglue.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h)
+sddr09.o: sddr09.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   sddr09.h $(dep_sddr09.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+sddr55.o: sddr55.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   sddr55.h $(dep_sddr55.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/debug.h)
+shuttle_usbat.o: shuttle_usbat.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   shuttle_usbat.h $(dep_shuttle_usbat.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h)
+transport.o: transport.c \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   usb.h $(dep_usb.h) \
+   debug.h $(dep_debug.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/debug.h)
+dep_transport.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   usb.h $(dep_usb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/hp8200e.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr09.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr55.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/freecom.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/datafab.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/jumpshot.h)
+dep_unusual_devs.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/hp8200e.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/dpcm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr09.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/isd200.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/jumpshot.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/freecom.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/datafab.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr55.h)
+usb.o: usb.c \
+   usb.h $(dep_usb.h) \
+   scsiglue.h $(dep_scsiglue.h) \
+   transport.h $(dep_transport.h) \
+   protocol.h $(dep_protocol.h) \
+   debug.h $(dep_debug.h) \
+   initializers.h $(dep_initializers.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/hp8200e.h) \
+   shuttle_usbat.h $(dep_shuttle_usbat.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr09.h) \
+   sddr09.h $(dep_sddr09.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/sddr55.h) \
+   sddr55.h $(dep_sddr55.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/dpcm.h) \
+   dpcm.h $(dep_dpcm.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/freecom.h) \
+   freecom.h $(dep_freecom.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/isd200.h) \
+   isd200.h $(dep_isd200.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/datafab.h) \
+   datafab.h $(dep_datafab.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/usb/storage/jumpshot.h) \
+   jumpshot.h $(dep_jumpshot.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   unusual_devs.h $(dep_unusual_devs.h) \
+   unusual_devs.h $(dep_unusual_devs.h)
+dep_usb.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/usb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/blk.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/completion.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/atomic.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/scsi.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/drivers/scsi/hosts.h)

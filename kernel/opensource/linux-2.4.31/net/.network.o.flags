@@ -1,0 +1,3 @@
+ifeq (socket.o core/core.o ethernet/ethernet.o 802/802.o sched/sched.o netlink/netlink.o ipv4/ipv4.o ipv4/netfilter/netfilter.o unix/unix.o bridge/netfilter/netfilter.o packet/packet.o sched/sched.o bridge/bridge.o atm/atm.o netsyms.o sysctl_net.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += network.o
+endif

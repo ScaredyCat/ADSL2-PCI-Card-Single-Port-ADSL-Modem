@@ -1,0 +1,3 @@
+ifeq (mem.o tty_io.o n_tty.o tty_ioctl.o raw.o pty.o misc.o random.o serial_core.o ifx_asc.o danube_ssc.o danube_wdt.o danube_mei.o danube_bcu.o danube_pmu.o danube_rcu.o danube_cgu.o danube_gptu.o danube_led.o memcopy.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += char.o
+endif

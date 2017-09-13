@@ -1,0 +1,1 @@
+#define CONFIG_SWITCH_ADM6996I 1

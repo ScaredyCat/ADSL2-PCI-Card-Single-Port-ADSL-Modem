@@ -1,0 +1,62 @@
+#ifndef IFX_MPS_H
+#define IFX_MPS_H
+
+#include "danube.h"
+
+#define IFX_MPS_Base DANUBE_MPS
+#define IFX_MPS_CHIPID DANUBE_MPS_CHIPID
+#define IFX_MPS_CHIPID_VERSION_GET DANUBE_MPS_CHIPID_VERSION_GET
+#define IFX_MPS_CHIPID_VERSION_SET DANUBE_MPS_CHIPID_VERSION_SET
+#define IFX_MPS_CHIPID_PARTNUM_GET DANUBE_MPS_CHIPID_PARTNUM_GET
+#define IFX_MPS_CHIPID_PARTNUM_SET DANUBE_MPS_CHIPID_PARTNUM_SET
+#define IFX_MPS_CHIPID_MANID_GET DANUBE_MPS_CHIPID_MANID_GET
+#define IFX_MPS_CHIPID_MANID_SET DANUBE_MPS_CHIPID_MANID_SET
+
+/*No such register based on <Danube Hardware Description Rev 1.0>*/
+/* #define IFX_MPS_SUBVER DANUBE_MPS_SUBVER */
+
+/* voice channel 0 ... 3 interrupt enable register */
+#define IFX_MPS_VC0ENR DANUBE_MPS_VC0ENR
+#define IFX_MPS_VC1ENR DANUBE_MPS_VC1ENR
+#define IFX_MPS_VC2ENR DANUBE_MPS_VC2ENR
+#define IFX_MPS_VC3ENR DANUBE_MPS_VC3ENR
+/* voice channel 0 ... 3 interrupt status read register */
+#define IFX_MPS_RVC0SR DANUBE_MPS_RVC0SR
+#define IFX_MPS_RVC1SR DANUBE_MPS_RVC1SR
+#define IFX_MPS_RVC2SR DANUBE_MPS_RVC2SR
+#define IFX_MPS_RVC3SR DANUBE_MPS_RVC3SR
+/* voice channel 0 ... 3 interrupt status set register */
+#define IFX_MPS_SVC0SR DANUBE_MPS_SVC0SR
+#define IFX_MPS_SVC1SR DANUBE_MPS_SVC1SR
+#define IFX_MPS_SVC2SR DANUBE_MPS_SVC2SR
+#define IFX_MPS_SVC3SR DANUBE_MPS_SVC3SR
+/* voice channel 0 ... 3 interrupt status clear register */
+#define IFX_MPS_CVC0SR DANUBE_MPS_CVC0SR
+#define IFX_MPS_CVC1SR DANUBE_MPS_CVC1SR
+#define IFX_MPS_CVC2SR DANUBE_MPS_CVC2SR
+#define IFX_MPS_CVC3SR DANUBE_MPS_CVC3SR
+/* common status 0 and 1 read register */
+#define IFX_MPS_RAD0SR DANUBE_MPS_RAD0SR
+#define IFX_MPS_RAD1SR DANUBE_MPS_RAD1SR
+/* common status 0 and 1 set register */
+#define IFX_MPS_SAD0SR DANUBE_MPS_SAD0SR
+#define IFX_MPS_SAD1SR DANUBE_MPS_SAD1SR
+/* common status 0 and 1 clear register */
+#define IFX_MPS_CAD0SR DANUBE_MPS_CAD0SR
+#define IFX_MPS_CAD1SR DANUBE_MPS_CAD1SR
+/* common status 0 and 1 enable register */
+#define IFX_MPS_AD0ENR DANUBE_MPS_AD0ENR
+#define IFX_MPS_AD1ENR DANUBE_MPS_AD1ENR
+/* notification enable register */
+#define IFX_MPS_CPU0_NFER DANUBE_MPS_CPU0_NFER
+#define IFX_MPS_CPU1_NFER DANUBE_MPS_CPU1_NFER
+/* CPU to CPU interrup request register */
+#define IFX_MPS_CPU0_2_CPU1_IRR DANUBE_MPS_CPU0_2_CPU1_IRR
+#define IFX_MPS_CPU0_2_CPU1_IER DANUBE_MPS_CPU0_2_CPU1_IER
+/* Global interrupt request and request enable register */
+#define IFX_MPS_GIRR DANUBE_MPS_GIRR
+#define IFX_MPS_GIER DANUBE_MPS_GIER
+
+#define IFX_MPS_SRAM DANUBE_MPS_SRAM
+
+#endif /* IFX_MPS_H */

@@ -1,0 +1,3 @@
+ifeq (atmdev_init.o koam.o danube_ppe.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += atm.o
+endif

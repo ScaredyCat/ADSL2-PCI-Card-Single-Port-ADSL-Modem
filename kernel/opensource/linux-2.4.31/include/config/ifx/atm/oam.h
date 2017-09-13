@@ -1,0 +1,1 @@
+#define CONFIG_IFX_ATM_OAM 1

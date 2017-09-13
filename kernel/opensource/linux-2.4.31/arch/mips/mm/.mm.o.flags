@@ -1,0 +1,3 @@
+ifeq (cache.o extable.o init.o ioremap.o fault.o loadmmu.o pg-r4k.o c-r4k.o tlb-r4k.o tlbex-mips32.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += mm.o
+endif

@@ -1,0 +1,3 @@
+ifeq (-D__KERNEL__ -I/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include -Wall -Wstrict-prototypes -Wno-trigraphs -O2 -fno-strict-aliasing -fno-common -fomit-frame-pointer -DIFX_SMALL_FOOTPRINT -I /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/gcc -G 0 -mno-abicalls -fno-pic -pipe -finline-limit=100000 -mabi=32 -march=mips32 -Wa:-32 -Wa:-march=mips32 -Wa:-mips32 -Wa:--trap -nostdinc -iwithprefix include,$(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_CFLAGS_nostdinc) $(CFLAGS_select.o))))
+FILES_FLAGS_UP_TO_DATE += select.o
+endif

@@ -1,0 +1,109 @@
+irlan_client.o: irlan_client.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irias_object.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irias_object.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h)
+irlan_client_event.o: irlan_client_event.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h)
+irlan_common.o: irlan_common.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/proc_fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_filter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_filter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/proc/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/irlan/send/gratuitous/arp.h)
+irlan_eth.o: irlan_eth.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irmod.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/inet.h)
+irlan_event.o: irlan_event.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h)
+irlan_filter.o: irlan_filter.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h)
+irlan_provider.o: irlan_provider.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/etherdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/random.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irias_object.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irias_object.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/timer.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_common.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_eth.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_filter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_filter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_client.h)
+irlan_provider_event.o: irlan_provider_event.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irda.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/iriap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlmp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irttp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_provider.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/irda/irlan_event.h)

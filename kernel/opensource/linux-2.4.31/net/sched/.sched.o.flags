@@ -1,0 +1,3 @@
+ifeq (sch_generic.o sch_api.o sch_fifo.o estimator.o cls_api.o police.o sch_ingress.o sch_htb.o sch_prio.o sch_dsmark.o cls_tcindex.o cls_u32.o cls_route.o cls_fw.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += sched.o
+endif

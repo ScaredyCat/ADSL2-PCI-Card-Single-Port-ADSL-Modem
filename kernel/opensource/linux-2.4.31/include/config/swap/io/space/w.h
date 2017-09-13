@@ -1,0 +1,1 @@
+#define CONFIG_SWAP_IO_SPACE_W 1

@@ -1,0 +1,133 @@
+isdn_audio.o: isdn_audio.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   isdn_audio.h $(dep_isdn_audio.h) \
+   isdn_common.h $(dep_isdn_common.h)
+isdn_bsdcomp.o: isdn_bsdcomp.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fcntl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fcntl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/interrupt.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ptrace.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/in.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/signal.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/system.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/bitops.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/segment.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/byteorder.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_ether.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inet.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inet.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp_defs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp_defs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_ppp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_ppp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ip.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tcp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/if_arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp-comp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp-comp.h) \
+   isdn_ppp.h $(dep_isdn_ppp.h)
+isdn_common.o: isdn_common.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/smp_lock.h) \
+   isdn_common.h $(dep_isdn_common.h) \
+   isdn_tty.h $(dep_isdn_tty.h) \
+   isdn_net.h $(dep_isdn_net.h) \
+   isdn_ppp.h $(dep_isdn_ppp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/audio.h) \
+   isdn_audio.h $(dep_isdn_audio.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/diversion/module.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/diversion.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_divertif.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_divertif.h) \
+   isdn_v110.h $(dep_isdn_v110.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/devfs_fs_kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/devfs_fs_kernel.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/ppp.h) \
+   avmb1/capicmd.h $(dep_avmb1/capicmd.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/x25.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/tty/fax.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/netdevices.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/devfs/fs.h)
+isdn_concap.o: isdn_concap.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   isdn_x25iface.h $(dep_isdn_x25iface.h) \
+   isdn_net.h $(dep_isdn_net.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h) \
+   isdn_concap.h $(dep_isdn_concap.h)
+isdn_net.o: isdn_net.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/arp.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/dst.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/dst.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/pkt_sched.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/net/pkt_sched.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/inetdevice.h) \
+   isdn_common.h $(dep_isdn_common.h) \
+   isdn_net.h $(dep_isdn_net.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/ppp.h) \
+   isdn_ppp.h $(dep_isdn_ppp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/x25.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h) \
+   isdn_concap.h $(dep_isdn_concap.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ippp/filter.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/inet.h)
+isdn_ppp.o: isdn_ppp.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/poll.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp-comp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp-comp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/ippp/filter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/filter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/filter.h) \
+   isdn_common.h $(dep_isdn_common.h) \
+   isdn_ppp.h $(dep_isdn_ppp.h) \
+   isdn_net.h $(dep_isdn_net.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/mpp.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/ppp/vj.h)
+dep_isdn_ppp.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp_defs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ppp_defs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_ppp.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn_ppp.h)
+isdn_tty.o: isdn_tty.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   isdn_common.h $(dep_isdn_common.h) \
+   isdn_tty.h $(dep_isdn_tty.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/audio.h) \
+   isdn_audio.h $(dep_isdn_audio.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/devfs/fs.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/tty/fax.h) \
+   avmb1/capicmd.h $(dep_avmb1/capicmd.h)
+isdn_ttyfax.o: isdn_ttyfax.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   isdn_common.h $(dep_isdn_common.h) \
+   isdn_tty.h $(dep_isdn_tty.h) \
+   isdn_ttyfax.h $(dep_isdn_ttyfax.h)
+dep_isdn_tty.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/isdn/tty/fax.h)
+isdn_v110.o: isdn_v110.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   isdn_v110.h $(dep_isdn_v110.h)
+isdn_x25iface.o: isdn_x25iface.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/netdevice.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wanrouter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wanrouter.h) \
+   isdn_x25iface.h $(dep_isdn_x25iface.h)
+dep_isdn_x25iface.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/skbuff.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wanrouter.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/wanrouter.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/isdn.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/concap.h)

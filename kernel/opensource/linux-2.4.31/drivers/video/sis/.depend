@@ -1,0 +1,108 @@
+init301.o: init301.c \
+   init301.h $(dep_init301.h) \
+   oem300.h $(dep_oem300.h) \
+   oem310.h $(dep_oem310.h)
+dep_init301.h += \
+   osdef.h $(dep_osdef.h) \
+   initdef.h $(dep_initdef.h) \
+   vgatypes.h $(dep_vgatypes.h) \
+   vstruct.h $(dep_vstruct.h) \
+   sis.h $(dep_sis.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h)
+init.o: init.c \
+   init.h $(dep_init.h) \
+   300vtbl.h $(dep_300vtbl.h) \
+   310vtbl.h $(dep_310vtbl.h)
+dep_init.h += \
+   osdef.h $(dep_osdef.h) \
+   initdef.h $(dep_initdef.h) \
+   vgatypes.h $(dep_vgatypes.h) \
+   vstruct.h $(dep_vstruct.h) \
+   sis.h $(dep_sis.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h)
+dep_osdef.h += \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/300.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/315.h)
+sis_accel.o: sis_accel.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   sis.h $(dep_sis.h) \
+   sis_accel.h $(dep_sis_accel.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/300.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/315.h)
+dep_sis_accel.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h)
+dep_sis.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   osdef.h $(dep_osdef.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/sisfb.h) \
+   vgatypes.h $(dep_vgatypes.h) \
+   vstruct.h $(dep_vstruct.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/compat.h)
+sis_main.o: sis_main.c \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/version.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/module.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/moduleparam.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/moduleparam.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/kernel.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/string.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/mm.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/tty.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/slab.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/delay.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fb.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/console.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/selection.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioport.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/init.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/pci.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vmalloc.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/vt_kern.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/capability.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/fs.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/types.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/uaccess.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/asm/io.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/mtrr.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb8.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb16.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb24.h) \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/video/fbcon-cfb32.h) \
+   sis.h $(dep_sis.h) \
+   sis_main.h $(dep_sis_main.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/video/select.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/300.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/315.h)
+dep_sis_main.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/spinlock.h) \
+   vstruct.h $(dep_vstruct.h) \
+   sis.h $(dep_sis.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/300.h) \
+   $(wildcard /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/config/fb/sis/315.h)
+dep_vgatypes.h += \
+   /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h $(dep_/Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/ioctl.h)

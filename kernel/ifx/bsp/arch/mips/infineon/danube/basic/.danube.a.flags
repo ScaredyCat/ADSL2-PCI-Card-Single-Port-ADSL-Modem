@@ -1,0 +1,3 @@
+ifeq (setup.o prom.o interrupt.o danubeIRQ.o reset.o kgdb_serial.o ikos.o dma-core.o pci.o,$(strip $(subst $(comma),:,$(LDFLAGS) $(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += danube.a
+endif
