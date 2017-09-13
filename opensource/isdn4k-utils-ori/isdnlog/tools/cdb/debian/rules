@@ -1,0 +1,48 @@
+#!/usr/bin/make -f
+
+PACKAGE	:= freecdb
+
+build: build-stamp
+build-stamp: debian/control
+	test -e debian/control
+	$(MAKE) CFLAGS="-Wall -g -O2"
+	touch build-stamp
+
+clean: debian/control
+	test -e debian/control
+	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	rm -f build-stamp install-stamp
+	$(MAKE) clean
+	rm -rf debian/substvars debian/files debian/tmp
+
+binary-indep: build
+
+binary-arch: build debian/control
+	test -e debian/control
+	test root = "`whoami`" || (echo need root priviledges; exit 1)
+	rm -rf debian/substvars debian/tmp
+	install -d --mode=0755 debian/tmp
+	$(MAKE) DESTDIR=debian/tmp install-dirs install
+	install -d --mode=0755 "debian/tmp/usr/share/doc/$(PACKAGE)"
+	install --mode=0644 debian/copyright README \
+		"debian/tmp/usr/share/doc/$(PACKAGE)"
+	gzip -9 debian/tmp/usr/share/man/man1/* \
+		debian/tmp/usr/share/man/man3/*
+	install --mode=0644 debian/changelog \
+		"debian/tmp/usr/share/doc/$(PACKAGE)/changelog"
+	gzip -9 debian/tmp/usr/share/doc/"$(PACKAGE)"/changelog
+	strip --remove-section=.comment --remove-section=.note \
+		debian/tmp/usr/bin/*
+	strip  --strip-debug debian/tmp/usr/lib/*.a
+	install -d --mode=0755 debian/tmp/DEBIAN
+	install --mode=0755 debian/postinst debian/prerm \
+		debian/tmp/DEBIAN
+	dpkg-shlibdeps debian/tmp/usr/bin/*
+	dpkg-gencontrol
+	dpkg --build debian/tmp ..
+
+source diff:                                                                  
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary

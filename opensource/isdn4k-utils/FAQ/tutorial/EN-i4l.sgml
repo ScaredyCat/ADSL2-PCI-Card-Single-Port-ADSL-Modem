@@ -1,0 +1,3530 @@
+<!doctype linuxdoc system>
+
+<article>
+
+<!-- Title information -->
+
+<title>ISDN4Linux Tutorial
+<author>Klaus Franken, <tt/i4l@klaus.franken.de/
+<date>v1.0, 19. Juni 1998
+$Id: EN-i4l.sgml,v 1.1 1998/11/30 20:38:38 shanson Exp $
+<abstract>
+Setting up Internet access with ISDN4Linux - A practical description
+with exercises.  Translation by Scott Hanson <tt/shanson@shcon.com/,
+August 1998, but still very incomplete! The table of contents should
+make clear what's been translated and what hasn't.
+</abstract>
+
+<!-- Table of contents -->
+<toc>
+
+<!-- Begin the document -->
+
+<sect>Introduction<label id="Einleitung">
+    
+    <p>
+
+This tutorial is for ISDN beginners and for those with some
+experience who are now also interested in further configuration of
+the entire system (e.g. mail, firewalls, etc.).
+
+The tutorial is designed to be practical. All details and features are
+not described; rather the goal is to be able to configure such a system. 
+
+This tutorial is based on the S.u.S.E. Linux 5.2 distribution (see  
+<url url="http://www.suse.de/" >). Of course other distributions
+(Debian, RedHat, ...) can be used as well. The necessary scripts will
+be installed as needed. See <ref id="installation" name="Installation">.
+
+The S.u.S.E distribution contains both configuration scripts and the
+tools for manual configuration. In this tutorial, the <it/simple/
+method using the scripts are explained first, then the manual
+configuration is explained for reference.
+
+    <sect1> Requirements 
+    <label id="Voraussetzungen">
+        <p>
+Basic knowledge of Linux is required. A base system should already
+have been successfuly installed.
+
+In addition, a supported ISDN card should be installed. Recommended
+are, for example, the AVM Fritz Classic or the ELSA QS1000. See <url
+url="http://www.suse.de/Support/sdb_e/isdn.html"> for a list of
+supported cards.
+
+    <sect1> Goal of this tutorial.
+    <label id="Was soll erreicht werden?">
+        <p>
+
+A Linux computer should become a Internet Access Computer. The
+computer dials out automatically to the Internet Service Provider
+(ISP) and establishes a transparent network connect. Users of this
+computer have full access to the Internet and can uses services such
+as WWW and FTP. The mail system is set up so that mail is exchanged
+automatically upon connection.
+
+A separate section describes the connection of a local network with
+full Internet access (mawquarading, mail, WWW, FTP) and the special
+problems involved.
+
+Since this scenario involves a dial-up line, special attention is paid
+to keeping the telephone costs as low as possible while maintaining
+full Internet access.
+
+To keep things simple, we'll make the following assumptions that apply
+to most private users (or small companies that have only one
+<it/private/ Internet access):
+
+        <itemize>
+
+            <item> Dial-up ISDN line without a PBX (Euro ISDN)
+            <item> Protocol: syncPPP with dynamic IP numbers
+            <item> No requirement to use the ISP's proxy
+            <item> Mail can be sent via SMTP and received via POP3
+
+        </itemize>
+
+These assumptions appply to most private access providers, such as
+T-Online in Germany or Personal Eunet as well as smaller providers.
+ 
+In addition, we'll discuss security questions, problems with dynamic
+IP numbers, and the connection of a LAN to the Internet Access
+Computer.
+
+    <sect1> What must I read, what should I read?
+        <p>
+
+This text is quite long because special problems and troubleshooting
+tips are discussed in several places. If these problems don't apply to
+you, you can skip them (although reading them won't hurt).
+
+Similarly, there are several basic topics (for example, routing or
+mail exchange) that aren't directly related to isdn4linux and won't be
+new to the experienced reader. However, understanding these topics is
+necessary and experience has shown that in practice, these topics
+cause the most problems.
+
+        <sect2> In which order should I read?
+            <p>
+            FixMe
+
+<!--
+    <sect1> Sprache
+        <p>
+        Der Einfachheit und der besseren Lesbarkeit wegen werde ich Dich,
+        den Leser, duzen. (Very funny in English...smh)
+-->
+
+    <sect1> No guarantee
+        <p>
+This text has been written and translated to the best of our knowledge.
+The authors make no guarantee that the methods described here are correct,
+work, are secure, or that they do not make any unnecessary connections.
+
+However, our goal for the reader is to be able to handle exactly these
+problems for a simple system :-)
+
+    <sect1> Feedback
+        <p>
+        Is wanted!
+        
+        Via E-Mail to: <url url="mailto:i4l@klaus.franken.de"
+            name="i4l@klaus.franken.de">
+        
+    <sect1>Copyright
+        <p>
+
+This document is copyrighted by Klaus Franken and Scott Hanson.
+
+This docoment may be distributed in accordance with the GNU General
+Public License. In particular, this means that the text may be
+distributed either electronically or physically without the payment of
+license fees, as long as this copyright is not removed. Commercial
+distribution is allowed and encouraged. The Linux HOWTO Project should
+be should be informed of any paper publication.
+
+<sect>Basics
+<label id="Grundlagen">
+    <p>
+I know a little bit about Linux. Maybe I can already connect to the
+Internet with my modem.
+
+Now I have ISDN -  and I can't get anywhere at all. Why?
+    
+    <sect1>ISDN4Linux: modem or network?
+    <label id="ModemNetzwerk">
+        <p>
+Forget everything that you know about modems.
+
+ISDN is completely different.
+
+        <enum>
+            <item> There are no clicks or whistles.
+            <item> There are no blinking lights.
+            <item> The connections are made so quickly, that it's possble 
+                   to spend your entire paycheck within a matter of hours.
+            <item> It's more fun.    
+        </enum>
+
+        The concepts are different:
+        <enum>
+            <item> the methods of hardware connection
+            <item> the methods of use
+            <item> the methods of control possibilities
+            <item> the methods of configuration
+        </enum>    
+
+Under ISDN4Linux, the ISDN card is treated as a network card, only with
+special characteristics.
+
+
+    <sect1>Overview of features
+        <p>
+        <itemize>
+        <item> Quick ISDN connections
+        <item> Full integration as network
+        <item> Client and Server
+        <item> syncPPP
+        <item> Modem emulation (AT command set)
+        <item> Dial-On-Demand (DoD)
+        <item> Full overview and control
+        <item> Callback
+        <item> Channel bundling
+        </itemize>
+
+    <sect1>Overview of missing features
+        <p>
+        <itemize>
+        <item> Serial connections (e.g. Fax)
+        <item> CAPI interface (e.g. network)
+        <item> Uniform environment...
+        <item> PmX cards
+        </itemize>
+
+    <sect1>Overview of the tools
+        <p>
+        <descrip>
+        <tag/isdnlog/ 
+isdnlog <em>listens</em> in the background to the S0 bus and logs
+incoming and outgoing connections for later analysis (including cost
+control) and diagnosis.
+
+        <tag/isdnctrl/
+Sets important parameters specific to I4L (e.g. telephone numbers).
+        
+        <tag/HiSax/
+The driver (as module or compiled into the kernel) for almost all passive
+ISDN cards.
+
+        <tag/hisaxctrl/
+Controls the HiSax driver.
+
+        <tag/ipppd/
+The PPP daemon for ISDN (syncPPP).
+
+        <tag/messages/
+ISDN activity is logged in <tt>/var/log/messages</tt> (or via Syslog) - 
+important for diagnosing problems!
+
+        <tag/ttyI/
+Using the terminal devices <tt>/dev/ttyI0</tt> to
+<tt>/dev/ttyI64</tt> <em/normal/ terminal programs can access ISDN -
+but not analog access!
+
+        <tag/vbox/
+The ISDN answering machine.
+
+        </descrip>
+
+
+<sect>Loading hardware modules
+<label id="Hardware">
+    <p>
+The hardware drivers are supplied as modules. You could compile
+the drivers directly into the kernel, but this is not recommended.
+
+    The module <tt/isdn/ is resonsible for the I4L subsystem.
+    It also requires (depending on your kernel compilation) <tt/slhc/.
+
+These modules are required for the actual hardware drives and 
+must be loaded beforehand. If the modules are loaded with 
+<tt/modprobe/, then you don't have to worry about this, since the
+dependencies are automatically checked.
+
+Note: use only <bf><tt/modprobe/</bf> to load the modules.
+
+Depending on your hardware, different modules are needed. The
+<tt/HiSax/ module is necessary for passive ISDN cards. Specific
+modules according to manufacturer are need for active cards.
+
+    <sect1>Configuring isdnlog
+    <label id="isdnlogConf">
+        <p>
+isdnlog listens continuously to the D channel and collects important
+data for problem diagnosis as well for later analysis. isdnlog is started
+just after the HiSax driver is started (see below for active cards).
+        <p>
+We'll explain more about the functions and starting isdnlog later;
+here are just the most important points for configuration:
+        <itemize>
+
+        <item> <tt>/etc/isdn/isdn.conf</tt>
+            <p>
+Here are some important parameters (such as the area code) that
+i4l cannot establish automatically.
+
+You'll need to set at least the country code and the area code yourself.
+            <code>
+# exapmle of /etc/isdn/isdn.conf
+# copy this file to /etc/isdn/isdn.conf and edit
+#
+# More information: /usr/doc/packages/i4l/isdnlog/README
+
+
+[GLOBAL]
+COUNTRYPREFIX   = +
+COUNTRYCODE     = 49
+AREAPREFIX      = 0
+
+# EDIT THIS LINE:
+AREACODE        = 911
+
+# Example:
+#AREACODE        = 911 # Nuernberg
+
+[VARIABLES]
+
+[ISDNLOG]
+LOGFILE = /var/log/isdn.log
+ILABEL  = %b %e %T %ICall to tei %t from %N2 on %n2
+OLABEL  = %b %e %T %Itei %t calling %N2 with %n2
+REPFMTWWW       = "%X %D %17.17H %T %-17.17F %-20.20l SI: %S %9u %U %I %O"
+REPFMTSHORT     = "%X%D %8.8H %T %-14.14F%U%I %O"
+REPFMT  = "  %X %D %15.15H %T %-15.15F %7u %U %I %O"
+            </code>
+
+        <item> Options for isdnlog.
+            <p>
+isdnlog takes a number of options that can be given either as 
+command line parameters or in a config file.
+
+S.u.S.E. uses the the file
+<tt>/etc/isdn/isdnlog.isdnctrl0.options</tt>
+(0: 1st card, 2: 2nd card, 4: 3rd card), 
+and isdnlog is started with the parameter
+<tt/-f/. This file is commented and contains the most important
+parameters.
+
+There is more information in the isdnlog README file, which is in the
+source package, and under S.u.S.E is also at
+<tt>/usr/doc/packages/i4l/isdnlog/README</tt>.
+
+When started by hand, isdnlog should be given at least these options:
+<tt>isdnlog -D -l1015 -x4087 -M -n -W80 /dev/isdnctrl0 &</tt>
+
+        <item> Telephone book (optional)
+            <p>
+isdnlog can automatically assign aliases to incoming and outgoing
+numbers. These are then shown instead of the telephone numbers themselves.
+The aliases are in:
+            <tt>/etc/isdn/callerid.conf</tt>. For example:
+            <code>
+[MSN]
+NUMBER = +4991152145922
+ALIAS  = Eunet-N
+ZONE   = 1
+            </code>
+In addition, you can define further actions, such as starting 
+a certain program when incoming calls are detected. 
+
+        </itemize>
+
+
+    <sect1>Plug&amp;Play Cards
+    <label id="pnp">
+        <p>
+PnP cards still have to be manually configured in 2.0 kernels. It's a
+bit of work, but luckily needs only to be done once.
+
+The configuration is done with the package <tt/isapnp/. It includes
+the two programs:
+
+<enum>
+<item> pnpdump: scans the ISA bus for cards and creates a template for the
+configuration file
+
+<item> isapnp: initializes the PnP cards according to the configuration file
+</enum>
+
+The drivers can address the hardware only after the cards have been so
+configured. Therefore, PnP cards can only be used with modules, not
+with drivers compiled in the kernel.
+
+First we'll scan for PnP cards, but be careful: <bf/<tt/pnpdump/ can
+bring the computer to a halt/. Do not start the program under X, and if
+possible in single user mode.
+
+We'll pipe the output from <tt/pnpdump/ straight into the configuration file:
+
+        <code>
+pnpdump > /etc/isapnp.conf
+        </code>
+
+        Here's and example for the QS3000:
+        <code>
+# This is free software, see the sources for details.
+# This software has NO WARRANTY, use at your OWN RISK
+#
+# For details of this file format, see isapnp.conf(5)
+#
+# For latest information on isapnp and pnpdump see:
+# http://www.roestock.demon.co.uk/isapnptools/
+#
+# Compiler flags: -DREALTIME -DNEEDSETSCHEDULER
+#
+# Trying port address 0203
+# Board 1 has serial identifier e5 00 00 00 00 34 01 93 15
+
+# (DEBUG)
+(READPORT 0x0203)
+(ISOLATE)
+(IDENTIFY *)
+
+# Card 1: (serial identifier e5 00 00 00 00 34 01 93 15)
+# ELS0134 Serial No 0 [checksum e5]
+# Version 1.0, Vendor version 0.0
+# ANSI string -->ELSA QuickStep 3000<--
+#
+# Logical device id ELS0134
+#
+# Edit the entries below to uncomment out the configuration required.
+# Note that only the first value of any range is given, this may be changed if r
+equired
+# Don't forget to uncomment the activate (ACT Y) when happy
+
+(CONFIGURE ELS0134/0 (LD 0
+
+# Multiple choice time, choose one only !
+
+#     Start dependent functions: priority acceptable
+#       Logical device decodes 16 bit IO address lines
+#             Minimum IO base address 0x0160
+#             Maximum IO base address 0x0360
+#             IO base alignment 16 bytes
+#             Number of IO addresses required: 16
+#(IO 0 (BASE 0x0160))
+#       IRQ 3, 4, 5, 7, 10, 11, 12 or 15.
+#             High true, edge sensitive interrupt (by default)
+#(INT 0 (IRQ 3 (MODE +E)))
+
+#     End dependent functions
+#(ACT Y)
+))
+# End tag... Checksum 0x00 (OK)
+
+# Returns all cards to the "Wait for Key" state
+(WAITFORKEY)
+        </code>
+
+With the output identifier, we can tell which cards were recognized
+(and if there are any PnP cards at all).
+
+This file will be edited; the comment characters have to be deleted
+and where necessary the proper values entered. Possible values are
+given in the comments.
+
+        <code>
+(IO 0 (BASE 0x0160))
+(INT 0 (IRQ 3 (MODE +E)))
+(ACT Y)
+        </code>
+
+Note: <bf/<tt/(ACT Y)/ must also be given/. Otherwise nothing will happen.
+
+This configuration can now be sent to the PnP cards:
+
+        
+        <code>
+isapnp /etc/isapnp.conf
+Board 1 has Identity e5 00 00 00 00 34 01 93 15:  ELS0134 Serial No 0 [checksum e5]
+        </code>
+
+The output is unfortunately not very clear, but you should be bble to at least
+recognize the identifier of the card.
+
+Under S.u.S.E, the <tt/isapnp/ command is run automatically in the
+init script. Otherwise, you'll have to make sure yourself that it
+has been run.
+
+    <sect1>Loading the HiSax driver
+    <label id="HiSax">
+        <p>
+The HiSax driver reads its parameters when loading to tell which card
+(or cards) at which address should be searched for.
+
+        <sect2> Loading with YaST
+            <p>
+(smhFixMe: what does YaST look like in English?)
+
+With S.u.S.E, configuration of the ISDN hardware is done with the
+            <tt>Administration des Systems/
+            Hardware in System integrieren/
+            ISDN-Hardware konfigurieren</tt>
+screen. Along with the choice of card type and parameters, the modules can
+be loaded with <tt/Starten/.  If there are problems, you can try other parameters right away. If successful, with <tt/Speichern/ the parameters can be saved in <tt/rc.config/ so that the modules will be loaded again at the next time the
+system is started.
+
+        The systax is described at <url 
+        url="/usr/src/linux/Documentation/isdn/README.HiSax">.
+
+        <sect2> Loading with <tt>/etc/rc.config</tt>
+            <p>
+The ISDN hardware can also be given and/or controlled directly in <tt>/etc/rc.config</tt>. Here is an example for the Elsa QS-3000:
+
+            <code>
+#
+# start i4l? ("yes" or "no")
+#   see: /usr/doc/packages/i4l/README.SuSE
+#
+I4L_START="yes"
+
+#
+# driver-id for HiSax-driver
+#   set to "HiSax"
+#   or whatever you defined when loading driver within kernel
+#   set to "" if you don't have a hisax-card
+#
+I4L_TELES_ID="hisax1"
+
+#
+# D-channel protocol 1=1TR6, 2=EDSS1(Euro-ISDN) for HiSax
+#
+I4L_PROTOCOL="2"
+
+# Type   ISDN-card                Required parameters
+# ----   ---------------------    -------------------------------------------
+#    1   Teles 16.0               irq, mem, io
+#    2   Teles  8.0               irq, mem
+#    3   Teles 16.3 (non PnP)     irq, io
+#    4   Creatix/Teles PnP        irq, io0 (ISAC), io1 (HSCX)
+#    5   AVM A1 (Fritz)           irq, io
+#    6   ELSA PCC/PCF cards       io or nothing for autodetect (the iobase is
+#                                 only required, if you have more than one ELSA
+#                                 card in your PC)
+#    7   ELSA Quickstep 1000      irq, io  (from isapnp setup)
+#    8   Teles 16.3 PCMCIA        irq, io
+#    9   ITK ix1-micro Rev.2      irq, io
+# since: HiSax 2.5:
+#   10   ELSA PCMCIA              irq, io  (set with card manager)
+#   11   Eicon.Diehl Diva ISA PnP irq, io
+#   11   Eicon.Diehl Diva PCI     no parameter
+#   12   ASUS COM ISDNLink        irq, io  (from isapnp setup)
+#   13   HFC-2BS0 based cards     irq, io
+#   15   Sedlbauer Speed Card     irq, io
+#        (= Teledat 100)
+#   16   USR Sportster internal   irq, io
+#   17   MIC card                 irq, io
+#   18   ELSA Quickstep 1000PCI   no parameter
+#
+I4L_TELES_TYPE="7"
+
+#
+# IRQ of Teles Card
+#   eg. 12 or 15 when loading as module
+#   set to "" when driver is loaded within kernel
+#
+I4L_TELES_IRQ="3"
+
+#
+# Portaddress of Teles card (e.g. 0xd80, "0" for S0/8)
+#
+I4L_TELES_PORT="0x0160"
+            </code>
+
+The string  <tt/TELES/ here has only a historical meaning.
+
+These entries automatically generate the parameter line for the HiSax
+driver. In addition, you can also give the parameters yourself, which
+is necessary for newer cards or when you have several cards (see
+below).
+
+Example for a AVM Fritz and a ELSA PCF card:
+
+            <code>
+I4L_TELES_MODUL_OPTIONS="type=5,6 protocol=2,2 io=0x340 irq=10 id=Fritz%Elsa"
+            </code>
+
+To load the modules use the init script:
+            <code>
+glen:/root # /sbin/init.d/i4l_hardware start
+Loading ISDN drivers ...
+Loading HiSax driver ...
+/sbin/insmod /lib/modules/2.0.33/misc/hisax.o id=hisax1 type=7 protocol=2 irq=3 io=0x0160
+Verbose-level set to 3.
+Starting isdnlog with /etc/isdn/isdnlog.isdnctrl0.options for isdnctrl0...
+            </code>
+
+Note that this automatically starts  <tt/isdnlog/.
+
+To unload the modules use the same script:
+            <code>
+glen:/root # /sbin/init.d/i4l_hardware stop 
+Unloading ISDN drivers ...
+            </code>
+
+            
+        <sect2> Loading by hand.
+            <p>
+            The syntax is described in <url 
+            url="/usr/src/linux/Documentation/isdn/README.HiSax">.
+
+For example, for a ELSA QS3000;
+            <code>
+modprobe -v hisax id=hisax1 type=7 protocol=2 irq=3 io=0x0160
+            </code>
+In addition, after loading successfully the following commands should also
+be run:
+
+            <code>
+/sbin/hisaxctrl hisax1 1 4
+/sbin/isdnctrl verbose 3
+/sbin/isdnlog /dev/isdnctrl0
+            </code>
+These commands are explained in the appropriate man pages and documentation. The S.u.S.E. scripts just makes things simpler ;-)
+            
+        <sect2> Troubleshooting    
+        <label id="HiSaxTrouble">
+            <p>
+In case of an error while loading the HiSax module, there are no useful messages on the screen, but usually just  <tt/Device or resource busy/. The real error messages are saved syslog (usually) in <url url="file:/var/log/messages">.
+
+Example of unsuccessfully loading an AVM Fritz:
+            <code>
+Feb  6 22:45:05 glen kernel: HiSax: Driver for Siemens chip set ISDN cards
+Feb  6 22:45:05 glen kernel: HiSax: Version 2.1
+Feb  6 22:45:05 glen kernel: HiSax: Revisions 1.15/1.10/1.10/1.30/1.8
+Feb  6 22:45:05 glen kernel: HiSax: Total 1 card defined
+Feb  6 22:45:05 glen kernel: HiSax: Card 1 Protocol EDSS1 Id=HiSax (0)
+Feb  6 22:45:05 glen kernel: HiSax: AVM driver Rev. 1.6
+Feb  6 22:45:05 glen kernel: AVM A1: Byte at 1b00 is ff
+Feb  6 22:45:05 glen kernel: AVM A1: Byte at 1b03 is ff
+Feb  6 22:45:05 glen kernel: AVM A1: Byte at 1b02 is ff
+Feb  6 22:45:05 glen kernel: AVM A1: Byte at 1b00 is ff
+Feb  6 22:45:05 glen kernel: HiSax: AVM A1 config irq:12 cfg:1b00
+Feb  6 22:45:05 glen kernel: HiSax: isac:1700/1300
+Feb  6 22:45:05 glen kernel: HiSax: hscx A:700/300  hscx B:f00/b00
+Feb  6 22:45:05 glen kernel: AVM A1: HSCX version A: ???  B: ???
+Feb  6 22:45:05 glen kernel: AVM A1: ISAC 2085 V2.3
+Feb  6 22:45:05 glen kernel: AVM A1: wrong HSCX versions check IO address
+Feb  6 22:45:05 glen kernel: HiSax: Card AVM A1 not installed !
+            </code>
+
+In this case, no Fritz card was found ad the given port address. (In fact, there was no Fritz card installed  ;-). With this message, it should be easy to see the exact cause. Other common errors are:
+            <enum>
+                <item> <tt/could not get interrupt/: 
+The driver cannot work with the given IRQ. Try another. Unused IRQs can be found by reading <tt>cat /proc/interrupts</tt>.
+
+                <item> Port address is not recognized, although everything
+seems to be correct. Perhaps it is a PnP card, and you forgot isapnp. See
+<ref id="pnp" name="Plug&amp;Play cards">.
+
+ <item> Port address is not recognized, although everything
+seems to be correct. Perhaps it is a Teles card, therefore you
+can't tell which type it really is. Try getting the very latest HiSax
+and try out all options. See <ref id="installation" name="Installation">.
+            </enum>
+
+If absolutely nothing seems to work, try asking on the mailing list.
+Be sure to include the output from <tt>/var/log/messages</tt>.
+        
+    <sect1>Loading the ICN driver
+        <p>
+        FixMe
+
+    <sect1>Loading the AVM B1 driver
+        <p>
+        FixMe
+
+    <sect1>Testing the hardware
+    <label id="hwTesten">
+        <p>
+The best and easiest test is to try calling yourself.
+
+For this test, it makes not difference whether it is an ISDN or a
+voice call, whether from an internal or external ISDN or analog
+telephone. No connection will be make. It is only important that a
+message about the call appears in <url url="file:/var/log/messages">. 
+
+Example for an analog call on the MSN 123459: 
+
+        <code>
+Apr  6 22:15:20 glen kernel: isdn_net: call from 911123458,1,0 -> 123459
+Apr  6 22:15:20 glen kernel: isdn_net: Service-Indicator not 7, ignored
+        </code>
+Here, this is a voice call (Service-Indicator: 0) from a device with
+(smhFixME: Rufnummerübermittlung) from the MSN 123458 from the area
+code 0911 to your own MSN 123459 (no, that's not my real number ;-)
+
+The important thing here is the entry of the called number after the arror, here the 123459. Here you should try all of your own numbers. Just as it is shown here is how you will later enter your own MSN.
+
+    <sect1>Übung: Hardware ansprechen.
+    <label id="uebungHW">
+        <p>
+        Ziel: Die ISDN-Karte soll angesprochen und geprüft werden.
+
+        <enum>
+
+        <item>Welche Hardware / Umgebung hab ich?
+            <p>
+            Notiere Dir:
+            <enum>
+            <item> Welche Karte hab ich (Hersteller, Typ, etc.) ?
+            <item> Wie ist die Karte gejumpert (Port) ?
+            <item> Mit welchen Werten kann die Karte unter
+                anderen System angesprochen werden?
+            <item> Welches Protokoll wird auf dem S0-Bus benutzt
+                (1TR6, DSS1) ?
+            <item> <bf/Wo/ ist die ISDN-Karte angeschlossen (NTBA, TK-Anlage)?
+            <item> Welche MSN's kann ich auf diesem S0-Bus benutzen?
+            </enum>    
+            Schlimmstenfalls mußt Du Deinen Rechner aufschrauben,
+            das falsche Betriebssystem booten und/oder den
+            Administrator nerven.
+
+        <item>Betrachte messages
+        <label id="lessVLM">
+            <p>
+            Nur in <tt>/var/log/messages</tt> steht die Wahrheit, 
+            sie ist für die
+            gesamte Konfigurationsarbeit (und später) zu verfolgen.
+
+            Öffne (mindestens) zwei Konsolen (virtuelle Linux-Konsole
+            oder unter X zwei <tt>xterm</tt>).
+
+            Auf einer Konsole starte entweder:
+            <itemize>
+            <item> <tt>tail -f /var/log/messages</tt>
+            <item> <tt>less /var/log/messages</tt>, im Programm
+                dann <tt>F</tt> (follow) drücken, um immer die
+                neuesten Zeilen zu bekommen. (Diesen Modus
+                beendet man durch <tt>Ctrl-C</tt>, beenden
+                von less mit <tt>q</tt>.
+            </itemize>        
+
+        <item>PnP Karte?
+            <p>
+            Falls es eine Plug&amp;Pray-Karte ist, konfiguriere
+            sie, wenn Du es nicht weißt, starte <tt/pnpdump/.
+            Siehe <ref id=pnp name="Plug&amp;Play-Karten">.
+
+        <item>Modul laden
+            <p>
+            Lade das entsprechende Modul nach Deiner bevorzugten
+            Methode (also YaST ;-).
+
+            Stelle sicher, daß die Einstellungen notiert sind und
+            beim Systemstart automatisch das Modul wieder geladen
+            wird.
+
+            Prüfe, ob das Modul geladen ist mit <tt/lsmod/.
+
+            Prüfe, ob der <tt/isdnlog/ läuft mit 
+            <tt>/ps ax|grep isdnlog</tt>
+
+            Prüfe, ob <tt>/var/log/messages</tt> <it/normal/
+            aussieht.
+
+            Siehe <ref id="HiSax" name="HiSax-Treiber laden">
+                
+        <item>ISDN testen
+            <p>
+            Rufe Dich selbst an und notiere alle MSN unter
+            denen Du angerufen werden kannst.
+
+            Siehe <ref id="hwTesten" name="Hardware testen">
+
+        </enum>
+
+
+<sect> Grundlagen ISDN, Parameter zur Verbindungskontrolle
+<label id="isdnctrl">
+
+<!--
+ISDN, D-Kanal, B-Kanal, D-Kanal Protokoll, NTBA, S0-Bus, MSN, 
+/dev/isdninfo, /dev/isdnctrl0
+TK-Anlagen, isdnlog 
+isdnctrl (MSN, in, out, secure, huptimeout, callback, dialmax, charge,
+layer-2, layer-3, ecapsulation
+-->
+
+    <p>
+    Ein Rundumschlag über die wichtigsten Begriffe und Konzepte,
+    die man wissen muß, um ISDN unter Linux richtig zu nutzen.
+
+    <sect1>ISDN
+    <label id="isdn">
+        <p>
+        <tt/ISDN/ steht für <bf/Integrated Services Digital Network/.
+
+        Fangen wir von hinten an: Es handelt sich um ein 
+        <bf/Netzwerk/. Über die beiden Kupferdrähte wird also
+        z.B. nicht nur eine Point-To-Point Verbindung aufgebaut, sondern
+        es können mehrere Verbindungen gleichzeitig bestehen,
+
+        Die Daten werden alle <bf/digital/ ausgetauscht.
+        Analogdienste wie z.B: Fax sind hierüber daher potentiell
+        schwieriger zu handeln. Normalerweise werden Analogdienste
+        über Spezialgeräte wie a/b-Wandler oder TK-Anlagen
+        gefahren.
+
+        <bf/Integrated Services/ deutet an, daß verschiedene Dienste
+        über dieses Netzwerk behandelt werden können.
+        Typische Services sind <bf/Analog-Sprache/ (SI=0) oder
+        <bf/ISDN-Daten/ (SI=7) was uns hier interessiert.
+
+        Der Endpunkt der Telekom-Leitung ist der <bf/NTBA/
+        (kurz auch <bf/NT/), der <bf/Network Terminator Basis-Anschluß/.
+        Das ist der kleine graue Kasten, an dem für die Telekom
+        das Netzwerk aufhört.
+
+        An einem NTBA können (normalerweise) 2 Kabel herausgeführt
+        werden, diese bilden gemeinsam ein Bus-System, den
+        sogenannten <bf/S0-Bus/ 
+
+        An den S0-Bus können 8 <bf/Endgeräte/ angeschlossen
+        werden. Typische Endgeräte sind ISDN-Telefone, TK-Anlagen
+        G4-Fax-Geräte, ISDN-Terminaladapter und ISDN-Karten.
+
+        Der S0-Bus bietet 3 Kanäle: ein Steuerkanal, genannt
+        <bf/D-Kanal/ (warum der <it/D-Kanal/ genannt wird, ist mir
+        unbekannt, die Eselsbrücke D=Daten klappt zumindest nicht).
+        Weiterhin stehen zwei Datenkanäle, genannt <bf/Nutzkanal/
+        oder <bf/B-Kanal/ (<it/da können wir unsere Bytes rüberschicken/)
+        mit jeweils 64 kbit/s zur Verfügung, die jeweils zu
+        unterschiedliche Partner und mit unterschiedlichen 
+        Diensten genutzt werden können.
+
+        Auf dem D-Kanal können verschiedene Protokolle gefahren
+        werden. Üblich sind <bf/1TR6/ (altes nationales ISDN),
+        <bf/DSS1/ (<bf/Euro-ISDN/, der Quasi-Standard in 24 Ländern)
+        und <bf/N1/ in den USA.
+        Das D-Kanal dient  u.a. zur Übermittlung des Wunsches eines
+        Verbindungsauf- und abbaus, der Übermittlung der Telefonnummern
+        und der Gebühren. Bei einem falsch eingestellten 
+        Protokoll klappt also sehr wenig...
+
+        Die Art und Weise, wie die Telefonnummer gemeldet und
+        genannt wird, hängt vom D-Kanal-Protokoll ab:
+
+        <itemize>
+            <item>1TR1: <bf/EAZ/ (Endgeräte-Auswahl-Ziffer). Es handelt sich
+                also nur um eine Ziffer, die Rufnummer des Basisanschlusses
+                wird nicht betrachtet.
+            <item>DSS1: <bf/MSN/ (Multiple-Subscribe-Number). Hier ist eine
+                komplette Rufnummer gemeint, also alles hinter der Vorwahl.
+        </itemize>        
+
+        Die Bezeichnungen EAZ und MSN sind bei I4L ansonsten 
+        synonym zu benutzen (wenn das richtige Protokoll angegben
+        wurde).
+        Bei einem einkommenden Call wird (hoffentlich) die
+        Zielrufnummer übertragen, genannt <bf/CPN/ (called party
+        number). Ist sie nicht bekannt, setzt sie I4L auf <tt/0/.
+
+        Bekanntlich können für einen Anschluss mehrere Telefonnummern
+        vergeben werden. Diese signalisiert die Vermitllungsstelle
+        (kurz <bf/VSt/) auf dem D-Kanal (CPN) zusammen mit dem 
+        <bf/Service-Indikator/ (<bf/SI/). Mehr passiert bei einem
+        ankommenden Call erst mal nicht! Es ist danach Aufgabe der
+        Endgeräte sich entsprechend zu verhalten: ignorieren,
+        abweisen, oder den Call annehmen.
+
+        Da der SI zusammen mit der Nummer auf dem D-Kanal übermittelt 
+        wird, kann 
+        dieselbe Telefonnummer mehrfach genutzt werden. 
+        Beispiel: das Telefon
+        reagiert nur auf SI=0, der PC reagiert nur auf 
+        SI=7. 
+
+        Bei einem ausgehenden Call muß das Endgeräte die MSN
+        angeben; diese wird dann auch dem Partner übermittelt.
+        Wird keine MSN gesetzt (was I4L nicht zuläßt), setzt
+        die VSt die Nummer ein, wird eine falsche MSN gesetzt,
+        bekommt man keine Verbindung (Erfahrungswerte).
+
+        Mehr zu ISDN-Grundlagen findet sich auf
+        <url url="http://www.dtag.de/angebot/isdn/lexikon/right.htm">
+
+<!--
+    <sect1>I4L
+    <label id="GrundlagenI4L">
+        <p>
+        FixMe
+-->    
+
+    <sect1>TK-Anlagen
+    <label id="GrundlagenTK">
+        <p>
+        <bf/Worum geht es:/
+        Wer die Wahl hat zwischen einem direkten Anschluß am NTBA
+        und einem internen S0-Bus an einer TK-Anlage, sollte sich
+        für den direkten Anschluß entscheiden!
+        Der Betrieb über TK-Anlagen birgt immer gewisse 
+        Überraschungen.
+
+        <bf/Worum geht es nicht:/
+        Wenn man eine TK-Anlage am selben NTBA (S0 Bus) wie die
+        ISDN-Karte angeschlossen hat, gibt es keine Probleme.
+        Die TK-Anlage ist hier nur ein normales ISDN-Endgerät,
+        was dieses <it/hinten/ macht (Anschluß von Analog-Geräten)
+        spielt hier keine Rolle.
+
+        Das Verhalten der TK-Anlage hängt unter anderem vom Typ,
+        von der installierten Software und vor allem von deren
+        Konfiguration (und damit vom entsprechenden Service-Techniker)
+        ab.
+
+        Bei älteren Anlagen wird oft entgegen allen Aussagen
+        1TR6 anstatt DSS1 gefahren. Die Verbindungstypen können
+        abhängig vom Service-Indikator konfiguriert werden, wobei
+        oft nur Voice-Calls konfiguriert sind. Weiterhin besteht die
+        Schwierigkeit herauszufinden, welche MSN/EAZ man zu benutzen hat.
+
+        Bevor man sich auf andere verläßt, sollte man den 
+        Praxistest <it/Selbstanruf/ machen, 
+        siehe: <ref id="hwTesten" name="Hardware testen">
+        
+        Ein wesentlicher Unterschied ist der, daß man nicht mit
+        allen anderen lokalen Teilnehmern an einem Bus angeschlossen
+        ist, sondern die TK-Anlage für jeden einzelnen Anschluß einen
+        eigenen S0-Bus nach außen führt, an den meist nur ein Endgerät
+        angeschlossen wird. Dieser Anschluß bekommt eine eigene
+        Durchwahl zugewiesen, oft 2-stellig.
+
+        Die beste Veranschaulichung ist die, daß man sich seine
+        TK-Anlage als eine eigene Vst vorstellt.
+
+        Beispiel: In Ortsnetz 321 ist eine TK-Anlage mit der Rufnummer
+        654 an einem Primärmultipley-Anlagenanschluß installiert
+        (es gibt also mehr als 2 Amtsleitungen, alternativ könnte dies
+        auch ein Bündelanschluß sein - spielt aus dieser Sicht keine 
+        Rolle). Es sind 20 interne Leitungen vorhanden, wobei die
+        ersten 10 für Telefone und die zweiten 10 für ISDN-Karten
+        vorgesehen sind. Die Durchwahlnummern seien 10-19 für die
+        Telefon und 20-29 für die ISDN-Karten. Die S0-Busse für die
+        ISDN-Karten seien auf DSS1 konfiguriert.
+
+        Dann ist als MSN jeweils 20 bis 29 zu benutzen, denn das sind
+        die MSN's im Ortsnetz <it/Firma/ (=321654).
+        Weiterhin ist zu beachten, daß man zusätzlich eine
+        <tt/0/ wählen muß, um aus dem Ortsnetz <it/Firma/ erstmal
+        herauszukommen. Um z.B. die Nummer 987 im Ortsnetz
+        654 anzurufen, muß man <tt/0987/ waehlen, wobei der
+        Gegenstelle als Rufnummer <tt/65420/ angezeigt wird.
+        Will man in Berlin anrufen, wählt man selbst die
+        <tt/0030..../ an und dort wird <tt/32165420/ übermittelt.
+
+        Will man selber User-Authentication beim Dial-In über die 
+        Telefonnummer machen, gibt es nur eine sinnvolle 
+        herangehensweise: anrufen lassen. Die in <tt>/var/log/messages</tt>
+        angezeigte Nummer dann mittels Cut&amp;Paste in die 
+        entsprechende Konfigurationsdatei übernehmen.
+
+    <sect1>Was ist meine MSN?
+    <label id="msnWelche">
+        <p>
+        Wie oben erwähnt, muß man bei I4L immer die MSN setzen, um wählen
+        zu können, die Angabe der MSN ist wichtig, da ansonsten 
+        meist nichts funktioniert.
+
+        Die erste Frage ist dabei immer, ob man direkt am NTBA
+        oder an einer TK-Anlage angeschlossen ist.
+
+        <itemize>
+
+        <item> Anschluß an NTBA:
+            <p>
+            Man kann sich eine der 3 oder mehr zugewiesenen MSN's aussuchen.
+            Diese MSN wird der Gegenstelle übermittelt. Wird die
+            MSN zur überprüfung des Partners benutzt (z.B. bei rawip),
+            muß man sich mit der Gegenstelle natürlich fest auf eine 
+            einigen. Ansonsten hat man die freie Wahl, man kann durchaus
+            seine normale Voice-Nummer benutzen.
+
+        <item> Anschluß an TK-Anlage:
+            <p>
+            Man ist auf die Konfiguration der TK-Anlage angewiesen.
+            Die einfachste Methode ist der Selbsttest, siehe 
+            <ref id="hwTesten" name="Hardware testen">
+        
+        </itemize>
+    
+    <sect1> Probleme beim Verbindungsaufbau, die Cause Meldungen
+    <label id="cause">
+        <p>
+        Das Protokoll auf dem D-Kanal erlaubt es Meldungen zu
+        verschicken, die über den Grund bei einem Verbindungsabbruch
+        und nicht erfolgreichem Verbindungsaufbau informieren.
+
+        Die Meldungen werden in <tt>/var/log/messages</tt> vom 
+        i4l-Subsystem wls sogenannte <tt>cause</tt>-Meldungen weitergegeben.
+
+        Die Art der Meldung hängt vom verwendeten Protokoll
+        ab (1TR6 oder DSS1), bei DSS1 wird ein <tt/E/ (für Euro-ISDN)
+        vorangestellt, dahinter folgen vier (Hex-)Ziffern.
+        Die ersten beiden geben Auskunft darüber, wo diese
+        Meldung generiert wurde (bei welcher VSt); die letzten
+        beiden Ziffern geben den eigentlichen Grund an.
+
+        Der isdnlog übersetzt uns freundlicherweise die Meldungen
+        in Klartext; wenn der nicht läuft (z.B. bei aktiven ISDN-Karten),
+        kann man die Meldungen mittels <tt/man isdn_cause/ auflösen.
+
+        Nicht alle Meldungen müssen <it/dramatisch/ sein und müssen auf
+        einen Fehler hinweisen.
+
+        Beispiele: 
+        <code>
+kernel: isdn: hisax1,ch0 cause: E0010
+kernel: ippp0: remote hangup
+        </code>
+        Ursache: der Gegner hat <it/normal/ aufgelegt, vermutlich wegen Timeout.
+
+        <code>
+kernel: isdn: hisax1,ch0 cause: E0511
+isdnlog: Mar 19 20:00:32 tei 70 calling Leibnitz with 
+    Kfr User busy (Private network serving remote user) 
+        </code>
+        Ursache: die VSt beim Gegner teilt uns mit, daß dort der
+        Anschluss besetzt ist.
+
+        <code>
+kernel: isdn: hisax1,ch0 cause: E0022
+isdnlog: Mar 19 21:37:16 tei 70 calling Klein with +49 911/
+    333, N|rnberg  No circuit/channel available (User) 
+        </code>
+        Ursache: alle Kanäle sind belegt.
+
+        <code>
+kernel: isdn0: dialing 1 1111111111...
+isdnlog: Apr 13 15:05:18 * tei 84 calling +49 911/111111111, 
+    N|rnberg with Kfr  RING (Data) 
+kernel: isdn: hisax1,ch0 cause: E0201
+isdnlog: Apr 13 15:05:19 * tei 127 calling ? with ?  Unallocated 
+    (unassigned) number (Public network serving local user) 
+        </code>
+        Ursache: die Zielrufnummer ist nicht zugewiesen.
+
+<sect> syncPPP Verbindung herstellen 
+<label id="syncPPP">
+    <p>
+    Point-to-Point Protocol (PPP) ist u.a. in den 
+    RFCs 1661, 1662, 1332 and 1334 definiert.
+    Es wurde ursprünglich entwickelt, um Daten über serielle Leitungen
+    zu verschicken. Es bietet grundsätzlich auch weitere Netzwerkprotokolle
+    (Apple, IPX, ...) unter Linux ist aber nur IP vorgesehen.
+    PPP bietet verschiedene Features wie z.B. den Austausch der IP-Nummern,
+    Authentication, Compressions etc.
+
+    Aus diesem Grund findet zunächst durch das Link Control Protocol
+    (LCP) ein Handshake statt, durch den die Verbindung initialisisert
+    wird (oder auch nicht). In der Praxis ergeben sich genau hierdurch
+    die Probleme gemäß der Richtlinie <it/das schöne an Standards ist,
+    daß sich jeder seinen eigenen aussuchen kann/.
+
+    <sect1> Unterschiede analog - ISDN
+    <label id="pppIppp">
+        <p>
+        Wer analoges PPP gewöhnt ist, muß hier ein umdenken.
+        Bei ISDN dreht sich alles um.
+        Die Netzverbindung besteht logisch immer, gewählt wird aber nur 
+        bei Bedarf.
+
+        <sect2> Analog:
+        <p>
+            <itemize>
+                <item> manuelles starten eines Scripte oder über diald
+                <item> wählen, z.B. mit 'chat'
+                <item> pppd fährt hoch und macht Handshake mit Partner
+                <item> ifconfig und route Aufrufe durch pppd
+                <item> Optionsfile: <tt>/etc/ppp/options</tt>
+                <item> liest automatisch <tt>/etc/ppp/options.DEVICE</tt>
+                    (DEVICE ist das aktuell verwendete serielle Device).
+            </itemize>
+        
+        <sect2> ISDN:
+        <p>
+            <itemize>
+                <item> Netz wird konfiguriert, diverse isdnctrl und ein 
+                    ifconfig Aufruf
+                <item> Setzen der Route
+                <item> starten ipppd
+                <item> Verbindungswunsch -> i4l wählt selbstständig Nummern 
+                    (isdnctrl)
+                <item> ipppd wird aktiviert (er läuft die ganze Zeit!)
+                <item> ipppd macht Handshake
+                <item> Bei dynamischen IP-Nummern legt der ipppd das Device 
+                    neu an und startet <tt>/etc/ppp/ip-up</tt>
+                <item> Beim (automatischen Abbau) macht der ipppd ein 
+                    Reconnect auf das Device bei analog beendet er sich.
+                <item> Beim Abbau startet der ipppd <tt>/etc/ppp/ip-down</tt>
+                <item> Optionsfile: <tt>/etc/ppp/ioptions</tt>
+                <item> Liest kein weiteres Optionfile automatisch ein.
+            </itemize>
+
+    <sect1> Was ist eigentlich synchrones PPP
+    <label id="syncPPPwas">
+        <p>
+        Der Unterschied zwischen synchronem und asynchronem PPP ist das 
+        <bf/Framing/ also das Einpacken der
+        Rohdaten für die jeweilige Verbindungsart.
+        SyncPPP packt in HDLC ein. Auf einer Modemstrecke
+        bzw. einer seriellen Schnittstelle kann man aber
+        nur characterweise verschicken. Entsprechend packt asyncPPP
+        seine Päckchen anders ein. Es gibt ein ausgewiesenes
+        Byte welches den Paketanfang bzw. das Ende markiert.
+        Diese Byte muss, sofern es im Datenstrom auftaucht natürlich
+        anders dargestellt werden. Dafür gibt es ein weiteres
+        reserviertes Byte, das Escape-Byte.
+
+    <sect1> Die Konfiguration
+    <label id="ipppdConfig">
+        <p>
+        <sect2> Netzdevices anlegen und konfigurieren
+            <p>
+            Beispiel:
+            <code>
+NETDEV='ippp0'
+# neues Device
+isdnctrl addif $NETDEV
+
+# setzte MSN/EAZ
+isdnctrl eaz $NETDEV 456
+
+# def. Nummer(n) zum rauswaehlen
+isdnctrl addphone $NETDEV out 09011
+
+# erlaube Nummern, die anrufen duerfen
+#isdnctrl addphone $NETDEV in 
+
+# duerfen alle anrufen? Nein: setze secure=on
+isdnctrl secure $NETDEV on
+
+# Layer-2 Protokoll: (x75i, x75ui, x75bui, hdlc)
+isdnctrl l2_prot $NETDEV hdlc
+
+# Layer-3 (nur trans)
+isdnctrl l3_prot $NETDEV trans
+
+# Ecapsulation: (rawip, cisco_h, syncppp)
+isdnctrl encap $NETDEV syncppp
+
+# Idletime
+isdnctrl huptimeout $NETDEV 60
+
+# maximale Waehlversuche
+isdnctrl dialmax $NETDEV 5
+
+# nur einen bestimmten Kanal benutzen
+#isdnctrl bind $NETDEV 
+
+# PPP an Netzdevice binden
+isdnctrl pppbind $NETDEV 0
+
+# Netzdevice konfigurieren
+ifconfig $NETDEV 1.1.1.1 pointopoint 193.102.150.13 up
+
+# OPEN-Meldung ausgeben:
+isdnctrl verbose 3
+            </code>
+
+            Gelöscht wird das Interface durch die Befehle:
+            <code>
+ifconfig $NETDEV down
+isdnctrl delif $NETDEV
+            </code>
+
+        <sect2> ipppd starten
+        <label id="ipppdStart">
+            <p>
+
+            Vor dem Start des ipppd müssen drei Voraussetzungen
+            erfüllt sein:
+            <enum>
+                <item> ISDN-Hardwareunterstützung
+                <item> syncPPP Untersützung im Kernel
+                <item> Das zu verwendene Device muß angelegt sein
+                    (<tt/isdnctrl addif/)
+            </enum>
+
+            Die syncPPP Unterstützung des Kernels prüft der ipppd
+            leider über eine etwas unglücklich Methode ab:
+            Es muß ein Device <tt/ippp0/ vorhanden sein. Außerdem
+            kann man das Device nicht beliebig benennen, es muß mit
+            <tt/ippp/ beginnen. Merke: <bf/Benutze immer als Devicename
+            <tt/ippp0//
+
+            Der ipppd kann über 2,5 Arten Optionen annehmen:
+            <enum>
+                <item> Kommandozeilenparameter
+                <item> Das Optionsfile <tt>/etc/ppp/ioptions</tt>
+            </enum>
+            Die 2,5te Methode ist die Angabe eines Optionsfile als
+            Kommandozeilenparameter (<tt/-file/).
+
+            In Anlehnung an den pppd empfehle ich folgende Struktur:
+            <itemize>
+                <item> Globale Optionen (für alle ipppd's) in 
+                    <tt>/etc/ppp/ioptions</tt>
+                <item> Devicespezifische Optionen (z.B. für ippp0) in
+                    <tt>/etc/ppp/options.ippp0</tt>
+                <item> Start des ipppd mit
+                    <tt>ipppd pidfile /var/run/ipppd.ippp0.pid 
+                    file /etc/ppp/options.ippp0 & </tt>
+            </itemize>
+
+            Folgendes sollte man noch über den ipppd wissen:
+            <itemize>
+                <item> Es werden z.T. andere Optionen als beim pppd 
+                    benutzt, zu den Unterschieden siehe <tt/man ipppd/
+                <item> Die Optionen und Paßwörter werden nur beim Start 
+                    neu eingelesen.
+                    Beim Testen sollte man also immer nachschauen, ob 
+                    noch ipppd'd laufen und neustarten.
+                <item> Es können verschiedene ipppd auf ein Device
+                    reagieren, daher <tt/pppbind/. 
+                <item> Die Datei <tt>/etc/ppp/ioptions</tt> muß existieren.
+            </itemize>
+
+            Folgende Optionen haben sich für die verschiedensten ISP's
+            als stabil erwiesen:
+            <label id="optionsippp0">
+            <code>
+# /etc/ppp/options.ippp0
+#
+# for isdn4linux/syncPPP and dynamic IP-numbers
+#
+#
+# Klaus Franken, kfr@suse.de
+# Version: 27.08.97 (5.1)
+# 
+# This file is copy by YaST from /etc/ppp/ioptions.YaST 
+#   to options.<device>
+
+# The device(s)
+# for more than one device try:
+# /dev/ippp0 /dev/ippp1 ...
+/dev/ippp0
+
+# The IP addresses: <local>:<remote>
+# just "0.0.0.0:" or nothing for dynamic IP
+#0.0.0.0:
+
+# my user name
+user suse
+
+# my system name (only for CHAP!)
+# name my_system_name
+
+# accept IP addresses from peer
+# use with dynamic IP
+ipcp-accept-local
+ipcp-accept-remote
+noipdefault
+
+# try to get IP address from interface
+# option specific to ipppd (as opposed to pppd)
+# use only with static IP
+#useifip
+
+# disable all header-compression
+-vj
+-vjccomp
+-ac
+-pc
+-bsdcomp
+
+# sometimes you need this:
+#noccp
+
+# max receive unit
+mru 1524
+# max transmit unit
+mtu 1500
+
+# If this machine is a server, force authentication by uncommenting one
+# of the following. However, if this machine is a client, doing this will
+# prevent a succesful connection! (message "peer refused to authenticate").
+# So, only uncomment on a server.
+# "+pap" / "+chap" NUR AKTIVIEREN, WENN DIES EIN SERVER IST!!!
+#+pap
+#+chap
+
+# if you have problems with handshaking (no response for first
+# lcp-package) try to decrease the retry-cycle. Default is 3 sec,
+# try for example 2 sec:
+# lcp-restart 2
+            </code>
+
+        <sect2> Authentifizierung beim ipppd
+        <label id="ipppdAuth">
+            <p>
+            Der ipppd verhält sich bei der Benutzerauthentifizierung
+            exakt genauso wie der pppd. Daher nur ein kurzer
+            Abriss.
+
+            Es stehen zwei Methoden zur Verfügung: PAP und CHAP.
+            Meistens wird PAP angeboten über CHAP kann man 
+            im <tt>PPP-Howto</tt> nachlesen.
+
+            Die Benutzerdaten werden an zwei Stellen konfiguriert;
+            als wird dem ipppd durch das Schlüsselword <tt>user</tt>
+            mitgeteilt, welche User-Id dem gegnerischen PPP-Daemon
+            angeboten werden soll. 
+
+            Als nächstes wird das Passwort selbst (in Klartext) in
+            der Datei <tt>/etc/ppp/pap-secrets</tt> abgelegt.
+            Diese Datei darf nur für root lesbar sein! Also
+            <tt>chmod 600 /etc/ppp/pap-secrets</tt>.
+
+            Für jeden verwendeten User wird eine Zeile eingetragen,
+            z.B. sei der Username <tt>suse</tt> und Passwort <tt>linux</tt>:
+            <code>
+# client        server  pw              iplist
+"suse"          *       "linux"
+            </code>
+
+            Dies ist die einzige Stelle, wo der Username und das
+            Passwort definiert ist (sein sollte).
+            Der Benutzername muß nicht im System bekannt sein,
+            zumindest besteht zwischen dem PAP (oder CHAP) Benutzernamen
+            und dem Systembenutzer kein Zusammenhang.
+
+            Nachdem der ipppd gestartet ist und ev. eine Route
+            darüber definiert ist, wird bei Bedarf automatisch ein
+            Wählvorgang ausgelöst. Manuell kann man dies auslösen
+            durch <tt>isdnctrl dial ippp0</tt>.
+            Meldungen werden über syslog nach <tt>/var/log/messages</tt>
+            geschrieben.
+
+        <sect2> Welche Daten muß ich über den Zugang kennen?
+        <label id="ipppdPars">
+            <p>
+            Folgende Daten sollte man kennen, die meisten sollte der
+            ISP zur Verfügung stellen.
+
+            <descrip>
+            <tag/Protokoll/
+                Es sollte syncPPP sein.
+
+            <tag/Telefonnummer des ISP/
+                klar...
+
+            <tag/meine MSN/
+                Mit welcher meiner Telefonnummern möchte/muß ich wählen,
+                siehe <ref id="msnWelche" name="Was ist meine MSN?">.
+
+            <tag/IP-Nummern/
+                Wenn man feste IP-Nummern hat, gibt der ISP zumindest
+                die persönlich an, die IP-Nummer des PtP (also die des
+                ISP) kennt deswegen noch nicht unbedingt. In diesem
+                Fall, gibt man <it/irgendeine/ ein (wie bei dynamischen)
+                und läßt eine Verbingung herstellen, damit sieht man
+                die IP-Nummer, die man dann hier fest einträgt.
+
+                Bei dynamischen IP-Nummern, trägt man <it/irgendwelche/
+                ein, siehe <ref id="dynIP" 
+                name="Probleme mit dynamischen IP-Nummern">.
+
+            <tag/Authentication-Typ/
+                PAP oder CHAP
+
+            <tag/Username, Passwort/
+                klar ...
+
+            <tag/Nameserver/
+                Sollte man vom ISP mitgeteilt bekommen. Ansonsten
+                siehe 
+                <url url="http://www.suse.de/Support/sdb/nonameserver.html">
+
+            </descrip>
+
+            Mit folgenden weiteren Parametern, kann man die ISDN-Verbindung 
+            steuern.
+            <descrip>
+            <tag/Idle-Time/
+                Nach wie vielen Sekunden Inaktivität soll aufgelegt
+                werden. Will man dieses Feature abstellen, kann man
+                die Zeit auf <tt/0/ stellen.
+
+                Hinweis: Diese Zeitangabe ist nicht exakt.
+
+            <tag/Maximale Wählversuche/
+                Wie oft soll gewählt werden, wenn der Gegner nicht
+                abnimmt?
+
+                Hinweis: Diese Anzahl gilt nicht, wenn es Hardwareprobleme
+                gibt, zieht man z.B. das ISDN-Kabel, wird unendlich oft
+                probiert.
+
+                Hinweis: Diese Anzahl gilt nicht, wenn die Wählverbindung
+                zustandekam, aber die PPP-Verbindung nicht aufgebaut werden
+                konnte. Ist z.B. das Passwort falsch eingetragen, wird 
+                immer wieder eine Verbindung aufgebaut, solange Pakete
+                verschickt werden.
+
+            <tag/einkommende Telefonnumern/
+                In diesem Fall soll keiner die Verbindung von außen aufbauen
+                dürfen, deshalb sollte man keine eingehende Telefonnummer
+                angeben und die Option <tt/secure/ bzw.
+                <tt/Nur angegeben Nummern erlaubt/ aktivieren.
+
+            <tag/Callback/
+                mehr dazu siehe in <url 
+                url="file:/usr/doc/packages/doc/rc.config.i4l.add"
+
+            </descrip>
+
+        <sect2> PPP bei S.u.S.E. einrichten
+        <label id="pppSuSE">
+            <p>
+            Die Konfiguration wird in der Datei <tt>/etc/rc.config</tt>
+            eingetragen (ausser Routing), dies kann manuell oder
+            über YaST geschehen.
+
+            <sect3> Konfiguration mit YaST:
+                <p>
+                <itemize>
+                <item> Menüpunkt <tt/Administration des Systems/, 
+                    <tt/Netzwerk konfigurieren/ und <tt/Netzwerk 
+                    Grundkonfiguration/
+                    auswählen. 
+                <item> Es erscheint eine Maske der konfigurierten
+                    Netzdevices, wähle ein freies aus (sofern es nicht schon
+                    <tt/ippp0/ gibt. Mit <tt/F5/ wählt man den Netzwerktyp aus,
+                    hier also <tt/ISDN SyncPP/.
+                <item> Mit <tt/F6/ vergibt man die IP-Nummern 
+                    (siehe <ref id="ipDynWelche" 
+                    name="Welche IP-Nummer setze ich denn eigentlich?">
+                    und kann auch direkt das Default-Gateway angeben
+                    (siehe <ref id="routing" name="Routing">).
+                <item> Mit <tt/F8/ werden nun die ISDN-relevanten Daten 
+                    eingetragen.
+                    Nachdem man das Device aktiviert hat, kann man es in
+                    der ISDN-Maske direkt hochfahren mit: <tt/Starten/.
+                </itemize>
+
+                Damit sind die rc.config-Variablen, die PPP-Options,
+                die Passwortdatei und das Routing angepasst.
+
+            <sect3> manuelle Konfiguration:
+                <p>
+                Durch folgende Variablen in 
+                <tt>/etc/rc.config</tt> wird eine syncPPP-Verbindung
+                gesteuert, hier als echtes Bsp. (mit <tt/_0/):
+                <code>
+IPADDR_2="1.1.1.1"
+NETDEV_2="ippp0"
+IFCONFIG_2="1.1.1.1 pointopoint 193.102.150.13 up"
+I4L_IDLETIME_2="60"
+I4L_DIALMAX_2="5"
+I4L_LOCALMSN_2="7417559"
+I4L_REMOTE_OUT_2="52145922"
+I4L_REMOTE_IN_2=""
+I4L_ENCAP_2="syncppp"
+I4L_SECURE_2="on"
+                </code>
+                Erklärung: die Bedeutung der Felder ist oben angegeben,
+                in der <tt>/etc/rc.config</tt> sind auch vor den Feldern 
+                entsprechende Kommentare.
+
+                Es können beliebig viele Netzdevices definiert werden 
+                (auch wenn per Default nur 4 angegeben sind), die jeweils
+                durch eine Extension, z.B. <tt/_2/ gekennzeichnet werden.
+                Dabei müssen nicht alle aktiv sein. Welche aktiviert
+                werden sollen, wird in der Variablen <tt/NETCONFIG/
+                gesteuert, sollen z.B. <tt/_0/ und <tt/_2/ aktiv sein,
+                setzt man:  <tt/NETCONFIG="_0 _2"/.
+
+                Als nächstes muß der ipppd konfiguriert werden, erstelle
+                eine Datei <tt>/etc/ppp/options.ippp0</tt>
+                (siehe <ref id="optionsippp0" name="PPP-Optionen">) am besten in 
+                dem Du
+                <tt>/etc/ppp/ioptions.YaST</tt> kopierst.
+                In der Optionsdatei, setzte den Usernamen und prüfe, ob das
+                Device stimmt. 
+                Dann trägst Du das Passwort passend zum Usernamen in
+                <tt>/etc/ppp/pap-secrets</tt> ein.
+
+                Zum manuellen Starten, siehe: 
+                <ref id="ipppdStart" name="ipppd starten"> 
+
+    <sect1> Probleme beim Verbindungsaufbau, Troubleshooting.
+    <label id="syncPPPtrouble">
+        <p>
+
+        Checkliste:
+
+        <enum>
+        <item> Wurde der ipppd überhaupt gestartet?
+            <p>
+            Kontrolliere mit <tt>ps ax|grep ipppd</tt> ob einer
+            läuft bzw. wieviele laufen.
+
+            Kontrolliere in <tt>/var/log/messages</tt> die Startmeldungen,
+            z.B.:
+            <code>
+syslog: info: no CHAP secret entry for this user! 
+ipppd[536]: Found 1 devices: /dev/ippp0, 
+ipppd[540]: ipppd i2.2.9 (isdn4linux version of pppd by MH) started
+ipppd[540]: init_unit: 0 
+ipppd[540]: Connect[0]: /dev/ippp0, fd: 8
+            </code>
+        <item> Stimmen die Benutzerdaten?
+            <p>
+            Der ipppd prüft schon beim Start, mit welchen Usernamen
+            gearbeitet wird (<tt/user suse/), zu diesem Namen
+            das entprechende Passwort gelesen. Klappt das nicht,
+            wird eine Meldung ausgegen, z.B.
+            <code>
+Apr  9 20:32:17 glen syslog: info: no PAP secret entry for this user! 
+            </code>
+            In diesem Fall wird eine Einwahl mittels PAP nicht 
+            funktionieren, die 12 Pfennige kann man sich also sparen.
+            Ursache ist meist ein Tippfehler beim Benutzernamen oder
+            falsche Permisssions der pap-secrets.
+
+            Analoges gilt für CHAP.
+
+        <item> Wird überhaupt eine Verbindung aufgebaut?
+            <p>
+            Sobald die Gegenstelle abnimmt (und damit Kosten
+            entstehen) erscheint eine <tt>connect</tt>-Meldung.
+
+            Wird keine Verbindung aufgebaut, gibt es vermutlich
+            eine <tt/cause/-Meldung. Siehe: <ref id="cause"
+            name="Cause Meldungen">.
+
+            Erscheinen nur <tt/dialing/-Meldungen, aber sonst nichts,
+            liegt es an der Hardware oder am Hardware-Modul,
+            siehe <ref id="hwTesten" name="Hardware testen"> und 
+            <ref id="installation" name="Installation">.
+
+        <item> Klappt die Einwahl?
+            <p>
+            Bei Erfolgreicher Einwahl erscheinen Meldungen über die 
+            IP-Nummern, z.B.:
+            <code>
+ipppd[540]: local  IP address 149.228.142.59
+ipppd[540]: remote IP address 193.102.150.13
+            </code>
+            Sieht man diese Meldungen, dann Glückwunsch! Der
+            Gegner wird ab jetzt zum Partner.
+
+        <item> <tt>select: Bad file number</tt>
+            <p>
+            Direkt nach der Ausgabe der IP-Nummern ercheint:
+            <code>
+ipppd[353]: select: Bad file number
+ipppd[353]: Couldn't restore device fd flags: Bad file number
+ipppd[353]: Exit.
+            </code>
+
+            Was hat es damit auf sich? Zunächst einmal: die Verbindung
+            ist trotz allem aufgebaut.
+
+            Ursache: der ipppd startet beim (Dis-) Connect das
+            Script <tt>/etc/ppp/ip-up</tt> (<tt/ip-down/). 
+            Aufgrund eines kleinen Fehlers im offiziellen ipppd
+            (behoben in der CVS-Version und ab S.u.S.E. 5.2) ist die
+            Abprüfung auf Ausführbarkeit fehlerhaft, woraufhin
+            trotzdem versucht wird das Script zu starten. 
+            Nach der Ferhlermeldung passiert genau nichts.#
+
+            Allerdings sollte die Meldung trotzdem beachtet werden,
+            denn da wir dynamische IP-Nummer benutzen, muß das
+            Routing angepasst werden, was genau über diese Scripte
+            geschehen soll, die hier nicht vorhanden sind.
+
+        <item> <bf/Die Einwahl klappt nicht:/
+            <p>
+            Wenn die Einwahl nicht klappt, sieht man in 
+            <tt>/var/log/messages</tt> meist nur, daß die Gegenstelle
+            aufgelegt hat, um den Grund dafür zu ermitteln, braucht man
+            mehr Meldungen vom LCP. Dazu trägt man in
+            <tt>/etc/ppp/ioptions</tt> folgendes ein:
+            <code>
+# Set 'debug' to create a lot of information in /var/log/messages
+debug
+# Set '+pwlog' for logging passwords in /var/log/messages
+#+pwlog
+            </code>
+            und startet den ipppd neu.
+            Durch <tt/debug/ werden die LCP-Messages ausgegeben, 
+            durch <tt/+pwlog/ kann man sich zusätzlich das
+            verschickte Passwort angeben lassen - letzteres ist nur
+            empfohlen, wenn ansonsten alles richtig scheint, denn
+            wenn jemand fremndes Zugriff auf <tt>/var/log/messages</tt> 
+            bekommt...
+            <p>
+            Häufige Ursachen:
+            <itemize>
+            <item> Username/Passwort falsch:
+                <p>
+                in diesem Fall wird etwas in dieser Art protokolliert,
+                <code>
+ipppd[10314]: sent [0][PAP AuthReq id=0x1 user="kfr" password="falsch"]
+ipppd[10314]: rcvd [0][PAP AuthNak id=0x1msg=""]
+ipppd[10314]: Remote message: 
+ipppd[10314]: PAP authentication failed
+                </code>
+                wobei es richtig so aussehen sollte:
+                <code>
+ipppd[7840]: sent [0][PAP AuthReq id=0x1 user="kfr" password="isdnworkshop"]
+ipppd[7840]: rcvd [0][PAP AuthAck id=0x1msg=""]
+ipppd[7840]: Remote message: 
+ipppd[7840]: bundle, he: 0 we: 0
+                </code>
+
+            <item> LCP-Messages werden nicht beantwortet:
+                <p>
+                Normalerweise LCP-Messages gesendet und empfangen um das
+                Handshaking durchzuführen (send, rcvd):
+                <code>
+ipppd[10314]: sent [0][LCP ConfReq id=0x1 <mru 1524> <magic0x93ade903>]
+ipppd[10314]: rcvd [0][LCP ConfReq id=0x1 <mru 1524> <auth pap> 
+<MPdiscr: 0x3 [ 00 c0 7b 70 d5 fa ]>]
+                </code>
+                Wenn die Gegenseite nicht antwortet, kann es sein, daß
+                sie nicht schnell genug hochkommt (<tt/lcp-restart/
+                erhöhen), oder kein (sync-) PPP-Daemon dort läuft.
+                Ist dies nicht nur ein temporäres Problem, ist entweder
+                die Nummer falsch, oder der ISP bietet tatsächlich kein
+                syncPPP an.
+
+                Im letzteren Fall muß man asyncPPP fahren, siehe 
+                <url url="http://www.suse.de/Support/sdb/ppp_async.html">
+            <item> Noch während der LCP-Messages legt die Gegenstelle
+                auf.
+                <p>
+                Hierbei sollte man am Protokoll erkennen welche
+                Optionen angefordert oder abgewiesen werden. Danach
+                bleibt einem nur der mühsame Weg, diese Optionen
+                zu setzen/deaktivieren, siehe Bsp-Optionsfile
+                und <tt/man ipppd/.
+            <item> <tt/peer refused to authenticate/
+                <p>
+                Man hat selbst <tt/+pap/ oder <tt/+chap/ angegeben.
+                Ein häufiges Mißverständnis: diese Optionen geben,
+                an, daß man selber der Authetication-Server sein
+                möchte, nicht daß man PAP oder CHAP benutzen möchte;
+                letzteres geschieht nur implizit durch Angabe <tt/user/,
+                <tt/name/ und den Eintragungen in
+                <tt/pap-secrets/ bzw. <tt/chap-secrets/.
+                
+            </itemize>
+        <item> <bf/Die Einwahl klappt, weitere Tests:/
+            <p>
+            <itemize>
+            <item> Zunächst vergleiche man die Ausgabe des ipppd mit
+                der Ausgabe von <tt/ifconfig/. Die IP-Nummern
+                müssen übereinstimmen (und gegenüber der Grundeinstellung
+                verändert sein).
+            <item> Ist das Routing richtig gesetzt? Prüfe <tt/route -n/.
+                Siehe <ref id="routing" name="Routing">. 
+                Es muß eine Hostroute für den
+                PtP-Partner gesetzt sein.
+            <item> Versuche die Gegenstelle anzupingen, 
+                z.B. <tt/ping 193.102.150.13/.
+            <item> Warte, bis die Verbindung automatisch abbricht und
+                prüfe die Routingtabelle erneut.
+            <item>beobachte, ob wieder automatische gewählt wird.    
+            </itemize>
+        </enum>
+    
+    <sect1> Übung: syncPPP-Verbindung herstellen
+    <label id="uebungPPP">
+        <p>
+        Ziel: PPP-Verbindung aufbauen und testen (kein Routing)
+        <enum>
+        <item> Stelle eine Verbindung zu einem syncPPP-Server her.
+            Wenn Du keinen anderen kennst, benutze den S.u.S.E. 
+            ISDN-Testrechner mit folgenden Daten:
+            <itemize>
+            <item> Protokoll: syncPPP
+            <item> Telefon: +49 911 3206726
+            <item> Username: suse
+            <item> Passwort: linux
+            <item> IP-Nummer Server: 192.168.0.1
+            <item> IP-Nummer Client: 192.168.0.99
+            </itemize>
+        <item> Gehe die Checkliste durch und führe die dortigen Tests
+            aus, siehe <ref id="syncPPPtrouble" name="syncPPP Troubleshooting">
+        <item> Prüfe die IP-Nummer(n) des Servers, wenn diese fest ist,
+            ändere die Konfiguration entsprechend.
+        </enum>
+
+
+<sect> Problems with dynamic IP numbers
+<label id="dynIP">
+    <p>
+    What are dynamic IP numbers? 
+
+    IP numbers are scarce and therefore expensive. The providers
+    therefore try to save IP numbers, by being able to be only
+    assigning (at a minimum) as many IP numbers as can call in to them
+    at the onetime. The number of potential computers that can call in
+    is however higher, therefore a fixed IP number cannot be assigned
+    to all of them.
+
+    The trick is that instead of a fixed allocation of IP numbers to
+    computers, with each connection the client is given an IP number
+    from a free pool. This technique can only be used with PPP, not
+    with rawip.
+
+    This method is excellent if you only have a single workstation
+    and work only session-to-session: open connection, surf, surf,
+    surf, exchange mail, surf, and finally close the connection.
+
+    If you want just a little bit more (transparent Internet access),
+    however, it turns out that it doesn't work with dynamic IP
+    numbers.
+ 
+    The following points are desireablt for transparent Internet access:
+    <enum>
+        <item> Dial-on-demand: it is not manually decided whether to
+        open or close a connection (who should decide that in a large
+        network?). The dial-up connection is made automatically as
+        soon as there are packets that cannot be routed with the local
+        network.
+
+        <item> Authomatic closing of connections, when there are no
+        packets to go out for a certain period of time.
+
+        <item> Pauses don't add additional costs, if not data is being
+        sent over the line; e.g. when reading a long web page, the
+        connection doesn't need to be kept open
+
+        <item> Verhindern, daß vergessen wird aufzulegen. (Es blinkt und
+            klackt ja nicht ...)
+    </enum>
+
+    Dieses läßt sich mit ISDN wunderbar lösen, vor allem deshalb, weil der
+    Verbindungsaufbau im Gegensatz zu einem Modem sehr schnell geht (wenige
+    Sekunden).
+
+
+    Folgende Punkte sind bei dynamischen IP-Nummern nicht realisierbar:
+    <enum>
+        <item> Server-Funktionalität: die IP-Nummer des Rechners ist
+            für einen anderen Rechner im Internet nicht bestimmbar.
+            Außderdem wird der Provider vermutlich nicht selbst eine
+            Wählverbindung aufbauen wollen und können - zumindest nicht
+            bei diesen kostengünstigen Verträgen.
+        <item> Mails können nicht direkt zum eigentlichen Mailserver
+            durchgestellt werden (an welche IP-Nummer sollten sie denn ?), 
+            sondern müssen bei einem Provider abgelegt werde, von dem
+            sie vom IZG abgeholt werden.
+        <item> Das <bf/Offene-Sockets-Problem/:
+            Halten einer logischen Verbindung über die 
+            Verbindungsunterbrechnung hinaus ist nicht möglich. 
+            Bsp: man loggt sich per
+            Telnet bei in seiner Arbeitsstelle ein, nach Inaktivität
+            wird aufgelegt, drückt man nun eine Taste, wird die Verbindung
+            automatisch wieder hergestellt, aber man bekommt eine 
+            andere IP-Nummer zugewiesen. Die Socket-Verbindung zwischen
+            eigenen Rechner und Arbeitgeber ist damit ungültig geworden, da 
+            für einen Socket u.a. Quell- und Ziel-IP-Nummern wichtig sind.
+
+            Die gleiche Problematik stellt sich bei WWW oder FTP-Verbindungen,
+            die unterbrochen werden.
+    </enum>
+    Sehr wohl aber ist man genauso wie sonst auch nicht gegen Angriffe
+    aus dem Internet geschützt. Ein Hacker kann nur nicht voraussagen,
+    welchen Rechner er angreift, er sucht sich halt nur zufällig eine
+    IP-Nummer aus (oder belauscht eine Verbindung) und kann den Rechner
+    angreifen. Der Vorteil liegt allerdings darin, daß der Hacker weniger 
+    Zeit hat, da die Verbindung abgebaut und mit einer neuen IP-Nummer
+    aufgebaut wird, zwischen denen erstmal kein Zusammenhang zu erkennen
+    ist. Als wirksamen Schutz reicht dies aber nicht aus.
+
+    Die Probleme:
+    Aus dem <bf/Offene-Sockets-Problem/ ergeben sich zwei 
+    Punkte, die bei einem IZG mit dynamsichen IP-Nummer beachtet werden
+    müssen:
+    <enum>
+        <item> Anfragen laufen in's Leer: ein Web-Browser hat einen
+            zum Web- oder Proxy-Server offen, nach dem Re-Connect ist dieser
+            ungültig, aber der Browser hat keine Möglichkeit dies zu
+            erkennen. Abhilfe schafft es hier, auch <tt/Abbruch/ und
+            <tt/Reload/ zu drücken.
+        <item> Die Sockets bleiben offen (auch nach Beendigung 
+            des Client-Programms), es werden immer wieder Pakete 
+            darüber geschickt, bis ein Timeout (etwa 20 Minuten)
+            abläuft. In dieser Zeit wird <bf/ständig eine Verbindung
+            aufgebaut/ bzw. bleibt bestehen.
+    </enum>
+
+    Abhilfe schafft hier zum einen, daß man den Client nicht erlaubt direkt
+    in das Internet eine Verbindung aufzubauen (über Masquerading), sondern
+    nur über Proxies (siehe <ref id="squid" name="Squid">. Aber auch diese
+    Methode ist nicht zuverlässig.
+
+    <sect1> Der RST-provoking mode
+    <label id="rstPatch">
+        <p>
+        Wirkliche Abhilfe schafft nur die Aktivierung des
+        <bf/RST-provoking mode/. Dabei wird bei dem Paket die Quell-IP-Nummer 
+        ausgetauscht gegen die jetzt aktuelle dynamsiche IP-Nummer, was bewirkt,
+        daß beide Seiten diesen Socket schließen.
+
+        Diese Modus ist leider noch nicht in den offiziellen Kernel
+        gekommen. Den Patch von <bf/Erik Corry/ findet man
+        hier: <url url="http://www.image.dk/~ehcorry/linux/">.
+
+        Er ist für Kernel der Version bis 2.0.33 passend, ab Version
+        2.0.34 wird er vermutlich im Standard-Kernel sein. Im Standrdkernel
+        von S.u.S.E. Linux 5.2 (und im Quellpaket <tt/lx_suse/ ist dieser
+        Pacth schon enthalten.
+        (Offen: 2.1 ?)
+
+        Zur Aktivierung gibt man das Kommando:
+        <code>
+    echo 7 > /proc/sys/net/ipv4/ip_dynaddr
+        </code>
+        (Oder nur <tt/5/, für den quiet-Mode).
+        Bei Erfolg sieht man in <tt>/var/log/messages</tt> Meldungen der
+        folgenden Art:
+        <code>
+    ip_rewrite_addrs(): shifting saddr from 1.1.1.1 to 149.228.142.50 (state 2)
+        </code>
+
+        Aktivierung bei S.u.S.E.:
+
+        Trage in <tt>/sbin/init.d/i4l_hardware</tt> vor dem Start des
+        isdnlog folgende Zeilen ein:
+        <code>
+    test -z "$I4L_DYNIP" ||
+        echo 7 > /proc/sys/net/ipv4/ip_dynaddr
+        </code>
+        (das wird vermutlich bei S.u.S.E. Linux später als 5.2 der Fall sein)
+        und trage in <tt>/etc/rc.config</tt> ein:
+        <code>
+    I4L_DYNIP="yes"
+        </code>
+
+    <sect1> Welche IP-Nummer setze ich denn eigentlich?
+    <label id="ipDynWelche">
+        <p>
+        Der Provider stellt nur dynamische IP-Nummern zur Verfügung,
+        während der Konfiguration von i4l werde ich aber nach 
+        IP-Nummer gefragt - welche IP-Nummer soll ich denn da angeben?
+
+        i4l arbeitet mit einer transparenten Netzanbindung, d.h.
+        logisch gesehen ist die Verbindung immer aktiv, auch
+        wenn noch garnicht gewählt wurde und keine dynamischen
+        IP-Nummern ermittelt werden konnten. Um dieses Pseudo-Netzwerk
+        zu konfigurieren müssen aber zwangsläufig IP-Nummern
+        angegeben werden.
+
+        Es empfiehlt sich daher, eine Pseudo-IP-Nummer zu benutzen,
+        z.B. dieselbe, die man auch für seine Ethernetanbindung 
+        benutzt. Das ist möglich, da die PPP-Verbindung als
+        <tt/pointopoint/-Verbindung (beim <tt/ifconfig/) konfiguriert
+        wurde, dies ist ein spezieller Modus, durch den der
+        Kernel weiß, daß hier nur eine Verbindung zwischen
+        zwei Punkten stattfindet. Warum Point-To-Point (<bf/PtP/)
+        als <bf/pointopoint/ angegeben wird, weiß ich auch nicht ....
+
+        Um keinen Konflikt mit offiziellen IP-Nummern zu provozieren,
+        sollte man eine aus dem privaten Bereich wählen, z.B.
+        <tt/192.168.1.1/.
+
+        Falls man bei T-Online angeschlossen ist oder dies plant:
+        Bneutze nicht <tt/192.168.0.*/, darüber werden z.T. 
+        interne Dienste wie Cept abgehandelt.
+
+
+<sect> Routing
+<label id=routing>
+    <p>
+
+    <!--
+    <sect1> Background: was sind IP-Nummern, Netzmasken und dieses
+        Zeugs?
+    <label id="ipnrWas">
+        <p>
+        FixMe
+    -->    
+        
+    <sect1> Was ist Routing?
+    <label id="routingWas">
+        <p>
+        In einem lokalen Netzwerk ist das Leben einfach: wenn ein TCP-IP
+        Paket zu einem anderen Rechner gesendet werden soll, wird dieses
+        auf dem Ethernet verschickt. 
+        
+        Ist der Rechner am Internet 
+        oder in einem grösseren Netzwerk (WAN) angeschlossen, ist die 
+        Aufgabe schon etwas schwieriger, denn wenn der Ziel-Rechner
+        (bzw. Ziel-IP-Nummer) nicht im lokalen Ethernet erreichbar ist, 
+        so muss 
+        dem Kernel gesagt werden, daß alle nicht lokal zustellbaren
+        Pakete, freundlicherweise von einem Gatewayrechner
+        weitergeleitet werden.
+
+        Komplizierter ist es, wenn der betreffende Rechner selbst ein
+        Gatewayrechner ist und mehrere Netzdevices (Ethernetkarten,
+        Modems, ISDN-Karten etc.) zur Verfügung hat und jeweils über diese
+        Devices unterschiedliche Rechner/Netze erreichbar sind. 
+        Das ist die Aufgabe vom Routing:
+
+        <tscreen>
+            Für jede IP-Nummer muß definiert werden, auf welchem 
+            Weg (Route) diese erreicht werden kann.
+        </tscreen>
+
+        Man unterscheidet folgende Typen:
+        (die Beispiele werden unter konkretisiert)
+
+        <descrip>
+            <tag/Netzrouten/
+                Hier wird angeben, wie ein komplettes Netz erreichbar
+                ist. Beispiel für ein lokales Ethernet:
+                <tscreen>
+                    Bsp 1: Das Netz 192.168.1.0 mit der Maske 255.255.255.0 ist
+                    über das Device eth0 erreichbar.
+                </tscreen>
+
+            <tag/Hostrouten/
+                Man definiert, wie ein einzelner Rechner erreichbar ist.
+                Beispiel für eine syncPPP Verbindung:
+                <tscreen>
+                    Bsp 2: Der Rechner 192.168.0.1 ist über das
+                    Device ippp0 erreichbar.
+                </tscreen>
+
+            <tag/Default-Route/
+                Im Internet gibt es recht viele IP-Nummern - es ist daher
+                mühsam und langweilig für alle einzelnen IP-Nummern oder
+                Netze einzelne Routing-Einträge zu machen. Daher gibt
+                es die Möglichkeit zu sagen:
+                <tscreen>
+                    Bsp 3: Alle IP-Nummern, für die keine spezielle 
+                    Regel vorhanden ist, schicke an den Rechner mit
+                    der IP-Nummer 192.168.0.1.
+                </tscreen>
+                Man beachte: es macht i.A. keinen Sinn, mehr als
+                eine Default-Route anzugeben.
+        </descrip>    
+
+    <sect1> Wie konfiguriert man das Routing?
+    <label id="routingWie">
+        <p>
+        Die Routingeinträge werden dem Kernel zur Laufzeit
+        mit dem Kommando <tt/route/ mitgeteilt (und wieder entzogen).
+
+        <sect2>S.u.S.E. Methode
+            <p>
+            Bei S.u.S.E. können die Routingeinträge fest in die Datei 
+            <tt>/etc/route.conf</tt>
+            eingetragen werden, die beim Booten oder durch einen
+            Runlevelwechsel vom Script 
+            <tt>/sbin/init.d/route</tt> ausgewertet wird.
+
+            Die Einträge für die obigen Beispiele sehen so aus:
+            <verb>
+            # Bsp 1:
+            192.168.1.0     0.0.0.0     255.255.255.0   eth0
+            # Bsp 2:
+            192.168.0.1     0.0.0.0     255.255.255.255 ippp0
+            # Bsp 3:
+            default         192.168.0.1
+            </verb>
+
+            Die <bf/1. Spalte/ gibt das Ziel an, also das Netz, die IP-Nummer, 
+            oder das Schlüßelwort <tt/default/.
+            In der <bf/3. Spalte/ steht die zugehörige Netzmaske 
+            (falls notwendig).
+
+            In der <bf/2. Spalte/ steht der Gatewayrechner, an den die Anfragen
+            geschickt werden sollen. 
+            
+            In der <bf/4. Spalte/ steht das zu verwendene Device.
+
+            Hier sieht man auch in der 3. Zeile, 
+            daß bei Verwendung eines Gatewayrechners die Angabe des Devices
+            nicht nötig ist, da sie selbststämdig ermittelt wird.
+
+            Allerdings muß (in diesem Beispiel) die Hostroute auf
+            <tt/192.168.0.1/ definiert sein, bevor man sie zum Setzen
+            der Defaultroute nutzen kann. Merke: <bf/Die Reihenfolge
+            ist wichtig./
+
+            Manuelles Setzen und Löschen der Routingtabelle:
+
+            <verb>
+            /sbin/init.d/route start
+            /sbin/init.d/route stop
+            </verb>
+
+        <sect2>Manuelle Methode
+            <p>
+            <verb>
+            # Bsp 1:
+            route add -net 192.168.1.0 netmask 255.255.255.0 dev eth0
+            # Bsp 2:
+            route add -host 192.168.0.1 dev ippp0
+            # Bsp 3:
+            route add default gw 192.168.0.1 
+            </verb>
+
+            Mehr Infos: <tt/man route/.
+            
+        <sect2>Löschen von Routing-Einträgen
+            <p>
+            Routing-Einträge können zum einem direkt gelöscht werden,
+            sie werden aber auch automatisch gelöscht, wenn das 
+            zugrundeliegende Netzdevice gelöscht oder umkonfiguriert wird.
+            
+            Dies hat in diesem Zusammenhang einen ungewünschten Nebeneffekt.
+            Der <tt/ipppd/ baut die Verbindung auf und bekommt eine
+            neue IP-Nummer vom Server zugewiesen, wobei selbstständig
+            eine neue Hostroute auf die IP-Nummer des Gegners
+            eingerichtet wird.
+            
+            Allerdings wird eine ev. vorhandene Defaultroute über dieses
+            Device gelöscht. 
+            
+            Durch die PPP-Option <tt/defaultroute/
+            könnte man sich automatisch wieder eine Anlegen lassen.
+            Allerdings ist diese Methode nicht sehr flexibel
+            (vielleicht will man ja doch keine Defaultroute) und man
+            hätte hiermit keine Möglichkeit zu steuern, wie sich beim
+            Verbindungsabbau verhalten werden soll.
+            Daher wird beim Verbindungaus- und abbau jeweils ein
+            Script gestartet, siehe <ref id="ipup" 
+            name="Kontrollieren der Routingtabelle beim Verbindungsauf- und 
+            abbau">.
+
+    <sect1>Kontrollieren der Routingtabelle beim 
+        Verbindungsauf- und abbau (/etc/ppp/ip-up)
+    <label id="ipup">    
+        <p>
+        Der <tt/ipppd/ bietet die einfache Möglichkeit
+        beim Verbindungsaufbau das Script 
+        <tt>/etc/ppp/ip-up</tt> und beim Abbau
+        <tt>/etc/ppp/ip-down</tt> zu Starten, wobei jeweils
+        die folgenden Parameter über den neuen Zustand 
+        übergeben werden:
+
+        <itemize>
+            <item> $1: Interface
+            <item> $2: Device
+            <item> $3: Speed (nur aus Kompatibilitätsgründen)
+            <item> $4: lokale IP-Nummer
+            <item> $5: IP-Nummer des Gegners
+        </itemize>
+
+        Durch Installation geeigneter Scripte kann also die
+        Default-Route neu gesetzt werden.
+        Die Scripte könnten jeweils so aussehen:
+
+        <verb>
+        #!/bin/sh
+        /sbin/route add default gw $5
+        </verb>
+
+        Bei S.u.S.E. wird ein Script <tt>/etc/ppp/ip-up</tt>
+        welches für den <it/hausgebrauch/ ausreicht. Die
+        Routen werden aufgrund der Konfigurationsdateien
+        gesetzt und wieder hergestellt. Weitere Kommandos
+        können vom Administrator eingefügt werden (z.B. Mails
+        verschicken).
+
+        Das Script <tt/ip-down/ ist ein symbolischer Link auf
+        <tt/ip-up/, so daß man nur eine Datei zu verwalten hat.
+
+        <sect2>Was macht das Script ip-up/ip-down?
+            <p>
+            Es wird geprüft. ob das Interface ippp? ist, sollte also bei 
+            Analog-PPP nicht stören, wer dort etwas eintragen will, 
+            sollte die Stelle leicht finden.
+
+            Wenn es als <tt/ip-up/ aufgerufen wird (also nach dem
+            Verbindungsaufbau),
+            wird eine Default-Route auf die gerade zugewiesene IP-Nummer
+            gesetzt.
+
+            Wenn es als <tt/ip-up/ aufgerufen wird (also nach dem
+            Verbindungsabbau), dann wird das Interfacae gelöscht.
+            Das Interface wird wie in <tt>/etc/rc.config</tt>
+            wieder neu angelegt, es wird also wieder auf die 
+            ursprünglichen IP-Nummer gesetzt.
+            Nach den Angaben in <tt>/etc/route.conf</tt> werden die 
+            Routingeinträge für dieses Device neu eingerichtet.
+            Somit ist dial-on-demand wieder möglich.
+            Ist dort keine Defaultroute angegeben, wird auch keine gesetzt.
+
+            <sect3> Ich möchte aber kein dial-on-demand
+                <p>
+                In der <tt>/etc/route.conf</tt> (bzw. in YaST) wird keine 
+                Default-Route (Default-Gateway) angeben, dadurch
+                existiert nur während einer Verbindung eine Default-Route, diese
+                wird beim Verbindungsabbau gelöcht und nicht neu angelegt.
+                Die Verbindung kann dann manuell (oder durch ein Script) durch
+                <tt>isdnctrl dial ippp0</tt> aufgebaut werden
+                (oder durch manuelles setzen der Default-Route).
+
+                Dadurch kann z.B. auch erreicht werden, dass mit verschiedenen
+                Providern gearbeitet wird, in dem Fall muss man ja 
+                sowieso entscheiden, welche
+                Verbindung nun hochgefahren werden soll, z.B. 
+                <tt>isdnctrl dial ippp17</tt>
+
+    <sect1>Übung: Kontrolliere die IP-Nummer und die Routing-Tabelle
+    <label id="uebungRoute">
+        <p>
+        <enum>
+
+        <item><tt>/var/log/messages</tt> überwachen
+            <p>
+            Siehe <ref id="lessVLM" name="Betrachte messages">
+
+        <item>Prüfe <tt/ip-up/ und <tt/ip-down/
+            <p>
+            <code>
+glen:/root # ls -la /etc/ppp/ip-*
+lrwxrwxrwx   1 root     root            5 Mar 20 10:16 /etc/ppp/ip-down -> ip-up
+-rwxr-xr-x   1 root     root         1813 Mar 24 23:03 /etc/ppp/ip-up
+            </code>
+            Siehe <ref id="installation" name="Installation">
+
+        <item>Prüfe IP-Nummern und die Routingtabelle <bf/vor/
+            einer Verbindung
+            <p>
+            <code>
+glen:/root # ifconfig ippp0
+ippp0     Link encap:Point-Point Protocol  
+inet addr:192.168.0.99  P-t-P:192.168.0.1  Mask:255.0.0.0
+UP POINTOPOINT RUNNING NOARP  MTU:1500  Metric:1
+RX packets:0 errors:0 dropped:0 overruns:0
+TX packets:0 errors:0 dropped:0 overruns:0
+            </code>
+
+            <code>
+glen:/root # route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+192.168.0.1     0.0.0.0         255.255.255.255 UH    0      0        0 ippp0
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      0        2 lo
+0.0.0.0         192.168.0.1     0.0.0.0         UG    0      0        0 ippp0
+            </code>
+
+
+        <item>Verbindung initiieren
+            <p>
+            Man kann entweder eine Pakete verschicken (z.B.
+            <tt>ping 141.1.1.1</tt> oder das Wählen direkt verlangen
+            <tt>isdnctrl dial ippp0</tt>
+
+            Als Beispiel bekommen wir die IP-Nummer 
+            <tt>1.2.3.4</tt> zugewiesen, der Gegner habe die
+            IP-Nummer <tt>5.6.7.8</tt> (siehe messages).
+
+        <item>Prüfe IP-Nummer und die Routingtabelle <bf/während/
+            einer Verbindung
+            <p>
+            <code>
+glen:/root # ifconfig ippp0
+ippp0     Link encap:Point-Point Protocol  
+inet addr:1.2.3.4  P-t-P:5.6.7.8  Mask:255.0.0.0
+UP POINTOPOINT RUNNING NOARP  MTU:1500  Metric:1
+RX packets:2 errors:0 dropped:0 overruns:0
+TX packets:3 errors:0 dropped:0 overruns:0
+            </code>
+
+            <code>
+glen:/root # route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+5.6.7.8         0.0.0.0         255.255.255.255 UH    0      0        0 ippp0
+127.0.0.0       0.0.0.0         255.0.0.0       U     0      0        2 lo
+0.0.0.0         5.6.7.8         0.0.0.0         UG    0      0        0 ippp0
+            </code>
+
+        <item> Wir gehen in die große weite Welt:
+            <p>
+            Bestimme eine existierende IP-Nummer, die einzige,
+            die ich mir merken kann ist die des DNS-Server von
+            ECRC: <tt/traceroute -n 141.1.1.1/.
+            Man beachte, daß wir noch keinen DNS-Servive benutzen
+            können, daher <tt/-n/.
+
+        <item>Timeout abwarten bis aufgelegt wird/
+            <p>
+            betrachte <tt>/var/log/messages</tt>, z.B.:
+            <code>
+kernel: isdn_net: local hangup ippp0
+kernel: ippp0: Chargesum is 0
+isdnlog: Apr 03 09:20:49   tei 70 calling Eunet-N with KfrI I  Normal call clearing (User) 
+ipppd[135]: Modem hangup
+ipppd[135]: Connection terminated.
+ipppd[135]: taking down PHASE_DEAD link 0, linkunit: 0
+ipppd[135]: sent [0][LCP TermReq id=0x2 6c 69 6e 6b 20 63 6 c 6f 73 65 64]
+ipppd[135]: LCP is down
+ipppd[135]: link 0 closed , linkunit: 0
+ipppd[135]: reinit_unit: 0 
+ipppd[135]: Connect[0]: /dev/ippp0, fd: 6
+            </code>
+            
+        <item>IP-Nummern und Routing prüfen
+            <p>
+            sie müssen jetzt wieder genausogesetzt sein, wie
+            <bf/vor/ dem Verbindungsaufbau.
+
+        </enum>
+
+
+
+
+
+<sect> IP-Nummern Auflösung (DNS)
+<label id="ipnummern">
+    <p>
+    Bekanntlich werden Rechner im Internet über die IP-Nummern angesprochen.
+    Niemand möchte sich aber die IP-Nummern direkt merken, praktischer
+    ist es, Namen zu verwenden, z.B. <tt/www.franken.de/.
+    Aber nicht nur für die bessere Merkbarkeit sind diese Namen 
+    wichtig, sondern sie dienen auch als Variable, deren 
+    Inhalt sich verändern kann. Wenn ein wichtiger Server eine neue
+    IP-Nummer bekommt (z.B. durch Umzug oder Providerwechsel), so wird
+    der Name einfach auf die neue IP-Nummer aufgelöst.
+
+    Genauso wichtig (und das wird gerne vergessen) wie die Auflösung von
+    Namen in IP-Nummern 
+    ist der umgekehrte Fall, also IP-Nummer in einen Rechnernamen 
+    auflösen.
+
+    Diese umgekehrte Auflösung ist oft diejenige, die Probleme im
+    lokalen Netzwerk (also ungewollte Verbindungen) macht, denn
+    viele Services nutzen diese Möglichkeit zur Verifikation bei
+    einer einkommenden Verbindung, denn in den Regeln wer was machen
+    darf, werden meist Rechnernamen anstatt IP-Nummern verwendet. Über das
+    Netzwerk ist aber zunächst nur die IP-Nummer sichtbar und muß
+    also in einen Namen aufgelöst werden.
+    
+    <!--
+    Besonders problematisch ist
+    hier <tt/sendmail/, denn in der Standardkonfiguration 
+    löst sendmail die Namen nicht über <tt>/etc/hosts</tt>
+    auf (auch wenn die Resolverdatei dies vorgibt).
+    -->
+
+    Es gibt zwei wichtige Methode zur Namensauflösung, die
+    gleichzeitig benutzt werden können (und müssen):
+
+    <sect1>feste IP-Nummern Auflösung über /etc/hosts
+    <label id="etcHosts">
+        <p>
+        Alle bekannten IP-Nummer werden fest in einer Datei
+        gespeichert, die der Adminsitrator manuell pflegen (oder
+        kopieren) muß.
+
+        In der Datei <tt>/etc/hosts</tt> werden alle Rechnernamen und
+        IP-Nummern fest eingetragen.
+
+        Beispiel: In der Domain <tt/isdnworkshop.de/ gibt es die
+        Rechner Asterix (<tt/192.168.1.1/) und Obelix (<tt/192.168.1.2/).
+        Dann sieht die Datei so aus:
+
+        <code>
+# IP        FQN                     Kurzname
+
+192.168.1.1 Asterix.isdnworkshop.de Asterix
+192.168.1.2 Obelix.isdnworkshop.de Obelix
+        </code>
+
+    <sect1>dynamische IP-Nummern Auflösung mit DNS
+    <label id="dns">
+        <p>
+        Es wird schnell ersichtlich, daß eine feste Auflösung über eine
+        Datei, die ständig aktuell auf jedem Rechner installiert sein
+        muß das Internet nicht funktionieren würde. Die feste
+        Auflösung kann nur in einem übersichtlichen lokalen Netz benutzt 
+        werden.
+
+        DNS (Domain Name Service) dient ebenfalls zum Auflösen von Rechnernamen
+        in eine IP-Nummer und umgekehrt. Der Unterschied liegt darin, daß es
+        ein Internet-Service ist, den man auf Anforderung abfragen kann.
+        ES gibt sehr viele DNS-Server im Internet, wobei es eine 
+        hierarchische Struktur gibt, die sich an den Domainnamen
+        orientiert. Jeder DNS-Server ist für eine Sub-(Sub-....) Domain
+        zuständig. Beim Abfragen <it/hangelt/ man sich von den Root-Servern
+        herunter, bis man den Server gefunden hat, der die Anfrage
+        tatsächlich beantworten kann.
+
+        Das Einrichten eines DNS-Server soll an anderer Stelle
+        beschrieben werden, z.B. im DNS-HowTo.
+
+        Für unsere Zwecke reicht es zu wissen, wie der Service
+        aktiviert wird und wo man einstellt, welches der Nameserver
+        ist.
+
+    <sect1> Konfiguration der Namensauflösung
+    <label id="resolv">
+        <p>
+        Es ist wie gesagt durchaus sinnvoll beide Methoden
+        der Namensauflösung zu kombinieren. Wichtig ist hier, daß 
+        auch ohne Internetverbindung lokal gearbeitet werden kann.
+        Üblicherweise werden die lokalen Rechner (mindestens der
+        eigene) über die <tt>/etc/hosts</tt> aufgelöst, alle nicht
+        bekannten Anfragen werden dann über den Nameserver beim
+        ISP aufgelöst.
+
+        Um die Namensauflösung muß sich eine Applikation nicht selber
+        kümmern, sondern wird durch <tt/libc/-Funktionen (z.b.
+        <tt/gethostbyname()/ erledigt. Diese libc-Funktionen gilt es also
+        zu konfigurieren.
+
+        Über die Datei <tt>/etc/host.conf</tt> wird zunächst gesteuert,
+        welche Methoden überhaupt benutzt werden sollen und sehr wichtig
+        auch in welcher <bf/Reihenfolge/ dies geschehen soll.
+
+        Beispiel <tt>/etc/host.conf</tt>:
+        <code>
+order hosts bind
+multi on
+        </code>
+        gibt an, daß zunächst in der <tt>/etc/hosts</tt> gesucht werden soll,
+        bei Mißerfolg dort, soll der DNS-Server (<tt/bind/) bemüht werden.
+        
+        Wenn ein Nameserver benutzt werden soll, ist noch eine zweite
+        Datei <tt>/etc/resolv.conf</tt> zu konfigurieren:
+        <code>
+search isdnworkshop.de suse.de 
+nameserver 192.168.200.7.1
+        </code>
+        Die 2. Zeile sollte selbsterklärend sein, in der ersten
+        wird eine sogenannte Searchlist angegeben, diese ist nur dann
+        von Bedeutung, wenn ein Rechnername ohne vollständige Domain 
+        versucht wird aufzulösen. Beispiel: es wird nach einem
+        Rechner <tt/Goedel/ gesucht, den der Nameserver nicht kennt,
+        dann wird zunächst <tt/isdnworkshop.de/ angehängt und damit versucht
+        einen Rechner <tt/Goedel.isdnworkshop.de/ zu finden; ist auch das nicht
+        erfolgreich, wird nach <tt/Goedel.suse.de/ gesucht.
+
+        Änderungen an diesen beiden Dateien sind sofort wirksam.
+
+        <sect2> Namensauflösung bei S.u.S.E.
+        <label id="dnsSuse">
+            <p>
+            Setze die Variablen in <tt>/etc/rc.config</tt>, für obiges
+            Beispiel:
+            <code>
+SEARCHLIST="isdnworkshop.de suse.de"
+NAMESERVER="192.168.200.7.1"
+            </code>
+
+    <sect1> Probleme mit der Namensauflösung
+    <label id="resolvTrouble">
+        <p>
+        Probleme bei der Namensauflösung erkennt man schnell an seiner
+        Telefonrechnung ;-(
+
+        Ein Beispiel: eine Benutzer macht im lokalen Netz ein
+        Telnet von der IP-Nummer <tt/192.168.1.2/ auf den IZG <tt/192.168.1.1/. 
+        Der Server prüft vor dem eigentlichen Start des Telnet-Daemons,
+        welche IP-Nummer reinkommt (Stichwort TCP-Wrapper), da diese
+        Nummer nicht aufgelöst werden kann, wird der Nameser befragt,
+        dieser ist beim ISP, eine Verbindung wird automatisch
+        aufgebaut. Ergebnis: der Telnet braucht nicht nur etwa eine
+        Minute bis zum Login (der DNS-Server kann diese private
+        IP-Nummer nicht auflösen), sondern kostet auch noch 12 Pfennige.
+
+        <sect2> Checkliste
+        <label id="resolvCheck">
+            <p>
+            <enum>
+            <item> Ist die eigene IP-Nummer in der <tt>/etc/hosts</tt>
+                eingetragen?
+
+            <item> Sind alle Rechner des lokalen Netzwerks in der
+                <tt>/etc/hosts</tt> eingetragen?
+            
+            <item> Ist das Paket <tt/bind/ installiert:
+                <code>
++/kfr $ rpm -q bind
+bind-4.9.6-5
+                </code>
+                
+            <item> Kann der Nameserver angesprochen werden?
+                Test: 
+                <code>
++/kfr $ nslookup www.suse.de
+Server:  Plato.suse.de
+Address:  192.168.100.1
+
+Name:    Turing.suse.de
+Addresses:  195.125.217.200, 192.168.102.3
+Aliases:  www.suse.de
+                </code>
+
+            <item> Einen beliebigen anderen Nameserver kann man direkt 
+                testen, z.B.:
+                <code>
++/kfr $ nslookup www.suse.de 141.1.1.1    
+Server:  ecrc.de
+Address:  141.1.1.1
+
+Non-authoritative answer:
+Name:    Turing.suse.de
+Address:  195.125.217.200
+Aliases:  www.suse.de
+                </code>
+            </enum>
+
+            Tips:
+            <enum>
+            <item> Für das gesamte Subnetz IP-Nummern und Namen in
+                die <tt>/etc/hosts</tt> eintragen, auch wenn sie
+                (noch) nicht verwendet werden. Bsp:
+                <code>
+192.168.1.1     Server.isdnworkshop.de Server
+192.168.1.2     Client.isdnworkshop.de Client
+192.168.1.3     Dummy.isdnworkshop.de Dummy
+192.168.1.4     Dummy.isdnworkshop.de Dummy
+192.168.1.5     Dummy.isdnworkshop.de Dummy
+                </code>
+                u.s.w.
+                
+            <item> Einrichten eines eigenen DNS-Proxy-Servers.
+                Neben der schnelleren Auflösung, werden auch die
+                fehlerhaften Anfragen gecacht, so daß nicht so 
+                häufig eine Verbindung aufgebaut wird
+                (Siehe <ref id="dnsCache" name="DNS-Cache">).
+            </enum>
+        
+
+
+
+<sect> Monitoring Dial-On-Demand 
+<label id=dodCtrl>
+    <p>
+During the configuration you should monitor the system to determine
+when and why a connection is made. Otherwise you can quickly rack up
+unwanted phone bills.
+
+One can be sure, however, that a connection is never made or kept open
+for no reason. This occurs only even if packets are actually sent out
+over the line.
+
+Thus, you need to check the server services installed on the computer,
+whether they were configured correctly and to if necessary find out
+the cause of the connection.
+
+
+    <sect1> Monitoring connections
+        <p>
+
+There are a number of ISDN status monitors. The most important is
+imon; this console program can be started in any environment, reacts
+promptly and does not devour system resources.
+
+Other programs are: <tt/xisdnload/ (also shows the throughput),
+<tt/isdnmon/ and <tt/isdnmonp/.  All monitors show the telephone
+number and the type of connection (incoming or outgoing on).
+
+    <sect1> Determining the reason for the connection
+    <label id="verbose">
+        <p>
+        <itemize>
+            <item> With the command <tt/isdnctrl verbose 3/ the i4l
+            subsystem will write a message in
+            <tt>/var/log/messages</tt> each time a connection is
+            established so that one can determine between which IP
+            numbers and port numbers a packet is being sent.  This
+            example is an inquiry to the WWW server <tt/www.suse.com/
+            (Alias <tt/goldengate/):
+
+                <code>
+Apr 10 21:05:06 glen kernel: OPEN: 1.1.1.1 -> 209.0.51.1 TCP, port: 2224 -> 80
+                </code>
+                Disadvantage: one cannot check why a connection is not being hung up.
+                More: <ref id="isdnDial" name="SDB: unwanted connections">
+
+            <item> <tt/tcpdump/ (Paket <tt/tcpdump/) is a packet
+            sniffer that checks all packets on a network device. The
+            output of the program is not very user-freiends, but it at
+            least shows the IP number and port numbers. This examples
+            is an an inquiry to the WWW server <tt/www.suse.com/
+            (Alias <tt/goldengate/)
+
+                <code>
+glen:/root # tcpdump -i ippp0
+tcpdump: listening on ippp0
+21:05:39.382188 pec-30.au1.n.uunet.de.2230 > goldengate.suse.com.www: 
+    S 1384488919:1384488919(0) win 512 <mss 1460>
+21:05:39.642188 goldengate.suse.com.www > pec-30.au1.n.uunet.de.2230: 
+    S 3326089293:3326089293(0) ack 1384488920 win 32736 <mss 1460>
+21:05:39.642188 pec-30.au1.n.uunet.de.2230 > goldengate.suse.com.www: 
+    . ack 1 win 32120 (DF)
+                </code>
+
+                Disadvantage: when using dynamic IP numbers, the ppp 
+daemon recreates the the interface <tt/ippp0/.  <tt/tcpdump/ won't show any more data after this, and must be aborted and restarted.
+
+        </itemize>
+        
+
+    <sect1> Analyzing connections
+    <label id="isdnrep">
+        <p>
+        The program <tt/isdnlog/ runs in the backgroud, always
+        listening to the D channel. All activity is logged to
+        <tt>/var/log/messages</tt> and a protocol is written to
+        <tt>/var/log/isdn.log</tt>.
+
+        With the toolM <tt/isdnrep/, this file can be read at some
+        later time. There are a number of parameters; here are the
+        most important:
+
+        <itemize>
+            <item> <tt/isdnrep/: all of today's connections
+            <item> <tt/isdnrep -a/: all logged connections
+            <item> <tt>isdnrep -t01/04/98-03/04/98</tt>: all connections 
+                    from 1 to 3 April 1998
+        </itemize>
+        More information is in <url url="file:/usr/doc/packages/i4l/isdnlog/README">
+        or in the source package.
+
+    <sect1> Dial-On-Demand an- und ausstellen
+    <label id="dodOnOff">
+        <p>
+        Das i4l-Subsystem ist (wenn es denn einmal gestartet wurde) nicht 
+        dafür vorgesehen, daß Verbindungen
+        nur manuell gestartet werden. Man könnte das Konzept bei i4l also 
+        auch so formulieren: wenn es gestartet ist,
+        besteht ständig eine Verbindung, die aber automatisch gekappt 
+        wird, wenn nichts passiert.
+
+        Wer es dennoch machen will, der entferne einfach die 
+        Default-Route. In diesen Fall wird nur noch dann eine Verbindung
+        aufgefgebaut, wenn ein IP-Paket an die direkte Gegenstelle geschickt 
+        wird, was i.A. nicht vorkommt, da diese Gegenstelle keine
+        Internetdienste anbietet und daher von keinem Client angesprochen
+        wird.
+   
+        Als endgültigen Schritt, kann man auch das komplette Interface
+        (ippp0) herunterfahren, dann können grundsätzlich keine
+        Verbindungen aufgebaut werden.
+
+        <sect1> Tips im S.u.S.E. System
+        <label id="dodSuse">
+            <p>
+            Man kann die Runlevel-Scripts natürlich auch manuell benutzen:
+            <code>
+/sbin/init.d/i4l stop
+            </code>
+            fährt alle ISDN-Netzdevices runter,
+            <code>
+/sbin/init.d/i4l start
+/sbin/init.d/route
+            </code>
+            legt sie wieder an und setzt die Routen.
+
+            Wer bei einer syncPPP-Verbindung die Verbindung nur manuell
+            starten möchte, kann eine Eigenschaft des Scriptes
+            <tt>/etc/ppp/ip-up</tt> ab S.u.S.E. 5.2 ausnutzen (Siehe FixMe).
+            Dieses legt beim Verbindungsaufbau eine Defaultroute
+            auf die neu erkannte PtP-Adresse. Beim Verbindungsabbau
+            wird das Device neu angelegt und die Defaultroute 
+            gelöscht. Schlisslich wird die Datei <tt>/etc/route.conf</tt>
+            durchsucht und die Defaultroute wenn definiert neu angelegt.
+            Definiert man dort keine Defaultroute, so hat man nach 
+            Verbindungsabbau eben keine.
+
+            Gestartet werden kann dann nur mit dem Kommando:
+            <code>
+isdnctrl dial ippp0
+            </code>
+            und wer manuell Auflegen will:
+            <code>
+isdnctrl hangup ippp0
+            </code>
+
+        <sect1> Wie erlaube ich normalen Benutzern Dial-In-Demand
+            zu aktivieren?
+        <label id="sudo">
+            <p>
+            Am besten garnicht, denn das ist Aufgabe des Administrators.
+            Es ist nur diesem vorbehalten, Netzdevices und
+            Routen zu konfigurieren.
+
+            Versuche nicht, den notwendigen Programmen suid-Attribute zu
+            geben! Erstens ist die Aufgabe sehr schwer, und zweitens
+            handelt man sich damit ein riesisges Sicherheitsloch ein,
+            denn wenn diese Programme erstmal <it/offen/ sind, lassen
+            sich auch andere unerwünschte Dinge damit tun.
+
+            Einem einzelnen Script suid-Attribute zu geben, ist unter
+            Linux ebenfalls verboten.
+
+            Wer es dennoch unbedingt machen will, der benutze ein Paket
+            wie z.B. <tt/sudo/. Damit lassen sich für einzelne Benutzer
+            bestimmte Kommandos definieren, die diese dann als Benutzer
+            <tt/root/ ausführen dürfen.
+
+            Hier ein einfaches Beispiel:
+            <enum>
+            <item> Paket <tt/sudo/ installieren.
+            <item> Mit <tt/visudo/ die Konfigurationsdatei editieren, z.B.
+                soll der Benutzer <tt/kfr/ das Programm 
+                <tt>/usr/local/bin/dial</tt> ausführen dürfen:
+                <code>
+# User privilege specification
+kfr     ALL=/usr/local/bin/dial
+                </code>
+
+                <bf/Hinweis:/ benutze nur das Kommando <tt/visudo/, um
+                dieKonfigurationsdatei (<tt>/etc/sudoers</tt>) zu
+                verändern.
+
+            <item> Das Script <tt/dial/ könnte z.B. so sein:
+                <code>
+#!/bin/sh
+
+DEVICE=ippp0
+
+if test $UID -ne 0; then
+    exec sudo $0 $*
+fi
+
+case "$1" in
+
+stop) 
+    echo stop
+    isdnctrl hangup $DEVICE
+    ;;
+*)
+    echo dial
+    isdnctrl dial $DEVICE
+    ;;
+
+esac
+                </code>
+                Wird es nicht als User <tt/root/ aufgerufen, startet es sich
+                selbst mit <tt/sudo/ neu. Mit <tt/dial/ wird gewählt,
+                mit <tt/dial stop/ wird aufgelegt.
+            <item> sudo fragt beim ersten Start und danach von Zeit zu Zeit
+                das Passwort des aufrufenden Benutzers ab.
+            </enum>
+
+<sect> Preventing phone bill disasters, TimRu extension
+    <p>
+    FixMe
+
+<sect> Konfiguration der Internet-Dienste 
+    <p>
+    Voraussetzung: Die Internet-Verbindung über eine 
+    Dial-On-Demand Wählverbindung und das Routing funktioniert.
+
+    Jetzt sollen (je nach Bedarf) weitere Internetdienste eingerichtet
+    werden.
+
+    <sect1> DNS-Cache
+    <label id="dnsCache">
+        <p>
+        Hintergrund: siehe <ref id="ipnummern" name="IP-Nummern Auflösung">
+        <enum>
+
+            <item> Paket <tt/bind/ installieren.
+
+            <item> editiere <tt>/etc/named.boot</tt>:
+                <p>
+                <code>
+cache . root.cache
+options query-log
+forwarders 192.76.144.66
+slave
+                </code>
+                Bei <tt/forwarders/ werden ein oder mehrere IP-Nummern
+                der Nameserver eingetragen. Die Option <tt/slave/ steuert
+                das Verhalten, wenn der Nameserver selbst noch keine
+                Antwort hat, ohne die Option müßte jetzt der eigene
+                Nameserver die Anfrage auflösen (aufwendig). Mit dieser
+                Option (empfohlen) wird dem Forwarder gesagt, daß
+                er soll die Anfrage auflösen. Bei der nächsten Anfrage
+                hat er diese dann im Cache.
+
+                Zur Diagnose ist zu empfehlen, noch die Zeile
+                <tt/options query-log/ einzufügen, es werden dann über
+                Syslog (also in <tt>/var/log/messages</tt> alle
+                Anfragen an den Nameserver protokolliert, dadurch
+                lassen sich einfach die <it/Übeltäter/ im lokalen
+                Netz finden. Bsp:
+                <code>
+named[232]: XX /192.168.1.2/www.suse.de/A
+                </code>
+                Der Rechner <tt/192.168.1.2/ fragt nach dem A-Record
+                für <tt>www.suse.de</tt>.
+            <item> Wir benutzen uns selbst als Nameserver. 
+                <p>
+                Trage
+                als Nameserver die lokale IP-Nummer ein (<tt/192.168.1.1/),
+                siehe <ref id="resolv" name="Konfiguration der Namensauflösung">
+            <item> Starte den Nameserver:
+                <itemize>
+                    <item> S.u.S.E. Methode:
+                        Trage in <tt>/etc/rc.config</tt> ein:
+                        <code>
+START_NAMED=yes
+                        </code>
+                        Starte Nameserver durch Reboot oder direkt
+                        durch <tt>/sbin/init.d/named start</tt>
+                    <item> Manuelle Methode:
+                        <tt>/usr/sbin/named</tt>
+                </itemize>
+            <item> Test: <tt/nslookup www.suse.de/.
+                <p> 
+                Ergebnis: eine Verbindung wird aufgebaut, in messages 
+                wird die Anfrage protokolliert und die IP-Nummer wird
+                aufgelöst.
+                
+                Eine Wiederholung der Anfrage, wenn die Verbindung nicht 
+                besteht, darf keine Verbindung aufbauen, die Anfrage
+                muß sofort beantwortet werden.
+                
+        </enum>
+
+    <sect1> Squid
+    <label id="squid">
+        <p>
+        Squid ist ein WWW- und FTP-Proxy. Der Vorteil eines Proxies liegt
+        nicht nur darin, Anfragen (für mehrere Benutzer) zu cachen, sondern
+        auch darin, daß Clientrechner im lokalen Netz nicht unbedingt
+        echten Internetzugriff (über Masquerading) haben müssen, was
+        die Übersicht und die Sicherheit erhöht.
+
+        Squid hat eine Vielzahl von Optionen und Features, die mitgelieferte
+        Beispielkonfiguration in <tt>/etc/squid.conf</tt> ist sehr gut
+        dokumentiert und funktioniert zunächst einmal ohne Änderung.
+
+        <sect2> Starten von Squid
+            <p>
+            Bei S.u.S.E. wird über die <tt/rc.config/-Variable
+            <tt/START_SQUID/ gesteuert, ob Squid gleich beim Systemstart
+            hochgefahren werden soll (über <tt>/sbin/init.d/squid</tt>).
+
+            Manuell kann man squid z.B. durch 
+            <tt>/usr/sbin/squid -sYD >> /var/squid/squid.out 2>&1 &</tt>
+            starten.
+
+            Vor dem ersten Start muß das Cache-Directory
+            initialisiert werden, dies sollte als Benutzer <tt/squid/
+            geschehen. Als <tt/root/ kann man einfach aufrufen:
+            <tt/su squid -c "/usr/sbin/squid -z"/.
+
+        <sect2> Clients anpassen
+            <p>
+            Die WWW-Browser müssen konfiguriert werden, damit Sie
+            den Proxy ansprechen. Bei Netscape gibt es die
+            Maske <tt>Options/Network Preferences/Proxies/
+            Manual Proxy Configuration</tt>. In der Maske gibt man jeweils
+            für FTP und HTTP-Proxy die IP-Nummer des IZG im lokalen
+            Netz ein und als Portnummer <tt/3128/ (oder was in
+            <tt>/etc/squid.conf</tt> definiert ist.
+            
+            Zusätzlich sollte man noch das Feld <tt/No Proxy for/
+            ausfüllen, für welche Domains nicht über den Proxy gegangen, 
+            sondern direkt auf den WWW-Server zugegriffen werden soll,
+            z.B.: <tt/localhost isdnworkshop.de/.
+
+    <sect1> Fetchmail
+    <label id="fetchmail">
+        <p>
+        Das Programm <tt/fetchmail/ (Paket <tt/pop/) eignet sich dazu,
+        Mails über das POP3-Protokoll vom Provider abzuholen.
+
+        Das Abholen kann auch als normaler User durchgeführt werden,
+        wir holen hier die Mails als Root ab, dadurch läßt sich der
+        Vorgang besser automatisieren. Nach dem Abholen werden die
+        Mails dem lokalen Sendmail übergeben und zugestellt.
+
+        Der Mailserver sei mail.provider.de. Es gibt zwei Benutzer asterix
+        und obelix, die auf dem lokalen Rechner eva und maria heissen. Als
+        Passwörter werden (auf dem Mailserver) adam und josef benutzt. 
+
+        <itemize>
+
+        <item> Lege eine Datei <tt>/root/.fetchmailrc</tt> an:
+            <code>
+poll mail.provider.de protocol POP3 user asterix password adam is eva
+poll mail.provider.de protocol POP3 user obelix password josef is maria
+            </code>
+
+        <item> Zum Test starte:
+            <code>
+fetchmail -v --keep -a
+            </code>
+            Die Option <tt/-v/ gibt mehr Ausgaben, die Option
+            <tt/--keep/ sorgt dafür, daß die Mails auf dem Server
+            zunächst nicht gelöscht werden.
+
+        <item> Wenn das erfolgreich war, trage in <tt>/etc/ppp/ip-up</tt>
+            das Kommando <tt>fetchmail -a >> /var/log/fetchmail</tt>
+            in der Start-Section ein.
+
+        </itemize>    
+
+        Mehr Infos: <url url="http://www.suse.de/Support/sdb/fetchmail.html">
+
+        Übung: auf dem Server liegen Mails für jede Workstation
+        bereit. Richte fetchmail so ein, daß bei jedem Verbindungsaufbau
+        Mails abgeholt werden. Prüfe die lokale Zustellung.
+        Siehe <url url="/support-db/sdb/fetchmail.html"> und
+        <tt>/etc/ppp/ip-up</tt>.
+
+    <sect1> Sendmail
+    <label id="sendmail">
+        <p>
+        Über Sendmail kann man dicke Bücher schreiben ... (siehe <ref 
+        id="bookSendmail" name="Sendmail">.
+
+        Das S.u.S.E. Paket <tt/sendmail/ ist für diese Zwecke hier
+        bestens gerüstet. Besonders wichtig sind hier zum einem, daß
+        die Absenderadresse richtig gesetzt wird, denn die lokale
+        Domain könnte ja zur E-Mail-Adresse beim Provider unterschiedlich
+        sein. Zum anderen sollen lokale E-Mails sofort zugestellt
+        werden, Mails die über die Wählleitung verschickt werden müssen,
+        sollen dagegen in eine Queue gestellt werden, ohne daß eine 
+        Verbindung aufgebaut wird.
+
+        Wie immer gibt es mehrere Wege:
+
+        <itemize>
+
+        <item> Sendmail über <tt>/etc/rc.config</tt> konfigurieren:
+            <p>
+            <code>
+FROM_HEADER="klaus.franken.de"
+SENDMAIL_TYPE="yes"
+SENDMAIL_SMARTHOST="mail-n.franken.de"
+SENDMAIL_LOCALHOST="localhost franken.b.eunet.de glen.home.suse.de \
+	klaus.franken.de"
+SENDMAIL_RELAY=""
+SENDMAIL_ARGS="-bd -om"
+SENDMAIL_EXPENSIVE="yes"
+SENDMAIL_NOCANONIFY="yes"
+            </code>
+
+        <item> Sendmail über m4-Macro-File konfigurieren:
+            <p>
+            Seit sendmail Version 8, bietet Sendmail ein Macro-Paket,
+            bei dem die eigentlich Konfigurationsdatei
+            <tt>/etc/sendmail.cf</tt> nicht <it/von Hand/ erstellt
+            werden muß, sondern über eine Meta-Datei generiert wird.
+            Das Directory ist je nach Distribution unterschiedlich
+            (z.B. <tt>/usr/share/sendmail/m4</tt>, bei S.u.S.E.
+            auch in <tt>/etc/mail</tt>).
+            
+            In der Distribution sollten sich Vorlagen befinden.
+            Bei S.u.S.E. ist eine gut kommentierte 
+            <tt>/etc/mail/linux.mc</tt> dabei. Bevor man diese
+            ändert, sollte man in <tt>/etc/rc.config</tt> das automatische
+            Generieren abstellen (SENDMAIL_TYPE="no").
+
+            Man generiert eine neu Konfig mit:
+            <code>
+m4 linux.mc > /etc/sendmail.cf
+            </code>
+
+            Mehr Infos: siehe <tt>/etc/mail/README</tt>
+
+        <item> Sendmail Finetuning
+            <p>
+            Bei ausgehenden E-Mails werden abhängig vom lokalen 
+            Benutzernamen die E-Mail-Adressen umgeschrieben,
+            Datei <tt>/etc/mail/genericstable</tt>:
+            <code>
+kfr kfr@klaus.franken.de
+sandra sandra@klaus.franken.de
+sr sandra@klaus.franken.de
+            </code>
+
+
+            Übung:
+            <itemize>
+            <item> Schreibe Dir selbst eine Mail auf dem lokalen Rechner
+            <item> Schreibe anderen Usern eine Mail auf dem lokalen Rechner
+            <item> Schreibe eine Mail an <tt>root@server.isdnworkshop.de</tt>
+            <item> Schreibe eine Mail an andere User auf server.isdnworkshop.de
+                (ws0, ws1, ....)
+            <item> Prüfe nach, wo Deine Mail sind
+            <item> Stelle sicher, daß Mails beim Verbindungaufbau 
+                gequeued verschickt werden, lokale Mails aber sofort 
+                zugestellt werden.
+                (Siehe in <tt>/etc/ppp/ip-up</tt>).
+            <item> Prüfe die Mailqueue mit <tt>mailq</tt>    
+            </itemize>
+    </itemize>
+
+    <sect1> News
+        <p>
+        Online News lesen ist schon hiermit sehr einfach, als News-Server
+        den Server des ISP angeben. Dazu muß man für die meisten 
+        News-Read die Variable <tt>NNTPSERVER</tt> setzen, z.B. 
+        <tt>export NNTPSERVER='klaus.franken.de'</tt>.
+        Dies sollte man systemweit in der <tt>/etc/profile</tt>
+        eintragen.
+
+        Wünschenswert ist natürlich News-Offline zu lesen und entweder
+        bei Bedarf zu holen bzw. zu verschicken oder dieses
+        per Cron-Job z.B. jede Nacht durchführen zu lassen.
+
+        Die Installation eines eigenen News-Servers ist recht
+        aufwendig, es bieten sich <bf/CNews/ oder <bf/INN/ an.
+        Siehe dazu News-Howto (fixme).
+
+        Ein eigener News-Server ist aber eigentlich nur dann notwendig,
+        wenn man auf diesem selber Newsgruppen einrichten möchte.
+        Will man das nicht, sind CNews und INN vollkommen <it/overkilled/,
+        deshalb möchte ich hier zwei andere Möglichkleiten vorstellen:
+
+        Zwei Pakete bieten sich an: <bf/Leafnode/ und <bf/slrn/.
+        Beide sind einfach einzurichten und zu warten und eignen sich für
+        ein mittleres Newsaufkommen vollkommen aus.
+
+        <bf/slrn/ ist eigentlich ein eigener News-Reader 
+        (textorientiert, sehr flexibel und schnell) und bietet 
+        ein eigenes Programm <tt/slrnpull/, das die News abholt und in
+        ein eigenes Spool-Verzeichnis stellt, auf welches direkt von
+        <tt/slrn/ zugegriffen werden kann. 
+        <bf/Einschränkungen:/ es kann kein anderes News-Programm
+        darauf zugreifen; es kann nicht über Netzwerk auf die News
+        zugegriffen werden (vielleicht über NFS, untestet), da kein
+        lokaler News-Server läuft.
+
+        <bf/Leafnode/ stellt dagegen einen eigenen News-Server zur
+        Verfügung, braucht aber insgesamt mehr Ressourcen.
+        Der Trick bei <bf/Leafnode/ ist der, das sich der Server
+        quasi selbst konfiguriert: wird von einem Client auf eine
+        Gruppe zugegriffen, wird diese automatisch abonniert und ist
+        beim nächsten Abgleich vorhanden; wird dagegen längere Zeit
+        nicht (mehr) auf eine Gruppe zugegriffen, wird diese automatisch
+        gelöscht. Man kann Leafnode also in einem kleineren Netz mit
+        mehreren Lesern trotzdem nahezu unbeaufsichtigt laufen lassen.
+
+        Beide Programme arbeiten sehr gut in dieser
+        Dial-On-Demand-Umgebung, Zugriffe auf den News-Server
+        beim Provider werden nur auf Wunsch, nie aber automatisch
+        ausgeführt.
+
+        <sect2> slrn installieren und konfigurieren
+            <p>
+            Die getestete Version ist 0.9.5.2 von
+            <url url="ftp://space.mit.edu/pub/davis/slrn">
+
+            Es wird die slang-Bibliothek ab Version
+            1.0.3 benötigt (bei S.u.S.E. 5.2 ist noch  0.99.38 dabei),
+            zu bekommen unter <url url="ftp://space.mit.edu/pub/davis/slang">
+
+            Beim Compilieren nicht vergessen auch
+            <tt/make slrnpull/ anzugeben.
+            Die Binaries z.B. nach <tt>/usr/local/bin</tt>
+            kopieren, oder folgendes ausführen:
+            <code>
+install -m 755 -o root -g root src/objs/slrn /usr/local/bin
+install -m 755 -o root -g root src/objs/slrnpull /usr/local/bin
+install -d /usr/doc/packages/slrn -m 755 -o root -g root
+install -m 644 -o root -g root doc/* /usr/doc/packages/slrn
+install -m 644 -o root -g root COPYRIGHT /usr/doc/packages/slrn
+install -m 644 -o root -g root COPYING /usr/doc/packages/slrn
+install -m 644 -o root -g root README /usr/doc/packages/slrn
+install -m 644 -o root -g root changes.txt /usr/doc/packages/slrn
+install -m 644 -o root -g root doc/slrn.1 /usr/local/man/man1
+install -d /usr/doc/packages/slrn/slrnpull -m 755 -o root -g root
+install -m 644 -o root -g root slrnpull/* /usr/doc/packages/slrn/slrnpull
+            </code>
+
+            Dann das Spool-Verzeichnis anlegen und die Config-Datei
+            erstellen:
+            <code>
+mkdir /var/spool/slrnpull
+cd /var/spool/slrnpull
+cp /src/slrn/slrnpull/slrnpull.conf .
+            </code>
+
+            In <tt/slrnpull.conf/ könnte z.B. folgendes stehen:
+            <code>
+default                0   14
+de.alt.comm.isdn4linux
+            </code>
+
+            Jetzt noch den News-Reader auf diesen Spool-Pfad
+            konfigurieren, in <tt>~/.slrnrc</tt> anfügen (anpassen !):
+            <code>
+%%% Spool
+set spool_inn_root   "/var/spool/slrnpull"
+set spool_root       "/var/spool/slrnpull/news"
+set spool_nov_root   "/var/spool/slrnpull/news"
+set use_slrnpull 1
+set read_active 1
+set server_object    "spool"
+hostname "klaus.franken.de"
+set username "kfr"
+            </code>
+
+            Das Abholen, Verschicken eigener News und das Löschen alten Artikel
+            geschieht mit einem einzigen Kommando (als root), z.B.:
+            <code>
+slrnpull -d /var/spool/slrnpull -h news.franken.de
+            </code>
+
+            Beim ersten Mal dauert das natürlich sehr lange und sollte daher
+            manuell ausgeführt werden. Im Betrieb kann man das über einen
+            Croneintrag oder in <tt>/etc/ppp/ip-up</tt> bei jedem
+            Verbindungsaufbau durchführen lassen.
+            
+            Beim manuellen Start gibt <tt/slrnpull/ Meldungen
+            auf der Console aus; wird es im Hintergrund
+            gestartet, loggt es nach <tt>/var/spool/slrnpull/log</tt>
+            (Achtung: diese Datei kann gross werden!).
+
+
+        <sect2> Leafnode installieren und konfigurieren
+            <p>
+            Leafnode (Version 1.4) gibt es 
+            auf <url url="ftp://ftp.troll.no/pub/freebies/">.
+
+            Die mitgelieferten Dateien <tt/README/ und <tt/INSTALL/
+            beschreiben die Installation sehr gut.
+
+            Im folgenden Beispiel werden die Binaries
+            <tt/leafnode/, <tt/fetch/ und <tt/texpire/ nach
+            <tt>/usr/local/bin</tt> installiert (Makefile anpassen!).
+
+            Zunächst wird der NNTP-Server <tt/leafnode/
+            in der <tt>/etc/inetd.conf</tt> durch folgende Zeile
+            aktiviert:
+            <code>
+nntp    stream  tcp     nowait  news    /usr/sbin/tcpd /usr/local/bin/leafnode
+            </code>
+            Danach ein <tt/killall -1 inetd/ ausführen.
+
+            Als nächstes  muß ein User und eine Gruppe <tt/news/
+            angelegt werden, z.B. durch folgenden Eintrag
+            in <tt>/etc/passwd</tt>:
+            <code>
+news:x:9:13::/var/spool/news:/bin/bash
+            </code>
+            Alle Arbeiten müssen dann als User <tt/news/ 
+            ausgeführt werden (als Root: <tt/su - news/)!
+
+            Im Verzeichnis <tt>/usr/lib/leafnode</tt>
+            wurde bei der Installation eine Bsp-Datei angelegt,
+            die man kopieren und anpassen muss:
+            <code>
+su - news
+cd /usr/lib/leafnode
+cp config.example config
+            </code>
+
+            Die Datei ist kommentiert, hier arbeiten folgende
+            Einträge:
+            <code>
+server = news.franken.de
+expire = 20
+maxcount = 1000
+            </code>
+
+            Jetzt muß man dafür sorgen, daß das Programm
+            <tt/texpire/ regelmässig aufgerufen wird (ansonsten
+            werden keine alten News wieder gelöscht), hier arbeitet
+            folgender Crontab-Eintrag vom User root:
+            <code>
+42  5 * * * su news -c texpire
+            </code>
+            um jede Nacht um 5:42 zu löschen.
+
+            Durch das Kommando <tt/fetch/ (besser <tt/fetch -v/)
+            wird nun der News-Server initialisiert, aber keine
+            Gruppen sind aktiv.
+
+            In dem man jetzt einmalig durch einen News-Reader
+            auf diesen Newsserver und auf die interessanten
+            Gruppen zugreift (es werden natürlich alle mit der
+            Anzahl 0 angezeigt), werden die Gruppen abonniert.
+            Beim nächsten Aufruf von <tt/fetch/ werden dann die Artikel
+            geholt.
+
+            Auch hier kann man <tt/fetch/ via Crontab regelmässig
+            oder durch einen Eintrag in <tt>/etc/ppp/ip-up</tt>
+            aufrufen.
+
+            <bf/Probleme:/ man hat keinen direkten Einfluß darauf,
+            welche Gruppen abonniert werden. Es sei denn, daß man vor dem
+            Aufruf von <tt/fetch/ das Verzeichnis 
+            <tt>/home/opt/spool/news/interesting.groups</tt>
+            <it/aufräumt/.
+
+            Die Ausgabe von fetch sollte beachtet werden, abgelehnte
+            eigene Postings werden nirgens abgespeichert, sondern
+            einfach gelöscht.
+            
+    <sect1> Firewall
+    <label id="ipfwadm">
+        <p>
+        <bf/Hinweis:/ Firewalls sind ein heikles Thema. Insbesondere
+        Hierfür übernimmt der Autor keine Garantie!
+        Wer eine wirklich sicheres System benötigt, soll zumindest
+        das Firewall Howto lesen oder einen Experten dafür
+        beauftragen.
+
+        Über Firewalls kann man dicke Bücher schreiben ... (siehe <ref 
+        id="bookFirewall" name="Firewall"> oder das <bf/Firewall Howto/.
+
+        Die einfachste (aber wirkungsvolle) Methode ist die Benutzung
+        eines Paketfilters, die direkt vom Linux-Kernel unterstützt wird und
+        über das Kommando <tt/ipfwadm/ (IP-FireWall ADMinistration)
+        konfiguriert wird.
+
+        <sect2> Was ist ein Paketfilter?
+            <p>
+            Jedes IP-Paket, das vom Kernel behandelt wird, wird nach einer
+            Regelliste untersucht und entweder akzeptiert oder abgelehnt.
+
+            Es werden drei verschiedene Listen geführt:
+            <enum>
+            <item>Incoming (Schalter <tt/-I/): einkommende Pakete
+            <item>Outgoing (Schalter <tt/-O/): ausgehende Pakete
+            <item>Forwarding (Schalter <tt/-F/): durchgehende Pakete
+            </enum>
+
+        <sect2> Wie gibt man eine Firewall-Regel an?
+            <p>
+            Der <tt/ipfwadm/-Aufruf setzt sich zusammen aus:
+
+            <itemize>
+
+            <item> Wann?: 
+                <p>
+                Incoming (-I), Outgoing (-O) oder Forwarding (-F)
+
+            <item> Wohin? 
+                <p> 
+                Man kann neue Regeln an den Anfang der Liste
+                (-i) oder an das Ende der Liste (-a).
+                Die Regeln werden immer von vorne nach hinten interpretiert,
+                bei der ersten passenden Regel wird nicht weitergesucht.
+
+            <item> Was tun? 
+                <p> 
+                Soll das Paket akzeptiert werden (accept),
+                oder abgewiesen (deny) werden.
+
+            <item> Protokoll ? 
+                <p> 
+                Mögliche Protokolle sind tcp, udp, icmp oder alles (all)
+
+            <item> Quell-IP?
+                <p> 
+                Angabe des Source-IP-Nummern-Bereiches (-S), z.B.
+                <tt/-S 192.168.42.0/24/
+
+            <item> Ziel-IP?    
+                <p> 
+                Angabe des Ziel-IP-Nummern Bereiches (-D)
+
+            <item> Port?
+                <p> 
+                Meist wird direkt hinter der Ziel-IP-Nummer noch der
+                Ziel-Port mit angegeben, dies kann der numerische
+                Wert oder der Alias, wie in <tt>/etc/services</tt>
+                definiert.
+
+            <item> Wo?
+                <p> 
+                Mit dem Schalter -W kann die Regel auf ein Netzdevice
+                beschränkt werden.
+
+            </itemize>
+            
+            Weiterhin gibt es folgende wichtige Optionen:
+            <itemize>
+            <item> -f: zurücksetzen des Reglewerkes für -I, -O oder -F
+            <item> -o: beim Zutreffen der Regel wird eine Meldung
+                via syslog in <tt>/var/log/messages</tt> geschrieben.
+            <item> -m: Masquerading, s.u.
+            <item> -A: Accounting, s.u.
+            <item> -l oder -lne: Listet die Regeln.
+            </itemize>
+
+
+            
+
+            
+
+            
+        <sect2> Was für Regeln brauche ich mindestens?
+            <p>
+            Eines der größten Sicherheitslöcher ist das sogenannte
+            <bf/Spoofing/. Darunter versteht man, daß eine eigentlich
+            fremder Rechner behauptet eine IP-Nummer aus dem eigenen
+            (sicheren) Netz zu haben. Daher müssen als ersten Regeln
+            definiert werden, die verhindern, daß eigene IP-Nummern 
+            aus dem unsicheren Netz hereinkommen können.
+
+            Als nächstes sollte man alle Zugriffe von außen verbieten und
+            nur (bei Bedarf) die benötigten Dienste (sendmail, www) 
+            freischalten.
+
+        <sect2> Ein einfacher Firewall
+            <p>
+
+            Das lokale Ethernet ist auf 192.168.42.0 konfiguriert.
+            Wir erwarten IP-Nummer aus dem Bereich 
+            193.110.3.0/24 zugewiesen zu bekommen, wobei der
+            PtP-Partner nicht aus diesem Bereich ist (sonst würden
+            seine Pakete auch abgewiesen werden)
+
+            <code>
+# spoofing verbieten:
+/sbin/ipfwadm -I -a deny -o -P all -S 192.168.42.0/24 -D 192.168.42.0/24 -W ippp0
+/sbin/ipfwadm -I -a deny -o -P all -S 192.168.42.0/24 -D 193.110.3.0/24 -W ippp0
+/sbin/ipfwadm -I -a deny -o -P all -S 193.110.3.0/24 -D 192.168.42.0/24 -W ippp0
+/sbin/ipfwadm -I -a deny -o -P all -S 193.110.3.0/24 -D 193.110.3.0/24 -W ippp0
+
+
+# Zugriffe von ueberall auf den Mail-Server (Port 25) erlauben:
+/sbin/ipfwadm -I -a accept -P tcp -S 0/0 -D 192.168.42.1 25 -W ippp0
+
+# Zugriffe von ueberall auf den DNS-Server (Port 53) erlauben:
+/sbin/ipfwadm -I -a accept -P tcp -S 0/0 -D 192.168.42.1 53 -W ippp0
+
+# sonst alles verbieten (getrennt fuer Protokoll tcp und udp)
+/sbin/ipfwadm -I -a deny -o -P tcp -S 0/0 -D 192.168.42.0/24 1:1023 -W ippp0 
+/sbin/ipfwadm -I -a deny -o -P tcp -S 0/0 -D 193.110.3.0/24 1:1023 -W ippp0
+
+/sbin/ipfwadm -I -a deny -o -P udp -S 0/0 -D 192.168.42.0/24 1:1023 -W ippp0
+/sbin/ipfwadm -I -a deny -o -P udp -S 0/0 -D 193.110.3.0/24 1:1023 -W ippp0
+            </code>
+
+        Bei S.u.S.E. läßt sich obiges Bsp. auch in der <tt>/etc/rc.config</tt>
+        einstellen:
+        <code>
+FW_START="yes"
+FW_LOCALNETS="192.168.42.0/24 193.110.3.0/24"
+FW_MAILSERVER="192.168.42.1"
+FW_DNSSERVER="192.168.42.1"
+FW_WORLD_DEV="ippp0"
+FW_LOG_ACCEPT="no"
+FW_LOG_DENY="yes"
+FW_TCP_LOCKED_PORTS="1:1023"
+FW_UDP_LOCKED_PORTS="1:1023"
+        </code>
+        Siehe auch <tt>/usr/doc/packages/firewall</tt>
+
+    <sect1> Masquerading
+    <label id="ipfwadm-m">
+        <p>
+        Masquerading (auch <bf/Network Adress Translation/ genannt) 
+        braucht man dann, wenn man ein internes Netz mit
+        privaten IP-Nummern hat, vom ISP aber nur eine IP-Nummer
+        (und diese vielleicht sogar dynamisch) bekommt. Die
+        IP-Pakete werden beim rausschicken auf der Internetleitung
+        umgeschrieben und mit der eigenen IP-Nummer versehen.
+        Umgekehrt wird eine Tabelle der offenen Verbindungen gehalten,
+        damit einkommende Pakete wieder dem ursprünglichen Absender
+        zugestellt werden können.
+
+        Hat man sich mit dem Firewall (Paketfilter via ipfwadm, s.o.)
+        vertraut gemacht, ist Masquerading fast trivial, denn
+        es findet an derselben Stelle statt und wird fast genauso
+        konfiguriert, es wird lediglich der Schalter <tt/-m/ dazugegeben.
+
+        Beispiel: 
+        Pakete aus dem internen Netzwerk (192.168.42.0/24), die zum Provider
+        (Device <tt/ippp0/) verschickt werden, sollen mit der jeweils 
+        gültigen IP-Nummer maskiert werden. Es wird einer
+        Forwarding-Rule der Schalter <tt/-m/ mitgegeben:
+        <code>
+/sbin/ipfwadm -F -a accept -P all -S 192.168.42.0/24 -D 0/0 -m -W ippp0
+        </code>
+
+        Bei manchen Internet-Diensten (z.B. ftp) wird nicht nur ein Socket
+        geöffnet, sondern auch ein zweiter für die Datenübertragung,
+        die der Server zum Client aufbaut. Da der Client aber selbst nicht
+        erreichbar ist (private IP-Nummer) und der Server die Verbindung
+        zum falschen Rechner (IZG) aufbaut, klappt diese Methode 
+        ohne weiteres Wissen über die speziellen Eigenheiten des
+        entsprechenden Protokolls nicht. Abhilfe schaffen dafür 
+        spezielle Routinen, die auch dafür <it/re-maskieren/ können.
+        Diese werden durch Kernel-Module geladen:
+        <code>
+/sbin/insmod ip_masq_cuseeme
+/sbin/insmod ip_masq_ftp
+/sbin/insmod ip_masq_irc
+/sbin/insmod ip_masq_quake
+/sbin/insmod ip_masq_raudio
+/sbin/insmod ip_masq_vdolive
+        </code>
+
+        Bei S.u.S.E. läßt sich obiges Bsp. auch in der <tt>/etc/rc.config</tt>
+        einstellen:
+        <code>
+MSQ_START="yes"
+MSQ_NETWORKS="192.168.42.0/24"
+MSQ_DEV="ippp0"
+MSQ_MODULES="ip_masq_cuseeme ip_masq_ftp ip_masq_irc ip_masq_quake ip_masq_raudio ip_masq_vdolive"
+        </code>
+        Siehe auch <tt>/usr/doc/packages/firewall</tt>
+        
+
+
+    <sect1> Accounting
+    <label id="accounting">
+        <p>
+        Siehe  <tt>man ipfwadm</tt> Stichwort <tt>-A</tt>
+
+    <sect1> Samba
+    <label id="samba">
+        <p>
+        Samba ist ein File- und Druckerserver für das unter
+        Windows benutzte SMB-Protokoll.
+
+        Das Thema gehört also garnicht hier her... doch: denn
+        es kann in unserem Fall Probleme machen.
+
+        Beim SMB-Protokoll wird sehr viel mit Broadcasts gearbeitet,
+        die Rechner schicken sich ständig (auch wenn eigentlich keine
+        Aktionen ausgeführt werden) Nachrichten zu.
+        Der Samba-Server wird meist so ausgeliefert, daß dieser
+        alle verwendendbaren Netzdevices benutzt und dorthin
+        Nachrichten schickt, also auch an das ippp0-Device.
+
+        Folge: <bf/es werden ständig Verbindungen aufgebaut!/
+        
+        Abhilfe:
+        <enum>
+
+        <item> Starte Samba nur, wenn Du es auch brauchst.
+            <p>
+            Bei S.u.S.E. wird Samba schon aktiviert, wenn das Paket
+            installiert ist.
+            Setze in <tt>/etc/rc.config</tt>: <tt>START_SMB="no"</tt>
+
+        <item> Wenn Du es brauchst, sage Samba, welche Devices
+            benutzt werden dürfen.
+
+            In der <tt>/etc/smb.conf</tt> setze z.B, in der 
+            <tt/global/-Section:
+            <tt>interfaces = 192.168.2.1/24</tt>
+
+            Mehr Infos: <url 
+            url="http://www.suse.de/Support/sdb/isdn_samba.html">
+
+        </enum>
+
+    <!--
+    <sect1> SSH - Secure Shell
+    <label id="ssh">
+        <p>
+        FixMe
+    -->
+            
+<sect> Connecting a local network
+    <p>
+    FixMe
+
+<sect>Installation 
+<label id="installation">
+    <p>
+    Depending on the distribution, you might have to install some of the programs and drivers yourself.
+
+    <sect1>Program versions used
+        <p>
+        <itemize>
+        <item> <bf/Kernel/: 2.0.34
+        <item> <bf/HiSax/: 2.1 (from 2.0.33/34) or 3.0 (siehe
+            <ref id=instKernel 
+            name="Kernel/Module configuration and installation">)
+
+        <item> <bf/isdn4k-utils/: FixMe
+        <item> <bf/sendmail/: FixMe
+        <item> <bf/fetchmail/: FixMe
+        <item> <bf/squid/: FixMe
+        <item> <bf/sudo/: 1.5.2
+        </itemize>
+
+    <sect1> Kernel/Module configuration and installation
+    <label id="instKernel">
+        <p>
+        FixMe
+
+    <sect1> I4L-Utils installation
+    <label id=instUtils>
+        <p>
+        FixMe
+
+    <sect2> Installation of the S.u.S.E. scripts
+    <label id="instInit">
+        <p>
+        FixMe
+
+
+<sect> Mailing Lists/News
+
+    <sect1> What mailing lists are there?
+        <p>
+Two mailing lists exclusively concern themselves with isdn4linux: 
+        
+        <itemize>
+        <item> isdn4linux@hub-wue.franken.de
+            <p>
+
+This is the official mailing list. To subscribe, send a mail
+to <url url="mailto:majordomo@hub-wue.franken.de"> with 
+<tt>subscribe isdn4linux email-address</tt>
+ in the <bf/body/ of the mail (subject doesn't matter), where 
+email-address is your own E-Mail address - check carefully.
+
+
+Alternatively you can read the newsgroup 
+<url url="news:de.alt.comm.isdn4linux">. 
+
+The mailing list can be searched using the server
+<url url="http://www.dejanews.com">.
+
+        <item> suse-isdn@suse.com
+            <p>
+            This i4l mailing list is especially for
+            the S.u.S.E.distribution.
+
+              To subscribe, send a mail to 
+              <url url="mailto:majordomo@suse.com">
+              with <tt>subscribe suse-isdn email-address</tt>
+ in the <bf/body/ of the mail (subject doesn't matter), where 
+email-address is your own E-Mail address - check carefully.
+
+
+              This (and other S.u.S.E.-) mailing list(s) are also
+              available over a
+              WWW front end (for reading):
+              <url url="http://www.suse.com/Mailinglists/index.html">
+        </itemize>
+
+
+    <sect1> How do I ask questions on the mailing lists?
+        <p>
+        The better the question, the better the answer!
+        Write clearly. Noone reads an eternally long text to find
+        out what the question is. 
+
+        First make sure that the solution hasn't already been written.
+        It's unfair to others and a waste of time when you could have
+        looked up and read the answer yourself.
+        See <ref id="Links" name="Links"> and look for a solution.
+
+        At <url url="http://www.dejanews.com/home_ps.shtml">
+        you can search the newsgroup  <tt/de.alt.comm.isdn4linux/
+        for key words
+        to see whether your problem has been recently discussed 
+        and solved.
+
+        Give your distribution and the appropriate version numbers
+        (e.g. kernel, HiSax). Also explain what you have already tried.
+
+        Give exact error messages, e.g. from <tt>/var/log/messages</tt>.
+        Noone can begin to help with (wrongly) self-interpreted messages.
+
+    <sect1> How do I give assistance on the mailing list?
+        <p>
+        As often and as well as possible :-)
+        
+
+<sect>Links 
+<label id="Links">
+    <p>
+
+    <sect1> WWW and FTP
+        <p>
+        <itemize>
+        <item> Homepage of the <bf/ISDN4Linux Tutorial/:
+            <url 
+            url="http://www.franken.de/users/klaus/DE-i4l/html/DE-i4l.html"
+            name="http://www.franken.de/users/klaus/DE-i4l/html/DE-i4l.html">
+
+        <item> The S.u.S.E.support databank
+            <url url="http://www.suse.de/Support/sdb">
+        <item> Notes on fetchmail:
+            <url url="http://www.suse.de/Support/sdb/fetchmail.html">
+        <item> <label id="isdnDial">
+            Notes on unwanted connections
+            <url url="http://www.suse.de/Support/sdb/isdn_dial.html">
+
+        <item> Bernd Hailers <it/Leafsite/ Documentation:
+            <url url="http://www.lrz-muenchen.de/~ui161ab/www/isdn/">
+        <item> Further example configurations: 
+            <url url="http://www.rosat.mpe-garching.mpg.de/~web/ISDN.html">
+
+        <item> RST Provoking Patch: 
+            <url url="http://www.image.dk/~ehcorry/linux/">, see also <ref id="rstPatch" name="RST provoking mode">.
+        <item> Michael Hipp's ISDN page (ipppd)
+            <url url="http://www.sfs.nphil.uni-tuebingen.de/~hipp/isdn/isdn.html">
+        <item> The official FTP server:
+            <url url="ftp://ftp.franken.de/pub/isdn4linux">
+        <item>  The most current version of the utilities and HiSax:
+            <url url="ftp://ftp.suse.com/pub/isdn4linux">
+            (see also
+            <url url="ftp://ftp.suse.com/pub/isdn4linux/README">
+            !) Here the current CVS tree is packed as a tgz file.
+        <item> The S.u.S.E. i4l package and the S.u.S.E. scripts: 
+            <url url="ftp://ftp.suse.com/pub/SuSE-Linux/5.2/suse/n1">
+            (replace <tt/5.2/ with the current version number.)
+            The interesting packages are 
+            <tt/i4l.rpm/, base package: 
+                <url url="ftp://ftp.suse.com/pub/SuSE-Linux/5.2/suse/n1/i4l.rpm">
+            <tt/i4ldoc.rpm/, Documentation: 
+                <url url="ftp://ftp.suse.com/pub/SuSE-Linux/5.2/suse/doc1/i4ldoc.rpm">
+            <tt/i4lfirm.rpm/, Firmware for active cards: 
+                <url url="ftp://ftp.suse.com/pub/SuSE-Linux/5.2/suse/n1/i4l.rpm">
+        <item> AVM-B1 FTP server: <url
+            url="ftp://calle.in-berlin.de/pub/linux/isdn">
+        <item> The FAQ: <url url="http://www.suse.de/doku/i4l-faq/index.html">
+        <item> kISDN: <url 
+            url="http://www.physik.uni-bielefeld.de/~twesthei/kISDN.htm">
+
+        <item> ISA PnP HowTo: <url 
+            url="http://www.suse.de/Support/sdb/rb_isapnp.html">
+
+<!-- fixme:
+http://nic.bse.bg/linux/LDP/HOWTO/mini/News-Leafsite.html
+-->
+
+        </itemize>
+
+    <sect1> Local Documentation
+        <p>
+        See (with S.u.S.E.) <tt>/usr/doc/packages/i4l</tt> und
+	    <tt>/usr/doc/packages/i4ldoc</tt> (the FAQ, package <tt/i4ldoc/).
+
+        Help system (Start with <tt/help/), in particular the support databank under the URL <tt>http://localhost/support-db/sdb</tt>
+
+        If the kernel sources are installed, much useful information can be
+found in the directory  
+        <tt>/usr/src/linux/Documentation/isdn</tt>.
+
+    <sect1> Books
+        <p>
+        <itemize>
+        <!-- 
+        FixMe
+        -->
+
+        <item> <bf/Sendmail/: 
+            <label id="bookSendmail"> (bat book), O'Reilly
+        <item> <bf/Firewall/: 
+            <label id="bookFirewall"> (), O'Reilly
+        </itemize>
+
+</article>

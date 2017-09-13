@@ -1,0 +1,8 @@
+Optimize cache to find hostnames quicker.
+
+Support for a dnrd.conf file.
+
+Fix TCP support.
+
+Reproduce some of the examples found in INSTALL in the man page.
+

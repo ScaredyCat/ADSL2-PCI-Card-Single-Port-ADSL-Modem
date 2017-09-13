@@ -1,0 +1,16 @@
+#! /bin/sh
+##
+## $Id: mksed,v 1.5 1997/04/28 16:52:28 michael Exp $
+##
+## Please *only* call this script from top level makefile!
+
+${SED} \
+	-e "s;@BINDIR@;${VBOX_BINDIR};g" \
+	-e "s;@SBINDIR@;${VBOX_SBINDIR};g" \
+	-e "s;@VERSION@;${VBOX_VERSION};g" \
+	-e "s;@VERDATE@;${VBOX_VERDATE};g" \
+	-e "s;@SPOOLDIR@;${VBOX_SPOOLDIR};g" \
+	-e "s;@SYSCONFDIR@;${VBOX_SYSCONFDIR};g" \
+	-e "s;@LOGFILEDIR@;${VBOX_LOGFILEDIR};g" \
+	-e "s;@PIDFILEDIR@;${VBOX_PIDFILEDIR};g" \
+	-e "s;@LCKFILEDIR@;${VBOX_LCKFILEDIR};g"

@@ -1,0 +1,115 @@
+  README for Internationalization of Isdnlog
+  ------------------------------------------
+
+  Some remarks for building isdnlog for different countries.
+
+  Isdnlog contains till now some country specific code, which makes it
+  difficult, to build a version of isdnlog for countries not listed in
+  make config.
+
+  There are mainly three areas, where adaption could and will be necessary:
+
+  1) The ISDN protocol itself
+  2) Decoding telephonnnumbers for alternate telephon providers
+  3) Datafiles
+
+  ad 1)
+  The problem is, that in the ISDN-protocol there are some country specifc
+  variations, which are by now handled by preprocessor defines in code itself.
+  An isdnlog binary built for Germany or Austria might run in other
+  countrys too, but is not guaranteed to.
+  If you have troubles with isdnlog itself please contact
+  Andreas Kool <akool@isdn4linux.de>.
+
+  ad 2)
+  Isdnlog since version 3.57 has 3 new options for configuration in
+  /etc/isdn/isdn.conf.
+
+  These are
+     VBN   .... Alternate provider prefix
+     VBNLEN ... Number of digits following VBN
+     PRESELECTED ... Default provider number
+
+  s. isdnlog/samples/isdn.conf.* for examples
+
+  e.g. in Austria VBN=10, VBNLEN=2
+  The telephon number 1002012345 is decoded a 1002 1 2345, a call with provider
+  #2 (UTA) to city Vienna (1) and local numbe i.e MSN 2345
+
+  We are in a process of concentrating this country specifc stuff in the
+  module tools/telnum.c.
+  If you have some adaption for it please let me know.
+
+  ad 3)
+  Isdnlog and the accompanying utils isdnrate and isdnrep rely on
+  datafiles, which are by now built during the make-run for the selected
+  country from make config => Options for isdnlog
+  (s. tools/zone/Makefile.in and tools/dest/Makefile.in for details).
+
+  As of this writing versions for DE, AT and NL are ready.
+
+  To build datafiles for a country not handled by now, please follow
+  these steps:
+
+  Isdnlog /-rep /-rate use mainly these datafiles:
+
+    rate-CC.dat ... telephonrates per provider / zone / daytime
+    zone-CC-PPP.gdbm ... zone files per provider PPP
+    holiday-CC.dat ... exactly what it sounds like
+    dest.gdbm ... international destinations
+
+  where CC is your (ISO) countrycode, also known as TLD (Top Level Domain).
+
+  3a) rate-CC.dat
+
+    This file holds telephonrates per provider / zone / daytime.
+
+    man 5 rate-files
+
+    should give you the necessary information to build a rate file.
+    It might be also helpful to look at e.g. rate-at.dat for a working
+    version.
+    Since isdnlog 3.57 the raw rate files (with explicit country names)
+    have to be preprocessed with the utility dest/pp_rate, where the
+    country names are replaced by their ISO-codes.
+    s. tools/Makefile target AT: for an example.
+
+  3b) zone-CC-PPP.gdbm
+
+    These files hold information about domestic zones. This is a list
+    of from-to-zone entries for all possible domestic destinations.
+    If your telephon provider charges the same amount despite of
+    source and destination of call, you don't need this.
+    s. tools/zone/zoneutils.html and CC subdirs below zone for more
+    information.
+    You might ask your telephon provider to give you a file about how
+    much is the charge for a telephon call from each x to each y.
+    In Austria a small Perl script "asked" a web page of the provider
+    for this info.
+    s. also zone/Makefile.in for building the zone database.
+
+  3c) holiday-CC.dat
+    Just make a copy of an existing file and edit it.
+
+  3d) dest.gdbm
+    The destination database is built from the following textfiles:
+    - country.dat ... International telephonnumbers mainly of countries
+                         with german and english country names
+    - cities.dat ... international cities
+    - code-CC.dat or zone/CC/code ... domestic city names with telephon numbers
+
+   For the beginning you can use the standard dest.gdbm. If you want to have
+   your city names instead of numbers only in the log-files, you can add
+   your city codes to the database.
+   s. dest/Makefile.in and dest/makedest for usage.
+
+   IF you have datafiles ready for different countries, please let me know.
+
+
+   And finally, this whole process is handled by various make files,
+   which are built depending on information taken from idsnlog/.Config.in.
+
+
+  -lt-
+  Leopold Toetsch <lt@toetsch.at>	26.10.1999
+

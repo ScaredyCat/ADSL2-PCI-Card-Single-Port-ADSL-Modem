@@ -1,0 +1,30 @@
+In this directory you find the FAQ for isdn4linux.
+It contains answers for those questions that are frequently asked in the
+mailing list/news group for isdn4linux (and some more).
+
+The FAQ is now only available in English. Its source code is formatted in
+SGML, which can easily be converted by using:
+sgml2txt i4lfaq.sgml
+or
+sgml2html i4lfaq.sgml
+
+To download converted versions, or see the latest version online,
+visit the homepage of the FAQ:
+
+http://www.mhessler.de/i4lfaq.html
+
+or visit:
+
+http://www.isdn4linux.de/faq/
+
+
+"i4lfaq.sgml" is the source code for all versions of the FAQ.
+
+"_example" and "_howto" contain postings from the mailing list/news group that
+appeared helpful/interesting to me. They may be helpful to you, but be careful:
+THEY MAY BE OUTDATED BY NOW!
+
+See the FAQ for more information about the author of the FAQ.
+
+Matthias Hessler <hessler@isdn4linux.de>
+

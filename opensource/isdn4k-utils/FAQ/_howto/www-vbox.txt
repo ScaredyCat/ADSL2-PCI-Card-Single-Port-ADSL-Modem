@@ -1,0 +1,18 @@
+Da auf meinen Arbeitsplatzrechner i.d.R. kein LinuX laeuft, habe ich zwei
+CGI-Skripte (Perl) (+2 weitere Shellscripte) gebastelt, die einem den
+Zugriff auf seine eigenen Anrufe per WWW-Browser ermoeglichen. Die Perlscripte gehoeren ins CGI-Verzeichnis
+(des Users), die anderen  beiden koennen irgendwo liegen. Die Scripte greifen
+auf die Umgebungsvariable $REMOTE_USER des http-Servers zu. Es ist also
+notwendig, dass sich der User gegenueber dem Server authentifiziert !
+Weiterhin muessen die Scripte mit User-Rechten laufen. Der aktuelle
+Apache 1.2b4 sollte das zwar koennen. Da das ihm beiliegende "suexec" jedoch
+bei mir nicht richtig lief, habe ich es etwas geaendert (habe ich auch
+beigelegt).
+
+Gruss
+                Marc 
+____________________________________________________________________
+Marc Neitzner	| marc@zeus.han.de 		| Tel.: 0511-2714507
+Alte Ziegelei 7	| neitzner@rvs.uni-hannover.de	| Fax : 0511-2714537
+30419 Hannover	|				|
+

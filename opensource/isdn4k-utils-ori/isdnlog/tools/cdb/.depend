@@ -1,0 +1,14 @@
+cdb.o: cdb.c cdb.h freecdb.h config.h cdb_make.h freecdbmake.h
+cdbdump.o: cdbdump.c freecdb.h config.h
+cdbget.o: cdbget.c freecdb.h config.h
+cdb_hash.o: cdb_hash.c freecdb.h config.h
+cdbmake_add.o: cdbmake_add.c freecdbmake.h config.h
+cdbmake.o: cdbmake.c freecdbmake.h config.h
+cdbmake_hash.o: cdbmake_hash.c freecdbmake.h config.h
+cdbmake_pack.o: cdbmake_pack.c freecdbmake.h config.h
+cdb_seek.o: cdb_seek.c freecdb.h config.h
+cdbstats.o: cdbstats.c freecdb.h config.h
+cdbtest.o: cdbtest.c freecdb.h config.h
+cdb_unpack.o: cdb_unpack.c freecdb.h config.h
+i4l_cdb.o: i4l_cdb.c i4l_cdb.h cdb.h freecdb.h config.h cdb_make.h \
+  freecdbmake.h

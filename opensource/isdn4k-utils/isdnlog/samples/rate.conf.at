@@ -1,0 +1,26 @@
+#P:01=1		# PTA Minimumtarif     (ATS 1.116 je Einheit)
+P:01=2		# PTA Standardtarif    (ATS 1.056 je Einheit)
+#P:01=3		# PTA Geschäftstarif 1 (ATS 0.996 je Einheit)
+#P:01=4		# PTA Geschäftstarif 2 (ATS 0.936 je Einheit)
+#P:01=5		# PTA Geschäftstarif 3 (ATS 0.816 je Einheit)
+#P:02		# UTA
+#P:03		# Multikom
+#P:04,1		# Globalone
+#P:04,2		# Globalone Business
+#P:05		# tele2
+#P:07		# European Telecom Fairtel
+#P:08		# TELEforum
+#P:09		# Vocalis
+#P:11=0		# RSL COM
+#P:11=1		# TNC 10elf
+#P:12		# 1012
+#P:24		# Telepassport
+#P:29,1		# CyberTron easy.Talk privat   (ATS 1.116 je Einheit)
+#P:29,2		# CyberTron easy.Talk business (ATS 1.029 je Einheit)
+#P:29,5		# Librotel (nur ueber Router)
+#P:29,6		# TNS
+#P:44		# Citykom
+#P:49		# Pegasus Telekom
+#P:66		# MIT 1066
+#P:67		# max.plus
+#P:69		# Connect Austria (One)

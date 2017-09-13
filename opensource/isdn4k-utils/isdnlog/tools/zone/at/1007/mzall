@@ -1,0 +1,20 @@
+#! /usr/bin/perl
+
+# read ../pta/zoneall.pta
+# make zoneall
+
+# z 1,2 => 1
+# z 3 => 2
+
+open(IN,"../pta/zoneall.pta");
+while(<IN>) {
+	($from, $to, $z) = split(/\s+/);
+	if ($z == 2) {
+		$z = 1;
+	}
+	elsif($z == 3) {
+		$z = 2;	
+	}
+	print "$from $to $z\n";
+}
+close(IN);		

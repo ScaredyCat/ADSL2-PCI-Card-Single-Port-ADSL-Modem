@@ -1,0 +1,84 @@
+.TH iproute 8 "Sat Mar 22 13:02:26 GMT 1997" Kuznetov "Linux iproute manual"
+.\" NAME should be all caps, SECTION should be 1-8, maybe w/ subsection
+.\" other parms are allowed: see man(7), man(1)
+.SH NAME
+iproute \- program to control policy-based routing tables
+.SH SYNOPSIS
+.B iproute
+.I "[ -c | -r | -l ]"
+.br
+
+.B iproute
+.I "[ add | del ] [ PREFIX | NET mask MASK ] [ tos TOS ]"
+.I "[ nat NET ] [ class CLASS ] INFO"
+.br
+
+.B iproute
+.I "[ addrule | delrule ] [ from PREFIX ] [ to PREFIX ] [ tos TOS ]"
+.I "[ dev DEVICE ] [ masq | drop | reject | prohibit | nat NET ]"
+.I "[ pref PREFERENCE ] [ class CLASS | INFO ]"
+.br
+
+.I PREFIX
+can be a net number, or net number and prefix length, e.g.
+.I 192.168.0.0
+or
+.I 192.168.0.0/24
+.br
+
+.I INFO
+references any combination of the routing parameters "gw [gateway]",
+"dev [device]", "metric [metric]", "mtu [mtu]", "irtt [rtt]",
+"window [window]", and any of
+.I FLAGS
+.br
+
+.I FLAGS
+can be any of "static", "reject", "throw", "nopmtudisc", "noforward", "local",
+"interface", and "broadcast" (reject and throw cannot be specified together,
+however, as with interface and broadcast).
+
+.SH "DESCRIPTION"
+This manual page documents briefly the various invocations of the
+.BR iproute
+command.
+This manual page was written for the Debian GNU/Linux distribution
+(but may be used by others), because the original program does not
+have a manual page.
+Instead, it has documentation as part of the Linux source tree. Note that
+this documentation may also be found in /usr/share/doc/iproute on Debian systems.
+
+.PP
+.B iproute
+will modify or show the current policy-based routing tables. These are held in
+kernel space, so iproute requires root permissions to run. Note that policy
+based routing tables are a feature of kernels 2.1.16 and above, so you will
+not be able to use this program unless you have a specific patch with an
+earlier kernel.
+
+.SH OPTIONS
+.B iproute
+accepts the following single options on the command line:-
+.TP
+.B \-c
+Shows the current routing cache.
+.TP
+.B \-r
+Shows the current routing classes.
+.TP
+.B \-l
+Shows a long listing of routes.
+.PP
+Invoking the program with no command-line will produce a simple list of
+current routes.
+.SH "SEE ALSO"
+.IR "route(8), ifconfig(8), netstat(8), arp(8)"
+.PP
+The policy-based routing system is documented fully in the file
+.IR "Documentation/networking/policy-routing.txt"
+which can be found in kernels 2.1.16 and above.
+.SH BUGS
+Not very well documented anywhere :)
+.SH AUTHOR
+This manual page was written by Tom Lees <tom@lpsg.demon.co.uk>,
+for the Debian GNU/Linux system.

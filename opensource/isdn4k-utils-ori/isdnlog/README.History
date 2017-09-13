@@ -1,0 +1,355 @@
+Wie alles angefangen hat ...
+
+Am Thu, 28 Sep 1995 19:19:18 +0100 (MET) schrieb' ich unter dem Subject
+"ISDN-Protokoll-Programm" folgende Mail in der ISDN4Linux-Mailing-Liste:
+
+Hallo isdn4linux'er!
+
+Da ich hier vor gut zwei Wochen eine relativ heftige Debatte bzgl.
+"auch non DATA-Calls wieder in's Syslog" losgetreten habe, wollte ich das
+nun auch selber ausbaden.
+
+Ich habe mich also mal in das Thema reingearbeitet, und im Zuge dessen
+ein kleines Programm zum protokollieren _aller_ ISDN-Verbindungen geschrieben.
+
+Die entscheidende Idee dazu verdanke ich
+  Gernot Zander (hifi@scorpio.in-berlin.de)
+
+Es handelt sich um zwei Programme:
+
+  isdnlog
+    lauscht staendig am "/dev/isdnctrl0", und schreibt alle Verbindungen
+    (also auch die non DATA-Verbindungen) nach "/var/adm/isdn.log"
+
+  isdnrep
+    erstellt eine Gebuehrenabrechnung aus der "isdn.log"
+
+* isdnrep enthaelt z.Zt. leider noch zu viele fest einprogrammierte Parameter,
+* daher werde ich das in den naechsten Tagen um eine Config-Datei erweitern,
+* und dann nachliefern. :-(
+
+Erstellt wird isdnlog mittels:
+
+      make isdnlog    ;-)
+
+Gestartet wird isdnlog (am besten gleich in der /etc/rc.d/rc.isdn) mittels:
+
+         telesctrl /dev/isdnctrl0 1 4
+         isdnlog [ -vsp ] [ -i cmd ] /dev/isdnctrl0 &
+
+Beim telesctrl koennen auch noch weitere Debug-Flags eingeschaltet werden,
+isdnlog benoetigt allerdings auf jeden Fall mindestens die "4"
+
+Die Optionen von isdnlog haben im einzelnen folgende Funktion:
+
+  -v     "verbose" isdnlog schreibt den gesamten Output von "/dev/isdnctrl0",
+         ergaenzt um Datum/Uhrzeit auch nach "/tmp/isdnctrl0"
+
+  -s     "sync"    fuehrt direkt nach jedem Eintrag in die "/tmp/isdnctrl0"
+         einen flush() darauf aus (fuer Kisten, die gerne mal zwischendurch
+         abstuerzen)
+
+  -p     "pipe"    reicht den Output von "/dev/isdnctrl0" auf stdout weiter,
+         falls jemand da noch was anderes rausholen moechte (also z.b.
+         "isdnlog -p /dev/isdnctrl0 | isdnproto &" oder so)
+
+  -i cmd "info"    startet beim Aufbau jeder DATA-Verbindung das angegebene
+         Programm, und uebergibt Ihm dabei die beiden beteiligten
+         Telefonnummern, also "cmd <Anrufer-Nummer> <Angerufene Nummer>"
+
+Output der ganzen Geschichte ist die Datei "/var/adm/isdn.log" mit folgendem
+Inhalt:
+
+Sep 28 18:22:48 1995|xxxxx           |yyyyyyyyyyy     |   10|       912
+      (1)                (2)               (3)           (4)        (5)
+
+Wobei in den einzelnen Spalten folgendes steht:
+
+ (1) Zeitpunkt des Verbindungsaufbaues
+ (2) Telefonnummer des Anrufers (oder Blank, falls z.b. Analog-Anschluss)
+     (d.h. natuerlich auch die eigene MSN, wenn man selber raus-ruft!)
+ (3) Telefonnummer des Angerufenen (d.h. die eigene MSN, wenn man angerufen
+     wird)
+ (4) Dauer der Verbindung in Sekunden (nur gueltig bei DATA-Verbindungen,
+     sonst stets 0)
+ (5) Dauer der Verbindung in 1/100 Sekunden
+     (im obigen Beispiel: 912 / 100 = 9,12 Sekunden)
+
+Bedanken moechte ich mich vor allem bei
+  Gernot Zander (hifi@scorpio.in-berlin.de) fuer den goldenen Hinweis
+sowie bei
+  Martin Stover (mstover@Kool.f.EUnet.de) fuer seine Muehe beim Testen
+von isdnlog.
+
+So, und nun der Code. Bitte als "isdnlog.c" abspeichern, und dann "make" ...
+------------------------------ snip ----------------------------------
+/* $Id: README.History,v 1.1 2000/07/21 18:46:24 akool Exp $
+ *
+ * ISDN accounting for isdn4linux. (log-module)
+ *
+ * Copyright 1995 by Andreas Kool (akool@Kool.f.EUnet.de)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * $Log: README.History,v $
+ * Revision 1.1  2000/07/21 18:46:24  akool
+ * isdnlog-4.35
+ *  - isdnlog/aclocal.m4 ... postgre95 in mysql, thx Daniel Pluta
+ *  - isdnlog/configure  ... -""-
+ *  - country-de.dat enhanced
+ *  - new provider One.Tel added (starts next week)
+ *
+ * Revision 1.11  1995/09/28  18:51:17  akool
+ * First public release
+ *
+ * Revision 1.1  1995/09/16  16:54:12  akool
+ * Initial revision
+ *
+ */
+
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/times.h>
+#include <limits.h>
+#include <unistd.h>
+
+#define SETUP         1
+#define PROCEEDING    2
+#define ALERTING      3
+#define CONNECT       4
+#define DISCONNECT    5
+#define RELEASE       6
+#define COMPLETE      7
+
+#define CALLING       0
+#define CALLED        1
+
+typedef struct {
+  char    num[2][20];
+  int     inuse;
+  time_t  connect;
+  time_t  disconnect;
+  clock_t duration;
+} CALL;
+
+static char usage[]   = "%s: usage: %s [ -%s ] /dev/isdnctrl0\n";
+static char options[] = "vsi:p";
+static char msg1[]    = "%s: Can't open %s (errno=%d)\n";
+
+static char fn1[]     = "/var/adm/isdn.log";
+
+static FILE *log;
+static CALL  call[4];
+
+static void logger(int tei)
+{
+  register char  *p;
+  auto     char   s[BUFSIZ];
+
+  strcpy(s, ctime(&call[tei].connect));
+
+  if (p = strchr(s, '\n'))
+    *p = 0;
+
+  fprintf(log, "%s|%-16s|%-16s|%5d|%10d\n",
+    s + 4, call[tei].num[CALLING], call[tei].num[CALLED],
+    call[tei].disconnect - call[tei].connect, call[tei].duration);
+
+  fflush(log);
+} /* logger */
+
+main(int argc, char *argv[], char *envp[])
+{
+  register char      *p;
+  auto     int        verbose = 0, sync = 0, pipe = 0;
+  auto     int        next = 0, setup = 0, tei = 0, i, c, chan = 2;
+  auto     int        teis[2];
+  auto     char       s[BUFSIZ], s1[BUFSIZ], info[BUFSIZ], fn2[BUFSIZ];
+  auto     time_t     now;
+  auto     FILE      *fin, *log1;
+  auto     struct tms tms;
+  extern   int        optind, errno;
+  extern   char      *optarg;
+
+  *info = 0;
+
+  while ((c = getopt(argc, argv, options)) != EOF)
+    switch (c) {
+      case 'v' : verbose++;
+                 break;
+
+      case 's' : sync++;
+                 break;
+
+      case 'i' : strcpy(info, optarg);
+                 break;
+
+      case 'p' : pipe++;
+                 break;
+
+      case '?' : fprintf(stderr, usage, argv[0], argv[0], options);
+                 return(1);
+    } /* switch */
+
+  if (optind == argc) {
+    fprintf(stderr, usage, argv[0], argv[0], options);
+    return(1);
+  } /* if */
+
+  if ((fin = fopen(argv[optind], "r")) != (FILE *)NULL) {
+    if ((log = fopen(fn1, "a")) != (FILE *)NULL) {
+
+      if (verbose) {
+        if (p = strrchr(argv[optind], '/'))
+          p++;
+        else
+          p = argv[optind];
+
+        sprintf(fn2, "/tmp/%s", p);
+      } /* if */
+
+      if (!verbose || ((log1 = fopen(fn2, "a")) != (FILE *)NULL)) {
+
+        teis[0] = teis[1] = -1;
+        memset(call, 0, sizeof(call));
+
+        while (1) {
+
+          if (fgets(s, BUFSIZ, fin) && (*s != '\n')) {
+
+            if (p = strchr(s, '\n'))
+              *p = 0;
+
+            if (verbose) {
+              time(&now);
+              strcpy(s1, ctime(&now));
+
+              if (p = strchr(s1, '\n'))
+                *p = 0;
+
+              fprintf(log1, "%s  %s\n", s1, s);
+
+              if (sync)
+                fflush(log1);
+            } /* if */
+
+            if (p = strstr(s, "tei")) {
+              i = atoi(p + 4);
+
+              if (i == teis[0])
+                tei = 0;
+              else if (i == teis[1])
+                tei = 1;
+              else if (teis[0] == -1)
+                tei = 0;
+              else
+                tei = 1;
+
+              teis[tei] = i;
+            }
+            else if (strstr(s, " SETUP")) {
+              setup++;
+
+              if (setup > 1) {
+                logger(chan);
+                setup = 0;
+              } /* if */
+            }
+            else if (strstr(s, " CONNECT ACKNOWLEDGE")) {
+              setup = 0;
+            }
+            else if (strstr(s, " CONNECT")) {
+              setup = 0;
+              call[tei].duration = times(&tms);
+              time(&call[tei].connect);
+              strcpy(call[tei].num[CALLING], call[chan].num[CALLING]);
+              strcpy(call[tei].num[CALLED], call[chan].num[CALLED]);
+
+              call[tei].inuse = 1;
+
+              if (*info) {
+                if (!fork()) {
+                  execl(info, info, call[tei].num[CALLING], call[tei].num[CALLED], NULL);
+                  exit(0);
+                } /* if */
+              } /* if */
+
+            }
+            else if (strstr(s, " DISCONNECT")) {
+              setup = 0;
+              call[tei].duration = times(&tms) - call[tei].duration;
+              time(&call[tei].disconnect);
+
+              if (call[tei].inuse)
+                logger(tei);
+
+              call[tei].inuse = 0;
+              teis[tei] = -1;
+            }
+            else if (!memcmp(s, "  Calling", 9))
+              next = CALLING;
+            else if (!memcmp(s, "  Called", 8))
+              next = CALLED;
+            else if (!memcmp(s, "    number digits", 17)) {
+              if ((next == CALLING) && strcmp(call[chan].num[next], s + 18)) {
+                if (++chan == 4)
+                  chan = 2;
+                setup++;
+              } /* if */
+
+              strcpy(call[chan].num[next], s + 18);
+              time(&call[chan].connect);
+              call[chan].disconnect = call[chan].connect;
+            } /* else */
+
+            if (pipe)
+              fprintf(stdout, s);
+
+          } /* if */
+        } /* while */
+
+        if (verbose)
+          fclose(log1);
+      }
+      else {
+        fprintf(stderr, msg1, argv[0], fn2, errno);
+        return(1);
+      } /* else */
+
+      fclose(log);
+    }
+    else {
+      fprintf(stderr, msg1, argv[0], fn1, errno);
+      return(1);
+    } /* else */
+
+    fclose(fin);
+  }
+  else {
+    fprintf(stderr, msg1, argv[0], argv[optind], errno);
+    return(1);
+  } /* else */
+
+  return(0);
+} /* main */
+------------------------------ snap ----------------------------------
+
+Ciao,
+Andreas
+--
+Andreas Kool (akool@Kool.f.EUnet.de)
+Transmission of this message via the Microsoft Network is prohibited

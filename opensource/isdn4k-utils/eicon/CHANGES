@@ -1,0 +1,23 @@
+$Id: CHANGES,v 1.6 2000/12/02 21:39:42 armin Exp $
+
+V2.3 - 2000-12-01 - New load features. NT mode for PRI,
+                    firmware update.
+
+V2.2 - 2000-07-08 - Capable for 2.4 devfs.
+                    ("/dev/isdnctrl" -> "/dev/isdn/isdnctrl")
+
+V2.1 - 2000-06-07 - Fixed OAD, OSA and SPID parameter settings.
+                    Thanks to Brian Moran.
+
+V2.0 - 2000-03-23 - Eicon's divautils included to support new
+                    kernel-driver 2.0 
+                    Support for 4BRI card.
+
+V1.2 - 2000-02-12 - Added write command to management interface.
+                    Increased D-Channel logbuffer. 
+
+V1.1 - 2000-01-26 - New command "eiconctrl isdnlog on|off" for 
+                    D-Channel tracing. Necessary for the use of
+                    isdnlog. 
+                    XLOG traces now come from the card, instead
+                    of polling.

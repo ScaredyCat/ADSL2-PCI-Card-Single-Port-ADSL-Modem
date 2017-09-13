@@ -1,0 +1,6 @@
+/* @configure_input@
+
+generated from $Id: config.h.in,v 1.3 1999/10/08 00:31:05 he Exp $
+*/
+#define CONFIG_I4L_CONFDIR "@I4LCONFDIR@"
+#define USE_I4L_CONFDIR /* for wuauth pathnames.h */

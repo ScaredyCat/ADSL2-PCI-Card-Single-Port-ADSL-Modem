@@ -1,0 +1,26 @@
+.\" manual page [] for capiinfo
+.\" $Id: capiinfo.8,v 1.2 2001/07/27 15:40:49 calle Exp $
+.\" SH section heading
+.\" SS subsection heading
+.\" LP paragraph
+.\" IP indented paragraph
+.\" TP hanging label
+.TH CAPIINFO 8
+.SH NAME
+capiinfo \- Show supported features of all installed CAPI2.0 controllers
+.SH SYNOPSIS
+.B capiinfo
+.SH DESCRIPTION
+.LP
+The capiinfo program checks how many controllers are installed
+and calls CAPI_GET_PROFILE for each of them. Also it sends
+a FACILITY_REQ capi message to get the information for the facilities
+supported by each controller. The information is shown on STDOUT.
+
+.SH SEE ALSO
+capiinit(8)
+.br
+http://www.capi.org/ (CAPI 2.0 specification)
+
+.SH AUTHORS
+Carsten Paeth (calle@calle.in-berlin.de)

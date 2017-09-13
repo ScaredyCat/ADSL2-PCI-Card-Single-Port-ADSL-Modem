@@ -1,0 +1,67 @@
+#!/bin/bash
+
+kversion=`uname -r`
+case $kversion
+    in
+     "0."* | "1."* | "2.0."*)
+	echo "Your currently running kernel (version $kversion) is too"
+	echo "old for eftp4linux. You need to upgrade (preferably to"
+	echo "2.2.12 or newer)" 
+	exit 1
+	;;
+    *)
+	;;
+esac
+
+if test `id --user` != 0; then
+    echo 'This scripts needs to be run by root in order to perform all checks'
+    exit 1
+fi
+#
+# Test if the kernel supports X.25
+# This only works if the /proc file system is mounted.
+#
+if [ -f /proc/net/x25 ]; then
+   :
+else
+	if insmod x25 ; then
+	   rmmod x25
+	else
+	   echo "Your kernel does not support the X.25 PLP protocol stack"
+	   echo "You need to re-compile your kernel with CONFIG_X25 enabled."
+	   exit 1
+	fi
+fi
+#
+# Test whether isdnctrl and kernel support setting x25 encapsulation 
+#
+if isdnctrl addif x25_test > /dev/null; then
+#    current isdnctrl versions don't write to stdout if the kernel ioctl fails.
+    result_string=`isdnctrl encap x25_test x25iface 2>&1`
+    result_code="$?"
+    isdnctrl delif x25_test > /dev/null
+    if [ $result_code = 0 ]; then
+	echo
+	echo "Fine!"
+	echo
+	echo "Your system seems to be already up-to-date for running eurofile" 
+    else
+	for i in $result_string; do
+	    result_first=$i
+	    break
+	done
+	if [ "$result_first" = "Encapsulation" ] ; then
+	    echo "The isdn subsystem of your kernel does not support x25iface encapsulation."
+	    echo "You need to recompile your kernel with CONFIG_ISDN_X25 enabled."
+	else
+	    echo "Your version of isdnctrl does not support x25iface encapsulation" 
+	    echo "You need to re-install a recent version of isdnctrl which"
+	    echo "was compiled against 2.2.x kernel header files"
+	fi
+	exit 1;
+    fi   
+else
+    echo "Sorry, your kernel does not support isdn or the isdn kernel module"
+    echo "is not loaded or not set up correctly. Further checks aborted."
+    exit 1
+fi

@@ -1,0 +1,218 @@
+.\" $Id: isdnconf.1.in,v 1.1 1998/12/29 14:51:46 paul Exp $
+.\"
+.\" CHECKIN $Date: 1998/12/29 14:51:46 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii isdnconf.1 for ASCII output, or
+.\" groff -man -Tps isdnconf.1 for PostScript output
+.\"
+.TH ISDNCONF 1 "@MANDATE_ISDNCONF@" isdn4k-utils-@I4LVERSION@ "Linux System Utilities"
+.SH NAME
+isdnconf \- manipulate or read ISDN phone number config files.
+
+.SH SYNOPSIS
+.BI isdnconf 
+
+.SH DESCRIPTION
+.I isdnconf
+can manipulate or read the file 
+.I @I4LCONFDIR@/@CALLERIDFILE@
+as well as \fI~/.isdn\fR.
+Entries can be added or removed from these files. Additionally, entries
+can be searched for and displayed in a way similar to \fBgrep\fR.
+An entry can be an own MSN (\fB[MSN]\fR) or a phone number
+(\fB[NUMBER]\fR).
+
+You can use this program to build your own phonebook. These files are
+used by many of the other ISDN utilities that use phone numbers, to
+display a number symbolicly instead of as a plain number.
+
+.SH OPTIONS
+Note: usage of the options -A and -D is dangerous! The
+complete structure of the file may be changed, and all comments are
+removed! Make backups of your data files before trying these.
+
+.B COMMAND OPTIONS:
+.PP
+.TP 4
+.B \-A
+Add a new entry, which is read from standard input. The following
+values are asked for (here with examples):
+.RS
+.nf
+
+Alias:          Fred
+Number:         0815/441777
+SI:             0
+Zone:           4
+Interface:      -
+Flags:          I|O
+Program:        /usr/local/bin/ring
+User:           uucp
+Group:          user
+Interval:
+Time:           8-20
+Flags:          (control-D here indicates end of flags)
+
+Alias:          (control-D here indicated end of entries)
+
+.fi
+If you want another [Flags] entry, simply enter the data for another
+program for this number at the point where the control-D was given
+above.
+
+If you want to add another number, simply enter the data for the next
+number at the Alias prompt.
+
+You can also pipe the data into this program; the input data then must
+correspond to the prompts that the program gives! Note that you can
+only add one number at a time then (there's no way of telling
+.I isdnconf
+that you want to stop giving Flags info and start giving the next
+Alias info).
+
+.RE
+
+.TP
+.B \-D
+Delete one or more entries which match the data options given. How to
+supply the data to match is discussed below (see \fBDATA OPTIONS\fR).
+
+.TP
+.B \-V
+version: display the program's version and terminate.
+
+.PP
+
+If both -A and -D are given together,
+.I isdnconf
+will terminate, as this is not a valid combination.
+
+If neither -A nor -D is given, then
+.I isdnconf
+will display entries which match the data given.
+
+.B DATA OPTIONS:
+(none applicable for -A)
+.TP 4
+.B \-n 'number'
+number: match the given number. It can contain wildcards.
+
+.TP
+.B \-a 'alias'
+alias: match the given alias name. The name can contain wildcards.
+Note: due to a bug, use '?' instead of '-'.
+
+.TP
+.B \-t 'SI'
+SI: match the given service indicator.
+
+.TP
+.B \-c 'code'
+code: match the area code of the phone number. Only usable for displaying
+(not for -A nor -D).
+
+.TP
+.B \-i
+ignore case for the -n and -a options.
+
+.TP
+.B \-w
+word: the parameters for -n and -a must match the
+.B whole
+value, not just a substring.
+.RS
+Examples (here for -n):
+.nf
+
+"*34*" matches 123456, 345677, 1234
+"34*"  matches 34567, 34111 but not 1234
+"34??" matches 3411, 3456
+"34"   matches only 34
+
+.fi
+Without the -w option, these would match:
+.nf
+
+"*34*" matches 123456, 345677, 1234
+"34*"  matches 123456, 345677, 1234, 34567, 34111
+"34??" matches 123456, 345677, 1234, 3411, 3456
+"34"   matches 123456, 345677, 1234, 3411, 3456, 34567
+
+.fi
+.RE
+
+.TP
+.B \-d
+and: by default the values given to options -n, -a and -t will be combined
+with a logical OR. If these should be combined with a logical AND
+(which is probably what most people expect!) you must use this -d option.
+In this case you can only supply each of the -n, -a and -t options
+exactly once.
+
+.TP
+.B OTHER OPTIONS:
+.TP
+.B \-q
+quiet: when using the -A or -D commands, the output is suppressed.
+When not using the -A or -D commands, only the alias of the matching
+number is shown, or just the number in case the alias is not found.
+
+.TP
+.B \-m
+MSN: when used in combination with the -A command, instructs
+.B isdnconf
+to create a new MSN entry; the default is to create a new NUMBER
+entry. Only the values alias, number, SI, zone and interface are
+applicable to an MSN entry.
+
+.PP
+The following two options do not apply to the -A and -D commands. They
+only change the output format.
+
+.TP 4
+.B \-s
+short: only display the alias and the number.
+
+.TP
+.B \-l
+long: also display the programs to run (\fB[START]\fR).
+
+.TP
+.B \-f 'filename'
+file: usually
+.B isdnconf
+uses the
+.I @I4LCONFDIR@/@CALLERIDFILE@
+and the
+.I ~/.isdn
+files. If
+.B isdnconf
+should be applied to another file, use this option.
+
+.TP
+.B \-g
+global: only applies to the -A and -D commands. Instead of editing
+\fI~/.isdn\fR,
+.I @I4LCONFDIR@/@CALLERIDFILE@
+is edited.
+
+.TP
+.B \-1
+first: only delete or display the first entry.
+
+.TP
+.B \-M
+isdnmon: used internally by isdnmon to get alias info.
+
+
+.SH AUTHOR
+Andreas Kool <akool@isdn4linux.de>
+.br
+manpage adapted from the README by Paul Slootman <paul@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.I callerid.conf\c
+\&(5),
+.I isdnlog\c
+\&(8)

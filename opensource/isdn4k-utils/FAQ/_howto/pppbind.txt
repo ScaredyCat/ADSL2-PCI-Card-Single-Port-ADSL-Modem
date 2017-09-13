@@ -1,0 +1,111 @@
+Date: Sat, 19 Oct 1996 02:21:45 +0200
+X-Sender: sw0001@aixrs1.hrz.uni-essen.de To: isdn4linux@hub-wue.franken.de
+From: Matthias Hessler <hessler@wi-inf.uni-essen.de> Subject: RE: options files
+Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+At 17:57 18.10.1996 +0200, you wrote:
+>Matthias Hessler <hessler@wi-inf.uni-essen.de> ha escrito a
+>isdn4linux@hub-wue.franken.de:
+>
+>> well, isdnctrl does not quite assign interface ipppx to /dev/ipppx by
+>> default (e.g. interface ippp3 to /dev/ippp3). I'm not entirely sure how
+>it
+>> does its assignements, but I think it takes interface ipppx and binds it
+>to
+>> the first available /dev/ipppx, starting x with 0 and counting up (e.g.
+>your
+>> interface ippp3 gets bound to /dev/ippp0 because there is an ipppd
+>already
+>> waiting there)
+>> Which leads to your problem: you want interface ippp3 _exclusively_ bound
+>to
+>> /dev/ippp3 because you want only your ipppd configured for /dev/ippp3
+>> answering all the traffic from your interface ippp3.
+>
+>Hi Matthias
+>
+>Ok; for clarifying scripts (and my concepts :) I name net interfaces
+>isdn0..isdn3, but when I try to launch ipppd, it tells me there must be at
+>least ippp0 configured (???) Does it means i have to configure interfaces
+>twice (one time for ipppX and other for isdnX)?
+
+No.
+
+Here is what happened: You named your net interfaces isdn0..isdn3 and did not use the pppbind option. Now isdnctrl has no clue that it should connect those interfaces to any /dev/ippp* .
+
+If you name your net interfaces ippp0..ippp3, then isdnctrl _automatically_ recognizes (by the name of those interfaces) that those should be connected to the /dev/ippp* . It does it (if I'm not wrong about that default behavior) when data arrives by connecting a net interface to the first available /dev/ippp* .
+Let's say if data arrives on net interface ippp3, it tries to connect it to /dev/ippp0, if that is available. If not (already another connection going on?), it tries /dev/ippp1, and so on.
+As you have two ipppd's with different options running that is not what you want, because you can never tell in advance which data will be answered by which ipppd.
+
+No matter how the name of your net interfaces is, if you use the "isdnctrl pppbind" option, you can tell isdnctrl to _always_ connect some netinterface with some /dev/ippp* . E.g.:
+isdnctrl pppbind isdn3 2
+tells isdnctrl to always put data from net interface isdn3 to /dev/ippp2.
+That is very handy, if you want to have a special ipppd lurking on /dev/ippp2 that should get all that traffic from isdn3.
+
+Isdnctrl acts like a switch board.
+
+Default behaviour (using net interfaces ippp0 and ippp1): =========================================================
+
+                  Kernel---------+
+                    |            |
+Net interface     ippp0        ippp1 (isdnctrl addif ippp*)
+                    |            |
+                    |            |
+Isdnctrl         (by default, to next available device
+                  => no isdnctrl pppbind necessary)
+                    |            |
+                    |            |
+Device            /dev/ippp0 /dev/ippp1 /dev/ippp2 /dev/ippp3
+                    |            |          |          |
+                   ipppd       ipppd      ipppd      ipppd
+
+
+Default behaviour (using net interfaces isdn0, isdn1, isdn2, isdn3): ====================================================================
+
+                  Kernel------+----------+----------+
+                    |         |          |          | Net interface     isdn0     isdn1      isdn2      isdn3 (isdnctrl addif ippp*)
+
+isdnctrl          (no connection from isdn* to any /dev/ippp*,
+                   because: name of net interface is not "ippp*")
+
+Device            /dev/ippp0 /dev/ippp1 /dev/ippp2 /dev/ippp3
+                    |            |          |          |
+                   ipppd       ipppd      ipppd      ipppd
+
+
+
+Behavior using "isdnctrl pppbind" (A):
+======================================
+
+                  Kernel------+----------+----------+
+                    |         |          |          | Net interface     isdn0     isdn1      isdn2      isdn3 (isdnctrl addif isdn*)
+                                                    |
+                                                    | Isdnctrl                                    +-------+ (isdnctrl pppbind isdn3 2)
+                                            |
+                                            | Device            /dev/ippp0 /dev/ippp1 /dev/ippp2 /dev/ippp3
+                    |            |          |          |
+                   ipppd       ipppd      ipppd      ipppd
+
+
+Behavior using "isdnctrl pppbind" (A):
+======================================
+
+                  Kernel------+----------+----------+
+                    |         |          |          | Net interface     isdn0     isdn1      isdn2      isdn3 (isdnctrl addif isdn*)
+                                         |
+                                         | Isdnctrl                         +-------+ (isdnctrl pppbind isdn2 1)
+                                 |
+                                 |
+Device            /dev/ippp0 /dev/ippp1 /dev/ippp2 /dev/ippp3
+                    |            |          |          |
+                   ipppd       ipppd      ipppd      ipppd
+
+
+I hope that's correct. Please correct me if I'm wrong...
+
+Bye,
+Matthias
+
+**************************************************************** Matthias Heﬂler            Email: hessler@wi-inf.uni-essen.de Gelsenkirchener Str. 67    Tel. : 0201-8915964 45141 Essen                Fax. : 0201-8915965 ****************************************************************
+
+--------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

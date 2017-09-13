@@ -1,0 +1,1 @@
+make CC=mipsel-uclibc-gcc STRIP=mipsel-uclibc-strip LD=mipsel-uclibc-ld AR=mipsel-uclibc-ar RANLIB=mipsel-uclibc-ramnlib

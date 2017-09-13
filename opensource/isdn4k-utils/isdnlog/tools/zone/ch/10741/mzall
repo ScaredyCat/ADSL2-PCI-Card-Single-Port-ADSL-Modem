@@ -1,0 +1,55 @@
+#! /usr/bin/perl
+
+# make zoneall from znl.txt
+# 010 010 015 ...
+# 0111 0111 0113 ...
+# 079 010 ...
+# this numbers are in local zone= 3 / rest = 4
+
+$inf = "znl.txt";
+$inc = "code.txt"; # paul's net-woonplaats.gz
+$outf = "zoneall";
+$codef = "../code";
+$ORT=1;
+$FERN=2;
+
+open(IN,$inc) || die("Can't read $inc");
+while (<IN>) {
+ chomp;
+ ($num, $ort) = /^0(\d+)\s(.*)/;
+ $bez{$num} = $ort;
+} 
+close(IN);
+open(IN,$inf) || die("Can't read $inf");
+while (<IN>) {
+	chomp;
+	@nums = split(/\s+/);
+	map { s/^0// } @nums;
+	foreach $n (@nums) {
+		$uniq{$n}=1;
+	}
+	$from = shift(@nums);	
+	foreach $n (@nums) {
+		next if($from eq $n);
+		($a, $b) = ($from, $n);
+		($a, $b) = ($b, $a) if($a gt $b);
+		$ort{"$a $b"}=1;
+	}
+}
+close(IN);
+open(OUT, ">$outf") || die("Can't write $outf");
+open(CF, ">$codef") || die("Can't write $codef");
+foreach $i (sort {$a cmp $b} (keys(%uniq))) {
+	print CF "$i\t$bez{$i}\n";
+	foreach $j (sort {$a cmp $b} (keys(%uniq))) {
+		next if($j le $i);
+		if ($ort{"$i $j"}) {
+			print OUT "$i $j $ORT\n";
+		}
+		else {	
+			print OUT "$i $j $FERN\n";
+		}	
+	}
+}
+close(OUT);	
+close(CF);

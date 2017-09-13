@@ -1,0 +1,69 @@
+# $Id: Makefile.in,v 1.5 2002/07/19 19:03:49 keil Exp $
+#
+# Makefile for actctrl
+# (C) 1997 Fritz Elfert
+#
+#
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2
+INCLUDES		= -I.
+DEFS			=
+LDFLAGS			= -L../lib @LIBS@
+PROGRAM			= actctrl
+MODULES			= actctrl.o
+MANPAGE			= actctrl.8
+FIRMWARE		= bip1120.btl
+DATADIR			= @CONFIG_DATADIR@
+SBINDIR			= @CONFIG_SBINDIR@
+MANDIR			= @CONFIG_MANDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL			= @INSTALL@
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_DATA	= $(INSTALL) -o 0 -g 0 -m 0644
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+CC				= @CC@
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEFS) -c -o $@ $<
+
+all: $(PROGRAM)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+$(PROGRAM):	$(MODULES)
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEFS) $? $(LDFLAGS) -o $@
+
+install-man: $(PROGRAM).man
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install-data: firmware/$(FIRMWARE)
+	mkdir -p $(DESTDIR)$(DATADIR)
+	$(INSTALL_DATA) $< $(DESTDIR)$(DATADIR)/$(FIRMWARE)
+
+install: $(PROGRAM) install-man install-data
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+install-strip: $(PROGRAM)
+	$(INSTALL_PROGRAM) -s $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+uninstall:
+	rm -f $(DESTDIR)$(SBINDIR)/$(PROGRAM) $(DESTDIR)$(MAN8DIR)/$(MANPAGE) $(DESTDIR)$(DATADIR)/$(FIRMWARE)
+
+clean:
+	rm -f *.o *~ $(PROGRAM)
+
+distclean: clean
+	rm -f config.status config.cache config.log Makefile actctrl.man

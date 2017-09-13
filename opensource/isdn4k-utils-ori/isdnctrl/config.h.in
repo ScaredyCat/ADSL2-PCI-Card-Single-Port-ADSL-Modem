@@ -1,0 +1,22 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define as the return type of signal handlers (int or void).  */
+#undef RETSIGTYPE
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define this if triggercps is defined in struct isdn_net_ioctl_cfg. */
+#undef HAVE_TRIGGERCPS
+
+/* Define if you have the <sys/ioctl.h> header file.  */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the TIMRU facility.  */
+#undef HAVE_TIMRU
+
+/* Define if you have the CISCOKEEPALIVE code */
+#undef HAVE_CISCOKEEPALIVE

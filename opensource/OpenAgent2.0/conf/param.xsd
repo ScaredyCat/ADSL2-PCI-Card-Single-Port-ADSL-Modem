@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--W3C Schema from XMLSpy v2005 create://www.altova.com)-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="TR069">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="trf"/>
+				<xs:element ref="lib"/>
+				<xs:element ref="wandev"/>
+				<xs:element ref="install"/>
+				<xs:element ref="manu"/>
+				<xs:element ref="oui"/>
+				<xs:element ref="class"/>
+				<xs:element ref="serial"/>
+				<xs:element ref="paramkey"/>
+				<xs:element ref="upfig"/>
+				<xs:element ref="uplog"/>
+				<xs:element ref="downsys"/>
+				<xs:element ref="downkil"/>
+				<xs:element ref="downpar"/>
+				<xs:element ref="taskwst"/>
+				<xs:element ref="taskweb"/>
+				<xs:element ref="taskfla"/>
+				<xs:element ref="taskreb"/>
+				<xs:element ref="trcmd"/>
+				<xs:element ref="ca_cert"/>
+				<xs:element ref="cl_cert"/>
+				<xs:element ref="cl_key"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="trf">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="obj"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lib">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[/._0-9a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wandev">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="install">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="manu">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="oui">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="class">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="serial">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="paramkey">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="upfig">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="uplog">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="downsys">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="downkil">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="downpar">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taskwst">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taskweb">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taskfla">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taskreb">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="trcmd">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ca_cert">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[/._0-9a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cl_cert">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+						<xs:pattern value="[/._0-9a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cl_key">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="49"/>
+                        <xs:pattern value="[/._0-9a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="obj">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="param" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="obj" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="27"/>
+						<xs:pattern value="[0-9a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="rw" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="max" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="2"/>
+					    <xs:pattern value="[0-9]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="obj_dev_func" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="29"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="obj_instance_func" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="29"/>
+						<xs:pattern value="[0-9_a-zA-Z]*"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="param">
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="35"/>
+						<xs:pattern value="[0-9a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+                        <xs:attribute name="noti" use="optional">
+                                <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                                <xs:enumeration value="0"/>
+                                                <xs:enumeration value="1"/>
+                                                <xs:enumeration value="2"/>
+                                        </xs:restriction>
+                                </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="noti_rw" use="optional">
+                                <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                                <xs:enumeration value="0"/>
+                                                <xs:enumeration value="2"/>
+                                        </xs:restriction>
+                                </xs:simpleType>
+                        </xs:attribute>
+			<xs:attribute name="rw" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="B"/>
+						<xs:enumeration value="b"/>
+						<xs:enumeration value="d"/>
+						<xs:enumeration value="i"/>
+						<xs:enumeration value="s"/>
+						<xs:enumeration value="u"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="dev_func" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+					    <xs:maxLength value="59"/>
+						<xs:pattern value="[0-9_a-zA-Z]+"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,4 @@
+
+This directory contains all needed tcl scripts to run a normal answering
+machine without touchtone support. The files are installed on "make
+install".

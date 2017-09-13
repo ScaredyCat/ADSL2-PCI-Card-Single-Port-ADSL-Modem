@@ -1,0 +1,93 @@
+BINS:=cdbdump cdbget cdbmake cdbstats cdbtest
+LIBS:=libfreecdb.a libfreecdbmake.a
+MAN1:=cdbget.1 cdbstats.1 cdbtest.1 cdbdump.1 cdbmake.1
+MAN3:=cdb_hash.3 cdb_seek.3
+MANS:=$(MAN1) $(MAN3)
+
+
+
+SOURCES:=cdb_hash.c cdbdump.c cdbmake_add.c cdbstats.c cdb_seek.c \
+	cdbget.c cdbmake_hash.c cdbtest.c cdb_unpack.c \
+	cdbmake.c cdbmake_pack.c cdb.c i4l_cdb.c
+
+FILES:=$(BINS) $(LIBS) $(MANS) i4l_cdb.a
+
+DESTDIR:=
+MANDIR:=$(DESTDIR)@CONFIG_MANDIR@
+MAN1DIR:=$(MANDIR)/man1
+MAN3DIR:=$(MANDIR)/man3
+LIBDIR:=$(DESTDIR)@prefix@/lib
+BINDIR:=$(DESTDIR)@prefix@/bin
+INCDIR:=$(DESTDIR)@prefix@/include
+
+CFLAGS:=-Wall -O2
+
+all: depend $(FILES)
+
+clean:
+	rm -f $(FILES) *.d *.o
+
+config:
+	@./configure
+
+config.h: config.h.in
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+distclean: clean 
+	-rm config.{status,log,h,cache} Makefile .depend
+
+install-dirs:
+	install -d -m0755 $(MAN1DIR) $(MAN3DIR) $(LIBDIR) $(BINDIR) \
+		$(INCDIR)
+
+install:
+	install -m0755 $(BINS) $(BINDIR)
+	install -m0644 $(MAN1) $(MAN1DIR)
+	install -m0644 $(MAN3) $(MAN3DIR)
+	install -m0644 $(LIBS) $(LIBDIR)
+	install -m0644 freecdb.h freecdbmake.h $(INCDIR)
+
+cdbdump: cdbdump.o cdb_unpack.o
+
+cdbget: cdbget.o cdb_seek.o cdb_hash.o cdb_unpack.o
+
+cdbmake: cdbmake.o cdbmake_add.o cdbmake_hash.o cdbmake_pack.o
+
+cdbstats: cdbstats.o cdb_unpack.o
+
+cdbtest: cdbtest.o cdb_unpack.o cdb_seek.o cdb_hash.o
+
+libfreecdb.a: libfreecdb.a(cdb_hash.o cdb_unpack.o cdb_seek.o)
+	ranlib libfreecdb.a
+
+libfreecdbmake.a: libfreecdbmake.a(cdbmake_pack.o cdbmake_hash.o \
+	cdbmake_add.o)
+	ranlib libfreecdbmake.a
+
+i4l_cdb.a: i4l_cdb.a(cdb_hash.o cdb_unpack.o cdb_seek.o cdb.o i4l_cdb.o \
+	cdbmake_pack.o cdbmake_hash.o cdbmake_add.o)
+	ranlib i4l_cdb.a
+
+%.1: %.pod
+	pod2man --section=1 --center=' ' --release=' ' $^ >$@.tmp
+	mv $@.tmp $@
+
+%.3: %.pod
+	pod2man --section=3 --center=' ' --release=' ' $^ >$@.tmp
+	mv $@.tmp $@
+
+ifeq (.depend,$(wildcard .depend))
+include .depend
+HEADERS := $(HEADERS) .depend
+endif
+
+depend: .depend
+
+.depend:
+	$(CPP) -MM $(CFLAGS) $(DEFS) $(INCLUDE) *.c >.depend

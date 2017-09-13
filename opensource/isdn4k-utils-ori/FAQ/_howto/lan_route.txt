@@ -1,0 +1,156 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA76880; Sat, 30 Nov 1996 13:44:05 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id NAA01959; Sat, 30 Nov 1996 13:44:57 +0100
+Received: from hub-wue.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vTliY-000oIPa; Sat, 30 Nov 96 10:28 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vTlho-000Boba; Sat, 30 Nov 96 10:27 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vTlil-001IYWa; Sat, 30 Nov 96 10:28 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vTlii-001IYVE; Sat, 30 Nov 96 10:28 MET
+Received: from giovanni.rhein-neckar.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vTlge-000BobC; Sat, 30 Nov 96 10:26 MET
+Message-Id: <m0vTlgM-000rArC@giovanni.rhein-neckar.de>
+From: girardi@giovanni.rhein-neckar.de (Norbert J. Girardi)
+Subject: Re: routes?
+To: isdn4linux@hub-wue.franken.de
+Date: Sat, 30 Nov 1996 10:25:58 +0100 (MET)
+Cc: uwe.tetzlaff@t-online.de
+In-Reply-To: <m0vTby7-0000fJC@ermail02.btx.dtag.de> from "Uwe Tetzlaff" at Nov 29, 96 10:11:00 pm
+X-Mailer: ELM [version 2.4 PL24]
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Reply-To: isdn4linux@hub-wue.franken.de
+Status:   
+
+> 
+> Moins..
+> 
+> Ich hab hier in der Firma 2 Rechner     W95 192.168.254.2  Ne2000 
+>                                       LinuX 192.168.254.1  3Com 509 
+
+> Zu Hause habe ich einen Rechner       LinuX 192.168.255.1  Teles S0-16.3
+> 
+> Also zu meinem Problem : ich teste mit ping die Verbindung :
+> 
+>  von LinuX zu Hause <-> LinuX Firma    via isdn0          = geht.
+>  von   W95    Firma <-> LinuX Firma    via eth0           = geht.
+>  von   W95    Firma <-> LinuX zu Hause via eth0  -> isdn0 = geht nicht !
+>  von LinuX zu Hause <-> W95 Firma      via isdn0 ->  eth0 = geht nicht !
+> 
+> 
+> Sicherlich voellig off topic denn ich tippe auf ein Problem bei meinen routes.
+> 
+Es waere sicher hilfreich gewesen wenn Du die 'routes' mitgeschickt
+haettest ;-)
+
+OK, versuchen wir's trotzdem mal.
+
+Nennen wir Linux at home -> lihome  = 192.168.255.1 ,
+           Linux at work -> liwork  = 192.168.254.1 ,
+           W95   at work -> work95  = 192.168.254.2 .
+      
+Also, bei mir wuerde die '/etc/hosts' auf allen Rechnern _so_ aussehenen:
+
+# ----------------- [schnippel] --------------------------
+# hosts		This file describes a number of hostname-to-address
+#		mappings for the TCP/IP subsystem.  It is mostly
+#		used at boot time, when no name servers are running.
+#		On small systems, this file can be used instead of a
+#		"named" name server.  Just add the names, addresses
+#		and any aliases to this file...
+#
+
+# For loopbacking.
+127.0.0.1	localhost
+
+192.168.255.1   lihome
+
+192.168.254.1   liwork
+192.168.254.2   work95
+
+# End of hosts.
+# ----------------- [schnippel] --------------------------
+
+Die '/etc/networks' auf allen Rechnern :
+========================================
+
+# ----------------- [schnippel] --------------------------
+#
+# networks	This file describes a number of netname-to-address
+#		mappings for the TCP/IP subsystem.  It is mostly
+#		used at boot time, when no name servers are running.
+#
+
+loopback	127.0.0.0
+homenet 	192.168.255.0
+worknet		192.168.254.0
+
+# End of networks.
+# ----------------- [schnippel] --------------------------
+
+Ich benutze fuer die statischen routes eine Datei in /etc/rc.d
+in die ich alle routes eintrage, und die aus /etc/rc.d/rc.inet1
+aufgerufen wird.
+
+Die /etc/rc.d/rc.routes auf lihome:
+===================================
+
+# ----------------- [schnippel] --------------------------
+/sbin/ifconfig isdn0 lihome pointopoint liwork
+/sbin/route add liwork isdn0
+/sbin/route add default gw liwork isdn0
+# Alles was raus soll geht per default ueber isdn0
+# ----------------- [schnippel] --------------------------
+
+
+Die /etc/rc.d/rc.routes auf liwork:
+===================================
+
+# ----------------- [schnippel] --------------------------
+/sbin/ifconfig eth0 liwork 
+/sbin/route add -net worknet eth0
+# Alles was von worknet kommt und nach worknet soll
+# muss ueber eth0 
+
+/sbin/ifconfig isdn0 liwork pointopoint lihome
+/sbin/route add liwork
+/sbin/route add default gw liwork isdn0
+# Alle anderen gehen per default ueber isdn0
+# !!!! Klappt nur wenn auch der Kernel mit 
+# IP FORWARDING/GATEWAYING kompiliert wurde !!!!
+# ----------------- [schnippel] --------------------------
+
+Fuer W95 tue ich mal so als sei es ein Linux, d.h.
+die Uebersetzung in W95 Syntax bleibt dem Leser ueberlassen :-)
+
+Die /etc/rc.d/rc.routes auf work95:
+===================================
+
+# ----------------- [schnippel] --------------------------
+/sbin/ifconfig eth0 work95 
+/sbin/route add liwork
+/sbin/route add default gw liwork eth0
+# alles geht per default ueber eth0 nach liwork
+# der sorgt dann fuer die Verteilung
+# ----------------- [schnippel] --------------------------
+
+
+
+- Norbert
+
+-- 
+Norbert J. Girardi < girardi@giovanni.rhein-neckar.de >
+  Voice:  +49 621 493417 (h)  +49 621 381-3260 (w)
+     Neckarstr. 17, D-68549 Ilvesheim, Germany
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

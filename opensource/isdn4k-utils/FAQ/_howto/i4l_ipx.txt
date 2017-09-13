@@ -1,0 +1,199 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA39566; Wed, 5 Feb 1997 23:59:59 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id AAA19017; Thu, 6 Feb 1997 00:01:02 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vsDB9-000oJwa; Wed, 5 Feb 97 20:38 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vsD9H-001IXPa; Wed, 5 Feb 97 20:36 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vsD99-001IXFE; Wed, 5 Feb 97 20:36 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vsDA1-000BikC; Wed, 5 Feb 97 20:37 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vsD93-001IXFE; Wed, 5 Feb 97 20:36 MET
+To: isdn4linux@hub-wue.franken.de
+Xref: oops de.alt.comm.isdn4linux:1392
+From: Jens Brambring <jens.brambring@p-net.de>
+Newsgroups: de.alt.comm.isdn4linux
+Subject: Re: IPX/SPX ueber isdn4linux und WIN95
+Date: Wed, 05 Feb 1997 21:30:18 +0100
+Organization: Customer of EUnet Germany; Info: info@Germany.EU.net
+Lines: 159
+Distribution: world
+Message-Id: <32F8EDDA.32EE@p-net.de>
+References: <32F53265.5E65@p-net.de>
+Nntp-Posting-Host: peu-11.d.eunet.de
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 3.01Gold [de] (Macintosh; I; 68K)
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Hallo, es geht!!!!
+
+Voraussetzungen unter Linux:
+   isdn4linux 
+   mgetty oder aehnliches
+   pppd mit ipx-Unterstuetzung 
+   dip/diplogin
+   Kernel mit IPX-Protocol und Full ipx internal network auf yes gesetzt
+          und PPP Unterstuetzung
+
+Vorausetzungen unter WIN95:
+   ISDN-Karte
+   DFUE-Netzwerk
+   Modememulator unter WIN95 der X75 oder HDLC verwenden kann
+      (im Telspowerpack4 dabei, muesste aber auch mit CFOS oder
+aehnlichem gehen?!)
+
+Beschreibung:
+   Kernel erzeugen.
+   Einen pppd compilieren und installieren, 
+   indem im Makefile die Zeile DEFINE IPX_CHANGE = 1 eingefuegt ist.
+
+   Von isdn4linux benoetigt man nur die ttyI ports also sollte die
+Einrichtung und das
+   Starten unproblematisch sein!
+   Danach muss man mgetty auf eines der ttyI-devices legen .
+      Beispiel inittab-Eintragsergaenzung: 
+       I1:123:respawn:/usr/sbin/mgetty -x20 ttyI1
+
+   Dann muss die Konfiguration fuer das ttyI-device in mgetty.config
+ergaenzt
+   werden:
+      port ttyI1
+      debug 3
+      modem-type data
+      speed 38400
+      init-chat "" ATZ OK AT&EX OK ATS0=1 ATS14=0
+
+   Das X steht fuer die nummer, auf der der Anruf angenommen werden soll
+      (bei euro die ganze Nummer ohne Vorwahl, bei 1tr6 die
+Endgeraetenummer)
+   Die Null hinter ATS14= bedeutet, das wir die Emulation auf X75
+stellen
+      
+   Dann richtet man eine Datei /etc/ppp/options und/oder
+/etc/ppp/options.ttyI1 ein
+      Hier mein Beispiel:
+        -detach 
+        192.9.215.80:192.9.215.70 
+         defaultroute 
+         mru 1524
+         debug
+         /dev/ttyI1 
+         ipx-routing 2
+         ipxcp-max-failure 20
+         ipx-node 4:5
+         ipx-network 0x3000
+    
+    Die Beschreibung der einzelnen Punkte findet sich in den man-pages
+zum pppd.
+    ipx-network ist die Adresse des Netzwerkes in dem die jeweilige
+Netzwerkkarte 
+    zu finden ist und ipx-node gibt die Adressen der angeschlossenen
+Rechner in diesem
+    Netzwerk an, diese Einstellungen scheinen Notwendig zu sein, die
+Werte sind sind 
+    ansich beliebig.
+
+    Danach richtet man sich einen Benutzer ein dessen startshell auf
+/usr/sbin/diplogin 
+     eingetragen ist (/etc/passwd).
+    Jetzt muss noch die Datei /etc/diphosts editiert werden:
+
+      Benutzer::192.9.215.80:192.9.215.70:255.255.255.0::PPP,296  
+
+    Der Benutzer ist der, den wir eben eingerichtet haben.
+
+    Der Linuxrechner sollte dann neu gestartet werden.
+
+    Danach richtet man auf dem Ethernetinterface das ipx-Protokoll ein:
+    ipx_interface add -p eth0 802.2 33000
+    Der letzte Wert stell wieder eine Netzwerknummer dar, die mit der
+auf dem Novell-Server
+    uebereinstimmen muss, genauso wie das Protokoll (802.2).
+    Diese Nummern kann man am Novell-Server feststellen wenn man sich
+die autoexec.ncf anschaut.
+    Das Protokoll steht in der Zeile, wo der Netzwerkkartentreiber
+geladen wird und die 
+    Netzwerknummer steht an der Stelle, wo ipx an die Netzkarte gebunden
+wird.
+
+    Wenn man jetzt slist aufruft muesste ansich der Novell-Server
+angezeigt werden.
+
+    Danach wird ipxd (aus dem ipxripd) gestartet. das sollte es auf
+Linux-Seite gewesen sein.
+    ipx_interface und ipxd sollten automatisch beim Starten des Rechners
+gestartet werden.
+    
+     (Wenn der ipxd mit der option -d gestartet wird gibt er Meldungen
+auf dem Monitor aus, 
+     die man auswerten kann, ob alles laeuft)
+
+WIN95:
+Ich gehe jetzt einfach davon aus, dass das DFUE-Netzwerk einsatzfaehig
+ist 
+und ipx/spx an das DFUE-Netzwerk gebunden ist.
+
+Man macht eine neue Verbindung, wobei das Modem der Modemimulation oder
+dem
+dem entsprechendne com-port fuer die Modemimulation zugewiesen wird.
+
+Unter Eigenschaften waehlt man dann bei Typ des Servers PPP,Win95,NT
+internet
+(habe jetzt gerade nicht die genauen Beschreibung im Kopf, aber so
+aehnlich ist das,
+ist glaube ich auch die default Einstellung)
+Beim Protokoll waehlt man ipx/spx.
+Dann gibt es noch die Option Scripts:
+Hier gibt man den Namen des Scriptes ein, der die Verbindung aufbauen
+soll!
+Hier mein Beispiel-script:
+
+proc main
+
+   ; Set the port settings so we can wait for
+   ; non-gibberish text.
+
+
+   waitfor "login:"
+   transmit "Benutzer^M"
+
+   waitfor "Password:"
+   transmit "Passwort"
+   transmit "^M"
+
+   waitfor "PPP"
+
+
+
+endproc
+
+Benutzer ist wieder der Benutzer und Password das entsprechende
+Password.
+
+Das sollte es gewesen sein?!
+   
+    
+Jetzt kann man eine Verbindung ueber das DFUE-Netzwerk herstellen, dann
+sollte man
+einen Moment warten (kann schon mal 10 Sekuden dauern), und der
+Novell-Server sollte in der Netzwerkumgebung erscheinen!
+
+Auf Linux seite kann man noch mit cat /proc/net/ipx_interfaces
+feststellen ob ein ipx_interface aif ppp0 eingerichtet wurde (sollte
+automatisch passieren)
+Im Notfall das script auf WIN95 im Einzelschrittmodus ausfuehren lassen.
+
+Ciao, Jens
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

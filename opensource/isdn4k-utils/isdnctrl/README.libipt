@@ -1,0 +1,41 @@
+ --- README.libipt ----------------------------------------------------
+
+IPTABLES SUPPORT
+----------------
+
+The files libipt_DWISDN.so and libipt_dwisdn.so are for adding
+ISDN support to iptables. This enables you to configure what type
+of IP packet is permitted to cause a dialout, for example.
+
+The file libipt_ISDNDIAL.so is a helper target for dynip MASQUERADING
+in the nat-table POSTROUTING hook. It triggers dialing and therefore
+ISDNDIAL must be placed before the MASQUERADING target.
+
+You can get a short overview with:
+iptables -m dwisdn   --help
+iptables -j DWISDN   --help
+iptables -j ISDNDIAL --help
+
+Tiny example for dynip-interfaces:
+iptables -A OUTPUT -p tcp ! --sync \
+                   -o ippp+ \
+                   -m dwisdn ! --f_eq_iadr \
+                   -j REJECT --reject-with tcp-reset
+
+When old ESTABLISHED tcp connections are closed,
+no dial is triggered :-)
+
+
+The sources are included, however to compile these files you need
+the netfilter 1.1.2 cvs-tree and the patch "patch-netfilter-1.1.2_isdn".
+Because of this, the compiled .so files have been included for
+your convenience (i386 only at this time).
+
+You can use the .so file by copying the file to the iptables
+lib-dir (default /usr/local/lib/iptables).
+
+
+At a later date the ISDN stuff will hopefully be integrated into
+the official sources, and then the .so files in the archive will
+go away because you can compile it yourself easily then.
+

@@ -1,0 +1,58 @@
+=head1 NAME
+
+cdbmake -- create a constant database from scratch
+
+=head1 SYNOPSIS
+
+cdbmake F<database> F<tempfile>
+
+=head1 DESCRIPTION
+
+B<cdbmake> creates a new constant database from data read from its
+standard input. Constant databases are portable between different
+architectures.
+
+=head2 Input Format
+
+On its input, B<cdbmake> reads a series of records of format
+
+        +I<keylen>,I<valuelen>:I<key>-E<gt>I<value>
+
+For example,
+
+        +3,9:foo->bar'n'baz
+
+is a valid record. Each record is followed by a newline. The end of
+records is indicated by and extra newline.
+
+Keys and values can be binary data, and contain any characters.
+
+=head2 Replacement Procedure
+
+B<cdbmake> reads the data and writes to temporary file F<tempfile>,
+syncinc the writes when done. It then atomically moves F<tempfile> to
+F<database>. This ensures database reading needs no locking.
+
+Files F<tempfile> and F<database> must reside on the same filesystem,
+and the directories containing them must be writable to the user
+invoking B<cdbmake>.
+
+Do not run two simultaneous B<cdbmake>s with the same F<tempfile>.
+
+=head2 Memory Usage
+
+B<cdbmake> needs roughly 16 bytes of memory per record. Maximum
+database size is 4 gigabytes.
+
+=head1 RETURN VALUES
+
+0 on success, 1 on syntax errors and 111 on transient errors.
+
+=head1 RESTRICTIONS
+
+Identical keys are allowed and stored, but not all readers support
+them.
+
+=head1 SEE ALSO
+
+L<cdbdump(1)|cdbdump(1)>, L<cdbget(1)|cdbget(1)>, L<cdbstats(1)|cdbstats(1)>

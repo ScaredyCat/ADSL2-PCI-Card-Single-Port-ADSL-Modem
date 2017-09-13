@@ -1,0 +1,254 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(isdnlog/isdnlog.c)
+AC_PREFIX_DEFAULT(/usr)
+AC_CONFIG_HEADER(policy.h)
+
+dnl
+dnl i4l package setup, get variables from Environment
+dnl If a variable is not set, set default also.
+dnl
+
+I4LVERSION=${I4LVERSION:-"?.?"}
+I4LCONFDIR=${CONFIG_I4LCONFDIR:-"/etc/isdn"}
+OLDCONFDIR=${CONFIG_ISDNLOG_OLDI4LCONFDIR:-"/etc/isdnlog"}
+OLDCONFFILE=${CONFIG_ISDNLOG_OLDI4LCONFFILE:-"isdnlog.conf"}
+CONFFILE=${CONFIG_CONFFILE:-"isdn.conf"}
+CALLERIDFILE=${CONFIG_CALLERIDFILE:-"callerid.conf"}
+RUNDIR=${CONFIG_RUNDIR:-"/var/run"}
+SERV_PORT=${CONFIG_ISDNLOG_SERV_PORT:-20011}
+USERFILE=${CONFIG_ISDNLOG_USERFILE:-"isdnlog.users"}
+LOGFILE=${CONFIG_ISDNLOG_LOGFILE:-"/var/log/isdn.log"}
+CHARGEFILE=${CONFIG_ISDNLOG_CHARGEFILE:-"charge.dat"}
+RELOADCMD=${CONFIG_ISDNLOG_RELOADCMD:-"reload"}
+STOPCMD=${CONFIG_ISDNLOG_STOPCMD:-"stop"}
+REBOOTCMD=${CONFIG_ISDNLOG_REBOOTCMD:-"/sbin/reboot"}
+COUNTRYCODE=${CONFIG_COUNTRYCODE:-"49"}
+COUNTRYPREFIX=${CONFIG_COUNTRY_PREFIX:-"+"}
+AREACODE=${CONFIG_AREACODE:-""}
+AREAPREFIX=${CONFIG_AREA_PREFIX:-"0"}
+CONFIG_LIB_AREACODE=${CONFIG_LIB_AREACODE:-"y"}
+CONFIG_ISDNLOG_POSTGRESDIR=${CONFIG_ISDNLOG_POSTGRESDIR:-""}
+CONFIG_ISDNLOG_MYSQLDIR=${CONFIG_ISDNLOG_MYSQLDIR:-""}
+LIBISDNDIR="../lib"
+bindir=${CONFIG_BINDIR:-"/usr/bin"}
+sbindir=${CONFIG_SBINDIR:-"/sbin"}
+mandir=${CONFIG_MANDIR:-"/usr/man"}
+datadir=${CONFIG_DATADIR:-"/usr/lib/isdn"}
+
+I4LCONFDIR=`eval echo $I4LCONFDIR`
+OLDCONFDIR=`eval echo $OLDCONFDIR`
+OLDCONFFILE=`eval echo $OLDCONFFILE`
+CONFFILE=`eval echo $CONFFILE`
+CALLERIDFILE=`eval echo $CALLERIDFILE`
+RUNDIR=`eval echo $RUNDIR`
+USERFILE=`eval echo $USERFILE`
+LOGFILE=`eval echo $LOGFILE`
+CHARGEFILE=`eval echo $CHARGEFILE`
+RELOADCMD=`eval echo $RELOADCMD`
+STOPCMD=`eval echo $STOPCMD`
+REBOOTCMD=`eval echo $REBOOTCMD`
+COUNTRYCODE=`eval echo $COUNTRYCODE`
+COUNTRYPREFIX=`eval echo $COUNTRYPREFIX`
+AREACODE=`eval echo $AREACODE`
+AREAPREFIX=`eval echo $AREAPREFIX`
+CONFIG_LIB_AREACODE=`eval echo $CONFIG_LIB_AREACODE`
+CONFIG_ISDNLOG_POSTGRESDIR=`eval echo $CONFIG_ISDNLOG_POSTGRESDIR`
+CONFIG_ISDNLOG_MYSQLDIR=`eval echo $CONFIG_ISDNLOG_MYSQLDIR`
+bindir=`eval echo $bindir`
+sbindir=`eval echo $sbindir`
+mandir=`eval echo $mandir`
+datadir=`eval echo $datadir`
+DATADIR=`eval echo $datadir`
+MANDATE_CALLERID=`grep CHECKIN isdnlog/callerid.conf.5.in | awk '{print $4}'`
+MANDATE_ISDN_CONF=`grep CHECKIN isdnlog/isdn.conf.5.in | awk '{print $4}'`
+MANDATE_ISDNFORMAT=`grep CHECKIN isdnlog/isdnformat.5.in | awk '{print $4}'`
+MANDATE_ISDNLOG5=`grep CHECKIN isdnlog/isdnlog.5.in | awk '{print $4}'`
+MANDATE_ISDNLOG8=`grep CHECKIN isdnlog/isdnlog.8.in | awk '{print $4}'`
+MANDATE_ISDNLOG_USERS=`grep CHECKIN isdnlog/isdnlog.users.5.in | awk '{print $4}'`
+MANDATE_ISDNREP=`grep CHECKIN isdnrep/isdnrep.1.in | awk '{print $4}'`
+MANDATE_ISDNCONF=`grep CHECKIN isdnconf/isdnconf.1.in | awk '{print $4}'`
+
+if test "$CONFIG_LIB_AREACODE" = "y" ; then
+	ALIB=area
+fi
+
+dnl
+dnl To make it possible to set variables in policy.h
+dnl they have to be defined with AC_DEFINE...
+dnl
+AC_DEFINE_UNQUOTED(OLDCONFDIR,"$OLDCONFDIR")
+AC_DEFINE_UNQUOTED(OLDCONFFILE,"$OLDCONFFILE")
+AC_DEFINE_UNQUOTED(DATADIR,"$datadir")
+AC_DEFINE_UNQUOTED(SERV_PORT,$SERV_PORT)
+AC_DEFINE_UNQUOTED(USERFILE,"$USERFILE")
+AC_DEFINE_UNQUOTED(LOGFILE,"$LOGFILE")
+AC_DEFINE_UNQUOTED(CHARGEFILE,"$CHARGEFILE")
+AC_DEFINE_UNQUOTED(RELOADCMD,"$RELOADCMD")
+AC_DEFINE_UNQUOTED(STOPCMD,"$STOPCMD")
+AC_DEFINE_UNQUOTED(REBOOTCMD,"$REBOOTCMD")
+if test "$CONFIG_ISDN_LOG_DE" = "y" ; then
+	NATION="de"
+	NATION_MACRO="ISDN_DE"
+	AC_DEFINE(ISDN_DE)
+fi
+if test "$CONFIG_ISDN_LOG_AT" = "y" ; then
+	NATION="at"
+	NATION_MACRO="ISDN_AT"
+	AC_DEFINE(ISDN_AT)
+fi
+if test "$CONFIG_ISDN_LOG_CH" = "y" ; then
+	NATION="ch"
+	NATION_MACRO="ISDN_CH"
+	AC_DEFINE(ISDN_CH)
+fi
+if test "$CONFIG_ISDN_LOG_NL" = "y" ; then
+	NATION="nl"
+	NATION_MACRO="ISDN_NL"
+	AC_DEFINE(ISDN_NL)
+fi
+if test "$CONFIG_ISDN_LOG_LU" = "y" ; then
+	NATION="lu"
+	NATION_MACRO="ISDN_LU"
+	AC_DEFINE(ISDN_LU)
+fi
+if test "$CONFIG_ISDN_LOG_XX" = "y" ; then
+	NATION=$CONFIG_ISDN_LOG_CC
+	NATION_MACRO="ISDN_XX"
+	AC_DEFINE(ISDN_XX)
+fi
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_AWK
+AC_PATH_PROG(SED,sed)
+AC_PROG_MAKE_SET
+AC_PATH_PROGS(BZIP2, bzip2, /usr/bin/bzip2, $PATH:/bin:/usr/bin:/usr/local/bin)
+
+dnl Checks for libraries.
+if test -e tools/cdb/i4l_cdb.c  ; then
+    AC_DEFINE(USE_CDB)
+    CDBEXTRALIBS="tools/cdb/i4l_cdb.a"
+    DBEXT=".cdb"
+    RDBEXT=".cdb"
+    AC_MSG_RESULT(Using 'cdb' as database)
+else
+AC_CHECK_LIB(gdbm, gdbm_open, DBMLIB=-lgdbm; AC_DEFINE(HAVE_LIBGDBM),
+	[AC_CHECK_LIB(dbm, dbm_open, DBMLIB=-ldbm; AC_DEFINE(HAVE_LIBDBM),
+		[AC_CHECK_LIB(db, dbm_open, DBMLIB=-ldb; AC_DEFINE(HAVE_LIBDB))])])
+fi
+AC_DEFINE_UNQUOTED(RDBEXT,"$RDBEXT")
+
+dnl log database support
+AC_CHECK_POSTGRES
+AC_CHECK_MYSQLDB
+AC_CHECK_ORACLE
+
+dnl TODO: replace main by a funcion within libdbmalloc
+#AC_CHECK_LIB(dbmalloc, main)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_HEADER_SYS_WAIT
+AC_CHECK_HEADERS(fcntl.h limits.h sys/ioctl.h sys/time.h syslog.h unistd.h)
+
+dnl Manual config
+AC_ARG_WITH(isdnlib,
+	[  --with-isdnlib=DIR      Set isdn library [../lib]],
+	LIBISDNDIR=$withval; AC_DEFINE_UNQUOTED(LIBISDNDIR,"$withval"))
+AC_ARG_WITH(area-lib,
+	[  --with-area-lib=STRING  Set area library type [area]],
+	ALIB=$withval)
+AC_ARG_WITH(charge,
+	[  --with-charge=XX        Set country specific chargeinfo [DE]],
+	CHARGECOUNTRY=$withval)
+AC_ARG_WITH(oldconfdir,
+	[  --with-oldconfdir=DIR   Set old config directory [/etc/isdnlog]],
+	OLDCONFDIR=$withval; AC_DEFINE_UNQUOTED(OLDCONFDIR,"$withval"))
+AC_ARG_WITH(oldconf,
+	[  --with-oldconf=NAME     Set old config file name [isdnlog.conf]],
+	OLDCONFFILE=$withval; AC_DEFINE_UNQUOTED(OLDCONFFILE,"$withval"))
+AC_ARG_WITH(datadir,
+        [  --with-datadir=DIR      Set data directory [/usr/lib/isdn]],
+        datadir=$withval; AC_DEFINE_UNQUOTED(DATADIR,"$withval"))
+AC_ARG_WITH(sport,
+	[  --with-sport=INT        Set server port [20011]],
+	SERV_PORT=$withval; AC_DEFINE_UNQUOTED(SERV_PORT,$withval))
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_HEADER_TIME
+AC_STRUCT_TM
+
+dnl Checks for C library functions.
+AC_PROG_GCC_TRADITIONAL
+AC_FUNC_MEMCMP
+AC_TYPE_SIGNAL
+AC_FUNC_UTIME_NULL
+AC_CHECK_FUNCS(mktime select socket stime strdup strerror strftime strstr strtod strtol)
+
+dnl Set variables in output files.
+
+if test "$ALIB" = "area" ; then
+	LIBAREA=1
+	AC_DEFINE(LIBAREA)
+fi
+case "$CHARGECOUNTRY" in
+	DE)
+		NATION="de"
+		NATION_MACRO="ISDN_DE"
+		AC_DEFINE(ISDN_DE)
+		;;
+	AT)
+		NATION="at"
+		NATION_MACRO="ISDN_AT"
+		AC_DEFINE(ISDN_AT)
+		;;
+	CH)
+		NATION="ch"
+		NATION_MACRO="ISDN_CH"
+		AC_DEFINE(ISDN_CH)
+		;;
+	NL)
+		NATION="nl"
+		NATION_MACRO="ISDN_NL"
+		AC_DEFINE(ISDN_NL)
+		;;
+esac
+
+AC_SUBST(LIBISDNDIR)
+AC_SUBST(I4LCONFDIR)
+AC_SUBST(DBMLIB)
+AC_SUBST(LIBAREA)
+AC_SUBST(RUNDIR)
+AC_SUBST(SERV_PORT)
+AC_SUBST(USERFILE)
+AC_SUBST(OLDCONFDIR)
+AC_SUBST(OLDCONFFILE)
+AC_SUBST(CONFFILE)
+AC_SUBST(CALLERIDFILE)
+AC_SUBST(LOGFILE)
+AC_SUBST(COUNTRYCODE)
+AC_SUBST(COUNTRYPREFIX)
+AC_SUBST(AREACODE)
+AC_SUBST(AREAPREFIX)
+AC_SUBST(AREACODE)
+AC_SUBST(NATION)
+AC_SUBST(NATION_MACRO)
+AC_SUBST(I4LVERSION)
+AC_SUBST(DATADIR)
+AC_SUBST(RELOADCMD)
+AC_SUBST(STOPCMD)
+AC_SUBST(REBOOTCMD)
+AC_SUBST(MANDATE_CALLERID)
+AC_SUBST(MANDATE_ISDN_CONF)
+AC_SUBST(MANDATE_ISDNFORMAT)
+AC_SUBST(MANDATE_ISDNLOG5)
+AC_SUBST(MANDATE_ISDNLOG8)
+AC_SUBST(MANDATE_ISDNLOG_USERS)
+AC_SUBST(MANDATE_ISDNREP)
+AC_SUBST(MANDATE_ISDNCONF)
+AC_SUBST(CDBEXTRALIBS)
+AC_OUTPUT(Makefile isdnlog/callerid.conf.5 isdnlog/isdn.conf.5 isdnlog/isdnformat.5 isdnlog/isdnlog.5 isdnlog/isdnlog.8 isdnlog/isdnlog.users.5 isdnrep/isdnrep.1 isdnconf/isdnconf.1)

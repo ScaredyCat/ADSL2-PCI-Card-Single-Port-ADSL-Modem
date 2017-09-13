@@ -1,0 +1,21 @@
+/* define if we have XLOG capability */
+#undef HAVE_XLOG
+
+/* define if we have TRACE capability */
+#undef HAVE_TRACE
+
+/* define if we have PCI code in native driver */
+#undef HAVE_NPCI
+
+/* Define if you have the <curses.h> header file.  */
+#undef HAVE_CURSES_H
+
+/* Define if you have the <curses/ncurses.h> header file.  */
+#undef HAVE_CURSES_NCURSES_H
+
+/* Define if you have the <ncurses.h> header file.  */
+#undef HAVE_NCURSES_H
+
+/* Define if you have the <ncurses/curses.h> header file.  */
+#undef HAVE_NCURSES_CURSES_H
+

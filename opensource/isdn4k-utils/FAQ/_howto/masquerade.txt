@@ -1,0 +1,292 @@
+Date: Tue, 29 Oct 1996 03:57:50 +0000 (GMT) From: Rainer May <r_may@khavi.desaster.heide.de> X-Sender: r_may@kahvi.desaster.heide.de To: isdn4linux@hub-wue.franken.de
+Subject: i4l und Masquerading
+X-Flags: MN
+Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+Nachdem ich leichtsinnig genug irgendwo mal verkuendet hatte, dass ich hier ein LAN hinter einem Linux-Server mit i4l bei meinem Provider einspeise, platzte mein Postfach aus den Naehten. Bevor ich alles immer wieder aufs Neue abtippe, hab' ich das Procedere in einer Art FAQ aufgeschrieben. 
+
+Vielleicht interessiert sich ja wer dafuer. Wer den Text in irgendwelche Webpages aufnehmen, ausdrucken und aufs Klo haengen oder sonstwas damit machen will, meinen Segen hat er.
+
+Rainer
+###########################
+
+isdn4linux und IP-Masquerading im LAN
+-------------------------------------
+
+Problem: "Ich habe ein lokales Netzwerk (LAN), in dem Rechner
+          der verschiedensten Plattformen - Win95, Win311, NT,
+          Amiga (AmiTCP) und MacIntosh (MacTCP) - ueber einen
+          Linux-Router mit der Aussenwelt verbunden werden
+          sollen. In der Linux-Maschine steckt eine ISDN-
+          Karte. Von meinem Provider bekomme ich dynamisch
+          eine IP-Adresse zugewiesen, wenn die Verbindung auf-
+          gebaut wird. Nun moechte ich aber nicht nur vom
+          Linux-Router direkt, sondern von jedem Rechner im
+          LAN ins Internet kommen. Wie?"
+
+Loesung: "Die meiste Arbeit ist auf Linux-Seite zu erledigen.
+          Zunaechst einmal braucht man einen Kernel mit ein-
+          gebautem IP-Forwarding und Masquerading. D.h., bei
+          "make config" muessen folgende Fragen mit "Y" be-
+          antwortet werden:
+
+    Prompt for development and/or incomplete code/drivers Y
+    Enable loadable module support                        Y
+    Networking support                                    Y
+    Network firewalls                                     Y
+    TCP/IP networking                                     Y
+    IP: forwarding/gatewaying                             Y
+    IP: firewalling                                       Y
+    IP: masquerading                                      Y
+    PPP (point-to-point) support (wenn PPP zum Provider)  Y
+    SLIP (serial line) support                            Y
+    Ethernet (10 or 100Mbit) (oder Arcnet oder ...)       Y
+    ISDN support [1]                                        M
+    Support synchronous PPP (wenn ipppd benutzt wird)     Y
+    HiSax SiemensChipSet driver support                     M
+      (dann den HiSax fuer die ISDN Karte waehlen)
+
+           Anschliessend den Kernel wie ueblich mit "make dep",
+           "make clean", "make zImage", "make modules" und
+           "make modules_install" bauen.
+
+           Auf das Installieren von PPP und der ISDN-Treiber
+           wird an anderer Stelle ausfuehrlich eingegangen.
+           Hier geht es weiter, wenn folgende Voraussetzungen
+           erfuellt sind:
+
+           * Das ISDN-Subsystem laeuft, d.h., von Linux aus
+             kann eine Verbindung zum Provider hergestellt
+             werden.
+           * Das lokale Netzwerk (Ethernet usw.) laeuft auch,
+             vorzugsweise unter Verwendung "freier" IP-
+             Adressen (z.B. 192.168.xx.xx), und der Linux-Host
+             kann von allen anderen Rechnern im LAN erreicht
+             werden (z.B. per ping).
+
+           Nun gilt es, zweierlei zu erreichen:
+
+           * Zugriffe von einem beliebigen Rechner im LAN
+             auf eine nicht-lokale IP-Adresse sollen den
+             Linux-Router veranlassen, eine Verbindung zum
+             Provider aufzubauen; und
+           * Der Linux-Router soll zwar die Rechner im LAN
+             mit dem Provider verbinden, diesem gegenueber
+             aber verheimlichen, dass nicht der Router
+             selbst Empfaenger/Absender der entsprechenden
+             IP-Pakete ist.
+
+           Beginnen wir mit dem zweiten Punkt. Dieses "Ver-
+           heimlichen" hat nichts damit zu tun, dass man
+           seinen Provider hintergehen will (obwohl man auf
+           diese Weise auch selbst Provider spielen und
+           seine Kunden klammheimlich ueber _einen_ billigen
+           "Privat-Zugang" ins Internet bringen kann), son-
+           dern mit technischen Notwendigkeiten. Denn nur
+           das Interface des Linux-Rechners, das die Verbin-
+           dung zum Provider herstellt, bekommt von diesem
+           eine IP-Adresse verpasst, die der Provider auch
+           kennt. Traegt z.B. der Router im LAN die lokale
+           IP-Adresse 192.168.1.1, und ein anderer Rechner
+           die 192.168.1.2, dann kennt der Provider diese
+           Adressen ja nicht. Er weist z.B. dem PPP-Inter-
+           face des Routers die Adresse 123.234.345.99 zu -
+           und nur bei Paketen aus dem Internet, die an
+           diese Nummer adressiert sind, weiss er auch, an
+           wen er die Pakete schicken soll. Daher muss der
+           Router Pakete von anderen Rechnern im LAN "mas-
+           kieren" - mit seiner eigenen, dynamisch zugewie-
+           senen Adresse (und dabei natuerlich Buch darueber
+           fuehren, was an wen von wem kam, um die Antwort-
+           Pakete richtig zuzustellen).
+
+           Zum Glueck ist diese Funktion in den Linux-Kernel
+           =>2.0.0 schon eingebaut (s.o.) - sie nennt sich
+           "IP-Masquerading". Vereinfacht ausgedrueckt geht
+           das so:
+           Ein LAN-Rechner schickt ein Paket ab, das neben
+           IP-Nummer und Ziel-Port des Empfaengers auch die
+           "Absender-Adresse" in Form einer IP-Nummer und
+           eines Antwort-Ports traegt. Der maskierende
+           Router nun ersetzt die Absender-IP durch seine
+           eigene und den Ruecksende-Port durch einen freien
+           aus seinem Fundus. Unter dieser "freien" Port-
+           nummer werden die originalen Absender-Daten ge-
+           speichert. Kommt nun ein Antwort-Paket aus dem
+           Internet an diesen Port, werden dessen Empfaenger-
+           Adresse und -Port mit der gespeicherten Ruecksende-
+           Adresse ueberschrieben und an den LAN-Rechner wei-
+           tergeleitet. Paket fuer Paket.
+           Leicht einsehbar ist uebrigens, dass dieses Verfahren
+           nur mit Diensten funktioniert, bei denen auch eine
+           Ruecksende-Adresse angegeben wird. Dazu gehoeren
+           u.a. telnet, http, ftp, irc (eingeschraenkt), nicht
+           aber Echo (ping).
+
+           Zurueck zur Praxis. Damit das Masquerading auch
+           bei FTP und IRC funktioniert, werden zunaechst
+           zwei Module geladen:
+
+           /sbin/modprobe ip_masq_ftp
+           /sbin/modprobe ip_masq_irc
+
+           Dann werden die Forward-Rules des Kernel zum
+           Masquerading gezwungen:
+
+/sbin/ipfwadm -F -a m -P all -S 192.168.123.0/24 -D 0.0.0.0/0 -b [2]
+
+           In diesem Beispiel werden im LAN die IP-Adressen
+           192.168.123.1 bis 192.168.123.254 benutzt. Legen
+           wir zur Vereinfachung fest, der Linux-Router habe
+           dabei die Adresse 192.168.123.1
+
+           Obige Zeile bewirkt, dass IP-Pakete, die von
+           192.168.123.x ausgehen und an wenauchimmer gerichtet
+           sind, maskiert werden. Das hat den Nachteil, dass
+           auch innerhalb des LAN fleissig drauflosmaskiert
+           wird, was man aber durch Einfuegen weiterer Rules
+           vermeiden kann. "man ipfwadm" sei hier zur Lektuere
+           empfohlen.
+
+           Das "Verstecken" des LAN vor dem Provider haben wir
+           nun erreicht. Jetzt gilt es, bei Bedarf einen auto-
+           matischen Verbindungsaufbau zu erzwingen.
+
+           Dafuer ist es zunaechst noetig, die anderen Rechner
+           im LAN dazu zu bringen, alle fuer "Ausserhalb" be-
+           stimmten IP-Pakete an den Linux-Router zu uebergeben
+           und diesem die Weiterleitung zu ueberlassen.
+
+           Nichts leichter als das: Sowohl bei den verschiedenen
+           Windows-Versionen, als auch beim AmiTCP und beim
+           MacTCP gibt es in der Konfiguration den Stichwort
+           "Default-Gateway" oder nur "Gateway". Hier ist die
+           _lokale_ IP-Adresse des Routers einzutragen (denn
+           die spaetere Adresse, die vom Provider kommt, ist
+           ja erstens noch nicht bekannt und aendert sich zwei-
+           tens bei jedem Anruf).
+
+           Letzter Schritt ist dann, das "dial-on-demand" ein-
+           zurichten. In Verbindung mit isdn4linux gibt es dafuer
+           zwei Moeglichkeiten:
+
+           * Man verwendet synchrones PPP fuer die Verbindung
+             zum Provider, also den "ipppd". Dann ist nichts
+             weiter zu tun als dafuer zu sorgen, dass immer
+             die Default-Route des Routers auf das entsprechende
+             ipppx-Interface weist. Vorsicht: Beim Verbindungs-
+             abbau loescht der Kernel diese Route! Sie muss
+             also z.B. in der Datei /etc/ppp/ip-down neu gesetzt
+             werden.
+             Das Risiko bei diesem Verfahren sind Programme auf
+             den LAN-Rechnern, die mehr oder weniger regelmaessig
+             Nameserver-Requests, Keepalive-Pakete oder ARP-
+             Broadcastings erzeugen - dann stellt naemlich der
+             Router jedesmal eine Verbindung zum Provider her.
+             Die Telekom wird's danken.
+
+             Uebrigens kann es passieren, dass manche aus dem
+             LAN initiierte Verbindungen recht lange auf Antwort
+             warten. Ich weiss nicht, ob Kernel oder ipppd das
+             "ausloesende" Paket verschlucken, oder die Antwort
+             darauf unterschlagen; ich weiss aber, dass es
+             hilft, z.B. bei Netscape wenige Sekunden nach
+             Anforderung der ersten Seite auf den "roten Knopf"
+             zu druecken und die Seite nochmals anzufordern.
+
+             Wie bereits erwaehnt: Die Konfiguration des ipppd
+             wird an anderer Stelle ausfuehrlicher und kompeten-
+             ter erklaert, als ich es koennte [3]
+
+           * Benutzt man asynchrones ppp oder gar SLIP/CSLIP
+             fuer die Verbindung zum Provider, kann man das
+             Programm "diald" [4] verwenden. Es bietet zudem
+             den Vorteil, extrem stark konfigurierbar zu sein;
+             so kann man z.B. festlegen, dass zwischen 0900
+             und 1200 grundsaetzlich keine Verbindung aufgebaut
+             wird, dass Nameserver-Anfragen eine Verbindung zwar
+             nicht aufbauen, aber offenhalten koennen u.v.m.
+             Wer sich mit diesen Konfigurationsmoeglichkeiten
+             nicht herumschlagen mag, braucht das indes auch
+             nicht - die Default-Konfiguration kann man ohne
+             Gefahr fuer Leib und Geldboerse uebernehmen :-)
+
+
+           So. Wenn jetzt das Masquerading eingerichtet wurde.
+           Wenn der Linux-Router auf allen LAN-Rechnern als
+           Gateway eingetragen wurde. Wenn ein "ping abc.edu",
+           eingetippt auf der Console des Routers, eine Verbin-
+           dung zum Provider aufbaut. _Dann_ sollte damit auch
+           fuer alle Rechner im LAN der Weg ins Internet frei sein.
+
+Troubleshooting:
+
+Problem: "Alles schoen und gut. Aber wenn ich z.B. von der
+          W95-Kiste aus mit Netscape eine Seite aufrufe,
+          bekomme ich als Antwort nur "unknown host" Loesung: "Was ist denn auf der "Win95-Kiste" als Nameserver
+          eingetragen? Sofern auf dem Router kein eigener
+          NS laeuft, muss natuerlich auf allen LAN-Rechnern
+          der NS des Providers eingetragen sein."
+
+Problem: "Die Adressen werden jetzt aufgeloest, aber statt
+          der gewuenschten Seite bekomme ich die Meldung
+          "no route to host"!"
+Loesung: "Bitte pruefen:
+          * Ist auf dem LAN-Rechner der Linux-Router als
+            Gateway eingetragen (manche "Betriebssysteme"
+            muss man komplett resetten, bevor Sie da eine
+            Aenderung mitbekommen)?
+          * Liegt auf dem Router die Default-Route auf dem
+            "Bereitschafts-Interface" zum Provider (z.B.
+            auf ippp0 bei synch. PPP, oder auf sl0 bei
+            diald (auch wenn die "echte" Verbindung nachher
+            per ppp0 geht - diald benutzt ein SLIP-Interface
+            als "Tuerklingel") ?
+          * Erzwingt der Provider die Verwendung von Proxies?
+            Dann muessen die IP-Adressen der Provider-Proxies
+            auch in den entsprechenden Programmen der LAN-
+            Rechner eingetragen sein!
+
+Problem: "Warum sind bei diesem FAQ keine ausfuehrlichen
+          Beispielscripte fuer ipppd, diald usw.?" Loesung: "Weil dies eine FAQ ist und keine eierlegende
+          Wollmilchsau. Ein Beispiel fuer diald haengt
+          trotzdem hinten dran."
+
+Problem: "Was muss ich fuer diese supertolle FAQ bezahlen?" Loesung: "Wenn es nach meiner Frau ginge, mindestens 250
+          Mark - so hoch veranschlagt sie den Abend, den ich
+          mit Schreiben verbrachte und der ihr daher entging.
+          Da es aber nicht nach meiner Frau geht, sondern nach
+          mir ;-), steht die FAQ unter GPL. Kost' also nix."
+
+################################################################
+
+
+[1] Wer mag, kann die ISDN-Treiber natuerlich auch direkt in den
+    Kernel einbauen, anstatt sie als Module zu verwenden.
+
+[2] Das Programm ipfwadm gibt es per Anon-FTP als
+    ftp://ftp.xos.nl/pub/linux/ipfwadm/ipfwadm-2.3.0.tar.gz
+
+[3] Bernhard Hailer hat das Ganze auf seinen www-Seiten sehr
+    ausfuehrlich und verstaendlich beschrieben. Die URL ist
+    http://www.chemie.uni-muenchen.de/ac/boehm/beh.html
+
+################################################################
+
+Beispielscripte fuer die Verwendung von isdn4linux mit diald. Die verbindung zum provider wird per X75 aufgebaut, das Protokoll ist dann PPP, ohne PAPpy/CHAPpy usw. Ein einfacher Login. Und Telefonnummer, Name sowie Passwort sind natuerlich gefaelscht :-)
+
+-------------------
+# zuerst wird - gleich beim Booten - diald "scharf gemacht" #
+# /etc/rc.d/rc.diald
+/usr/sbin/diald /dev/ttyI4 -m ppp local 192.168.90.9 remote 192.168.90.1 \
+  defaultroute dynamic modem crtscts lock connect "chat -v -f \
+  /etc/ppp/chat.provider"
+#
+-------------------
+#
+# /etc/ppp/chat.provider
+#
+TIMEOUT 240 "" AT&E1234 OK ATD047110815 ogin: Puser sword: topsecret #
+-------------------
+
+--------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

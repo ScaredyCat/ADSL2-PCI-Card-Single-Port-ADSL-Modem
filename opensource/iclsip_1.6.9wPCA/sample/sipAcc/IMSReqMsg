@@ -1,0 +1,43 @@
+INVITE sip:acer@140.96.102.238 SIP/2.0
+Accept:application/sdp;level=1;q=0.5,application/x-private,text/html
+Accept-Encoding:gzip;q=1.0,identity;q=0.5,*;q=0
+Accept-Language:da,en-gb;q=0.8,en;q=0.7
+Authorization:Digest username="John",realm="MCI WorldCom SIP",nonce="ea9c8e88df84f1cec4341ae6cbe5a359",opaque="",uri="sip:ss2.wcom.com",response="dfe56131d1958046689cd83306477ecc"
+Call-ID:f81d4fae-7dec-11d0-a765-00a0c91e6bf6@PUNTO.ccl.itri.org.tw
+Contact:Acer<sip:client@user.com>
+Contact:<sip:+88234234@user1.com;user=phone>
+Contact:"Mr. Watson"<mailto:watson@bell-telephone.com>;q=0.1
+Content-Encoding:gzip;q=1.0,identity;q=0.5,*;q=0
+Content-Length:116
+Content-Type:application/html;charset=ISO-8859-4
+CSeq:1722 INVITE
+Date:Thu, 31 Aug 2000 11:23:05 GMT
+Encryption:PGP version=2.6.2,encoding=ascii
+Expires:3600
+From:<sip:hchsu@spring.ccl.itri.org.tw>;tag=123456789-111
+Hide:route
+Max-Forwards:6
+Organization:No example...
+Priority:non-urgent
+Proxy-Authorization:Digest username="John",realm="MCI WorldCom SIP",nonce="ea9c8e88df84f1cec4341ae6cbe5a359",opaque="",uri="sip:ss2.wcom.com",response="dfe56131d1958046689cd83306477ecc"
+Proxy-Require:com.example.billing,saturn.bell-tel.com
+Record-Route:<sip:a.g.bell@bell-telephone.com>,<sip:a.bell@ieee.org>,<sip:nothing@itri.org.tw>,<sip:acer@csie.nctu.edu.tw>
+Require:com.example.billing,testing.example
+Refer-To:<sip:dave@denver.example.org?Replaces=12345%40192.168.118.3%3Bto-tag%3D12345%3Bfrom-tag%3D5FFE-3994>
+Response-Key:pgp version="2.6.2",encoding="ascii"
+Retry-After:Mon, 01 Jan 2001 07:12:54 GMT(Dear John: Don't call me back, ever);duration=3600
+Route:<sip:a.g.bell@bell-telephone.com>,<sip:a.bell@ieee.org>
+Session-Expires:1800
+Subject:Tune in - they are talking about your work!
+Timestamp:123.456 0.789
+To:<sip:acer@ferio.ccl.itri.org.tw;tag=998373-9283>
+User-Agent:CERN-LineMode/2.15 libwww/2.17b3
+Via:SIP/2.0/TCP 140.96.120.222:5060
+Path:<sip:P3.EXAMPLEHOME.COM;lr>,<sip:P1.EXAMPLEVISITED.COM;lr>
+
+v=0
+o=Acer 2890844526 IN IP4 140.96.102.174
+s=Session SDP
+t=0 0
+m=audio -1 RTP/AVP 0 8 3
+a=rtpmap:0 PCMU/8000

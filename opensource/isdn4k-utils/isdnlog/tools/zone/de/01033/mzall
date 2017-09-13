@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+# make reall zoneall for compzone
+$codef='code';
+sub get_codes {
+	open(IN, $codef) || die("Can't read $codef");
+	my @codes = <IN>;
+	close(IN);
+	chomp(@codes);
+	foreach(@codes) {
+	    $codes{$_}=1;
+	}    
+}
+
+&get_codes;
+while (<STDIN>) {
+    chomp;
+    ($f1, $t1, $z1) = split(/ /);
+    print "$_\n" if ($codes{$f1} && $codes{$t1});
+    print STDERR "$_ - $z2\n" if ($f2 && $f1 eq $f2 && $t1 eq $t2 && $z1 ne $z2);
+    $f2=$f1; 
+    $t2=$t1; 
+    $z2=$z1; 
+}    

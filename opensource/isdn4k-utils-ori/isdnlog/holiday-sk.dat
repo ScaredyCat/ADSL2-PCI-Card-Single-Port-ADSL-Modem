@@ -1,0 +1,31 @@
+V:-0.1 Slovensko [05-Jun-1999]
+
+W:1		Pondelok
+W:2		Utorok
+W:3		Streda
+W:4		Stvrtok
+W:5		Piatok
+W:6		Sobota
+W:7		Nedela
+W:W		Tyzden
+W:E		Weekend
+W:H		Sviatok
+W:*		denne
+
+D:1.1		Novy rok
+D:6.1		Traja krali
+D:easter	Velkonocna nedela
+D:easter+1	Velkonocny pondelok
+D:1.5		Sviatok prace
+D:8.5		Vyrocie oslobodenia
+#D:easter+39	Christi Himmelfahrt
+#D:easter+49	Pfingstsonntag
+#D:easter+50	Pfingstmontag
+#D:easter+60	Fronleichnam
+#D:15.8		Maria Himmelfahrt
+#D:26.10		Nationalfeiertag
+D:1.11		Dušičky
+#D:8.12		Maria Empfängnis
+D:24.12		Štedrý deň
+D:25.12		1. Sviatok vianocny
+D:26.12		2. Sviatok vianocny

@@ -1,0 +1,128 @@
+.\" $Id: loopctrl.man.in,v 1.2 1999/09/06 08:03:27 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:27 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii icnctrl.1 for ASCII output, or
+.\" groff -man -Tps loopctrl.1 for PostScript output
+.\"
+.TH LOOPCTRL 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+loopctrl \- configure isdnloop ISDN driver
+.SH SYNOPSIS
+.B loopctrl [-d
+.IB Driver-Id ]
+.I action options
+.B ...
+.SH DESCRIPTION
+.B loopctrl
+is used to setup the isdnloop
+.SM ISDN
+driver.
+.LP
+.SH OPTIONS
+.TP
+.BI "-d " Driver-Id
+selects the virtual S0 interface named by
+.IR Driver-Id .
+Driver-Ids are defined during driver initialisation. See
+.BR isdnloop (4)
+for a description of the syntax to be used for modularised and
+monolithic driver versions.
+This option
+.B must
+be used to identify the virtual S0 interface if more than one S0 interface is
+existent. If a single virtual S0 interface is used, it may be omitted.
+If using more than one virtual card, support for the other cards is enabled
+with the
+.B add
+action of loopctrl. Ids may
+.B not
+start with
+.B digits
+or small
+.BR x ,
+because these values are misinterpreted
+as numeric parameters by
+.BR insmod .
+For loading the module, always the
+newest
+.B modutils
+package should be used to avoid problems during load.
+.LP
+The following 
+.I actions
+may be given to
+.BR loopctrl .
+.TP
+.BI "add [" id ]
+enables support for an additional virtual card in the driver. If
+.I id
+is missing, adds a card with an id given by the system. with
+.I id
+given, adds a card with an Id given by the user. Ids are
+checked against conflicts, and if a conflict happens, replaced by the
+system in the same manner as if no Id was supplied.
+.TP
+.B leased on|off
+switches between normal (dialup) and leased-line mode. Leased-line mode
+is intended for usage with S64K-lines or - if both channels are used -
+for S02. These lines do not have a D-channel. When leased-line mode is
+enabled, the driver simulates incoming calls using special "phone-numbers"
+for calling and called address which are generated as follows:
+.ie 1
+.RS
+Calling number:
+.RS
+.BI LEASED x
+.RS
+where
+.I x
+is the internal slot-number of the S0 interface. This number starts with
+.I 0
+for the first S0 interface and is incremented by one for every S0 interface
+configured using the
+.B add
+action.
+.RE
+.RE
+.ie 1
+Called number:
+.RS
+.I x
+.RS
+where
+.I x
+is equal to the channel number of the calling S0 interface starting with
+.IR 1 .
+.RE
+.RE
+.RE
+.TP
+.BI "start " protocol " " phone1 " [" "phone2 phone3" ]
+starts the driver with the given D-channel protocol. If
+.I protocol
+.RB "is " 1tr6 ,
+.RI only " phone1"
+has to be given. It is meant to be the base number of the virtual
+S0 interface to which the EAZ is appended. If
+.I protocol
+.RB "is " dss1 ,
+.IR "phone1, phone2 " and " phone3
+have to be given and represent the three MSNs of the virtual
+S0 interface.
+.TP
+.B dump
+is available if the program is configured using the
+.B --enable-dump
+option only. The contents of internal driver variables is dumped on stdout.
+.SH BUGS
+This program and the isdnloop driver are
+.B ALPHA
+code. The main intention for this driver is for testing the link level
+and applications.
+.SH AUTHOR
+\(co 1997 by Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.BR isdnctrl "(8), " isdnloop "(4), " isdninfo "(4), " isdnctrl "(4), " ttyI (4).

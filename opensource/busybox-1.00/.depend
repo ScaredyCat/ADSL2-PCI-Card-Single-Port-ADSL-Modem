@@ -1,0 +1,1054 @@
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ipaddress.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ipaddress.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ip_parse_common_args.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ip_parse_common_args.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/libnetlink.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/libnetlink.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iptunnel.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iptunnel.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iproute.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iproute.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ll_addr.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/ll_addr.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iplink.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/iplink.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/utils.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/libiproute/utils.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/inetd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/inetd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/inetd/support/biltin/echo.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/inetd/support/biltin/discard.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/inetd/support/biltin/time.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/inetd/support/biltin/daytime.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/inetd/support/biltin/chargen.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nc.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nc.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/netstat.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/netstat.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/route.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ifconfig.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ifconfig.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifconfig/slip.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifconfig/broadcast/plus.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifconfig/hw.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifconfig/memstart/ioaddr/irq.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifconfig/status.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/httpd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/httpd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/lfs.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/usage/from/inetd/only.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/basic/auth.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/cgi.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/config/with/mime/types.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/encode/url/str.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/set/remote/port/to/env.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/auth/md5.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/reload/config/sighup.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/httpd/setuid.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ping6.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ping6.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/ping6.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/ping.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/telnetd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/telnetd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/telnetd/inactive/timeout.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/login.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/telnetd/inetd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/devpts.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iptunnel.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iptunnel.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iproute.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iproute.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nslookup.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nslookup.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/vconfig.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/vconfig.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ifupdown.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ifupdown.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifupdown/mapping.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifupdown/ip.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifupdown/ipx.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifupdown/ipv6.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ifupdown/ipv4.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/hostname.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/hostname.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ping.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ping.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/ping.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/route.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/route.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ip/address.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ip/route.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ip/link.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ip/tunnel.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iplink.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iplink.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/telnet.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/telnet.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/telnet/ttype.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/telnet/autologin.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/autowidth.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nameif.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/nameif.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/tftp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/tftp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tftp/blocksize.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tftp/debug.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tftp/get.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tftp/put.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ipaddr.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ipaddr.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/traceroute.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/traceroute.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/traceroute/verbose.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/traceroute.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/traceroute/so/debug.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/wget.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/wget.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/wget/statusbar.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/wget/authentication.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/wget/ip6/literal.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iwconfig.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iwconfig.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/iwlib.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/iwlib.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iwpriv.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/iwpriv.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/iwlib.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/iwlib.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ftpgetput.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ftpgetput.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ftpget.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ftpput.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ipcalc.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/ipcalc.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipcalc/fancy.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/networking/arping.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/networking/arping.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/hdparm.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/hdparm.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/get/identity.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/hdio/getset/dma.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/hdio/unregister/hwif.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/hdio/scan/hwif.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/hdio/tristate/hwif.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hdparm/hdio/drive/reset.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/rx.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/rx.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/crond.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/crond.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/crond/call/sendmail.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/time.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/time.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/last.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/last.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/adjtimex.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/adjtimex.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/dc.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/dc.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/crontab.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/crontab.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/watchdog.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/watchdog.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/makedevs.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/makedevs.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/mt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/mt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/strings.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/strings.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/devfsd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/miscutils/devfsd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/devfsd/modload.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/devfsd/verbose.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/debug.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/devfsd/fg/np.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/file.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/modules/devfs.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/renice.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/renice.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/sysctl.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/sysctl.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/free.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/free.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/uptime.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/uptime.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/kill.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/kill.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/killall.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/top.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/top.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/use/termios.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/pidof.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/pidof.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/procps/ps.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/procps/ps.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/grep.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/grep.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/grep/context.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/grep/egrep/alias.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/xargs.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/xargs.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/xargs/support/confirmation.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/xargs/support/quotes.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/xargs/support/termopt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/xargs/support/zero/term.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/find.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/findutils/find.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/type.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/perm.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/mtime.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/xdev.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/newer.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/find/inum.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/modprobe.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/modprobe.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/2/6/modules.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/rmmod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/rmmod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/2/6/modules.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/query/module/interface.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/insmod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/insmod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/2/4/modules.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/2/6/modules.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/insmod/loadinkmem.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/insmod/version/checking.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/use/list.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/list/archtype.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/use/single.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/use/plt/entries.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/use/got/entries.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/use/plt/list.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/got/entry/size.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/plt/entry/size.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/check/tainted/module.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/insmod/ksymoops/symbols.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/insmod/load/map.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/insmod/load/map/full.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/lsmod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/modutils/lsmod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/check/tainted/module.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/query/module/interface.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/hwclock.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/hwclock.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/hwclock/longoptions.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/freeramdisk.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/freeramdisk.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mkswap.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mkswap.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/umount.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/umount.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mount/force.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mount/loop.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mtab/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fsck_minix.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fsck_minix.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/minix2.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/rdate.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/rdate.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdisk.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdisk.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sun/label.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sgi/label.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/aix/label.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/osf/label.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fdisk/writable.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fdisk/advanced.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/weird/partition/types.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fdisk/blksize.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/hexdump.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/hexdump.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/more.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/more.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/use/termios.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/nfsmount.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/nfsmount.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/swaponoff.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/swaponoff.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/pivot_root.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/pivot_root.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/losetup.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/losetup.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdflush.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdflush.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/dmesg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/dmesg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mkfs_minix.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mkfs_minix.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/minix2.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fbset.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fbset.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fbset/fancy.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fbset/readmode.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdformat.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/fdformat.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mount.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/mount.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/nfsmount.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mount/loop.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mtab/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/getopt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/util-linux/getopt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/vlock.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/vlock.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/sulogin.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/sulogin.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/delgroup.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/delgroup.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/deluser.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/su.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/su.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/u/w/tmp.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/adduser.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/adduser.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/addgroup.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/getty.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/getty.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/syslogd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/u/w/tmp.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/addgroup.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/addgroup.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/adduser.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/passwd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/passwd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/deluser.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/deluser.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/login.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/login.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/u/w/tmp.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/securetty.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/wheel/group.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/delline.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/loginutils/delline.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/shell/lash.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/shell/lash.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/lash/pipe/n/redirects.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/lash/job/control.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/editing.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/standalone/shell.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/extra/quiet.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/shell/msh.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/shell/msh.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/editing.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/extra/quiet.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/standalone/shell.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/shell/ash.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/shell/ash.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/job/control.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/alias.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/optimize/for/size.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/math/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/cmdcmd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/getopts.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/extra/quiet.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/mail.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/math/support/64.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash/random/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/savehistory.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/editing.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/standalone/shell.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/tab/completion.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/shell/hush.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/shell/hush.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/editing.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/standalone/shell.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/extra/quiet.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/shell/cmdedit.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/shell/cmdedit.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/../shell/cmdedit.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/../shell/cmdedit.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/tab/completion.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/editing.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/username/completion.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/getusername/and/homedir.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/history.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/nonprintable/inverse/put.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/ash.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/command/savehistory.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/loadfont.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/loadfont.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/openvt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/openvt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/setkeycodes.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/setkeycodes.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/clear.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/clear.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/dumpkmap.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/dumpkmap.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/reset.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/reset.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/chvt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/chvt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/deallocvt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/deallocvt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/loadkmap.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/console-tools/loadkmap.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/syslogd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/syslogd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/rotate/logfile.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/remote/log.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipc/syslog.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipc/syslog/buffer/size.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/logread.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/logread.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/logread/reduced/locking.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/klogd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/klogd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/logger.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/sysklogd/logger.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/syslogd.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/od.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/od.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uuencode.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uuencode.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/cp_mv_stat.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/cp_mv_stat.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/getopt_mk_fifo_nod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/getopt_mk_fifo_nod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/xgetoptfile_sort_uniq.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/libcoreutils/xgetoptfile_sort_uniq.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sync.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sync.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/wc.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/wc.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tee.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tee.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tee/use/block/io.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/realpath.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/realpath.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/head.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/head.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/head.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uniq.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uniq.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/md5_sha1_sum.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/md5_sha1_sum.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/md5/sha1/sum/check.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/md5sum.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/sha1sum.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/env.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/env.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uname.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uname.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/whoami.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/whoami.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/watch.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/watch.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/du.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/du.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/human/readable.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/du/defalt/blocksize/1k.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/date.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/date.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/date/isofmt.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/test.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/test.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/test/64.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/basename.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/basename.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/echo.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/echo.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/echo.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/expr.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/expr.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chown.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chown.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/rm.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/rm.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/true.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/true.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dirname.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dirname.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/df.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/df.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/human/readable.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/pwd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/pwd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/yes.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/yes.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tail.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tail.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/tail.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mkfifo.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mkfifo.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/stty.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/stty.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chgrp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chgrp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chroot.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chroot.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cat.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cat.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/length.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/length.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/false.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/false.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/id.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/id.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/install.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/install.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dos2unix.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dos2unix.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/rmdir.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/rmdir.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/hostid.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/hostid.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sort.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sort.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cmp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cmp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mknod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mknod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/ls.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/ls.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/timestamps.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/sortfiles.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/followlinks.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/human/readable.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/filetypes.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/color.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/autowidth.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/recursive.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ls/username.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mkdir.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mkdir.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chmod.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/chmod.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/touch.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/touch.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cal.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cal.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mv.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/mv.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/who.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/who.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/ln.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/ln.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sleep.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/sleep.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/fancy/sleep.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tty.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tty.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cut.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/cut.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tr.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/tr.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/usleep.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/usleep.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/dd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uudecode.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/uudecode.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/seq.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/seq.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/printf.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/printf.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/logname.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/logname.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/fold.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/coreutils/fold.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/init_handle.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/init_handle.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar_gz.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar_gz.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_unzip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_unzip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/config.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/config.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_reject_list.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_reject_list.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_verbose_list.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_verbose_list.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_list.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_list.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/check_header_gzip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/check_header_gzip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/archive_xread_all_eof.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/archive_xread_all_eof.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_list.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_list.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/seek_by_jump.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/seek_by_jump.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/unarchive/tape.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar_bz2.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar_bz2.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/archive_xread_all.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/archive_xread_all.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_all.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_all.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_cpio.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_cpio.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_all.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_all.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_to_buffer.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_to_buffer.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/find_list_entry.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/find_list_entry.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_tar.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/gnu/extensions.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/oldgnu/compatability.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/open_transformer.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/open_transformer.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_skip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_skip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_to_stdout.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_extract_to_stdout.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_bunzip2.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_bunzip2.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/unpack_ar_archive.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/unpack_ar_archive.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_list_reassign.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/filter_accept_list_reassign.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/gz.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/bz2.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/seek_by_char.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/seek_by_char.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_uncompress.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/decompress_uncompress.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/config.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/config.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_align.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/data_align.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_ar.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/get_header_ar.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ar/long/filenames.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_skip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/libunarchive/header_skip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/cpio.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/cpio.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/uncompress.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/uncompress.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/tar.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/tar.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/create.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/from.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/gzip.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/compress.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/bzip2.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/tar/long/options.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/gunzip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/gunzip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/gunzip/uncompress.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/ar.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/ar.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/bunzip2.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/bunzip2.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/unzip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/unzip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/rpm2cpio.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/rpm2cpio.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/rpm.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/rpm.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/gzip.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/gzip.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/gunzip.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/dpkg_deb.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/dpkg_deb.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/gz.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/bz2.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/archival/dpkg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/archival/dpkg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/gz.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/deb/tar/bz2.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/applets/applets.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/applets/applets.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/usage.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/usage.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/applets.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/applets.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/applets.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/applets.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/suid.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/suid/config.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/suid/config/quiet.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/file.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/applets/busybox.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/applets/busybox.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/installer.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/init.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/autowidth.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libpwdgrp/pwd_grp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libpwdgrp/pwd_grp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/shadow_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/shadow_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/editors/patch.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/editors/patch.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/editors/awk.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/editors/awk.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/awk/math.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/editors/vi.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/editors/vi.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/locale/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/optimize/cursor.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/use/signals.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/crashme.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/dot/cmd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/yankmark.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/readonly.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/search.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/colon.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/win/resize.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/setopts.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/vi/set.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/editors/sed.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/editors/sed.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/chomp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/chomp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/device_open.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/device_open.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/messages.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/messages.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/parse_number.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/parse_number.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/run_shell.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/run_shell.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/error_msg_and_die.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/error_msg_and_die.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xreadlink.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xreadlink.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_terminal_width_height.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_terminal_width_height.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/autowidth.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_nomsg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_nomsg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/parse_mode.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/parse_mode.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_msg_and_die.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_msg_and_die.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetlarg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetlarg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/qmodule.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/qmodule.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/trim.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/trim.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/recursive_action.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/recursive_action.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetcwd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetcwd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/create_icmp6_socket.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/create_icmp6_socket.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/llist_add_to.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/llist_add_to.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/unarchive.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/kernel_version.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/kernel_version.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/getopt_ulflags.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/getopt_ulflags.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_strncpy.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_strncpy.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_write.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_write.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/restricted_shell.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/restricted_shell.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vherror_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vherror_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/copyfd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/copyfd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgethostbyname2.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgethostbyname2.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_console.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_console.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/herror_msg_and_die.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/herror_msg_and_die.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/skip_whitespace.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/skip_whitespace.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xconnect.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xconnect.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vdprintf.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vdprintf.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/pw_encrypt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/pw_encrypt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/sha1/passwords.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/dump.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/dump.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/dump.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_mount_point.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_mount_point.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/warn_ignoring_args.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/warn_ignoring_args.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/syscalls.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/syscalls.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_pid_by_name.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_pid_by_name.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/process_escape_sequence.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/process_escape_sequence.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/correct_password.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/correct_password.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/shadowpasswds.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/inode_hash.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/inode_hash.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/ask_confirmation.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/ask_confirmation.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/verror_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/verror_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/default_error_retval.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/default_error_retval.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/error_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/error_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/speed_table.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/speed_table.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/create_icmp_socket.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/create_icmp_socket.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/mtab_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/mtab_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mtab/support.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/mtab/filename.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getgrnam.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getgrnam.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_nomsg_and_die.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_nomsg_and_die.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_root_device.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/find_root_device.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/devfs.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_strtol.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_strtol.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/wfopen_input.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/wfopen_input.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/pwd2spwd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/pwd2spwd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/shadow_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/shadow_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/remove_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/remove_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vfork_daemon_rexec.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vfork_daemon_rexec.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/full_write.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/full_write.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fgets_str.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fgets_str.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_line_from_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/get_line_from_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/wfopen.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/wfopen.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/concat_path_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/concat_path_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/interface.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/interface.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getpwnam.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getpwnam.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/loop.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/loop.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getpwuid.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getpwuid.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/hash_fd.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/hash_fd.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/sha1sum.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/md5sum.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/isdirectory.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/isdirectory.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/print_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/print_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/make_directory.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/make_directory.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xfuncs.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xfuncs.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/login.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/login.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/full_read.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/full_read.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getgrgid.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getgrgid.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/grp_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fclose_nonstdin.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fclose_nonstdin.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getug.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/my_getug.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/module_syscalls.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/module_syscalls.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/herror_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/herror_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/human_readable.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/human_readable.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgethostbyname.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgethostbyname.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/inet_common.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/inet_common.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/inet_common.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/ipv6.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/simplify_path.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/simplify_path.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/run_parts.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/run_parts.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/concat_subpath_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/concat_subpath_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/perror_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_read.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/safe_read.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vperror_msg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/vperror_msg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/bb_asprintf.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/bb_asprintf.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xregcomp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xregcomp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/last_char_is.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/last_char_is.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetularg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/xgetularg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/procps.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/procps.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/selinux.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/read_package_field.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/read_package_field.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fflush_stdout_and_exit.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/fflush_stdout_and_exit.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/obscure.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/obscure.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/setup_environment.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/setup_environment.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/copy_file.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/copy_file.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/preserve/hardlinks.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/printf.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/printf.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/change_identity.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/change_identity.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/mtab.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/libbb/mtab.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/mesg.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/mesg.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/init.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/init.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/syslogd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/init/coredumps.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/extra/quiet.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/use/inittab.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/initrd.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/reboot.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/reboot.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/init.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/poweroff.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/poweroff.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/init.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/init_shared.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/init_shared.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/initrd.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/init.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/init/halt.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/init/halt.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/init.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/start_stop_daemon.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/start_stop_daemon.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/pwd_.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/pipe_progress.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/pipe_progress.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/readlink.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/readlink.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h) \
+   $(wildcard /Danube/3.0.5/source/user/opensource/busybox-1.00/config/feature/clean/up.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/mktemp.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/mktemp.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/which.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/which.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/busybox.h)
+/Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/run_parts.o: /Danube/3.0.5/source/user/opensource/busybox-1.00/debianutils/run_parts.c \
+ /Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h $(dep_/Danube/3.0.5/source/user/opensource/busybox-1.00/include/libbb.h)

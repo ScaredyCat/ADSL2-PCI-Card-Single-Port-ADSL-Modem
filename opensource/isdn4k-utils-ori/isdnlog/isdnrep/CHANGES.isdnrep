@@ -1,0 +1,589 @@
+ *
+ * Revision 1.85  1999/12/17 22:51:54  akool
+ * isdnlog-3.79
+ *  - isdnlog/isdnrep/isdnrep.{c,h} ... error -handling, print_msg
+ *  - isdnlog/isdnrep/rep_main.c
+ *  - isdnlog/isdnrep/isdnrep.1.in
+ *  - isdnlog/tools/rate.c  ... dupl entry in rate.conf
+ *  - isdnlog/tools/NEWS
+ *  - isdnlog/tools/isdnrate.c
+ *  - isdnlog/tools/dest/configure{,.in}
+ *  - isdnlog/tools/zone/configure{,.in}
+ *
+ * Revision 1.84  1999/11/28 19:32:41  akool
+ * isdnlog-3.71
+ *
+ * Revision 1.83  1999/11/27 19:24:19  akool
+ * isdnlog-3.69
+ *
+ * Revision 1.82  1999/11/08 21:09:40  akool
+ * isdnlog-3.65
+ *   - added "B:" Tag to "rate-xx.dat"
+ *
+ * Revision 1.81  1999/11/07 13:29:28  akool
+ * isdnlog-3.64
+ *  - new "Sonderrufnummern" handling
+ *
+ * Revision 1.80  1999/10/25 18:33:16  akool
+ * isdnlog-3.57
+ *   WARNING: Experimental version!
+ *   	   Please use isdnlog-3.56 for production systems!
+ *
+ * Revision 1.79  1999/09/13 09:09:43  akool
+ * isdnlog-3.51
+ *   - changed getProvider() to not return NULL on unknown providers
+ *     many thanks to Matthias Eder <mateder@netway.at>
+ *   - corrected zone-processing when doing a internal -> world call
+ *
+ * Revision 1.78  1999/09/11 22:28:25  akool
+ * isdnlog-3.50
+ *   added 3. parameter to "-h" Option: Controls CHARGEHUP for providers like
+ *   DTAG (T-Online) or AOL.
+ *   Many thanks to Martin Lesser <m-lesser@lesser-com.de>
+ *
+ * Revision 1.77  1999/09/09 11:21:05  akool
+ * isdnlog-3.49
+ *
+ * Revision 1.76  1999/08/29 10:28:44  akool
+ * isdnlog-3.48
+ *   cosmetics
+ *
+ * Revision 1.75  1999/08/21 13:00:10  akool
+ * small fixes
+ *
+ * Revision 1.74  1999/08/20 19:28:37  akool
+ * isdnlog-3.45
+ *  - removed about 1 Mb of (now unused) data files
+ *  - replaced areacodes and "vorwahl.dat" support by zone databases
+ *  - fixed "Sonderrufnummern"
+ *  - rate-de.dat :: V:1.10-Germany [20-Aug-1999 21:23:27]
+ *
+ * Revision 1.73  1999/07/24 08:44:44  akool
+ * isdnlog-3.42
+ *   rate-de.dat 1.02-Germany [18-Jul-1999 10:44:21]
+ *   better Support for Ackermann Euracom
+ *   WEB-Interface for isdnrate
+ *   many small fixes
+ *
+ * Revision 1.72  1999/07/23 09:09:38  calle
+ * Bugfix: getProvider sometimes returns NULL and isdnrep crashed ...
+ *
+ * Revision 1.71  1999/07/18 08:40:17  akool
+ * fix from Michael
+ *
+ * Revision 1.70  1999/07/12 11:37:34  calle
+ * Bugfix: isdnrep defined print_msg as function pointer, the object files
+ *         in tools directory, declare it as external function.
+ * 	compiler and linker did not detect the problem.
+ * 	Now print_msg is a function in rep_main.c and I copied
+ * 	print_in_modules from isdnconf. Also set_print_fct_for_isdnrep
+ * 	is removed from isdnrep.c. isdnrep didn´t crash now, but throw
+ * 	out warning messages about rate.dat and did´t generate output.
+ *
+ * Revision 1.69  1999/06/16 19:12:42  akool
+ * isdnlog Version 3.34
+ *   fixed some memory faults
+ *
+ * Revision 1.68  1999/06/15 20:04:31  akool
+ * isdnlog Version 3.33
+ *   - big step in using the new zone files
+ *   - *This*is*not*a*production*ready*isdnlog*!!
+ *   - Maybe the last release before the I4L meeting in Nuernberg
+ *
+ * Revision 1.67  1999/06/09 19:58:44  akool
+ * isdnlog Version 3.31
+ *  - Release 0.91 of zone-Database (aka "Verzonungstabelle")
+ *  - "rate-de.dat" V:1.02-Germany [09-Jun-1999 21:45:26]
+ *
+ * Revision 1.66  1999/06/03 18:50:46  akool
+ * isdnlog Version 3.30
+ *  - rate-de.dat V:1.02-Germany [03-Jun-1999 19:49:22]
+ *  - small fixes
+ *
+ * Revision 1.65  1999/05/22 10:18:50  akool
+ * isdnlog Version 3.29
+ *
+ *  - processing of "sonderrufnummern" much more faster
+ *  - detection for sonderrufnummern of other provider's implemented
+ *    (like 01929:FreeNet)
+ *  - Patch from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+ *  - Patch from Markus Schoepflin <schoepflin@ginit.de>
+ *  - easter computing corrected
+ *  - rate-de.dat 1.02-Germany [22-May-1999 11:37:33] (from rate-CVS)
+ *  - countries-de.dat 1.02-Germany [22-May-1999 11:37:47] (from rate-CVS)
+ *  - new option "-B" added (see README)
+ *    (using "isdnlog -B16 ..." isdnlog now works in the Netherlands!)
+ *
+ * Revision 1.64  1999/05/04 19:33:01  akool
+ * isdnlog Version 3.24
+ *
+ *  - fully removed "sondernummern.c"
+ *  - removed "gcc -Wall" warnings in ASN.1 Parser
+ *  - many new entries for "rate-de.dat"
+ *  - better "isdnconf" utility
+ *
+ * Revision 1.63  1999/04/16 14:39:31  akool
+ * isdnlog Version 3.16
+ *
+ * - more syntax checks for "rate-xx.dat"
+ * - isdnrep fixed
+ *
+ * Revision 1.62  1999/04/14 13:16:42  akool
+ * isdnlog Version 3.14
+ *
+ * - "make install" now install's "rate-xx.dat", "rate.conf" and "ausland.dat"
+ * - "holiday-xx.dat" Version 1.1
+ * - many rate fixes (Thanks again to Michael Reinelt <reinelt@eunet.at>)
+ *
+ * Revision 1.61  1999/04/10 16:36:00  akool
+ * isdnlog Version 3.13
+ *
+ * WARNING: This is pre-ALPHA-dont-ever-use-Code!
+ * 	 "tarif.dat" (aka "rate-xx.dat"): the next generation!
+ *
+ * You have to do the following to test this version:
+ *   cp /usr/src/isdn4k-utils/isdnlog/holiday-de.dat /etc/isdn
+ *   cp /usr/src/isdn4k-utils/isdnlog/rate-de.dat /usr/lib/isdn
+ *   cp /usr/src/isdn4k-utils/isdnlog/samples/rate.conf.de /etc/isdn/rate.conf
+ *
+ * After that, add the following entries to your "/etc/isdn/isdn.conf" or
+ * "/etc/isdn/callerid.conf" file:
+ *
+ * [ISDNLOG]
+ * SPECIALNUMBERS = /usr/lib/isdn/sonderrufnummern.dat
+ * HOLIDAYS       = /usr/lib/isdn/holiday-de.dat
+ * RATEFILE       = /usr/lib/isdn/rate-de.dat
+ * RATECONF       = /etc/isdn/rate.conf
+ *
+ * Please replace any "de" with your country code ("at", "ch", "nl")
+ *
+ * Good luck (Andreas Kool and Michael Reinelt)
+ *
+ * Revision 1.60  1999/03/24 19:38:33  akool
+ * - isdnlog Version 3.10
+ * - moved "sondernnummern.c" from isdnlog/ to tools/
+ * - "holiday.c" and "rate.c" integrated
+ * - NetCologne rates from Oliver Flimm <flimm@ph-cip.uni-koeln.de>
+ * - corrected UUnet and T-Online rates
+ *
+ * Revision 1.59  1999/03/20 14:33:53  akool
+ * - isdnlog Version 3.08
+ * - more tesion)) Tarife from Michael Graw <Michael.Graw@bartlmae.de>
+ * - use "bunzip -f" from Franz Elsner <Elsner@zrz.TU-Berlin.DE>
+ * - show another "cheapest" hint if provider is overloaded ("OVERLOAD")
+ * - "make install" now makes the required entry
+ *     [GLOBAL]
+ *     AREADIFF = /usr/lib/isdn/vorwahl.dat
+ * - README: Syntax description of the new "rate-at.dat"
+ * - better integration of "sondernummern.c" from mario.joussen@post.rwth-aachen.de
+ * - server.c: buffer overrun fix from Michael.Weber@Post.RWTH-Aachen.DE (Michael Weber)
+ *
+ * Revision 1.58  1999/03/15 21:28:32  akool
+ * - isdnlog Version 3.06
+ * - README: explain some terms about LCR, corrected "-c" Option of "isdnconf"
+ * - isdnconf: added a small LCR-feature - simply try "isdnconf -c 069"
+ * - isdnlog: dont change CHARGEINT, if rate is't known!
+ * - sonderrufnummern 1.02 [15-Mar-99] :: added WorldCom
+ * - tarif.dat 1.09 [15-Mar-99] :: added WorldCom
+ * - isdnlog now correctly handles the new "Ortstarif-Zugang" of UUnet
+ *
+ * Revision 1.57  1999/03/14 14:27:25  akool
+ * - isdnlog Version 3.05
+ * - new Option "-u1" (or "ignoreRR=1")
+ * - added version information to "sonderrufnummern.dat"
+ * - added debug messages if sonderrufnummern.dat or tarif.dat could not be opened
+ * - sonderrufnummern.dat V 1.01 - new 01805 rates
+ *
+ * Revision 1.56  1999/03/07 18:19:56  akool
+ * - new 01805 tarif of DTAG
+ * - new March 1999 tarife
+ * - added new provider "01051 Telecom"
+ * - fixed a buffer overrun from Michael Weber <Michael.Weber@Post.RWTH-Aachen.DE>
+ * - fixed a bug using "sondernnummern.c"
+ * - fixed chargeint change over the time
+ * - "make install" now install's "sonderrufnummern.dat", "tarif.dat",
+ *   "vorwahl.dat" and "tarif.conf"! Many thanks to
+ *   Mario Joussen <mario.joussen@post.rwth-aachen.de>
+ * - Euracom Frames would now be ignored
+ * - fixed warnings in "sondernnummern.c"
+ * - "10plus" messages no longer send to syslog
+ *
+ * Revision 1.55  1999/02/28 19:33:30  akool
+ * Fixed a typo in isdnconf.c from Andreas Jaeger <aj@arthur.rhein-neckar.de>
+ * CHARGEMAX fix from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+ * isdnrep fix from reinhard.karcher@dpk.berlin.fido.de (Reinhard Karcher)
+ * "takt_at.c" fixes from Ulrich Leodolter <u.leodolter@xpoint.at>
+ * sondernummern.c from Mario Joussen <mario.joussen@post.rwth-aachen.de>
+ * Reenable usage of the ZONE entry from Schlottmann-Goedde@t-online.de
+ * Fixed a typo in callerid.conf.5
+ *
+ * Revision 1.54  1999/01/24 19:02:19  akool
+ *  - second version of the new chargeint database
+ *  - isdnrep reanimated
+ *
+ * Revision 1.53  1999/01/10 15:24:09  akool
+ *  - "message = 0" bug fixed (many thanks to
+ *    Sebastian Kanthak <sebastian.kanthak@muehlheim.de>)
+ *  - CITYWEEKEND via config-file possible
+ *  - fixes from Michael Reinelt <reinelt@eunet.at>
+ *  - fix a typo in the README from Sascha Ziemann <szi@aibon.ping.de>
+ *  - Charge for .at optimized by Michael Reinelt <reinelt@eunet.at>
+ *  - first alpha-Version of the new chargeinfo-Database
+ *    ATTENTION: This version requires the following manual steps:
+ *      cp /usr/src/isdn4k-utils/isdnlog/tarif.dat /usr/lib/isdn
+ *      cp /usr/src/isdn4k-utils/isdnlog/samples/tarif.conf /etc/isdn
+ *
+ * Revision 1.52  1998/12/09 20:39:54  akool
+ *  - new option "-0x:y" for leading zero stripping on internal S0-Bus
+ *  - new option "-o" to suppress causes of other ISDN-Equipment
+ *  - more support for the internal S0-bus
+ *  - Patches from Jochen Erwied <mack@Joker.E.Ruhr.DE>, fixes TelDaFax Tarif
+ *  - workaround from Sebastian Kanthak <sebastian.kanthak@muehlheim.de>
+ *  - new CHARGEINT chapter in the README from
+ *    "Georg v.Zezschwitz" <gvz@popocate.hamburg.pop.de>
+ *
+ * Revision 1.51  1998/11/24 20:52:41  akool
+ *  - changed my email-adress
+ *  - new Option "-R" to supply the preselected provider (-R24 -> Telepassport)
+ *  - made Provider-Prefix 6 digits long
+ *  - full support for internal S0-bus implemented (-A, -i Options)
+ *  - isdnlog now ignores unknown frames
+ *  - added 36 allocated, but up to now unused "Auskunft" Numbers
+ *  - added _all_ 122 Providers
+ *  - Patch from Jochen Erwied <mack@Joker.E.Ruhr.DE> for Quante-TK-Anlagen
+ *    (first dialed digit comes with SETUP-Frame)
+ *
+ * Revision 1.50  1998/11/17 00:37:48  akool
+ *  - fix new Option "-i" (Internal-S0-Bus)
+ *  - more Providers (Nikoma, First Telecom, Mox)
+ *  - isdnrep-Bugfix from reinhard.karcher@dpk.berlin.fido.de (Reinhard Karcher)
+ *  - Configure.help completed
+ *
+ * Revision 1.49  1998/11/01 08:50:11  akool
+ *  - fixed "configure.in" problem with NATION_*
+ *  - DESTDIR fixes (many thanks to Michael Reinelt <reinelt@eunet.at>)
+ *  - isdnrep: Outgoing calls ordered by Zone/Provider/MSN corrected
+ *  - new Switch "-i" -> running on internal S0-Bus
+ *  - more providers
+ *  - "sonderrufnummern.dat" extended (Frag Fred, Telegate ...)
+ *  - added AVM-B1 to the documentation
+ *  - removed the word "Teles" from the whole documentation ;-)
+ *
+ * Revision 1.48  1998/10/22 18:22:49  luethje
+ * isdnrep: suppress some messages
+ * isdnlog: remove function Pathfind()
+ *
+ * Revision 1.47  1998/10/13 21:53:17  luethje
+ * isdnrep and lib: bugfixes
+ *
+ * Revision 1.46  1998/10/04 12:04:21  akool
+ *  - README
+ *      New entries "CALLFILE" and "CALLFMT" documented
+ *      Small Correction from Markus Werner <mw@empire.wolfsburg.de>
+ *      cosmetics
+ *
+ *  - isdnrep.c
+ *      Bugfix (Thanks to Arnd Bergmann <arnd@uni.de>)
+ *
+ *  - processor.c
+ *      Patch from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+ *        Makes CHARGEMAX work without AOC-D
+ *
+ *      Patch from Stefan Gruendel <sgruendel@adulo.de>
+ *        gcc 2.7.2.1 Optimizer-Bug workaround
+ *
+ * Revision 1.45  1998/10/03 18:06:35  akool
+ *  - processor.c, takt_at.c : Patch from Michael Reinelt <reinelt@eunet.at>
+ *    try to guess the zone of the calling/called party
+ *
+ *  - isdnrep.c : cosmetics (i hope, you like it, Stefan!)
+ *
+ * Revision 1.44  1998/10/03 15:21:48  luethje
+ * isdnrep: some bugfixes in output functions
+ *
+ * Revision 1.43  1998/09/26 18:29:55  akool
+ *  - quick and dirty Call-History in "-m" Mode (press "h" for more info) added
+ *    - eat's one more socket, Stefan: sockets[3] now is STDIN, FIRST_DESCR=4 !!
+ *  - Support for tesion)) Baden-Wuerttemberg Tarif
+ *  - more Providers
+ *  - Patches from Wilfried Teiken <wteiken@terminus.cl-ki.uni-osnabrueck.de>
+ *    - better zone-info support in "tools/isdnconf.c"
+ *    - buffer-overrun in "isdntools.c" fixed
+ *  - big Austrian Patch from Michael Reinelt <reinelt@eunet.at>
+ *    - added $(DESTDIR) in any "Makefile.in"
+ *    - new Configure-Switches "ISDN_AT" and "ISDN_DE"
+ *      - splitted "takt.c" and "tools.c" into
+ *          "takt_at.c" / "takt_de.c" ...
+ *          "tools_at.c" / "takt_de.c" ...
+ *    - new feature
+ *        CALLFILE = /var/log/caller.log
+ *        CALLFMT  = %b %e %T %N7 %N3 %N4 %N5 %N6
+ *      in "isdn.conf"
+ *  - ATTENTION:
+ *      1. "isdnrep" dies with an seg-fault, if not HTML-Mode (Stefan?)
+ *      2. "isdnlog/Makefile.in" now has hardcoded "ISDN_DE" in "DEFS"
+ *      	should be fixed soon
+ *
+ * Revision 1.42  1998/09/22 21:06:50  luethje
+ * isdnrep: simple fix
+ *
+ * Revision 1.41  1998/09/22 20:59:53  luethje
+ * isdnrep:  -fixed wrong provider report
+ *           -fixed wrong html output for provider report
+ *           -fixed strange html output
+ * kisdnlog: -fixed "1001 message window" bug ;-)
+ *
+ * Revision 1.40  1998/06/14 15:34:23  akool
+ * AVM B1 support (Layer 3)
+ * Telekom's new currency DEM 0,121 supported
+ * Disable holiday rates #ifdef ISDN_NL
+ * memory leak in "isdnrep" repaired
+ *
+ * Revision 1.39  1998/06/07 21:09:43  akool
+ * - Accounting for the following new providers implemented:
+ *     o.tel.o, Tele2, EWE TEL, Debitel, Mobilcom, Isis, NetCologne,
+ *     TelePassport, Citykom Muenster, TelDaFax, Telekom, Hutchison Telekom,
+ *     tesion)), HanseNet, KomTel, ACC, Talkline, Esprit, Interoute, Arcor,
+ *     WESTCom, WorldCom, Viag Interkom
+ *
+ *     Code shamelessly stolen from G.Glendown's (garry@insider.regio.net)
+ *     program http://www.insider.org/tarif/gebuehr.c
+ *
+ * - Telekom's 10plus implemented
+ *
+ * - Berechnung der Gebuehrenzone implementiert
+ *   (CityCall, RegioCall, GermanCall, GlobalCall)
+ *   The entry "ZONE" is not needed anymore in the config-files
+ *
+ *   you need the file
+ *     http://swt.wi-inf.uni-essen.de/~omatthes/tgeb/vorwahl2.exe
+ *   and the new entry
+ *     [GLOBAL]
+ *       AREADIFF = /usr/lib/isdn/vorwahl.dat
+ *   for that feature.
+ *
+ *   Many thanks to Olaf Matthes (olaf.matthes@uni-essen.de) for the
+ *   Data-File and Harald Milz for his first Perl-Implementation!
+ *
+ * - Accounting for all "Sonderrufnummern" (0010 .. 11834) implemented
+ *
+ *   You must install the file
+ *     "isdn4k-utils/isdnlog/sonderrufnummern.dat.bz2"
+ *   as "/usr/lib/isdn/sonderrufnummern.dat"
+ *   for that feature.
+ *
+ * ATTENTION: This is *NO* production-code! Please test it carefully!
+ *
+ * Revision 1.38  1998/05/20 12:23:57  paul
+ * Duration divide by 100 replaced by divide by HZ (HZ is 1024 on Alpha).
+ * Y2K compliancy hopefully more robust.
+ *
+ * Revision 1.37  1998/04/29 19:58:55  luethje
+ * bugfix at HTML code
+ *
+ * Revision 1.36  1998/04/27 22:35:31  luethje
+ * bugfix on HTML code
+ *
+ * Revision 1.35  1998/03/29 19:54:11  luethje
+ * idnrep: added html feature (incoming/outgoing calls)
+ *
+ * Revision 1.34  1998/03/25 20:58:46  luethje
+ * isdnrep: added html feature (verbose on/off)
+ * processor.c: Patch of Oliver Lauer
+ *
+ * Revision 1.33  1998/03/08 11:43:04  luethje
+ * I4L-Meeting Wuerzburg final Edition, golden code - Service Pack number One
+ *
+ * Revision 1.32  1998/02/13 07:01:49  calle
+ * small fix inside ISDN_NL.
+ *
+ * Revision 1.31  1997/09/07 00:43:22  luethje
+ * create new error messages for isdnrep
+ *
+ * Revision 1.30  1997/07/22 22:36:17  luethje
+ * isdnrep:  Use "&nbsp;" for blanks
+ * isdnctrl: Add the option "reset"
+ *
+ * Revision 1.29  1997/06/15 23:49:45  luethje
+ * Some new variables for the isdnlog
+ * isdnlog starts programs noe with the file system rights
+ * bugfixes
+ *
+ * Revision 1.28  1997/05/28 21:23:03  luethje
+ * isdnlog option -b is working again ;-)
+ * isdnlog has new \$x variables
+ * README completed
+ *
+ * Revision 1.27  1997/05/25 19:41:06  luethje
+ * isdnlog:  close all files and open again after kill -HUP
+ * isdnrep:  support vbox version 2.0
+ * isdnconf: changes by Roderich Schupp <roderich@syntec.m.EUnet.de>
+ * conffile: ignore spaces at the end of a line
+ *
+ * Revision 1.26  1997/05/19 22:58:18  luethje
+ * - bugfix: it is possible to install isdnlog now
+ * - improved performance for read files for vbox files and mgetty files.
+ * - it is possible to decide via config if you want to use avon or
+ *   areacode.
+ *
+ * Revision 1.25  1997/05/17 14:58:28  luethje
+ * bug fix in HTML-Link
+ *
+ * Revision 1.24  1997/05/17 01:08:21  luethje
+ * some bugfixes
+ *
+ * Revision 1.23  1997/05/15 23:24:54  luethje
+ * added new links on HTML
+ *
+ * Revision 1.22  1997/05/15 22:21:35  luethje
+ * New feature: isdnrep can transmit via HTML fax files and vbox files.
+ *
+ * Revision 1.21  1997/05/11 22:59:19  luethje
+ * new version
+ *
+ * Revision 1.20  1997/05/10 12:57:00  luethje
+ * some changes
+ *
+ * Revision 1.19  1997/05/10 01:21:06  luethje
+ * some primitive changes
+ *
+ * Revision 1.18  1997/05/09 23:30:55  luethje
+ * isdnlog: new switch -O
+ * isdnrep: new format %S
+ * bugfix in handle_runfiles()
+ *
+ * Revision 1.17  1997/05/06 22:13:31  luethje
+ * bugfixes in HTML-Code of the isdnrep
+ *
+ * Revision 1.16  1997/05/05 21:04:21  luethje
+ * README completed
+ * some changes for the isdnmon
+ *
+ * Revision 1.15  1997/05/04 22:23:15  luethje
+ * README completed
+ * new features of the format string
+ *
+ * Revision 1.14  1997/05/04 20:19:54  luethje
+ * README completed
+ * isdnrep finished
+ * interval-bug fixed
+ *
+ * Revision 1.13  1997/04/20 23:44:49  luethje
+ * some primitve changes
+ *
+ * Revision 1.12  1997/04/20 22:52:25  luethje
+ * isdnrep has new features:
+ *   -variable format string
+ *   -can create html output (option -w1 or ln -s isdnrep isdnrep.cgi)
+ *    idea and design by Dirk Staneker (dirk.staneker@student.uni-tuebingen.de)
+ * bugfix of processor.c from akool
+ *
+ * Revision 1.11  1997/04/17 23:29:45  luethje
+ * new structure of isdnrep completed.
+ *
+ * Revision 1.9  1997/04/08 21:56:53  luethje
+ * Create the file isdn.conf
+ * some bug fixes for pid and lock file
+ * make the prefix of the code in `isdn.conf' variable
+ *
+ * Revision 1.8  1997/04/06 21:03:37  luethje
+ * switch -f is working again
+ * currency_factor is float again ;-)
+ * renamed files isdnrep.c to rep_main.c and function.c isdnrep.c
+ *
+ * Revision 1.3  1997/04/03 22:30:00  luethje
+ * improved performance
+ *
+ * Revision 1.2  1997/03/31 22:43:11  luethje
+ * Improved performance of the isdnrep, made some changes of README
+ *
+ * Revision 1.1  1997/03/24 22:52:09  luethje
+ * isdnrep completed.
+ *
+ * Revision 1.4  1997/03/23 23:11:59  luethje
+ * improved performance
+ *
+ * Revision 1.3  1997/03/23 20:25:23  luethje
+ * tmporary (running) result of the new structure of isdnrep
+ *
+ * Revision 1.2  1997/03/20 00:19:13  luethje
+ * inserted the line #include <errno.h> in avmb1/avmcapictrl.c and imon/imon.c,
+ * some bugfixes, new structure in isdnlog/isdnrep/isdnrep.c.
+ *
+ * Revision 1.1  1997/03/16 20:59:05  luethje
+ * Added the source code isdnlog. isdnlog is not working yet.
+ * A workaround for that problem:
+ * copy lib/policy.h into the root directory of isdn4k-utils.
+ *
+ * Revision 2.6.19  1997/01/04  13:00:35  akool
+ * Korrektur bzgl. ISDN_CH
+ * Danke an Markus Maeder (mmaeder@cyberlink.ch)
+ *
+ * Revision 2.6.15  1997/01/02  11:32:35  akool
+ * -V Option added
+ *
+ * Revision 2.6.11  1996/12/30  10:17:35  akool
+ * Dutch accounting (Ad Aerts <ad@aasup.nl>)
+ *
+ * Revision 2.50  1996/08/25  11:48:35  akool
+ * Auswertung bei non-AOCE-Anschluessen verbessert
+ *
+ * Revision 2.13  1996/03/16  16:11:35  akool
+ * Andruck der "ibytes" implementiert
+ *
+ * Revision 2.10  1996/01/16  01:04:35  sl
+ * Ausgabe von bestimmten MSN's ergaenzt, Nur ankommende dor ausgehende
+ * Gespraeche anzeigen, Ueberarbeitung der kompletten Sourcen.
+ * Funktion fuer fremde Waehrungen ergaenzt
+ *
+ * Revision 2.03  1996/01/07  03:35:17  sl
+ * Optionen -c und -6 entfernt, Tab-Bug behoben, Bug in automatischer
+ * Gebuehrenberechnung beim alten Logformat behoben,
+ * Zeitangabe beim Summary,
+ *
+ * Revision 2.02  1996/01/07  03:35:17  sl
+ * Zeitraumausgabe angepasst, loeschen von isdn.log-Eintraegen
+ *
+ * Revision 2.01  1996/01/06  18:15:20  sl
+ * Zeitraumausgabe, nur Calls-Anzeige, optionales Logfile
+ *
+ * Revision 2.00  1996/01/01  17:50:19  akool
+ * Auswertung der neuen Eintraege (I/O, Cause) implementiert
+ * Vollstaendiges Redesign
+ *
+ * Revision 1.25  1995/11/19  09:56:19  akool
+ * Neue Option "-c" aktiviert die eigene Berechnung der Einheiten bei
+ *   fehlender Gebuehreninfo
+ *
+ * Revision 1.24  1995/11/12  11:09:19  akool
+ * Formatfelder vergroessert
+ * Fremdverursachte Einheiten werden ge-()
+ * Alle Floating-Point-Zahlen werden deutsch (mit Komma) ausgegeben
+ *
+ * Revision 1.23  1995/11/06  18:04:19  akool
+ * Denkfehler in der "-6" Berechnung :-(
+ *
+ * Revision 1.22  1995/10/22  15:31:19  akool
+ * Aufschluesselung bach Tarifzonen implementiert
+ *
+ * Revision 1.21  1995/10/17  19:53:19  akool
+ * Auf echte Charging-Info umgestellt
+ *
+ * Revision 1.20  1995/10/15  17:58:19  akool
+ * Vergleich errechnete zu uebermittelten Einheiten implementiert
+ *
+ * Revision 1.16  1995/10/12  13:50:19  akool
+ * Neue Option "MYMSNS=x" in der "isdnlog.conf" zum definieren der Anzahl
+ * eigener MSN's
+ *
+ * Revision 1.15  1995/10/09  18:42:18  akool
+ * Offensichtlich sinnlose Daten i.d. "isdn.log" werden nun ignoriert
+ *
+ * Revision 1.14  1995/10/08  10:25:16  akool
+ * Ueberschreitung verschiedener Zeittakte bei einer Verbindung implementiert.
+ *
+ * Revision 1.6  1995/09/30  19:55:17  akool
+ * First public release
+ *
+ * Revision 1.1  1995/09/23  16:44:19  akool
+ * Initial revision

@@ -1,0 +1,23 @@
+$Id: README,v 1.1 1999/06/30 17:13:44 he Exp $
+
+eft	contains a library that implements all EUROFILE protocol
+	layers above X.25 DTE-DTE in user space.
+
+eftp	contains an EUROFILE client with command line user interface
+	and GNU readline support.
+	
+eftd	contains an EUROFILE server which supports serving multiple
+	simultaneous connections and navigation (= accessing
+	multiple directories).   
+
+wuauth	contains an authentication library usable by EUROFILE servers
+	which is derived from wu-ftpd by Georg v.Zezschwitz.
+	See libwuath/README for further information.
+
+testing	contains several programmes that can be used for testing and
+	debugging of Linux X.25 and the EUROFILE related libraries
+	of this distribution. wuauth_test files are intended as a
+	demonstration for libwuauth.
+	Files in the testing directory are not supported in any way
+	and are subject to failure, uncleanness, removal, or all other
+	imaginable inconveniences. 

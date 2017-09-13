@@ -1,0 +1,9 @@
+config.log
+config.cache
+config.status
+Makefile
+comperr
+.libs
+libtool
+*.lo
+*.la

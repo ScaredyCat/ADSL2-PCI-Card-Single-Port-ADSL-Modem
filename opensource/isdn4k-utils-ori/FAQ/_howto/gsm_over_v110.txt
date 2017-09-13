@@ -1,0 +1,157 @@
+Replied: Sat, 04 Sep 1999 09:11:46 +0200
+Replied: "dev "
+Return-Path: POPmail
+X-Envelope-From: <Ola@Sigurdson.SE>
+X-Envelope-To: <hessler@wi-inf.mhessler.de>
+X-Delivery-Time: 936100367
+Received: from hsun6.wi-inf.uni-essen.de (hsun6.wi-inf.uni-essen.de [132.252.52.7])
+	by post.webmailer.de (8.9.3/8.8.7) with ESMTP id NAA17635
+	for <hessler@wi-inf.mhessler.de>; Tue, 31 Aug 1999 13:52:43 +0200 (MET DST)
+Received: from abaco.to.com (abaco.to.com [194.221.235.40])
+	by hsun6.wi-inf.uni-essen.de (8.8.8/8.8.8) with ESMTP id NAA08801
+	for <hessler@wi-inf.uni-essen.de>; Tue, 31 Aug 1999 13:53:23 +0200 (MET DST)
+Received: from Sigurdson.SE (t4o79p57.telia.com [62.20.201.177])
+	by abaco.to.com (8.9.1/8.9.1) with ESMTP id NAA11117
+	for <hessler@isdn4linux.de>; Tue, 31 Aug 1999 13:53:48 +0200
+Received: from Sigurdson.SE (IDENT:ola@ws001019.warholm.sigurdson.se [192.168.1.19])
+	by Sigurdson.SE (8.9.3/8.9.3) with ESMTP id NAA03344
+	for <hessler@isdn4linux.de>; Tue, 31 Aug 1999 13:52:39 +0200
+Sender: ola@Sigurdson.SE
+Message-ID: <37CBC1FF.B5B1535D@Sigurdson.SE>
+Date: Tue, 31 Aug 1999 13:52:31 +0200
+From: Ola Sigurdson <Ola@Sigurdson.SE>
+Organization: OS System
+X-Mailer: Mozilla 4.08 [en] (X11; I; Linux 2.2.12-i686-SMP i686)
+MIME-Version: 1.0
+To: Matthias Hessler <hessler@isdn4linux.de>
+Subject: GSM over V.110 to Linux (Re: V.110)
+References: <199908282216.AAA02037@mathes.mhessler.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+
+Matthias Hessler wrote:
+> I have good news for you: I think the FAQ is lying, and actually,
+>   V.110 is supported now. However, since I have not tried it, and it's
+>   not widly used (and has been implemented not too long ago), I don't
+>   know how to configure it, and how well it works. But have a look for
+>   yourself - the code is in isdn_v110.c.
+
+Ok, thanks (I should of course have checked the latest kernel first...
+I was running 2.2.9).
+
+
+> I'll correct the FAQ - thanks for the catch! And I'm happy on any
+>   feedback how well it works for you...
+
+Works! (See below)
+
+Please find enclosed the pppd (async ppp, *not* sync) config file that
+works for us. Feel free to use it in the FAQ.
+If I get the time I'll revise it and submit it as a mini-HOWTO.
+
+For now, it is at the current URL:
+http://www.oltom.com/Linux/Docs/GSM%20over%20V.110%20Mini-HOWTO.txt
+
+/Ola Sigurdson
+
+-- 
+Email: Ola@Sigurdson.SE   Office tel: +46 46 37 01 24
+
+-------------------------------------------------------------------
+http://www.oltom.com/Linux/Docs/GSM%20over%20V.110%20Mini-HOWTO.txt
+-------------------------------------------------------------------
+V.110 works very well for incoming GSM connections from a Palm Pilot!
+(After some detective work for V.110 and service parameters.)
+Observe that the GSM operator must have a V.110 enable net for this 
+to work.
+
+The main benefit compared to traditional GSM-data is that connection
+setup is 
+much faster. Also transmission delay and error rate is slightly lower
+with
+V.110
+
+In non-V.110 GSM the data call is routed through the operator's
+net to a modem-pool. From there the call goes out as an ordinary
+anlogue call over the PSTN to the dial-in server.
+
+For V.110 GSM the data call goes to the operator's switch, is converted
+to 
+V.110 and routed over ISDN to the dial-in ISDN-card. 
+Call setup and data transfer is digital end-to-end.
+
+
+GSM over V.110 Micro-HOWTO:
+------------------------------------------------------------------------------
+Get a kernel with V.110 and ISDN-support. 2.2.12 works for us.
+Test your ISDN setup according to /usr/src/Documentation/isdn/*
+
+Use the standard async PPP daemon on an /dev/ttyIx device.
+Example config files are provided below.
+
+The main trick to get GSM and V.110 working is the S19=0 register
+setting. 
+(The isdn4l code sets it to 197 by default. Is this correct?)
+
+The config has been tested with the Swedish Comviq (Tele2) operator,
+Palm III,
+Option Snap-On adapter, Eicon Diva 2.01 PCI, Redhat 6.0, Kernel 2.2.12.
+Possibly other operators or hardware require different settings.
+
+Note the "noccp" and "require-pap" option that disables compression and
+CHAP, which the Palm III cannot handle. 
+If you use devices that can handle these protocols, remove the
+corresponding
+options.
+
+Parameters to change according to local setup:
+----------------------------------------------
+/dev/ttyI0		Device you want to use for incoming GSM calls.
+			If unsure, leave it.
+0123456789 		Your MSN for incoming GSM calls.
+DialInIP:PalmIP 	IP address of ppp interface on dialin server, 
+			IP address that should be assigned to Palm device.
+			(If you use symbolic instead of numeric names
+			they must be defined in the DNS.)
+palm			Name for finding secret for Palm device in  /etc/ppp/pap-secrets
+dialin			Name for finding secret for Palm device in 
+/etc/ppp/pap-secrets
+PASSWORD		Your PPP PAP password
+
+---------- /etc/ppp/options.ttyI0 -------------
+/dev/ttyI0
+lock
+connect '/usr/sbin/chat -t 1 "" "AT&F" "OK"
+"AT&E0123456789&R9600S19=0S0=1" "OK"'
+idle 300
+persist
+passive
+crtscts
+modem
+ 
+DialInIP:PalmIP
+nodefaultroute
+proxyarp
+ms-dns          192.168.0.1
+ 
+noccp
+noipx
+ 
+auth
+require-pap                                                                                  
+remotename      palm
+name            dialin
+
+----- /etc/ppp/pap-secrets ---------------------
+palm	dialin	PASSWORD	PalmIP
+
+----- /etc/inittab -----------------------------
+I0:35:respawn:/usr/sbin/pppd /dev/ttyI0 nodetach
+# nodetach required for things started from init
+
+
+------ Modem init string for Palm -------------
+AT&FX4+CBST=71,0,1

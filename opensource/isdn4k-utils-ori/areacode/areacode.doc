@@ -1,0 +1,193 @@
+
+				   AREACODE
+
+
+       Portable library module to search for an area code in a database.
+
+				 Version 2.00
+
+		(C) Copyright 1996-98 by Ullrich von Bassewitz
+			      <uz@musoftware.de>
+
+
+
+1. Overview
+-----------
+
+The areacode module together with its database serves as a helper for
+finding names for area codes. It is freely available, subject to the
+copyright notice below.
+
+
+
+2. Function
+-----------
+
+The module exports a few data types and one function. The function resolves
+a phone number (including the country code) to some text describing the area
+code found in the phone number. Current descriptions are in german, the
+database contains german, swiss and austrian area codes.
+
+Usage is easy, just have a look into the header file areacode.h.
+
+
+
+3. Supported systems and limitations
+------------------------------------
+
+The module should run on nearly all system that have the following
+characteristics:
+
+  * 8 bit bytes
+
+  * An unsigned data type with 32 bits. The code makes some checks with the
+    values in limits.h to find such a datatype for itself, if all checks
+    fail, unsigned long is used. This may be overriden by #defining the
+    macro u32 to the datatype needed.
+
+  * An ANSI compatible compiler supporting prototypes. The code should also
+    compile with a C++ compiler, the header file uses the #ifdef __cpluplus
+    checks.
+
+  * Big or little endian architectures. For something more weird (old
+    Vaxes?) code has to be added.
+
+  * Systems with CP437, CP850 or ISO-8859-1 character sets. The "native"
+    format is ISO-8859-1, for the DOS codepages the #define CHARSET_CP850has 
+    to be added when compiling the module.
+
+The code has been tested under
+
+  * DOS (Watcom C/C++ 10.6)
+
+  * Windows-NT (Watcom C/C++ 10.6)
+
+  * OS/2 2.x (Watcom C/C++ 10.6)
+
+  * i386-Linux (egcs 1.03)
+
+For these environments makefiles can be found in the make subdirectory.
+
+The package has some limits as stated below:
+
+  * Current language is german.
+
+  * The data file contains area codes for germany, austria, switzerland,
+    the netherlands, and some codes for the UK and US.
+
+  * The area code including the country code (but not including the
+    international prefix, often 00) may not exceed 8 digits. This may be
+    bumped up to 9 digits if needed with some disadvantages (more
+    complicated code).
+
+  * An area code description must be shorter than 256 characters.
+
+
+
+4. How to get the source & data files
+-------------------------------------
+
+You may get the source for the package itself, for the datafile builder and
+for new datafiles from
+
+	ftp://ftp.musoftware.de/pub/uz/areacode/
+
+Note: Please do not distribute modified data files. The data files contain
+a version stamp to make shure, users don't overwrite newer versions with
+older ones. This scheme will no longer work if data files are distributed
+by third parties.
+
+Note: The datafile builder needs spunk, a C++ class library to compile.
+You may want to have a look in
+
+       	ftp://ftp.musoftware.de/pub/uz/spunk/
+
+for the current spunk version.
+
+
+
+5. Installing the package
+-------------------------
+
+For all systems the location of the data file has to be known. The default
+name (including the path) may be compiled into the module by #defining
+DATA_FILENAME, or set at runtime (see areacode.h).
+The Linux makefile will install the data file in a common place, so more
+than one software package depending on areacode is able to use the data file.
+
+The data file contains a version stamp, to avoid overwriting a newer file
+by an older one, when installing more than one software package. The
+program acvers is used to determine the build version, it will output three
+numbers, the last one is the data file build (the first two are format
+version numbers that - hopefully - will not change).
+
+
+
+6. Some notes on version 2.0
+----------------------------
+
+Unfortunately, I was not able to keep binary compatibility for version 2.0.
+After realizing that, I used the opportunity to change more things that were
+due for some time (ISO-8859-1 as a native format is an example).
+
+New in version 2.0:
+
+  * Source character set is now ISO-8859-1.
+
+  * Areacodes may be extensions of other codes. This leads to somewhat more
+    overhead when searching (now using a modified binary search), but the
+    feature was too useful to omit it.
+
+  * Detection of duplicate descriptions and partial duplicate descriptions.
+
+  * The string pool may now be compressed.
+
+
+
+7. Copying
+----------
+
+This software is provided 'as-is', without any expressed or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not
+   be misrepresented as being the original software.
+3. This notice may not be removed or altered from any source
+   distribution.
+
+
+
+8. Credits
+----------
+
+Many thanks to all people that helped developing the module:
+
+
+    Andreas Kool (akool@kool.f.eunet.de), author of isdnlog,
+    for many suggestions and code testing.
+
+    Norbert Staudt (VKRG.Staudt@t-online.de),
+    who sent me lots of sample programs resolving area codes.
+
+    Andreas Gutzwiller (andy@hippo.proxyon.imp.com),
+    for the swiss area codes.
+
+    Alois Schneider (Alois.Schneider@magnet.at),
+    for the austrian area codes.
+
+    Paul Slootman (paul@wurtel.demon.nl),
+    for the two versions of the area codes for the netherlands
+    and for his patience:-)				      
+
+    Michael Reinelt (reinelt@eunet.at),
+    for kicking me until version 2.0 was finished.
+

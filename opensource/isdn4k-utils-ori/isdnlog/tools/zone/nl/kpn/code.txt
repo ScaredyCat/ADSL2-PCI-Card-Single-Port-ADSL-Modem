@@ -1,0 +1,3055 @@
+010 Bergschenhoek
+010 Berkel en Rodenrijs
+010 Bleiswijk
+010 Botlek
+010 Capelle aan den IJssel
+010 Hoogvliet
+010 Kethel
+010 Maasland
+010 Maassluis
+010 Pernis
+010 Poortugaal
+010 Rhoon
+010 Rotterdam
+010 Rotterdam Albrands
+010 Schiedam
+010 Vlaardingen
+010 Vondelingenplaat
+0111 Brouwershaven
+0111 Bruinisse
+0111 Burgh-Haamstede
+0111 Drieschor
+0111 Elkerzee
+0111 Ellemeet
+0111 Haamstede
+0111 Kerkwerve
+0111 Nieuwerkerk zld
+0111 Noordgouwe
+0111 Noordwelle
+0111 Oosterland zld
+0111 Ouwerkerk
+0111 Renesse
+0111 Scharendijke
+0111 Schuddebeurs Schouwen
+0111 Serooskerke Schouwen
+0111 Sirjansland
+0111 Westenschouwen
+0111 Zierikzee
+0111 Zonnemaire
+0113 Baarland
+0113 Bath
+0113 Biezelinge
+0113 Borssele
+0113 Colijnsplaat
+0113 Driewegen
+0113 Ellewoutsdijk
+0113 Geersdijk
+0113 Goes
+0113 's-Gravenpolder
+0113 Hansweert
+0113 's-Heer Abtskerke
+0113 's-Heer Arends-kerke
+0113 's-Heer Hendriks kinderen
+0113 's-Heerenhoek
+0113 Heinkenszand
+0113 Hoedekenskerke
+0113 Kamperland
+0113 Kapelle
+0113 Kats
+0113 Kattendijke
+0113 Kloetinge
+0113 Kortgene
+0113 Krabbendijke
+0113 Kruiningen
+0113 Kwadendamme
+0113 Lewedorp
+0113 Nieuwdorp zld
+0113 Nisse
+0113 Oostdijk
+0113 Oud Sabbinge
+0113 Oudelande
+0113 Ovezande
+0113 Rilland
+0113 Schore
+0113 Waarde
+0113 Wemeldinge
+0113 Wilhelminadorp
+0113 Wissenkerke
+0113 Wolphaartsdijk
+0113 Yerseke
+0114 Absdale
+0114 Clinge
+0114 Graauw
+0114 Heikant
+0114 Hengstdijk
+0114 Hulst
+0114 Kapellebrug
+0114 Kloosterzande
+0114 Koewacht
+0114 Kuitaart
+0114 Lamswaarde
+0114 Nieuw-Namen
+0114 Ossenisse
+0114 St Jansteen
+0114 Ter Hole
+0114 Vogelwaarde
+0114 Walsoorden
+0115 Axel
+0115 Biervliet
+0115 Hoek
+0115 Kijkuit gem Axel
+0115 Othene
+0115 Overslag
+0115 Philippine
+0115 Sas van Gent
+0115 Sluiskil
+0115 Spui
+0115 Terneuzen
+0115 Westdorpe
+0115 Zaamslag
+0115 Zuiddorpe
+0117 Aardenburg
+0117 Breskens
+0117 Cadzand
+0117 Draaibrug
+0117 Eede zld
+0117 Groede
+0117 Hoofdplaat
+0117 IJzendijke
+0117 Kruisdijk
+0117 Nieuwvliet
+0117 Oostburg
+0117 Retranchement
+0117 Sasput
+0117 Schoondijke
+0117 Sluis
+0117 St Anna ter Muiden
+0117 St Kruis
+0117 Waterlandkerkje
+0117 Zuidzande
+0118 Aagtekerke
+0118 Arnemuiden
+0118 Biggekerke
+0118 Dishoek
+0118 Domburg
+0118 Gapinge
+0118 Grijpskerke
+0118 Kleverskerke
+0118 Koudekerke zld
+0118 Meliskerke
+0118 Middelburg
+0118 Nieuw en St Joosland
+0118 Oost-Souburg
+0118 Oostkapelle
+0118 Ritthem
+0118 Serooskerke Walcheren
+0118 St Laurens
+0118 Veere
+0118 Vlissingen
+0118 Vrouwenpolder
+0118 West-Souburg
+0118 Westkapelle
+0118 Zoutelande
+013 Alphen NB
+013 Baarle-Nassau
+013 Baarschot
+013 Berkel-Enschot
+013 Biest-Houtakker
+013 Biezenmortel
+013 Castelre
+013 De Moer
+013 Diessen
+013 Enschot
+013 Esbeek
+013 Goirle
+013 Haghorst
+013 Hilvarenbeek
+013 Hooge Mierde
+013 Hulsel
+013 Lage Mierde
+013 Middelbeers
+013 Moergestel
+013 Oisterwijk
+013 Oost- West-en Middelbeers
+013 Riel
+013 Tilburg
+013 Udenhout
+013 Ulicoten
+013 Westelbeers
+015 Delfgauw
+015 Delft
+015 Den Hoorn ZH
+015 Nootdorp
+015 Oude Leede
+015 Pijnacker
+015 Schipluiden
+0161 Bavel
+0161 Chaam
+0161 Dorst
+0161 Gilze
+0161 Hulten
+0161 Molenschot
+0161 Rijen
+0162 Den Hout NB
+0162 Dongen
+0162 Drimmelen
+0162 Geertruidenberg
+0162 's-Gravenmoer
+0162 Hank
+0162 Made
+0162 Oosteind
+0162 Oosterhout NB
+0162 Raamsdonk
+0162 Raamsdonksveer
+0164 Bergen op Zoom
+0164 Halsteren
+0164 Hoogerheide
+0164 Huijbergen
+0164 Lepelstraat
+0164 Ossendrecht
+0164 Putte
+0164 Woensdrecht
+0165 Bosschenhoofd
+0165 Heerle
+0165 Hoeven
+0165 Moerstraten
+0165 Nispen
+0165 Noordhoek gem Standdaarbuiten 
+0165 Oud Gastel
+0165 Oudenbosch
+0165 Roosendaal
+0165 Rucphen
+0165 Schijf
+0165 Sprundel
+0165 St Willebrord
+0165 Stampersgat
+0165 Standdaarbuiten
+0165 Wouw
+0165 Wouwse Plantage
+0165 Zegge
+0166 Oud-Vossemeer
+0166 Poortvliet
+0166 Scherpenisse
+0166 St Annaland
+0166 St Maartensdijk
+0166 Stavenisse
+0166 Tholen
+0167 Anna Jacoba-polder
+0167 De Heen
+0167 Dinteloord
+0167 Kruisland
+0167 Nieuw-Vossemeer
+0167 St Philipsland
+0167 Steenbergen NB
+0167 Welberg
+0168 Fijnaart
+0168 Heijningen
+0168 Hooge Zwaluwe
+0168 Klundert
+0168 Lage Zwaluwe
+0168 Langeweg
+0168 Moerdijk
+0168 Noordhoek gem Klundert
+0168 Oudemolen NB
+0168 Willemstad NB
+0168 Zevenbergen
+0168 Zevenbergschen Hoek
+0172 Aarlanderveen
+0172 Alphen aan den Rijn
+0172 Bilderdam
+0172 Bodegraven
+0172 Boskoop
+0172 Burgerveen
+0172 Hazerswoude-Dorp
+0172 Langeraar
+0172 Leimuiden
+0172 Leimuiderbrug
+0172 Nieuwkoop
+0172 Nieuwveen
+0172 Noorden
+0172 Rijnsaterwoude
+0172 Ter Aar
+0172 Woerdense Verlaat
+0172 Woubrugge
+0172 Zevenhoven
+0172 Zwammerdam
+0174 De Lier
+0174 's-Gravenzande
+0174 Hoek van Holland
+0174 Honselersdijk
+0174 Kwintsheul
+0174 Maasdijk
+0174 Monster
+0174 Naaldwijk
+0174 Poeldijk
+0174 Ter Heijde
+0174 Wateringen
+0180 Barendrecht
+0180 Bolnes
+0180 Krimpen aan de Lek
+0180 Krimpen aan den IJssel
+0180 Lekkerkerk
+0180 Nieuwerkerk aan den IJssel
+0180 Oostendam
+0180 Ouderkerk aan den IJssel
+0180 Ridderkerk
+0180 Rijsoord
+0180 Slikkerveer
+0180 Zevenhuizen ZH
+0181 Abbenbroek
+0181 Brielle
+0181 Europoort
+0181 Geervliet
+0181 Heenvliet
+0181 Hekelingen
+0181 Hellevoetsluis
+0181 Maasvlakte
+0181 Nieuw Helvoet
+0181 Nieuwenhoorn
+0181 Oostvoorne
+0181 Oudenhoorn
+0181 Rockanje
+0181 Rozenburg ZH
+0181 Simonshaven
+0181 Spijkenisse
+0181 Tinte
+0181 Vierpolders
+0181 Zuidland
+0181 Zwartewaal
+0182 Ammerstol
+0182 Bergambacht
+0182 Berkenwoude
+0182 Gouda
+0182 Gourderak
+0182 Haastrecht
+0182 Hekendorp
+0182 Moordrecht
+0182 Polsbroek
+0182 Polsbroekerdam
+0182 Reeuwijk
+0182 Schoonhoven
+0182 Stolwijk
+0182 Vlist
+0182 Waddinxveen
+0183 Almkerk
+0183 Ameide
+0183 Andel
+0183 Arkel
+0183 Dalem
+0183 Giessen
+0183 Gorinchem
+0183 Gorkum
+0183 Goudriaan
+0183 Hoogblokland
+0183 Hoornaar
+0183 Kedichem
+0183 Meerkerk
+0183 Nieuwendijk NB
+0183 Nieuwland
+0183 Noordeloos
+0183 Oudendijk NB
+0183 Rijswijk NB
+0183 Schelluinen
+0183 Sleeuwijk
+0183 Spijk gem Lingewaal
+0183 Tienhoven ZH
+0183 Uitwijk
+0183 Vuren
+0183 Waardhuizen
+0183 Werkendam
+0183 Woudrichem
+0184 Bleskensgraaf
+0184 Boven Hardinxveld
+0184 Brandwijk
+0184 Giessenburg
+0184 Giessendam
+0184 Groot-Ammers
+0184 Hardinxveld-Giessendam
+0184 Langerak ZH
+0184 Molenaarsgraaf
+0184 Nieuw-Lekkerland
+0184 Nieuwpoort
+0184 Ottoland
+0184 Oud-Alblas
+0184 Sliedrecht
+0184 Streefkerk
+0184 Waal
+0184 Wijngaarden ZH
+0186 Blaaksedijk
+0186 Goudswaard
+0186 Heinenoord
+0186 Klaaswaal
+0186 Mijnsheerenland
+0186 Nieuw-Beijerland
+0186 Numansdorp
+0186 Oud-Beijerland
+0186 Piershil
+0186 Tiengemeten
+0186 Westmaas
+0186 Zuid-Beijerland
+0186 Zuidzijde
+0187 Achthuizen
+0187 Den Bommel
+0187 Dirksland
+0187 Goedereede
+0187 Herkingen
+0187 Melissant
+0187 Middelharnis
+0187 Nieuwe-Tonge
+0187 Ooltgensplaat
+0187 Ouddorp ZH
+0187 Oude-Tonge
+0187 Sommelsdijk
+0187 Stad aan 't Haringvliet
+0187 Stellendam
+020 Amstelveen
+020 Amsterdam
+020 Amsterdam Zuidoost
+020 Badhoevedorp
+020 Bovenkerk
+020 Broek in Waterland
+020 Buiksloot
+020 Den Ilp
+020 Diemen
+020 Duivendrecht
+020 Durgerdam
+020 Halfweg NH
+020 Holysloot
+020 Ilpendam
+020 Landsmeer
+020 Luchthaven Schiphol
+020 Nes aan de Amstel
+020 Nieuwe Meer
+020 Nieuwendam
+020 Oude Meer
+020 Ouderkerk aan de Amstel
+020 Ransdorp
+020 Ruigoord
+020 Schellingwoude
+020 Schiphol
+020 Schiphol-Centrum
+020 Schiphol-Oost
+020 Schiphol-Rijk
+020 Uitdam
+020 Watergang
+020 Waver
+020 Zuiderwoude
+020 Zunderdorp
+020 Zwanenburg
+0222 De Cocksdorp
+0222 De Koog
+0222 De Waal
+0222 Den Burg
+0222 Den Hoorn Texel
+0222 Eierland
+0222 Nieuweschild
+0222 Oosterend NH
+0222 Oudeschild
+0222 Texel
+0223 Anna Paulowna
+0223 Breezand
+0223 De Kooy NH
+0223 Den Helder
+0223 Ewijcksluis Van
+0223 Het Koegras
+0223 Huisduinen
+0223 Julianadorp
+0223 Van Ewijcksluis
+0224 Barsingerhorn
+0224 't Buurtje
+0224 Callantsoog
+0224 Dirkshorn
+0224 Eenigenburg
+0224 Groenveld
+0224 Groetpolder
+0224 Groote Keeten
+0224 Haringhuizen
+0224 Keinsmerbrug
+0224 Kolhorn
+0224 Lutjewinkel
+0224 Oudesluis
+0224 Schagen
+0224 Schagerbrug
+0224 Schagerwaard
+0224 St Maarten
+0224 St Maartens-vlotbrug
+0224 St Maartensbrug
+0224 St Maartenszee
+0224 Stolpen
+0224 Stolpervlotbrug
+0224 Stroet
+0224 Valkkoog
+0224 Wieringerwaard
+0224 Winkel
+0224 't Zand NH
+0226 Berkmeer
+0226 Blokhuizen
+0226 Broek op Langedijk
+0226 Burgerbrug
+0226 Burgervlotbrug
+0226 Hensbroek
+0226 Hoogwoud
+0226 Kalverdijk
+0226 Krabbendam
+0226 Nieuwe Niedorp
+0226 Noord-Scharwoude
+0226 Obdam
+0226 Opmeer
+0226 Oude Niedorp
+0226 Oudkarspel
+0226 Petten
+0226 Schoorldam gem Warmenhuizen
+0226 Spanbroek
+0226 Terdiek
+0226 Tuitjenhorn
+0226 't Veld
+0226 Waarland
+0226 Warmenhuizen
+0226 Zijdewind
+0226 Zijpersluis
+0226 Zuid-Scharwoude
+0227 De Haukes
+0227 Den Oever
+0227 Hippolytushoef
+0227 Kreileroord
+0227 Medemblik
+0227 Middenmeer
+0227 Oosterland NH
+0227 Opperdoes
+0227 Slootdorp
+0227 Twisk
+0227 Westerklief
+0227 Westerland
+0227 Wieringerwerf
+0228 Andijk
+0228 Binnenwijzend
+0228 Bovenkarspel
+0228 Broekerhaven
+0228 Enkhuizen
+0228 Grootebroek
+0228 Hem
+0228 Hoogkarspel
+0228 Lutjebroek
+0228 Onderdijk
+0228 Venhuizen
+0228 Wervershoof
+0228 Westwoud
+0228 Zwaagdijk
+0229 Aartswoud
+0229 Abbekerk
+0229 Avenhorn
+0229 Baarsdorpermeer
+0229 Benningbroek
+0229 Berkhout
+0229 Blokker
+0229 Bobeldijk
+0229 De Goorn
+0229 De Weere
+0229 Grosthuizen
+0229 Hauwert
+0229 Hoorn NH
+0229 Lambertschaag
+0229 Midwoud
+0229 Nibbixwoud
+0229 Oosterblokker
+0229 Oosterleek
+0229 Oostwoud
+0229 Oudendijk NH
+0229 Scharwoude
+0229 Schellinkhout
+0229 Sijbekarspel
+0229 Spierdijk
+0229 Wadway
+0229 Westerblokker
+0229 Wijdenes
+0229 Wogmeer
+0229 Wognum
+0229 Zuidermeer
+0229 Zwaag
+023 Aerdenhout
+023 Bennebroek
+023 Bentveld
+023 Bloemendaal
+023 Boesingheliede
+023 Cruquius
+023 De Hoek
+023 Haarlem
+023 Haarlemmerliede
+023 Heemstede
+023 Hoofddorp
+023 Lijnden
+023 Nieuwebrug NH
+023 Overveen
+023 Santpoort-Noord
+023 Santpoort-Zuid
+023 Spaarndam
+023 Spaarndam-West
+023 Spaarnwoude
+023 Velserbroek
+023 Vijfhuizen NH
+023 Vogelenzang
+023 Zandvoort
+023 Zwaanshoek
+024 Alverna
+024 Balgoij
+024 Beek-Ubbergen
+024 Berg en Dal
+024 Beuningen gld
+024 Erlecom
+024 Groesbeek
+024 Heilig Land-Stichting
+024 Heumen
+024 Lent
+024 Leur gld
+024 Leuth
+024 Malden
+024 Middelaar
+024 Molenhoek LB
+024 Mook
+024 Nederasselt
+024 Nijmegen
+024 Ooij gem Ubbergen
+024 Overasselt
+024 Persingen
+024 Plasmolen
+024 Ubbergen
+024 Weurt
+024 Wijchen
+024 Woezik
+0251 Akersloot
+0251 Assum
+0251 Bakkum
+0251 Beverwijk
+0251 Castricum
+0251 Dorregeest
+0251 Heemskerk
+0251 Uitgeest
+0251 Velsen-noord
+0251 Wijk aan Zee
+0252 Abbenes
+0252 Beinsdorp
+0252 Buitenkaag
+0252 De Zilk
+0252 Hillegom
+0252 Kaag
+0252 Lisse
+0252 Lisserbroek
+0252 Nieuw-Vennep
+0252 Noordwijkerhout
+0252 Sassenheim
+0252 Voorhout
+0255 Driehuis NH
+0255 IJmuiden
+0255 Velsen-zuid
+026 Angeren
+026 Arnhem
+026 De Steeg
+026 Deelen
+026 Doorwerth
+026 Driel
+026 Elden
+026 Heteren
+026 Heveadorp
+026 Huissen
+026 Oosterbeek
+026 Rheden
+026 Rozendaal
+026 Schaarsbergen
+026 Velp gld
+026 Westervoort
+026 Wolfheze
+0294 Abcoude
+0294 Baambrugge
+0294 Loenen a/d Vecht
+0294 Loenersloot
+0294 Muiden
+0294 Muiderberg
+0294 Nederhorst den Berg
+0294 Nieuwer ter Aa
+0294 Nieuwersluis
+0294 Nigtevecht
+0294 Vreeland
+0294 Weesp
+0297 Aalsmeer
+0297 Aalsmeerderbrug
+0297 Amstelhoek
+0297 De Hoef
+0297 De Kwakel
+0297 Kudelstaart
+0297 Mijdrecht
+0297 Nesserluis
+0297 Rijsenhout
+0297 Rozenburg NH
+0297 Uithoorn
+0297 Vinkeveen
+0297 Vrouwenakker
+0297 Waverveen
+0297 Wilnis
+0299 Beets NH
+0299 De Rijp
+0299 Driehuizen
+0299 Edam
+0299 Graft
+0299 Grootschermer
+0299 Hobrede
+0299 Katwoude
+0299 Kwadijk
+0299 Marken
+0299 Middelie
+0299 Middenbeemster
+0299 Monnickendam
+0299 Neck
+0299 Noordbeemster
+0299 Noordeinde NH
+0299 Oosthuizen
+0299 Purmer
+0299 Purmerend
+0299 Purmerland
+0299 Schardam
+0299 Volendam
+0299 Warder
+0299 Westbeemster
+0299 Wijdewormer
+0299 Zuidoostbeemster
+030 Bilthoven
+030 Bosch en Duin
+030 Bunnik
+030 De Bilt
+030 De Meern
+030 Den Dolder
+030 't Goy
+030 Haarzuilens
+030 Houten
+030 Huis ter Heide UT
+030 IJsselstein UT
+030 Jutphaas
+030 Lopikerkapel
+030 Nieuwegein
+030 Odijk
+030 Oud-Zuilen
+030 Schalkwijk
+030 Tull en 't Waal
+030 Utrecht
+030 Vleuten
+030 Vreeswijk
+030 Zeist
+0313 Angerlo
+0313 Bingerden
+0313 Dieren
+0313 Doesburg
+0313 Drempt
+0313 Eerbeek
+0313 Ellecom
+0313 Giesbeek
+0313 Hall
+0313 Laag-Soeren
+0313 Lathum
+0313 Spankeren
+0314 Azewijn
+0314 Braamt
+0314 Dichteren
+0314 Doetinchem
+0314 Eldrik
+0314 Halle
+0314 's-Heerenberg
+0314 Heidenhoek
+0314 Hoog-Keppel
+0314 Hummelo
+0314 IJzevoorde
+0314 Kilder
+0314 Laag-Keppel
+0314 Lengel
+0314 Nieuw-Wehl
+0314 Slangenburg
+0314 Stokkum gld
+0314 Velswijk
+0314 Vethuizen
+0314 Wehl
+0314 Wijnbergen
+0314 Zeddam
+0314 Zelhem
+0315 Breedenbroek
+0315 De Heurne
+0315 Dinxperlo
+0315 Etten gld
+0315 Gaanderen
+0315 Gendringen
+0315 Heelweg
+0315 Megchelen
+0315 Netterden
+0315 Silvolde
+0315 Sinderen
+0315 Terborg
+0315 Ulft
+0315 Varsselder-Veldhunten
+0315 Varsseveld
+0315 Veldhunten
+0315 Voorst gem Gendringen
+0315 Warm
+0315 Westendorp
+0315 Wieken
+0316 Aerdt
+0316 Babberich
+0316 Beek gem Bergh
+0316 Didam
+0316 Duiven
+0316 Greffelkamp
+0316 Groessen
+0316 Herwen
+0316 Lobith
+0316 Loerbeek
+0316 Loil
+0316 Loo gld
+0316 Ooy gem Zevenaar
+0316 Oud-Zevenaar
+0316 Pannerden
+0316 Spijk gld
+0316 Tolkamer
+0316 Zevenaar
+0317 Achterberg
+0317 Heelsum
+0317 Remmerden
+0317 Renkum
+0317 Rhenen
+0317 Wageningen
+0318 Bennekom
+0318 De Klomp
+0318 Ede gld
+0318 Ederveen
+0318 Elst UT
+0318 Harskamp
+0318 Lunteren
+0318 Otterlo
+0318 Renswoude
+0318 Veenendaal
+0318 Wekerom
+0320 Lelystad
+0321 Biddinghuizen
+0321 Dronten
+0321 Swifterbant
+033 Amersfoort
+033 Bunschoten-Spakenburg
+033 Eemdijk
+033 Hoevelaken
+033 Hoogland
+033 Hooglanderveen
+033 Leusden
+033 Nijkerk gld
+033 Nijkerkerveen
+033 Scherpenzeel gld
+033 Spakenburg
+033 Stoutenburg
+033 Woudenberg
+0341 Ermelo
+0341 Harderwijk
+0341 Hierden
+0341 Huinen
+0341 Hulshorst
+0341 Nunspeet
+0341 Putten
+0342 Achterveld
+0342 Barneveld
+0342 De Glind
+0342 Kootwijkerbroek
+0342 Stroe
+0342 Terschuur
+0342 Voorthuizen
+0342 Zwartebroek
+0343 Amerongen
+0343 Austerlitz
+0343 Cothen
+0343 Doorn
+0343 Driebergen-Rijsenburg
+0343 Langbroek
+0343 Leersum
+0343 Maarn
+0343 Maarsbergen
+0343 Overberg
+0343 Rijsenburg
+0343 Werkhoven
+0343 Wijk bij Duurstede
+0344 Buren gld
+0344 Drumpt
+0344 Echteld
+0344 Eck en Wiel
+0344 Erichem
+0344 Heesselt
+0344 IJzendoorn
+0344 Ingen
+0344 Kapel-Avezaath
+0344 Kapel-Avezaath gem Buren
+0344 Kerk-Avezaath
+0344 Kerk-Avezaath gem Tiel
+0344 Lienden
+0344 Maurik
+0344 Ochten
+0344 Ommeren
+0344 Ophemert
+0344 Passewaay
+0344 Tiel
+0344 Varik
+0344 Wadenoijen
+0344 Zennewijnen
+0344 Zoelen
+0345 Acquoy
+0345 Asch
+0345 Asperen
+0345 Beesd
+0345 Beusichem
+0345 Buurmalsen
+0345 Culemborg
+0345 Deil
+0345 Enspijk
+0345 Est
+0345 Geldermalsen
+0345 Gellicum
+0345 Hei- en Boeicop
+0345 Heukelum
+0345 Leerbroek
+0345 Leerdam
+0345 Meteren
+0345 Oosterwijk
+0345 Ravenswaay
+0345 Rhenoy
+0345 Rijswijk gld
+0345 Rumpt
+0345 Schoonrewoerd
+0345 Tricht
+0345 Zijderveld
+0345 Zoelmond
+0346 Achttienhoven
+0346 Breukelen UT
+0346 Groenekan
+0346 Kockengen
+0346 Maarssen
+0346 Maarssenbroek
+0346 Maartensdijk
+0346 Soesterberg
+0346 Tienhoven UT
+0346 Westbroek
+0347 Everdingen
+0347 Hagestein
+0347 Lexmond
+0347 Ossenwaard ZH
+0347 Vianen ZH
+0348 Benschop
+0348 Driebruggen
+0348 Harmelen
+0348 Jaarsveld
+0348 Kamerik
+0348 Linschoten
+0348 Lopik
+0348 Montfoort
+0348 Nieuwerbrug
+0348 Oudewater
+0348 Papekop
+0348 Snelrewaard
+0348 Waarder
+0348 Willeskop
+0348 Willige Langerak
+0348 Woerden
+0348 Zegveld
+035 Ankeveen
+035 Baarn
+035 Blaricum
+035 Breukeleveen
+035 Bussum
+035 Eemnes
+035 's-Graveland
+035 Hilversum
+035 Hollandsche Rading
+035 Huizen
+035 Kortenhoef
+035 Lage Vuursche
+035 Laren NH
+035 Loosdrecht
+035 Naarden
+035 Nieuw-Loosdrecht
+035 Oud-Loosdrecht
+035 Soest
+035 Soestdijk gem Baarn
+035 Soestdijk gem Soest
+035 Soestduinen
+036 Almere
+036 Zeewolde
+036 Zuiderflevo
+038 Belt-Schutsloot
+038 Berkum
+038 De Zande
+038 Genemuiden
+038 Grafhorst
+038 Haerst
+038 Harculo
+038 Hasselt OV
+038 Hattem
+038 Hattemerbroek
+038 's-Heerenbroek
+038 Hogeweg OV
+038 IJsselmuiden
+038 Ittersum
+038 Kampen
+038 Kampereiland
+038 Kamperveen
+038 Kamperzeedijk
+038 Mastenbroek
+038 Schelle
+038 Spoolde
+038 Wapenveld
+038 Westenholte
+038 Wezep
+038 Wijthmen
+038 Wilsum
+038 Windesheim
+038 Zalk
+038 Zuideinde
+038 Zwartsluis
+038 Zwolle
+040 Aalst NB
+040 Acht
+040 Borkel en Schaft
+040 Dommelen
+040 Eindhoven
+040 Geldrop
+040 Gerwen
+040 Heeze
+040 Knegsel
+040 Leende
+040 Meerveldhoven
+040 Nederwetten
+040 Nuenen
+040 Oerle
+040 Riethoven
+040 Sterksel
+040 Valkenswaard
+040 Veldhoven
+040 Waalre
+040 Westerhoven
+040 Wintelre
+040 Zeelst
+0411 Boxtel
+0411 Cromvoirt
+0411 Esch
+0411 Haaren
+0411 Helvoirt
+0411 Liempde
+0412 Berghem
+0412 Haren NB
+0412 Heesch
+0412 Kessel NB
+0412 Lith
+0412 Lithoijen
+0412 Macharen
+0412 Maren-Kessel
+0412 Megen
+0412 Nistelrode
+0412 Oijen NB
+0412 Oss
+0412 Teeffelen
+0413 Boerdonk
+0413 Dinther
+0413 Eerde NB
+0413 Erp
+0413 Heeswijk-Dinther
+0413 Keldonk
+0413 Loosbroek
+0413 Mariaheide
+0413 Nijnsel
+0413 Odiliapeel
+0413 Olland
+0413 St Oedenrode
+0413 Uden
+0413 Veghel
+0413 Volkel
+0413 Vorstenbosch
+0413 Zijtaart
+0416 Aalburg
+0416 Baardwijk
+0416 Babylonienbroek
+0416 Besoyen
+0416 Capelle NB
+0416 Doeveren
+0416 Drongelen
+0416 Drunen
+0416 Dussen
+0416 Eethen
+0416 Elshout
+0416 Genderen
+0416 Hedikhuizen
+0416 Heesbeen
+0416 Herpt
+0416 Heusden gem Heusden
+0416 Kaatsheuvel
+0416 Loon op Zand
+0416 Meeuwen
+0416 Sprang-Capelle
+0416 Veen
+0416 Vrijhoeve-Capelle
+0416 Waalwijk
+0416 Waspik
+0416 Wijk en Aalburg
+0418 Aalst gld
+0418 Alem
+0418 Bern
+0418 Brakel
+0418 Bruchem
+0418 Delwijnen
+0418 Gameren
+0418 Haaften
+0418 Hellouw
+0418 Herwijnen
+0418 Hoenzadriel
+0418 Hurwenen
+0418 Kerkdriel
+0418 Kerkwijk
+0418 Nederhemert
+0418 Neerijnen
+0418 Nieuwaal
+0418 Opijnen
+0418 Poederoijen
+0418 Rossum gld
+0418 Tuil
+0418 Velddriel
+0418 Waardenburg
+0418 Zaltbommel
+0418 Zuilichem
+043 Amby
+043 Banholt
+043 Bemelen
+043 Berg en Terblijt
+043 Bergenhuizen
+043 Beutenaken
+043 Borgharen
+043 Bunde
+043 Cadier en Keer
+043 Camerig
+043 Cottessen
+043 Eckelrade
+043 Eijsden
+043 Elkenrade
+043 Epen
+043 Eperheide
+043 Etenaken
+043 Euverem
+043 Eys
+043 Eyserheide
+043 Gasthuis
+043 Geulhem
+043 Geulle
+043 Gronsveld
+043 Gulpen
+043 Heer
+043 Heijenrath
+043 Herkenrade
+043 Heugem
+043 Hilleshagen
+043 Holset
+043 Honthem
+043 Hoogcruts
+043 Hulsen LB
+043 IJzeren
+043 Ingber
+043 Itteren
+043 Keutenberg
+043 Lemiers
+043 Limmel
+043 Maarland
+043 Maastricht
+043 Mamelis
+043 Margraten
+043 Mechelen
+043 Meerssen
+043 Mesch
+043 Mheer
+043 Moorveld
+043 Nijswiller
+043 Noorbeek
+043 Oost LB
+043 Oud Valkenburg
+043 Partij
+043 Ransdaal
+043 Reijmerstok
+043 Rijckholt
+043 't Rooth gem Margraten
+043 Rothem
+043 Scheulder
+043 Schilberg gem Margraten
+043 Schilberg gem Wittem
+043 Schin op Geul
+043 Schoonbron
+043 Schweiberg
+043 Sibbe
+043 Slenaken
+043 Smeermaas
+043 St Geertruid
+043 St Gerlach
+043 Strucht
+043 Terhorst
+043 Terlinden
+043 Trintelen
+043 Ulestraten
+043 Vaals
+043 Valkenburg LB
+043 Vijlen
+043 Vilt
+043 Walem
+043 Wijlre
+043 Wittem
+043 Wolfhaag
+045 Aalbeek
+045 Baneheide
+045 Beersdal
+045 Bleijerheide
+045 Bocholtz
+045 Brunssum
+045 Chevremont
+045 Eygelshoven
+045 Haanrade
+045 Haasdal
+045 Heek
+045 Heerlen
+045 Heerlerbaan
+045 Heerlerheide
+045 Hoensbroek
+045 Hopel
+045 Hulsberg
+045 Hunnecum
+045 Kaalheide
+045 Kakert
+045 Kerkrade
+045 Klimmen
+045 Kunrade
+045 Landgraaf
+045 Lauradorp
+045 Nieuw Einde
+045 Nieuwenhagen
+045 Nuth
+045 Oensel
+045 Onderste Locht
+045 Palemig
+045 Rimburg
+045 Rumpen
+045 Schaesberg
+045 Schandelen
+045 Schimmert
+045 Schinveld
+045 Simpelveld
+045 Spekholzerheide
+045 Swier
+045 Ten Esschen
+045 Terwinselen
+045 Treebeek
+045 Ubach over Worms
+045 Ubachsberg
+045 Vaesrade
+045 Voerendaal
+045 Waubach
+045 Welten
+045 Wijnandsrade
+046 Abshoven
+046 Amstenrade
+046 Beek LB
+046 Berg aan de Maas
+046 Bingelrade
+046 Born
+046 Buchten
+046 Catsop
+046 Daniken
+046 Dieteren
+046 Doenrade
+046 Douvergenhout
+046 Einighausen
+046 Elsloo LB
+046 Geleen
+046 Geverik
+046 Graetheide
+046 Grevenbicht
+046 Groot Genhout
+046 Guttecoven
+046 Holtum
+046 Hommert
+046 Illikhoven
+046 Jabeek
+046 Kelmond
+046 Klein Genhout
+046 Limbricht
+046 Luchthaven Zuid-Limburg
+046 Merkelbeek
+046 Munstergeleen
+046 Nattenhoven
+046 Neerbeek
+046 Nieuwstadt
+046 Obbicht
+046 Oirsbeek
+046 Papenhoven
+046 Puth
+046 Raath
+046 Roosteren
+046 Schinnen
+046 Sittard
+046 Spaubeek
+046 Stein LB
+046 Susteren
+046 Sweikhuizen
+046 Urmond
+046 Windraak
+046 Wolfhagen
+0475 Asselt
+0475 Baexem
+0475 Beegden
+0475 Berkelaar
+0475 Boukoul
+0475 Buggenum
+0475 Echt
+0475 Echterbosch
+0475 Grathem
+0475 Haelen
+0475 Heel
+0475 Heibloem
+0475 Herkenbosch
+0475 Herten
+0475 Heythuysen
+0475 Horn
+0475 Hunsel
+0475 Ittervoort
+0475 Koningsbosch
+0475 Leeuwen
+0475 Lerop
+0475 Linne
+0475 Maasbracht
+0475 Maasniel
+0475 Mariahoop
+0475 Melick
+0475 Merum
+0475 Montfort
+0475 Neer
+0475 Neeritter
+0475 Nunhem
+0475 Ohe en Laak
+0475 Oler
+0475 Ool
+0475 Panheel
+0475 Pey
+0475 Posterholt
+0475 Putbroek
+0475 Roermond
+0475 Roggel
+0475 St Joost
+0475 St Odilienberg
+0475 Stevensweert
+0475 Swalmen
+0475 Thorn
+0475 Vlodrop
+0475 Wessem
+0478 Blitterswijck
+0478 Castenray
+0478 Geysteren
+0478 Groeningen
+0478 Hamert
+0478 Heide
+0478 Holthees
+0478 Leuken
+0478 Leunen
+0478 Maashees
+0478 Meerlo
+0478 Merselo
+0478 Oirlo
+0478 Oostrum LB
+0478 Overloon
+0478 Smakt
+0478 Swolgen
+0478 Tienray
+0478 Veltum
+0478 Venray
+0478 Veulen
+0478 Vierlingsbeek
+0478 Vredepeel
+0478 Wanssum
+0478 Well LB
+0478 Wellerlooi
+0478 Ysselsteyn LB
+0481 Bemmel
+0481 Doornenburg
+0481 Elst gld
+0481 Gendt
+0481 Haalderen
+0481 Homoet
+0481 Hulhuizen
+0481 Kekerdom
+0481 Loenen gem Valburg
+0481 Millingen a/d Rijn
+0481 Oosterhout gld
+0481 Ressen
+0481 Slijk-Ewijk
+0485 Afferden LB
+0485 Aijen
+0485 Beers NB
+0485 Bergen LB
+0485 Beugen
+0485 Boxmeer
+0485 Cuijk
+0485 Gennep
+0485 Haps
+0485 Heijen
+0485 Katwijk NB
+0485 Landhorst
+0485 Ledeacker
+0485 Linden
+0485 Mill
+0485 Milsbeek
+0485 Nieuw Bergen
+0485 Oeffelt
+0485 Oploo
+0485 Ottersum
+0485 Rijkevoort
+0485 Sambeek
+0485 Siebengewald
+0485 St Agatha
+0485 St Anthonis
+0485 St Hubert
+0485 Stevensbeek
+0485 Ven-Zelderheide
+0485 Vianen NB
+0485 Vortum-Mullem
+0485 Wanroij
+0485 Westerbeek
+0485 Wilbertoord
+0486 Demen
+0486 Dennenburg
+0486 Deursen
+0486 Dieden
+0486 Escharen
+0486 Gassel
+0486 Grave
+0486 Herpen
+0486 Huisseling
+0486 Keent NB
+0486 Langenboom
+0486 Neerloon
+0486 Niftrik
+0486 Overlangel
+0486 Ravenstein
+0486 Reek
+0486 Schaijk
+0486 Velp NB
+0486 Zeeland
+0487 Afferden gld
+0487 Alphen gld
+0487 Altforst
+0487 Appeltern
+0487 Batenburg
+0487 Beneden-Leeuwen
+0487 Bergharen
+0487 Boven-Leeuwen
+0487 Deest
+0487 Dreumel
+0487 Druten
+0487 Ewijk
+0487 Heerewaarden
+0487 Hernen
+0487 Horssen
+0487 Maasbommel
+0487 Puiflijk
+0487 Wamel
+0487 Winssen
+0488 Andelst
+0488 Dodewaard
+0488 Hemmen
+0488 Herveld
+0488 Hien
+0488 Kesteren
+0488 Opheusden
+0488 Randwijk
+0488 Valburg
+0488 Zetten
+0492 Aarle-Rixtel
+0492 Bakel
+0492 Beek en Donk
+0492 Boekel
+0492 Brouwhuis
+0492 Donk NB
+0492 Elsendorp
+0492 Gemert
+0492 Handel
+0492 Helmond
+0492 Lierop
+0492 Mierlo
+0492 Mierlo-Hout
+0492 Milheeze
+0492 Mortel
+0492 Stiphout
+0492 Venhorst
+0493 Asten
+0493 Deurne
+0493 Griendtsveen
+0493 Helenaveen
+0493 Heusden gem Asten
+0493 Liessel
+0493 Ommel
+0493 Rips
+0493 Someren
+0493 Vlierden
+0493 Zeilberg
+0495 Budel
+0495 Budel-Dorplein
+0495 Budel-Schoot
+0495 Dorplein
+0495 Ell
+0495 Gastel
+0495 Haler
+0495 Kelpen
+0495 Leveroy
+0495 Maarheeze
+0495 Nederweert
+0495 Nederweert Eind
+0495 Ospel
+0495 Soerendonk
+0495 Stramproy
+0495 Swartbroek
+0495 Tungelroy
+0495 Weert
+0497 Bergeyk
+0497 Bladel
+0497 Casteren
+0497 Duizel
+0497 Eersel
+0497 Hapert
+0497 Hoogeloon
+0497 Luyksgestel
+0497 Netersel
+0497 Reusel
+0497 Steensel
+0497 Vessem
+0497 Weebosch
+0499 Best
+0499 Breugel
+0499 Lieshout
+0499 Mariahout
+0499 Oirschot
+0499 Son
+050 Adorp
+050 Aduard
+050 Alteveer gem Roden
+050 Bedum
+050 Bunne
+050 De Groeve
+050 De Punt
+050 Den Ham GN
+050 Den Horn
+050 Dorkwerd
+050 Eelde
+050 Eelderwolde
+050 Ellerhuizen
+050 Engelbert
+050 Foxwolde
+050 Garmerwolde
+050 Glimmen
+050 Groningen
+050 Haren GN
+050 Harkstede
+050 Hoogkerk
+050 Lellens
+050 Leutingewolde
+050 Lieveren
+050 Luddeweer
+050 Matsloot
+050 Merk
+050 Middelbert
+050 Midlaren
+050 Nieuw-Roden
+050 Noorddijk GN
+050 Noordlaren
+050 Noordwolde GN
+050 Onderdendam
+050 Onnen
+050 Oostwold gem Leek
+050 Paterswolde
+050 Peize
+050 Peizermade
+050 Roden
+050 Roderesch
+050 Roderwolde
+050 Ruischerbrug
+050 Sauwerd
+050 Scharmer
+050 Schipborg
+050 Schuilingsoord
+050 St Annen
+050 Ten Boer
+050 Ten Post
+050 Thesinge
+050 Waterhuizen
+050 Westerbroek
+050 Westlaren
+050 Wetsinge
+050 Winde
+050 Winneweer
+050 Wittewierum
+050 Woltersum
+050 Yde
+050 Zuidlaren
+050 Zuidwolde GN
+0511 Augsbuurt
+0511 Bergum
+0511 Broeksterwoude
+0511 Buitenpost
+0511 Burgum
+0511 Damwoude
+0511 De Valom
+0511 Dokkumer Nieuwe Zijlen
+0511 Driesum
+0511 Eernewoude
+0511 Engwierum
+0511 Garijp
+0511 Hardegarijp
+0511 Hurdegarijp
+0511 Kollum
+0511 Kollumerpomp
+0511 Kollumerzwaag
+0511 Noordbergum
+0511 Oudwoude
+0511 Rijperkerk
+0511 Rinsumageest
+0511 Suameer
+0511 Suawoude
+0511 Tietjerk
+0511 Triemen
+0511 Twijzel
+0511 Twijzelerheide
+0511 Veenklooster
+0511 Veenwouden
+0511 Westergeest
+0511 Wouterswoude
+0511 Zwaagwesteinde
+0511 Zwagerbosch
+0512 Augustinusga
+0512 Beetsterzwaag
+0512 Boelenslaan
+0512 Boornbergum
+0512 De Tike
+0512 De Veenhoop
+0512 De Wilgen
+0512 Drachten
+0512 Drachtster compagnie
+0512 Drogeham
+0512 Eestrum
+0512 Frederiksoord
+0512 Frieschepalen
+0512 Gerkesklooster
+0512 Harkema
+0512 Houtigehage
+0512 Jistrum
+0512 Kootstertille
+0512 Kortehemmen
+0512 Nij Beets
+0512 Nijega
+0512 Olterterp
+0512 Oostermeer
+0512 Opeinde
+0512 Oudega gem Smallingerland
+0512 Rottevalle
+0512 Schuilenburg FR
+0512 Siegerswoude
+0512 Smalle Ee
+0512 Stroobos
+0512 Surhuisterveen
+0512 Surhuizum
+0512 Ureterp
+0512 Zorgvlied
+0513 Bontebok
+0513 Boornzwaag
+0513 Broek FR
+0513 De Knipe
+0513 Dijken
+0513 Doniaga
+0513 Gersloot
+0513 Gorredijk
+0513 Haskerdijken
+0513 Haskerhorne
+0513 Heerenveen
+0513 Idskenhuizen
+0513 Jonkersl
+0513 Joure
+0513 Katlijk
+0513 Langezwaag
+0513 Langweer
+0513 Legemeer
+0513 Lippenhuizen
+0513 Luinjeberd
+0513 Luxwoude
+0513 Mildam
+0513 Nieuwebrug FR
+0513 Nieuwehorne
+0513 Nieuweschoot
+0513 Nijehaske
+0513 Oldeouwer
+0513 Oranjewoud
+0513 Oudehaske
+0513 Oudehorne
+0513 Oudeschoot
+0513 Ouwster-Nijega
+0513 Ouwsterhaule
+0513 Rohel
+0513 Rotstergaast
+0513 Rotsterhaule
+0513 Rottum FR
+0513 Scharsterbrug
+0513 Sintjohannesga
+0513 Snikzwaag
+0513 St Johannesga
+0513 St Nicolaasga
+0513 Terband
+0513 Teroele
+0513 Terwispel
+0513 Tijnje
+0513 Tjalleberd
+0513 Vegelinsoord
+0514 Bakhuizen
+0514 Balk
+0514 Bantega
+0514 Delfstrahuizen
+0514 Echten FR
+0514 Echtenerbrug
+0514 Eesterga
+0514 Elahuizen
+0514 Follega
+0514 Harich
+0514 Heidenskip It
+0514 Hemelum
+0514 Hindeloopen
+0514 Indijk
+0514 It Heidenskip
+0514 Kolderwolde
+0514 Koudum
+0514 Koufurderrige
+0514 Lemmer
+0514 Mirns
+0514 Molkwerum
+0514 Nijemirdum
+0514 Oosterzee
+0514 Oudega gem Gaasterl
+n-Sleat
+0514 Oudemirdum
+0514 Rijs
+0514 Ruigahuizen
+0514 Schoterzijl
+0514 Sloten FR
+0514 Smallebrugge
+0514 Sondel
+0514 Stavoren
+0514 Tjerkgaast
+0514 Warns
+0514 Wijckel
+0514 Woudsend
+0514 Ypecolsga
+0515 Abbega
+0515 Allingawier
+0515 Blauwhuis
+0515 Bolsward
+0515 Bozum
+0515 Burgwerd
+0515 Cornwerd
+0515 Dearsum
+0515 Dedgum
+0515 Deersum
+0515 Edens
+0515 Exmorra
+0515 Ferwoude
+0515 Folsgare
+0515 Gaast
+0515 Gaastmeer
+0515 Gauw
+0515 Goenga
+0515 Greonterp
+0515 Hartwerd
+0515 Heeg
+0515 Hennaard
+0515 Hichtum
+0515 Hidaard
+0515 Hieslum
+0515 Hommerts
+0515 Idsegahuizum
+0515 Idzega
+0515 IJlst
+0515 Itens
+0515 Jutrijp
+0515 Kubaard
+0515 Loenga
+0515 Lutkewierum
+0515 Makkum FR
+0515 Nijezijl
+0515 Nijhuizum
+0515 Nijland
+0515 Offingawier
+0515 Oosterend FR
+0515 Oosthem
+0515 Oppenhuizen
+0515 Osingahuizen
+0515 Oudega gem Wymbritseradiel
+0515 Parrega
+0515 Piaam
+0515 Rien
+0515 Roodhuis
+0515 Sandfirden
+0515 Scharnegoutum
+0515 Sijbrandaburen
+0515 Sneek
+0515 Tersoal
+0515 Terzool
+0515 Tirns
+0515 Tjalhuizum
+0515 Tjerkwerd
+0515 Uitwellingerga
+0515 Westhem
+0515 Wolsum
+0515 Wommels
+0515 Workum
+0515 Ysbrechtum
+0516 Appelscha
+0516 Bakkeveen
+0516 Donkerbroek
+0516 Een-West
+0516 Fochteloo
+0516 Haule
+0516 Haulerwijk
+0516 Hemrik
+0516 Hoornsterzwaag
+0516 Jubbega
+0516 Langedijke
+0516 Makkinga
+0516 Nijeberkoop
+0516 Oldeberkoop
+0516 Oosterwolde FR
+0516 Ravenswoud
+0516 Waskemeer
+0516 Wijnjewoude
+0517 Achlum
+0517 Arum
+0517 Baard
+0517 Baijum
+0517 Boer
+0517 Breezanddijk
+0517 Dongjum
+0517 Dronrijp
+0517 Franeker
+0517 Harlingen
+0517 Herbaijum
+0517 Hitzum
+0517 Huins
+0517 Kimswerd
+0517 Kornwerderzand
+0517 Lions
+0517 Lollum
+0517 Longerhouw
+0517 Midlum
+0517 Oosterlittens
+0517 Peins
+0517 Pietersbierum
+0517 Pingjum
+0517 Ried
+0517 Schalsum
+0517 Schettens
+0517 Schingen
+0517 Schraard
+0517 Sexbierum
+0517 Spannum
+0517 Tzum
+0517 Waaxens gem Littenseradiel
+0517 Welsrijp
+0517 Wijnaldum
+0517 Winsum FR
+0517 Witmarsum
+0517 Wons
+0517 Zurich
+0517 Zweins
+0518 Berlikum FR
+0518 Ferwerd
+0518 Firdgum
+0518 Hallum
+0518 Hijum
+0518 Hogebeintum
+0518 Klooster-Lidlum
+0518 Marrum
+0518 Menaldum
+0518 Minnertsga
+0518 Nieuwe Bildtzijl
+0518 Oostbierum
+0518 Oude Bildtzijl
+0518 Oude Leije
+0518 Slappeterp
+0518 St Annaparochie
+0518 St Jacobiparochie
+0518 Tzummarum
+0518 Vrouwenparochie
+0518 Westhoek
+0518 Wier
+0519 Aalsum
+0519 Ameland
+0519 Anjum
+0519 Ballum
+0519 Bartlehiem gem Ferweradeel
+0519 Birdaard
+0519 Blija
+0519 Bollingawier
+0519 Bornwird
+0519 Brantgum
+0519 Buren FR
+0519 Dokkum
+0519 0519
+Ezumazijl
+0519 Foudgum
+0519 Genum
+0519 Hantum
+0519 Hantumeruitburen
+0519 Hantumhuizen
+0519 Hiaure
+0519 Hollum
+0519 Holwerd
+0519 Janum
+0519 Jislum
+0519 Jouswier
+0519 Lauwersoog
+0519 Lichtaard
+0519 Lioessens
+0519 Metslawier
+0519 Moddergat
+0519 Morra
+0519 Nes Ameland
+0519 Nes gem Dongeradeel
+0519 Niawier
+0519 Oosternijkerk
+0519 Oostmahorn
+0519 Oostrum FR
+0519 Paesens
+0519 Raard
+0519 Reitsum
+0519 Schiermonnikoog
+0519 Sijbrandahuis
+0519 Tergracht gem Ferweradeel
+0519 Ternaard
+0519 Tibma
+0519 Waaxens gem Dongeradeel
+0519 Wanswerd
+0519 Wetsens
+0519 Wierum
+0521 Baars
+0521 Basse
+0521 Darp
+0521 De Bult
+0521 De Pol
+0521 Diever
+0521 Dieverburg
+0521 Doldersum
+0521 Dwingeloo
+0521 Eemster
+0521 Eese
+0521 Eesveen
+0521 Geeuwenbrug gem Diever
+0521 Gelderingen
+0521 Giethoorn
+0521 Havelte
+0521 Havelterberg
+0521 Kallenkote
+0521 Kerkbuurt OV
+0521 Leggeloo
+0521 Lhee
+0521 Lheebroek
+0521 Marijenkampen
+0521 Nijensleek
+0521 Onna
+0521 Oude Willem
+0521 Scheerwolde
+0521 Steenwijk
+0521 Steenwijkerwold
+0521 Thij
+0521 Tuk
+0521 Uffelte
+0521 Vledder
+0521 Vledderveen DR
+0521 Wapse
+0521 Wapserveen
+0521 Wateren
+0521 Wetering
+0521 Wilhelminaoord
+0521 Willemsoord
+0521 Witte Paarden
+0521 Wittelte
+0521 Zuidveen
+0522 Ansen
+0522 Berghuizen DR
+0522 Broekhuizen DR
+0522 De Stapel
+0522 De Wijk
+0522 Dijkhuizen DR
+0522 't Haagje
+0522 Haakswold
+0522 IJhorst
+0522 Koekange
+0522 Kolderveen
+0522 Kolderveense Bovenboer
+0522 Lankhorst
+0522 Lichtmis
+0522 Meppel
+0522 Nijeveen
+0522 Nijeveense Bovenboer
+0522 Oosterboer
+0522 Rogat
+0522 Rouveen
+0522 Ruinen
+0522 Ruinerwold
+0522 Staphorst
+0522 Wanneperveen
+0523 Balkbrug
+0523 Beerze
+0523 Beerzerveld
+0523 Bergentheim
+0523 Brucht
+0523 Bruchterveld
+0523 Collendoorn
+0523 Dedemsvaart
+0523 Den Kaat
+0523 Diffelen
+0523 Drogteropslagen
+0523 Hardenberg
+0523 Heemserveen
+0523 Hoogenweg
+0523 Kloosterdijk
+0523 Kloosterhaar
+0523 Lutten
+0523 Marienberg
+0523 Ommerschans
+0523 Oud Avereest
+0523 Radewijk
+0523 Rheeze
+0523 Rheezerveen
+0523 Schuinesloot
+0523 Sibculo
+0523 Slagharen
+0523 Venebrugge
+0523 Vinkenbuurt
+0523 Witharen
+0524 Ane
+0524 Anerveen
+0524 Anevelde
+0524 Coevorden
+0524 Dalen
+0524 Dalerend
+0524 Dalerpeel
+0524 Dalerveen
+0524 De Klencke
+0524 De Krim
+0524 Den Velde
+0524 Gees
+0524 Geesbrug
+0524 Gramsbergen
+0524 Holtheme
+0524 Holthone
+0524 Loozen
+0524 Nieuw Zwinderen
+0524 Nieuw-Schoonebeek
+0524 Nieuwe Krim
+0524 Oosterhesselen
+0524 Padhuis
+0524 Pikveld
+0524 Schoonebeek
+0524 Steenwijksmoer
+0524 Stieltjeskanaal
+0524 Vlieghuis
+0524 Wachtum
+0524 Weijerswold
+0524 Weiteveen
+0524 Zwinderen
+0525 Doornspijk
+0525 Elburg
+0525 't Harde
+0525 't Loo Oldebroek
+0525 Noordeinde gld
+0525 Oldebroek
+0525 Oldebroek Legerplaats
+0525 Oosterwolde gld
+0527 Baarlo OV
+0527 Bant
+0527 Blankenham
+0527 Blokzijl
+0527 Creil
+0527 Emmeloord
+0527 Ens
+0527 Espel
+0527 Kadoelen
+0527 Kraggenburg
+0527 Kuinre
+0527 Luttelgeest
+0527 Marknesse
+0527 Muggenbeet
+0527 Nagele
+0527 Nederland
+0527 Ramspol
+0527 Rutten
+0527 St Jansklooster
+0527 Tollebeek
+0527 Urk
+0527 Vollenhove
+0528 Alteveer gem Zuidwolde
+0528 Echten DR
+0528 Elim
+0528 Eursinge gem Ruinen
+0528 Fluitenberg
+0528 Fort DR
+0528 Hollandsche veld
+0528 Hoogeveen
+0528 Kerkenveld
+0528 Linde DR
+0528 Nieuw-Balinge
+0528 Nieuweroord
+0528 Nieuwlande
+0528 Noordsche schut
+0528 Pesse
+0528 Steenbergen gem Zuidwolde DR
+0528 Stuifzand
+0528 Ten Arlo
+0528 Tiendeveen
+0528 Veeningen
+0528 Vuile Riete
+0528 Zuidwolde DR
+0529 Ankum
+0529 Arrien
+0529 Arrierveld
+0529 Besthmen
+0529 Dalfsen
+0529 De Marshoek
+0529 Den Hulst gem Staphorst
+0529 Eerde OV
+0529 Gerner
+0529 Giethmen
+0529 Hessum
+0529 Hoogengraven
+0529 Hoonhorst
+0529 Junne
+0529 Laag Zuthem
+0529 Lenthe
+0529 Nieuwleusen
+0529 Ommen
+0529 Oudleusen
+0529 Punthorst
+0529 Rechteren
+0529 Stegeren
+0529 Varsen
+0529 Vilsteren
+053 Boekelo
+053 Buurse
+053 Enschede
+053 Glane
+053 Glanerbrug
+053 Haaksbergen
+053 Langelo OV
+053 Lonneker
+053 Losser
+053 Overdinkel
+053 Stepelo
+053 Usselo
+0541 Agelo
+0541 Beuningen OV
+0541 Breklenkamp
+0541 De Lutte
+0541 De Poppe
+0541 Denekamp
+0541 Haarle gem Tubbergen
+0541 Hezingen
+0541 Lattrop-Breklenkamp
+0541 Lemselo
+0541 Mander
+0541 Manderveen
+0541 Noord Deurningen
+0541 Nutter
+0541 Oldenzaal
+0541 Ootmarsum
+0541 Oud Ootmarsum
+0541 Reutum
+0541 Rossum OV
+0541 Tilligte
+0541 Vasse
+0541 Volthe
+0541 Weerselo
+0543 Aalten
+0543 Barlo
+0543 Bredevoort
+0543 Dale
+0543 Haart
+0543 Heurne gem Aalten
+0543 IJzerlo
+0543 Lintelo
+0543 Winterswijk
+0543 Winterswijk Brinkheurne
+0543 Winterswijk Corle
+0543 Winterswijk Henxel
+0543 Winterswijk Huppel
+0543 Winterswijk Kotten
+0543 Winterswijk Meddo
+0543 Winterswijk Miste
+0543 Winterswijk Ratum
+0543 Winterswijk Woold
+0544 Avest
+0544 Beltrum
+0544 Groenlo
+0544 Harreveld
+0544 Lichtenvoorde
+0544 Lievelde
+0544 Lintvelde
+0544 Marienvelde
+0544 Vragender
+0544 Zieuwent
+0545 Borculo
+0545 Eibergen
+0545 Geesteren gld
+0545 Gelselaar
+0545 Haarlo
+0545 Hupsel
+0545 Neede
+0545 Noordijk
+0545 Rekken
+0545 Rietmolen
+0546 Aadorp
+0546 Albergen
+0546 Almelo
+0546 Bruinehaar
+0546 Daarle
+0546 Daarlerveen
+0546 De Pollen
+0546 Den Ham OV
+0546 Fleringen
+0546 Geesteren OV
+0546 Harbrinkhoek
+0546 Hoge Hexel
+0546 Langeveen
+0546 Mariaparochie
+0546 Rectum
+0546 Tubbergen
+0546 Vriezenveen
+0546 Vriezenveensewijk
+0546 Vroomshoop
+0546 Westerhaar-Vriezenveensewijk
+0546 Wierden
+0546 Ypelo (Wierden)
+0547 Bentelo
+0547 Diepenheim
+0547 Eisen
+0547 Enter
+0547 Goor
+0547 Hengevelde
+0547 Markelo
+0547 Markvelde
+0547 Stokkum OV
+0547 Ypelo (enter)
+0548 Dijkerhoek
+0548 Espelo
+0548 Haarle gem Hellendoorn
+0548 Hellendoorn
+0548 Holten
+0548 Holterberg
+0548 Nijverdal
+0548 Notter
+0548 Rijssen
+0548 Schuilenburg OV
+0548 Zuna
+055 Apeldoorn
+055 Assel
+055 Beekbergen
+055 Beemte Broekland
+055 De Kar
+055 Het Loo
+055 Hoenderloo
+055 Hoog Soeren
+055 Klarenbeek
+055 Lieren
+055 Loenen gld
+055 Oosterhuizen
+055 Radio Kootwijk
+055 Teuge
+055 Ugchelen
+055 Wenum Wiesel
+055 Wiesel
+055 Woeste Hoeve
+0561 Blesdijke
+0561 Boijl
+0561 Boschoord
+0561 De Blesse
+0561 De Hoeve
+0561 Elsloo FR
+0561 IJsselham
+0561 Kalenberg
+0561 Langelille
+0561 Munnekeburen
+0561 Nijeholtpade
+0561 Nijeholtwolde
+0561 Nijelamer
+0561 Nijetrijne
+0561 Noordwolde FR
+0561 Oldeholtpade
+0561 Oldeholtwolde
+0561 Oldelamer
+0561 Oldemarkt
+0561 Oldetrijne
+0561 Oosterstreek
+0561 Ossenzijl
+0561 Paasloo
+0561 Peperga
+0561 Scherpenzeel FR
+0561 Slijkenburg
+0561 Sonnega
+0561 Spanga
+0561 Steggerda
+0561 Ter ldzard
+0561 Vinkega
+0561 Wolvega
+0561 Zandhuizen
+0562 Baaiduinen
+0562 Formerum
+0562 Hee
+0562 Hoorn Terschelling
+0562 Kaart
+0562 Kinnum
+0562 Landerum
+0562 Lies
+0562 Midsland
+0562 Oosterend Terschelling
+0562 Seerijp
+0562 Terschelling
+0562 Terschelling Baaiduinen
+0562 Terschelling Formerum
+0562 Terschelling Hee
+0562 Terschelling Hoorn
+0562 Terschelling Kaart
+0562 Terschelling Kinnum
+0562 Terschelling Landerum
+0562 Terschelling Lies
+0562 Terschelling Midsland
+0562 Terschelling Oosterend
+0562 Terschelling Seerijp
+0562 Terschelling West
+0562 Vlieland
+0562 West-Terschelling
+0566 Akkrum
+0566 Akmarijp
+0566 Aldeboarn
+0566 Friens
+0566 Goengahuizen
+0566 Goingarijp
+0566 Grouw
+0566 Idaard
+0566 Irnsum
+0566 Nes gem Boarnsterhim
+0566 Oldeboorn
+0566 Poppingawier
+0566 Raerd
+0566 Rauwerd
+0566 Reduzum
+0566 Roordahuizum
+0566 Terhorne
+0566 Terkaple
+0570 Bathmen
+0570 Boerhaar
+0570 Broekland OV
+0570 Colmschate
+0570 Den Nul
+0570 Deventer
+0570 Diepenveen
+0570 Dortherhoek
+0570 Duur
+0570 Elshof
+0570 Hengforden
+0570 Herxen
+0570 Lettele
+0570 Linde gem Diepenveen
+0570 Loo OV
+0570 Okkenbroek
+0570 Olst
+0570 Schalkhaar
+0570 Steenenkamer
+0570 Tongeren OV
+0570 Wechterholt
+0570 Welsum
+0570 Wengelo
+0570 Wesepe
+0570 Wijhe
+0570 Wijnvoorden
+0571 De Vecht
+0571 Duistervoorde
+0571 Nijbroek
+0571 Terwolde
+0571 Twello
+0571 Wilp
+0572 Archem
+0572 Dalmsholte
+0572 Heeten
+0572 Heino
+0572 Lemele
+0572 Lemelerveld
+0572 Lierderholthuis
+0572 Luttenberg
+0572 Marienheem
+0572 Nieuw-Heeten
+0572 Raalte
+0572 Schoonheeten
+0572 Spekhoek
+0573 Ampsen
+0573 Armhoede
+0573 Barchem
+0573 Exel
+0573 Groot Dochteren
+0573 Harfsen
+0573 Heurne gem Ruurlo
+0573 Klein Dochteren
+0573 Kring van Dorth
+0573 Laren gld
+0573 Lochem
+0573 Nettelhorst
+0573 Oolde
+0573 Ruurlo
+0573 Verwolde
+0575 Almen
+0575 Baak
+0575 Bekveld
+0575 Bronkhorst
+0575 Brummen
+0575 Cortenoever
+0575 Eefde
+0575 Empe
+0575 Epse
+0575 Gorssel
+0575 Hengelo gld
+0575 Joppe
+0575 Keijenborg
+0575 Kranenburg
+0575 Leesten
+0575 Leuvenheim
+0575 Linde gld
+0575 Oeken
+0575 Olburgen
+0575 Rha
+0575 Rhienderen
+0575 Steenderen
+0575 Toldijk
+0575 Tonden
+0575 Varssel
+0575 Vierakker
+0575 Voorst gem Voorst
+0575 Voorstonden
+0575 Vorden
+0575 Warken
+0575 Warnsveld
+0575 Wichmond
+0575 Wildenborch
+0575 Zutphen
+0577 Drie
+0577 Elspeet
+0577 Garderen
+0577 Kootwijk
+0577 Leuvenum
+0577 Meerveld
+0577 Millingen Legerplaats
+0577 Nieuw Milligen
+0577 Oud Milligen
+0577 Speuld
+0577 Staverden
+0577 Uddel
+0577 Vierhouten
+0578 Emst
+0578 Epe
+0578 Gortel
+0578 Heerde
+0578 Marle gem Wijhe
+0578 Niersen
+0578 Oene
+0578 Schaveren
+0578 Tongeren gld
+0578 Vaassen
+0578 Veessen
+0578 Vorchten
+058 Aegum
+058 Bartlehiem gem Tietjerk-steradeel
+058 Beers FR
+058 Beetgum
+058 Beetgumermolen
+058 Blessum
+058 Boksum
+058 Britsum
+058 Britswerd
+058 Cornjum
+058 Deinum
+058 Eagum
+058 Engelum
+058 Finkum
+058 Giekerk
+058 Goutum
+058 Hempens
+058 Hijlaard
+058 Jellum
+058 Jelsum
+058 Jorwerd
+058 Leeuwarden
+058 Lekkum
+058 Mantgum
+058 Marssum
+058 Miedum
+058 Molenend
+058 Munein
+058 Oenkerk
+058 Oentsjerk
+058 Oosterwierum
+058 Oudkerk
+058 Roodkerk
+058 Snakkerburen
+058 Stiens
+058 Swichum
+058 Teerns
+058 Tergracht gem Tietjerk deel
+058 Warga
+058 Warstiens
+058 Wartena
+058 Weidum
+058 Wergea
+058 Wieuwerd
+058 Wijns
+058 Wirdum FR
+058 Wytgaard
+0591 Aalden
+0591 Achterste Erm
+0591 Barger-Compascuum
+0591 Barger-Oosterveld
+0591 Benneveld
+0591 De Kiel
+0591 Diphoorn
+0591 Emmen DR
+0591 Emmer-Compascuum
+0591 Erica
+0591 Erm
+0591 Exloo
+0591 't Haantje
+0591 Holsloot
+0591 Kibbelveen
+0591 Klazienaveen
+0591 Klijndijk
+0591 Meppen
+0591 Nieuw Dordrecht
+0591 Nieuw-Amsterdam
+0591 Nieuw-Weerdinge
+0591 Noord-Sleen
+0591 Odoorn
+0591 Odoornerveen
+0591 Oranjedorp
+0591 Roswinkel
+0591 Schoonoord
+0591 Sleen
+0591 Valthe
+0591 Veenoord
+0591 Weerdinge
+0591 Wezup
+0591 Wezuperbrug
+0591 Zandpol
+0591 Zwartemeer
+0591 Zweeloo
+0592 Amen
+0592 Anderen
+0592 Anloo
+0592 Annen
+0592 Assen
+0592 Balloerveld
+0592 Balloo
+0592 Bovensmilde
+0592 Deurze
+0592 Donderen
+0592 Een
+0592 Eext
+0592 Ekehaar
+0592 Eldersloo
+0592 Eleveld
+0592 Gasteren
+0592 Geelbroek
+0592 Gieten
+0592 Grolloo
+0592 Hijkersmilde
+0592 Hoogersmilde
+0592 Huis ter Heide DR
+0592 Langelo DR
+0592 Loon
+0592 Marwijksoord
+0592 Nijlande
+0592 Nooitgedacht
+0592 Norg
+0592 Oranje
+0592 Oudemolen DR
+0592 Papenvoort
+0592 Peelo
+0592 Peest
+0592 Rhee
+0592 Rolde
+0592 Schoonloo
+0592 Smilde
+0592 Steenbergen gem Roden
+0592 Taarlo
+0592 Ter Aard
+0592 Tynaarlo
+0592 Ubbena
+0592 Veenhuizen DR
+0592 Vredenheim
+0592 Vries
+0592 Westervelde
+0592 Witten
+0592 Zeegse
+0592 Zeijen
+0592 Zeijerveen
+0592 Zeijerveld
+0592 Zuidvelde
+0593 Balinge
+0593 Beilen
+0593 Bruntinge
+0593 Drijber
+0593 Elp
+0593 Eursinge gem Westerbork
+0593 Garminge
+0593 Hijken
+0593 Hooghalen
+0593 Laaghalen
+0593 Laaghalerveen
+0593 Mantinge
+0593 Orvelte
+0593 Spier
+0593 Westerbork
+0593 Wijster
+0593 Witteveen
+0593 Zuidveld
+0593 Zwiggelte
+0594 Aduarderzijl
+0594 Boerakker
+0594 Boerakker gem Leek
+0594 Briltil
+0594 Burum
+0594 De Wilp GN
+0594 Doezum
+0594 Enumatil
+0594 Ezinge
+0594 Feerwerd
+0594 Gaarkeuken
+0594 Garnwerd
+0594 Grijpskerk
+0594 Grootegast
+0594 Jonkersvaart
+0594 Kommerzijl
+0594 Kornhorn
+0594 Lauwerzijl
+0594 Leek
+0594 Lettelbert
+0594 Lucaswolde
+0594 Lutjegast
+0594 Marum
+0594 Midwolde
+0594 Munnekezijl
+0594 Niebert
+0594 Niehove
+0594 Niekerk gem Grootegast
+0594 Nietap
+0594 Niezijl
+0594 Noordhorn
+0594 Noordwijk GN
+0594 Nuis
+0594 Oldehove
+0594 Oldekerk
+0594 Oostum
+0594 Opende
+0594 Pieterzijl
+0594 Ruigezand
+0594 Saaksum
+0594 Sebaldeburen
+0594 Terheijl
+0594 Tolbert
+0594 Trimunt
+0594 Visvliet
+0594 Warfstermolen
+0594 Zevenhuizen GN
+0594 Zuidhorn
+0595 Baflo
+0595 Den Andel
+0595 Eenrum
+0595 Eppenhuizen
+0595 Garsthuizen
+0595 Hornhuizen
+0595 Houwerzijl
+0595 Huizinge
+0595 Kantens
+0595 Kleine huisjes
+0595 Kloosterburen
+0595 Kruisweg
+0595 Leens
+0595 Mensingeweer
+0595 Middelstum
+0595 Molenrij
+0595 Niekerk gem De Marne
+0595 Oldenzijl
+0595 Oosternieland
+0595 Pieterburen
+0595 Rasquert
+0595 Roodeschool
+0595 Rottum GN
+0595 Saaxumhuizen
+0595 Schouwerzijl
+0595 Startenhuizen
+0595 Stitswerd
+0595 Tinallinge
+0595 Toornwerd
+0595 Uithuizen
+0595 Uithuizermeeden
+0595 Ulrum
+0595 Usquert
+0595 Vierhuizen
+0595 Warffum
+0595 Warfhuizen
+0595 Wehe-Den Hoorn
+0595 Westernieland
+0595 Westerwijtwerd
+0595 Winsum GN
+0595 Zandeweer
+0595 Zoutkamp
+0595 Zuurdijk
+0596 Amsweer
+0596 Appingedam
+0596 Bierum
+0596 Borgsweer
+0596 Delfzijl
+0596 Eemshaven
+0596 Eenum
+0596 Farmsum
+0596 Garrelsweer
+0596 Godlinze
+0596 Heveskes
+0596 Holwierde
+0596 Krewerd
+0596 Leermens
+0596 Loppersum
+0596 Losdorp
+0596 Meedhuizen
+0596 Nieuwolda
+0596 Oosterwijtwerd
+0596 Oterdum
+0596 Oudeschip
+0596 Overschild
+0596 Spijk GN
+0596 Stedum
+0596 Termunten
+0596 Termunterzijl
+0596 Tjamsweer
+0596 Tjuchem
+0596 Uitwierde
+0596 Wagenborgen
+0596 Weiwerd
+0596 Westeremden
+0596 Wirdum GN
+0596 Woldendorp
+0596 't Zandt GN
+0596 Zeerijp
+0596 Zijldijk
+0597 Beerta
+0597 Bellingwolde
+0597 Blijham
+0597 Drieborg
+0597 Finsterwolde
+0597 Heiligerlee
+0597 Klein Ulsda
+0597 Midwolda
+0597 Nieuw Beerta
+0597 Nieuwe Pekela
+0597 Nieuweschans
+0597 Oostwold gem Scheemda
+0597 Oude Pekela
+0597 Oudeschans
+0597 Oudezijl
+0597 Rhederveld gem Bellingwedde
+0597 Rhederveld gem Bellingwedde
+0597 Scheemda
+0597 Ulsda
+0597 Veelerveen
+0597 Vriescheloo
+0597 Wedde
+0597 Wedderveer
+0597 Westerlee GN
+0597 Winschoten
+0598 Annerveensche Kanaal
+0598 Bareveld
+0598 Borgercompagnie
+0598 Eexterveen
+0598 Eexterveensche Kanaal
+0598 Eexterzandvoort
+0598 Foxham
+0598 Foxhol
+0598 Froombosch
+0598 Hellum
+0598 Hoogezand
+0598 Kiel-Windeweer
+0598 Kolham
+0598 Kropswolde
+0598 Lageland
+0598 Martenshoek
+0598 Meeden
+0598 Muntendam
+0598 Nieuw Scheemda
+0598 Nieuw-Annerveen
+0598 Nieuwediep
+0598 Noordbroek
+0598 Oud-Annerveen
+0598 Sappemeer
+0598 Schildwolde
+0598 Siddeburen
+0598 Slochteren
+0598 Spijkerboor DR
+0598 Steendam
+0598 Tripscompagnie
+0598 Veendam
+0598 't Waar
+0598 Wildervangster-dallen
+0598 Wildervank
+0598 Woudbloem
+0598 Zuidbroek
+0598 Zuidlaarderveen
+0599 Alteveer GN
+0599 Barnflair
+0599 Borger
+0599 Bourtange
+0599 Bronneger
+0599 Bronnegerveen
+0599 Buinen
+0599 Buinerveen
+0599 Drouwen
+0599 Drouwenermond
+0599 Drouwenerveen
+0599 Eerste Exloermond
+0599 Ees
+0599 Eesergroen
+0599 Eeserveen Borger
+0599 Eeserveen Odoorn
+0599 Ellertshaar
+0599 Exloermond Eerste
+0599 Exloermond Tweede
+0599 Exloerveen
+0599 Gasselte
+0599 Gasselter-nijveensche-mond
+0599 Gasselterboerveen
+0599 Gasselternijveen
+0599 Gieterveen
+0599 Jipsingboermussel
+0599 Jipsingboertange
+0599 Jipsinghuizen
+0599 Munnekemoer
+0599 Mussel
+0599 Musselkanaal
+0599 Nieuw-Buinen
+0599 Onstwedde
+0599 Rhederveld gem Vlagtwedde
+0599 Sellingen
+0599 Stadskanaal
+0599 Ter Apel
+0599 Ter Apelkanaal
+0599 Tweede Exloermond
+0599 Tweede Valthermond
+0599 Valthermond
+0599 Valthermond Tweede
+0599 Vlagtwedde
+0599 Vledderveen GN
+0599 Westdorp
+0599 Zandberg DR
+070 Den Haag
+070 's-Gravenhage
+070 Kijkduin
+070 Leidschendam
+070 Loosduinen
+070 Rijswijk ZH
+070 Scheveningen
+070 Voorburg
+070 Wassenaar
+071 Hazerswoude-Rijndijk
+071 Hoogmade
+071 Katwijk aan de Rijn
+071 Katwijk aan Zee
+071 Katwijk ZH
+071 Koudekerk aan den Rijn
+071 Leiden
+071 Leiderdorp
+071 Nieuwe Wetering
+071 Noordwijk ZH
+071 Oegstgeest
+071 Oud Ade
+071 Oude Wetering
+071 Rijnsburg
+071 Rijpwetering
+071 Roelofarendsveen
+071 Stompwijk
+071 Valkenburg ZH
+071 Voorschoten
+071 Warmond
+071 Weteringbrug
+071 Zoeterwoude
+072 Aagtdorp
+072 Alkmaar
+072 Bergen aan Zee
+072 Bergen NH
+072 Camperduin
+072 Catrijp
+072 Egmond aan den Hoef
+072 Egmond aan Zee
+072 Egmond-Binnen
+072 Egmondermeer
+072 Groet
+072 Hargen
+072 Heerhugowaard
+072 Heiloo
+072 Het Woud
+072 Koedijk
+072 Limmen
+072 Mijzen
+072 Oterleek
+072 Oudorp NH
+072 Rinnegom
+072 Rustenburg
+072 Schermerhorn
+072 Schoorl
+072 Schoorldam gem Schoorl
+072 St Pancras
+072 Stompetoren
+072 Ursem
+072 Veenhuizen NH
+072 Zuidschermer
+072 Zuidschermer gem Schermer
+073 Ammerzoden
+073 Berlicum NB
+073 Bokhoven
+073 Den Bosch
+073 Den Dungen
+073 Empel
+073 Engelen
+073 Geffen
+073 Gemonde
+073 Haarsteeg
+073 Hedel
+073 's-Hertogenbosch
+073 Hintham
+073 Middelrode
+073 Nieuwkuijk
+073 Nuland
+073 Rosmalen
+073 Schijndel
+073 St Michielsgestel
+073 Vinkel
+073 Vlijmen
+073 Vught
+073 Well gld
+073 Wijbosch
+074 Ambt Delden
+074 Azelo
+074 Beckum
+074 Borne
+074 Bornerbroek
+074 Delden
+074 Deldenerbroek
+074 Deurningen
+074 Dulder
+074 Gammelke
+074 Hasselo
+074 Hengelo OV
+074 Hertme
+074 Saasveld
+074 St Isodorushoeve
+074 Wiene
+074 Zeldam
+074 Zenderen
+075 Assendelft
+075 De Woude
+075 Jisp
+075 Kogerpolder
+075 Koog aan de Zaan
+075 Krommenie
+075 Krommeniedijk
+075 Markenbinnen
+075 Oost-Graftdyk
+075 Oostknollendam
+075 Oostzaan
+075 Spijkerboor NH
+075 Starnmeer
+075 West-Graftdijk
+075 Westknollendam
+075 Westzaan
+075 Wormer
+075 Wormerveer
+075 Zaandam
+075 Zaandijk
+076 Achtmaal
+076 Breda
+076 Etten-Leur
+076 Galder
+076 Klein Zundert
+076 Prinsenbeek
+076 Rijsbergen
+076 Strijbeek
+076 Terheijden
+076 Teteringen
+076 Ulvenhout
+076 Wagenberg
+076 Wernhout
+076 Zundert
+077 America
+077 Arcen
+077 Baarlo LB
+077 Beesel
+077 Belfeld
+077 Beringe
+077 Blerick
+077 Broekhuizen LB
+077 Broekhuizenvorst
+077 Donk LB
+077 Egchel
+077 Evertsoord
+077 Grashoek
+077 Grubbenvorst
+077 Hegelsom
+077 Helden
+077 Horst LB
+077 Hout LB
+077 Hout-Blerick
+077 Kessel LB
+077 Kesseleik
+077 Koningslust
+077 Kronenberg
+077 Lomm
+077 Lottum
+077 Maasbree
+077 Meijel
+077 Melderslo
+077 Meterik
+077 Neerkant
+077 Ooijen LB
+077 Panningen
+077 Reuver
+077 Rooth gem Maasbree
+077 Schandelo
+077 Sevenum
+077 Steyl
+077 Tegelen
+077 Tongerlo
+077 Velden
+077 Venlo
+078 Alblasserdam
+078 Dordrecht
+078 Dubbeldam
+078 's-Gravendeel
+078 Heerjansdam
+078 Hendrik-ldo-Ambacht
+078 Kinderdijk
+078 Maasdam
+078 Mookhoek
+078 Papendrecht
+078 Puttershoek
+078 Strijen
+078 Strijensas
+078 Wieldrecht
+078 Willemsdorp
+078 Zwijndrecht
+079 Benthuizen
+079 Gelderswoude
+079 Moerkapelle
+079 Zoetermeer

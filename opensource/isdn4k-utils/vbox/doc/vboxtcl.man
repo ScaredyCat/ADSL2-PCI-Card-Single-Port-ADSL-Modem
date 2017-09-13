@@ -1,0 +1,226 @@
+.\" $Id: vboxtcl.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxtcl 5 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+.SH NAME
+vboxtcl \- tcl commands for vboxgetty
+
+.SH CONTENT
+With vbox version 2.0, tcl can be used as a script language to act on
+incoming calls. 
+
+Incoming calls are still taken by vboxgetty, but further actions are
+made by the tcl script.
+
+.SH VARIABLES
+These are additional variables supplied by vboxgetty.
+
+.TP
+.B vbox_var_bindir
+directory with vbox commands.
+
+.TP
+.B vbox_var_savename
+name for this message to save. The name is constructed from time and
+process id. It's a good idea to use this name, but you can also use a
+different name.
+
+.TP
+.B vbox_var_rectime
+maximum seconds to record. 
+
+.TP
+.B vbox_var_spooldir
+path of the users spool directory (@SPOOLDIR@/<user>).
+
+.TP
+.B vbox_var_checknew
+path for new files (@SPOOLDIR@/<user>/incoming).
+
+.TP
+.B vbox_msg_standard
+filename with full path of the message to play as the standard message
+(@SPOOLDIR@/<user>/messages/standard.msg).
+
+.TP
+.B vbox_msg_beep
+filename with full path of the message to play as beep
+(@SPOOLDIR@/<user>/messages/beep.msg).
+
+.TP
+.B vbox_msg_timeout
+filename with full path of the message to play after a timeout 
+(@SPOOLDIR@/<user>/messages/timeout.msg).
+
+.TP
+.B vbox_caller_id
+CALLERID of current caller. If unknown, this is "0".
+
+.TP
+.B vbox_caller_phone
+full phone number of current caller. If unknown, this is "*** Unknown
+***".
+
+.TP
+.B vbox_caller_name
+name of current caller. If unknown, this is "*** Unknown ***".
+
+.TP
+.B vbox_user_name
+name of the user that runs this vboxgetty.
+
+.TP
+.B vbox_user_home
+home directory of the user that runs this vboxgetty.
+
+.TP
+.B vbox_flag_standard
+this is TRUE if the script should play the standard message, and
+FALSE if the script should not.
+
+.TP
+.B vbox_flag_beep
+this is TRUE if the script should play the beep message, and
+FALSE if the script should not.
+
+.TP
+.B vbox_flag_timeout
+this is TRUE if the script should play the timeout message, and
+FALSE if the script should not.
+
+.TP
+.B vbox_flag_record
+this is TRUE if the script should record a message, and
+FALSE if the script should not.
+
+.SH FUNCTIONS
+vboxgetty also provides some additional functions to the user.
+
+.TP
+.B Return Codes
+Most functions will use these return codes:
+
+.RS
+.TP
+.B ERROR
+An error occurred.
+
+.TP
+.B HANGUP
+The connection was ended. Script should end now.
+
+.TP
+.B OK
+The whole message was played, nothing occurred.
+.RE
+
+.TP
+\ 
+Any other error code is a touchtone sequence, that was detected during
+playing the message.
+
+.TP
+.B vbox_breaklist <add|rem> <sequence> [...]
+With this command you can control which touchtone sequences vboxgetty
+will recognize.
+
+Touchtone sequences have the format *NUMBER#, where NUMBER is a sequence
+of the characters 0-9 and A-D. Even single numbers must be given in
+the format *NUMBER#. Vboxgetty detects if the caller gives a number as
+a single digit or as a part of a sequence.
+
+.RS
+.TP
+.B add <sequence> [...]
+Add a touchtone sequence to breaklist. You can add up to 8 sequences at
+one time.
+
+.TP
+.B rem <sequence> [...]
+Remove a touchtone sequence from breaklist. You can remove up to 8 sequences at
+one time. You can use 
+.B all
+to remove all sequences.
+.RE
+
+.TP
+.B vbox_put_message <message>
+Play a message and returns an error code depending on the reason to stop
+playing. Default return codes.
+
+.RS
+.TP
+.B message
+full name of the message file (with path).
+.RE
+
+.TP
+.B vbox_get_message <savename> <timelimit>
+Records a message. Default return codes. Options are:
+
+.RS
+.TP
+.B savename
+full name of the file for saving the message.
+
+.TP
+.B timelimit
+maximum time to record the message.
+.RE
+
+.TP
+.B vbox_wait <seconds>
+Waits for several seconds for an input from caller. Default return codes.
+Options are:
+
+.RS
+.TP
+.B seconds
+time to wait.
+.RE
+
+.TP
+.B vbox_init_touchtones
+Clears vboxgetty touchtone sequence. Normal way is to append all new
+touchtones to the sequence, the sequence is only cleared when a "*"
+touchtone is received.
+
+.TP
+.B vbox_pause <ms>
+waits a specific number of milliseconds.
+
+.RS
+.TP
+.B ms 
+number of milliseconds to wait.
+.RE
+
+.TP
+.B vbox_get_nr_new_messages <messagebox>
+Return the number of new messages in the directory.
+
+.RS
+.TP
+.B messagebox
+the directory to scan
+.RE
+
+.TP
+.B vbox_get_nr_all_messages <messagebox>
+Return the number of messages in the directory.
+
+.RS
+.TP
+.B messagebox
+the directory to scan
+.RE
+
+.SH SEE ALSO
+Look at the tcl documentation for any tcl specific questions.
+
+For vbox :
+.B vboxgetty(8), vboxgetty.conf(5), vbox.conf(5)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

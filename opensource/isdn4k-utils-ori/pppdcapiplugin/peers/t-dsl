@@ -1,0 +1,34 @@
+# Ondemand Verbindung zu T-DSL über die Fritz!Card DSL
+debug
+sync
+noauth
+defaultroute
+lcp-echo-interval 5
+lcp-echo-failure 3
+lcp-max-configure 50
+lcp-max-terminate 2
+noccp
+noipx
+#
+persist
+#demand
+connect ""
+#
+mru 1490
+mtu 1490
+ipcp-accept-local
+ipcp-accept-remote
+#
+#
+#
+plugin userpass.so
+# Anschlusskennung T-Online-Nummer Mitbenutzerkennung
+#          |           |           |
+user 000000000000\#000000000000\#0001\#@t-online.de
+password 00000000
+linkname t-dsl
+ipparam internet
+plugin capiplugin.so
+avmadsl
+:
+/dev/null

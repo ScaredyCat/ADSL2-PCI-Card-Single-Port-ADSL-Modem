@@ -1,0 +1,330 @@
+.\" $Id: isdn.conf.5.in,v 1.8 2002/03/11 16:13:38 paul Exp $
+.\" CHECKIN $Date: 2002/03/11 16:13:38 $
+.TH isdn.conf 5 "@MANDATE_ISDN_CONF@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+
+.SH NAME
+@I4LCONFDIR@/@CONFFILE@ \- config file for isdnlog
+
+.SH FORMAT
+The config file has the format described in isdnformat(5). I recommend
+starting isdnlog with -f@I4LCONFDIR@/@CONFFILE@, and storing all options in
+this file in section [options]. Read the man page for more details.
+
+Isdnlog will always read the @I4LCONFDIR@/@CONFFILE@ config file for the
+sections [global] [variables] and [isdnlog]; it will ignore other sections.
+To make isdnlog process the [options] section you must pass it with the -f
+option!
+
+.SH GLOBAL SECTION
+This section holds common information for all isdn programs. All settings are
+for EuroISDN (DSS1).
+
+.TP
+.B AREACODE
+Telephone area code of your city. With 1TR6 ISDN protocol you must
+specify your whole telephone number (without MSN). Required.
+
+.TP
+.B AREAPREFIX
+Prefix for area code. Default is "0". Your area code may start with this
+prefix (e.g. "0721" and "721" is the same area code). Optional.
+
+.TP
+.B COUNTRYCODE
+Telephone country code (e.g. 49 for Germany). Required.
+
+.TP
+.B COUNTRYPREFIX
+Prefix for country code. Default is "+". Your country code may start with
+this prefix (e.g. "+49" and "49" is the same country code). Optional.
+
+.SH VARIABLES
+The ISDN tools allow to set variables and use them later. All variables
+must be uppercase. Example : "MYPATH = /home/foo".
+
+.SH ISDNLOG
+Settings for isdnlog.
+
+.TP
+.B VBN
+The initial numbers of the alternate carrier prefix
+(to choose an alternate telephone provider).
+If there is more than one possible prefix,
+separate them with colons.
+
+.TP
+.B VBNLEN
+The number of significant digits after the
+.I VBN
+prefix that identify the chosen carrier (provider).
+If there are different numbers possible, separate them with colons.
+
+.TP
+.B PRESELECTED
+The default telephone carrier (provider), if no alternate carrier prefix is dialed.
+
+.TP
+.B COUNTRYFILE
+Location and name of
+.IR country.dat .
+This file contains country names, aliases, codes and prefixes.
+
+.TP
+.B RATECONF
+Location and name of
+.IR rate.conf .
+This file defines booked providers and provider variants.
+
+.TP
+.B RATEFILE
+Location and name of
+.IR rate-CC.dat ,
+where
+.I CC
+is your country code. This file contains all the connection fees for all
+providers to various destinations at certain dates/times.
+See rate-files(5) for more info.
+
+.TP
+.B HOLIDAYS
+Name and location of
+.IR holiday-CC.dat .
+
+.TP
+.B ZONEFILE
+Name and location of
+.IR zone-CC-PPP.cdb .
+The provider
+.I PPP
+is taken from the D:-tag in rate-CC.dat and is substituted for '%s' in
+the configuration entry. This file contains domestic zone info for all
+areas of a country.
+
+.TP
+.B DESTFILE
+Name and location of the destination database
+.IR dest.cdb .
+
+.TP
+.B LOGFILE
+Isdnlog will store a list of all calls in this file, and isdnrep will
+read this file to calculate isdn telephone costs. Default value is
+"@LOGFILE@". Optional.
+
+.TP
+.B RELOADCMD
+Isdnlog can use this command to reactivate the isdn subsystem.
+Default value is "@RELOADCMD@". Optional.
+
+.TP
+.B STOPCMD
+Isdnlog can use this command to stop the isdn subsystem.
+Default value is "@STOPCMD@". Optional.
+
+.TP
+.B REBOOTCMD
+Isdnlog can use this command to reboot linux (when all else fails).
+Default value is "@REBOOTCMD@". Optional.
+
+.TP
+.B CURRENCY
+Cost per charge unit and currency. Default is "0.12,DM".
+.br
+Note: the charge entry is not used anymore.
+
+.TP
+.B CHARGEMAX
+Isdnlog can manage your isdn costs and prevent you from spending more
+than a maximum
+per day. Unit is national currency. Example: In Germany you want to set
+CURRENCY to "0.12,DM" and CHARGEMAX to "15.00", so you will spend max.
+15 DM per day.  Required.
+
+.TP
+.B CONNECTMAX
+Isdnlog can also limit your online time in seconds per month.
+Example: "CONNECTMAX=18000,0" will allow you to be 5 hours online per
+month. Optional.
+
+.TP
+.B BYTEMAX
+Isdnlog can also limit your transfer in bytes.
+Example: "BYTEMAX=67108864" will limit your transfer to 64 MB per
+month. Optional.
+
+.TP
+.B VBOXPATH
+Isdnrep can include information from the voice box system vbox in its
+report. To do this, you must specify the vbox spooldir (e.g.
+VBOXPATH=/var/spool/vbox/foo/incoming). Optional.
+
+.TP
+.B VBOXCMD1 VBOXCMD2
+Isdnrep can convert vbox messages. To do this, you should supply a
+command. VBOXCMD1 is used with old vbox files (<2.0), VBOXCMD2 is used
+with new vbox files (>=2.0). Example: "VBOXCMD1=/usr/bin/zyxeltowav".
+Optional.
+
+.TP
+.B MGETTYPATH
+Isdnrep can include information from the mgetty fax system in its
+report. To do this, you must specify the mgetty spooldir (e.g.
+MGETTYPATH=/var/spool/fax/incoming). Optional.
+
+.TP
+.B MGETTYCMD
+Isdnrep can convert mgetty fax files. To do this, you should supply a command.
+Example: "MGETTYCMD=/usr/bin/g3tojpg". Optional.
+
+.TP
+.B START = { ... }
+This option is ignored without -S flag or start=yes. Here you can
+instruct isdnlog to act on any event by starting a command. However,
+isdnlog can not react on outgoing connections from other isdn devices
+(e.g. an isdn telephone). Any start commands listed here are used for all
+connections, including connections from unknown telephone numbers.
+For more information, please read callerid.conf(5).
+
+.SH FORMAT OPTIONS
+You can specify different format strings for the way isdnlog reports incoming
+messages, outgoing messages, isdnrep, and the WWW mode of isdnrep.
+
+.TP
+.B REPFMT
+Format for isdnrep (normal mode). Default is
+"  %X %D %15.15H %T %-15.15F %7u %U %I %O".
+
+.TP
+.B REPFMTWWW
+Format for isdnrep (WWW mode). Default is
+"%X %D %17.17H %T %-17.17F -20.20l SI: %S %9u %U %I %O".
+
+.TP
+.B REPFMTxxx
+Additional format strings for isdnrep.
+
+.TP
+.B ILABEL
+Format for isdnlog (incoming connections).
+Isdnlog will add the additional information such as RING, TIME, CONNECT ...
+
+.TP
+.B OLABEL
+Format for isdnlog (outgoing connections).
+Isdnlog will add the additional information such as RING, TIME, CONNECT ...
+
+.TP
+.B FORMAT MACROS
+You can build the format string for any combination of normal chars,
+digits and these special cookies:
+
+.TP
+%t
+tei
+
+.TP
+%C
+Call reference
+
+.TP
+%Nx
+Remote site's telephone number: %N0 exact number, %N1 isdnlog adds country
+and area prefix to number, %N2 isdnlog beautifies number and adds
+location, %N3 area code, %N4 number without area code, %N5 alias name,
+%N6 location, %N7 country code
+
+.TP
+%nx
+Local site's telephone number (encoding like %N).
+
+.TP
+%cx
+Telephone number as given by CLIP (encoding like %N).
+
+.TP
+%A
+the text " alias <MSN>" if CLIP message, otherwise empty.
+
+.TP
+%I
+Magic tab : empty if first active B-Channel, two blanks if second
+B-Channel, "* " if new connection (B-Channel not yet assigned).
+
+.TP
+%a
+Day of week (e.g. "Fri")
+
+.TP
+%b
+Month (e.g. "Aug")
+
+.TP
+%e
+Day of month (e.g. " 8")
+
+.TP
+%T
+time of day (e.g. "13:17:11")
+
+.TP
+%B
+B-channel (0 or 1)
+
+.TP
+%k
+Number of isdn card.
+
+.TP
+%( %/ %)
+If the number of the remote side is known: this char, i.e. the (, /, or ) that comes after the %.
+If the number if not known, a blank is substituted.
+
+.SH EXAMPLE
+.nf
+[GLOBAL]
+COUNTRYPREFIX=+
+AREAPREFIX=0
+COUNTRYCODE=49  # Germany
+AREACODE=0721   # Karlsruhe
+
+[VARIABLES]
+
+[ISDNLOG]
+VBN = 010
+VBNLEN = 2:3
+PRESELECTED = 33
+
+LOGFILE = /var/log/isdn.log
+ILABEL  = %b %e %T %ICall to tei %t from %N2 on %n2
+OLABEL  = %b %e %T %Itei %t calling %N2 with %n2
+REPFMTWWW       = "%X %D %17.17H %T %-17.17F %-20.20l SI: %S %9u %U %I %O"
+REPFMTSHORT     = "%X%D %8.8H %T %-14.14F%U%I %O"
+REPFMT  = "  %X %D %15.15H %T %-15.15F %7u %U %I %O"
+CHARGEMAX       = 50.00
+CURRENCY = 0.12,DEM
+
+COUNTRYFILE = /usr/share/isdn/country.dat
+RATECONF= /etc/isdn/rate.conf
+RATEFILE= /usr/share/isdn/rate-de.dat
+HOLIDAYS= /usr/share/isdn/holiday-de.dat
+ZONEFILE= /usr/share/isdn/zone-de-%s.cdb
+DESTFILE= /usr/share/isdn/dest.cdb
+
+.fi
+
+.SH FILES
+.TP
+.B @I4LCONFDIR@/@CONFFILE@
+This file.
+
+.SH SEE ALSO
+.B isdnlog(8) callerid.conf(5) rate-files(5) isdnrep(1)
+.br
+.BR isdnformat(5) " and samples/isdn.conf.*"
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.
+Now maintained by Paul Slootman <paul@isdn4linux.de>, updated by
+Leopold Toetsch <lt@toetsch.at>.

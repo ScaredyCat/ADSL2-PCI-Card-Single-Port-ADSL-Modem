@@ -1,0 +1,67 @@
+.\" $Id: isdnformat.5.in,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH isdnformat 5 "@MANDATE_ISDNFORMAT@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+.SH NAME
+isdnformat \- common isdn config file format
+
+.SH DESCRIPTION
+This man page describes the format of all isdn config files.
+
+.SH FORMAT
+Empty lines are ignored.
+
+If a # is encountered, this character and the rest of the line is
+ignored (it's considered a comment). You can prepend a backslash \\ to
+prevent this and use the # character.
+
+If the last character of a line is a backslash \\, the next line is
+a continuation of the current line.
+
+The file format is like smb.conf or win.ini: there are sections and
+entries within the section. However, the syntax was expanded with
+subsections; these can be nested as often as you like.
+
+All whitespace (space and tabs) at the end of the
+line are ignored.
+
+Section and entry names are case insensitive.
+
+Values are case sensitive, of course (the case is preserved).
+
+Section and entry names may not use the characters "*?|&/"; if one of
+these is encountered, it is ignored.
+
+At the beginning of the line you may use as much whitespace
+as you like.
+
+A section has the format "[" NAME "]". You may use whitespace
+between the braces and the name, or none at all.
+
+An entry has the format ENTRY "=" VALUE. You may use
+whitespace before and after the equal sign, or none at all.
+
+A subsection starts with ENTRY "=" "{"  and ends with "}". You may use
+sections, entries and subsections between the start and the end tag.
+
+Beware: unlike samba or windows the semicolon is 
+.B not
+used for comments !
+
+You can use
+.B INCLUDE(File)
+to include a file. If the filename is not absolute, it's considered
+relative to the directory of the including document. You may use it
+anywhere in a file, but there may be no space characters in the
+file!
+
+All subsections started in an include file must end in that include
+file, so the number of opened and closed brackets must match.
+
+Beware: recursive including will cause the program to break. The
+library does not prevent this.
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.
+Now maintained by Paul Slootman <paul@isdn4linux.de>.

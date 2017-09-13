@@ -1,0 +1,212 @@
+# Makefile for i4l-faq
+# (c) 1997 by Matthias Heßler (MatHes)
+#
+# Generate FAQ, support FAQ development
+
+# Directories
+# After generation, install files in TARGET_DIR (if non-empty)
+TARGET_DIR = @TARGET_DIR@
+
+# Program file names
+TAR     = @C_TAR@
+ZIP     = @C_ZIP@
+GZIP    = @C_GZIP@
+SGML2HTML = @C_SGML2HTML@
+SGML2TXT = @C_SGML2TXT@
+INSTALL = @INSTALL@
+
+# Source file names
+SRC = i4lfaq.sgml
+OUT_NAME = i4lfaq
+OUT_TXT = $(OUT_NAME).txt
+OUT_HTML = $(OUT_NAME).html
+# please note that also files like i4lfaq-1.html, i4lfaq-11.html,...
+# will be generated...
+
+DE_SRC = i4lfaq-de.sgml
+DE_OUT_NAME = i4lfaq-de
+DE_OUT_TXT = $(DE_OUT_NAME).txt
+DE_OUT_HTML = $(DE_OUT_NAME).html
+# please note that also files like i4lfaq-de-1.html, i4lfaq-de-11.html,...
+# will be generated...
+
+
+# *** Generate FAQ ***
+
+# Generate all FAQ versions
+all: Makefile \
+	$(OUT_HTML) $(OUT_TXT) \
+	$(DE_OUT_HTML) $(DE_OUT_TXT)
+
+eng: Makefile \
+	$(OUT_HTML) $(OUT_TXT)
+
+de: Makefile \
+	$(DE_OUT_HTML) $(DE_OUT_TXT)
+
+
+# Generate html version of FAQ
+html: $(OUT_HTML)
+
+$(OUT_HTML): $(SRC)
+	$(SGML2HTML) $(SRC)
+
+
+html_de: $(DE_OUT_HTML)
+
+$(DE_OUT_HTML): $(DE_SRC)
+	$(SGML2HTML) $(DE_SRC)
+
+
+# Generate text version of FAQ
+txt: $(OUT_TXT)
+
+$(OUT_TXT): $(SRC)
+	$(SGML2TXT) -f $(SRC)
+
+
+txt_de: $(DE_OUT_TXT)
+
+$(DE_OUT_TXT): $(DE_SRC)
+	$(SGML2TXT) -f $(DE_SRC)
+
+
+# Generate all zip versions
+zip: $(OUT_NAME)-sgml.zip $(OUT_NAME)-html.zip $(OUT_NAME)-txt.zip 
+gz: $(OUT_NAME).sgml.gz $(OUT_NAME).html.tar.gz $(OUT_NAME).txt.gz 
+
+zip_de: $(DE_OUT_NAME)-sgml.zip $(DE_OUT_NAME)-html.zip $(DE_OUT_NAME)-txt.zip 
+gz_de: $(DE_OUT_NAME).sgml.gz $(DE_OUT_NAME).html.tar.gz $(DE_OUT_NAME).txt.gz 
+
+
+# Compress sgml
+$(OUT_NAME)-sgml.zip: $(SRC)
+	$(ZIP) -l $(OUT_NAME)-sgml.zip $(SRC)
+$(OUT_NAME).sgml.gz: $(SRC)
+	$(GZIP) -cf $(SRC) > $(OUT_NAME).sgml.gz
+
+$(DE_OUT_NAME)-sgml.zip: $(DE_SRC)
+	$(ZIP) -l $(DE_OUT_NAME)-sgml.zip $(DE_SRC)
+$(DE_OUT_NAME).sgml.gz: $(DE_SRC)
+	$(GZIP) -cf $(DE_SRC) > $(DE_OUT_NAME).sgml.gz
+
+
+# Compress html
+$(OUT_NAME)-html.zip: $(OUT_NAME).html
+	$(ZIP) -l $(OUT_NAME)-html.zip \
+		$(OUT_NAME).html $(OUT_NAME)-[0-9].html $(OUT_NAME)-[0-9][0-9].html
+$(OUT_NAME).html.tar.gz: $(OUT_NAME).html
+	$(TAR) cf $(OUT_NAME).html.tar \
+		$(OUT_NAME).html $(OUT_NAME)-[0-9].html $(OUT_NAME)-[0-9][0-9].html
+	$(GZIP) -f $(OUT_NAME).html.tar
+
+$(DE_OUT_NAME)-html.zip: $(DE_OUT_NAME).html
+	$(ZIP) -l $(DE_OUT_NAME)-html.zip \
+		$(DE_OUT_NAME).html $(DE_OUT_NAME)-[0-9].html $(DE_OUT_NAME)-[0-9][0-9].html
+$(DE_OUT_NAME).html.tar.gz: $(DE_OUT_NAME).html
+	$(TAR) cf $(DE_OUT_NAME).html.tar \
+		$(DE_OUT_NAME).html $(DE_OUT_NAME)-[0-9].html $(DE_OUT_NAME)-[0-9][0-9].html
+	$(GZIP) -f $(DE_OUT_NAME).html.tar
+
+
+# Compress txt
+$(OUT_NAME)-txt.zip: $(OUT_TXT)
+	$(ZIP) -l $(OUT_NAME)-txt.zip $(OUT_TXT)
+$(OUT_NAME).txt.gz: $(OUT_TXT)
+	$(GZIP) -cf $(OUT_TXT) > $(OUT_NAME).txt.gz
+
+$(DE_OUT_NAME)-txt.zip: $(DE_OUT_TXT)
+	$(ZIP) -l $(DE_OUT_NAME)-txt.zip $(DE_OUT_TXT)
+$(DE_OUT_NAME).txt.gz: $(DE_OUT_TXT)
+	$(GZIP) -cf $(DE_OUT_TXT) > $(DE_OUT_NAME).txt.gz
+
+
+# *** General Stuff ***
+
+# Install output files
+install: all
+	if [ -n "$(DESTDIR)$(TARGET_DIR)" ]; then \
+		$(INSTALL) -m 0755 -d $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(SRC) $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(OUT_TXT) $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(OUT_NAME).html $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(OUT_NAME)-[0-9].html $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(OUT_NAME)-[0-9][0-9].html $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(DE_SRC) $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(DE_OUT_TXT) $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(DE_OUT_NAME).html $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(DE_OUT_NAME)-[0-9].html $(DESTDIR)$(TARGET_DIR); \
+		$(INSTALL) -m 0644 $(DE_OUT_NAME)-[0-9][0-9].html $(DESTDIR)$(TARGET_DIR); \
+	fi
+
+# Un-install output files
+uninstall:
+	set -e; \
+	if [ -n "$(TARGET_DIR)" ]; then \
+		cd $(DESTDIR)$(TARGET_DIR); \
+		rm -f $(SRC) ; \
+		rm -f $(OUT_TXT) ; \
+		if [ -e $(OUT_NAME).html ]; then rm -f $(OUT_NAME).html; fi; \
+		for i in $(OUT_NAME)-[0-9].html ; do \
+			rm -f $$i ; \
+		done ; \
+		for i in $(OUT_NAME)-[0-9][0-9].html ; do \
+			rm -f $$i ; \
+		done ; \
+		rm -f $(DE_SRC) ; \
+		rm -f $(DE_OUT_TXT) ; \
+		if [ -e $(DE_OUT_NAME).html ]; then rm -f $(DE_OUT_NAME).html; fi; \
+		for i in $(DE_OUT_NAME)-[0-9].html ; do \
+			rm -f $$i ; \
+		done ; \
+		for i in $(DE_OUT_NAME)-[0-9][0-9].html ; do \
+			rm -f $$i ; \
+		done ; \
+	fi
+
+# Cleanup
+clean:
+	if [ -e *~ ]; then rm *~; fi
+	if [ -e \#* ]; then rm \#*; fi
+	if [ -e *.orig ]; then rm *.orig; fi
+	set -e; \
+	if [ -e $(OUT_TXT) ]; then rm -f $(OUT_TXT); fi; \
+	if [ -e $(OUT_NAME)-sgml.zip ]; then rm -f $(OUT_NAME)-sgml.zip; fi; \
+	if [ -e $(OUT_NAME).sgml.gz ]; then rm -f $(OUT_NAME).sgml.gz; fi; \
+	if [ -e $(OUT_NAME)-html.zip ]; then rm -f $(OUT_NAME)-html.zip; fi; \
+	if [ -e $(OUT_NAME).html.tar.gz ]; then rm -f $(OUT_NAME).html.tar.gz; fi; \
+	if [ -e $(OUT_NAME)-txt.zip ]; then rm -f $(OUT_NAME)-txt.zip; fi; \
+	if [ -e $(OUT_NAME).txt.gz ]; then rm -f $(OUT_NAME).txt.gz; fi; \
+	if [ -e $(OUT_NAME).html ]; then rm -f $(OUT_NAME).html; fi; \
+	for i in $(OUT_NAME)-[0-9].html ; do \
+		rm -f $$i ; \
+	done
+	for i in $(OUT_NAME)-[0-9][0-9].html ; do \
+		rm -f $$i ; \
+	done
+	if [ -e $(DE_OUT_TXT) ]; then rm -f $(DE_OUT_TXT); fi; \
+	if [ -e $(DE_OUT_NAME)-sgml.zip ]; then rm -f $(DE_OUT_NAME)-sgml.zip; fi; \
+	if [ -e $(DE_OUT_NAME).sgml.gz ]; then rm -f $(DE_OUT_NAME).sgml.gz; fi; \
+	if [ -e $(DE_OUT_NAME)-html.zip ]; then rm -f $(DE_OUT_NAME)-html.zip; fi; \
+	if [ -e $(DE_OUT_NAME).html.tar.gz ]; then rm -f $(DE_OUT_NAME).html.tar.gz; fi; \
+	if [ -e $(DE_OUT_NAME)-txt.zip ]; then rm -f $(DE_OUT_NAME)-txt.zip; fi; \
+	if [ -e $(DE_OUT_NAME).txt.gz ]; then rm -f $(DE_OUT_NAME).txt.gz; fi; \
+	if [ -e $(DE_OUT_NAME).html ]; then rm -f $(DE_OUT_NAME).html; fi; \
+	for i in $(DE_OUT_NAME)-[0-9].html ; do \
+		rm -f $$i ; \
+	done
+	for i in $(DE_OUT_NAME)-[0-9][0-9].html ; do \
+		rm -f $$i ; \
+	done
+
+config:
+	./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+distclean: clean
+	rm -f config.* Makefile

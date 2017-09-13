@@ -1,0 +1,137 @@
+X-Sender: dekay@xplor.ipf.de
+References: <m0vIIrY-000LHmC@scorpio.in-berlin.de> from "Gernot Zander" at  Oct 29, 96 07:26:08 pm
+Date: Wed, 30 Oct 1996 19:05:55 +0200
+To: isdn4linux@hub-wue.franken.de, michael@abadonna.franken.de From: Darko Krizic <dekay@ipf.de>
+Subject: Sounds erzeugen für vgetty/vboxgetty Cc: maze@frankfurt.netsurf.de
+Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+Ich möchte hier ein paar Erfahrungen mit vboxgetty zusammenzählen, insbesondere im Zusammenhang mit dem Erzeugen von Messages (Sounds)
+
+Sound-Format
+------------
+Das Format ADPCM-4 generiert beim Aufzeichnen wesentlich kleinere Dateien als die Formate uLaw oder aLaw, deswegen ist dieses Format vorzuziehen.
+Vorteil von uLaw ist allerdings, daß es dem au-Format entspricht und so direkt mit cat sound.au >/dev/audio angehört werden kann, allerdings gibt es zwei Probleme:
+
+- Das ist nur interessant für Leute, die auch am Linux-Rechner sitzen und dieser eine Soundkarte besitzt. Viele Leute verwenden den Linux-Rechner als "echten" Server, der weder Monitor noch Soundkarte hat.
+
+- Die aufgezeichneten Samples haben einen sehr schwachen Pegel, den man theoretisch mit
+
+	autopvf <x.msg | pvfamp 5 | pvftoau >x_laut.msg
+
+verstärken könnte, allerdings muß man sich dann sowieso mit den pvf-Tools befassen und kann dann auch gleich auf ADPCM-4 umsteigen.
+
+Aufzeichen über Telefon
+-----------------------
+Wie in der i4l-FAQ beschrieben ist es ohne Probleme möglich sich selbst auf den Anrufbeantworter zu sprechen und die entsprechende Datei in das Verzeichnis /var/spool/vobx/<user>/incoming/standard.msg zu kopieren.
+Allerdings ist die Qualität bei weitem nicht ausreichend, unter anderem, weil sich am Anfang und Ende Geräusche oder Pausen befinden.
+
+Selbst Dateien generieren
+-------------------------
+Ich habe einen Macintosh, der unter anderem die Möglichkeit bietet, Sound von Audio-CDs ohne Verluste per SCSI auf die Festplatte zu kopieren und nachträglich auf andere Samplegeschwindigkeit und Bitbreite zu konvertieren, z.B. "16bit, 44kHz -> 8bit, 22kHz". Desweiteren kann ich mit dem Mikrofon Sounds und am Ende alle Sounds manipulieren und mixen. Die beste Voraussetzungen für verrückte Ansagen.
+
+Das Format, das der Macintosh verarbeitet ist AIFF. Dieser Standard wird auch von SGI und anderen namhaften Herstellern verwendet, allerdings konnte ich unter Linux kein Programm finden, das dieses Format versteht. Auf dem Macintosh gibt es allerdings das Programm "SoundApp", welches nach und von Suns .au konvertieren und ADPCM wenigstens abspielen kann. Anmerkung: Dummerweise nennt SoundApp das au-Format "NeXT", weil dieses Format dort verwendet wird, allerdings habe ich lange gebraucht, um herauszufinden, daß es dasselbe wie au ist.
+
+Ich nehme mal an, daß unsere Windows-Freunde ähnliche Fähigkeiten haben.
+Das Windows-Hausformat nennt sich WAV. Auch dieses Format kennen die PVF-Tools nicht, aber ich denke mal, daß es unter Windows ähnliche Werkezeuge gibt, die sogar ADPCM-4 generieren können.
+
+Ich weiß nicht, wie man unter Linux Sounds aufzeichnen kann und welches Format diese haben, allerdings wird es wohl Sun-AU-Format haben, so daß der weitere Text auf für Linux-Benutzer interessant ist.
+
+Sounds für vboxgetty konvertieren
+---------------------------------
+Wie bereits oben beschrieben, empfehle ich den Betrieb mit ADPCM-4. Bei mgetty befindet sich die pvf-Toolsammlung, welche Soundformate konvertieren und manipulieren kann, allerdings gab es Probleme mit den Formaten, die vboxgetty generiert hatte (ADPCM-4). Gegen dieses Problem gibt es Patches, allerdings enthält die neuste Version von mgetty (0.99 Okt02 und wahrscheinlich auch ein paar ältere) bereits die Programme "zyxeltopvf" und "pvftozyxel[234]", mit welchen genau diese Formate konvertiert werden können.
+
+Mein Macintosh liefert die Sounds 22254Hz. Um daraus einen entsprechenden Sound in ADPCM-4 zu generieren verwende ich folgende Kommendozeile:
+
+	autopvf <standard.au \
+		| pvfspeed 2.73 \
+		| pvfamp 0.2 \
+		| pvftozyxel4 >standard.msg
+
+autopvf konvertiert dan au-Sound nach pvf. pvfspeed ändert die Samplingrate auf 8000 (22554 / 8000 = 2.73), damit die Geschwindigkeit wieder stimmt.
+pvfamp 0.2 senkt den Pegel auf 20%, weil der Sound sonst total verzerrt klingt, schließlich kennt das Telefon nur Frequenzen zwischen 300 und 3000Hz. Zuletzt legt pvftozyxel4 den Sound im richtigen Format ab.
+
+Dadurch, daß weder Rauschen noch Klacken zu hören sind, klingen so generierte Ansagen einfach klasse. Wer etwas mit Sound-Manipulationsprogrammen spielen kann, der kann tolle Effekte generieren, allerdings sollte man damit wegen des beschränten Frequenzbandes echt sparsam umgehen, sonst versteht der Anrufende nichts.
+
+Nachbarbeiteitung von aufgezeichneten Nachrichten ------------------------------------------------- Ich möchte, daß meine Nachrichten in ein auf dem Macintosh abspielbaren Format konvertiert werden und an eine e-mail an mich attached werden sollen. Ich konvertiere den Sound nach au mit folgenden Befehlen:
+
+	zyxeltopvf <sound.pvf \
+		| pvfamp 5
+		| pvfcut 0.2 0.2 \
+		| pvftoau 8000 >sound.au
+
+zyxeltopvf konvertiert den aufgezeichneten Sound nach pvf und pvfamp verstärkt diesen auf das fünffache, weil der Pegel (s.ganz.o) sehr schwach ist. pvfcut schneidet 0.2 Sekunden vorne und hinten ab, weil man hinten z.B. das Auflegen des Telefons hört. Scheinbar zeichnet vboxgetty schon auf, während der Beep-Ton abgespielt wird, weil dieser ganz am Anfang zu hören ist. Die 8000 nach dem pvtoau ist sehr wichtig, weil diese sorgt, daß die Frequenz in den au-Header geschrieben wird, damit das abspielende Programm auch die richtige Rate spielt!
+
+Namen des Anrufenden in der Mail
+--------------------------------
+vboxgetty kennt den Namen des Anrufenden, während es die Nachricht aufzeichnet, dummerweise wird dieser Name nicht an das Programm "-p /usr/local/vbox/new_voice" mit übergeben. Ich habe deswegen einen (very dirty) hack von vboxgetty erzeugt, welches als 4ten Parameter den Namen an new_voice übergibt, damit ist es möglich, daß das Subject der generierten Mail aussieht wie "Voice from Darko Krizic" oder zumindest "Voice from Unknown". Da bei internationalen Calls zumindest die Landeskennung übergeben wird, kann eine Nachricht aus USA ein Subject wie "Voice from USA" haben.
+
+Ich bitte hiermit den Autor von vbox selbst die Änderungen zu machen.
+
+Beispiel für ein new_voice-Script
+---------------------------------
+Das Nachfolgende Shellscript hat bei mir den Namen /usr/local/vbox/new_voice und in der Inittab hängt noch "-p /usr/local/vbox/new_voice" als Parameter, damit dieses Programm nach dem Aufzeichnen einer Nachricht aufgerufen wird.
+
+Die Datei wird nach .au konvertiert und als MIME-encoded Message an den Benutzer für den die Nachricht aufgezeichnet wurde, geschickt. Ich verwende übrigens mimeencode nicht. Wenn diese Mail von Eudora auf dem Macintosh empfangen wird, wird der Sound als Icon angezeigt. Ein Doppelklick reicht aus, um den Sound abzuspielen.
+
+#! /bin/sh
+#
+# Creates a new MIME-encoded mail to the user with an attached .au file # Written 1996 by Darko Krizic
+
+PATH="${PATH}:/usr/local/vbox"
+TMP="/tmp/vboxmime.$$"
+ME="`basename $0`"
+
+mailer="/usr/sbin/sendmail -t"
+bound="NewVoice_-${$}${$}"
+type="audio/ulaw"
+
+file="${1}"
+id="${2}"
+user="${3}"
+name="${4}"
+date="`date +%y%m%d%H%M`"
+newname=${date}-${id}.au
+if [ -z "$name" ]
+then
+        name=$id
+fi
+
+echo "\
+Subject: Voice from $name
+From: root@xplor.ipf.de (Voice Subsystem) To: $user
+Content-type: multipart/mixed; boundary=\"$bound\"
+
+--$bound
+Content-Type: text/pain
+
+A new voice has arrived
+
+Sender ID:      $id
+Name:           $name
+File:           $file
+
+--$bound
+Content-Type: application/octet-stream; name=\"$newname\" Content-transfer-encoding: x-uuencode
+" >$TMP
+
+/usr/local/bin/zyxeltopvf <$file \
+	| /usr/local/bin/pvfamp 5 \
+	| /usr/local/bin/pvfcut 0.2 0.2 \
+	| /usr/local/bin/pvftoau 8000 \
+	| /usr/bin/uuencode $newname >>$TMP
+#rmdcutheader <$file | uuencode $newname >>$TMP echo "--$bound--" >>$TMP
+
+
+$mailer -t <$TMP
+
+#cat $TMP
+rm $TMP
+
+Anmerkungen: Es handelt sich dabei nur um ein Beispiel, welches ich schnell für mich zusammengehackt habe. Wenn jemand Anmerkugen und Ideen hat, soll ich bei mir melden. Ich erwähne nochmal: Das Script funktioniert zwar auch so, allerdings macht es erst richtig sinn, wenn vboxgetty als 4ten Parameter den Namen des Anrufenden übertragt, sonst ist das Subject immer "Voice from Unkown".
+
+Darko Krizic
+
+----------------------------------------------------------------------- Darko Krizic          Phrankphurt Germany     mailto:dekay@xplor.ipf.de
+
+
+--------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

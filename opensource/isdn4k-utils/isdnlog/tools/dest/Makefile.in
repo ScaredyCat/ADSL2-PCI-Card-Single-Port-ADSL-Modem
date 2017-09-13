@@ -1,0 +1,136 @@
+#
+# Makefile for dest (parts borrowed from ../zone)
+#
+# (C) 1999 l.toetsch <lt@toetsch.at>
+#
+-include ../../../.config
+BZIP2			= @BZIP2@
+SHELL			= /bin/sh
+CFLAGS			= -Wall -g
+INCLUDES		=
+LDFLAGS			= @DBMLIB@
+DBEXT			= @DBEXT@
+RDBEXT			= @RDBEXT@
+CDBEXTRALIBS		= @CDBEXTRALIBS@
+PROGRAM			= dest
+MODULES			= $(PROGRAM).o
+MANPAGE			= $(PROGRAM).8
+HEADERS			= ../zone/common.h ../zone/config.h
+MANDIR			= @CONFIG_MANDIR@
+SBINDIR			= @CONFIG_SBINDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL			= @INSTALL@
+INSTALL_PROGRAM		= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+INSTALL_DATA		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+DATADIR			= @datadir@
+#CC			= @CC@ -V2.7.2.3
+CC			= @CC@
+DEST_LANG =
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+.PHONY: all config distclean dist install uninstall data alldata
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(DEFS) $(INCLUDES) -c -o $@ $<
+
+all: $(PROGRAM) ../zone/config.h data
+
+# be sure this is already built
+../zone/config.h:
+	(cd ../zone ; @./configure)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+dest: ../dest.c $(HEADERS) Makefile $(CDBEXTRALIBS)
+	$(CC) -DSTANDALONE -DDESTTEST $(DEFS) $(CFLAGS) ../dest.c $(CDBEXTRALIBS) $(LDFLAGS) -o $@
+
+#install-man: $(PROGRAM).man
+#	mkdir -p $(DESTDIR)$(MAN8DIR)
+#	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install: data
+#	$(INSTALL_DATA) dest.gdbm $(DESTDIR)$(DATADIR)
+
+uninstall:
+	rm -f $(DESTDIR)$(DATADIR)/dest$(DBEXT)
+
+clean:
+	rm -f *.o *~ $(PROGRAM)
+
+dataclean:
+	rm -f *.gdbm *.db *.cdb
+
+distclean: clean dataclean
+	rm -f config.status config.cache config.log *.man Makefile
+
+#
+#
+ifeq ($(CONFIG_ISDN_LOG_CC_EN),y)
+DEST_LANG= -en
+endif
+
+data:
+ifeq ($(DBEXT),.cdb)
+	@if [ -e dest.cdb.dump ] ; then \
+	    rm dest.cdb.dump ; \
+	fi
+endif
+	@if [ ! -e dest$(DBEXT) ] ; then \
+	./makedest -v $(DEST_LANG) ; \
+	./makedest -v -gcities.dat -a $(DEST_LANG) ; \
+	if [ x$(CONFIG_ISDN_LOG_DEST_AT) = xy ] ; then \
+		./makedest -v -a at ; \
+	fi ; \
+	if [ x$(CONFIG_ISDN_LOG_DEST_DE) = xy ] ; then \
+		./makedest -v -a de ; \
+	fi ; \
+	if [ x$(CONFIG_ISDN_LOG_DEST_NL) = xy ] ; then \
+		./makedest -v -a nl ; \
+	fi ; \
+	if [ x$(CONFIG_ISDN_LOG_DEST_CH) = xy ] ; then \
+		./makedest -v -a ch || true; \
+	fi ; \
+	fi
+ifeq ($(DBEXT),.cdb)
+	@if [ ! -e dest.cdb ] ; then \
+	    echo "" >> dest.cdb.dump ; \
+	    echo Running cdbmake ; \
+	    ../cdb/cdbmake < dest.cdb.dump dest.cdb dest.temp ; \
+	    rm dest.cdb.dump ;\
+	fi
+endif
+
+alldata:
+ifeq ($(DBEXT),.cdb)
+	if [ -e dest.cdb.dump ] ; then \
+	    rm dest.cdb.dump ; \
+	fi
+endif
+	./makedest -v $(DEST_LANG)
+	./makedest -v -gcities.dat -a $(DEST_LANG)
+	@cd ../zone ; all=`ls -d ??` ; cd ../dest ; \
+	for cc in $$all ; do \
+	  	if [ -e ../zone/$$cc/code ] ; then \
+			./makedest -v -a $$cc ; \
+		fi ; \
+	done
+ifeq ($(DBEXT),.cdb)
+	@if [ ! -e dest.cdb ] ; then \
+	    echo "" >> dest.cdb.dump ; \
+	    echo Running cdbmake ; \
+	    ../cdb/cdbmake < dest.cdb.dump dest.cdb dest.temp ; \
+	    rm dest.cdb.dump ;\
+	fi
+endif

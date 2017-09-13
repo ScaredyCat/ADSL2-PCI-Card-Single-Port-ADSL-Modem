@@ -1,0 +1,269 @@
+#! /usr/bin/perl
+
+# make dest.gdbm
+# necessary parts: /usr/lib/isdn/country.dat
+# optional parts: zone/CC/code
+#
+# usage:
+#	makedest [-en] [-v] [-a] [cc ...] [-cCC file...] [-gFile]
+#
+# these entries are written as 0-terminated strings
+# vErSiO\0 => 1.0 int[ cc...]
+#
+# for countries
+# KEY => name ; +numbers [ ; :RKEY ]
+# name => :KEY
+# +number => :KEY
+#
+# for cities from zone/CC/code
+# name => [#len]; +numbers ; :CC
+# number => :name
+
+
+package main;
+use wld;
+BEGIN {
+  if (-e "../cdb/i4l_cdb.c") {
+    @AnyDBM_File::ISA = qw( CDB_File_Dump GDBM_File NDBM_File DB_File );
+  }
+  else {
+    @AnyDBM_File::ISA = qw(GDBM_File NDBM_File DB_File ) ;
+  }
+}
+use AnyDBM_File;
+use POSIX;
+use strict;
+$|=1;
+my $co_dat = '/usr/lib/isdn/country.dat';
+my $dest_gdbm = './dest.gdbm';
+if (@AnyDBM_File::ISA eq @CDB_File_Dump::ISA) {
+  $dest_gdbm = './dest.cdb.dump';
+}
+my ($vers) = "vErSiO\x0";
+my $VERSION='1.0';
+
+
+my(%db,$N,$A,$T,$E,$C,$R, $lang,$append,$verbose,$i, $cc, $file, $tied);	
+my $outistty = (-t STDOUT);
+
+while ($ARGV[0] =~ /^-(.)(\S*)/) {
+    shift(@ARGV);
+    $append=1,next if ($1 eq 'a');
+    $lang='en',next if ("$1$2" eq 'en');
+    $verbose=$1,next if($1 eq 'v');
+    if ($1 eq 'c') {
+	$cc=$2;
+	$file = shift(@ARGV);
+	if(!$append) {
+	    print("Only with append -a ... ignoring $cc\n");
+	    next;
+	}    
+	if (!$tied) {
+	    tie(%db, 'AnyDBM_File',$dest_gdbm, O_RDWR ,0644); # write
+	    $tied=1;
+	}	    
+	&write_cc($cc, $file);
+	next;
+    }	
+    if ($1 eq 'g') { # -gFile
+	if (!$tied) {
+	    tie(%db, 'AnyDBM_File',$dest_gdbm, O_RDWR ,0644); # write
+	    $tied=1;
+	}	    
+	$file=$2;
+    	my $value=$db{$vers};
+    	chop $value;
+	$value =~s / \((\d+)\)//;
+	$i=$1;
+	$i++;
+	$value .= " (+$i)\x00";
+    	$db{$vers}=$value;
+    	write_global($file);
+	next;
+    }	
+}    
+print "Writing to $dest_gdbm\n" if($verbose);
+if (!$tied) {
+    unlink $dest_gdbm unless($append);
+    tie(%db, 'AnyDBM_File',$dest_gdbm, O_RDWR | ($append ? 0 : O_CREAT), 0644); # make new
+}
+
+unless($append) {
+    $db{$vers}="Dest $VERSION int\x00";
+    write_global($co_dat);
+}
+
+foreach $C (@ARGV) {
+    &write_cc($C);
+}    
+untie(%db);
+
+print "End.\n" if($verbose);
+sub write_global   {
+    my($co_dat) = $_[0];	
+    print "Adding global $co_dat...\n" if($verbose);
+    open(IN, '../../country-de.dat') || 
+	open(IN, $co_dat) ||
+		die("Cant find country.dat");
+    $i=0;
+    while (<IN>) {
+	print "$i\r" if (++$i % 10==0 && $verbose && $outistty);
+	s/\s*#.*$//; # kill comments
+	next if /^$/; # skip empty
+        if (/^N:(.*)/) {
+	    &write1 if($N);
+	    $A=$C=$E=$T=$R='';
+	    $N=$1;
+	}	
+	elsif (/^A:(.*)/) {
+	    $A = $A ? "$A, $1" : $1; # append aliases
+	}	
+	elsif (/^C:(.*)/) {
+	    $C = $C ? "$C, $1" : $1; # append codes
+	}	
+	elsif (/^T:(.*)/) {
+	    if($T) {	 # duplicate 
+		print "Duplicate entry T:$T/$1 for $N\n";
+	    }
+	    elsif ($1 ne uc $1) {
+		print "Key $1 for $N not uppercase\n";
+	    }
+	    else {	    
+		$T=$1;
+	    }	    
+	}	
+	elsif (/^E:(.*)/) {
+	    if($E) {	 # duplicate 
+		print "Duplicate entry E:$E/$1 for $N\n";
+	    }
+	    else {	    
+		$E=$1;
+	    }	    
+	}
+	elsif (/^R:(.*)/) {
+	    if($R) {	 # duplicate 
+		print "Duplicate entry R:$R/$1 for $N\n";
+	    }
+	    else {	    
+		$R=$1;
+	    }	    
+        }
+    }
+    &write1; # last
+    close(IN);
+} # global
+
+my($Terr);
+sub write1 {
+    my ($name, $value, @C);
+    if(!$T) {
+	print "No uniq code T: defined for $N ... ignored\n";
+	if (++$Terr > 15) {
+	    print "You are sure you have the right country-file?\n";
+	    exit;
+	}    
+	return;
+    }	
+    $name = $lang eq 'en' && $E ? $E : $N;
+    $C =~ s/\s//g;
+    $name=~s/;//g; # be sure
+    $name=~s/^://; # be sure
+    $value="$name;$C";
+    if($R) {
+	$value .= ";:$R";
+    }
+    $value .= "\x00";	
+    $db{$T}=$value;
+    @C=split(/,/,$C);
+    foreach $C (@C) {
+	$db{$C}=":$T\x00";
+    }	
+    $db{$name}=":$T\x00";
+}
+
+sub write_cc {
+    my($cc, $file) = @_;
+    if ($cc =~ /-c(\S+)/) {
+	$cc=$1;
+	$file = shift(@ARGV);
+    }
+    my $value;
+    my($nam,$cods,$r);
+    if ($cc =~ /[a-z][a-z]/) {	# a iso country code
+	$value=$db{uc $cc};
+	chop $value;
+	($nam,$cods,$r) = split(/;/,$value);
+	print "Adding $cc...\n" if($verbose);
+	unless($cods) {
+	    print "Unknown Country-code $cc ... ignored - $nam, $cods, $r\n";
+	    return;
+	}
+	if ((split(/,/,$cods))>1) {
+	    print "Multiple Country-codes '$cods' for $cc ... ignored\n";
+	    return;
+	}
+	if ($r) {
+	    print "Country $cc seems not to be top level - has R:$r  ... ignored\n";
+	    return;
+	}
+    }	
+    elsif ($cc =~ /(\d+)/) { # a numeric code w/o +
+	$cc="+$1";
+    }	
+    if ($cc =~ /^\+\d+$/) { # a numeric code 
+	$cods=$cc;
+	$cc = $db{$cods};
+	chop $cc;
+	$cc =~ s/^://;
+	if(!$cc || $cc !~ /^[A-Z][A-Z]$/) {
+	    print("Can't find country for $cods ($cc)\n");
+	    return;
+	}	    
+    }
+    if (!$cc || !$cods) {
+	print "CC: '$cc' Cod '$cods' ???\n";
+	return;
+    }	
+    if ($file) {
+	open(IN,$file) || die("Can't find $file");
+	print("Enter num<TAB>city[<TAB>len]<CR>...^D\n") if($verbose&&$file eq '-');
+    }
+    else {	
+	open(IN,"/usr/lib/isdn/code-$cc.dat") || 
+	    open(IN,"../zone/$cc/code") || 
+		die("Can't find code file in ../zone/$cc or /usr/lib/idsn");
+    }		
+    $cc = uc $cc;	    
+    $value=$db{$vers};
+    chop $value;
+    if($file) {
+	$value =~s / \((\d+)\)//;
+	$i=$1;
+	$i++;
+	$value .= " (+$i)\x00";
+    }
+    else {	
+	$value .= " $cc\x00";
+    }	
+    $db{$vers}=$value;
+    $i=0;
+    while (<IN>) {	    
+	print "$i\r" if (++$i % 10==0 && $verbose && $outistty);
+	s/\s*#.*$//; # kill comments
+	next if /^$/; # skip empty
+	my ($num, $ort, $len);
+	chomp;
+	($num, $ort, $len) =split(/\t/);
+	$db{"$cods$num"}=":$ort\x00" unless defined $db{"$cods$num"};
+	if (defined $db{$ort}) {
+	print "Duplicate city '$ort' ... ignored\n" if($verbose >1);
+	    next;
+	}
+	if ($len) {
+	    $len="#$len";
+	}
+	$db{$ort}="$len;$cods$num;:$cc\x00";
+    }
+    close(IN) unless($file eq '-');		    
+}
+

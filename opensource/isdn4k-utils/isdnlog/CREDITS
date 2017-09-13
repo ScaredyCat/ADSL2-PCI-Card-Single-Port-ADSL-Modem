@@ -1,0 +1,43 @@
+isdnlog CREDITS   31-Dec-1999  11:39 AK
+
+
+Das Programm "isdnlog" begann mit einem Dreizeiler, den ich am
+28. September 1995 19:19 Uhr in der isdn4linux-Mailing-Liste veroeffentlicht
+habe.
+
+Ueber die Jahre wuchs dieses Programm zu stolzen 6,6 Mb Sourcecode heran.
+
+Zu dieser Arbeit haben unzaehlige Autoren beigetragen, ganz besonders moechte
+ich jedoch folgenden Personen danken:
+
+core programmer:
+  Stefan Luethje <luethje@sl-gw.lake.de>
+  Michael Reinelt <reinelt@eunet.at>
+  Leopold Toetsch <lt@toetsch.at>
+
+rate-de Team:
+  Jochen Erwied <j.erwied@gmx.de>
+  Alexander Werner Skwar <askwar@digitalprojects.com>
+
+Patches:
+  Fritz Elfert (fritz@isdn4linux.de)
+  Jan den Ouden (denouden@groovin.xs4all.nl)
+  Beat Doebeli (doebeli@vptt.ch)
+  Michael Bongartz (micha@mubo.saar.de)
+  Kai Voelcker (kai@fantaghiro.deceiver.org)
+  Martin Stover (mstover@Stover.f.UUnet.de)
+  Karsten Keil (isdn4@temic-ech.spacenet.de)
+  Jochen Heuer (jogi@planetzork.ping.de)
+  Hardy Buchholz (hardy@Kool.f.UUnet.de)
+  Ad Aerts (ad@aasup.nl)
+  Markus Maeder (mmaeder@cyberlink.ch)
+  Paul Slootman <paul@wau.mis.ah.nl>
+  Markus Leist (markus@hal.dirnet.com)
+  Dirk Staneker (dirk.staneker@student.uni-tuebingen.de)
+  Ullrich von Bassewitz (uz@musoftware.com)
+  Jan.Bolt@t-online.de
+
+Sollte ich jemand in dieser Aufstellung vergessen haben, bitte ich um
+Mitteilung!
+
+Andreas Kool (akool@isdn4linux.de)

@@ -1,0 +1,354 @@
+$Id: design.txt,v 1.2 2000/01/26 20:11:33 he Exp $
+
+This document is to briefly intruduce the EUROFILE protocol stack
+and to document the design of the eftp4linux EUROFILE implementation.
+It is derived from an original 'white paper' that I've written to
+introduce the isdn4linux EUROFILE deveoping project to other developeres.
+
+Enjoy,
+
+Henner
+
+
+Contents:  0.0 How to Read This
+
+           1.1 EUROFILE Protocol Stack, General Aspects
+           1.2 The ISO 8208 Protocol
+           1.3 The Data Link Protocols
+
+           2.1 ISO 8208 / X.25 inside Linux
+           2.2 Socket User Interface to Protocol Layer
+           2.3 Data Links in Linux:  X.25 LAP_B  vs.  isdn4linux x75i
+
+           3.1 Encapsulation
+           3.2 L2 Protocol
+           3.3 Providing Data-link Control Primitives to the x25 Packet Layer
+
+	   4.  EUROFILE protocol higher layers themselves and their
+	       implementation (currently empty :-)
+
+0.0 How to Read This
+====================
+
+This document serves two purposes:
+
+- It give a brief introduction on how i4l was interfaced with the
+  X.25 network layer (sections 3.* of this article). If you are familiar
+  with EFT related protocols and (isdn4)linux internals you can goto 3.0
+  right away and submit your comments.
+
+- It also gives an introduction on EFT, and ideas how it was 
+  implemented in Linux. Since it took quite some time for me
+  to gather all the information related to EFT, I decided to write an
+  introduction as the initial task of the linux EFT project. That
+  introduction was also a good base for documentation.
+
+
+Sections 1.*  will provide the necessary background information.
+
+Sections 2.*  will provide background information concerning linux specific
+EFT related protocol issues. If you focus on the user level part of the
+EFT implementation 2.2 will be the most (or even only) important part for you.
+
+In sections 3.* I'd like to discuss implementation issues concerning the
+kernel related part. Please comment on that (no matter, whether
+you are participating in the EFT project or not). You won't need to reed
+this if you are not interested in the kernel related stuff (but I've
+tried to describe my ideas from the i4l end users point of view).
+
+Section 4 is to suggest a development strategy.
+
+
+I've asked all EFT volunteers to subscribe to the i4l developer list. Since
+I don't know whether all of them have already subscribed I also include
+their addresses explicitly
+
+
+1.1 EUROFILE Protocol Stack, General Aspects
+============================================
+
+From my point of view EFT is functionally similar to ftp (the purpose is to
+transfer files), although the protocols used by them are totally different.
+ftp runs on top of the TCP/IP protocol. EFT does  not  run on top of the
+well supported TCP/IP protocol suite. It uses the less known (in the Unix
+world) ISO-8208 network protocol instead.
+
+TCP/IP and ISO-8208 provide similar services to the applications, namely a
+connection oriented, reliable, multiplexed, and flow-controlled exchange of
+data. There are also some differences, i.e. ISO-8208 preserves messages
+boundaries while tcp/ip just provides reliable byte streams. And
+ISO-8208 also has some strange stuff such as qualified data (which is
+used by EUROFILE).
+
+
+1.2 The ISO 8208 Protocol
+=========================
+
+ISO 8208 is similar to the packet layer protocol standardised by ITU-T
+recommendation X.25. X.25 is widely applied in many public data networks
+such as the German Datex-P network.
+
+I didn't get the ISO-8208 specification yet, all of my
+knowledge is from secondary sources. Thus, please correct me if I'm wrong!
+But as I understand others, the differences between ITU X.25 and ISO 8208
+are marginal (as far as the core functionality is concerned):
+
+- ITU wanted to standardise the access to public data network switches. 
+  Therefore, ITU specified the protocol as viewded from the network
+  switch (the Data Circuit Equipment "DCE")
+- ISO describes the protocol in terms of the user equipment (the Data Terminal
+  equipment "DTE") that wants to communicate via the network.
+
+Both standards essentially define the same protocol (but probably, the ISO
+version has much more optional features which will never get implemented -:).
+
+ITU X.25 specifies a whole protocol stack used to connect to X.25 switches
+including the X.25 Packet Layer Protocol ("PLP", the network layer/layer 3
+in terms of the OSI model), data link protocol ("LAP_B", OSI layer 2) and a
+physical layer (OSI layer 1). ISO-8208 is just concerned with the network
+layer.
+
+I guess one could also say that ITU describes the process of communicating
+with an X.25 network switch (which will route the packets) while ISO
+describes how to communicate with your peer entity. Thus, ITU X.25 is also
+refered as X.25 DTE-DCE. ISO, in contrast, also covers direct communication
+of two X.25 peer entities (without involving an X.25 switch). This mode
+of operation is frequently refered as X.25 DTE-DTE.
+
+And this DTE-DTE mode is also used by EFT when operating over ISDN!
+
+You can argue that the use of a network protocol like X.25 (which supports
+routing and other stuff) is unnecessary when operating over a circuit
+switched ISDN (and thus a waste of resources). You might be right,
+but I didn't design the EFT protocol. So, don't blame me for that.
+
+
+1.3 The Data Link Protocols
+===========================
+
+ITU X.25 PLP and ISO 8208 run on top of a data link protocol. ITU X.25
+defines the LAP_B procedure itself. ISO-8208 doesn't define a data link
+protocol itself. The layer-3 Protocol is just defined in terms of certain
+data link service primitives which must be provided by the data link entity.
+
+Protocols, which provide the data link service to ISO8208 are defined in
+other ISO standards. I.e. a LAP_B protocol, which provides
+such data link services, is defined in ISO 7776. ISO 7776 is (almost) identical
+to the X.75 data link protocol. This layer-2 protocol is well known by
+isdn4linux users who frequently choose it for tty-style connections in order
+to benefit from its error recovery features.
+
+X.75 by itself defines ITU's protocol stack to interconnect public
+X.25 networks. Beside the data link protocol known by linux users, it
+also defines (like X.25) a packet layer / layer 3 protocol which
+is also very similar to X.25 PLP. We won't need any more information on
+these (and other) X.75 procedures.
+
+The ISO 7776 or X.75 LAP_B protocol is again similar to the LAP_B procedure
+defined in ITU X.25.
+
+In contrast to the packet layer / layer 3 protocols
+the data link protocols are not purely symmetric:
+The lap_b protocols work by exchanging "commands" and "responses".
+Commands and responses are submitted on different data link addresses (the
+protocols contain an address field to support this).
+Usually, one peer submits commands using the data link address 1 and submits
+responses using the data link address 3. The other peer sends commands on
+address 3 and responses on address 1. Thus, before communication can start,
+a decision has to be made on who is going to submit commands on data link 1
+and on who must submit them on address 3.
+
+With X.25, this decision is quite simple. The rule is that the DTE side
+sends the commands on address 1 while the DCE sends the commands on address 3.
+
+With X.75 or ISO-8208 there is no difference between the peers. Both peer
+entities are functionally equivalent. Fortunately, for isdn, there is always
+one side which must set up the physical isdn B channel connection by
+calling the other side before communication can start. The rule is
+that the calling party uses the addresses like the DTE while the called
+party uses the addresses like the DCE.
+
+Thus, when EFT is operated over ISDN, the latter rules will be applied.
+
+When you configure the X.75 l2-protocol, isdn4linux will automatically
+choose the proper data link addresses according to the rule above.
+
+
+
+2.1 ISO 8208 / X.25 inside Linux
+================================
+
+Obviously, since EFT runs on top of ISO 8208, we definitely need an ISO
+8208 protocol implementation before we can think about EFT. Fortunately,
+Jonathan Naylor has add X.25 support to Linux (first kernel version
+with X.25 was 2.1.16). This implementation was based on ITU-T X.25
+specificatiion. But this also works well in the ISO 8208 DTE-DTE context.
+
+
+2.2 Socket User Interface to Protocol Layer
+===========================================
+
+In Unix-like operating systems, ftp clients and servers are usually
+implemented as user space programs which access the TCP/IP network protocol
+service of the kernel by means of the socket interface. EFT does not run on
+top of tcp/ip, but on top of the ISO 8208 protocol. But an operating system
+can also provide access to the ISO 8208 / X.25 protocol by means of a socket
+interface. Thus, EFT servers and clients might be similarly implemented as
+user space programs like ftp or ftpd. The Linux X.25 implementation provides
+such a socket interface.
+
+To obtain information on socket programming you can start with "man socket".
+There are also a lot of books which describe socket programming.
+
+
+User space                ftp                  eft
+
+Socket Interface      ------------          ------------
+
+                          tcp                  x25
+Kernel Space
+                          ip                   lap_b
+
+
+A lot of programmers are familiar with tcp/ip programming using the socket
+interface. Since tcp/ip and x.25 provide similar services to the user,
+programming an application that communicates via the X.25 protocol is
+not essentially different from programming a tcp/ip application. However,
+there are still some differences:
+
+First, the address space and protocol family will be different
+(PF/AF_INET vs. PF/AF_X25). For EUROFILE which applies X.25 in DTE-DTE
+mode we can use an empty X.25 address anyway.
+
+Second, in contrast to tcp/ip, X.25 preserves packet
+boundaries. Thus, a SOCK_SEQPACKET type socket is used for X.25 while
+tcp/ip uses SOCK_STREAM type sockets. If you write N bytes to a SOCK_SEQPACKET
+socket using the Unix write() system call, then a read()
+from the corresponding peer socket will return the same N bytes of data
+as written. With stream sockets, this is generally not the case (the boundaries
+of the written and read chunks won't necessarily match).
+
+EFT also needs so called X25 qualified data to be transmitted.
+The Linux X.25 protocol stack supports a special socket option that
+makes the X.25 Q-Bit (which is used by the X.25 PLP to mark qualified
+data packets) transparent to the uses.
+
+
+2.3 Data Links in Linux:  X.25 LAP_B  vs.  isdn4linux x75i
+==========================================================
+
+X25 needs a data link protocol implementation. The Linux X25 PLP is designed
+to interface directly to a Linux network interface. It requires the network
+interface to implement the X.25 data link protocol (this design decision has
+been made in order to make use of intelligent X25 cards which implement the
+LAP_B protocol in firmware). Jonathan Naylor has also written a lapb_module
+which can be used by all x25 network interface driver developers who don't
+want to implement the lap_b protocol on their own (see
+Documentation/networking/lapb-module.txt).
+
+i4l also supports a lap_b protocol (l2_prot x75i). The protocol is also
+implemented below the network interface. Thus, the situation was almost as
+required by the X25 PLP implementation.
+
+However, there was one difference:
+
+In the beginning of the isdn4linux EUROFILE project, i4l's x.75 only
+allowed the upper protocol layers to send and receive data.
+A user might send data to the i4l x.75 data link entity at any time.
+When the data link is in the "connected" state, than i4l's x.75 protocol
+implementation will just send the data to the peer. If the data link is not
+in the "connected" state then i4l will automatically established the data link
+first. After it has been established, the data will be send. No special user
+intervention was (and still is) needed for establishing the data link,
+i4l takes care on this.
+
+The X25 PLP protocol, in contrast, wants to control the establishment
+and release of the data link by itself. Therefore, an X.25 lap_b
+implementation must provide all the lap_b service primitives
+(DL_DATA request/indication, DL_ESTABLISH request/indication/confirm,
+DL_RELEASE request/indication/confirm) to the upper protocol layers (and in
+turn doesn't need to bother with automatic establishment procedures). Each
+message exchanged between the X.25 LAP_B network interface and the X25 PLP
+gets prepended a special byte. This byte is used to distinguish between the
+different DL service primitives. It is not part of the protocol data units to
+be sent to or received from the peer. (see
+Documentation/networking/x25-iface.txt for details)
+
+Remark: The lapb module only provides the protocol implementation. The
+interpretation of the leading control byte as defined in x25-iface.txt
+must be performed by the x25-network-interface-device driver which uses
+the lapb module.  
+
+
+3.  Providing the X.25 lap_b Interface in i4l
+=============================================
+
+3.1 Encapsulation
+=================
+
+Some method of providing the LAP_B data link service primitives to
+the Linux X.25 layer needed to be implemented.
+
+This was done by means of a new encapsulation type for isdn4linux
+network interfaces. This encapsulation is turned on in the same manner
+as all other encapsulation, namely by the isdnctrl command, e.g.
+
+"isdnctrl encap isdn0 x25iface"
+
+configures an isdn4linux network interface for use by the X25 PLP.
+
+This is only to indicate that the messages sent through the network interface
+are formatted according to the Linux' x25-lapb interface specification.
+(it might also be used by the device driver to take special actions which are
+specific for communicating with the x25 PLP layer). But the encapsulation
+doesn't specify how lower parts of i4l system will provide the data link
+service. (the encap doesn't specify the data link protocol which provides the
+data link service, but the protocol used between the network device and the
+network protocol layers).  
+
+
+3.2 L2 Protocol
+===============
+
+The data link protocol used to communicate between two peers is specified
+as usual by the l2_prot parameter. For EFT,
+
+"isdnctrl l2_prot isdn0 x75i"
+
+is used and no new protocol implementation was necessary.
+
+However, it might be a good opportunity to reserve two new
+l2_prot parameters, namly x25_dte and x25_dce. These specify almost the same
+as x75i, the only difference is that the data link addresses used for commands
+and responses will be fixed (in X.75 they depend on who initiates the
+corresponding call).
+
+The x25_dte or dce l2-protocols are not needed for EFT, but
+they might enable other x25 users to access public x25 data networks by
+means of i4l b_channels (dialup as well as leased lines). Maybe some
+x25 folks will be quite happy about this.
+
+
+3.3 Providing Data Link Control Primitives to the x25 Packet Layer
+==================================================================
+
+One design question was how to provide the LAP_B protocol service by i4l.
+(interpreting and setting the first byte and mapping them on the DL primitives
+according to Documentation/networking/x25-iface.txt).
+
+The final implementation used the existing x.75 L2 protocol
+present in the HL level drivers but implemented the processing of the
+first-byte (as specified in Documentation/networking/x25-iface.txt)
+entirely in the isdn4linux link level module. This
+was possible without any extension to the isdn4linux LL-HL driver interface.
+Thus, no hardware level driver needed to be adopted and every hardware
+level driver that supports l2prot x75i can be used for EUROFILE.
+(This already turned out to be a FAQ: does Linux EUROFILE work with my
+xy-isdn-card? Answer: Yes, if the card supports l2prot x75i. In
+patricular all cards supported by HiSax work) 
+
+
+4. EUROFILE protocol higher layers themselves and their implementation
+======================================================================
+
+TO BE ADDED

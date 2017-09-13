@@ -1,0 +1,13 @@
+/* configure sets these don't change */
+
+#undef HAVE_LIBGDBM
+#undef HAVE_LIBDBM
+#undef HAVE_LIBDB
+#undef USE_CDB
+
+#undef RDBEXT
+
+#undef SIZEOF_CHAR
+#undef SIZEOF_SHORT
+#undef SIZEOF_INT
+#undef SIZEOF_LONG

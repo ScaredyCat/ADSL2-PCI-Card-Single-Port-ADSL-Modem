@@ -1,0 +1,11 @@
+#!/bin/sh
+# WARNING: This file was auto-generated. Do not edit!
+awk '
+  BEGIN { FS="=>"; }
+  /^[^#]/ {
+    print "+" length($1) "," length($2) ":" $1 "->" $2
+  }
+  END {
+    print ""
+  }
+' | /usr/local/bin/cdbmake "$@"

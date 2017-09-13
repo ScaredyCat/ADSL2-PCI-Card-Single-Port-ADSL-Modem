@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+
+open(IN, "../pta/zoneall.pta");
+open(OUT,">zoneall");
+while (<IN>) {
+    chomp;
+    ($f,$t,$z) = split(/\s+/);
+    $z=2 if($z==3);
+    print OUT "$f $t $z\n";
+}
+close(IN);
+close(OUT);
+    

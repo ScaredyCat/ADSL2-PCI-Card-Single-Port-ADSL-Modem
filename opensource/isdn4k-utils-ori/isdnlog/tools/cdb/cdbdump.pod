@@ -1,0 +1,17 @@
+=head1 NAME
+
+cdbdump -- output the keys and values of a constant database
+
+=head1 SYNOPSIS
+
+cdbdump E<lt>F<file>
+
+=head1 DESCRIPTION
+
+B<cdbdump> reads a constant database from standard input and outputs
+its contents to standard output. The format used is B<cdbmake>
+compatible.
+
+=head1 SEE ALSO
+
+L<cdbget(1)|cdbget(1)>, L<cdbmake(1)|cdbmake(1)>, L<cdbstats(1)|cdbstats(1)>

@@ -1,0 +1,99 @@
+.\" $Id: vboxrc.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxrc 5 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+.SH NAME
+vboxrc \- user config file for vbox
+
+.SH Description
+Every user can save settings in ~/.vboxrc.
+
+Everything after "#" is ignored, as are empty lines. All arguments
+must be separated by whitespace (spaces, tabs). Arguments may not contain
+whitespace.
+
+These keywords are allowed:
+
+.RS
+.TP
+.B USERNAME
+
+.TP
+.B PASSWORD
+Username and password for vboxd login. These settings are used by vbox
+and vboxctrl. If they are missing, you have to enter them at runtime.
+
+.TP
+.B VOLUME
+Default volume for vbox. 
+
+.TP
+.B C_BACKGROUND
+Background color.
+
+.TP
+.B C_STATUSBAR
+Color for normal text in the status bar.
+
+.TP
+.B C_STATUSBAR_HL
+Color for highlighted text in the status bar.
+
+.TP
+.B C_POWERLED_ON
+Color for powerled (on).
+
+.TP
+.B C_POWERLED_OFF
+Color for powerled (off).
+
+.TP
+.B C_STATUSLED_ON
+Color for statusled (on).
+
+.TP
+.B C_STATUSLED_OFF
+Color for statusled (off).
+
+.TP
+.B C_LIST
+Color for list of messages.
+
+.TP
+.B C_LIST_SELECTED
+Color for selected entry in the list of messages.
+
+.TP
+.B C_INFOTEXT
+Color for info texts in the message list.
+.RE
+
+All color settings have the format TEXTCOLOR:BACKGROUNDCOLOR. You may not
+use whitespace.
+
+.TP
+These colors are available for TEXTCOLOR:
+.nf
+BLACK RED GREEN BROWN BLUE MAGENTA CYAN GRAY
+DARKGREY LIGHTRED LIGHTGREEN YELLOW LIGHTBLUE
+LIGHTMAGENTA LIGHTCYAN WHITE
+.fi
+
+.TP
+These colors are available for BACKGROUNDCOLOR:
+BLACK RED GREEN BROWN BLUE MAGENTA CYAN GREY
+
+.SH FILES
+.TP
+.B ~/.vboxrc
+this configuration file
+.TP
+.B /usr/doc/isdnutils/examples/vboxrc
+an example
+
+.SH SEE ALSO
+.B vbox(1)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

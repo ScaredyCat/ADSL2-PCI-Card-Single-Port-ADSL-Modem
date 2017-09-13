@@ -1,0 +1,307 @@
+.\" CHECKIN $Date: 2000/09/01 12:35:44 $
+.TH ISDNRATE 1 "@MANDATE@" -lt-
+.SH NAME
+isdnrate \- Print telefon rates and various info from rate\-files(5).
+.SH SYNOPSIS
+.BI "isdnrate \-b" best " \-d" day " \-f" from " \-h" hour " \-l" len
+.B \-o
+.BI \-p provs
+.B \-s
+.BI "\-t" takt " \-v" verbose " \-x" exclude
+.BI " \-C \-D" det " -\G" data " \-H \-L \-N \-O" socketfile " \-P" piddir
+.BI " \-S" sort " \-T \-U \-V \-X" explain
+.BI -Z
+.B NUMBER ...
+.P
+All options are optional.
+.SH DESCRIPTION
+The
+.B isdnrate
+program prints various information from rate\-files(5). It's main purpose
+is the calculation of telefon rates from your location to an arbitrary
+destination at a certain time and of a certain length for all the providers in a rate\-file.
+.P
+.SS
+.B NUMBER
+.P
+A telefon number may be
+.IP
+.B 1234
+a local area number
+.IP
+.B 01234
+a different area in your country
+.IP
+.B +12345
+a foreign country
+.IP
+.B China
+text for a foreign country
+.IP
+.B Paris
+a town
+.IP
+.B US
+a code as defined in
+.IR country.dat .
+.IP
+.B Internet
+a Service name (if option
+.B -s
+is also given).
+.P
+Note that currently only city names in AT, DE, NL are supported plus some international capitals.
+.br
+Note also, spaces in country- or service names may be given as underscores.
+.SS
+.B OPTIONS
+.P
+.BI \-b best
+Print only \fIbest\fP providers. Default is all.
+.P
+.BI \-d day
+Calc rates for \fIday\fP. \fIday\fP can be one of
+.IP
+.I dd
+day of current month
+.br
+.I dd.mm
+day month
+.br
+.IR dd.mm.yy [ yy ]
+day, month, year
+.br
+.I W
+Weekday
+.br
+.I N
+Weekday - night
+.br
+.I E
+Weekend
+.P
+Default is now.
+.P
+.BI \-f from
+Callers location. Default ist from
+.IR isdn.conf .
+.P
+.BI \-h hour
+Time
+.IR hh [ :mm [ :ss ]]
+of call. Default is now.
+.P
+.BI \-l len
+Length of call in second. Default value is 153 secs.
+.P
+.B \-o
+Show only booked providers. These are providers, which are listed in
+.IR rate.conf .
+.P
+.IR "\fB\-p\fP provider" [ ,provider... ]
+Print only info for given \fIprovider\fP(s).
+.I provider
+is the provider number, without the leading VBN, or
+.I provider_variant
+if there are more variations, or
+.I B
+for business providers.
+.P
+.B \-s
+Consider
+.B NUMBER
+as the name of a service and print all numbers / providers, which supply
+this service.
+.P
+.BI \-t takt
+Print only providers, which have calculation impulses smaller or equal to \fItakt\fP.
+Default is 9999.
+.P
+.BI \-v verbose
+Set \fIverbose\fP level.
+.P
+.IR "\fB\-x\fP provider" [ ,provider... ]
+Exclude these \fIprovider\fP(s).
+.P
+.SS
+.B DISPLAY AND RUN OPTIONS
+.P
+.B \-C
+Connect to a running isdnrate daemon. This avoids long startup times.
+.P
+.B \-D
+Start as a daemon, waiting for connections from a client. The socket
+.I /tmp/isdnrate
+is created, which clients can connect to.
+.P
+.B \-D2
+Start as a daemon and go background.
+.P
+.B \-CD3
+Stop a running daemon.
+.P
+.BI \-G n
+Print raw data for connection. \fIn\fP may be currently 97,98,99.
+.P
+.B \-H
+Print a header.
+.P
+.B \-L
+Print a semicolon separated list of
+.IP
+vbn ; providername ; zone ; day ; time ; currency ; charge ; basicprice ; price ;
+duration ; charge/min ; takt ; minimum price
+.P
+.B \-N
+Show info about following numbers. If no provider is given, the preselected
+provider is used.
+.P
+.BI \-O socketfile
+Write socket to given filename on start of daemon. Default is
+.IR tmp/isdnrate .
+.P
+.BI \-P piddir
+Write own PID to
+.I piddir/isdnrate.pid
+on start of daemon.
+.P
+.BI \-S sort
+Sort output by \fIsort\fP, which may be
+.IP
+.B v
+vbn or
+.B n
+provider name. Default is by charge.
+.P
+.B \-T
+Print a table of charges for daytimes weekday/weekend.
+.P
+.B \-V
+Print version info and exit.
+.P
+.BI \-X explain
+Print additional information for charge or from rate-file.
+.I explain
+may be
+.IP
+.B 1
+(zone)
+.br
+.B 2
+(charge/min, zone, day, time)
+.br
+.B 50
+International areas
+.br
+.B 51
+National zones
+.br
+.B 52
+Services
+.br
+.B COMMENT
+Print C:COMMENT: info from rate files.
+.P
+If
+.I \-s
+is given, the number of the service is also listed with
+.I \-X1
+or
+.IR \-X2 .
+.P
+.B \-Z
+Print info for LCR
+.br
+e.g. isdnrate -p1 -ZX 19430
+.br
+shows the rate for provider 1 and the cheapest rate to this service.
+.P
+Note: Various output options may not be used together. If you gave conflicting
+options you'll see a warning.
+.br
+Note also: Sort by name or providernumber and
+.BI -b best
+will bring you the first
+.I best
+providers in sorting order, not the cheapest.
+.br
+And finally: Some options like
+.IR \-X50 ", " \-X51 ", " \-X52 ", " \-D ", " \-V
+don't require a telefon
+.IR NUMBER .
+.SH FILES
+.IR rate-CC.dat ,
+.IR holiday-CC.dat ,
+.IR dest.gdbm ,
+.IR zone-CC-PPP.gdbm ,
+.IR isdn.conf ,
+.I telrate.cgi
+and more.
+.br
+Note: The extension of zone- and dest data files depends on configuration.
+Recently
+.I .cdb
+is used.
+.SH EXAMPLES
+.I isdnrate -D2
+.br
+Start the isdnrate daemon.
+.P
+.I isdnrate -D2 -P /var/run -O /tmp/isdnr_socket
+.br
+Start the isdnrate daemon, write
+.I isdnrate.pid
+to /var/run and create thew given socket.
+.P
+.I isdnrate -CH -b5 -f01 -l120 Attersee
+.br
+Connect to running daemon, print a header and the best 5 rates from Vienna
+.RI ( 01 )
+to destination
+.I Attersee
+for a connection length of 2 Minutes.
+
+.P
+.I isdnrate -CX -p1_2,24 +1
+.br
+Show rates and zones for destination USA for providers
+.IR "1_2 " and " 24" .
+.P
+.I isdnrate -CX -H -dW -b5 US CA
+.br
+Show a header, rates and zones for destinations USA and Canada for best 5
+providers during workday.
+.P
+.I isdnrate -CHoX US
+.br
+Show header, rate and zone for destination USA for booked providers only.
+.P
+.I isdnrate -CsX -l60 Internet
+.br
+Show rates and numbers for service
+.I Internet
+for a 1 minutes call.
+.P
+.I isdnrate -CZ 19430
+.br
+Show rates and the best provider for this (service-)number.
+.P
+.I isdnrate -CD3
+.br
+Stop the running isdnrate daemon.
+.SH SIGNALS
+A isdnrate daemon restarts (and therefore rereads its configuration) on
+getting a SIGHUP signal.
+.SH "SEE ALSO"
+.BR rate-files(5) ", " isdnlog(8) ", " isdn.conf(5)
+.SH BUGS
+Definitly yes. Sometimes more then one daemon can be started, sometimes the
+socket is not removed, when the daemon terminates. if this happens
+('socket in use'), do a
+.I rm /tmp/isdnrate
+and try again.
+.SH AUTHORS
+Andreas Kool <akool@isdn4linux.de> started this program.
+Leopold Toetsch <lt@toetsch.at> continued the work and brought this man
+page to you. Michael Reinelt
+<reinelt@eunet.at> did the calculation engine and various tools for it.

@@ -1,0 +1,140 @@
+/* policy.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define to empty if the keyword does not work.  */
+#undef const
+
+/* Define if you have <sys/wait.h> that is POSIX.1 compatible.  */
+#undef HAVE_SYS_WAIT_H
+
+/* Define if utime(file, NULL) sets file's timestamp to the present.  */
+#undef HAVE_UTIME_NULL
+
+/* Define to `int' if <sys/types.h> doesn't define.  */
+#undef pid_t
+
+/* Define as the return type of signal handlers (int or void).  */
+#undef RETSIGTYPE
+
+/* Define to `unsigned' if <sys/types.h> doesn't define.  */
+#undef size_t
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you can safely include both <sys/time.h> and <time.h>.  */
+#undef TIME_WITH_SYS_TIME
+
+/* Define if your <sys/time.h> declares struct tm.  */
+#undef TM_IN_SYS_TIME
+
+/* Define if you have the mktime function.  */
+#undef HAVE_MKTIME
+
+/* Define if you have the select function.  */
+#undef HAVE_SELECT
+
+/* Define if you have the socket function.  */
+#undef HAVE_SOCKET
+
+/* Define if you have the stime function.  */
+#undef HAVE_STIME
+
+/* Define if you have the strdup function.  */
+#undef HAVE_STRDUP
+
+/* Define if you have the strerror function.  */
+#undef HAVE_STRERROR
+
+/* Define if you have the strftime function.  */
+#undef HAVE_STRFTIME
+
+/* Define if you have the strstr function.  */
+#undef HAVE_STRSTR
+
+/* Define if you have the strtod function.  */
+#undef HAVE_STRTOD
+
+/* Define if you have the strtol function.  */
+#undef HAVE_STRTOL
+
+/* Define if you have the <fcntl.h> header file.  */
+#undef HAVE_FCNTL_H
+
+/* Define if you have the <limits.h> header file.  */
+#undef HAVE_LIMITS_H
+
+/* Define if you have the <sys/ioctl.h> header file.  */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define if you have the <sys/time.h> header file.  */
+#undef HAVE_SYS_TIME_H
+
+/* Define if you have the <syslog.h> header file.  */
+#undef HAVE_SYSLOG_H
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the dbm library (-ldbm).  */
+#undef HAVE_LIBDBM
+
+/* Define if you have the gdbm library (-lgdbm).  */
+#undef HAVE_LIBGDBM
+
+/* Define if you have the db library (-ldb).  */
+#undef HAVE_LIBDB
+
+/* Define if you have Swiss charge info */
+#undef ISDN_CH
+
+/* Define if you have Austrian charge info */
+#undef ISDN_AT
+
+/* Define if you have Netherlands charge info */
+#undef ISDN_NL
+
+/* Define the config directory */
+#undef I4LCONFDIR
+
+/* Define the old config directory */
+#undef OLDCONFDIR
+
+/* Define the name of the old config file */
+#undef OLDCONFFILE
+
+/* Define the data directory */
+#undef DATADIR
+
+/* Define if libarea should be used */
+#undef LIBAREA
+
+/* Define if postgres should be used */
+#undef POSTGRES
+
+/* Define if mysql should be used */
+#undef MYSQLDB
+
+/* Define if server port */
+#undef SERV_PORT
+
+/* File for permission configuration */
+#undef USERFILE
+
+/* Logfile */
+#undef LOGFILE
+
+/* Charge file */
+#undef CHARGEFILE
+
+/* Command for reloading */
+#undef RELOADCMD
+
+/* Command for stopping */
+#undef STOPCMD
+
+/* Command for rebooting */
+#undef REBOOTCMD
+
+/* Use CDB instead of g?dbm? */
+/* rename tools/cdb/i4l_cdb.c, if you want to use gdbm */
+#undef USE_CDB

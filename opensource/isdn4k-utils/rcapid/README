@@ -1,0 +1,16 @@
+First implementation of a simple Remote-CAPI server. It works with
+the CAPI-2.0 interface offered by the AVM-B1-card.
+
+Installation:
+
+- add the following line to /etc/services:
+
+  capi 6000/tcp
+
+
+- add the following line to /etc/inetd.conf:
+
+  capi stream tcp nowait.9999 /sbin/rcapid rcapid
+
+
+- restart inetd

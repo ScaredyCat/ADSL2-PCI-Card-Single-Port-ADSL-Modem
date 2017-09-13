@@ -1,0 +1,98 @@
+#!/usr/bin/perl -w
+
+# zones.de mit rdde erzeugt
+# 12345:Ort:C:num ...:R:num ...
+
+use strict;
+my($in, $outz, $outc, $expand_all,$codef);
+$|=1;
+
+$expand_all=1;
+$in='zneu.de9';
+$outz='zoneall';
+#$outz .= '.all' if($expand_all);
+$codef='../code';
+
+my($CITY, $REGIO, $FERN);
+$CITY=2;
+$REGIO=3;
+$FERN=4;
+my($i, $num, @all, %all, @ax);
+	open(IN, $codef) || die("Can't read $codef");
+	my (@codes, $ort, $line);
+	while ($line = <IN>) {
+		($num, $ort) =split(/\t/, $line);
+		push(@all, $num);
+		push(@{$ax[substr($num,0,1)]}, $num);
+    		$all{$num}=1;
+	}
+	close(IN);
+
+open(IN, $in) || die("Can't read $in");
+open(OZ, ">$outz.temp") || die("Can't write $outz.temp");
+
+print "Making $outz...\n";
+my(@fields,@cnum,@rnum,$f, %done, %first,$c);
+$i=0;
+while(<IN>) {
+    chomp;
+    (@fields) = split(/:/);
+    @cnum=@rnum=();
+    %first=%done=();
+    $num=$fields[0];
+    print "$i $num\r";
+    $i++;
+    if ($fields[2] eq 'C') {
+	(@cnum) = split(/ /,$fields[3]);
+	if ($fields[4] eq 'R') {
+	    (@rnum) = split(/ /,$fields[5]);
+	}
+    }
+    elsif ($fields[2] eq 'R') {
+        (@rnum) = split(/ /,$fields[3]);
+    }
+    foreach $f (@cnum) {
+	print1($num, $f, $CITY);
+	$first{substr($f,0,1)}=1;
+    }
+    foreach $f (@rnum) {
+	print1($num, $f, $REGIO);
+	$first{substr($f,0,1)}=1;
+    }
+    if ($expand_all) {
+        foreach $f (@all) {
+	    next if ($done{"$num $f"});
+	    next if ($done{"$num ".substr($f,0,1)});
+	    if (defined $first{substr($f,0,1)}) {
+	    	print1($num, $f, $FERN);
+	    }
+	    else {
+	    	print1($num, substr($f,0,1), $FERN);
+	    }
+	}
+    }
+    else {
+	print OZ "$num XXXXX $FERN\n";
+    }
+}
+close(IN);
+close(OZ);
+print "\nSorting...\n";
+system("export TMPDIR=.;sort <$outz.temp|uniq>$outz");
+unlink("$outz.temp");
+
+sub print1 {
+    my($from, $to, $z) = @_;
+    return if($from eq $to);
+    if($all{$to}) {
+	print OZ "$from $to $z\n";
+	$done{"$from $to"}=1;
+    }
+    elsif (length($to)==1) {
+	print OZ "$from $to $z\n";
+	$done{"$from $to"}=1;
+    }
+    else {
+	grep { print1($from,$_,$z) if(/^$to/) } @{$ax[substr($to,0,1)]};
+    }
+}

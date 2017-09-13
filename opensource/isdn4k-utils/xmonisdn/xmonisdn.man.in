@@ -1,0 +1,252 @@
+.\" $Id: xmonisdn.man.in,v 1.4 2002/01/31 20:18:13 paul Exp $
+.\"
+.\" CHECKIN $Date: 2002/01/31 20:18:13 $
+.\"
+.TH XMONISDN 1 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "X Tools"   
+.SH NAME
+xmonisdn \- monitor for ISDN network
+.SH SYNOPSIS
+.B xmonisdn
+[ \-\fItoolkitoption\fP ... ] [ \fI\-option\fP ... ]
+.SH DESCRIPTION
+The
+.I xmonisdn
+program displays the status of the ISDN network connection and allows
+the starting and stopping of the ISDN subsystem. If the ISDN subsystem is not
+active, a window showing a terminal in the foreground and a dashed
+terminal in the backgorund is displayed. If the ISDN system is active,
+but there is no network connection established, two terminals with
+dashed arrows between them is displayed. If there is a incoming
+connection or there is dialing in progress, the arrows become more
+solid. An outgoing network connection is signaled by solid arrows
+between the terminals and the window is displayed in reverse video.
+If the ISDN subsystem dials out or hangs up, the program beeps to signal
+the state change (this can be changed using the 
+.I volume 
+option).
+.PP
+Pressing button 2 on the window executes the command
+.I @CONFIG_XMONISDN_UPCMD@
+and pressing button 3 executes
+.I @CONFIG_XMONISDN_DOWNCMD@
+.br
+.I @CONFIG_XMONISDN_UPCMD@
+and
+.I @CONFIG_XMONISDN_DOWNCMD@
+should start and stop the ISDN subsystem;
+if the
+.ul
+route
+command is used, xmonisdn must be run as setuid root for this to work.
+Alternatively, the scripts can manipulate the
+.ul
+isdnctrl dialmode
+setting, in which case only permission to access /dev/isdnctrl is needed.
+.SH OPTIONS
+.I xmonisdn
+accepts all of the standard X Toolkit command line options along with the
+additional options listed below:
+.TP 8
+.B \-help
+This option indicates that a brief summary of the allowed options should be
+printed on the standard error.
+.TP 8
+.B \-update \fItenth of a second\fP
+This option specifies the frequency in 1/10 of a second at which \fIxmonisdn\fP
+should update its display.  If the window is obscured and then exposed,
+it will be updated immediately.  The default is 0.5 seconds (i.e. -update 5).
+.TP 8
+.B \-file \fIfilename\fP
+This option specifies the name of the file which should be monitored.  By
+default, it watches /dev/isdninfo.
+.TP 8
+.B \-volume \fIpercentage\fP
+This option specifies how loud the bell should be rung when  there is an important status change.
+.TP 8
+.B \-shape
+This option indicates that the xmonisdn window should be shaped if masks for
+the  images are given.
+.PP
+The following standard X Toolkit command line arguments are commonly used with 
+.I xmonisdn:
+.TP 8
+.B \-display \fIdisplay\fP
+This option specifies the X server to contact.
+.TP 8
+.B \-geometry \fIgeometry\fP
+This option specifies the preferred size and position of the xmonisdn window.
+The icon is 48 pixels wide and 48 pixels high and will be centered in
+the window.
+.TP 8
+.B \-bg \fIcolor\fP
+This option specifies the color to use for the background of the window.  
+.TP 8
+.B \-bd \fIcolor\fP
+This option specifies the color to use for the border of the window.
+.TP 8
+.B \-bw \fInumber\fP
+This option specifies the width in pixels of the border surrounding the window.
+.TP 8
+.B \-fg \fIcolor\fP
+This option specifies the color to use for the foreground of the window.
+.TP 8
+.B \-rv
+This option indicates that reverse video should be simulated by swapping
+the foreground and background colors.
+.TP 8
+.B \-xrm \fIresourcestring\fP
+This option specifies a resource string to be used.  This is especially
+useful for setting resources that do not have separate command line options.
+.SH X DEFAULTS
+The application class name is xmonisdn.
+This program uses the 
+.I Netstat
+widget.
+It understands all of the core resource names and
+classes as well as:
+.PP
+.TP 8
+.B file (\fPclass\fB File)
+Specifies the name of the file to monitor.  The default is to watch
+/dev/isdninfo.
+.TP 8
+.B width (\fPclass\fB Width)
+Specifies the width of the icon.
+.TP 8
+.B height (\fPclass\fB Height)
+Specifies the height of the icon.
+.TP 8
+.B update (\fPclass\fB Interval)
+Specifies the frequency in 1/10 of a second at which the isdninfo file should be checked.
+The default is 5.
+.TP 8
+.B volume (\fPclass\fB Volume)
+Specifies how loud the bell should be rung.  The default is 33 percent.
+.TP 8
+.B foreground (\fPclass\fB Foreground)
+Specifies the color for the foreground.
+.TP 8
+.B reverseVideo (\fPclass\fB ReverseVideo)
+Specifies that the foreground and background should be reversed.
+.TP 8
+.B flip (\fPclass\fB Flip)
+Specifies whether or not the image that is shown when there is an outgoing network connection 
+should be inverted.  The default is ``true.''
+.TP 8
+.B inactivePixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when the ISDN subsystem is inactive.
+The default is netinactive.
+.TP 8
+.B waitingPixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when the ISDN subsystem is active, but there is no connection. The default is netwaiting.
+.TP 8
+.B activePixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when there is a incoming network connection (or dialing is in progress). The default is netactive.
+.TP 8
+.B activeoutPixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when there is a outgoing network connection. 
+The default is netactiveout.
+.TP 8
+.B startPixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when the ISDN network is started up. 
+The default is netstart.
+.TP 8
+.B stopPixmap (\fPclass\fB Pixmap)
+Specifies a bitmap to be shown when the ISDN network is stopped. 
+The default is netstop.
+.TP 8
+.B shapeWindow (\fPclass\fB ShapeWindow)
+Specifies whether or not the xmonisdn window should be shaped to the
+given PixmapMasks.  The default is false.
+.TP 8
+.B inactivePixmapMask (\fPclass\fB PixmapMask) 
+Specifies a mask for the bitmap to be shown when the ISDN subsystem is inactive. 
+The default is none.
+.TP 8
+.B waitingPixmapMask (\fPclass\fB PixmapMask)
+Specifies a mask for the bitmap to be shown when the ISDN subsystem is active, but there is no connection.
+The default is none.
+.TP 8
+.B activePixmapMask (\fPclass\fB PixmapMask)
+Specifies a mask for the bitmap to be shown when when there is a incoming network connection (or dialing is in progress).
+The default is none.
+.TP 8
+.B activeoutPixmapMask (\fPclass\fB PixmapMask)
+Specifies a mask for the bitmap to be shown when  there is a outgoing network connection. 
+The default is none.
+.TP 8
+.B startPixmapMask (\fPclass\fB PixmapMask)
+Specifies a mask for the bitmap to be shown when  the ISDN network is started up. 
+The default is none.
+.TP 8
+.B stopPixmapMask (\fPclass\fB PixmapMask)
+Specifies a mask for the bitmap to be shown when  the ISDN network is stopped. 
+The default is none.
+.SH ACTIONS
+The \fINetstat\fP widget provides the following actions for use in event
+translations:
+.TP 8
+.B check()
+This action causes the widget to check the isdninfo file and display the appropriate icon.
+.TP 8
+.B netdown()
+This action causes the widget to execute @CONFIG_XMONISDN_DOWNCMD@ stop.
+.TP 8
+.B netup()
+This action causes the widget to execute @CONFIG_XMONISDN_UPCMD@ start.
+.PP
+The default translation is 
+.sp
+.nf
+        <ButtonPress>Button2:  netup()
+	<ButtonPress>Button3:  netdown()
+.fi
+.sp
+
+.SH SECURITY ISSUES
+There are a number of reasons why you should not run
+.I xmonisdn
+as a `setuid root' program.
+Most importantly, any setuid root program is a potential security hole.
+The scripts that are executed by
+.I xmonisdn
+may be compromised, or contain non-absolute paths to the commands called
+(so that by changing the PATH variable the wrong binary is executed!);
+or the script may in turn call other things that are not secure.
+.br
+If you are sure that your scripts are secure and you insist on making
+.I xmonisdn
+setuid root, you can give the
+.B -r
+option as
+.I first
+option. This will turn off xmonisdn's setuid detection. However, you are on
+your own if you do this!
+.br
+
+A better alternative is to put the isdn devices in group
+.B dialout
+(if not so already), and add yourself to the
+.B dialout
+group. This way you have permission to manipulate the ISDN devices, e.g.
+to use
+.I isdnctrl
+to change the dialmode setting to off (to disable dialing) or auto (for
+autodial). The whole ISDN system may also be turned on and off, see the
+.I isdnctrl manpage for more info.
+This is a more secure way of controlling the dialing than e.g. by
+manipulating routes.
+
+.SH ENVIRONMENT
+.PP
+.TP 8
+.B DISPLAY
+to get the default host and display number.
+.TP 8
+.B XENVIRONMENT
+to get the name of a resource file that overrides the global resources
+stored in the RESOURCE_MANAGER property.
+.SH AUTHOR
+Bernhard Nebel
+.SH SEE ALSO
+.BR isdnctrl(8)

@@ -1,0 +1,25 @@
+This package was debianized by Tommi Virtanen tv@debian.org on
+Sun, 17 Jan 1999 22:21:06 +0200.
+
+It was originally downloaded from
+ftp://koobera.math.uic.edu/www/cdb.html
+
+But its current home is with the Debian distribution,
+http://packages.debian.org/freecdb
+
+Upstream Author: Tommi Virtanen <tv@debian.org>
+Original Author: D. J. Bernstein <djb@koobera.math.uic.edu>
+                                 <djb@pobox.com>
+
+Copyright:
+
+        You may distribute unmodified copies of the cdb package. The C
+        source files are in the public domain; you may use them as you
+        wish.
+        (D. J. Bernstein)
+
+Everything else (except the C source files) has been rewritten from
+scratch by Tommi Virtanen <tv@debian.org>, and is hereby also placed
+in the public domain.
+
+					Tommi Virtanen <tv@debian.org>

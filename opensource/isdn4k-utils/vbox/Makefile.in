@@ -1,0 +1,325 @@
+#
+# $Id: Makefile.in,v 1.24 2002/01/31 20:05:40 paul Exp $
+
+#----------------------------------------------------------------------------#
+# Things you can change to personalize the Makefile for your own site. Some  #
+# values (eg the directory pathes) are used in some other files too, so do   #
+# not change the values by hand - use the options to the configure-script    #
+# insteed. Options you can change without configure are marked with [*].     #
+#                                                                            #
+# Changes to Makefile will get lost if you re-run the configuration script!  #
+#----------------------------------------------------------------------------#
+
+#----------------------------------------------------------------------------#
+# [*] Program to install binaries to the sbin directory (eg vboxgetty):      #
+#----------------------------------------------------------------------------#
+
+INSTALL_SBIN	= @INSTALL@ -m 750 -o root -g root -s
+
+#----------------------------------------------------------------------------#
+# [*] Program to install binaries to the bin directory (eg vboxconvert):     #
+#----------------------------------------------------------------------------#
+
+INSTALL_BIN	= @INSTALL@ -m 755 -o root -g root -s
+
+#----------------------------------------------------------------------------#
+# [*] Program to install bash scripts to the bin directory (eg vboxplay):    #
+#----------------------------------------------------------------------------#
+
+INSTALL_SHBIN	= @INSTALL@ -m 755 -o root -g root
+
+#----------------------------------------------------------------------------#
+# [*] Program to install binaries to the bin directory and set the suid bit  #
+#     (eg vboxbeep):                                                         #
+#----------------------------------------------------------------------------#
+
+INSTALL_UBIN	= @INSTALL@ -m 4755 -o root -g root -s
+
+#----------------------------------------------------------------------------#
+# [*] Program to install configurations to sysconf directory                 #
+#     (eg vboxgetty.conf):                                                   #
+#----------------------------------------------------------------------------#
+
+INSTALL_SYSCONF	= @INSTALL@ -m 640 -o root -g root
+
+#----------------------------------------------------------------------------#
+# [*] Program to create missing directories:                                 #
+#----------------------------------------------------------------------------#
+
+INSTALL_DIRS	= @INSTALL@ -d
+
+#----------------------------------------------------------------------------#
+# [*] Compiler to use and flags for the compiler & linker:                   #
+#----------------------------------------------------------------------------#
+
+CC		= @CC@
+CFLAGS		= @CFLAGS@ @LINK_NCURSES_INCL@ @LINK_TCL_INCL@
+LDFLAGS		= @LDFLAGS@
+
+#----------------------------------------------------------------------------#
+# [*] Some needed programs:                                                  #
+#----------------------------------------------------------------------------#
+
+LN		= @LN_S@
+MV		= @VBOX_MV@
+RM		= @VBOX_RM@
+SED		= @VBOX_SED@
+MAILCMD		= @VBOX_MAIL@
+AR		= @VBOX_AR@
+RANLIB		= @VBOX_RANLIB@
+
+@SET_MAKE@
+
+#----------------------------------------------------------------------------#
+# The information below is modified by the configure script when Makefile is #
+# generated from Makefile.in. Some of this values are stored in other files  #
+# too, so don't change it by hand!                                           #
+#----------------------------------------------------------------------------#
+
+prefix		= @prefix@
+exec_prefix	= @exec_prefix@
+mandir		= @CONFIG_MANDIR@
+bindir		= @CONFIG_BINDIR@
+sbindir		= @CONFIG_SBINDIR@
+sysconfdir	= @CONFIG_I4LCONFDIR@
+
+LOGFILEDIR	= @VBOX_LOGDIR@
+PIDFILEDIR	= @VBOX_PIDDIR@
+LCKFILEDIR	= @VBOX_LOCKDIR@
+SPOOLDIR	= @VBOX_SPOOLDIR@
+
+TOPDIR		= @srcdir@
+VPATH		= @srcdir@
+
+NCURSES_HAVE	= @HAVE_NCURSES_PACK@
+TCL_HAVE        = @HAVE_TCL_PACK@
+
+VBOX_GETTYCONF	= $(sysconfdir)/vboxgetty.conf
+VBOX_VBOXDCONF	= $(sysconfdir)/vboxd.conf
+VBOX_SYSCONFDIR = $(sysconfdir)
+VBOX_BINDIR	= $(bindir)
+VBOX_SBINDIR	= $(sbindir)
+VBOX_PACKAGE	= @PACKAGE@
+VBOX_VERSION	= @VERSION@
+VBOX_VERDATE	= @VERDATE@
+VBOX_TOPDIR	= $(TOPDIR)
+VBOX_LOGFILEDIR	= $(LOGFILEDIR)
+VBOX_PIDFILEDIR	= $(PIDFILEDIR)
+VBOX_LCKFILEDIR	= $(LCKFILEDIR)
+VBOX_SPOOLDIR	= $(SPOOLDIR)
+
+ifeq ($(VBOX_SUSPEND_ID),y)
+        VBOX_SUSPEND_DEF := -DVBOX_SUSPEND_VALUE=1
+endif
+
+
+#----------------------------------------------------------------------------#
+# Export variables needed by the other utilities...                          #
+#----------------------------------------------------------------------------#
+
+export CC
+export CFLAGS
+export LDFLAGS
+export AR
+export RANLIB
+export SED
+export VBOX_GETTYCONF
+export VBOX_VBOXDCONF
+export VBOX_BINDIR
+export VBOX_SBINDIR
+export VBOX_TOPDIR
+export VBOX_PACKAGE
+export VBOX_VERSION
+export VBOX_VERDATE
+export VBOX_LOGFILEDIR
+export VBOX_PIDFILEDIR
+export VBOX_LCKFILEDIR
+export VBOX_SPOOLDIR
+export VBOX_SYSCONFDIR
+export VBOX_SUSPEND_DEF
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                                MAIN SECTION                                #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+all:		  directories-b programs-b scripts-b manuals-b
+
+install:	  directories-i programs-i scripts-i manuals-i
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                               PROGRAM SECTION                              #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+PROGRAMS_D	= $(TOPDIR)/src/vboxgetty \
+		  $(TOPDIR)/src/vboxd \
+		  $(TOPDIR)/src/vboxconvert \
+		  $(TOPDIR)/src/vboxctrl \
+		  $(TOPDIR)/src/vboxbeep \
+		  $(TOPDIR)/src/vbox
+
+programs-b:	  ignore
+		  @$(MAKE) -C $(TOPDIR)/src all
+
+programs-d:	  ignore
+		  @set -e; for i in `echo $(PROGRAMS_D)`; do \
+			$(RM) -f $$i; \
+		  done
+
+programs-i:	  ignore
+		  @echo "Installing '$(DESTDIR)$(sbindir)/vboxgetty'..."
+		  @$(INSTALL_SBIN) $(TOPDIR)/src/vboxgetty $(DESTDIR)$(sbindir)/vboxgetty
+		  @echo "Installing '$(DESTDIR)$(sbindir)/vboxputty'..."
+		  @cd $(DESTDIR)$(sbindir); \
+		  $(LN) -f vboxgetty vboxputty
+		  @echo "Installing '$(DESTDIR)$(sbindir)/vboxd'..."
+		  @$(INSTALL_SBIN) $(TOPDIR)/src/vboxd $(DESTDIR)$(sbindir)/vboxd
+		  @echo "Installing '$(DESTDIR)$(bindir)/vboxcnvt'..."
+		  @$(INSTALL_BIN) $(TOPDIR)/src/vboxconvert $(DESTDIR)$(bindir)/vboxcnvt
+		  @cd $(DESTDIR)$(bindir); \
+		  $(LN) -f vboxcnvt rmdtovbox; \
+		  $(LN) -f vboxcnvt vboxtoau; \
+		  $(LN) -f vboxcnvt autovbox; \
+		  $(LN) -f vboxcnvt vboxmode
+		  @echo "Installing '$(DESTDIR)$(bindir)/vboxctrl'..."
+		  @$(INSTALL_BIN) $(TOPDIR)/src/vboxctrl $(DESTDIR)$(bindir)/vboxctrl
+		  @echo "Installing '$(DESTDIR)$(bindir)/vboxbeep'..."
+		  @$(INSTALL_UBIN) $(TOPDIR)/src/vboxbeep $(DESTDIR)$(bindir)/vboxbeep
+		  @echo "Installing '$(DESTDIR)$(bindir)/vbox'..."
+		  @$(INSTALL_BIN) $(TOPDIR)/src/vbox $(DESTDIR)$(bindir)/vbox
+		  @set -e; if [ -z "$(DESTDIR)" -a -f $(DESTDIR)$(sysconfdir)/vboxgetty.conf ]; then \
+			  echo "Installing '$(DESTDIR)$(sysconfdir)/vboxgetty.conf.new'..."; \
+			  $(INSTALL_SYSCONF) $(TOPDIR)/examples/vboxgetty.conf.example $(DESTDIR)$(sysconfdir)/vboxgetty.conf.new; \
+		  else \
+			  echo "Installing '$(DESTDIR)$(sysconfdir)/vboxgetty.conf'..."; \
+			  $(INSTALL_SYSCONF) $(TOPDIR)/examples/vboxgetty.conf.example $(DESTDIR)$(sysconfdir)/vboxgetty.conf; \
+		  fi
+		  @set -e; if [ -z "$(DESTDIR)" -a -f $(DESTDIR)$(sysconfdir)/vboxd.conf ]; then \
+			  echo "Installing '$(DESTDIR)$(sysconfdir)/vboxd.conf.new'..."; \
+			  $(INSTALL_SYSCONF) $(TOPDIR)/examples/vboxd.conf.example $(DESTDIR)$(sysconfdir)/vboxd.conf.new; \
+		  else \
+			  echo "Installing '$(DESTDIR)$(sysconfdir)/vboxd.conf'..."; \
+			  $(INSTALL_SYSCONF) $(TOPDIR)/examples/vboxd.conf.example $(DESTDIR)$(sysconfdir)/vboxd.conf; \
+		  fi
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                              DIRECTORY SECTION                             #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+DIRECTORIES_I	= $(prefix) \
+		  $(exec_prefix) \
+		  $(sbindir) \
+		  $(bindir) \
+		  $(sysconfdir) \
+		  $(SPOOLDIR) \
+		  $(LOGFILEDIR) \
+		  $(PIDFILEDIR) \
+		  $(LCKFILEDIR)
+
+directories-i:	  ignore
+		  @set -e; for i in `echo $(DIRECTORIES_I)`; do \
+			if [ ! -d $(DESTDIR)$$i ]; then \
+				$(INSTALL_DIRS) $(DESTDIR)$$i; \
+			fi; \
+		  done
+
+directories-b:	  ignore
+
+directories-d:	  ignore
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                                MANUAL SECTION                              #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+MANUALS_B	= de
+MANUALS_D	= $(MANUALS_B)
+MANUALS_V       = $(MANUALS_B)
+
+manuals-b:	  ignore
+		  @cd doc && $(MAKE)
+
+manuals-d:	  ignore
+		  @cd doc && $(MAKE) distclean
+
+manuals-i:	  ignore
+		  @cd doc && $(MAKE) mandir=$(mandir) install
+
+manuals-v:	  ignore
+		  @set -e; for i in `echo $(MANUALS_V)`; do \
+			$(TOPDIR)/utils/mkdoc $(TOPDIR)/doc/$$i; \
+		  done
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                                SCRIPT SECTION                              #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+scripts-b:	  ignore
+		  @cd $(TOPDIR)/utils && $(MAKE)
+
+scripts-d:	  ignore
+		  @cd $(TOPDIR)/utils && $(MAKE) distclean
+
+scripts-i:	  ignore
+		  @echo "Installing '$(DESTDIR)$(bindir)/vboxmail'..."
+		  @$(INSTALL_SHBIN) $(TOPDIR)/utils/vboxmail $(DESTDIR)$(bindir)/vboxmail
+		  @echo "Installing '$(DESTDIR)$(bindir)/vboxplay'..."
+		  @$(INSTALL_SHBIN) $(TOPDIR)/utils/vboxplay $(DESTDIR)$(bindir)/vboxplay
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                               CLEANING SECTION                             #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+DISTCLEANOBJS	= $(TOPDIR)/Makefile \
+		  $(TOPDIR)/.Config \
+		  $(TOPDIR)/config.cache \
+		  $(TOPDIR)/config.log \
+		  $(TOPDIR)/config.status \
+		  $(TOPDIR)/src/Makefile \
+		  $(TOPDIR)/src/config.h \
+
+clean:		  ignore
+		  @find $(TOPDIR)/ -name '*~' -exec $(RM) {} ';'
+		  @find $(TOPDIR)/ -name '*.o' -exec $(RM) -f {} ';'
+		  @find $(TOPDIR)/ -name '*.a' -exec $(RM) -f {} ';'
+
+distclean:	  clean programs-d scripts-d manuals-d
+		  @set -e; for i in `echo $(DISTCLEANOBJS)`; do \
+		     $(RM) -f $$i; \
+		  done
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                               DEVELOPMENT ONLY                             #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+release:	  manuals-v distclean
+
+manuals:	  manuals-v
+
+mantest:	  ignore
+		  @$(TOPDIR)/utils/mkdev
+
+#----------------------------------------------------------------------------#
+#                                                                            #
+#                                 MISC SECTION                               #
+#                                                                            #
+#----------------------------------------------------------------------------#
+
+uninstall:	  ignore
+
+config:		  ignore
+		  @./configure
+
+ignore:

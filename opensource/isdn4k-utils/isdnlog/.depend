@@ -1,0 +1,1764 @@
+connect.o: connect/connect.c connect/socket.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h
+conv_address.o: connect/conv_address.c connect/socket.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h
+socket.o: connect/socket.c connect/socket.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h
+isdnconf.o: isdnconf/isdnconf.c isdnconf/isdnconf.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h
+asn1_address.o: isdnlog/asn1_address.c isdnlog/asn1.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h \
+  isdnlog/asn1_address.h
+asn1_aoc.o: isdnlog/asn1_aoc.c isdnlog/asn1.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h \
+  isdnlog/asn1_address.h isdnlog/asn1_aoc.h
+asn1_basic_service.o: isdnlog/asn1_basic_service.c isdnlog/asn1.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h \
+  isdnlog/asn1_basic_service.h
+asn1.o: isdnlog/asn1.c isdnlog/asn1.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+asn1_comp.o: isdnlog/asn1_comp.c isdnlog/asn1.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h \
+  isdnlog/asn1_diversion.h isdnlog/asn1_aoc.h isdnlog/asn1_comp.h
+asn1_diversion.o: isdnlog/asn1_diversion.c isdnlog/asn1.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h \
+  isdnlog/asn1_address.h isdnlog/asn1_basic_service.h \
+  isdnlog/asn1_diversion.h
+asn1_generic.o: isdnlog/asn1_generic.c isdnlog/asn1.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/sys/types.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/string.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1_generic.h
+functions.o: isdnlog/functions.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+isdnlog.o: isdnlog/isdnlog.c /usr/include/linux/limits.h \
+  /usr/include/termios.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h /usr/include/bits/termios.h \
+  /usr/include/sys/ttydefaults.h isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/time.h /usr/include/bits/time.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/confname.h \
+  /usr/include/getopt.h /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/bits/posix2_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h \
+  /usr/include/syslog.h /usr/include/sys/syslog.h \
+  /usr/include/sys/ioctl.h /usr/include/bits/ioctls.h \
+  /usr/include/asm/ioctls.h /usr/include/asm/ioctl.h \
+  /usr/include/bits/ioctl-types.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/dest.h tools/telnum.h tools/zone.h
+messages.o: isdnlog/messages.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+mysqldb.o: isdnlog/mysqldb.c
+ora_load.o: isdnlog/ora_load.c /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h /usr/include/time.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/select.h /usr/include/bits/select.h \
+  /usr/include/bits/sigset.h /usr/include/bits/time.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/string.h \
+  policy.h isdnlog/oracle.h
+postgres.o: isdnlog/postgres.c
+processor.o: isdnlog/processor.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h isdnlog/asn1.h isdnlog/asn1_comp.h \
+  tools/zone.h tools/telnum.h
+server.o: isdnlog/server.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+start_prog.o: isdnlog/start_prog.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h /usr/include/pwd.h /usr/include/grp.h
+test_center.o: isdnlog/test_center.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+user_access.o: isdnlog/user_access.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h /usr/include/pwd.h
+isdnbill.o: isdnrep/isdnbill.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h /usr/include/asm/param.h \
+  tools/dest.h tools/telnum.h
+isdnrep.o: isdnrep/isdnrep.c /usr/include/sys/param.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/linux/param.h \
+  /usr/include/asm/param.h /usr/include/sys/types.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/typesizes.h /usr/include/time.h /usr/include/endian.h \
+  /usr/include/bits/endian.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/bits/time.h /usr/include/sys/sysmacros.h \
+  /usr/include/bits/pthreadtypes.h /usr/include/bits/sched.h \
+  /usr/include/dirent.h /usr/include/bits/dirent.h /usr/include/search.h \
+  /usr/include/string.h tools/dest.h tools/telnum.h isdnlog/isdnlog.h \
+  tools/tools.h /usr/include/stdio.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/errno.h /usr/include/bits/errno.h \
+  /usr/include/linux/errno.h /usr/include/asm/errno.h \
+  /usr/include/malloc.h /usr/include/stdlib.h /usr/include/alloca.h \
+  /usr/include/unistd.h /usr/include/bits/posix_opt.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/bits/sigthread.h /usr/include/sys/resource.h \
+  /usr/include/bits/resource.h /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h /usr/include/sys/socket.h \
+  /usr/include/sys/uio.h /usr/include/bits/uio.h \
+  /usr/include/bits/socket.h /usr/include/bits/sockaddr.h \
+  /usr/include/asm/socket.h /usr/include/asm/sockios.h \
+  /usr/include/netdb.h /usr/include/netinet/in.h /usr/include/stdint.h \
+  /usr/include/bits/in.h /usr/include/bits/byteswap.h \
+  /usr/include/rpc/netdb.h /usr/include/bits/netdb.h \
+  /usr/include/arpa/inet.h /usr/include/sys/un.h /usr/include/fcntl.h \
+  /usr/include/bits/fcntl.h /usr/include/ctype.h /usr/include/math.h \
+  /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h isdnrep/isdnrep.h \
+  ../vbox/src/libvbox.h
+rep_main.o: isdnrep/rep_main.c tools/dest.h tools/telnum.h \
+  isdnlog/isdnlog.h tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h isdnrep/isdnrep.h
+country.o: tools/country.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+dest.o: tools/dest.c isdnlog/isdnlog.h tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/dest.h tools/telnum.h tools/zone.h \
+  tools/zone/config.h tools/zone/common.h tools/cdb/i4l_cdb.h \
+  tools/cdb/cdb.h tools/cdb/freecdb.h tools/cdb/config.h \
+  tools/cdb/cdb_make.h tools/cdb/freecdbmake.h
+holiday.o: tools/holiday.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h
+isdnconf.o: tools/isdnconf.c tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h
+isdnrate.o: tools/isdnrate.c isdnlog/isdnlog.h tools/tools.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h tools/dest.h tools/telnum.h
+mkcountries.o: tools/mkcountries.c /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/ctype.h /usr/include/endian.h \
+  /usr/include/bits/endian.h
+rate-at.o: tools/rate-at.c /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/stdlib.h /usr/include/sys/types.h /usr/include/time.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/select.h /usr/include/bits/select.h \
+  /usr/include/bits/sigset.h /usr/include/bits/time.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/string.h \
+  /usr/include/ctype.h /usr/include/xlocale.h
+rate.o: tools/rate.c isdnlog/isdnlog.h tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h /usr/include/fnmatch.h tools/zone.h \
+  tools/dest.h tools/telnum.h
+telnum.o: tools/telnum.c tools/dest.h tools/telnum.h isdnlog/isdnlog.h \
+  tools/tools.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h
+tools.o: tools/tools.c tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h tools/telnum.h isdnlog/isdnlog.h connect/socket.h \
+  tools/zone.h
+zone.o: tools/zone.c isdnlog/isdnlog.h tools/tools.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/stdarg.h \
+  /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h \
+  /usr/include/string.h /usr/include/xlocale.h /usr/include/errno.h \
+  /usr/include/bits/errno.h /usr/include/linux/errno.h \
+  /usr/include/asm/errno.h /usr/include/malloc.h /usr/include/time.h \
+  /usr/include/bits/time.h /usr/include/stdlib.h \
+  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
+  /usr/include/endian.h /usr/include/bits/endian.h \
+  /usr/include/sys/types.h /usr/include/sys/select.h \
+  /usr/include/bits/select.h /usr/include/bits/sigset.h \
+  /usr/include/sys/sysmacros.h /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/sched.h /usr/include/alloca.h /usr/include/unistd.h \
+  /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
+  /usr/include/bits/confname.h /usr/include/getopt.h \
+  /usr/include/sys/time.h /usr/include/sys/times.h \
+  /usr/include/sys/stat.h /usr/include/bits/stat.h \
+  /usr/include/sys/wait.h /usr/include/signal.h \
+  /usr/include/bits/signum.h /usr/include/bits/siginfo.h \
+  /usr/include/bits/sigaction.h /usr/include/bits/sigcontext.h \
+  /usr/include/asm/sigcontext.h /usr/include/bits/sigstack.h \
+  /usr/include/sys/ucontext.h /usr/include/bits/sigthread.h \
+  /usr/include/sys/resource.h /usr/include/bits/resource.h \
+  /usr/include/sys/socket.h /usr/include/sys/uio.h \
+  /usr/include/bits/uio.h /usr/include/bits/socket.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/limits.h \
+  /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/include/syslimits.h \
+  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
+  /usr/include/bits/local_lim.h /usr/include/linux/limits.h \
+  /usr/include/bits/posix2_lim.h /usr/include/bits/xopen_lim.h \
+  /usr/include/bits/sockaddr.h /usr/include/asm/socket.h \
+  /usr/include/asm/sockios.h /usr/include/netdb.h \
+  /usr/include/netinet/in.h /usr/include/stdint.h /usr/include/bits/in.h \
+  /usr/include/bits/byteswap.h /usr/include/rpc/netdb.h \
+  /usr/include/bits/netdb.h /usr/include/arpa/inet.h \
+  /usr/include/sys/un.h /usr/include/fcntl.h /usr/include/bits/fcntl.h \
+  /usr/include/ctype.h /usr/include/math.h /usr/include/bits/huge_val.h \
+  /usr/include/bits/nan.h /usr/include/bits/mathdef.h \
+  /usr/include/bits/mathcalls.h /usr/include/syslog.h \
+  /usr/include/sys/syslog.h /usr/include/sys/ioctl.h \
+  /usr/include/bits/ioctls.h /usr/include/asm/ioctls.h \
+  /usr/include/asm/ioctl.h /usr/include/bits/ioctl-types.h \
+  /usr/include/sys/ttydefaults.h /usr/include/sys/kd.h \
+  /usr/include/linux/kd.h /usr/include/linux/types.h \
+  /usr/include/linux/isdn.h /usr/include/linux/ioctl.h policy.h \
+  ../lib/libisdn.h ../lib/policy.h ../scripts/autoconf.h \
+  ../lib/conffile.h ../lib/libtools.h tools/holiday.h tools/country.h \
+  tools/rate.h connect/socket.h tools/zone.h tools/zone/config.h \
+  tools/zone/common.h tools/cdb/i4l_cdb.h tools/cdb/cdb.h \
+  tools/cdb/freecdb.h tools/cdb/config.h tools/cdb/cdb_make.h \
+  tools/cdb/freecdbmake.h tools/zone/upack.h /usr/include/dirent.h \
+  /usr/include/bits/dirent.h

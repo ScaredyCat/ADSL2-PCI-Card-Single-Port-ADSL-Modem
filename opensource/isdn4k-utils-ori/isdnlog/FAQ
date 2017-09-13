@@ -1,0 +1,110 @@
+isdnlog-4.xx (SuSE 6.4)
+
+ Q: isdnlog logged nichts mehr, isdnrep zeigt keine Gespraeche,
+    seit einem Update auf SuSE 6.4.
+
+ A: Schau in die SuSE-Supportdatenbank, in den Startupfiles ist ein
+    kleiner Typo.
+
+-----------------------------------------------------------------------
+
+isdnlog-4.xx
+
+ Q: Insdlog bring immer Fehler "HINT: LCR:FAILED."
+
+ A: Das sind keine Fehler, sondern Meldungen, dass bei dem Telefonat
+    nicht der billigste konfigurierte Provider (s. rate.conf) Verwendung
+    fand.
+    (Hinweis: HINT heisst Hinweis ;-)
+
+-----------------------------------------------------------------------
+
+isdnlog-4.16
+
+  Q: Ich habe einen Provider mit sekundengenauer Abrechnung. Isdnlog
+     muellt mir das Log mit CI-Meldungen voll.
+
+  S: $ man isdnlog
+     /ciinterval
+
+     oder lese tools/NEWS
+
+-----------------------------------------------------------------------
+
+[ Sorry fuer die kleine zeitliche Pause ]
+
+-----------------------------------------------------------------------
+
+isdnlog-2.60:
+
+ Q: nach jedem Reboot der Maschine (Strg-Alt-Entf) sind alle Daten
+    bzgl. CHARGEMAX, CONNECTMAX, BYTEMAX usw. verschwunden, die Datei 
+    "/etc/isdn/charge.dat" hat die Laenge 0
+
+ A: Stimmt. Vor einem Reboot muss isdnlog mit ^C oder kill beendet
+    werden, damit er noch sauber die "charge.dat" wegschreiben kann. 
+
+ S: Die Sicherungskopie verwenden, also 
+      $ mv /etc/isdn/charge.dat.old /etc/isdn/charge.dat
+
+-----------------------------------------------------------------------
+
+ Q: isdnrep bringt keinen Report, die Datei "/var/log/isdn.log"
+    existiert nicht einmal. 
+
+ A: Die Datei "/var/log/isdn.log" muss vor dem Start von isdnlog
+    existieren, d.h. zumindest leer angelegt sein. 
+
+ S: $ cp /dev/null /var/log/isdn.log
+
+-----------------------------------------------------------------------
+
+ Q: Beim Schritt "make depend" erhalte ich unzaehlige Meldungen bzgl.
+    fehlender "*.h" Files - wie z.b. X11/Intrinsic.h 
+
+ A: Solange der X11-Client "xisdn" nicht verwendet werden soll, ist
+    das nicht weiter tragisch. 
+
+ S: Einfach den folgenden Schritt "make" durchfuehren
+
+isdnlog-2.50:
+
+ - Die leidige "CPU-Fresser" Problematik:
+   isdnlog-2.4x hatte 2 Moeglichkeiten, die gesamte CPU-Zeit in Beschlag
+   zu nehmen (wohl _das_ Sommerloch-Thema '96 in der isdn4linux-Mailing-Liste!),
+   oder sogar komplett die Arbeit zu verweigern:
+
+     - direkt beim Start von isdnlog oder isdnrep
+       hier haben sich die beiden Programme beim Einlesen der "isdnlog.conf"
+       vertueddelt.
+
+       Abhilfen:
+         - nie Blank's in der Alias-Spalte verwenden!
+           (z.b.: "Meine MSN")
+
+         - nie "#" in der Alias-Spalte verwenden!
+           (z.b.: "MSN#3")
+
+         - nie "\" in der Alias-Spalte verwenden!
+           (z.b.: "MSN\#3") (Danke, Holger Wirtz <chick@midips.snafu.de>)
+
+         - nie "*" als Eintrag in der Flags-Spalte angeben!
+           (Danke, Werner Wiethege <ww@slarti.frankfurt.netsurf.de>)
+
+         - auch die "START=" Zeile benoetigt als Angabe _wann_ gestartet
+           werden soll, also z.b.
+             START=IOH=auplay hangup.au
+           und _nicht_
+             START=auplay hangup.au
+           (Danke, Dirk Staneker <zxmjy04@student.uni-tuebingen.de>)
+
+         - Alle Eintraege zum Start von Programmen _muessen_ mit einem
+           Semikolon (";") terminiert werden
+           (Danke, Markus Maeder /mmaeder@cyberlink.ch)
+
+     - beim Einsatz der "-S" Option zum Starten von externen Programmen.
+       Hierbei hat sich isdnlog leider im Code fuer den X11-Client "xisdn"
+       verlaufen, und fing zum einen an, in sich selbst zu loopen, zum
+       anderen hinterlies er gerne Zoombies - die wurde durch isdnlog-2.50
+       korrigiert.
+

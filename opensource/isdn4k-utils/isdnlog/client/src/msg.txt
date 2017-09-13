@@ -1,0 +1,18 @@
+1			0		Out of memory!
+2			1		Can not write file `%s'
+3			1		Can not use directory `%s'
+101		0		Hostname is empty!
+102		2		Can not connect to host `%s' on port %s
+103		0		Oops, You are nobody!?!
+201		0		Connection to server broken!
+202		0		Access to the server denied.
+203		1		WF_ACC: got unknown message type %s.
+204		0		MSG_CHANGE_CHAN: internal error (wrong structure)!
+205		1		Default: got unknown message type %s.
+206		2		Server and client have different version:\n\nServer has version %s\nClient has version %s
+301		1		Internal error: got unknown message type in SetCallInfo: %s
+1001	1		Invalid value for a port: `%s'\n\nMust be a positive number!
+1101	2		Callwindow has %s parameters for a call, expected were %s!
+1201	2		In window `%s' it is not allowed to have max. %s lines!
+
+123		3		Das ist ein\n\ntest:*%s*%s*%s*!!!\nfred

@@ -1,0 +1,4669 @@
+ISDNLOG - Version 4.50  -  				26-Feb-2001
+
+
+isdnlog ist ein Utility zur Auswertung des D-Kanals eines
+ISDN-BRI Anschlusses.
+
+isdnlog wurde ausgiebig mit Linux-2.0.38, Linux-2.2.16-SMP sowie
+Linux-2.3.35 getestet.
+
+
+Fuer alle, die es nun ueberhaupt nicht mehr abwarten koennen, hier das
+
+Quick-Installation-Guide
+------------------------
+
+1. Linux-2.0.38 verwenden:
+     CONFIG_ISDN=m
+     CONFIG_ISDN_DRV_HISAX=m
+
+2. isdn4k-utils-3.1.tar.gz auspacken, erstellen und installieren:
+     cd /usr/src
+     tar xzf isdn4k-utils-3.1.tar.gz
+     cd isdn4k-utils
+     make config
+     make
+     make install
+
+
+3. Konfigurationsdatei fuer isdnlog fuellen:
+
+     vi | emacs | vim | e | nedit | ... | /etc/isdn/callerid.conf
+
+   -----------------------------------------------------
+   [MSN]
+   NUMBER = 4711
+   SI     = 1
+   ALIAS  = My Phone
+
+   [MSN]
+   NUMBER = 4712
+   SI     = 1
+   ALIAS  = FAX
+
+   [MSN]
+   NUMBER = 4713
+   SI     = 1
+   ALIAS  = X.75
+   -----------------------------------------------------
+
+     NUMBER = <eigene_Telefonnumer_ohne_Vorwahl>
+     SI = <Dienstkennung>
+     ALIAS = <Alias>
+
+
+4. isdn4linux das D-Kanal-Protokoll entlocken:
+
+     hisaxctrl <DriverID> 1 4
+
+   mit <DriverID> entsprechend Driver-ID, wie beim "insmod" des HiSax-Treibers
+   angegeben, oder "line0", falls der HiSax-Treiber im Kern enthalten ist.
+
+5. isdnlog starten:
+
+     /sbin/isdnlog -nsS -v1 -w1 -m0x5f7 /dev/isdnctrl
+
+6. Jede Menge rumtelefonieren
+
+7. Sich mittels
+
+     /usr/bin/isdnrep
+
+   die Rechnung ueber das unter 6. veranstaltete ausgeben lassen.
+
+
+Wenn das so nicht klappt, oder wer auch die ganzen anderen Features von
+isdnlog verwenden moechte, fuer den folgt nun der
+
+Inhalt:
+=======
+
+ 1.     Was kann/ist/macht isdnlog?
+ 2.     Was kann isdnlog nicht?
+ 3.     Installation
+ 4.     Die Konfigurationsdatei "isdn.conf"
+ 4.1    Grundeinstellungen
+ 4.2    Telefonnummern
+ 4.2.1  1. Eintrag: Telefonnummer
+ 4.2.2  2. Eintrag: Alias
+ 4.2.3  3. Eintrag: Tarifzone
+ 4.2.4  4. Eintrag: IP-Interface
+ 4.2.5  5. Eintrag: Info-Args
+ 4.2.6  Konkretes Beispiel fuer die "-S" Option
+ 5.     Die Konfigurationsdatei "isdnlog.users"
+ 5.1    Aufbau
+ 6.     [obsolet]
+ 7.     Betriebsmodi
+ 8.     Start von isdnlog
+ 9.     Die Protokoll-Datei "/var/log/isdn.log"
+10.     Das Report-Modul "isdnrep"
+11.     Das Konfigurations-Tool isdnconf
+12.     Der X-Client xisdn
+13.	ChargeInt
+14.	Gebuehren-GAU Begrenzer
+14.1    Watchdog
+14.2    CHARGEMAX
+14.3    CONNECTMAX
+14.4    BYTEMAX
+15.     Dual-Mode
+16.     SQL-Anbindung
+16.1.   Postgres95
+16.2.   MySQL
+16.3. 	Oracle
+17.	Tarifdatenbank
+18.	LCR (Least cost router)
+19.    	Probleme?
+20.     Verwendete Dateien
+20.a    Datenbanken
+21.     Verwendete Environment-Variablen
+22.     Verwendete Abkuerzungen
+23.     Danksagung
+
+
+Vorwort
+-------
+
+Die Logdatei "isdn.log" ist nicht mehr im Verzeichnis "/var/adm/,
+sondern im Verzeichnis "/var/log" zu Hause.
+
+Ein Bitte noch:
+===============
+
+Alle Anfragen zum isdnlog bitte nicht an meine Email-Adresse senden,
+sondern an
+
+     akool@isdn4linux.de
+
+So bekommen alle Entwickler die Anfragen direkt mit, und muessen nicht
+von mir extra weitergeleitet werden. Dadurch wird die Anfrage mit
+Sicherheit durch den jeweiligen Entwickler schneller beantwortet.
+
+Alternativ koennen die Anfragen natuerlich auch an die Mailing-Liste
+fuer isdn4linux (isdn4kernel) geleitet werden.
+
+Um dort "Mitglied" zu werden, sollte eine Mail an
+
+Majordomo@hub-wue.franken.de
+
+gesendet werden. Im Body (_nicht_ im Subject) sollte
+
+subscribe "emailadresse"
+
+stehen.
+
+
+1. Was kann/ist/macht isdnlog?
+------------------------------
+
+isdnlog ist eine Erweiterung zu isdn4linux, das staendig an "/dev/isdnctrl0"
+sowie "/dev/isdninfo" lauscht, und saemtliche Vorgaenge auf dem eigenen
+ISDN-Anschluss anzeigt.
+
+Dazu liest es aus "/dev/isdnctrl0" (resp. "/dev/isdnctrl2", falls eine
+2. ISDN-Karte im Rechner steckt) das gesamte D-Kanal Protokoll, sowie aus
+"/dev/isdninfo" alle internen Meldungen von isdn4linux.
+
+isdnlog sammelt all diese Informationen, und gestattet damit folgendes:
+
+ - der gesamte Verkehr kann auf einer Linux-Console, oder einem xterm
+   angezeigt werden. Dies sieht etwa so aus:
+
+   Beispiel #1 : Ein Raus-Ruf mit der ISDN-Karte:
+    13 21:16:31 * tei 104 calling UUnet with Phone  Digital
+    13 21:16:33 tei 104 calling UUnet with ISDN  Time:Wed Mar 13 21:17:00 1996
+    13 21:16:33 tei 104 calling UUnet with ISDN  CONNECT
+    13 21:16:33 tei 104 calling UUnet with ISDN  0,12 DM (0 s)
+    13 21:16:40 tei 104 calling UUnet with ISDN        5,63 kB /   823,43 bps
+    13 21:16:51 tei 104 calling UUnet with ISDN  HANGUP (0,12 DM = 18 s)
+
+   Der gesamte Ablauf der Verbindung wird also mit allen verfuegbaren
+   Details (wann passierte das, wer hat wen angerufen, was hat's gekostet,
+   wieviel Byte wurden uebertragen, wie lange hat's gedauert ...) angezeigt.
+
+   Beispiel #2 : Ein Fax kam rein (da der "Gegner" noch keinen
+   	       	 ISDN-Anschluss hat, d.h. aus der Analogen Welt kommt,
+   	       	 fehlt hier dessen Telefonnummer)
+
+    Mar 13 21:29:37 * Call from ? on FAX  Analog
+    Mar 13 21:29:42 Call to tei 94 from ? on FAX  CONNECT
+    Mar 13 21:30:47 Call to tei 94 from ? on FAX  HANGUP (65 s)
+
+   Gesteuert ueber eine Config-Datei zeigt isdnlog anstelle der Telefonnummern
+   frei waehlbare Alias-Bezeichnungen fuer die Telefonnummern an.
+
+
+ - isdnlog decodiert (im Gegensatz zum aktuellen HiSax-Treiber) die
+   von der VSt uebermittelten Gebuehreninformationen, und zeigt diese
+   sowohl am Ende einer Verbindung (== Gesamtkosten fuer diese Verbindung)
+   als auch waehrend der Verbindung staendig an.
+
+
+ - isdnlog kann pro aktivem B-Kanal staendig die aktuelle Durchsatz-Rate
+   (in Byte/s), sowie die bislang komplett durchgerauschten Byte anzeigen.
+
+
+ - Alle Verbindungen (sowohl die zustande gekommenen, als auch die nicht
+   zustande gekommenen (Besetzt, Gegner nimmt nicht ab, Fehler im ISDN-Netz)
+   schreibt isdnlog komprimiert in ein Logbuch ("/var/log/isdn.log").
+   Dieses Logbuch kann jederzeit mit dem Programm "isdnrep" ausgewertet
+   resp. eine Verbindungsstatistik ausgedruckt werden.
+
+   Hat man selbst keine Gebuehreninfo fuer seinen Anschluss beantragt
+   (-> keine Gebuehreninfo A, kein Komfort-Anschluss), berechnet isdnrep
+   die angefallenen Gebuehren aufgrund Uhrzeit/Datum sowie Ortsnetz/Zone
+   des Gegners selbst, und gibt also auch in diesem Fall die aufgelaufenen
+   Gebuehren aus.
+   Da auch _alle_ alternativen Carrier (die neuen, "privaten"
+   Telefongesellschaften, die seit dem 1.1.1998 neben der Deutschen Telekom
+   verfuegbar sind) keine Gebuehreninformationen uebermitteln, ist isdnlog
+   in diesem Fall besonders hilfreich, da es Mithilfe einer umfangreichen
+   Tarifdatenbank die entstandenen Gebuehren selbststaendig berechnet.
+
+ - Pro Gegner kann ein externes Programm definiert werden, das isdnlog
+   startet, sobald dieser Gegner anruft, oder dieser angerufen wird.
+   Damit kann zum einen pro Verbindung ein Audio-Signal ueber die Sound-Karte
+   erzeugt werden (-> Telefonklingeln abhaengig vom Gegner), oder aber
+   eine Waschmaschine angesteuert werden. Der Phantasie sind hier keine
+   Grenzen gesetzt.
+
+
+ - isdnlog kann den gesamten Output von "/dev/isdnctrl0" sowie "/dev/isdninfo"
+   (ergaenzt um Datum/Uhrzeit) fuer eine spaetere Analyse mitprotokollieren
+   (in "/tmp/isdnctrl0").
+
+ - isdnlog erzeugt auf Wunsch syslog-Eintraege mit selektierbaren
+   Informationen
+
+ - isdnlog erkennt selbststaendig 1TR6 oder E-DSS1 Frames, und decodiert
+   entsprechend korrekt.
+
+ - isdnlog steuert einen X11-Client an, der neben einer Anzeige aller
+   Verbindungen auch die On-Line Definition von bislang unbekannten
+   Gegnern u.ae. ermoeglicht.
+
+ - Es besteht seit neuestem die Moeglichkeit, alle Informationen ueber
+   den S0-Bus auf der X11-Oberflache mit dem xisdn darstellen zu lassen.
+   Allerdings befindet sich der xisdn noch im Entwicklungstand, so dass
+   sich mit Sicherheit noch einige Aenderungen an der Oberflaeche und an
+   den Funktionalitaeten abzeichnen lassen.
+
+ - Da die grafische Oberflaeche KDE mehr und mehr zum Standard aller Linux-
+   Rechner wird, gibt es natuerlich auch schon eine KDE-Oberflaeche zum
+   isdnlog: kisdnlog!
+
+
+2. Was kann isdnlog nicht?
+--------------------------
+
+Z.Zt. arbeitet isdnlog _nur_ mit dem HiSax-Treiber (d.h. allen passiven
+Karten) sowie der AVM-B1 und der Eicon DIVA Server 4?BRI zusammen,
+die ICN-Karte wird leider noch nicht unterstuetzt.
+
+Weiterhin kann isdnlog bei allen rausgehenden Verbindungen, die nicht
+mit der ISDN-Karte entstanden sind (ISDN-Telefon, Modem/Fax etc. am
+a/b Adapter oder einer Telefonanlage) die entsprechenden Telefonnummern
+leider nicht anzeigen. Dazu Gernot Zander:
+
+: Rausgehende Gespraeche von fremden Geraeten (Teflon, Modem) koennen
+: nicht richtig protokolliert werden, weil die Nummer nur ans's Amt
+: geschickt, aber nicht _zurueckgeschickt_ wird. Bei eigenen Anrufen weiss der
+: Treiber die Nummer zwangslaeufig:-), bei ankommenden wird sie _vom_ Amt
+: mitgeteilt.
+: Die Karte (und damit HiSax) kann nur das mitschreiben, was _vom_
+: Amt kommt oder was sie selber _zum_ Amt schickt. Nicht aber, was Fremd-
+: geraete _zum_ Amt senden.
+
+: Die Karte bekommt immer nur eine Richtung mit, naemlich Amt->User.
+: Sie kann von den User->Amt nur die _eigenen_ Meldungen
+: ausgeben (also die der ISDN-Karte selbst).
+: Wenn man mit seiner TK-Anlage rauswaehlt, geht die Zielnummer
+: aber User->Amt, und genau das wird von einer ISDN-Karte
+: nicht mitgeschnitten (kann sie nicht!), es passiert auf dem falschen Bus!
+: Der S.0 ist ja deshalb 4adrig, weil 2 Adern von den Endgeraeten _zum_
+: und zwei _vom_ NT gehen. Und jedes normale Endgeraet sendet auf
+: dem einen Paar und empfaengt auf dem anderen.
+Dazu siehe jedoch Kapitel 15. Dual-Mode !
+
+
+3. Installation
+---------------
+
+Da isdnlog seit der Version 3.0 nur noch als Bestandteil der isdn4k-utils
+freigegeben wird, findet die Konfiguration ueber das dortige Menu statt.
+Es darf also nicht mehr direkt in dem Makefile editiert werden.
+
+Die alte Datei "isdnlog.conf" wird, wenn vorhanden, in die Dateien "isdn.conf"
+und "callerid.conf" umgesetzt. Dieses macht die Installation automatisch.
+
+Die alte Konfigurationsdatei "isdnlog.conf" wird in das neue Verzeichnis
+uebernommen. Allerdings traegt sie dann den Namen "isdnlog.conf.old".
+
+Es ist dabei zu beachten, dass bei allen Telefonnummern in der
+isdn.conf, die mit einem "*" oder einem "?" beginnen, dieses Zeichen
+geloescht wird.
+
+Beispiel:
+
+*8154711 -> 8154711
+081547*  -> 081547*
+
+Wenn das Zeichen ("*" oder "?") nur als Platzhalter fuer eine "0" stand, kann
+man es lassen, andernfalls muss eine manuelle Nacheditierung stattfinden.
+
+Auch die Datei "isdnlog.users" wird uebernommen. Allerdings finden hier keine
+Aenderungen statt.
+
+Hier sind nochmal alle Eintraege aufgefuehrt, die isdnlog im Makefile enthaelt,
+und die ueber das Menue konfiguriert werden:
+
+  COPTS
+    Compiler-Optionen fuer den gcc
+    ACHTUNG: Die Voreinstellung "-O3" sollte bei gcc-Versionen _vor_ 2.7.2
+    	     entfernt werden, da diese Compiler-Versionen noch Probleme mit
+    	     dem Optimizer haben!
+
+    Hier koennen folgende grundsaetzliche Verhaltensweisen von isdnlog
+    voreingestellt werden:
+
+      -DISDN_NL     - Gebuehrenauswertung Niederlande (anstelle Deutschland)
+      -DISDN_CH     - Gebuehrenauswertung Schweiz (anstelle Deutschland)
+      -DISDN_AT     - Gebuehrenauswertung Oesterreich (anstelle Deutschland)
+
+  I4LCONFDIR  (/etc/isdn)
+    Wo liegen die "isdn.conf".
+
+    Mit der Environment-Variablen "ISDN_CONF_PATH" kann auch zur Laufzeit das
+    Verzeichnis festgelegt werden.
+    Beispiel "export ISDN_CONF_PATH=/etc/isdn"
+
+  USERCONFFILE (~/.isdn)
+    Wie soll die Konfigurations-Datei der einzelnen Benutzer heissen
+
+  CONFFILE (isdn.conf)
+    Wie soll die Konfigurations-Datei heissen
+
+  OLDCONFFILE (isdnlog.conf)
+    Wie hiess die _alte_ Konfigurations-Datei
+
+  LOGFILE  (/var/log/isdn.log)
+    Wie soll das Logbuch heissen.
+    Wenn der Name der Datei mit '+' anfangt, wird der Datei nicht neu
+    geschrieben, sondern neue Infos wirden am Ende zugefuegt.
+    (Diese Einstellung laesst sich spaeter noch zur Laufzeit in der isdn.conf
+    aendern)
+
+  LOCKDIR  (/var/lock/)
+  	Wo liegen die lock files (lock-Dateien).
+
+  RUNDIR  (/var/run/)
+  	Wo liegen die pid files (pid-Dateien).
+
+  SBINDIR   (/sbin)
+    Wohin soll "isdnlog" installiert werden
+
+  BINDIR   (/usr/sbin)
+    Wohin soll "isdnrep" installiert werden
+
+  TMPDIR   (/tmp)
+    Wo soll das "isdnctrl0" hingeschrieben werden
+
+  X11BIN   (/usr/X11R6/bin)
+    Wohin soll "xisdn" installiert werden
+
+  APPDEF   (/usr/X11R6/lib/X11/app-defaults)
+    Wohin soll das Resource-File von "xisdn" installiert werden
+
+
+Folgende Programme und Dateien werden durch den "make install" erstellt:
+
+  /sbin/isdnlog
+  /usr/sbin/isdnrep
+
+
+ACHTUNG: Durch die Syntaxaenderung und den Erweiterungen muessen folgende
+         Anderungen _zuerst_ an der bestehenden "isdnlog.conf" durchgefuehrt
+         werden:
+
+         Bei der Installation von isdnlog werden automatisch die neuen
+         Konfigurationsdateien angelegt.
+
+         Wenn isdnlog noch nie installiert war, muss noch die Datei
+         callerid.conf editiert werden.
+         Bestand schon eine aeltere Version von isdnlog und wurde der alte
+         Pfad der Dateien korrekt im Installationsmenue angegeben,
+         werden alle Daten aus der alten Datei isdnlog.conf in die neuen
+         uebernommen. Es sollte also keine Nachbearbeitung noetig sein.
+
+Im Verzeichnis "xisdnload" befindet sich ein weiterer X11-Client von
+Frank Strauss (strauss@escape.de), der die Durchsatz-Rate pro B-Kanal
+auch grafisch darstellen kann.
+
+
+4. Die Konfigurationsdatei "isdn.conf"
+-----------------------------------------
+
+Die Konfigurationsdatei wird im Verzeichnis "/etc/isdn" erwartet (wenn die
+Variable I4LCONFDIR im Makefile so gesetzt ist), und enthaelt alle fuer isdnlog
+relevanten Steuerungsparameter.
+
+Diese Datei muss dem User root gehoeren (auch die Gruppe). Nur dieser
+darf Schreibrechte an dieser Datei haben. Diese Datei wird auch vom isdnlog
+gelesen. Andernfalls beendet sich der isdnlog sofort wieder. Dieses ist ein
+Schutz, um Trojanische Pferde zu verhindern und kann auch nicht ausgeschaltet
+werden.
+
+Wenn man in dem compilierten Programm den Pfad aendern will, muss man die
+Umgebungsvariable "ISDN_CONF_PATH" setzen.
+
+Die Syntax der Konfigurationsdateien ist ausfuehrlich in der Datei
+
+../lib/README.Syntax.conffile
+
+beschrieben.
+
+
+4.1 Grundeinstellungen
+----------------------
+
+Es gibt hier drei Sektionen, die vom isdnlog ausgewertet werden:
+[GLOBAL]
+[VARIABLES]
+[ISDNLOG]
+Diese Sektionen koennen in einer beliebigen Reihenfolge in der Datei
+vorkommen.
+
+Die Sektion GLOBAL beinhaltet Eintraege, die fuer alle ISDN-Programme
+von Bedeutung sind. Hier sind folgende Eintraege zu finden:
+
+AREACODE:
+  Beinhaltet die eigene Ortsvorwahl (mit oder ohne vorlaufender "0". Der
+  Prefix "0" wird in der Datei config.h durch das Macro S_AREA_PREFIX
+  oder durch den Eintrag AREAPREFIX representiert).  Dieser Eintrag ist
+  zwingend.
+  Wird isdnlog im 1TR6 eingesetzt, muss hier die _gesamte_ Telefonnummer
+  exclusive der EAZ eingetragen werden. Diese Variable ist absolute Pflicht!
+  Beispiel fuer Hamburg (Euro-ISDN !!!):
+    AREACODE = 040 # oder
+    AREACODE = 40
+
+  Wenn S_AREA_PREFIX den String "0815" enthaelt, dann ist auch folgende
+  Zeile erlaubt:
+    AREACODE = 081540
+
+COUNTRYCODE:
+  Hier wird die eigene Laenderkennung gesetzt (mit oder ohne vorlaufendem "+".
+  Der Prefix "+" wird in der Datei config.h durch das Macro S_COUNTRY_PREFIX
+  oder durch den Eintrag AREAPREFIX representiert). Dieser Eintrag ist
+  ebenfalls zwingend.
+  Beispiel fuer Deutschland:
+    COUNTRYCODE = +49 # oder
+    COUNTRYCODE = 49
+
+  Wenn S_COUNTRY_PREFIX den String "0815" enthaelt, dann ist auch folgende
+  Zeile erlaubt:
+    COUNTRYCODE = 081549
+
+AREAPREFIX:
+  Es enthaelt den Prefix zur Ortsvorwahl. Beim Kompilieren ist dieser
+  Wert defaultmaessig auf "0" gesetzt. Dieser Eintrag ist optional.
+
+COUNTRYPREFIX:
+  Es enthaelt den Prefix zur Laenderkennung. Beim Kompilieren ist dieser
+  Wert defaultmaessig auf "+" gesetzt. Dieser Eintrag ist optional.
+
+[ISDNLOG]
+
+COUNTRYFILE = /usr/lib/isdn/country.dat
+
+  Diese Datei beinhaltet Laenderbezeichnungen und Vorwahlen. Sie dient
+  als Ausgangsbasis zum  Erzeugen der Destination-Datenbank dest.gdbm.
+  s. [20.a] Datenbanken
+
+RATEFILE= /usr/lib/isdn/rate-de.dat
+
+  Pfad fuer die Gebuehrendatenbank. Diese Datei ist landesspezifisch.
+  s. auch
+    man rate-files
+
+RATECONF= /etc/isdn/rate.conf
+
+  Beinhaltet den selektierten Tarif fuer Provider, die unterschiedliche
+  Tarife anbieten.
+
+HOLIDAYS= /usr/lib/isdn/holiday-de.dat
+
+  Feiertagstabelle - landesspezifisch.
+
+ZONEFILE= /usr/lib/isdn/zone-de-%s.gdbm
+
+  Verzonungsinformation fuer die einzelnen Provider - landesspezifisch.
+  Das '%s' im Dateinahmen wird durch den Eintrag D:xxx in rate-CC.dat
+  ersetzt.
+
+  s. auch isdnlog/samples/isdn.conf.CC fuer verschiedene Konfigurationen.
+  s. [20.a] Datenbanken
+
+DESTFILE= /usr/lib/isdn/dest.gdbm
+
+  Destination Database mit Ortsnamen und Vorwahlen
+  s. [20.a] Datenbanken
+
+VBN =  Verbindungsnetzbetreiberauswahlnummer
+
+  Deutschland ... 010
+  Oesterreich ... 10
+  Niederlande ... 16:17
+
+VBNLEN = Anzahl Ziffern nach VBN
+
+  Deutschland ... 2:3
+  Oesterreich ... 2
+  Niederlande ... 1 ???
+
+
+PRESELECTED = Providernummer
+
+  Deutschland ... 33
+  Oesterreich ... 1
+  Niederlande ... 999
+  Frankreich  ... 0
+
+  s. auch die entsprechenden Kommandlineparameter von isdnlog
+
+
+Die ISDN-Tools erlauben es, Umgebungsvariablen zu setzen und zu verwenden.
+Es gibt Variablen, die in der isdn.conf (oder vorher) gesetzt werden sollten.
+Diese sind in der Sektion [VARIABLES] zu setzen.
+Beispiel:
+
+  [VARIABLES]
+  MYPATH = /home/fred
+
+Es duerfen als Variablennamen nur noch gross geschriebene Woerter verwendet
+werden. Ein Eintrag der Form
+
+  myPath = /home/fred
+
+oder
+
+  mypath = /home/fred
+
+wird z.B. unter /bin/sh mit "MYPATH=/home/fred" gesetzt.
+Hier gibt es auch keine andere Moeglichkeit das zu aendern.
+
+Wenn Kleinbuchstaben verwendet werden sollen, muessen diese vor dem Start
+von isdnlog mit export (sh, bash) oder setenv (csh) unter der Shell gesetzt
+werden.
+
+ACHTUNG: "MYPATH  =  /home/fred" wird als Variable zu "MYPATH=/home/fred".
+         Es fallen also alle Blanks und Tabulatoren vor und nach dem "="
+	 heraus.
+
+
+Die dritte Sektion beschreibt spezifische Angaben fuer den isdnlog. Diese
+Sektion wird durch [ISDNLOG] eingeleitet.
+
+LOGFILE   = /var/log/isdn.log
+
+Dies ist das Logfile, in dem isdnlog alle Gespraeche ablegt, und isdnrep
+sie anschliessend anzeigt. Wenn diese sich an einem anderen Platz befindet,
+als zur Compilationszeitpunkt (in der Regel "/var/log/isdn.log"), dann kann
+die Lokation hier angegeben werden.
+Die Option "-f" vom isdnrep ueberschreibt diesen Wert dann allerdings wieder.
+
+Zusatzinformation:
+Diese Datei wird seit der Version 3.0 vom isdnlog nicht mehr staendig offen
+gehalten, sondern nur noch nach Beendigung eines Gespraeches wird die Datei
+geoeffnet, der Eintrag ergaenzt und anschliessend wieder geschlossen.
+Dadurch ist es jetzt moeglich diese Datei zu verschieben, wenn der isdnlog
+laeuft und gerade kein Gespraech beendet wird.
+Dieser Eintrag ist optional.
+
+RELOADCMD = reload
+
+Hiermit wird ein ausfuehrbares Programm (z.b. Shell-Script) angegeben,
+mit dem isdnlog ein evtl. wildgewordenes isdn4linux reanimieren kann.
+(Ein Beispiel findet sich im Kapitel 14.1 Watchdog)
+Dieser Eintrag ist optional.
+
+STOPCMD = stop
+
+Hiermit wird ein ausfuehrbares Programm (z.b. Shell-Script) angegeben,
+mit dem isdnlog isdn4linux terminieren kann.
+(Ein Beispiel findet sich im Kapitel 14.2 CHARGEMAX)
+Dieser Eintrag ist optional.
+
+REBOOTCMD = /sbin/reboot
+
+Hiermit wird ein ausfuehrbares Programm (z.b. Shell-Script) angegeben,
+mit dem isdnlog Linux herunterfahren kann.
+(Ein Beispiel findet sich im Kapitel 14.2 CHARGEMAX)
+Dieser Eintrag ist optional.
+
+CHARGEMAX = 15.00
+
+Hiermit wird (in DM) angegeben, wieviel Geld man pro Tag maximal
+mit isdn4linux vertelefonieren moechte.
+Dieser Eintrag ist optional.
+
+CONNECTMAX = 18000,0
+
+Hiermit wird (in Sekunden) angegeben, wieviel Zeit man pro Monat
+maximal Online sein moechte.
+Dieser Eintrag ist optional.
+
+BYTEMAX = 67108864,0
+
+Hiermit wird (in Byte) angegeben, wieviel Byte man maximal pro
+Monat saugen moechte.
+Dieser Eintrag ist optional.
+
+CURRENCY=factor,currency
+
+Wenn die Variablen in der isdn.conf gesetzt werden, dann kann man folgende
+Syntax verwenden:
+
+Angabe der Waehrungsbezeichnung sowie eines Multiplikationsfaktors.
+Falls dieser Eintrag fehlt, wird "0.12,DM" angenommen, d.h. jeder
+Gebuehrenimpuls wird mit 0.12 multipliziert, und mit der Bezeichnung
+"DM" angedruckt.
+
+In einigen europaeischen Laendern werden diese beiden Parameter bereits
+von der VSt uebertragen (z.b. Oesterreich), und brauchen daher nicht
+angegeben zu werden.
+
+Wenn man sich zum Beispiel die Nettogebuehren (ohne MwSt.) anzeigen
+lassen will, kann man hier z.B. folgenden Wert setzen:
+
+CURRENCY=0.1043,DM
+
+Dieser Eintrag ist optional.
+
+Wenn der isdnrep via HTML aufgezeichneten Anrufe abspielen soll, dann muss hier
+der Pfad eingetragen werden. Eine genaue Beschreibung findet man unter
+dem Kapitel isdnrep.
+Dieser Eintrag ist optional.
+
+Beipiel:
+VBOXPATH = /var/spool/vbox/fred/incoming
+
+Der isdnrep kann fuer jeden aufgezeichneten Anruf ein Konvertierungsprogramm
+starten.  Eine genaue Beschreibung findet man unter dem Kapitel isdnrep.
+Dieser Eintrag ist optional.
+
+Beipiel:
+VBOXCMD1 = /usr/bin/zyxeltowav # Fuer Version vbox 0.x und 1.x
+VBOXCMD2 = /usr/bin/zyxeltowav # Fuer Version vbox 2.x
+
+Wenn der isdnrep via HTML angekommene Faxe anzeigen soll, dann muss hier
+der Pfad eingetragen werden. Eine genaue Beschreibung findet man unter
+dem Kapitel isdnrep.
+Dieser Eintrag ist optional.
+
+Beipiel:
+MGETTYPATH = /var/spool/fax/incoming
+
+Der isdnrep kann fuer jedes Fax ein Konvertierungsprogramm starten.
+Eine genaue Beschreibung findet man unter dem Kapitel isdnrep.
+Dieser Eintrag ist optional.
+
+Beipiel:
+MGETTYCMD = /usr/bin/g3tojpg
+
+Fuer den isdnrep kann man einen oder mehrere Formatsstrings definieren,
+wie der isdnrep die einzelnen Gebuehren anzeigen soll. Die genaue Syntax
+wird unter dem Kapitel isdnrep beschrieben.
+
+Der Formatstring kann in Hochkommata eingeschlossen werden. Dieses ist
+sinnvoll, wenn das erste Zeichen ein Leerzeichen oder ein Tabulator
+sein sollte. Dabei ist zu beachten, falls ein Hochkomma im Formatstring
+selber vorkommen soll, dass dieses zu quoten ist.
+Dieses gilt fuer ILABEL, OLABEL und auch REPFMT.
+
+Beispiel:
+
+REPFMT = "%X\"%x"
+
+Alle Formateintraege sind optional. Bei der Installation werden diese
+allerdings erzeugt.
+
+Die folgenden beiden sind Standard-Eintraege, die der isdnrep sucht:
+
+REPFMT    = "  %X %D %15.15H %T %-15.15F %7u %U %I %O"
+REPFMTWWW = "%X %D %17.17H %T %-17.17F %-20.20l SI: %S %9u %U %I %O"
+
+Der erste ist fuer den "normalen" Gebuehrenausdruck. Der zweite wird
+verwendet, falls die Ausgabe im HTML-Format erfolgen soll.
+
+Es koennen noch weitere angegeben werden:
+
+REPFMTxxx = ...
+
+Fuer "xxx" kann eine beliebige Zeichenfolge ohne Leerzeichen und Tabulator
+stehen. Dieser Formatstring wird dann vom isdnrep verwendet mit der
+Option -Fxxx.
+
+ILABEL=xxxxx
+OLABEL=xxxxx
+
+Hiermit kann definiert werden, wie die Console-Ausgaben aussehen sollen.
+Fehlen diese Eintraege, wird
+  ILABEL=%b %e %T %ICall to tei %t from %N2 on %n2
+  OLABEL=%b %e %T %Itei %t calling %N2 with %n2
+angenommen (die bislang bekannte Optik)
+
+Bei reinkommenden Verbindungen wird das "ILABEL", und bei rausgehenden
+Verbindungen das "OLABEL" ausgegeben.
+
+Diese Label werden von isdnlog auf jeden Fall um die mit "-m" angeforderten
+Statusmeldungen wie RING, TIME, CONNECT, HANGUP etc. ergaenzt.
+
+Neben beliebigen Buchstaben/Zahlen (incl. der ueblichen "\007" Octal-Notation)
+koennen folgende Platzhalter angegeben werden:
+
+ %t   tei
+ %C   Call reference
+ %Nx  MSN (Telefonnummer) des Gegner's (siehe *1)
+ %nx  Eigene MSN (Telefonnummer)       (siehe *1)
+ %cx  Via CLIP vermeldete MSN	       (siehe *1)
+ %A   der Text " alias <MSN>", falls
+      CLIP-Meldung, sonst leer
+ %I   Tabulation 		       (siehe *2)
+ %a   Wochentag (-> "Fri")
+ %b   Monat (-> "Aug")
+ %e   Tag im Monat (-> " 8")
+ %T   Uhrzeit (-> "13:17:11")
+ %B   B-Kanal (1 oder 2)
+ %k   Nummer der ISDN-Karte, von der die Meldung kam (0 = 1. Karte)
+ %p   Nummer des Provider's
+ %P   "via <Providerbezeichnung>"
+ %Z   Gebuehrenzone des Gegners ("CityCall", "RegioCall", "GermanCall", "GlobalCall")
+ %z   Gebuehrenzone des Gegners (1, 2, 3, 4)
+
+ %/
+ %
+ %(
+ %)   Falls die Nummer des Gegners bekannt, entsprechendes Zeichen,
+      sonst Leerstring
+
+
+*1 Bei %N, %n sowie %c muss angegeben werden, wie die Telefonnummer ausgegeben
+   werden soll:
+
+    %N0  - Telefonnummer exakt so, wie von der VSt gemeldet
+    	   (z.b. "8989810530")
+    %N1  - Telefonnummer, von isdnlog um Vorwahl, vorlaufende "0" etc.
+    	   ergaenzt (z.b. "+498989810530")
+    %N2  - Von isdnlog optimal "verschoenerte" Nummer, also Alias
+    	   aus "isdn.conf" oder mit Ortsnetz etc.
+    	   (z.b. "+49 89/89810530, Muenchen")
+    %N3  - Vorwahl (z.b. "89")
+    %N4  - Rufnummer (z.b. "89810530")
+    %N5  - Alias
+    %N6  - Ortsnetz (z.b. "Muenchen")
+    %N7  - Countrycode (z.b. "+49")
+
+*2 Dieser Platzhalter wird von isdnlog folgendermassen aufgeloest:
+
+     Bezieht sich die Zeile auf den ersten aktiven B-Kanal, wird daraus
+     ein Leerstring -> ""
+     Bezieht sich die Zeile auf den zweiten aktiven B-Kanal, werden daraus
+     zwei Blank's -> "  "
+     Bezieht sich die Zeile auf eine entstehende Verbindung, wird daraus
+     ein Stern -> "* "
+
+
+Folgende Optionen werden nur fuer den Schalter -S optional benoetigt:
+
+START={
+...
+}
+
+Es kann ein zu startender Befehl angegeben werden. Wenn eine Verbindung
+aufgebaut wird, besteht oder beendet wird und unter den entsprechenden
+Nummern kein Befehl steht, dann wird der passende Befehl unter "START"
+in der Sektion [ISDNLOG] ausgefuehrt. Das heisst isdnlog schaut zuerst
+unter der entsprechenden Telefonnumer nach, ob dort ein Befehl ist.
+
+Wenn "START" verwendet wird bei Verbindungen, die raus gehen und nicht von
+der ISDN-Karte kommen (also Nummern unbekannt), dann geht "OR" (Outgoing
+Ring) nicht (siehe Info von Gernot Zander), ist also kein Bug vom isdnlog.
+
+Wenn ja, wird dieser ausgefuehrt und der Eintrag "START" ignoriert.
+
+Wenn die Nummer in der Datei "isdn.conf" keinen Eintrag hat, oder unter
+der Nummer in der Sektion [Flag] nichts eingetragen ist, dann schaut isdnlog
+unter "START" nach.
+
+Diese Zeilen koennen verwendet werden, wenn man fuer alle Verbindungen
+die gleichen Programme starten will, oder fuer alle unbekannten Nummern.
+Die Syntax ist unter "Info-Args" der Dateien "callerid.conf" und"~/.isdn"
+zu finden.
+
+
+Sobald die Calling party number ueber die Leitung kommt, wird diese in eine
+spezielle Datei geschrieben. Dieses Feature wird ueber zwei
+Konfigurationseinstellungen (CALLFILE und CALLFMT) in der isdn.conf aktiviert.
+Beispiel:
+
+CALLFILE = /var/log/caller.log
+CALLFMT  = %b %e %T  %N7 %N3 %N4 %N5 %N6
+
+
+
+4.2 Die Dateien "callerid.conf" und "~/.isdn"
+---------------------------------------------
+
+Hier koennen eine beliebige Anzahl von Telefonnummer nebst einigen
+zusaetzlichen Parametern angegeben werden.
+Die Angabe _aller_ eigenen Telefonnummern ist zwingend, alle weiteren
+Partner-Telefonnummern koennen eingeben werden.
+
+Die Datei "callerid.conf" liegt im Verzeichnis "/etc/isdn" und muss dem User
+root gehoeren (auch die Gruppe). Nur dieser darf Schreibrechte an dieser
+Datei haben. Diese Datei wird auch vom isdnlog gelesen. Es ist die globale
+Datei fuer die Telefonnummern. Hier muessen auch die [MSN]-Eintraege
+untergebracht werden.
+
+Die Datei "~/.isdn" kann jeder Benutzer haben, der den isdnrep und den isdnconf
+verwendet. Hier sind die Rechte der Datei voellig egal. Diese Datei ist
+dafuer bestimmt, dass ein Benutzer soetwas wie ein eigenes Telefonverzeichnis
+anlegen kann, wo auch die Nummer nur beim isdnrep angezeigt werden.
+Es koennen hier aber die [MSN]-Eintraege ueberschrieben werden fuer die
+beiden Programme isdnconf und isdnrep.
+
+Es koennen hier Variablen verwendet werden, die entweder in der isdn.conf
+gesetzt wurden oder vorher (z.b. auf Shellebene).
+In den Dateien "callerid.conf" und "~/.isdn" koennen ebenfalls Variablen
+gesetzt werden. Das bedeutet also, dass es dort auch eine Sektion [VARIABLES]
+gibt, wie in der "isdn.conf". Aber Achtung!! Hier koennen nur gross
+geschriebene Variablennamen verwendet werden:
+
+[VARIABLES]
+fred=fred1234 # -> "FRED=fred1234" !!!!
+FRED=fred1234 # -> "FRED=fred1234"
+
+Eine Variable wird allerdings nur ab dem Gleichheitszeichen ersetzt.
+
+Wenn man an die Variable noch etwas anhaengen will, dann muss man den
+Variablenname in geschweifte Klammern setzen.
+Im Gegensatz zur frueheren Version koennen die Variablen an beliebiger Stelle
+kommen.
+
+Beispiele:
+
+[$num]          # wobei num=NUMBER nicht geht !!!!
+$alias=fred     # wobei alias=ALIAS nicht geht !!!!
+
+[NUMBER]
+NUMBER=$MSN1    # MSN1=1234 -> "1234"
+ALIAS=${PHONE}1 # PHONE=Telefon -> "Telefon1"
+
+...
+ PROGRAM= auplay ${MY_PATH}ring.au  # MY_PATH=/home/fred/ -> "/home/fred/ring.au"
+ PROGRAM= auplay $MY_PATHring.au    # geht nicht!!
+ PROGRAM= auplay ${MY_PATH}ring.au ${SOUND_PATH}/$RING_FILE
+ # SOUND_PATH=/home/sound RING_FILE=ring.au -> "/home/sound/ring.au"
+...
+
+Wenn eine Variable nicht ersetzt werden konnte, so wird dieses angemahnt,
+und die Variable bleibt so bestehen, im Gegensatz zur bash-Shell, wo
+dann ein Leerstring ausgegeben wird:
+
+...
+ALIAS = $FRED Feuerstein # -> "$FRED Feuerstein", wenn $FRED ungueltig ist.
+...
+
+Wenn das "$" nicht als Zeichen fuer
+eine Variable verwendet werden soll, so muss diese mit "\$" geqoutet werden:
+
+...
+ALIAS = \$PATH # -> "$PATH"
+...
+
+Wenn eine Variable mehrfach gesetzt wird, so wird sie ueberschrieben. Die
+Regel fuer das ueberschreiben entspricht der Reihenfolge, in der die
+Konfigurationsdateien gelesen werden:
+
+1. isdn.conf
+2. callerid.conf
+3. ~/.isdn
+
+Wenn eine Variable "FRED" in "isdn.conf" und "~/.isdn" gesetzt wird, so wird
+der Wert von "isdn.conf" durch den Wert der zweiten Datei ueberschrieben.
+
+Die Variablen werden zuerst aus allen drei Dateien gelesen, bevor die
+Ersetzung stattfindet. Das bedeutet also, das z. B. eine Variable, die
+in "~/.isdn" gesetzt wurde, in der isdn.conf verwendet werden kann.
+
+Dieses mag im ersten Augenblick als ein Sicherheitsloch erscheinen, aber
+wenn als root ein Programm gestartet wurde, muessen alle drei Dateien
+auf readonly fuer group und world gesetzt sein. Andersherum kann ein Benutzer,
+der ein Programm startet auf diese Dateien nur lesend zugreifen.
+
+ACHTUNG:
+Es ist allerdings davon abzuraten, weder den isdnlog, noch den isdnrep oder den
+isdnconf mit dem sticky-Bit auszustatten!!!!
+
+Es gibt bestimmte Regeln, nachdem Eintraege aus der Datei "~/.isdn" die
+Eintraege der "callerid.conf" ueberschreiben:
+
+Der Sektionsname ist in "callerid.conf" und "~/.isdn" gleich (entweder
+[MSN] oder [NUMBER]).
+
+Wenn die Eintraege NUMBER und SI in beiden Dateien vorkommen und identisch sind,
+dann wird der Eintrag aus der der Datei "callerid.conf" ueberschrieben durch
+den Eintrag "~/.isdn".
+
+Wenn nur der Eintrag NUMBER (und _nicht_ SI) in beiden Dateien vorkommt und
+identisch ist, dann wird der Eintrag aus der der Datei "callerid.conf"
+ueberschrieben durch den Eintrag "~/.isdn".
+Unter Identisch ist zu verstehen, wenn beide Strings absolut identisch sind:
+NUMBER=+49 7531/21103
+NUMBER=753121103
+sind nicht identisch!!!!
+
+Beispiele:
+
+Eintrag in "callerid.conf":
+[NUMBER]
+NUMBER=753121103
+ALIAS=MSN\#1
+
+Eintrag in "~/.isdn":
+[NUMBER]
+NUMBER=753121103
+ALIAS=Fred's Number
+
+Im obigen Fall wird der zweite Eintrag genommen.
+
+Eintrag in "callerid.conf":
+[NUMBER]
+NUMBER=753121103
+SI=7
+ALIAS=Internet
+
+Eintrag in "~/.isdn":
+[NUMBER]
+NUMBER=753121103
+SI=6
+ALIAS=Fred's Number
+
+Im obigen Fall werden beide Eintrage uebernommen. Wenn nun eine Datenverbindung
+auf der 753121103 stattfindet, dann wird "Internet" angezeigt, wenn jemand z.B.
+eine Video-Konfernzschaltung oder einen normalen Telefonanruf taetigt, dann
+wird "Fred's Number" angezeigt. Dieses gilt natuerlich nur beim isdnrep
+und isdnconf.
+
+Eintrag in "callerid.conf":
+[NUMBER]
+NUMBER=753121103
+SI=7
+ALIAS=MSN\#1
+
+Eintrag in "~/.isdn":
+[NUMBER]
+NUMBER=753121103
+ALIAS=Fred's Number
+
+Im obigen Fall gilt das gleiche wie beim vorherigen Beispiel.
+
+Jede Sektion (Nummer) kann eine Dienstekennung enthalten. Dieses wird durch
+einen Eintrag in der Form
+
+SI=4 # Video
+
+realisiert.
+
+isdnlog unterscheidet rein- und rausgehende Verbindungen nach der
+MSN (Telefonnummer), sowie dem Service Indicator ("Dienstkennung").
+
+Z.Zt. kennt isdnlog folgende Dienstkennungen:
+
+  1 = Speech (Telefon, Fax G3, Modem etc.)
+  2 = Restricted digital information
+  3 = Unrestricted digital information
+      with tones/announcements
+  4 = Video
+  7 = Unrestricted digital information (HDLC, X.75 etc.)
+
+Bei jedem Verbindungsaufbau sucht isdnlog aus der "isdn.conf" den
+Eintrag, bei dem sowohl die MSN, als auch der SI uebereinstimmen.
+
+Wird solch ein Eintrag nicht gefunden, nimmt isdnlog den _ersten_ Eintrag
+mit der passenden MSN.
+
+Ein eindeutiger Key fuer eine Nummer ist nun die Telefonnummer selber und die
+Dienstkennung. Es kann also eine Nummer mehrfach erscheinen mit jeweils
+einer anderen Dienstkennung. Wird in der Sektion fuer eine Nummer kein
+Eintrag fuer die Dienstkennung angegeben (keine Zeile SI=x), wird die Kennung
+"0" angenommen. Das bedeutet alle Dienste werden ueber diese Sektion erkannt.
+Es gibt also fuer eine Nummer nur einen einzigen Eintrag.
+
+Zum Verstaendnis:
+
+Nehmen wir mal eine eigne MSN (das funktioniert auch fuer fremde Nummern!).
+Dort kann man mit einer MSN eine ISDN-Verbindung mit LINUX unterhalten und
+parallel diese MSN zum Telefonieren verwenden. Obwohl die gleiche Nummer
+dort verwendet wird, reagiert z.B. das Telefon nicht (es klingelt nicht!),
+wenn ein Teilnehmer sich mit einem PC an dieser Nummer anwaehlt.
+Beispiel:
+
+Auf der MSN 4711 lauscht sowohl die ISDN-Karte auf X.75 Anrufe, als auch
+ein Analoges Telefon ueber eine Telefonanlage.
+
+Hier wuerden folgende Eintraege in der "callerid.conf" passen:
+
+[MSN]
+NUMBER    = 4711
+SI        = 1                  # Das normale Telefon
+ALIAS     = Phone
+START     = {
+	[FLAG]
+	FLAGS   = I|O|R|A            # alternativ geht auch FLAGS=IORA
+	PROGRAM = auplay ring.au
+}
+
+[MSN]
+NUMBER    = 4711
+SI        = 7                  # Der Linux-Rechner
+ALIAS     = X.75
+START     = {
+	[FLAG]
+	FLAGS   = I|O|R|A            # alternativ geht auch FLAGS=IORA
+	PROGRAM = auplay computer.au
+}
+
+Die genaue Syntax wird weiter unten beschrieben.
+
+Ruft nun jemand die 4711 mit einem Telefon an, wird das als Anruf auf
+"Phone" angezeigt, und mit "auplay" das Soundfile "ring.au" abgespielt.
+
+Waehlt jemand hingehen die 4711 mit einer ISDN-Karte an, wird das als
+"X.75" angezeigt, und mit "auplay" das Soundfile "computer.au" abgespielt.
+
+Startet hingegen jemand eine Video-Uebertragung auf die 4711, wird auch
+dies als "Phone" angezeigt, da in obigem Beispiel die Dienstkennung "4"
+nicht gesondert definiert wurde.
+
+
+Es gibt zwei verschiedene Sektionen in diesen Dateien:
+
+[MSN]
+[NUMBER]
+
+Die Eintraege in den einzelnen Sektionen sind gleich. Es koennen beliebig viele
+von den einzelnen Sektionen (MSN,NUMBER) existieren. Im Gegensatz zu frueheren
+Versionen des isdnlog's muss nun nicht mehr die Anzahl der eigenen MSN angegeben
+werden (MYMSNS entfaellt).
+
+
+Alle Eintraege in einer Sektion koennen in einer beliebigen Reihenfolge
+folgen. Das gleiche gilt fuer die Sektionen innerhalb einer Datei.
+
+Im folgenden werden nun die einzelnen Eintraege unter den Sektionen MSN
+und NUMBER erwaehnt:
+
+
+4.2.1 1. Eintrag: Telefonnummer [NUMBER] und [MSN]
+--------------------------------------------------
+
+Hier muss zwischen 1TR6 und DSS1 unterschieden werden:
+
+im 1TR6 muss unter [MSN] nur die EAZ eingetragen werden. Unter der Sektion
+[NUMBER] kommt dort die komplette Nummer. Diese Nummer muss _mindestens_
+die Vorwahl enthalten.
+
+Im DSS1 ist dieses ziemlich egal. Man kann die Nummern so eintragen, wie man
+sie am eigenen Telefon waehlen wuerde. Es muss die Voreinstellungen der
+Installation beruecksichtigt werden. Die Werte von AREACODE
+und COUNTRYCODE, wie sie waehrend der Installation eingestellt wurden,
+werden so ueberall uebernommen.
+
+Es ist aber empfehlenswert ueberall die Vorwahl mit anzugeben (ist auch bei
+der MSN moeglich). Wenn man z.B. umzieht in eine andere Stadt,
+muss man sonst die gesamte Datei ueberarbeiten. Das entfallt, wenn man
+ueberall die Vorwahl angibt.
+
+Die Syntax ist jetzt ziemlich frei. Es koennen dort Telefonnummern angegeben
+werden, wie man sie ueblicherweise kennt:
+
+NUMBER = 4711
+NUMBER = 0815/4711
+NUMBER = 0815/471-0
+NUMBER = +49 815/4711
+NUMBER = +49 815/471*
+NUMBER = +49 815/471?
+NUMBER = +49 815/47[!6]1
+NUMBER = 4711, 4712, +49 815/4713
+
+Es werden alle NICHT-Zahlen dort herausgefiltert, bis auf die Wildcards '?',
+'*' und "[]"
+
+Ein Plus '+' am Anfang wird durch COUNTRYCODE ersetzt.
+
+Alle Telefonnummern koennen die ueblichen Wildcard-Symbole enthalten,
+also "?" matched genau ein Zeichen, "*" matched beliebig viele
+(also auch "keine") Zeichen, und mit "[]" koennen mehrere
+moegliche Zeichen angegeben werden (oder auch eine Range [4-7], oder auch
+die Verneinung, also [!6])
+
+Es ist auch moeglich, mehrere Telefonnummern unter einem Eintrag zu setzen.
+Die einzelnen Nummern werden dann durch ein Komma getrennt.
+
+
+4.2.2 2. Eintrag: Alias [ALIAS]
+-------------------------------
+
+In diesem Entrag steht eine beliebige Symbolische Beschreibung fuer
+diese Nummer ("Mausi", "UUnet" usw.). Diese darf Blanks enthalten!
+Wenn hier das Zeichen '#' verwendet werden soll, muss dieses gequotet
+werden mit "\#".
+Das Zeichen "|" darf auf keinen Fall verwandt werden, da es fuer interne
+Zwecke benoetigt wird!
+
+ALIAS = MSN #1
+ist falsch, dieses fuehrt zu dem Ergebnis:
+ALIAS = MSN
+
+Richtig waere:
+
+ALIAS = MSN \#1
+
+Auch ein Eintrag
+
+ALIAS = Helmut Kohl
+
+ist erlaubt. Allerdings unterscheidet sich dieser von
+
+ALIAS = helmut kohl
+
+
+4.2.3 3. Eintrag: Tarifzone
+---------------------------
+
+ZONE = x wird nicht mehr verwendet.
+
+
+4.2.4 4. Eintrag: IP-Interface
+------------------------------
+
+Dieser Eintrag repraesentiert das IP-Interface, welches auf dieser
+Rufnummer konfiguriert wurde, oder ein "-", falls dieser Nummer kein
+IP-Interface zugeordnet wurde.
+Diese Information wird fuer die "-hx" huptimeout Option sowie
+fuer die Anzeige des Durchsatzes (ibytes/obytes) benoetigt.
+
+Ab Linux-2.2.12 sowie isdnlog-4.38 ist dieser Eintrag obsolete,
+und kann daher ersatzlos entfallen, da isdnlog ab diesen Versionen das
+Interface selbstst„ndig detektieren kann.
+
+Beispiel:
+
+INTERFACE=ippp0
+
+4.2.5 5. Eintrag: Info-Args
+---------------------------
+
+Hier besteht unter der Sektion [NUMBER] und [MSN] eine Untersektion. Diese
+ist allerdings optional. Diese Informationen werden vom isdnlog nur ausgewertet,
+wenn die Option -S gesetzt wurde.
+Die Untersektion traegt den Namen START.
+
+Es koennen mehrere Programme pro Nummer angegeben werden, zum Beispiel fuer
+jedes Event. Hier folgt nun ein Beispiel. Die Erklaerung folgt anschliessend:
+
+[MSN]
+NUMBER    = 4711
+SI        = 1                  # Das normale Telefon
+ALIAS     = Phone
+ZONE      = 1
+START     = {                  # Beginn der Untersektionen
+                               # Die geschweifte Klammer muss in der gleichen
+                               # Zeile stehen, wie "START =" !!!!
+	[FLAG]
+	FLAGS   = I|O|R              # alternativ geht auch FLAGS=IORA
+	PROGRAM = auplay ring.au
+
+	[FLAG]
+	FLAGS   = A
+	PROGRAM = auplay pay.au
+}                              # Ende der Untersektionen
+
+
+Hier werden jetzt alle anderen Spalten wie Flags, Time und Info-Arg vereinigt.
+
+Jeder Programmstart fuer ein Event wird mit der (Unter-)Sektion [FLAG]
+eingeleitet.
+
+Unter dieser Sektion sind nun verschiedene Eintraege zu finden. Die folgende
+Reihenfolge muss allerdings innerhalb der Sektion nicht eingehalten werden:
+
+Eintrag Flags:
+--------------
+
+Hier wird angegeben, bei welchem Event das Info-Programm gestartet werden
+soll. Es koennen eine beliebige Menge aus folgenden Flag-Gruppen angegeben
+werden:
+
+Gruppe 1:
+
+ I = Programme werden nur gestartet, wenn es ein eingehendes Gespraech ist
+ O = Programme werden nur gestartet, wenn es ein ausgehendes Gespraech ist
+
+Gruppe 2:
+
+ C = Bei CONNECT Programm starten (Intervall-faehig)
+ B = Programm starten, wenn der Teilnehmer besetzt ist (Busy)
+ E = Programm starten, wenn ein Fehler von der VSt uebermittelt wurde
+ R = Bei RING Programm starten (Intervall-faehig)
+ A = Bei AOCD ("Gebuehrenimpuls") Programm starten
+ H = Bei Verbindungsende Programm starten
+
+Gruppe 3:
+
+Die folgenden Flags haben nur Bedeutung fuer die Flags "C" und "R" aus
+Gruppe 2. Es sollte immer nur _ein_ Argument von dieser Gruppe je Info-Arg
+verwendet werden:
+
+ L = Es wird waehrend dieses Zeitraum ein Programm immer wieder gestartet,
+     wenn sich das vorherige beendet hat.
+     Es macht dann keinen Sinn noch zusaetzlich ein Intervall einzuschalten,
+     da "L" Vorrang hat.
+
+ U = Es darf waehrend eines Intervalls nur ein Programm gestartet werden.
+     Wenn ein Intervall erreicht wurde, und das letzte Programm noch laeuft,
+     dann wird das naechste nicht gestartet, sondern wartet, bis sich der
+     Vorgaenger Beendet hat.
+     Wenn das Flag nicht gesetzt ist, dann koennen mehrere Programme
+     gleichzeitig laufen, da dann beim erreichen eines Intervalls
+     ein neues gestartet wird, unabhaengig davon, ob das vorherige noch
+     laeuft. Es wird das Argument Intervall benoetigt!
+
+ K = Wenn ein Intervall angegeben ist, und das Intervall beendet ist, soll
+     das vorherige Programm beendet werden. Sonst ist es moeglich, das
+     mehrere Programme gleichzeitig laufen. Es wird das Argument Intervall
+     benoetigt!
+
+ Es macht also keinen Sinn "U" und "K" gleichzeitig einzuschalten, da beide
+ nur ein Programm erlauben. Der einzige Unterschied zwischen "K" und "U" ist,
+ dass bei "U" gewartet wird, bis sich das Programm beendet, waehrend "K" beim
+ Ende des Intervalls das laufende Programm "mit Gewalt" beendet.
+
+Damit ein Programm ueberhaupt gestartet werden kann, muessen Flags
+aus Gruppe 1 _und_ Gruppe 2 angegeben werden. Gruppe 3 ist Optional.
+
+
+Die Events "B", "E", "A" und "H" beschreiben Zeitpunkte in der Verbindung,
+waehrend "R" und "C" Zeitabschnitte beschreiben. Daher koennen fuer
+Zeitpunkte auch keine Intervalle angegeben werden, da dieses nur Ereignisse
+sind.
+
+Eine Verbindung oder ein Verbindungsversuch kann folgenden Ablauf haben:
+(Die Buchstaben entsprechen den Flags unter Gruppe 2)
+
+Beim ausgehenden Gespraech ueber die ISDN-Karte
+
+1.
+
+|  RING   |               CONNECT                      |
+----------A-----A-----A-----A-----A------A------A------H
+
+2.
+
+|  RING   |               CONNECT               |
+----------A-----A-----A-----A-----A------A------EH
+
+3.
+
+|  RING   |
+----------BH
+
+4.
+
+|  RING   |
+----------EH
+
+Bei ausgehenden Rufen ueber Telefon/Fax...:
+Dort wird _kein_ "RING" uebermittelt. Es gibt also niemals einen Zustand "OR".
+
+1.
+
+|               CONNECT                      |
+A-----A-----A-----A-----A------A------A------H
+
+2.
+
+|               CONNECT               |
+A-----A-----A-----A-----A------A------EH
+
+3.
+
+BH
+
+4.
+
+EH
+
+Bei reinkommenden Gespraechen:
+Bei der ISDN-Karte ist die "Ring-Phase" extrem kurz, so dass es passieren
+kann, dass isdnlog darauf nicht reagiert.
+
+1.
+
+| RING |      CONNECT     |
+--------------------------H
+
+2.
+
+| RING |     CONNECT     |
+-------------------------EH
+
+3.
+
+| RING |
+-------H
+
+In der Zeile koennen die einzelnen Events entweder als ein "Wort" geschrieben
+werden oder aber durch das Zeichen "|" getrennt werden:
+
+FLAGS = IORA
+
+oder
+
+FLAGS = I|O|R|A
+
+Wobei die zweite Schreibweise wesentlich uebersichtlicher ist.
+
+
+User
+----
+
+Wenn ein Programm gestartet wird, kann die User-ID umgestellt werden. Dieses
+ist sogar notwendig, wenn der Benutzer (nicht noetig fuer den Benutzer root !!)
+die Rechte an der Datei besitzt. isdnlog verbietet es seit der Version 3.0,
+dass das Programm als normaler Benutzer gestartet wird. Ebenso wird es
+unterbunden ein Programm zu starten, wo ein Benutzer Leserechte besitzt
+und dieses als root gestartet wird. Dieses koennte sich als trojanisches Pferd
+verwenden lassen. Daher muessen Programme, die nicht root gehoeren oder
+die jeder (others) beschreiben kann mit dem Eintrag USER belegt werden.
+
+Wenn die folgenden Eintraege nicht vorhanden sind und diese Dateien nicht
+dem User root gehoeren, dann setzt isdnlog die Rechte so, wie sie der
+Datei mitgegeben sind auf dem Dateisystem. Beispiel:
+
+luethje@bundy:bin$ ls -l
+total 3
+-rwxr-xr-x   1 luethje  users         315 Mar  9 16:15 deloldmails*
+
+Die Datei "deloldmails" wird mit den Rechten luethje.users gestartet, wenn die
+folgenden Eintraege in der isdn.conf fehlen. Allerdings haben diese Eintraege
+hoehere Prioritaet.
+
+Der Eintrag in der isdn.conf hat folgende Syntax:
+
+USER=fred
+
+oder
+
+USER=103
+
+Es kann also entweder der Benutzername oder die Benutzer-ID verwendet werden.
+
+Group
+-----
+
+Dieser Eintrag verhaelt sich analog zu dem Eintrag USER. Auch hier gilt wieder
+die Systemsicherheit. Die Syntax ist wie folgt:
+
+GROUP=freaks
+
+oder
+
+GROUP=201
+
+Es kann also entweder der Gruppenname oder die Gruppen-ID verwendet werden.
+
+Time
+----
+
+In Time kann eine Zeitzone angegeben werden, in der das Info-Programm
+gestartet werden darf:
+ *          = immer
+ 9          = zwischen 9:00:00 Uhr und 9:59:59 Uhr
+ 8-22 	    = zwischen 8:00:00 Uhr morgen's und 21:59:59 Uhr abend's
+ 22-8 	    = zwischen 22:00:00 Uhr abend's und 7:59:59 Uhr morgen's
+ 8-16,18-22 = von 8:00:00 .. 15:59:59 Uhr, und von 18:00:00 .. 21:59:59 Uhr
+ 15-15      = immer (gleichbedeutend mit "*")
+
+ACHTUNG: Aenderung in der Syntax:
+Die Zeitangaben duerfen _nur_ mit ',' voneinander getrennt sein.
+
+Also kein ';' mehr als Separator verwenden!
+
+  Beispiel: 8-12,14,16,18-20
+            8,9,10,11-14
+
+Wenn Time ueberhaupt nicht angegeben wird, dann bedeutet dieses "immer".
+
+Beispiele:
+
+...
+START={
+	[FLAG]
+	FLAGS   = IOR
+	PROGRAM = /usr/bin/auplay ring.au
+
+	FLAGS   = IORK
+	PROGRAM = /usr/bin/auplay ring.au
+	INTERVAL= 5
+}
+...
+
+Intervall
+---------
+
+Fuer die Flags 'C' und 'R' besteht die Moeglichkeit, ein Programm in
+gewissen Abstaenden zu starten. Das Intervall ist eine Zahl, die in
+Sekunden die Zeit angibt, die zwischen zwei Programmstarts liegt.
+Wenn das Flag 'K' gesetzt ist und ein neues Programm gestartet wird,
+dann wird der "Vorgaenger" automatisch beendet.
+
+Wenn bei Ereignissen (Flags 'BAEH') ein Intervall angegeben wird, so wird
+dieses ignoriert.
+
+Das Intervall sollte mindestens auf 2 sec. stehen, da isdnlog es sonst
+nicht schafft, die beendeten Prozesse zu "beerdigen".
+So entstehen also Zombies.
+Der Sekunden-Intervall sollte also hoechstens fuer das Ring-Event benutzt
+werden.
+Groessere Intervalle stellen kein Problem dar.
+
+
+Das zu startende Programm
+-------------------------
+
+Hier wird das Info-Argument angegeben. Es steht dort der gesamte zu
+startende Befehl
+
+Es gibt aber 10 zusaetzliche Variablen, die verwendet werden duerfen:
+
+\$1   : Sind die Flags, die den Programmstart ausgeloest haben.
+        z.B. "IR", "OC", "IH"
+        Zuerst kommt die Gespraechs-Direktive und dann der Zustand
+        der Verbindung. Es kommen immer _genau_ zwei Zeichen.
+\$2   : Gibt als String die Telefonnummer (mit Vorwahl) des Anrufenden an.
+\$3   : Gibt als String die Telefonnummer (mit Vorwahl) des Angerufenden an.
+\$4   : Enthaelt die Zeit des Gespraechsbeginns. Beipiel:
+        "Wed May 28 23:07:44 1997"
+\$5   : Enthaelt die Zeit die Gespraechsdauer bis zum aktuellen Zeitpunkt in
+        Sekunden.
+\$6   : Enthaelt die Zeit des Gespraechsendes. Beipiel:
+        "Wed May 28 23:07:49 1997"
+\$7   : Die Input-Bytes
+\$8   : Die Output-Bytes
+\$9   : Die Input-Bytes pro Sekunde
+\$10  : Die Output-Bytes pro Sekunde
+\$11  : Die Dienstkennung
+\$12  : Die Gebuehren
+\$13  : Gibt als String die Landesvorwahl des Anrufenden an.
+\$14  : Gibt als String die Landesvorwahl des Angerufenden an.
+\$15  : Gibt als String die Vorwahl des Anrufenden an.
+\$16  : Gibt als String die Vorwahl des Angerufenden an.
+\$17  : Gibt als String den Ort des Anrufenden an.
+\$18  : Gibt als String den Ort des Angerufenden an.
+\$19  : Gibt als String den Alias des Anrufenden an.
+\$20  : Gibt als String den Alias des Angerufenden an.
+
+Folgende Punkte sind zu beachten:
+
+- Sollten mehr als zehn Variablen gleichzeitig verwendet werden, so kennt
+  die Shell nur die Variablen 0 - 9!
+- Das Zeichen "$" muss gequotet werden, da dieses sonst zu einer Warnung fuehrt!
+- Wenn eine Variable keinen gueltigen Wert hat, dann wird sie durch ein "?"
+  ersetzt.
+- Diese Variablen koennen auch innerhalb eines Argumentes stehen.
+- Wenn diese Variablen innerhalb eines Strings verwendet werden, muss der
+  Name (hier z.B. "1", "2") in geschweiften Klammern gesetzt werden.
+- Es koennen wie auf der Shell die Hochkommata verwendet werden, um Argumente
+  zu kapseln (allderings nur die Hochkommata!). Wenn das Hochkomma im
+  Argument erscheinen soll, muss es gequotet werden.
+
+Beispiele:
+
+PROGRAM=/bin/auplay "Arg 1" "Arg 2" Arg3 "Arg\"4"
+PROGRAM=/bin/auplay "Hier kommt der Anrufer:\${2}test"
+PROGRAM=/bin/auplay "Der folgende Ausdruck wird nicht ausgewertet: \\$3"
+
+Eine (zwei) Section [NUMBER] (oder [MSN]) kann also wie folgt aussehen:
+
+[MSN]
+NUMBER = 4711
+ALIAS  = Phone
+ZONE   = 1
+START={
+	[FLAG]
+	FLAGS   = IORK
+	PROGRAM = /bin/auplay  /sounds/ring.au
+	INTERVAL= 1
+	TIME    = 8-14,16-22
+
+	[FLAG]
+  FLAGS   = OA
+  PROGRAM = /bin/auplay  /sounds/money.au
+  TIME    = 8-14,16-22
+}
+
+[NUMBER]
+NUMBER = 0815/1234
+ALIAS  = Provider
+ZONE   = 2
+START={
+
+	[FLAG]
+	FLAGS   = IOCK
+	PROGRAM = /bin/popclient_script \$3
+	INTERVAL= 300
+}
+
+Angenommen 4711 ist die MSN meines Telefons, dann wird beim Rauswaehlen
+erst immer "/bin/auplay  /sounds/ring.au" abgespielt. Auch wenn das Telefon
+klingelt, wird "/bin/auplay  /sounds/ring.au" ausgefuehrt. Dieser Vorgang
+wird jede Sekunde wiederholt.
+Wenn rausgewaehlt wurde, dann erhaelt man bei jedem Gebuehrenimpuls
+den Sound "/sounds/money.au".
+Diese Sounds werden nur von 8Uhr bis 14Uhr und 16Uhr bis 22Uhr gespielt.
+
+Wenn man zum "Provider" verbunden ist, dann werden alle 5 Minuten Mails
+geholt. Da hier keine Zeitangabe gemacht wurde, wird das Script zu
+jeder Zeit ausgefuehrt. Das Script bekommt als Parameter "0815/1234", wenn
+man "Provider" angerufen hat, und wenn "Provider" einen anruft, seine
+eigene MSN.
+
+Wie unter "START=" beschrieben wurde, ist hier noch mal ein Beispiel
+zu finden:
+
+...
+[VARIABLES]
+CMD1=/bin/auplay
+CMD2=/bin/my_prog
+DIR = /sounds/
+
+START={
+	[FLAG]
+	FLAGS   = I|O|R|K
+	PROGRAM = $CMD1 ${DIR}ring.au
+	INTERVAL= 1
+	TIME    = 8-14,16-22
+
+	[FLAG]
+  FLAGS   = O|A
+	PROGRAM = $CMD1 ${DIR}money.au
+	TIME    = 8-14,16-22
+
+	[FLAG]
+  FLAGS   = I|O|C
+	PROGRAM = $CMD2 \$1 \$2 \$3
+  TIME    = 8-14,16-22
+}
+
+Die letzte Sektion wird also wie folgt expandiert als Kommando, wenn ich
+jemanden anrufe mit der Nummer 0815 (Meine MSN 040/1234):
+"/bin/auplay  OC 0401234 0815"
+
+--------------^^
+Ausgehendes Gespraech (O), Ereignis CONNECT (C)
+-----------------^^^^^^^
+Nummer des Anrufenden (also Meine)
+Nummer des Angerufenden
+
+Die Variablen von isdnlog ($1, $2, ..) kann man ebenfalls in geschweiften
+Klammern setzen. Also auch nicht anhaengen.
+
+Wenn eine unbekannte Variable verlangt wird (meistens wohl Tipp-Fehler;-)),
+dann wird die mit einem "?"  ersetzt, damit wenigstens die Parameterzahl
+stimmt.
+
+Wenn als Parameter ein "@" gefolgt von einem Dateinamen erschein, so wird
+die erste Zeile der Datei als Parameter an die Datei uebergeben. Allerdings
+darf der Name nicht aus einer Variablen bestehen, da die Variable nicht am
+Anfang stehen kann, denn da steht ja schon "@" ;-)
+
+Beispiel:
+
+/tmp/data beinhaltet "Das ist ein test"
+
+Der Aufruf
+/bin/script @/tmp/data
+fuehrt zu
+/bin script "Das ist ein test"
+
+Die gesamte erste Zeile wird als _ein_ Parameter uebergeben, auch wenn dort
+Blanks oder Tabulatoren enthalten sind. Das abschliessende "\n" wird entfernt.
+
+Beim Start der Programme ist immer darauf zu achten, dass diese sich selber
+beenden, da der isdnlog nur in gewissen Ausnahmen Programme beendet.
+Ausnahme ist, wenn ein RING-Zustand oder CONNECT-Zustand beendet wird. Dann
+beendet der isdnlog die laufenden Programme.
+
+ACHTUNG: Bei eigenen MSN's, auf die kein eigenes Geraet reagiert
+       	 (also "unbenutzt" sind), duerfen keine Info-Argumente angegeben
+         werden, da bei solchen MSN's isdnlog vitale Informationen zur
+         korrekten Ansteuerung fehlen!
+
+
+4.2.6  Konkretes Beispiel fuer die "-S" Option
+----------------------------------------------
+
+[GLOBAL]
+AREACODE    = 0815
+COUNTRYCODE = 49
+
+[VARIABLES]
+PLAYER   = /usr/bin/auplay
+SOUNDS   = /usr/sounds
+
+START    = {
+
+  [FLAG]
+  FLAGS    = O R  L
+  PROGRAM  = $PLAYER ${SOUNDS}/unknown_ring.au
+  TIME     = 8-14,16-22
+
+  [FLAG]
+  FLAGS    = IOA
+  PROGRAM  = $PLAYER ${SOUNDS}/pay.au
+  TIME     = 8-14,16-22
+
+  [FLAG]
+  FLAGS    = IOC  U
+  PROGRAM  = /usr/bin/who_is_it $2 $3
+
+  [FLAG]
+  FLAGS    = IOH
+  PROGRAM  = $PLAYER ${SOUNDS}/hangup.au
+  TIME     = 8-14,16-22
+
+  [FLAG]
+  FLAGS    = IORAH
+  PROGRAM  = $PLAYER ${SOUNDS}/silent.au
+  TIME     = 14-16,22-8
+}
+
+[MSN]
+NUMBER   = 4711
+ALIAS    = MSN\#1
+ZONE     = 1
+START    = {
+
+  [FLAG]
+  FLAGS    = I RK
+  PROGRAM  = $PLAYER ${SOUNDS}/msn1_ring.au
+  INTERVAL = 5
+  TIME     = 8-14,16-22
+}
+
+[MSN]
+NUMBER   = 4712
+ALIAS    = MSN\#2
+ZONE     = 1
+START    = {
+
+  [FLAG]
+  FLAGS    = I RK
+  PROGRAM  = $PLAYER ${SOUNDS}/msn2_ring.au
+  INTERVAL = 5
+  TIME     = 8-14,16-22
+}
+
+[MSN]
+NUMBER   = 4713
+ALIAS    = MSN\#3
+ZONE     = 1
+START    = {
+
+  [FLAG]
+  FLAGS    = I RK
+  PROGRAM  = $PLAYER ${SOUNDS}/msn3_ring.au
+  INTERVAL = 5
+  TIME     = 8-14,16-22
+}
+
+[NUMBER]
+NUMBER   = *40441777
+ALIAS    = My_Provider
+ZONE     = 4
+INTERFACE= isdn0
+START    = {
+
+  [FLAG]
+  FLAGS    = OIR
+  PROGRAM  = $PLAYER ${SOUNDS}/provider_ring.au
+
+  [FLAG]
+  FLAGS    = OICU
+  PROGRAM  = /usr/bin/get.mails.from.provider
+  INTERVAL = 300
+
+  [FLAG]
+  FLAGS    = OICU
+  PROGRAM  = /usr/bin/get.news.from.provider
+  INTERVAL = 1800
+}
+
+
+Erklaerung zum Beispiel:
+
+Wenn man "My_Provider" anwaehlt, dann erklingt einmal der Sound
+"provider_ring.au". Wenn die Verbindung zu stande gekommen ist, dann wird
+sofort "/usr/bin/get.mails.from.provider"  und "/usr/bin/get.news.from.provider"
+gestartet. Das Programm "mails.from.provider" wird dann alle 5 Minuten wieder
+gestartet. Das Programm "get.news.from.provider" wird alle 30 Minuten
+gestartet. Wenn ein Programm mal laenger als 5 bzw. 30 Minuten laeuft,
+wird der naechste Start so lange verschoben, bis sich das laufende beendet.
+Das wird durch "U" ausgedrueckt. Wenn die Verbindung zu "My_Provider" beendet
+wird, dann werden automatisch evtl. noch laufende Programme beendet (gekillt).
+Jedes mal wenn eine Einheit von der VSt gemeldet wird, wird ein Sound gespielt.
+Wenn ich von "MSN#1" anrufe, dann "msn1_pay.au". Von "MSN#2" und "MSN#3" wird
+der Default-Sound "pay.au" gespielt. Alle "normalen" Sounds werden aber nur
+von 8 Uhr bis 14 Uhr und von 16 Uhr bis 22 Uhr gespielt.  In der uebrigen
+Zeit laeuft fuer alle Ring's, AOCD und Hangup's der Sound "silent.au".
+Die Zeit wird hier mit "von" - "bis" angegeben.
+
+Wenn sonstige Verbindungen zustande kommen, wird das Programm
+"/usr/bin/who_is_it" gestartet. Dem wird noch als Parameter die Telefonnummern
+vom Anrufer und Angerufenen mitgeteilt. Das wird aber nur gestartet, wenn sonst
+kein Programm existiert, das fuer diese Verbindung bei einem Connect laufen
+soll. Das Programm wird nur einmal gestartet, direkt wenn die Verbindung zu
+stande kommt.
+
+Wenn ein Ruf ankommt, dann wird je nach MSN ein eigener Sound gespielt. Der
+Sound wird alle 5 Sek. wieder gespielt. Sollte der Sound laenger als 5 Sek.
+laufen, so wird er gekillt und der naechste gestartet (K). Der "Ring-Sound"
+wird auch nur zu den angegebenen Zeiten gespielt. Ansonsten wird wieder
+"silent.au" gespielt.
+
+Wenn man von der ISDN-Karte rauswaehlt und nicht "My_Provider" anwaehlt,
+dann wird der Sound "unknown_ring.au" gespielt (Achtung: Wieder Zeit beachten).
+Der wird solange in einer Schleife gespielt (L), bis eine Verbindung zu stande
+kommt. So wie "/usr/bin/auplay" beendet ist, wird es wieder neu gestartet.
+Die Flags "OR" haben allerdings keine Bedeutung fuer andere Geraete am S0-Bus,
+da die ISDN-Karte die Ring-Phase von anderen Geraeten am Bus nicht mitbekommt.
+
+
+Kommentare in den Konfigurationsdateien isdn.conf, callerid.conf und ~/.isdn:
+-----------------------------------------------------------------------------
+
+Es koennen koennen Kommentare an beliebiger Stelle beginnend mit dem Zeichen
+'#' eingefuegt werden (siehe lib/README.Syntax.conffile).
+Diese Kommentare haben den Nachteil, dass sie verschwinden, wenn die Datei
+z.B. vom isdnconf (oder auch vom isdnlog selber) neu geschrieben werden.
+Als Alternative gibt es dort die Moeglichkeit in den Sektionen einfach
+Dummy-Eintraege zu setzen. Diese sind Eintraege, die von isdnlog nicht
+ausgewertet werden, aber trotzdem eingelesen werden und auch wieder geschrieben
+werden.
+
+Beispiel
+
+[isdnlog]
+comment1  = Pro Tag duerfen max. 100 DM fuer Datenverbindungen ausgegeben \
+            werden.
+CHARGEMAX = 100.00
+comment2  = Das Logfile liegt unter /var/log/isdn.log
+logfile   = /var/log/isdn.log
+
+
+Die beiden Eintraege "comment1" und "comment2" bleiben erhalten. auch die
+Reihenfolge bleibt bestehen. Es ist nur darauf zu achten, dass kein
+Eintrag den selben Namen hat. Also zweimal die Zeile "comment" geht nicht.
+Dann wird die erste Zeile durch die zweite ersetzt. Es ist auch darauf zu
+achten, dass der Name des Eintrages nicht schon von isdnlog verwendet wird.
+Also ein Kommentar mit "SI" zu benennen schlaegt fehlt, da dieser Name
+schon reserviert ist.
+
+
+
+5. Die Konfigurationsdatei "isdnlog.users"
+------------------------------------------
+
+Die Datei wird nur benoetigt, wenn isdnlog mit der Option -xX gestartet werden
+soll. Andernfalls braucht diese Datei auch nicht angelegt werden.
+
+Wird isdnlog mit -xX gestartet, ohne dass diese Datei existiert, wird eine
+Defaultdatei angelegt, die _unbedingt_ editiert werden sollte. Es erscheint
+dann auch eine entsprechende Warnung.
+
+Die Konfigurationsdatei wird im Verzeichnis "/etc/isdn" erwartet, und
+enthaelt fuer isdnlog die Informationen ueber Zugriffsberechtigungen von
+Benutzern via Client.
+
+Leere Zeilen werden ignoriert. Wenn in einer Zeile ein "#" enthalten ist,
+wird der Rest der Zeile als Kommentar gewertet.
+
+Steht am Ende einer Nicht-Kommentarzeile ein "\", so wird die Zeile mit der
+naechste Zeile zu einer "verschmolzen". ACHTUNG: Das Zeichen "\" muss als
+letztes Zeichen stehen, und darf nicht von Tab's oder Leerzeichen gefolgt
+werden.
+
+Zur Zeit sind folgende Zeichen als Sonderzeichen anzusehen: "$@#,;\".
+Diese Sonderzeichen muessen gequotet werden, wenn diese in der
+Datei "isdnlog.users" verwendet werden sollen.
+
+
+5.1 Aufbau
+----------
+
+Der Aufbau ist aehnlich, wie die Benutzerdatei von xcept, aber um einige
+Eigenschaften erweitert.
+
+Jedem Benutzer werden Rechte mitgegeben. Diese Rechte stehen direkt hinter
+dem Namen, getrennt durch Leerzeichen oder Tab's.
+
+Die Rechte beschreiben, welche Informationen der Benutzer vom isdnlog
+beziehen kann, oder welche Einstellungen er am isdn4linux vornehmen kann:
+
+  ALL
+  	Es werden komplett alle (folgenden) Rechte vergeben.
+  	Sinnvoll fuer "root"
+
+  MSN=msn[,msn...]
+  	Es werden nur Informationen zu den angegeben MSN's angezeigt.
+  	Das bezieht sich auf ankommende sowie abgehende Gespraeche,
+  	sowie auf die Protokoll-Daten.
+
+   	Es koennen beliebig viele MSN's angegeben werden. Auch die Verwendung
+   	von Wildcards, wie bei den Nummern von der Datei "isdn.conf", ist
+   	erlaubt. Mit "MSN=*" werden alle MSN's abgedeckt.
+
+   	Das Flag MSN funktionert nur bei reinkommenden (von ISDN-Anschluessen)
+   	Gespraechen und den ISDN-Karten (siehe Bemerkung von Gernot Zander weiter
+   	oben). Alle unbekannten Gegenstellen und rausgehenden Rufe werden nur mit
+   	"ALL" oder "MSN=*" angezeigt.
+
+  PROTOCOL
+  	Es wird ein separates Fenster vom Client zur Verfuegung gestellt,
+  	wo man alle Informationen vom isdnlog angezeigt bekommt, die mit -xX
+  	eingestellt worden sind.
+
+In Planung/Vorbereitung:
+  I4LCONF
+  	Es besteht die Moeglichkeit, Eigenschaften von isdn4linux von
+  	dem Client aus einzustellen. Wenn einem Benutzer dies erlaubt werden
+  	soll (Sinnvoll nur fuer "root"!), dann muss dem Benutzernamen
+  	dieses Flag folgen.
+
+In Planung/Vorbereitung:
+  ADDRESSBOOK
+    Dem Benutzer mit diesem Recht wird die Moeglichkeit gegeben, sich
+    Daten ueber den Anrufer/Angerufenen zu speichern und ein Notizbuch zu
+    fuehren (weitere Info's unter xisdn).
+
+Wenn mehrere Rechte an einem Benutzer vergeben werden sollen, koennen diese
+mit ";" getrennt hintereinander angegeben werden.
+
+Am Anfang der Datei koennen Eintrage stehen, wo jeweils ein Benutzer mit einem
+Hostnamen und seinen Benutzerrechten angegeben wird.
+
+  fred@vom.jupiter MSN=4711?
+  root@host1.at.home ALL
+
+Im obigen Beispiel darf sich der Benutzer "fred" nur von dem Host "vom.jupiter"
+mit dem isdnlog verbinden. Analog dazu der Benutzer "root" nur von dem
+Host "host1.at.home".
+
+In dem zweiten Abschnitt der Datei koennen Gruppierungen von Benutzern und
+Hostnamen  zusammengestellt werden. Ein Abschnitt beginnt mit der Zeile
+
+  [Mein_Abschnitt]
+
+und endet mit dem Beginn des naechsten Abschnittes oder beim Dateiende.
+Beim Abschnittnamen wird nicht zwischen Gross- und Kleinschreibung
+unterschieden.
+In einem Abschnitt besteht eine Zeile entweder aus einem Benutzernamen oder
+einem Hostnamen:
+
+  heinz MSN=*;PROTCOL
+  @host1
+  @host2
+  otto MSN=47111,47112
+  @host3
+
+Einem Benutzernamen muessen immer die Rechte folgen, die dem Benutzer zugeordnet
+werden sollen. Dem Hostnamen duerfen keine Rechte zugeordnet werden.
+
+Im obigen Beispiel duerfen die Benutzer "heinz" und "otto" von den Hosts
+"host1", "host2" oder "host3" den Client starten.
+
+Wenn ueberhaupt keine Rechte vergeben werden sollen, d.h. jeder beliebige
+Benutzer darf von jedem Host zum isdnlog eine Verbindung aufbauen mit allen
+Rechten, dann reicht es in der Datei "isdnlog.users" den folgenden Eintrag
+zu setzen:
+
+  [world]
+
+Beispiele fuer "isdnlog.users" sind im isdnlog-Paket unter dem Verzeichnis
+"./samples" zu finden.
+
+Es ist darauf zu achten, dass die angegeben Hostnamen in der Datei /etc/hosts
+zu finden sind. Andernfalls wird der Nameserver nach unbekannten Hostnamen
+befragt, was zu einem unbeabsichtigten Verbindungsaufbau via ppp oder
+ISDN fuehren kann.
+
+Die Datei "isdnlog.users" wird _vor_ jedem Verbindungsaufbau zu einem neuen
+Client ueberprueft, ob sie noch aktuell ist, ansonsten wird sie neu eingelesen.
+Dadurch hat man die Moeglichkeit, die Datei zu editieren, ohne anschliessend
+den isdnlog neu zu starten.
+
+Eine Ueberarbeitung in die neue Syntax ist geplant.
+
+
+6. [obsolete]
+
+
+7. Betriebsmodi
+---------------
+
+isdnlog kennt folgende grundsaetzliche Betriebsmodi:
+
+  - isdnlog -m1015
+
+   isdnlog zeigt den gesamten Ablauf jeder Verbindung auf stdout an.
+   Dieser Output kann mit der Zusatz-Option "-C <file>" z.b. auf andere
+   Linux-Consolen umgelenkt werden ("isdnlog -m1015 -C /dev/tty7" -> 7. Console).
+
+  - isdnlog -S
+
+   isdnlog startet bei diversen Event's die gesamte 5. Spalte der
+   "isdn.conf" als externes Programm.
+
+   Jedoch wird das angegebene Programm nur dann gestartet, wenn folgende
+   Bedingungen erfuellt sind:
+
+     1. Die Telefonnummer entspricht dem Eintrag in der "isdn.conf"
+
+     2. Der Service-Indicator entspricht dem Eintrag in der "isdn.conf"
+
+     3. Man selbst ruft diese Nummer an, und das Flag ist
+     	"O" fuer OUTGOING gesetzt.
+
+        oder
+
+        Man wird von dieser Nummer angerufen, und das Flag
+        ist "I" fuer INCOMING gesetzt.
+
+     4. Es "klingelt", d.h. eine Verbindung ist gerade im Entstehen, und
+     	das Flag ist "R" fuer RING gesetzt.
+
+        oder
+
+        Die Verbindung kam zustande, und in der Flags-Spalte ist "C" fuer
+     	CONNECT gesetzt.
+
+
+Die eigentliche Grund-Aufgabe von isdnlog, das Fortfuehren des Logbuch's
+"/var/log/isdn.log" wird auf jeden Fall durchgefuehrt.
+
+Daneben bietet isdnlog noch folgende interessante Zusatz-Funktion:
+
+  - isdnlog -t 1    oder  isdnlog -t 2
+
+   Bei jeder rausgehenden Verbindung uebertraegt die Vermittlungsstelle
+   die aktuelle Uhrzeit/Datum an isdnlog. Mit der Option "-t 1" setzt
+   isdnlog _einmalig_ die Systemzeit des Rechners auf diese uebertragene
+   Zeit.
+
+   Mit der Option "-t 2" setzt isdnlog bei _jeder_ Uhrzeit-Uebertragung
+   die Rechner-Uhr neu.
+
+
+8. Start von isdnlog
+--------------------
+
+ACHTUNG: Ab der Version 3.0 kann der isdnlog nur noch als root gestartet werden!
+
+Vor dem Start von "isdnlog" muss das D-Channel Q.931 logging des
+HiSax-Treiber eingeschaltet werden. Bis "isdn4linux0.6.6beta" ist dazu
+
+         hisaxctrl <DriverID> 1 4
+
+wobei "<DriverID>" mit dem String zu ersetzen ist, der beim "insmod hisax.o"
+als "id=<DriverID>" angegeben wurde.
+
+Wurde keine "id" angegeben, ist beim "hisaxctrl" stattdessen "line0"
+anzugeben.
+
+Beim "hisaxctrl" koennen auch noch weitere Debug-Flags eingeschaltet werden,
+isdnlog benoetigt allerdings auf jeden Fall die "4"
+
+Nun kann isdnlog mittels:
+
+  isdnlog [ -av:sp:x:m:l:rt:c:C:w:SVTDPMh:nW:H:f:bL:NFA:2:O:Ki ] [ /dev/isdnctrl0 | - ]
+
+gestartet werden. Der isdnlog kann nur als root gestartet werden!
+
+isdnlog besitzt drei Ausgabekanaele:
+ - Console (default stderr) (Schalter -mX)
+ - syslog  (Schalter -lX)
+ - xisdn   (Schalter -xX)
+
+Beim normalen Start (nicht als Daemon) werden alle Ausgaben (Meldungen)
+vom isdnlog auf stderr ausgegeben.
+
+Sobald isdnlog gestartet wird, erzeugt es eine Datei
+"/var/run/isdnlog.'device'.pid", und schreibt dort seine eigene
+Process-ID hinein. "device" steht fuer entsprechende isdnctrl-Device,
+welches man gangesprochen hat. Somit kann isdnlog
+jederzeit mittels "kill `cat /var/run/isdnlog.'device'.pid`" terminiert werden.
+(Was z.b. zwingend ist, wenn man das HiSax- oder isdn-Modul entladen will!)
+Wenn isdnlog ein zweites mal gestartet wird mit dem gleichen Device, beendet
+er sich sofort wieder, da nur ein isdnlog gleichzeitig auf einem
+device laufen kann.
+
+Ebenfalls wird unter dem Verzeichnis /var/lock (LOCKDIR) eine Datei namens
+LCK..'device' angelegt. Auch diese Datei wird bei der Beendigung wieder
+geloescht.
+
+Muessen mehrere isdnlog's gleichzeitig gestartet werden, muessen diese mit
+Hilfe von Links gestartet werden. Z. B. ln -s isdnlog isdnlog1
+
+isdnlog kann mittels "kill -HUP `cat /var/run/isdnlog.'device'.pid`" dazu
+aufgefordert werden, die Konfigurationsdatei "/etc/isdn/isdn.conf"
+neu einzulesen (z.b., nachdem daran Erweiterungen vorgenommen wurden)
+Dies darf jedoch _nicht_ waehrend einer laufenden Verbindung gemacht werden!
+Dieses fuehrt mit Sicherheit zum Programmabsturz!
+
+Die Optionen, denen ein "X" folgt, benoetigen einen zusaetzlichen Parameter.
+(z.b.  "-pX" -> "-p 20012" oder "-p20012". Nummerische Parameter koennen
+in Dezimal (z.b. "64"), hexadezimal (z.b. "0x40"), oder octal (z.b. "0100")
+angegeben werden.
+
+ -V  isdnlog zeigt seine eigene Versionsnummer an, und terminiert wieder
+
+ -fX isdnlog liest eine Konfigurationsdatei "X". Hier koennen Optionen
+     angegeben werden. Die Datei hat nichts mit der isdn.conf zu tun.
+     Hier befinden sich nur Parameter zum starten von isdnlog.
+     Der Aufbau der Datei (Beispiel):
+
+     [options] # Muss immer zuerst kommen.
+     log=yes
+     port = 10000
+     STDOUT = 1023 # Gross/Kleinschreibung wird bei den Bezeichnern nicht
+                   # beachtet.
+     ...
+
+     Die Syntax ist also die gleiche wie bei isdn.conf.
+     Der Aufbau der einzelnen Optionen stehen in Klammern am Ende der einzelnen
+     Optionen. Optionen, die nur fuer Debugging-Zwecke Bedeutung haben wie -T,
+     koennen nicht ueber diese Datei "X" voreingestellt werden.
+
+ -vX isdnlog schreibt den gesamten Output von "/dev/isdnctrl0", den Output von
+     "/dev/isdninfo" sowie die jeweils gemessene Durchsatz-Rate, ergaenzt um
+     Uhrzeit/Datum nach "/tmp/isdnctrl0" zur spaeteren Kontrolle (siehe auch
+     "-r" Option)
+     Das Argument X gibt an, welche Ausgaben mitprotokolliert werden
+     sollen:
+       1 nur die "HEX:" Zeilen vom HiSax-Treiber
+       2 die Ausgaben von "/dev/isdnctrl"
+       4 die Ausgaben von "/dev/isdninfo"
+       8 die Byte-Angaben ("ibyte", "obyte")
+     Hier koennen auch Kombinationen angegeben werden
+     (z.b. 2 + 4 = 6 == "/dev/isdnctrl" und "/dev/isdninfo")
+     Diese Datei wird bei einem "kill -HUP" geschlossen und wieder geoeffnet.
+     (log=X)
+
+ -s  isdnlog fuehrt nach jedem Schreibzugriff auf die "/tmp/isdnctrl0"
+     (-> siehe "-vX") einen flush() darauf aus
+     (flush={yes|no})
+
+ -pX Angabe der TCP/IP Port-Nummer, ueber die isdnlog mit dem X11-Client
+     kommunizieren soll
+     ACHTUNG: Andere Bedeutung als in frueheren Versionen!
+     (port="value")
+
+ -mX Angabe der gewuenschten Meldungen, die angezeigt werden sollen.
+     Normalerweise ist das stderr. Es kann aber mit -C X ein anderes
+     Device sein.
+     ACHTUNG: Andere Bedeutung als in frueheren Versionen!
+     (stdout="value")
+
+ -OX Angabe einer Datei, an der der Output von Option -mx (stderr) umgelenkt
+     werden soll. Nur gueltig mit Option -m zusammen!
+     Es ist moeglich parallel die Option -C X zu setzen. Dann wird
+     sowohl auf der Console als auch in der Datei die Ausgabe ausgegeben.
+     Diese Datei wird bei einem "kill -HUP" geschlossen und wieder geoeffnet.
+
+     Beginnt der Name der Ausgabedatei mit einem "+", wird diese Datei
+     nicht bei jedem Neustart von isdnlog gel”scht, sondern es wird
+     an diese endlos angeh„ngt, also z.b. "outfile=+/tmp/logger"
+     (outfile="value")
+
+ -lX Angabe der gewuenschten Meldungen, die in's syslog eingetragen
+     werden sollen
+     (syslog="value")
+
+ -xX Angabe der gewuenschten Meldungen, die dem X11-Client gemeldet
+     werden sollen. Gleichzeit mit -xX wird es erlaubt, dass ein X11-Client
+     sich beim isdnlog anmelden darf.
+     (xisdn=XXX)
+
+ -r  isdnlog spielt die angegebene Datei (eine "/tmp/isdnctrl0") nochmals
+     trocken durch (Zwecks debugging etc.)
+     (Diese Option erkennt auch automatisch Dateien, die nicht von isdnlog
+     um Datum/Uhrzeit erweitert wurden, also z.b. der Output eines
+     "cat /dev/isdnctrl0")
+
+ -tX isdnlog soll bei einer Uhrzeit-Uebertragung durch die VSt die
+     Rechneruhr entsprechend stellen (-t 1 = ein mal, -t 2 = immer)
+     ACHTUNG: Erweiterte Syntax gegenueber frueheren Versionen!
+     (time={0|1|2})
+
+ -C X Angabe des Device, an das isdnlog die Meldungen von stderr ausgeben soll.
+     Es werden nach Angabe dieses Schalters keine Meldungen mehr auf stderr
+     ausgegeben, sondern nur noch an das angegebene Device.
+     (-C /dev/tty7, -C /dev/ttyp5)
+     ACHTUNG: Erweiterte Syntax gegenueber frueheren Versionen!
+     OBACHT: Zwischen "-C" und dem Device _muss_ ein Leerzeichen stehen!!
+     (console="path")
+
+ -S  isdnlog soll bei diversen Event's die unter START
+     angegebenen externen Programme starten
+     (start={yes|no})
+
+ -wX in welchen Abstaenden soll isdnlog die Uebertragungsrate neu
+     berechnen und anzeigen (Angabe in Sekunden)
+     (thruput="value")
+
+ -D  isdnlog wird als Daemon gestartet. Wenn -mX nicht verwendet wurde, wird
+     die gesamte Ausgabe (normal stderr) auf den syslog geschrieben. Der
+     isdnlog wird automatisch im Hintergrund gestartet.
+     (daemon={yes|no})
+
+ -T  Trace-Modus ... isdnlog laeuft im Single-Step-Modus, und wartet
+     pro verarbeiteter Zeile aus "/dev/isdnctrl0" auf einen Tastendruck.
+     An dem Prompt ">>>>>>> TRACE (CR=next, q=quit, d=dump, g=go):" kann
+     mit "d" ein Dump aller relevanten internen Variablen erzeugt,
+     sowie mit "g" der Trace-Modus beendet werden.
+
+ -P  Pipe-Modus ... isdnlog reicht den gesamten Output von "/dev/isdnctrl0"
+     an stdout weiter. Somit kann isdnlog als Quelle einer Pipe laufen:
+
+        isdnlog -P /dev/isdnctrl0 | prog2  ...
+
+     (pipe={yes|no})
+
+ -b  Wenn ein bilingualer NT verwendet wird, mit dem DSS1 gefahren wird,
+     dann muss dieses Flag gesetzt sein, da sonst die eigenen MSN's fehlerhaft
+     angezeigt werden.
+     (bilingual={yes|no})
+
+ -M  imon/imontty/isdnmon Emulator
+     Hiermit erzeugt isdnlog eine den obigen Tools entsprechende Ausgabe
+     (Achtung: -m2048 muss dann zusaetzlich angegeben werden!)
+     (monitor={yes|no})
+
+ -hx:y:z Zeitabhaengige Hangup-Timeout Steuerung
+     Der normale Hangup einer aufgebauten Verbindung erfolgt, wenn
+     eine bestimmte Anzahl Sekunden kein Traffic auf der Leitung
+     stattfand. (Der "isdnctrl" Parameter dafuer ist "huptimeout").
+
+     Viele Telefonanbieter rechnen aber in variablen (DTAG)
+     oder anderen Zeitintervallen (z.b. Minuten) ab. In diesen
+     Faellen ist es sinnvoller, die angefangene Einheit oder Minute
+     voll auszuschoepfen. Diese Moeglichkeit wird mit dem
+     "chargeint" (Gebuehrenintervall)-Parameter von isdnctrl
+     angeboten (Siehe auch Abschnitt 13: Chargeint)
+
+     Mit dem Parameter -h berechnet isdnlog bei jedem rausgehenden
+     Verbindungsaufbau die aktuelle Dauer einer Gebuehreneinheit
+     entsprechend der Tageszeit (nebst Wochentag/Feiertag etc.) sowie
+     der Gebuehrenzone des Gegners, und programmiert - falls erforderlich -
+     die neue Dauer in das entsprechende IP-Interface.
+
+     Beispiel
+       Mein Internet-Provider steht folgendermassen in der "isdn.conf" :
+
+         [NUMBER]
+         NUMBER    = 4711
+         ALIAS     = UUnet
+         ZONE      = 3
+         INTERFACE = isdn0
+
+     Erfolgt nun ein Verbindungsaufbau Richtung UUnet, berechnet isdnlog
+     die aktuell gueltige Dauer einer Gebuehreneinheit
+     (da mein Provider in "Regio 200" liegt, also 12.0, 13.5, 21.5, 30.0
+      oder 120.0 Sekunden)
+     und setzt intern die Befehle
+         isdnctrl huptimeout isdn0 X
+         isdnctrl chargeint isdn0 Y
+     ab. Das Gebuehrenintervall ("Y") wird automatisch berechnet.
+
+     Mit X ist gemeint, wie lange vor Ablauf des aktuellen Taktes
+     kein Traffic auf der Leitung gewesen sein darf, damit
+     aufgelegt wird. Je niedriger dieser Wert ist, desto eher wird bei
+     kurzen Pausen aufgelegt. Der -h Parameter laesst sich mit drei
+     Werten angeben: Einem fuer Taktzeiten unter 20 Sekunden, einem fuer
+     Taktzeiten ueber 20 Sekunden und schliesslich einem dritten,
+     optionalen Wert fuer Verbindungen zu (Internet-) Providern, die
+     zusaetzlich zu den Gebuehren ein einmaliges Verbindungsentgelt
+     verlangen (z.B. T-Online, AOL). Wenn dieser dritte Wert nicht
+     angegeben wird, stellt isdnlog automatisch 240 Sekunden ein.
+
+     Dauert z.b. eine aktuelle Gebuehreneinheit 12 Sekunden, und wurde
+     isdnlog mit "-h5:3" gestartet, wird also der ChargeInt-Counter auf
+     12 Sekunden, und der huptimeout-Counter auf 5 Sekunden gestellt
+     (erster -h Wert fuer Taktzeiten unter 20 Sekunden).
+     Wird isdnlog z.B. mit "-h5:3:30" gestartet und eine Verbindung
+     zu z.B. T-Online aufgebaut, erfolgt automatisch ein Verbindungs-
+     abbau, wenn 30 Sekunden vor Ablauf eines Taktes (bei T-Online
+     1 Minute) kein Traffic mehr vorhanden war. Ohne Angabe dieses
+     dritten Wertes wird 240 Sekunden als default eingestellt.
+
+     Das Nachjustieren des Hangup-Timers geschieht sowohl bei jedem
+     Verbindungsaufbau, als auch bei jedem Uebergang in einen anderen
+     Tarif, also um 9:00, 12:00, 18:00, 21:00, 2:00 sowie 5:00 Uhr.
+
+     ACHTUNG: Die Gebuehrenimpulse der VSt kommen keineswegs im Rythmus
+     	        der wirklichen Gebuehrentakt-Laenge, sondern in jeweils
+              auf 10 Sekunden gerundeten Abschnitten (entsprechend eigener
+              Beobachtungen)
+	            In obigem Beispiel also nicht nach 12,24,36,48 .. Sekunden,
+              sondern nach 20,30,40,50 Sekunden.
+
+     ACHTUNG: Wird dieses Feature genutzt, sollte isdnlog mindestens
+     	        mit "-t1", besser mit "-t2" synchron zur Uhr der VSt
+              laufen!
+
+     Fuer diese Funktionalitaet benoetigt isdnlog das Programm "isdnctrl"
+     nicht, da es direkt mit isdn4linux komuniziert.
+
+ -cX Nur in Verbindung mit -xX. Es werden die X letzten Gespreache vom isdnlog
+     gespeichert, die vom xisdn abgerufen werden, wenn der xisdn gestartet wird.
+     Der Defaultwert betraegt 100.
+     (calls="value")
+
+ -LX Nur in Verbindung mit -xX. Es werden die X letzten Meldungen von der Option
+     -xX im isdnlog gespeichert, die vom xisdn abgerufen werden, wenn der xisdn
+     gestartet wird. Der Defaultwert betraegt 500.
+     (xlog="value")
+
+ -n  Die Durchsatzmeldungen werden - soweit moeglich - immer in derselben
+     Bildschirmzeile angezeigt.
+     (newline={yes|no})
+
+ -Wx Alle Bildschirmausgabezeilen werden auf max. "x" Zeichen/Zeile
+     beschnitten
+     (width="value")
+
+ -Ax Hiermit kann/koennen die Ziffer(n) angegeben werden, die
+     an einer Telefonanlage vorgewaehlt werden muessen, um ein Amt
+     zu bekommen. Hierbei koennen beliebig viele, jeweils durch ein ":"
+     getrennte Amtsholungen angegeben werden, also z.B.
+       -A0:80:81:82:83:84:85:86:87:88:89
+     (amt="value")
+
+ -2x Dual-Mode. isdnlog empfaengt die D-Kanal-Frames der anderen
+     Geraete auf dem S0-Bus ueber eine zweite, falsch angeschlossene
+     ISDN-Karte, oder eine HFC-Karte im Echo-Modus.
+     Mit x = 2 zeigt isdnlog auch jede Kleinigkeit - wie z.b. jedes
+     einzelne gewaehlte Digit beim Telefonieren direkt an.
+     (dual="value")
+
+ -1  Es wird eine HFC Karte mit Cologne Chip Design Chip eingesetzt,
+     die im Echo Mode laeuft. Durch diesen Schalter darf der Dual-Mode
+     (siehe: -2x) eingeschaltet werden, obwohl sich nur eine ISDN-Karte
+     im Rechner befindet. Der HFC-Treiber muá dazu durch die Befehle
+       hisaxctrl <DriverID> 10 1
+       hisaxctrl <DriverID> 12 1
+     in den Echo-Mode geschaltet werden.
+
+ -K  isdnlog zeigt bei Betaetigung der Taste <l> eine Liste der letzten
+     Anrufer an. (History)
+     Kann nicht zusammen mit Option -d verwendet werden!
+     (keyboard={yes|no})
+
+ -ix isdnlog laeuft an einem internen S0-Bus
+     Mit x wird dabei die Mindestanzahl Ziffern fuer eine externe
+     Telefonnummer angegeben. Arbeitet die Anlage also z.b. mit 2-stelligen
+     internen Teilnehmernummern. sollte hier 3 angegeben werden.
+     (interns0="value")
+
+ -Bx Angabe der Vorwahl, die eine Verbindungsnetzbetreiberauswahlnummer
+     einleitet. In Deutschland ist dies "010", in Holland hingegen
+     "16" oder "17". Gibt es (wie in Holland) mehrere, mssen diese
+     durch ein ":" getrennt angegeben werden, also
+     -B16:17
+     (vbn="value")
+
+ -Rx Angabe der Verbindungsnetzbetreiberauswahlnummer der Telefongesellschaft,
+     auf die man preselected ist. Hierbei ist 010 wegzulassen, d.h. z.b.
+     bei Arcor ist -R70 anzugeben.
+     Fehlt diese Angabe, wird 33, d.h. die Deutsche Telekom angenommen.
+     (preselected="value")
+
+ -0x Beliebiges Unterdruecken vorlaufender Zeichen. Haengt isdnlog an dem
+     internen S0-Bus einer TK-Anlage, und ist es nicht moeglich, isdnlog
+     mit seiner internen Logik sowie der "-A" Option dazu zu ueberreden,
+     Deutschland und Ausland auseinanderzuhalten, kann hiermit die
+     gesamte interne Logik uebersteuert werden.
+
+     Der Option "-0" sind zwei, durch ein ":" getrennte Ziffern zu
+     uebergeben. Diese geben an, wieviele vorlaufende Zeichen von der
+     Tk-Anlage isdnlog bei rein- sowie rausgehenden Gespraechen entfernen
+     soll.
+
+     Beispiel:
+
+       Meine TK-Anlage signalisiert bei einem reinkommenden Gespraech
+       aus Hamburg diese Nummer als "00040..." Bei einem rausgehenden
+       Gespraech nach Hamburg wird die Nummer als "0040..." signalisiert.
+
+       Da eine Nummer innerhalb Deutschlands ohne fuehrende "0"
+       weiterverarbeitet wird (bei einer Nummer im Ausland muss eine
+       fuehrende "0" uebrigbleiben), muessen dementsprechend bei
+       reinkommenden Gespaechen 3, bei rausgehenden Gespraechen 2
+       vorlaufende "0" entfernt werden, um die Normalform zu erreichen.
+
+       Somit waere in diesem Fall die Option "-03:2" korrekt. Links
+       vom ":" wird die Anzahl Ziffern fuer reinkommende, rechts vom
+       ":" die Anzahl Ziffern fuer rausgehende Gespaeche angegeben.
+       Wird nur ein Argument angegeben, wird fuer reinkommende wie
+       rausgehende Verbindungen diese Anzahl verwendet, d.h. "-01"
+       bedeutet dasselbe wie "-01:1".
+
+     Wird die Option "-0" verwendet, darf die "-A" Option nicht verwendet
+     werden, da auch diese ja vorlaufende "0" entfernt!
+     (trim="value:value")
+
+     Auch eine Amtholung wie z.b. "#0" läßt sich damit entfernen!
+
+
+ -o  Auch die causes (Hinweise, wie z.b. "non-selected user clearing")
+     anderer Geraete werden angezeigt. Ohne diese Option werden nur
+     die causes der an der Verbindung beteiligten Geraete angezeigt.
+     (other={yes|no})
+
+ -ux Unterdruecken von "unwichtigen" Frames.
+     Fuer "x" kann angegeben werden:
+       1 = keine RR (Receiver ready) Frames.
+       2 = keine EMP (Euracom Management Protokoll) Frames.
+     (ignoreRR="value")
+
+ -Ux Ignorieren der COLP/CLIP Frames.
+     (ignoreCOLP="value")
+
+ -Ix[:y] Intervall für CI und EH-Meldungen setzen.
+     Die berechneten Chargeint- und die AOC-D-Ausgaben werden nur alle
+     "x" bzw "y" Sekunden ausgegeben. Ist "y" nicht angegeben, gelten für
+     beide Werte dasselbe Interval. Diese Option empfiehlt sich bei Providern
+     mit sekundengenauer Abrechnung.
+     (ciInterval="value[:value2]")
+
+ -dx Aktives LCR durchfuehren.
+     Bei jedem Rausruf mit der eigenen ISDN-Karte berechnet isdnlog den
+     guenstigsten Provider (Telefondienst-, *nicht* Internet-Provider!)
+     und waehlt dann ueber diesen, und nicht den Default-, Preselected- oder
+     angegebenen Provider die gegebene Zielrufnummer an.
+
+     Dazu muss bei der Kernel-Generierung isdn4linux mit der Option
+       CONFIG_ISDN_WITH_ABC_LCR_SUPPORT=y
+     erstellt worden sein!
+
+     Mit "x" koennen folgende Manipulationen vorgenommen werden:
+       (Der Parameter "x" wird bitweise ausgewertet).
+       ACHTUNG: Aenderung des Parameters ab isdnlog 4.16
+
+       -d0 = LCR abschalten, isdnlog fuehrt _kein_ LCR durch
+       -d1 = LCR einschalten fuer Ferngespraeche
+       -d2 = LCR einschalten, auch fuer Ortsrufnummern
+       -d4 = LCR einschalten fuer Sonderrufnummern
+       -d5 = LCR fuer Fern- und Sondernummern
+       ...
+       -d7 = LCR ein, alle Nummern
+
+      Hinweis:
+      - Call-by-Call im Ortsnetz ist in Deutschland (noch) nicht moeglich.
+
+   Um nun fuer aktives LCR zu verschiedenen IS-Provider das Routing und die
+   Namensauflöscung anzupassen, kann isdnlog eine Script aufrufen.
+
+   (providerchange="path_top_script")
+
+   Die Script erhält 3 Parameter:
+    - Providernummer (wie in rate-CC.dat)
+    - Telefonnummer
+    - Servicename
+    Retouniert die Skript ungleich '0', wird kein LCR durchgeführt.
+
+   z.B.
+   providerchange = /etc/isdn/provider
+
+   Ein Beispiel findet sich als isdnlog/samples/provider.
+
+   Diese Feature ist EXPERIMENTELL.
+
+
+Bei den Optionen -mX, -lX -xX sind folgende Werte moeglich:
+
+   1  Errors
+      Fehlermeldungen vom isdnlog. Diese ist eine Defaultausgabe, die auf
+      stderr bzw. an syslog (bei -D) gemeldet wird.
+
+   2  Warnings
+      Warnungen vom isdnlog. Diese ist eine Defaultausgabe, die auf stderr
+      bzw. an syslog (bei -D) gemeldet wird.
+
+   4  Meldungen
+      Fehlermeldungen vom isdnlog. Diese ist eine Defaultausgabe, die auf
+      stderr bzw. an syslog (bei -D) gemeldet wird.
+
+   8  Log-Ausgabe
+      Die Meldungen, die der isdnlog in die Datei "/tmp/isdnctrl0" schreibt.
+
+  16  Show Numbers
+      Sofort, wenn Telefonnummern auf dem S0-Bus auftauchen,
+      werden diese angezeigt:
+
+       Feb 17 19:10:11 * tei 123 calling UUnet with ISDN  Digital
+
+  32  Show AOCD
+      Bei jedem Gebuehrenimpuls wird die Anzahl der bislang
+      aufgelaufenen Gebuehreneinheiten fuer die aktuelle Verbindung
+      angezeigt:
+
+       Feb 17 19:09:29 tei 123 calling UUnet with ISDN  2.EH = DM 0,24 (20 s)
+
+      ## Dies funktioniert natuerlich nur, wenn auf der aktiven
+      ## ISDN-Leitung Gebuehreninfo "A" (Charging-Info's during call's -
+      ## AOC-D) bestellt wurde!
+
+      Es wird die Anzahl der aufgelaufenen Einheiten sowie diese
+      Einheiten umgerechnet in Geld (EH * DM 0,12) angezeigt.
+      In Klammern wird angegeben, nach wieviel Sekunden (seit dem
+      Verbindungsaufbau) dieser Gebuehrentakt erschien - eigentlich
+      mehr, um aufzuzeigen, wie _ungenau_ die Uhr der VSt eigentlich
+      laeuft!
+
+  64  Show Connect
+      Kommt eine Verbindung zustande (Telefon wird abgenommen,
+      ISDN-Karte akzeptiert den Call etc.) wird dies angezeigt:
+
+       Feb 17 19:11:11 tei 123 calling UUnet with ISDN  CONNECTED
+
+
+ 128  Show Hangup
+      Sobald diese Verbindung beendet wurde, wird dies angezeigt
+      (Wie bei -m2 mit Anzahl Einheiten, diese in Geld sowie
+      Gesamtdauer der Verbindung. Die Anzahl Einheiten stammt hier
+      jedoch aus der AOC-E Meldung der VSt)
+
+       Feb 17 19:14:13 tei 123 calling UUnet with ISDN  HANGUP (15 EH = DM 1,80 = 148 s)
+
+ 256  Show Cause
+      Der Grund fuer einen Verbindungsabbau/das nicht zustande
+      kommen einer Verbindung wird angezeigt
+
+       Feb 17 19:14:24 tei 123 calling bun with Phone  No user responding
+
+ 512  Show Time
+      Die von der VSt uebermittelte Uhrzeit wird angezeigt
+
+       Feb 17 19:11:11 tei 123 calling UUnet with ISDN  Time:Sat Feb 17 19:09:00 1996
+
+1024  Show Byte
+      Der Durchsatz in Byte/s wird im Rythmus von "-w x" Sekunden angezeigt
+
+2048  imon Anzeige
+      Der aktuelle Zustand der B-Kanaele wird angezeigt
+
+4096  Der vollstaendige Service-Indicator wird bei jedem Verbindungsaufbau
+      aufgeschluesselt angezeigt
+
+8192  Jede "-m" Meldung wird erweitert um eine Schaetzung, wann der naechste
+      Gebuehrentakt beginnt sowie in welcher Zone der Gegner vermutlich
+      liegt.
+
+
+Alle höheren Angaben (16.384 .. 4.194.304) sind Debug-Flags.
+
+D.h. die einzelnen Log-Optionen sind bitkodiert, die Summe der angegebenen
+Zahlen ergibt die gewünschte Ausgabe.
+
+Wenn man die Schalter -mX, -lX oder -xX verwendet, sollte man darauf achten,
+dass die Meldungen (1: Errors, 2: Warnings und 4: Meldungen) auf jeden Fall
+irgendwo ausgegeben werden, da dies grundlegende Meldungen vom isdnlog sind.
+
+Der Loglevel kann auch hexadezimal angegeben werden:
+syslog=0x3ff7 entspricht daher allen oben definierten Flags mit Ausnahme
+der Debugflags (i.e. 16383 - 8).
+
+Hinweis: die man-Page führt die Werte in Hex auf.
+$ man isdnlog
+/LOG MOD
+
+
+9. Die Protokoll-Datei "/var/log/isdn.log"
+------------------------------------------
+
+Fuer jede (zustande gekommene, oder auch nicht zustande gekommene)
+Verbindung erzeugt isdnlog einen Eintrag in der Datei "/var/log/isdn.log":
+
+Sep 30 15:24:10 1995|xxxxx|xxxxxx|    3| 344| 812471050|    1|I|0|     0|   0|
+      (1)             (2)   (3)    (4)   (5)   (6)       (7) (8)(9)  (10) (11)
+
+Wobei in den einzelnen Spalten folgendes steht:
+
+ (1) Zeitpunkt des Verbindungsaufbaues (in Local-Time)
+ (2) Telefonnummer des Anrufers (oder Blank, falls z.b. Analog-Anschluss)
+     (d.h. natuerlich auch die eigene MSN, wenn man selber raus-ruft!)
+ (3) Telefonnummer des Gegners (d.h. die eigene MSN, wenn man angerufen
+     wird)
+ (4) Dauer der Verbindung in Sekunden
+ (5) Dauer der Verbindung in 1/100 Sekunden
+     (im obigen Beispiel: 912 / 100 = 9,12 Sekunden)
+ (6) Zeitpunkt des Verbindungsaufbaues in UTC
+ (7) Anzahl zu zahlender Gebuehreneinheiten (AOC-D)
+     (oder -1, falls keine Gebuehreneinheiten von der VSt gemeldet wurden)
+ (8) "I" fuer incoming call, "O" fuer outgoing call
+ (9) Kam eine Verbindung nicht zustande (d.h. z.b. man wird angerufen, nimmt
+     aber nicht ab) taucht hier der Grund fuer das nicht Zustandekommen auf
+     ("Cause")
+(10) Summe der uebertragenen Byte _von_ draussen (incoming)
+(11) Summe der uebertragenen Byte _nach_ draussen (outgoing)
+(12) Versionsnummer der "isdn.log" Eintragung, z.Zt. Version 2.0
+(13) Dienstkennung fuer diese Verbindung (1=Speech, 7=Data usw.)
+(14) Bei Dienstkennung 1=Speech steht hier eine 1, falls der Gegner aus dem
+     ISDN, und 0, falls der Gegner aus der analogen Welt kommt
+(15) Der Currency Factor fuer diese Verbinung (in Deutschland z.Zt. 0,12)
+(16) Die Waehrung fuer diese Verbindung (in Deutschland "DM")
+(17) Gesamtkosten der Verbindung
+(18) Providernummer
+(19) Zone
+
+10. Das Report-Modul isdnrep
+----------------------------
+
+Gestartet wird isdnrep mittels:
+
+         isdnrep [ -ac:d:f:hinop:s:t:uvw:NVF: ]
+
+Der isdnrep kann seit der Version 3.0 die Ausgabe im HTML-Format erzeugen.
+Dieses kann ueber zwei Wege erreicht werden:
+- Option -wX
+- Der Name des isdnrep hat die Endung ".cgi" (z.B. isdnrep.cgi). Diese
+  entspricht der Option -w1. Man kann also z.B. einen Link auf
+  den isdnrep machen: ln -s isdnrep isdnrep.cgi
+
+Wenn das Programm mit der Extension ".cgi" gestartet wird, koennen ihm
+Parameter mit der URL ueberreicht werden:
+
+http://localhost/isdnrep.cgi?-t8+-v
+                                ^--- representiert ein Blank zwischen Parametern
+                            ^------- representiert ein Blank zwischen dem
+                                     Prorammnamen und dem ersten Parameter
+
+Alternativ kann man auch ein Shellscript mit der Endung ".cgi" schreiben,
+von dem aus der isdnrep gestartet wird:
+
+Beispiel:
+
+-------------------------------------------------
+#!/bin/sh
+isdnrep -w1 -t `date +%m` $@ # Monatliche Anzeige
+-------------------------------------------------
+
+Die Optionen von isdnrep haben im einzelnen folgende Funktion:
+
+  -a        "all"     isdnrep druckt alle Verbindungen an, die sich in der
+                      "/var/log/isdn.log" angesammelt haben (sonst nur "heute")
+
+  -h        "no header" Es wird weder fuer jeden Tag der Header angegeben,
+                        noch wird die Tages-/Gesamtzusammenfassung der
+                        Gespraeche und Gebuehren angezeigt.
+                        Dieses ist sinnvoll, wenn man den Output in ein
+                        anderes Programm einlesen will.
+                        Diese Option hat keine Funktion, wenn der isdnrep
+                        ebenfalls mit der Option -wX aufgerufen wurde.
+
+  -n        "numbers" isdnrep druckt anstelle der Symbolischen Namen die
+                      Telefonnummern an
+
+  -f file   "file"    Es kann ein anderes Logfile anstelle von /var/log/isdn.log
+	              angegeben werden.
+
+  -t Zeitabschnitt
+            "time"    Mit dieser Option kann ein bestimmter Zeitabschnitt vom
+                      Logfile angezeigt werden. Z. b. alle Gespraeche vom
+                      Monat November '95 oder vom 3.Januar'96 von 3.00 Uhr
+                      bis 9.45 Uhr.
+
+	Zeitabschnitt hat folgende Syntax:
+		Zeit-Zeit  Es wird der Beginn-Zeitpunkt und der End-Zeitpunkt
+			   bestimmt.
+		Zeit-      Von 'Zeit' bis jetzt
+		-Zeit 	   Von Beginn des Logfiles bis 'Zeit'
+		Zeit       Zeigt den aktuellen Monat, Tag, Stunde... an
+
+	Die 'Zeit' kann folgendes Format beinhalten:
+
+		[DD/][M]M/[[YY]YY]	Gibt den Monat oder Tag an
+
+			Beispiele: 7/95   (Juli '95)
+				   7/	  (Juli des aktuellen Jahres)
+				   8/1996 (August '96)
+				   6/6/95 (6. Juni 95)
+				   6/6/   (FALSCH: ist NICHT 6.Juni des
+					   aktuellen Jahres, sondern
+					   Juni 1906)
+
+		[D]D			Gibt den Tag im aktuellen Monat an.
+
+			Beispiele: 5  (5. des aktuellen Monats),
+				   15 (15. des aktuellen Monats)
+
+		[MM]DD[hhmm[[CC]YY][.ss]]
+			Gibt einen genauen Zeitpunkt an. Wenn Stunden, Minuten
+			und Sekunden nicht gesetzt sind, dann werden sie
+			automatisch auf 0 beim Anfangszeitpunkt und
+			auf 23 bzw. 59 beim Endzeitpunkt gesetzt.
+			Standardgemaess werden mit diesem Format auf den
+			Tag Einstellungen vorgenommen. Wenn das Jahr mit
+			angegeben werden soll, so MUESSEN auch die Stunden
+			und Minuten mitangegeben werden.
+			Das Format ist vom date-Befehl uebernommen worden.
+
+			Beispiele: 0107          (7.Januar des akt. Jahres)
+				   0107173196.25 (7.Januar'96 17:31:25 Uhr)
+				   010717311996  (7.Januar'96 17:31:00 Uhr)
+				   12141995	 (FALSCH: Ist NICHT
+						  12.Dezember'95, sondern
+						  12.Dezember das akt. Jahres
+						  19:95 Uhr -> Muell)
+
+	Beispiele fuer die Zeitabschnitte und deren Bedeutung:
+		6/95-081214381996.25 (Alle Eintraege zwischen
+				      1.Juni'95 0:00:00 Uhr und
+				      12.August'96 14:38:25 Uhr)
+		0912030495.20-12/95  (Alle Eintraege zwischen
+				      12.September'95 3:04:20 Uhr und
+				      31.Dezember'95 23:59:59 Uhr)
+		7/95		     (Alle Eintraege zwischen
+				      1.Juli'95 0:00:00 Uhr und
+				      31.Juli'95 23:59:59 Uhr)
+		0908		     (Alle Eintraege zwischen
+				      8.September des akt. Jahres 0:00:00 Uhr u.
+				      8.September des akt. Jahres 23:59:59 Uhr)
+			 3      3.Tag des akuellen Monats
+
+
+-d -Zeit    "delete" Loescht in der Logdatei alle Eintraege ausschliesslich
+                     der angegebenen Zeit. Das Zeitformat ist gleich, wie
+                     bei Option -t. Das Minus vor der "Zeit" MUSS immer
+                     angegeben werden! Es kann auch KEIN von-bis-Zeitraum
+                     angegeben werden. Es koennen nur von Anfang des Logfiles
+                     bis zu dem angegebenen Zeitpunkt Eintraege geloescht
+                     werden.
+
+	Beispiele:
+		-7/95    	Loescht alle Calls bis 30.Juni'1995 23:59:59 Uhr
+		-0107173196.25	Loescht alle Calls bis 7.Januar'96 17:31:24 Uhr
+				ACHTUNG:---------------------------------------------^^
+				Der angegebene Zeitpunkt wird immer
+				ausgeschlossen!
+
+	ACHTUNG: Mit dieser Option werden Eintraege aus der Logdatei
+		 geloescht. Bei unsachgemaesser Verwendung, kann
+		 die gesamte Logdatei geloescht werden!
+		 z.b. "isdnrep -d -" loescht ALLE Eintraege.
+
+
+-E          "Errors"  Zeigt alle Verbindungen und Verbindungsversuche auf.
+	              Sonst werden nur die "wahren" Gespraeche angezeigt, die
+	              ohne Fehler zustande gekommen sind.
+
+-p [n][m]'Nummer'[,[m]'Nummer'...] "phonenumber"
+                     Hiermit koennen nur ausgewaehlte Telefonnummer angezeigt
+                     werden.
+                     'Nummer' ist eine Zahl im Format der Konfigurationsdatei
+                     mit Wildcards (siehe "/etc/isdn/isdn.conf").
+                     Wenn ein 'm' vor der Nummer steht, beschreibt es die
+                     entsprechende MSN. Z.b. 'm2' (entspricht MSN#2).
+                     Wenn 'MSN' == 0 ("m0") ist, dann bedeutet das, alle uebrigen
+                     Nummern werden angezeigt.
+
+                     Wird das Flag n gesetzt, bedeutet dieses, dass die
+                     angegebenen Nummer nicht angezeigt werden. Dieses Flag
+                     gilt immer fuer alle Nummern. Ist also eine Negierung.
+
+-i          "incoming"
+                     Mit dieser Option werden nur einkommende Gespraeche
+                     angezeigt.
+
+-o          "outgoing"
+                     Mit dieser Option werden nur rausgehende Gespraeche
+                     angezeigt.
+
+-u          "unknown caller"
+                     Zeigt am Ende alle Nummern an, die nicht in der
+                     callerid.conf oder ~/.isdn eingetragen sind.
+                     Diese Option laeuft nicht bei der Ausgabe im HTML-Format.
+
+-v          "verbose"
+                     Zeigt Warnungen (-v) und Fehler (-vv) beim Starten
+		     des Programms.   		     
+
+-wX         "WWW"    Der isdnrep kann die Ausgabe im HTML-Format erzeugen.
+                     dieses wird mit der Option -w erreicht. Es gibt dort zwei
+                     Modi:
+                     0  Es wird der HTML-Header unterdrueckt. Dieses ist
+                        sinnvoll, wenn die Ausgabe des isdnrep in eine
+                        bestehende Seite eingebettet werden soll.
+                     1  Es wird eine eigenstaendige Seite im HTML-Format
+                        erzeugt.
+
+-sX         "format string"
+                     Die Ausgabe des isdnrep kann beeinflusst werden, indem
+                     im Formatstring angegeben wird, welche Informationen
+                     pro Verbindung angezeigt werden sollen. Die Syntax
+                     entspricht dem printf. Folgende Platzhalter sind bekannt:
+
+                     %X: Die Zeit ohne Datum (z.B. 23:54:06)
+                     %x: Das Datum (z.B. 05/07/97)
+                     %y: Datum ohne Jahresangabe (z.B. Sun May 04)
+                     %Y: Das Jahr, vierstellig (z.B. 1997)
+
+                     %D: Gespraechsdauer (z.B. 00:03:34)
+                     %j: Der Name des Providers, ueber den diese Verbindung
+                     	 gelaufen ist (der Telefon-Carrier)
+                     %H: Die eigene MSN, wenn ein Eintrag in der callerid.conf
+                         gefunden wurde wird dort das Alias angezeigt.
+                         Es sollte die Precision angegeben werden!
+                     %h: Die eigene MSN (kein Alias, nur die Nummer)
+                         Es sollte die Precision angegeben werden!
+                     %F: Der andere Gesprachsteilnehmer, wenn ein Eintrag in
+                         der callerid.conf gefunden wurde wird dort das Alias
+                         angezeigt.
+                         Es sollte die Precision angegeben werden!
+                     %f: Der andere Gesprachsteilnehmer (kein Alias, nur die
+                         Nummer)
+                         Es sollte die Precision angegeben werden!
+                     %L: Gibt den Ort aus fuer die eigene MSN falls bekannt,
+                         sonst ein Leerstring.
+                         Es sollte die Precision angegeben werden!
+                     %l: Gibt den Ort aus fuer den anderen Gesprachsteilnehmer
+                         falls bekannt, sonst ein Leerstring.
+                         Es sollte die Precision angegeben werden!
+                     %T: Gibt den Pfeil an zwischen den Nummern ("->" oder "<-")
+                         fuer die Gespraechsrichtung. Die eigene MSN
+                         sollte hierbei immer links vom Pfeil stehen.
+                     %t: Gibt den Pfeil an zwischen den Nummern ("->" oder "<-")
+                         fuer die Gespraechsrichtung. Die eigene MSN
+                         sollte hierbei immer rechts vom Pfeil stehen.
+
+                     %u: Gibt die Einheiten aus, falls vorhanden (z.B. 6 EH)
+                         Es sollte die Precision angegeben werden!
+                     %U: Gibt die Gebuehren aus, falls vorhanden (z.B. 2,28 DM)
+                     %I: Gibt den INPUT-Datendurchsatz an.
+                     %O: Gibt den OUTPUT-Datendurchsatz an.
+                     %P: Gibt den INPUT-Datendurchsatz pro Sekunde an.
+                     %p: Gibt den OUTPUT-Datendurchsatz pro Sekunde an.
+                     %S: Gibt die SI an.
+                     %G: Gibt ein Link auf die entsprechenden Faxe fuer
+                         diese Verbindung an. Diese koennen dann angesehen
+                         werden. Die Faxe muessen allerdings mit mgetty
+                         empfangen worden sein.
+                         Diese Option geht nur mit der Option -wx
+                         Weitere Informationen weiter unten.
+                     %C: Gibt ein Link auf den entsprechenden gespeicherten
+                         Anruf vom vbox an.
+                         Diese Option geht nur mit der Option -wx
+                         Weitere Informationen weiter unten.
+
+
+                     Defaultmaessig ist der folgende String fuer den isdnrep
+                     (nicht HTML) eingestellt:
+
+                     "  %X %D %15.15H %T %-15.15F %7u %U %I %O"
+
+                     Mit dem folgenden String hat man alle wichtigen Daten
+                     ueber 80 Zeichen pro Zeile:
+
+                     "%X%D %10.10H%T%-14.14F%U%I %O"
+
+                     Der oben genannte String wird bei der Installation
+                     in der isdn.conf unter REPFMTSHORT abgelegt und kann mit
+                     -Fshort verwendet werden.
+
+-FX         "format" Es koennen in der Datei isdn.conf Format-Strings definiert
+                     werden. Diese koennen mit Option -F verwendet werden.
+                     Unter der Sektion [ISDNLOG] kann es Eintraege namens
+                     "REPFMTxxx" existieren. Der String nach der Option -F
+                     muss identisch sein mit "xxx". Beispiel:
+
+                     REPFMT1        = ... # -> isdnrep -F1
+                     REPFMTMYSTRING = ... # -> isdnrep -Fmystring oder
+                                          #    isdnrep -F MYSTRING
+
+-Rx                  Angabe der Verbindungsnetzbetreiberauswahlnummer
+		     der Telefongesellschaft, auf die man preselected ist.
+		     Hierbei ist 010 wegzulassen, d.h. z.b.
+     		     bei Arcor ist -R70 anzugeben.
+     		     Fehlt diese Angabe, wird 33, d.h. die Deutsche Telekom
+     		     angenommen.
+		     s. auch PRESELECTED.
+
+
+Abspielen von Anrufen vom vbox und Anzeigen von Faxen vom mgetty im HTML-Format
+-------------------------------------------------------------------------------
+
+Unter HTML kann der isdnrep die Dateien von den Programmen
+finden und sie dem entsprechenden Anruf zuordnen. Diese koennen dann via einem
+Link aufgerufen werden z.B. mit dem Netscape.
+Dazu sind allerdings noch einige Einstellungen noetig.
+
+Anrufbeantworter abspielen
+--------------------------
+Wenn dieses im Formatstring mit %C eingetragen wurde unter REPFMTWWW= ... %C ...
+Dann wird isdnrep die entsprechenden Gespraeche mit einem Link hinterlegen,
+die dann abgerufen werden koennen.
+
+Dazu wird in der isdn.conf unter Sektion [ISDNLOG] folgender Eintrag benoetigt:
+
+VBOXPATH= /var/spool/vbox/fred/incoming #Pfad zum Incoming-Verzeichnis vom vbox.
+
+Nun kann der isdnrep diese Dateien finden. Wird nun der Link angeklickt,
+wird die Datei direkt uebermittelt. Die Datei besteht aus dem Zyxel-Format.
+Dieses kann der Browser nicht selber erkennen. Also muss
+dieser Typ ergaenzt werden. isdnrep uebertraegt folgende Zeile am Anfang:
+
+Content-Type: application/x-zyxel4
+
+Hier muss man also noch die entsprechende Applikation im Browser eintragen,
+damit die Datei erkannt werden kann.
+
+Alternativ kann man aber auch dem isdnrep ein Programm mitteilen, dass das
+Zyxel-Format umwandelt. Dieses Programm bekommt einen Parameter mit. Dieser
+Parameter enthaelt die zu uebertragende Datei:
+
+program /play/file
+
+Dieses teilt man dem isdnrep wieder ueber die Datei isdn.conf mit. Es muss
+dort unter [ISDNLOG] der Eintrag
+
+VBOXCMD1 = /usr/bin/program1
+
+fuer Version 0.x und 1.x vom vbox
+und
+
+VBOXCMD2 = /usr/bin/program2
+
+fuer Version 2.x vom vbox
+eingefuegt werden. Es koennen auch beide gesetzt sein, da der isdnrep selber
+erkennt, welches Format die entsprechende Datei hat.
+
+Das Programm muss zuerst den Datei-Typ und die Sound-Datei auf stdout ausgeben.
+Um das Zyxel-Format in eine WAVE-Datei auszugeben, kann man folgende Skripte
+verwenden:
+
+Fuer Version 0.x und 1.x:
+-----------------------------------------------------------
+#! /bin/sh
+##
+## Kommando zum abspielen von Voicenachrichten vom vbox-1.0
+##
+## ACHTUNG! Wenn die Pfade falsch gesetzt sind oder fehlen,
+## stuerzt netscape einfach ab!
+
+PATH=$PATH:"Pfad zum sox":"Pfad zu den pvftools"
+FILENAME1=/tmp/voxplay.$$.voc
+FILENAME2=/tmp/voxplay.$$.wav
+VOLUME=8
+
+zyxeltopvf < $1   | \
+   pvfspeed 0.8   | \
+   pvfamp $VOLUME | \
+   pvfcut 0.20    | \
+   pvftovoc > $FILENAME1
+
+sox $FILENAME1 $FILENAME2
+
+echo Content-Type: audio/x-wav
+echo
+cat $FILENAME2
+
+rm -f $FILENAME1 $FILENAME2
+-----------------------------------------------------------
+
+Fuer Version 2.x:
+-----------------------------------------------------------
+#! /bin/sh
+##
+## Kommando zum abspielen von Voicenachrichten vom vbox-2.0
+##
+## ACHTUNG! Wenn die Pfade falsch gesetzt sind oder fehlen,
+## stuerzt netscape einfach ab!
+
+PATH=$PATH:"Pfad zum sox":"Pfad zu den pvftools":"Pfad zum vbox"
+FILENAME1=/tmp/voxplay.$$.voc
+FILENAME2=/tmp/voxplay.$$.wav
+VOLUME=8
+
+vboxtoau <$1             | \
+          autopvf        | \
+          pvfamp $VOLUME | \
+          pvfcut 0.20    | \
+   				pvftovoc > $FILENAME1
+
+sox $FILENAME1 $FILENAME2
+
+echo Content-Type: audio/x-wav
+echo
+cat $FILENAME2
+
+rm -f $FILENAME1 $FILENAME2
+-----------------------------------------------------------
+
+Die obigen Skripte benoetigen die Pakete sox und pvftools.
+Es ist darauf zu achten, dass die benoetigten Programme im Pfad stehen.
+Andernfalls quittiert netscape 3.0 gold (alpha??) dieses mit einem "bus error".
+
+Damit der Browser etwas mit dem Typ "audio/x-wav" anfangen kann, muss
+an den folgenden Dateien noch Zeilen angefuegt werden:
+
+~/.mime.types
+-----------------------------------------------------------
+type=audio/x-wav  \
+desc="auWAV Audio"  \
+exts="wav"
+-----------------------------------------------------------
+
+~/.mailcap:
+-----------------------------------------------------------
+audio/x-wav;/usr/bin/auplay %s
+-----------------------------------------------------------
+
+Hierzu muss das Paket NAS installiert sein.
+
+Wenn jetzt der Browser gestartet wird, kann er diese Dateien vom Typ WAVE
+erkennen und das entsprechende Programm starten.
+Wird vom isdnlog jetzt der Link zu einer Anruf, angeklickt, wird die Datei
+abgespielt.
+
+Das Format WAVE wurde aus dem Grund ausgewaehlt, da dieses auch unter
+Windows abspielbar ist.
+
+Anzeigen von Faxen vom mgetty
+-----------------------------
+
+Hierzu muss im Formatstring %G eingetragen werden. Dann werden alle Seiten
+einzeln, die zu diesem Fax gehoeren durch einen eigenen Link dargestellt.
+
+Diese laeuft analog zur vbox-Einstellungen.
+Es muss also der Pfad zu den Fax-Dateien dem isdnrep mitgeteilt werden:
+
+...
+[ISDNLOG]
+MGETTYPATH = /var/spool/fax/incoming
+...
+
+ACHTUNG: Wenn der isdnrep keine Berechtigung zum Lesen der Datei(en) hat,
+werden diese auch nicht angezeigt. Es wird auch keine Fehlermeldung erscheinen.
+Wenn also keine Dateien vom isdnrep angezeigt werden, sind haeufig die Rechte
+an der Datei falsch.
+
+Wenn isdnrep diese Dateien an den Browser uebertraegt (oder besser der HTTPD),
+dann haben diese das G3-Format. Der isdnrep uebertraegt daher das Header-Type
+folgende Zeile:
+
+Content-Type: application/x-faxg3
+
+Da dieses der Browser nicht kennt, muessen wiederum folgendende Eintraege
+an den Dateien des Browsers ergaenzt werden:
+
+~/.mime.types
+-----------------------------------------------------------
+type=application/x-faxg3  \
+desc="G3-Fax Format" \
+exts="fax,g3"
+-----------------------------------------------------------
+
+~/.mailcap:
+-----------------------------------------------------------
+application/x-faxg3;/usr/X11/bin/g3view %s
+-----------------------------------------------------------
+
+Hierzu muss das Programm g3view installiert sein.
+
+Wird jetzt der Link verfolgt, wird automatisch vom Browser das externe Programm
+g3view gestartet.
+
+Wenn man auch hier nicht mit dem G3-Format einverstanden ist, kann man z.B.
+auch das JPEG-Format dem Browser uebermitteln lassen. Hierzu sollte man
+dann folgenden Eintrag fuer das Konvertierungsskript in die isdn.conf
+eintragen:
+
+...
+[ISDNLOG]
+VBOXCMD = /usr/bin/g3tojpeg # Beispielpfad
+...
+
+ACHTUNG: Wenn der isdnrep keine Berechtigung zum Lesen der Datei(en) hat,
+werden diese auch nicht angezeigt. Es wird auch keine Fehlermeldung erscheinen.
+Wenn also keine Dateien vom isdnrep angezeigt werden, sind haeufig die Rechte
+an der Datei falsch.
+
+Dann sollte die Datei /usr/bin/g3tojpeg wie folgt aussehen:
+
+-----------------------------------------------------------
+#! /bin/sh
+##
+## Kommando zum anzeigen von Faxen unter einem Browser
+##
+## ACHTUNG! Wenn die Pfade falsch gesetzt sind oder fehlen,
+## stuerzt netscape einfach ab!
+
+export PATH=$PATH:"Pfad zu g3topbm":"Pfad zu convert"
+
+echo Content-Type: image/jpeg
+echo
+
+g3topbm < $1 | convert pbm:- jpeg:-
+-----------------------------------------------------------
+
+Es werden hierfuer die Pakete ImageMagick und mgetty (sollte wohl vorhanden
+sein!) benoetigt.
+
+Wenn jetzt der Link angeklickt wird, wird das Fax im Browser angezeigt.
+
+Das Format JPEG wurde aus dem Grund ausgewaehlt, da dieses auch unter
+Windows angezeigt werden kann.
+
+Ein Beipspiel fuer REPFMTWWW:
+
+REPFMTWWW     = "%X %D %17.17H %T %-17.17F %-20.20l SI: %S %9u %U %I %O %G %C"
+
+Falls jemand andere/bessere Skripte/Loesungen hat, sollte er sie unbedingt an
+
+akool@isdn4linux.de
+
+senden, damit diese in der naechsten Version vom isdnlog aufgenommen werden
+koennen.
+
+Als Browser wurden von mir der netscape 3.0 gold und arena verwendet. Beide
+arbeiten mit der Ausgabe vom isdnrep. Allerdings war die Ausgabe vom arena
+nicht so farbenpraechtig, wie die vom netscape.
+
+Bekannte und unloesbare Probleme sind die Zuordnung von einem Anruf zu einem
+Fax oder vbox-Call. Leider sind die Zeiten des Anrufsbeginn unterschiedlich
+zwischen isdnrep, mgetty und vbox. Daher versucht der isdnrep die beste
+Annaeherung zu erreichen. Es kann aber immer passieren, dass z.B. ein Fax
+dem falschen Anruf zugeordnet wurde.
+
+Anzeige der isdnrep
+-------------------
+
+Es wird nun auf stdout eine Abrechnung mit folgender Default-Optik generiert:
+
+$ isdnrep -v -t 6/1/96
+I S D N  Connection Report  -  Sun Jan  7 22:21:19 1996
+
+
+Sat Jan  6 1996
+  00:54:19                 UNKNOWN -> UNKNOWN        No user responding      (4)
+[...]
+  16:33:24  0:03:23        UNKNOWN -> UNKNOWN           7 EH      0,84 DM
+  17:33:47                 UNKNOWN -> UNKNOWN        Unallocated (unassigned)(5)
+                                                     number
+  20:02:28  0:02:37     Phone/HDLC <- UNKNOWN                                (1)
+  20:09:53  0:07:01     Modem/X.75 -> T-Online          3 EH      0,36 DM    (2)
+  21:27:56                 UNKNOWN -> UNKNOWN        User busy               (3)
+  22:09:41  0:29:36        UNKNOWN -> UNKNOWN          43 EH      9,89 DM*
+=========================================================================
+  1 IN= 0:02:37,  13 OUT= 3:40:14,   3 failed         210 EH     25,20 DM
+(6)^^^^^^^^^^^^  (7)^^^^^^^^^^^^^  (8)^^^^^^^      (9)^^^^^^ (10)^^^^^^^^
+
+
+DIALOUT Summary for Sat Jan  6 1996                                         (11)
+-----------------------------------------------------------
+T-Online         1 call(s)  0:07:01     3 EH    0,36 DM
+UNKNOWN         11 call(s)  0:17:00    20 EH    2,40 DM
+
+
+DIALIN Summary for Sat Jan  6 1996                                          (12)
+-----------------------------------------------------------
+UNKNOWN          1 call(s)  0:02:37
+
+
+Zone 1 : CityCall          2 call(s)  2:23:13     50 EH    6,00 DM          (13)
+Zone x : UNKNOWN          11 call(s)  0:17:00     20 EH    2,40 DM
+
+Fussnoten:
+  (1)  "xxx <- xxx" war ein eingehender Anruf, kostet also nix
+  (2)  "xxx -> xxx" ist ein rausgehender Ruf, macht also bei 203 sec,
+       CityCall, Freizeittarif (da Samstag) 3 Gebuehreneinheiten = DM 0,36 ;-)
+  (3)  Das Telefonat kam nicht zustande, da der angewaehlte Teilnehmer
+       besetzt war.
+  (4)  Der angwaehlte Teilnehmer hat den Hoerer nicht abgenommen.
+  (5)  "Kein Anschluss unter dieser Nummer..."
+  (6)  Gesamte Zeit von eingehender Anrufen
+  (7)  Gesamte Zeit von rausgehender Anrufen
+  (8)  3 Anrufe sind gescheitert (hier: einmal besetzt(3),
+       einmal keine Antwort(4) und einmal verwaehlt (5))
+  (9)  Die gesamten Einheiten fuer einen Tag
+  (10) Das Geld, was man selbst fuer diesen Tag zu zahlen hat
+  (11) Aufschluesselung der rausgehenden Rufe nach Nummern
+  (12) Aufschluesselung der eingehenden Rufe nach Nummern
+  (13) Aufschluesselung der raus- und eingehenden Anrufe nach Bereichszonen
+
+Wurden die Einheiten mit einem "*" markiert, wurden vom "Amt" keine
+Einheiten gemeldet (Charging-Info fehlte)
+Daher steht dann hier die von isdnrep errechnete Anzahl Einheiten.
+
+
+11. Das Konfigurations-Tool isdnconf
+------------------------------------
+
+Dieses Programm bearbeitet oder interpretiert die Datei /etc/isdn/callerid.conf
+sowie ~/.isdn.
+Es koennen hiermit Eintraege in dieser Datei angelegt oder geloescht werden.
+Des weiteren koennen wie mit einem Grep Eintraege gesucht und angezeigt werden.
+Unter einen Eintrag ist eine eigene MSN ([MSN]) oder eine Telefonnummer
+([NUMBER]) gemeint.
+
+Dieses Programm hat seine Staerken als ein Suchprogramm in einem persoenlichem
+Telefonbuch.
+
+ACHTUNG:
+
+Dieses Programm besitzt zwar die Faehigkeit, die Nummerndateien zu veraendern.
+Defaultmaessig wird die Datei ~/.isdn editiert. Es kann auch mit den Schaltern
+-f und -g eine andere Datei verwendet werden.
+Es wird aber dringend davon abgeraten die Schalter -A und -D zu verwenden!!
+Hierbei wird die gesamte Struktur der Datei zerstoert (include), so wie alle
+Kommentare werden geloescht.
+
+Hier nun die Optionen des Programmes:
+
+Befehle:
+
+  -A        "add"     Es wird ein neuer Eintrag hinzugefuegt. Dieser wird ueber
+                      Standardinput eingelesen. Es werden folgende Angaben
+                      abgefragt:
+
+                      Alias:          Fred
+                      Number:         0815/441777
+                      SI:             0
+                      Zone:           4
+                      Interface:      -
+                      Flags:          I|O
+                      Program:        /usr/local/ring
+                      User:           uucp
+                      Group:          user
+                      Interval:
+                      Time:           8-20
+                      Flags:          (CONTROL-D)
+
+                      Alias:          (CONTROL-D)
+
+                      Wenn kein Control-D bei dem zweiten Flags gedrueckt
+                      wuerde, kann ein weiterer Programmstart zur
+                      entsprechenden Nummer angeben werden.
+
+                      Wenn bei "Alias" kein Control-D gedrueckt wuerde,
+                      koennte man eine weitere Nummer eingeben.
+
+                      Es kann auch eine Datei als Eingabe "gepipt" werden.
+                      Der Inhalt der der Datei sieht dann equivalent zur
+                      oberen Eingabe aus:
+
+                      Fred
+                      0815/441777
+                      0
+                      4
+                      -
+                      I|O
+                      /usr/local/ring
+                      uucp
+                      user
+
+                      8-20
+
+  -D        "delete"  Loescht einen oder mehrere Eintraege, die den folgenden
+                      Mustern entsprechen. Diese Muster werden unter den
+                      weiteren Optionen besprochen.
+
+  -V        "version" Zeigt die aktuelle Version und beendet sich.
+
+  Wenn weder -A noch -D angegeben wurde, dann wird isdnconf nur Telefonnummern
+  anzeigen die, dem Muster entsprechen.
+
+	Sollte -A und -D gleichzeitig angegeben werden. Wird isdnconf automatisch
+	beendet.
+
+
+  Optionen:
+
+  -n 'Nummer' "number"  Sucht nach Telefonnummer unter allen Eintraegen,
+                        die dem Muster entsprechen und zeigt sie anschliessend
+                        an. 'Nummer' ist eine Zahl im Format der
+                        Konfigurationsdatei mit Wildcards (siehe
+                        "/etc/isdn/isdn.conf"). Gilt nicht fuer den
+                        Befehl -A.
+
+  -a 'Alias'  "alias"   Sucht nach dem Alias unter allen Eintraegen,
+                        die dem Muster entsprechen und zeigt sie anschliessend
+                        an. 'Alias' ist eine Zahl im Format der
+                        Konfigurationsdatei mit Wildcards (siehe
+                        "/etc/isdn/isdn.conf"). Gilt nicht fuer den
+                        Befehl -A.
+                        BUG: Statt dem Zeichen '-' muss ein '?' verwendet
+                             werden!
+
+  -t 'SI'               Zeigt alle Eintraege mit Service-Indicator 'SI' an.
+                        Gilt nicht fuer den Befehl -A.
+
+
+  -i          "ignore"  Es wird dann bei den Optionen -n und -a die
+                        Gross/Kleinschreibung ignoriert.
+
+  -w          "word"    Der Ganze String von -a und -n muss auf den
+                        angewendeteten String passen.
+                        Beispiele (hier fuer -n):
+                          "*34*" -> 123456, 345677, 1234
+                          "34*"  -> 34567, 34111
+                          "34??" -> 3411, 3456
+                          "34"   -> 34 (und nichts anderes!!!)
+
+                        Ohne diese Option wuerde das Muster wie beim
+                        "grep" arbeiten:
+                          "*34*" -> 123456, 345677, 1234
+                          "34*"  -> 123456, 345677, 1234, 34567, 34111
+                          "34??" -> 123456, 345677, 1234, 3411, 3456
+                          "34"   -> 123456, 345677, 1234, 3411, 3456, 34567
+
+  -d          "and"     Defaultmaessig werden die Optionen -n, -a und -t
+                        mit ODER verknuepft. Wenn diese alle mit UND
+                        verknuepft werden sollen, muss diese Option
+                        verwendet werden.
+                        Es koennen die drei oben genannten Optionen nur
+                        jeweils einmal in der Befehlszeile verwendet werden.
+
+  -q          "quiet"   Es unterdrueckt beim Befehl -A und -D die Ausgabe.
+                        Ansonsten zeigt es nur das Alias zur gesuchten Nummer
+                        oder die Nummber selber, falls kein Eintrag gefunden
+                        wurde.
+
+  -m          "msn"     Es besagt beim Befehl -A, das die folgenden Eingaben
+                        einen Eintrag MSN erzeugen. Defaultmassig werden
+                        NUMBER-Eintraege geschrieben.
+
+                        Normalerweise werden folgende Felder in der Ausgabe
+                        angezeigt:
+
+                        Alias:          Fred
+                        Number:         0815/441777
+                        SI:             0
+                        Zone:           4
+                        Interface:
+
+                        Dieses gilt nicht fuer die Befehle -A und -D.
+                        Die folgenden beiden Optionen -l und -s veraendern
+                        diese Ausgabe.
+
+  -s          "short"   Hiermit werden nun nur noch das Alias und die
+                        Nummer angezeigt.
+
+  -l          "long"    Hier werden zusaetzlich noch die die zu startenden
+                        Programme ([START]) angezeigt.
+
+  -f 'Datei'  "file"    isdnconf verwendet normalerweise die Konfigurationsdatei
+                        "/etc/isdn/isdn.conf" sowie "~/.isdn". Wenn eine
+                        andere benutzt werden soll, dann muss sie mit dieser
+                        Option angegeben werden. Gilt nur fuer die
+                        Optionen -A und -D
+
+  -g          "global"  Hat nur Auswirkungen bei den Befehlen -A und -D. Es
+                        wird dann anstatt der ~/.isdn die Datei
+                        /etc/isdn/callerid.conf genommen zum editieren.
+
+  -1          "first"   loescht nur den ersten Eintrag oder zeigt nur den
+                        ersten Eintrag an.
+
+  -M          "isdnmon" liefert den Output fuer den isdnmon.
+
+
+12. Der X-Client xisdn
+----------------------
+
+ACHTUNG: Der xisdn ist noch nicht an die Version 3.0 angepasst. Daher ist der
+         Client in dieser Version nicht enthalten. Es kann allerdings nicht
+         garantiert werden, ob der xisdn mit der Version 3.0 lauffaehig ist.
+
+Der xisdn basiert auf Motif-2.0. Daher werden die wenigsten ihn selber
+uebersetzen koennen. Der xisdn liegt als binary direkt neben dem isdnlog-Paket
+auf den meisten ftp-Server'n, die auch isdnlog vorhalten. Der xisdn kann dann
+in ein beliebiges Verzeichnis eingespielt werden, welches natuerlich im Pfad
+liegen sollte.
+
+Wenn die Datei "Isdn" nicht im Verzeichnis /usr/X11R6/lib/X11/app-defaults
+zu finden ist (wird normalweise bei "make xinstall" dort hinein kopiert),
+dann muss dem "xisdn" die Resource-Datei "Isdn" mittels
+
+   export XENVIRONMENT=<Pfad_der_Resource_Datei>/Isdn
+
+bekannt gemacht werden.
+
+Der X-Client laeuft ueber TCP/IP und muss daher nicht auf dem gleichen Host
+laufen wie der isdnlog. Der isdnlog ist in der Lage, mehrere Clients
+gleichzeitig zu bedienen.
+
+Dem xisdn koennen folgende Parameter mit auf dem Weg gegeben werden:
+
+xisdn: usage: xisdn ["X11 options"] [ -p: ] [host]
+
+Es koennen alle ueblichen X11 Optionen angegeben werden (siehe "man X").
+
+-pX    Es kann die Portadresse vom isdnlog mit angegeben werden (-p 20011,
+       -p4711).
+
+Host   Der Host, auf dem isdnlog laeuft.
+
+Werden dem xisdn keine Parameter mitgegeben, dann versucht er zum lokalen
+isdnlog zu verbinden. Als Default-Port nimmt er den Eintrag von der Datei
+/etc/services. Ist dort der Service "isdnlog" nicht bekannt (dieser wird
+bei "make xinstall" in die /etc/services" eingetragen), wird der
+"einkompilierte" Port genommen. Die Prioritaet vom Port (gilt auch fuer den
+isdnlog):
+
+1. -pXXX
+2. /etc/services
+3. #define SERV_PORT XXX (im Makefile abgelegt: SERV_PORT = 20011)
+
+Kurze Beschreibung der Oberflaeche:
+
+Die Oberflaeche ist in 3 Bereiche unterteilt: Ein Menubar mit Funktionen und
+Hilfe und zwei scrollbaren Listen: die obere mit aktuell bestehenden und die
+untere mit bereits abgeschlossenen (bzw. abgebrochenen) Verbindungen. Die
+Zeilen in der letzten Liste koennen ausgewaehlt und dann mit
+'Funktionen->Loeschen' entfernt werden. Die Spalten tragen die folgenden
+Informationen (von links her): Monat, Tag, Verbindungsanfang, Dauer der
+Verbindung, Gebuehren, Waehrung, MSN, Richtung, Gegenstelle, deren Ort, Status.
+
+Mit 'Funktionen->Protokoll' koennen alle Meldungen vom Server im separaten
+Dialog ausgegeben werden.
+
+Die Informationen die beim isdnlog mit -xX eingestellt wurden, erscheinen dann
+im Protokollfenster. Aber dafuer muss der Benutzer, der xisdn startet auch die
+Rechte in der Datei /etc/isdn/isdnlog.users haben.
+
+Der xisdn beinhaltet Teile von Xmt-2.1.2
+Copyright (c) 1992, 1993, 1994 by Dovetail Systems.
+
+Diese Programmteile unterliegen _nicht_ dem GPL. Sie duerfen daher auch
+nicht anderweitig verwendet werden, als fuer den xisdn.
+Weitere Informationen sind bitte den COPYRIGHT-Dateien
+im Verzeichnis "client/Xmt" zu entnehmen.
+
+
+13. ChargeInt
+-------------
+
+Die folgenden Seiten zum ChargeInt wurden von Georg v.Zezschwitz
+(gvz@pop.de) geschrieben, der "ChargeInt" entwickelt hat. "ChargeInt"
+war lange ein Patch fuer Linux, ist aber mittlerweile voll in
+isdn4linux integriert und wird von isdnlog unterstuetzt (siehe
+Option -h)
+
+
+Was ist ChargeInt?
+------------------
+
+ChargeInt ist ein Feature von isdn4linux. Damit wird eine Taktzeit
+fuer ein ISDN-Interface angegeben, die moeglichst voll ausgenutzt
+werden soll. Ohne isdnlog wird ChargeInt ueber einen Parameter
+von isdnctrl angesprochen: den ChargeInt-Parameter.
+Mit dem ChargeInt-Parameter wird das aktuelle Gebuehrenintervall
+einer bestimmten Verbindung angegeben, z.b.  90 Sekunden.
+
+Wie wirkt ChargeInt?
+
+Ohne ChargeInt prueft isdn4linux permanent, ob fuer eine gewisse Zeit (ueber
+huptimeout konfiguriert) die bestehende Verbindung nicht genutzt wurde.
+Ist diese Zeit abgelaufen, wird aufgelegt.
+Demgegenueber verhaelt sich die kostenbewusste Nutzerin natuerlich so, dass
+sie die fuer 12 Pf bezahlte Leistung der Telekom auch gerne bis zur letzten
+Sekunde ausschoepfen wuerde, also erst dann auflegt, wenn in den naechsten
+1-2 Sekunden die naechste Einheit anstehen wuerde.
+ChargeInt macht eigentlich nichts weiter, als die Pruefung, ob in den
+letzten Sekunden kein Traffic angefallen ist, nur dann durchzufuehren,
+wenn die naechste Einheit der Telekom anfaengt.
+Ohne ChargeInt steht man vor dem Konflikt:
+
+- Eine niedrige Huptimeout fuehrt dazu, dass evtl. zu schnell aufgelegt wird,
+  also das Lesen einer WWW-Seite schon zum Auflegen fuehrt, obwohl man
+  bequem in der gleichen Einheit noch die zweite haette laden koennen
+  (so man nicht T-Online benutzt, wo sich die Durchschnittseite eh erst
+  nach 3 Einheiten voll darstellt :-)
+
+- Ein hoher Huptimeout fuehrt dazu, dass man haeufiger in die naechste
+  Einheit "reinrutscht", obwohl auf der Leitung gar keine Aktivitaet mehr
+  stattfindet.
+
+Also ist es am sinnigsten, einen kurzen Huptimeout einzustellen (empfohlen:
+3-5 Sekunden), aber nur kurz vor Ablauf der aktuellen Einheit dieses
+Kriterium abzupruefen.
+
+
+Pro und Kontra von ChargeInt
+----------------------------
+
+Chargeint wird nur dann aktiv, wenn es manuell mit
+
+  isdnctrl chargeint device Takt
+
+aufgerufen wird, oder isdnlog mit der Option -h aufgerufen wird.
+
+
+Wann sollte ich ChargeInt (nicht) aktivieren?
+
+Wer mit synchronem PPP arbeitet und eine dynamische IP bezieht, duerfte
+ein Verhalten wuenschen, wie es Otto-Normal-Dumm-Windows-User praktiziert:
+Explizit Verbindung aufbauen, Rumsurfen, explizit Verbindung abbauen.
+Zum einen kann etwa eine FTP-Session nicht ohne weiteres bei dynamischer
+IP-Vergabe fortgesetzt werden, da sich die einem selbst zugewiesene
+IP-Adresse bei einer erneuten Anwahl aendert. Dies gilt fuer alle
+TCP-Verbindungen (z.b. Telnet, rlogin). Wer mit dynamischer IP-Adressvergabe
+leben muss, wird eher seine Verbindung waehrend einer Sitzung
+stehen lassen wollen und eher noch einen ping starten, damit auch die
+Gegenseite nicht auflegt. Fuer diese User/innen ist ChargeInt also
+ueberfluessig.
+
+Ueberfluessig ist ChargeInt, wenn man nicht bei der Telekom oder
+gar Mobilcom, sondern einem Anbieter mit sekundengenauer Abrechnung
+telefoniert.
+
+Ueberfluessig ist ChargeInt auch, wenn z.b. Daten im Batch-Betrieb (UUCP
+ueber TCP/IP) abgeholt werden und anschliessend explizit aufgelegt wird.
+
+ChargeInt ist ideal fuer Leute, die
+ - eine feste IP-Adresse haben
+ - gerne mal 1 Minute oder laenger die Seite, die sie sich gezogen
+   haben, auch lesen.
+ - oder z.b. Heimarbeit betreiben und ihr Trommelfeuer auf die Tastatur
+   auch mal kurz unterbrechen, um Nachzudenken oder Tee zu kochen oder...
+ - generell lieber kurz auflegen wuerden, wenn die Verbindung 1-2
+   Minuten nicht gebraucht wird.
+
+
+Wie konfiguriere ich ChargeInt?
+-------------------------------
+
+Eine manuelle Konfiguration von ChargeInt ist nur noetig, wenn
+isdnlog nicht die Steuerung uebernehmen kann, weil z.B. der Anbieter
+mit seinen Gebuehrenintervallen nicht unterstuetzt wird.
+
+Wer z.B. grundsaetzlich im Minutenintervall (z.B. Viag-Interkom) oder
+gar 2 Minuten-Intervall (Mobilcom) zahlt, braucht die intelligente
+Steuerung von isdnlog nicht.
+
+Parameter fuer die Hangup-Kontrolle
+
+Das Gebuehrenintervall wird ueber den Parameter chargeint mitgeteilt.
+Der Parameter huptimeout erhaelt eine andere Bedeutung: 2 Sekunden, bevor
+die naechste Einheit faellig wird, prueft Chargeint, ob in den letzten
+huptimeout Sekunden kein Traffic war. Bei "Stille" wird aufgelegt, sonst
+weitergemacht. Man koennte auch anders sagen: Durch Chargeint wird der
+huptimeout-Parameter nur kurz vor Ablauf der Gebuehreneinheit abgefragt.
+
+Ich setze bei CityCall's huptimeout auf 5 Sekunden, bei GermanCall's
+auf 3 Sekunden.
+
+
+14. Gebuehren-GAU Begrenzer
+---------------------------
+
+isdnlog bietet 4 unterschiedliche (auch kombinierbare) Moeglichkeiten,
+die maximal pro Zeiteinheit zu entrichtenden Gebuehren an die Telekom
+sowie den Internet-Provider wirkungsvoll zu begrenzen.
+
+Wird isdnlog terminiert, merkt es sich die bislang aufgelaufenen
+Geld-, Zeit-, sowie Durchsatz-Betraege in der Datei "/etc/isdn/charge.dat"
+und liest diese beim naechsten Start wieder ein.
+
+
+14.1 Watchdog
+-------------
+
+In seltenen Faellen "glaubt" isdn4linux, aufgelegt zu haben. Die VSt
+sieht das jedoch ganz anders, und laesst den Gebuehrenzaehler weiterlaufen.
+
+Hiergegen hilft die Cmd-Line-Option "-H x" von isdnlog.
+Sobald isdnlog feststellt, das seit mehr als "x" Gebuehrenimpulsen (AOC-D)
+von der VSt kein Traffic mehr stattfand (Durchsatz rein sowie raus = 0)
+faehrt isdnlog das gesamte isdn4linux runter.
+
+Dies wird in 4 Stufen versucht:
+
+ 1. Stufe: Es wird ein "isdnctrl hangup isdnX" ausgefuehrt
+
+ 2. Stufe: Es wird der Shell-Script "/etc/isdn/reload" ausgefuehrt
+    	   Dieser sollte das HiSax-Modul ent- und wieder laden.
+           (Siehe "samples/reload")
+
+ 3. Stufe: Es wird ein "isdnctrl system off" ausgefuehrt
+
+ 4. Stufe: Der Rechner wird rebootet ("/sbin/reboot")
+
+In der Parameterdatei wird dieses Feature mit
+
+watchdog="value"
+
+aufgerufen.
+
+
+14.2 CHARGEMAX
+--------------
+
+Mit dem Eintrag
+ CHARGEMAX = x
+in der "/etc/isdn/isdn.conf" kann angegeben werden, das man gewillt
+ist, maximal DM x pro Tag an Telefongebuehren auszugeben.
+Sobald dieses Limit ueberschritten wird, fuehrt isdnlog den Shell-Script
+"/etc/isdn/stop" aus (siehe "samples/stop"), der das isdn4linux
+abschalten sollte.
+
+
+14.3 CONNECTMAX
+---------------
+
+Mit dem Eintrag
+ CONNECTMAX = x,y
+in der "/etc/isdn/isdn.conf" kann angegeben werden, das man gewillt
+ist, maximal x Sekunden pro Monat Online zu sein.
+
+(Ich persoenlich habe dort die 5 Freistunden (5 * 60 * 60 = 18000 Sekunden)
+ meines Providers eingetragen)
+
+Sobald dieses Limit ueberschritten wird, fuehrt isdnlog den Shell-Script
+"/etc/isdn/stop" aus (siehe "samples/stop"), der das isdn4linux
+abschalten sollte.
+
+Getrennt durch ein Komma (",") muss hinter der Anzahl Sekunden angegeben
+werden, in welcher Form der Provider Online-Zeit abrechnet:
+
+  0  = es wird auf die Sekunde genau abgerechnet
+  1  = es wird "pro angefangene Minute" abgerechnet
+
+
+14.4 BYTEMAX
+------------
+
+Mit dem Eintrag
+ BYTEMAX = x,y
+in der "/etc/isdn/isdn.conf" kann angegeben werden, das man gewillt
+ist, maximal x Byte pro Monat vom Provider zu saugen.
+
+(Dies ist relevant bei Providern, die nach Volumen abrechnen)
+
+Sobald dieses Limit ueberschritten wird, fuehrt isdnlog den Shell-Script
+"/etc/isdn/stop" aus (siehe "samples/stop"), der das isdn4linux
+abschalten sollte.
+
+Getrennt durch ein Komma (",") muss hinter der Anzahl Byte angegeben
+werden, in welcher Form der Provider abrechnet:
+
+  0  = auf's Byte genau
+  1  = auf's KByte genau
+  2  = auf's Mbyte genau
+
+  8  = nur die _zum_ Provider geschickten Bytes sollen zaehlen
+ 16  = die Summe aus _zum_ Provider und _vom_ Provider zaehlen
+
+Wird weder 8 noch 16 angegeben, meint das: nur die _vom_ Provider
+gesaugten Byte zaehlen.
+
+
+15. Dual-Mode
+-------------
+
+Wie eingangs erwaehnt, kann isdnlog bei allen rausgehenden Verbindungen,
+die nicht mit der ISDN-Karte entstanden sind (ISDN-Telefon, Modem/Fax)
+die entsprechenden Telefonnummern leider nicht anzeigen.
+
+Mit dem Dual-Mode ist genau dies jedoch moeglich.
+
+Dazu muss der Rechner entweder mit einer zweiten ISDN-Karte, oder
+einer HFC-ISDN-Karte ausgestattet sein.
+
+Werden zwei Karten eingesetzt, muessen auf beiden der HiSax-Treiber
+installiert werden,
+
+Bei mir sieht das so aus:
+
+  modprobe hisax io=0xd80,0xe80 irq=12,9 mem=0xd0000,0xd2000 type=1,1
+  	   protocol=2,2 id=bri1%echo
+
+Dann muss diese zweite Karte (diese muss beim laden des HiSax-Treibers
+auch auf jeden Fall als *zweite* Karte angegeben werden!) _verkehrt_
+am S0-Bus angeschlossen werden:
+
+Beim S0 Kabel an der Karte die aeusseren zwei Draehte auf die inneren
+zwei Anschluesse des Steckers legen. Die beiden inneren nicht
+anschliessen !!!, das legt den Bus lahm.
+
+B  3 -- RX+ 2a ---------------\
+U  4 -- TX+ 1a -- offen        ------------
+S  5 -- TX- 1b -- offen        ------------  Karte
+   6 -- RX- 2b ---------------/
+
+
+Abschliessend muss isdnlog mit der weiteren Option "-2x" gestartet werden.
+Nach heutigem Kenntnisstand ist es nicht moeglich, eine Teles-16.3c
+Karte als Echo-Karte einzusetzen. Ein Grund mehr, diese Karte nicht
+zu kaufen ...
+
+Wird hingegen eine ISDN-Karte mit HFC-Chip eingesetzt, muá isdnlog mit
+den Optionen "-1 -2x" gestartet werden.
+
+
+16. SQL-Anbindung
+-----------------
+
+16.1. Postgres
+--------------
+
+Wird isdnlog mit "POSTGRES=1" erstellt, traegt isdnlog alle
+Verbindungsinformationen zusaetzlich in eine Postgres95 SQL-Datenbank ein.
+(Datenbank "isdn", Tabelle "isdn2")
+
+Da isdnlog die Eintraege im europaeischen Datumsformat (tt.mm.jjjj)
+vornimmt, muss postgres95 zwingend mit EUROPEAN_DATES=1
+(siehe "postgres95/src/Makefile.global") compiliert werden!
+
+Die Datenbank muss zuvor folgendermassen erstellt werden:
+
+  createdb isdn
+  psql isdn < script
+
+Mit folgendem "script":
+
+-------------------------
+create table isdn2 (
+  sdate     date,
+  stime     time,
+  calling   varchar(30),
+  called    varchar(30),
+  charge    int4,
+  dir       char,
+  in_bytes  int4,
+  out_bytes int4,
+  msec      int4,
+  sec       int4,
+  status    int4,
+  service   int4,
+  source    int4,
+  vrsion    int4,
+  factor    real,
+  currency  varchar(30),
+  pay	    real
+);
+\q
+-------------------------
+
+Da isdnlog normalerweise als User "root" laeuft, muss "root" das Recht
+zum Eintragen gegeben werden:
+
+  grant insert on isdn2 to root;
+
+Wie bei postgres95 ueblich kann ueber die Environment-Variablen
+  $PGHOST
+sowie
+  $PGPORT
+auch ein postmaster auf einem anderen Host angesprochen werden.
+
+
+16.2. MySQL
+-----------
+
+Wenn im Konfigurationmenue mysql ausgewaehlt wird, werden alle
+Verbindungsdaten zusaetzlich zur Datei isdn.log in eine Tabelle in der
+Datenbank geschrieben.
+
+Der Name der Datenbank, die Tabelle, der SQL-Host, der Username und
+das Passwort werden in der Datei ./isdnlog/mysqldb.h definiert.
+Standardmaessig enthalten sie folgende Werte.
+
+DB_HOST = localhost
+DB_NAME = isdn
+DB_USER = isdn
+DB_PASSWD = isdn
+DB_TABLE = isdnlog
+
+Zur Erstellung der Datenbank sind folgende Schritte notwendig.
+
+# mysqladmin create isdn
+# mysql mysql < grants.txt  (Inhalt wird spaeter erlaeutert)
+# mysqladmin reload
+# mysql isdn < table.txt    (Inhalt wird spaeter erlaeutert)
+
+Inhalt der Datei grants.txt:
+
+--
+
+INSERT INTO user VALUES ('localhost','isdn',password('isdn'),'N','N','N','N','N','N','N','N','N','N','N','N','N','N');
+INSERT INTO db VALUES ('localhost','isdn','isdn','N','Y','N','N','N','N','N','N','N','N');
+
+--
+
+Inhalt der Datei table.txt:
+
+--
+
+CREATE TABLE isdnlog (
+  sdate date NOT NULL,
+  stime time NOT NULL,
+  calling varchar(32) NOT NULL,
+  called varchar(32) NOT NULL,
+  charge int(4) NOT NULL,
+  dir char(1) NOT NULL,
+  in_bytes int(4) NOT NULL,
+  out_bytes int(4) NOT NULL,
+  msec int(4) NOT NULL,
+  sec int(4) NOT NULL,
+  status int(4) NOT NULL,
+  service int(4) NOT NULL,
+  source int(4) NOT NULL,
+  vrsion int(4) NOT NULL,
+  factor double(16,4) NOT NULL,
+  currency varchar(30) NOT NULL,
+  pay double(16,4) NOT NULL,
+  provider varchar(30) NOT NULL,
+  KEY (sdate,stime),
+  KEY (calling,called),
+  KEY (pay,provider)
+);
+
+--
+
+
+16.3. Oracle
+------------
+
+Wenn im Konfigurationmenue Oracle ausgewaehlt wird, werden alle
+Verbindungsdaten zusaetzlich zur Datei isdn.log in die Tabelle isdn
+in der Oracle-Datenbank geschrieben.
+
+Der Connect-String wird in der Datei ./isdnlog/oracle.h definiert.
+DB_CONNECT_STRING=isdn/isdn
+Durch die Environment-Variable DB_CONNECT_STRING kann der Wert ueberschrieben
+werden. export DB_CONNECT_STRING=user/password@db
+
+In der Datenabnk ist der user anzulegen.
+sqlplus system/system_password
+SQL> create user isdn identified by isdn
+SQL> default tablespace users temporary tablespace temp;
+SQL> grant connect, resource to isdn;
+SQL> quit
+
+Mit dem isdnlog/isdnlog/oracle/Script oracle.sql
+wird die Tabelle isdn angelegt:
+# sqlplus isdn/isdn @oracle
+
+Verbindungsdaten, deren insert fehlschlaegt (DB is offline), landen als SQL
+in /var/log/isdn-fail.sql und koennen mit sqlplus nachgeladen werden.
+
+Das Programm ora_load importiert die bestehende Datei isdn.log in die
+Oracle-Datenbank. (DB_CONNECT_STRING s.o.)
+
+Die Oracle-Umgebung muss fuer isdnlog und ora_load gesetzt sein, alle
+Start-Scripts muessen entsprechend angepasst werden.
+
+Bei mir sieht das so aus
+
+# Oracle 8.0
+export ORACLE_BASE ORACLE_HOME ORACLE_SID ORACLE_TERM ORA_NLS33
+export TNS_ADMIN NLS_LANG LD_LIBRARY_PATH TWO_TASK
+ORACLE_BASE=/ora01/app/oracle
+ORACLE_HOME=/ora01/app/oracle/product/8.0.5
+ORACLE_SID=orcl
+#ORACLE_TERM=vt100
+ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+#NLS_LANG=AMERICAN_AMERICA.WE8ISO8859P1
+TNS_ADMIN=$ORACLE_HOME/network/admin
+# Alternativ in /etc/ld.so.conf
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib
+#PATH="$PATH:$ORACLE_HOME/bin"
+# Default DB
+TWO_TASK=jb2
+
+
+17. Tarifdatenbank
+------------------
+
+Die Tarifdatenbank fuer isdnlog wird bei jedem Neustart von isdnlog aus
+der ASCII-Datei "/usr/lib/isdn/rate-xx.dat" neu generiert.
+
+Anstelle von "xx" tritt das jeweilige Laenderkuerzel, also z.b. "de" fuer
+Deutschland oder "at" fuer Oesterreich.
+
+Welche Tarifdatei gilt, wird ueber den Eintrag
+
+RATEFILE = /usr/lib/isdn/rate-de.dat
+
+im Kapitel
+
+[ISDNLOG]
+
+der Konfigurationsdatei angegeben.
+
+Benutzerbezogene Einstellungen an der Tarifdatenbank (wie Auswahl
+eines bestimmten Tarifes eines Providers (z.b. Sekundentakt oder Minutentakt),
+oder auch der konkrete Provider bei Kennzahlen, die von mehreren Providern
+vergeben werden (z.b. 01098 wird von Star, Nikoma, Mox sowie C@llas verwendet)
+werden in der Datei "/etc/isdn/rate.conf" vorgenommen.
+
+Diese Datei muá ueber den Eintrag
+
+RATECONF       = /etc/isdn/rate.conf
+
+im Kapitel
+
+[ISDNLOG]
+
+der Konfigurationsdatei angegeben werden.
+
+Die Datei "rate-xx.dat" wird in einem Durchgang von oben nach unten eingelesen,
+und muss folgenden Aufbau (als Beispiel hier nun Mobilcom) haben:
+
+#######################################################################
+P:19 Mobilcom CbC
+B:01019
+C:CityLine Telefondienste GmbH, Schwarzer Weg 13, 24837 Schleswig 01019
+G:06.04.1999
+C:MobilCom AG
+C:Homepage: http://www.mobilcom.de
+C:Hotline:  01805/191919
+C:Adresse:  Postfach 1249
+C:	    24822 Schleswig
+Z:2-4 Ferngespraeche bundesweit
+T:*/07-19=0.12/60 Standard
+T:*/19-22=0.08/60 Spar
+T:*/22-07=0.04/60 Nacht
+A:+49
+Z:5-10 Mobilfunk
+A:01610,01617,01619,01618 # C
+A:0170,0171  		  # D1
+A:0172,0173		  # D2
+A:0177,0178		  # Eplus
+A:0176,0179  		  # E2
+T:*/*=0.49/60
+Z:14 Gruppe A
+A:US     # Vereinigte Staaten (USA)
+A:AT    # Oesterreich
+...
+T:*/*=0.49/60
+Z:20 Internet
+A:01929 # (Benutzername: mobilcom; Passwort: mobilcom)
+T:*/*=0.05/60 FreeNet
+#######################################################################
+
+Leerzeilen, sowie Kommentare mittels "#" sind an jeder beliebigen
+Stelle zulaessig.
+
+Die Reihenfolge der Eintraege muss zwingend so wie angegeben sein.
+Es ist auch nicht erlaubt, irgend welche Leerzeichen, Tabs o.ae.
+einzufuegen, als Dezimalkomma muss der "." (Punkt) verwendet werden.
+
+
+Nun die Eintraege im einzelnen:
+
+-> V:
+
+Hiermit wird die Version der Tarifdatenbank angegeben.
+V:Versionsstring (Vorschlag: 1.0-Germany [18-Mar-1999])
+
+-> U:
+
+Damit wird das Waehrungsformat und die Anzahl der Dezimalstellen
+angegeben, z.B.
+U:%.3 DM
+
+-> X:
+
+Mit diesem Eintrag werden Ausnahmen fuer die Proivder/Zonenbestimmung fuer
+gewisse Nummern definiert.
+Der Syntax lautet:
+X:Numregexp=Providernr['z'Zone] ,...
+'Numregep' ist ein regulaere Ausdruch á la glob(7), der die gesamte Nummer
+definiert, 'Providernr' ist die externe Provider-Nummer (s. P:) und Zone ist
+die Zone gefolgt von einem 'z'-Literal, dieser EIntrag ist optional.
+Es können mehrere X:Eintäge vorhanden sein, und der X:-Tag kann auch in
+raate.conf verwendet werden, um spezielle Tarifmodelle wie "5 Freunde" zu
+konfigurieren.
+
+z.b
+[^0]*=33  # alle lokalen Gespraeche -> DTAG
+01234567=1z5 # diese Nummer ist immer Provider 1 Zone 5
+
+-> B:
+
+Verbindungsbetreibernummer
+
+-> P:
+
+Hiermit beginnt die Definition des (naechsten) Providers.
+Es wird die Kennzahl, evtl. eine laufende Nummer sowie die
+Bezeichnung des Providers definiert. Diese Bezeichnung ist moeglichst
+kurz zu halten, da isdnlog diese staendig anzeigt.
+Unter Kennzahl versteht isdnlog hier die Vorwahl vor der eigentlichen
+Telefonnummer, ueber die der jeweilige Anbieter verwendet werden kann.
+In Deutschland sowie Oesterreich muá z.b.
+
+  01019 040 4711
+
+gewaehlt werden, um die Telefonnummer 4711 in Hamburg (040) ueber den
+Telefondienstanbieter (=Provider) 19 (Mobilcom) zu erreichen.
+
+Beispiel:
+
+P:19,0 MobilCom
+
+Gibt es fuer eine Kennzahl mehrere Alternativen (wie verschiedene Provider
+oder verschiedene Tarife), werden diese hierueber auseinander gehalten.
+Der erste Tarif bekommt "P:xx,0", der naechste "P:xx,1" usw.
+Gibt es keine Alternativen, darf das ",0" entfallen.
+Dieser Eintrag muss mit rate.conf übereinstimmen.
+
+
+-> C:
+
+Hiermit koennen beliebig viele Kommentare eingefuegt werden, Beispiel:
+
+C:Homepage: http://www.mobilcom.de
+C:Hotline:  01805/191919
+C:Adresse:  Postfach 1249, 24822 Schleswig
+
+Im Gegensatz zu den "#" Kommentaren werden diese Kommentare von isdnlog
+gespeichert und sollten daher zumindest genug Informationen enthalten,
+um eine Kontaktaufnahme mit der jeweiligen Telefongesellschaft zu
+ermoeglichen.
+
+-> D:
+
+Damit wird die Art der Inlandsverzonung (D steht für Domestic) angegeben.
+Der Name wird mit dem Eintrag in der isdn.conf
+
+ZONEFILE=/usr/lib/isdn/zone-de-%s.dat
+
+zum Pfad zur Verzonungstabelle zusammengebaut. Mehrere Provider können
+dieselbe Verzonungstabelle nutzen.
+
+Nun folgen die eigentlichen Tarifinformationen. Es wird zuerst die
+Tarifzone, und danach die Kosten innerhalb dieser Zone angegeben. Es koennen
+beliebig viele Zonen, jeweils gefolgt von beliebig vielen Kosten
+angegeben werden.
+
+-> R: Provider, Subnummer ; Zonenliste
+
+Liest Zoneneintraege (Z: s. unten) vom angegebenen 'Provider,Subprovider'.
+Ist der Subprovider nicht definiert, muss -1 angegeben werden.
+Zonenliste ist eine Zonenummer oder Von_Zone - Bis_Zone, mehrere Eintraege,
+durch Beistrich getrennt, sind moeglich. Der letze Eintrag 'Bis_Zone' kann
+auch entfallen, dann werden von 'Von_Zone' bis zum Ende alle Zonen vom
+referenzierten Provider uebernommen.
+Die referenzierten Zoneneintraege koennen vor oder nach dem R:-Tag definiert
+sein, muessen aber echte Zoneneintrage sein, d.h. mit Z;/A:/T: definierte
+Zonen.
+
+z.B.
+ R:1,0; 4-6,8,200-
+
+-> Z:
+
+Gibt die Zone an. Grundsaetzlich koennen die Zonen vollkommen willkuerlich
+vergeben werden. Dies haengt vom jeweiligen Land und/oder
+Telefondienstprovider ab. Aber prinzipiell sollten zuerst die Inlands-
+und dann die Auslandszonen definiert werden.
+
+Fuer Deutschland habe ich folgende Zonenzuordnung getroffen:
+
+  0 : Verbindungen an der eigenen Tk-Anlage (zwangslaeufig kostenlos)
+      sowie alle "FreeCall" (kostenlos) Nummern des jeweiligen Providers
+  1 : Ortszone (alle Nummern, die ohne Vorwahl erreichbar sind.
+      Z.Zt. nur ueber den preselected Provider erreichbar)
+  2 : Cityzone (Nummern im Umkreis von max. 20 km)
+  3 : Region 50 (Nummern im Umkreis von max. 50 km)
+  4 : Fernzone (Deutschlandweit)
+ 100 : Internet
+ 200 : Ausland
+
+Diese Zuordnung muá erhalten bleiben, da isdnlog fuer Deutschland bereits
+eine Verzonungstabelle (der DTAG) enthaelt. In dieser Verzonungstabelle
+kann isdnlog nachschlagen, welche der obigen Zonen zwischen zwei
+gegebenen Telefonnummern liegt.
+
+
+Falls ein Provider in mehreren Zonen denselben Tarif anbietet, kann das
+durch die Notation Z:1-2 (bedeutet: Gilt sowohl fuer die Orts- als die
+Regionalzone) oder auch Z:5-10 (bedeutet: Gilt fuer alle Funknetze) angegeben
+werden. Moeglich ist auch: Z:5,7,9-10
+Die Nummer der Zone kann durch eine textuelle Bezeichnung fuer diese
+Zone gefolgt werden, also z.b.
+
+  Z:4 GermanCall
+
+
+-> A:
+
+Telefonnummer(n), an der isdnlog die Zone erkennen kann.
+Die Zonen
+  0 : Verbindungen an der eigenen Tk-Anlage
+  1 : Ortszone
+  2 : Cityzone
+  3 : Region 50
+  4 : Fernzone
+kann isdnlog automatisch (mittels der Verzonungstabelle) erkennen. Daher
+muessen fuer diese Zonne in Deutschland keine "A:" Eintraege vorgenommen
+werden (das waere auch eine lange Liste ;-)
+Die Fernzone bzw. letzte Inlandszone muß einen Eintrag A:+49 (bzw. A:DE, bzw
+eigener Country-Code) enthalten.
+Von allen anderen Zonen weiss isdnlog intern nichts.
+
+Durch einen Eintrag
+
+Z:8 D2-Netz
+A:0172,0173
+
+wird isdnlog bekannt gemacht, das alle Telefonnummern, die mit "0172" oder
+"0173" beginnen, in die Zone 8 gehoeren.
+
+Auslandsnummern werden über ihren Landescode eingegeben.
+Die Umsetzung von z.b A:+1 in A:US erledigt der Rate-Preprozessor pp_rate.
+
+Ueber diesen "A:" Tag werden isdnlog auch alle "Sonderrufnummern" bekannt
+gemacht. Durch den Eintrag
+
+Z:0 FreeCall
+A:110   # Polizei / Notruf
+A:112   # Feuerwehr / Rettungsleitstelle
+A:0010  # Operator Service
+A:0130  # freecall 0130
+A:0800  # freecall 0800
+
+weiss isdnlog, das alle Nummern, die mit "110", "112", "0010", "0130" oder
+"0800" beginnen, kostenlos sind.
+
+-> T:
+
+Hiermit wird letztendlich der eigentliche Tarif angegeben.
+
+T:Tag[-Spanne][,Tag]/Zeit[-Spanne][,Zeit]=Kosten[,Kosten] Name
+
+wobei Tag in der Form 1-5 oder 1,2,3,4,5 stehen kann, 1=Montag, es gibt
+noch * fuer alle Tage und H fuer Holiday=Feiertag sowie
+W=Werktag (entspricht 1-5) sowie E=Weekend (entspricht 6-7)
+Welcher Tag ein Holiday (Tag mit verguenstigen Tarifen) ist, entnimmt
+isdnlog der Datei "holiday-xx.dat" (Mit "xx" fuer das Land, in dem sich
+isdnlog befindet). Auch diese Datei muss ueber den Eintrag
+
+HOLIDAYS = /usr/lib/isdn/holiday-de.dat
+
+im Kapitel
+
+[ISDNLOG]
+
+der Konfigurationsdatei angegeben werden.
+
+
+die Zeit sieht aehnlich aus, 8-12 oder 8,9,10,11 oder 8-12,13-17
+ACHTUNG: 8-12 bedeutet 8:00 bis 11:59 !!!
+
+Kosten: Kosten einer Einheit/Dauer der Einheit z.B. 0.56/30; Kosten und
+Dauer sind doubles; bei mehreren Kosten kann/soll die Verzoegerung, nach
+der auf den naechsten Kostenwert gewechselt werden soll, mit ':'getrennt
+angegeben werden
+z.B. 0.56/30:600,0.56/60 heisst: zuerst alle 30 Sekunden, nach 10 min
+alle 60 Sekunden
+Wenn das Delay nicht angegeben wird, wird die Taktdauer als Delay
+verwendet (d.h. die Kosten gelten nur fuer eine Einheit)
+Der letzte Kosteneintrag darf kein Delay haben!
+
+Sonderfaelle:
+Grundkosten pro Gespraech:
+1.0/0,0.40/30: 1 DM pro Verbindung, danach alle 30 Sekunden eine Einheit
+zu 40 Pfennig
+
+Freie Gespraechszeit:
+0/10,0.50/30: 10 Sekunden mit 0 DM, dann alle 30 Sekunden 50 Pf
+
+Abgeschlossen wird der Tarif durch eine textuelle Bezeichnung, wie z.b.
+
+T:1-5/09-18=0.96/60 Hauptzeit
+
+Da in den meisten Preislisten die Tarife in DM/Minute angegeben werden,
+gibt es die Spezialnotation:
+
+T:1-5/07-09=0.09(60)/1
+
+Dies bedeutet: Der Minutenpreis betraegt DM 0.09 - abgerechnet wird
+jedoch im Sekundentakt.
+Um nun nicht alle Minutenpreise in Sekundenpreise umrechnen zu muessen,
+und auch, um nicht arge Rundungsprobleme zu provozieren
+(ohne die (60) Funktionalitaet wuerde hier stehen: ...0.0015/1),
+sollte stets diese Form gewaehlt werden.
+
+Um die korrekte Funktion vor allem von CHARGEINT zu gewaehrleisten, ist
+es von extremer Wichtigkeit, die richtigen Taktlaengen anzugeben, und
+hier nicht "kuenstlich" umzurechnen!
+
+Es folgen in beliebig vielen weiteren "T:" Zeilen alle weiteren Tarife
+fuer die darueber definierte Zone.
+
+Danach wird mittels "Z:" die naechste Zone begonnen, wiederum gefolgt von
+beliebig vielen "T:" Tarifen.
+
+
+Sind alle Tarife eines Anbieters definiert, folgt mittels "P:"
+der naechste Provider usw.
+
+
+
+In der Datei "/etc/isdn/rate.conf" werden die Benutzerabhaengigen
+Einstellungen an der Tarifdatenbank vorgenommen.
+Beispiel:
+
+# Kennzahl 98, moegliche Varianten:
+#   0=Nikoma Minutentakt
+#   1=Nikoma Sekundentakt
+#   2=Nikocity Minutentakt
+#   3=Nikocity Sekundentakt
+#   4=Mox Telecom AG
+#   5=C@llas Clever Communications
+P:98=4
+
+Hier wird definiert, das der konkrete Anwender bei einer Verbindung ueber
+die Kennzahl "98" den Tarif der Fa. Mox Telecom AG meint.
+
+
+18. LCR (Least cost router)
+---------------------------
+
+Seit dem 1.1.1998 duerfen in Deutschland ganz offiziell (im kommerziellen
+Umfeld war das schon laenger gang und gebe) auch andere Firmen
+(neben der DTAG = Deutsche Telekom) Telefondienste anbieten.
+
+Dazu wurde die RegTP - Regulierungsbehoerde fuer Telekomunikation und Post
+(http://www.regtp.de) ins Leben gerufen, die seitdem (u.a.) die
+Verbindungsnetzbetreiberauswahlkennziffern vergibt.
+
+Ueber diese Nummern kann nun jeder selbst entscheiden, ueber welchen
+Provider (== Telefongesellschaft) er fuer das folgende Telefonat telefonieren
+moechte.
+
+Daher taucht im Bereich der Telekomunikation ein neuer - bislang primaer
+in den USA gelaeufiger Begriff auf: das LCR, Least cost routing, d.h. die
+Auswahl des guenstigsten Providers fuer eine gleich entstehende Verbindung.
+
+
+Dazu muss folgendermassen gewaehlt werden:
+
+
+  010 xxx 49 69 123456
+   ^-------------------------- Verbindungsnetzbetreiberauswahl
+       ^---------------------- Nummer des gewuenschten Providers
+           ^------------------ Landesvorwahl
+              ^--------------- Ortsvorwahl
+                  ^----------- Rufnummer
+
+Endet der Ruf im eigenen Land, kann die Landesvorwahl entfallen.
+Endet der Ruf im eigenen Ortsnetz, kann die Ortsvorwahl (bis auf weiteres)
+entfallen.
+
+Mittels "xxx" wird der gewuenschte Provider selektiert, wobei die RegTP
+zuerst alle 99 2-stelligen Nummern vergeben hat, und danach dazu ueber ging,
+dreistellige Nummern, bislang i.d.F, 0xx zu vergeben.
+
+Um ein konkretes Beispiel zu machen: Wenn man beabsichtigt, von Muenchen
+nach Frankfurt ein Telefonat mit der Nummer 4711 zu fuehren, und dazu
+den Provider VIAG Intercom verwenden moechte, waehlt man folgende Nummer:
+
+   010 90 069 4711
+    ^---------------- Verbindungsnetzbetreiberauswahl
+       ^------------- VIAG Intercom
+           ^--------- Frankfurt
+              ^------ Rufnummer
+
+
+Ein grundlegendes Problem wurde jedoch bislang nicht geloest: Sobald man
+ueber einen alternativen Carrier (also irgend eine Telefongesellschaft
+jenseits der DTAG) eine Verbindung aufbaut, werden keinerlei Gebuehren-
+informationen mehr uebertragen - weder waehrend, noch am Ende der
+Verbindung.
+D.h. die schoenen "Leistungsmerkmale" AOCD sowie AOCE funktionieren _nicht_
+mehr.
+
+Daher macht es per heute (1999) wirklich absolut keinen Sinn mehr, einen
+ISDN-Komfort-Anschluss zu beantragen! Das dort enthaltene "Leitungsmerkmal"
+Gebuehreninformationen waehrend der Verbindung wird sowieso nur noch bei
+Verbindungen ueber die DTAG erbracht (da die DTAG meistens die teuerste
+Gesellschaft ist, kommt das also praktisch nie mehr vor ...)
+Wer den isdnlog (und eine up-to-date "rate-xx.dat") verwendet, bekommt jedoch
+bei *allen* Gesellschaften - incl. der DTAG - Gebuehreninformationen geliefert,
+in Bezug auf AOCD (waehrend der Verbindung) sogar genauer, als die
+von der DTAG!
+
+
+Was kann nun isdnlog (ab der Version 3.x) mit dieser neuen Situation anstellen?
+
+1. isdnlog erkennt eine evtl. vorgewaehlte Verbindungsnetzbetreiberauswahl,
+   und dekodiert den entsprechenden Provider heraus.
+
+   Dazu greift isdnlog auf drei Quellen zurueck:
+     - zum ersten besitzt isdnlog ... bislang hardcoded ... die Namen
+       aller bislang bei der RegTP angemeldeten Provider. Von den bis zum
+       11.Maerz 1999 angemeldeten 126 Telefongesellschaften bieten allerdings
+       noch bei weitem nicht alle wirklich Telefondienste an.
+
+     - zum zweiten besitzt isdnlog eine Tarif-Datenbank, die Datei
+       "/usr/lib/isdn/rate-xx.dat"
+       Dort sind die Tarife der diversen Telefongesellschaften hinterlegt.
+
+       Da sich die Tarife haeufig sogar taeglich aendern, kann diese
+       Datei im Moment nur als Anhaltspunkt angesehen werden. Zu welchem
+       Zeitpunkt die dort hinterlegten Tarife mit Sicherheit gueltig waren,
+       kann dem Eintrag "V:" am Anfang der Datei entnommen werden.
+       Sollte mir irgend jemand verbesserte Tarifinformationen zuschicken
+       (an akool@isdn4linux.de), bitte ich darum, immer auch diese
+       Versionsnummer zu incrementieren!
+
+     - diverse Telefongesellschaften arbeiten mittlerweile mit sog.
+       Resellern - Firmen, die unter derselben Verbindungsnetzbetreiberauswahl
+       zu unterschiedlichen Tarifen Telefondienste anbieten. Hierzu muss man
+       sich bei einem der Reseller zuerst anmelden - meistens kostenlos.
+
+       Zum Beispiel hat die Firma Star Telecom die
+       Verbindungsnetzbetreiberauswahl 01098 erhalten, bietet jedoch an
+       Privatkunden praktisch gar keine Telefondienste an.
+
+       Stattdessen verkauft Star ihre Dienste weiter an die Firmen
+
+         Nikoma, Mox sowie C@llas
+
+       Ist man gewillt, ueber eine dieser drei Firmen zu telefonieren,
+       muss man sich zuerst dort anmelden. Erschwerend kommt hinzu, dass alle
+       diese Firmen noch unterschiedliche Tarif-Varianten anbieten:
+
+         - Abrechnung im Minutentakt
+         - Abrechnung im Sekundentakt, dafuer etwas teurer
+         - besondere Abrechnung, wenn man in einer sog. Superregion, d.h.
+           einer Grossstadt wie Frankfurt, Muenchen, Hamburg, Stuttgart usw.
+           wohnt.
+
+       Da jedoch alles oben genannte ueber ein und dieselbe
+       Verbindungsnetzbetreiberauswahlkennziffer, im Beispiel also
+       01098 laeuft, ist isdnlog absolut ausser Stande zu entscheiden,
+       was nun gemeint ist, wenn eine Verbindung mit der Nummer "01098"
+       beginnt.
+
+       Daher sieht isdnlog in der Datei "/etc/isdn/tarif.conf" nach,
+       welcher konkrete Provider sowie welche konkrete Tarifvariante
+       gemeint ist, wenn z.b. die Nummer 01098 auftaucht.
+       Diese Datei muss dementspechend jeder entsprechend seiner eigenen
+       Situation fuellen.
+
+2. Anhand des ermittelten Providers kann isdnlog nun berechnen, was dieser
+   Provider fuer eine Verbindung verlangt, und wie lang bei diesem Provider
+   ein "Gebuehrentakt" dauert.
+
+   Mit diesen Informationen macht isdnlog per heute folgendes:
+
+     1. Er ist in der Lange, am Ende einer Verbindung auszugeben, was die
+     	gerade beendete Verbindung gekostet hat.
+
+     2. Er ist in der Lage, den CHARGEINT von isdn4linux neu zu setzen,
+     	d.h. die Steuerung, wann eine ISDN-Data-Verbindung auflegen soll,
+        um genau in einen Gebuehrentakt hineinzupassen.
+
+     3. Er ist in der Lage, den Gebuehrentakt (-> AOCD) zu "erfinden", und
+     	auszugeben. Dieser dazuerfundene Gebuehrentakt wurde CI (fuer
+        ChargeInt) getauft.
+
+     4. Da isdnlog von (fast) allen aktiven Providern die Tarifinformationen
+     	besitzt, macht er zu Beginn einer Verbindung evtl. den Vorschlag,
+        einen anderen - guenstigeren - Provider zu waehlen.
+
+       	Das ist (leider) nur fast das, was ein sog. LCR (least-cost-router)
+        erbringt. Ein echter LCR sagt nicht, welchen Provider man haette
+        benutzten sollen, sondern benutzt genau diesen automatisch.
+        Dies ist aber per heute leider aufgrund der Physik einer
+	handelsueblichen ISDN-Karte nicht moeglich.
+        (Ich persoenlich benutze seit dem 1.1.1998 eine Tk-Anlage mit
+         internem S0-Bus, an dem alle ISDN-Telefone angeschlossen sind)
+
+3. Praktisch alle neuen Provider kaempfen mit einem ueblen Problem: Sie
+   besitzen (in Relation zur DTAG) nur eine sehr begrenzte Anzahl freier
+   Leitungen. Besonders Provider, die mit extrem guenstigen Angeboten
+   locken, sind erst nach 10 .. 20 maligem Versuchen verfuegbar.
+   (Das beste Beispiel z.Zt. (Maerz 1999) ist sicherlich die Firma
+    01079:Viatel, die zwar extrem guenstige Tarife anbietet, aber praktisch
+    nie verfuegbar ist)
+   Dieses Problem kann natuerlich auch isdnlog nicht aus der Welt schaffen,
+   jedoch bringt isdnrep eine Statistik
+   (in der Rubrik "Outgoing calls ordered by Provider") mit der
+   prozentualen Verfuegbarkeit jedes benutzen Providers.
+   Diese Verfuegbarkeitsrate bezieht sich natuerlich nur auf die jeweils
+   eigenen Daten.
+
+
+4. Zum echten LCR gehoert aber noch etwas anderes! Bei den normalen
+   Telefonnummern ist es einfach (naja, ich habe ueber 3 Jahre gebraucht,
+   bis isdnlog das konnte), anhand einer Vorzonungstabelle zu berechnen,
+   was eine Verbindung zwischen A und B kostet. Leider gibt es jedoch in
+   Deutschland ca. 210 sog. Sonderrufnummern, die sich nicht dem ueblichen
+   Schema unterziehen. Ein sehr bekanntes Beispiel fuer eine Sonderrufnummer
+   iat die Telefonnummer "112 -> Feuerwehr"
+   Die Telefonnummer 112 kostet nichts, was aber beileibe nicht fuer alle
+   Sonderrufnummern gilt. Ganz im Gegenteil: Es gibt viele Sonderrufnummern,
+   die weit mehr kosten, als die Fernzone! Bekannt sind hier sicherlich
+   alle Rufnummern, die mit 0180 oder 0190 beginnen, oder die div.
+   Telefonauskunften 118xx
+   Dummerweise kosten diese Sondernummern bei jedem Provider etwas anderes,
+   oder werden Fallweise von dem einen oder anderen Provider gar nicht
+   unterstuetzt.
+
+   Da sich die Tarife manchmal sogar taeglich aendern, lebt isdnlog
+   natuerlich von einer stets aktuellen "rate-de.dat". Diese Datei
+   wird z.Zt. von der Rate-Crew in einem CVS gepflegt, und taeglich
+   aktuell unter folgender Adresse zur Verfuegung gestellt:
+
+      http://rates4linux.sourceforge.net/
+
+
+   Wer Fehler in der Tarifdatenbank findet, oder gar Verbesserungen oder
+   neue Anbieter dafuer zusammengestellt hat, schickt diese bitte an
+   folgende Adresse:
+
+      rates@gmx.de
+
+
+19. Probleme?
+-------------
+
+Sollte isdnlog nicht wie beschrieben arbeiten, muessen folgende Punkte
+geprueft werden:
+
+ - Funktioniert isdn4linux ? D.h. kann eine ISDN-Verbindung zu einer
+   Gegenstelle aufgebaut werden?
+
+ - Wurde mittels "hisaxctrl <DriverID> 1 4" das D-Channel-Logging
+   eingeschaltet?
+
+Als kostenlose Testmoeglichkeit fuer isdnlog bietet es sich an, den Hoerer
+eines ISDN-Telefon's abzunehmen, und gleich wieder aufzulegen. Dies muss
+isdnlog als "HANGUP" melden.
+
+Daneben kann man sich natuerlich auch selbst anrufen, wobei man am besten
+die MSN anruft, auf der isdn4linux nur die Dienstkennung DATA zulaesst.
+Also wird dieser Testanruf von isdn4linux abgelehnt, was isdn4linux auch
+dementsprechend melden sollte.
+
+Falls der begruendete Verdacht auf ein Fehlverhalten von isdnlog besteht,
+bitte ich darum, mir ein mit "isdnlog -v1" erstelltes Protokoll nebst
+einer aussagekraeftigen Fehlerbeschreibung zuzuschicken.
+
+Das Protokoll sollte nur noch die
+  "Q.931 frame ..."
+sowie
+  "hex: ..."
+Zeilen enthalten (resp. beim HiSax-Treiber nur noch die "HEX:" Zeilen),
+der Rest wird von isdnlog nicht benoetigt!
+
+Diese Fehlermeldung sollte bitte an "akool@isdn4linux.de" geschickt
+werden.
+
+
+ - Bei jeder Anwahl von draussen an meine ISDN-Karte meldet mir isdnlog
+   2 HANGUP's?
+
+   Bei einem eingehenden Ruf melden alle Geraete, die sich zustaendig
+   fuehlen, an die Vermittlungsstelle, dass sie "klingeln".
+   (Die Klingel-Wiederholungen machen bei ISDN die Geraete selbst.)
+
+   Das Geraet, an dem der Ruf angenommen wird, bekommt den CONNECT,
+   alle anderen, die geklingelt haben, ein HANGUP, damit sie mit
+   dem Klingeln wieder aufhoeren. Dasselbe passiert natuerlich auch,
+   wenn der Anrufer vor dem Abnehmen schon auflegt.
+
+   D.h. der erste HANGUP stammt vom 2. B-Kanal der ISDN-Karte, der den
+   Anruf ablehnt!
+
+   Die ISDN-Karte spielt die Rolle von zwei Geraeten, wohl weil ein
+   Geraet zu einer Zeit immer nur eine Dienstkennung haben kann,
+   die ISDN-Karte koennte aber gleichzeitig eine Voice- und eine Data-
+   Verbindung fahren (nur (noch?) nicht unter i4l).
+   Fehlt also nach dem CONNECT der ISDN-Karte der HANGUP des zweiten
+   Kanals, ist das ein Indiz dafuer, dass dieser haengt.
+
+ - Es wird bei isdnlog, isdnrep und xisdn immer nur die letzte Ziffer der
+   eigenen MSN's angezeigt. Das Verhalten tritt bei bilingualen NT's auf.
+   Dann muss isdnlog mit der Option -b gestartet werden.
+
+ - Es werden die Programme nicht gestartet, die zu den Events ausgefuehrt
+   werden sollen.
+   Dort gibt es mehrere Ursachen. Haeufig liegt das Programm nicht
+   im Pfad, weil der isdnlog meistens in der Bootphase gestartet wird.
+   Daher sollte das Programm mit vollem Pfad gestartet werden.
+   Die folgende Zeile fuehrt zu mehreren Problemen:
+   "/usr/local/bin/myplayer '~fred/*.au'"
+   Die Anfuerungszeichen und die Hochkomma werden so dem execvp() uebergeben.
+   Der kann dieses aber nicht aufloesen. Also wird versucht das Programm
+   "/usr/local/bin/myplayer zu starten.
+   Auch der Parameter fuehrt zu Problemen. Das Hochkomma (') wird mit
+   uebergeben. Ausserdem wird ~fred NICHT in /home/fred umgewandelt. Und auch
+   *.au wird so uebergeben und es wird versucht vom Programm *.au  abzuspielen.
+   Die Zeile sollte also richtig so aussehen:
+   /usr/local/bin/myplayer /home/fred/telefon.au
+
+Bei Verwendung vom xisdn:
+
+Der xisdn meldet:
+
+  - "Nicht autorisierter Zugriff auf Server"
+      Der Benutzer, der xisdn gestartet hat, ist nicht in der
+      Datei /etc/isdn/isdnlog.users eingetragen, oder
+      er darf xisdn von dem Host nicht starten.
+
+  - "Server und Client haben unterschiedliche Protkollversionen"
+      Der xisdn und isdnlog kommen jeweils aus verschiedenen Versions-Paketen.
+      Die Protokollversion hat nichts mit der Version von isdnlog zu tun.
+      Der Client kann unter Umstaenden laufen, aber es kommt bestimmt
+      zu Fehlverhalten. Daher sollten beide Programme immer aus einem
+      Paket stammen. Wenn ein beliebiger Client mit isdnlog
+      Version 2.23 oder 2.30 gestartet wird, kommt die obige Meldung leider
+      nicht. Es kann dann auch zu Fehlverhalten fuehren, welches
+      vom Client nicht gemeldet wird.
+
+Wenn keine Gespreache und keine Verbindungen angezeigt werden, oder nur
+bestimmte MSN's, dann liegt der Fehler mit Sicherheit bei den Rechten des
+entsprechenden Benutzers in der Datei /etc/isdn/isdnlog.users.
+
+Wenn der isdnlog mit einem Segmentation-fault oder mit der Meldung
+"Got signal 11" abbricht, dann sollten folgende Schritte durchgefuehrt
+werden, um Debuginformationen zu erlangen, die an die
+"akool@isdn4linux.de" zu senden sind:
+
+Im isdnlog-Verzeichnis
+
+make clean
+# Nun im "Makefile" "CFLAGS = -O3" in "CFLAGS = -g" aendern
+make install
+
+ulimit -c unlimited
+bin/isdnlog   "Parameter _ohne_ -D"
+
+Die angegebenen Flags  (-x, -l oder -m) _muessen_ 0x8000 enthalten, da sonst
+kein Segmentation-fault auftritt.
+
+Wenn ein Segmentation-fault auftritt:
+
+gdb bin/isdnlog
+# Im Debugger "where" eingeben.
+
+Den _gesamten_ Output an die oben angegebene Adresse senden.
+
+
+20. Verwendete Dateien
+----------------------
+
+Folgende Files werden von diesem System verwendet:
+
+  /sbin/isdnlog              - Das Protokoll-Programm
+  /usr/bin/isdnrep           - Das Report-Programm
+  /usr/bin/isdnconf          - Das Konfigurationstool
+  /etc/isdn/isdnlog.conf     - Die alte Config-Datei
+  /etc/isdn/isdn.conf        - Die neue Config-Datei
+  ~/.isdn                    - Die Config-Datei des Benutzers
+  /etc/isdn/isdnlog.users    - Die User-Access-Datei
+  /etc/isdn/charge.dat       - Zwischenspeicher fuer die ChargeMax-Funktion
+  /etc/isdn/reload           - Script zum Wiederanfahren eines verklemmten i4l
+  /etc/isdn/stop    	     - Script zum Stoppen bei erreichen von CHARGEMAX
+  /etc/isdn/dontstop         - verhindert temporaer die CHARGEMAX-Funktion
+  /usr/lib/isdn/rate-xx.dat  - Tarifdatenbank
+  /usr/lib/isdn/zone-xx-yy.gdbm - Nationale Verzonungstabellen
+  /usr/lib/isdn/dest-xx.gdbm - Internationale Vorahlen und Orte
+  /var/log/isdn.log	     - Das Logbuch
+  /var/run/isdnlog.pid	     - Enthaelt die PID des laufenden isdnlog
+  /dev/isdnctrl0	     - Gibt das Q.931 Protokoll des HiSax-Treibers aus
+  /dev/isdninfo		     - Interne Meldungen von isdn4linux
+  /tmp/isdnctrl0	     - Protokoll obiger Devices als ASCII-Datei
+  /usr/X11R6/lib/X11/app-defaults/Isdn - Resourcefile fuer xisdn
+
+  s. [20.a] Datenbanken
+
+20.a Datenbanken
+----------------
+
+In alle den vorhergehenden Beispielen wurde '.gdbm' als Endung der
+Zonen- oder Destination-Datenbank genannt. Das haengt aber von der
+vorhandenen Konfiguration ab, welche Datenbank-Bibliotheken auf dem
+Rechner unterstuetzt sind.
+Ueber die Erkennung und das Verwenden verschiedenr DB-Systeme gibt
+es in der exim-Dokumentation (www.exim.org, [.tgz..] doc/dbm.discuss.txt)
+eine sehr ausfuehrliche Zusammenfassung.
+
+Isdnlog/rep/rate verwendeten bis dato (27.7.2000) den Gnu Database Manager
+(gdbm) als Standard, Konfigurationsoptionen fuer ndbm und db sind zwar
+vorhanden, ich weiss aber nicht, ob sie funktionieren.
+
+Nun verwendet isdnlog standardmaessig die Constant DataBase von
+D. J. Bernstein <http://cr.yp.to/cdb.html>.
+
+In tools/NEWS ist u.a. auch eine Prozedur zum Switchen zwischen gdbm und
+cdb beschrieben.
+
+
+21. Verwendete Environment-Variablen
+------------------------------------
+
+Folgende Environment-Variablen werden von diesem System verwendet:
+
+  $ISDNLOG = Verzeichnis, in dem sich die Konfigurations-Dateien
+  	     befinden (z.b. "export ISDN_CONF_PATH=/etc/isdn")
+
+  $XENVIRONMENT = Vollstaendiger Pfad der Resourcen-Datei fuer den
+  		  X-Client "xisdn"
+
+
+22. Verwendete Abkuerzungen
+---------------------------
+
+  VSt     = Vermittlungsstelle (das Amt)
+
+  AOCD	  = Advice of Charge during call
+  	    (Gebuehreninfo waehrend der Verbindung == Gebuehreninfo A)
+
+  AOCE	  = Advice of Charge at end of call
+  	    (Gebuehreninfo am Ende der Verbindung)
+
+  Q.931   = Das von der ITU genormte Protokoll auf dem D-Kanal
+
+  D-Kanal = Der Steuerungskanal im ISDN
+
+  B-Kanal = Der Datenkanal im ISDN
+
+  tei     = Terminal Endpoint Identifier
+
+  Gegner  = Eine Gegenstelle
+
+  MSN	  = Multiple subscriber number (Telefonnummer)
+
+  E-DSS1  = Das Euro-ISDN-Protokoll
+
+  1TR6	  = Das nationale ISDN-Protokoll
+
+  SI	  = Service-Indicator (Dienstkennung)
+
+  CLIP	  = Calling Line Identification Presentation
+
+  CLIR	  = Calling Line Identification Restriction
+
+  COLP	  = Connected Line Identification Presentation
+
+  COLR	  = Connected Line Identification Restriction
+
+  BRI	  = Basic rate interface (2 B-Kanaele)
+
+  PRI	  = Primary rate interface (30 B-Kanaele)
+
+
+23. Danksagung
+--------------
+
+Bedanken moechte ich mich vor allem bei
+  Fritz Elfert (fritz@isdn4linux.de)
+fuer isdn4linux, sowie
+  Jan den Ouden (denouden@groovin.xs4all.nl)
+fuer den ISDN-Treiber.
+
+Bei
+  Beat Doebeli (doebeli@vptt.ch)
+fuer den Einbau jeglicher D-Channel Messages, sowie
+  Michael Bongartz (micha@mubo.saar.de)
+fuer die Entdeckung der AOC-D sowie AOC-E Bytes im D-Kanal-Protokoll
+
+Bei
+  Kai Voelcker (kai@fantaghiro.deceiver.org)
+sowie
+  Martin Stover (mstover@Stover.f.UUnet.de)
+und vielen anderen aus der isdn4linux Mailing-Liste fuer ihre Muehen
+beim Testen von isdnlog, staendigen neuen Ideen dafuer sowie
+fuer die unzaehligen Testdaten.
+
+Bei
+  Karsten Keil (isdn4@temic-ech.spacenet.de)
+fuer die 1TR6 Unterstuetzung von isdnlog, und natuerlich vor allem fuer
+seinen HiSax-Treiber sowie das neue Protokoll zwischen HiSax und isdnlog.
+
+Bei
+  Jochen Heuer (jogi@planetzork.ping.de)
+fuer seinen Kampf mit den neuen Tarifen der Telekom
+
+Bei
+ Hardy Buchholz (hardy@Kool.f.UUnet.de)
+der viele Ideen zum CHARGEMAX beigetragen hat
+
+Bei
+  Ad Aerts (ad@aasup.nl)
+der die Gebuehrenauswertung fuer die Niederlande beigesteuert hat
+
+Bei
+  Markus Maeder (mmaeder@cyberlink.ch)
+der die Gebuehrenauswertung fuer die Schweiz korrigiert hat
+
+Bei
+  Paul Slootman <paul@wau.mis.ah.nl>
+der die Gebuehrenauswertung fuer die Niederlande korrigiert,
+sowie unzaehlige Fehler beseitigt hat. Daneben verdankt isdnlog
+Paul die schoenen man-Pages sowie die Debian Distribution.
+
+Bei
+  Michael Reinelt <reinelt@eunet.at>
+sowie
+  Leopold Toetsch <lt@toetsch.at>
+die die gesamte Anpassung fuer Oesterreich implementiert haben
+
+Bei
+  Markus Leist (markus@hal.dirnet.com)
+fuer die Anbindung an postgres95
+
+Bei
+  Dirk Staneker (dirk.staneker@student.uni-tuebingen.de)
+fuer die Idee und das Design des HTML-Formats des isdnrep
+
+Sowie bei
+  Ullrich von Bassewitz (uz@musoftware.com)
+fuer die "AreaCode" Library (AVON-Verzeichnis)
+
+Weiterer Dank gebuehrt der Rate-Crew
+  Jochen Erwied <j.erwied@gmx.de>
+  Alexander Werner Skwar <askwar@digitalprojects.com>
+  Ingo Richter <ingo.richter@gmx.de>
+die die Tariftabellen staendig aktuell halten.
+
+Last but not least bei Sabine Nagel (snagel@hlzm.de) fuer das
+Korrekturlesen dieser Dokumentation.
+
+Gar nicht genug danken kann ich Dr.-Ing. Joachim Goeller sowie
+Sebastian Goeller, die mir unzaehlige Informationen zum D-Kanal
+Protokoll geliefert haben.
+
+Aber ganz besonders bei
+  Stefan Luethje (luethje@sl-gw.lake.de)
+von dem sicherlich mittlerweile 50% des isdnlog-Codes bestehen.
+
+Mein groesster Dank gilt natuerlich meiner Frau Claudia (clw@akool.de),
+die die ganze Geduld aufgebracht hat, waerend ich am isdnlog
+rumgeschraubt habe!
+
+Viel Spass mit isdnlog wuenscht
+
+Andreas Kool (akool@isdn4linux.de)

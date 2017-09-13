@@ -1,0 +1,434 @@
+.\" $Id: ttyI.man.in,v 1.11 2002/01/31 18:52:12 paul Exp $
+.\"
+.\" CHECKIN $Date: 2002/01/31 18:52:12 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii ttyI.4 for ASCII output, or
+.\" groff -man -Tps ttyI.4 for PostScript output
+.\"
+.TH ttyi 4 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Special files"
+.SH NAME
+ttyI \- ISDN character devices with modem emulator
+.SH DESCRIPTION
+.IB ttyI [ 0-63 ]
+are emulated tty devices of the Linux
+.SM ISDN
+subsystem.
+These devices can be used in the same way as the traditional serial
+devices
+.IR ttySx.
+The official major device numbers are
+.B 43
+for
+.I ttyI .
+The minor device numbers start with
+.B 0
+and end with
+.BR 63 .
+
+The
+.SM ISDN
+tty devices are equipped with a modem emulation implementing a set of
+traditional and some special AT commands. This provides easy use
+together with almost all communication software that uses modem
+commands:
+.BR minicom (1),
+.BR seyon (1),
+.BR XCept (1),
+.BR uucico (8),
+.BR mgetty (8),
+.BR dip (8),
+.BR pppd (8)
+and more. When enabled during kernel configuration, the emulator
+is capable of a reduced set of commands to support audio. To use
+audio features, an
+.SM ISDN
+card with a audio-capable low-level driver is needed. Currently
+the only audio-capable drivers are the teles and HiSax driver.
+
+The line disciplines are handled by the kernel so that SLIP,
+CSLIP and asynchronous PPP are possible.
+
+The port speed of the
+.SM ISDN
+tty devices is always 64000 bps.
+
+.SH AT COMMAND SET
+The description of
+.B AT commands
+here does
+.B not
+cover audio related commands. For a description of audio related commands,
+see
+.BR isdn_audio (4).
+The following 
+.B AT commands
+are supported by
+.SM ISDN
+tty devices:
+.TP
+.B ATA
+Answer an incoming call.
+.TP
+.BI ATD num
+.RI "Dial number " num .
+Allowed are digits [0-9] and the characters
+",", "#", ".", "*", "W", "P", "T", "S", "-". The characters are
+ignored except of "S" which indicates a SPV if it precedes the
+number
+.RB ( only
+German 1TR6 ISDN).
+.TP
+.B ATE0
+Echo off.
+.TP
+.B ATE1
+Echo on (default).
+.TP
+.B ATH
+Hang up.
+.TP
+.B ATH0
+Hang up.
+.TP
+.B ATH1
+Off hook (ignored).
+.TP 
+.B ATI
+Return device Information ("ISDN for Linux...").
+.TP 
+.B ATI0
+Return device Information ("ISDN for Linux...").
+.TP 
+.B ATI1
+Return device Information ("ISDN for Linux...").
+.TP
+.B ATI2
+Return Statistics of last connection.
+.TP
+.B ATO
+Return from command mode to online mode (data mode).
+.TP
+.B ATQ0
+Enable result codes (default).
+.TP
+.B ATQ1
+Disable result codes.
+.TP
+.BI ATS x = y
+.RI "Set register " x " to value " y .
+.TP
+.BI ATS x ?
+.RI "Show content of register " x .
+.TP
+.BI ATS x . y = z
+.RI "Set register " x ", bit " y " to value " z
+.TP
+.BI ATS x . y ?
+.RI "Show bit " y " of register " x .
+.TP
+.B ATV0
+Print result code as number.
+.TP
+.B ATV1
+Print result code as text (default).
+.TP
+.B ATZ
+Reset all registers and load profile values.
+.TP
+.BI AT&B x
+Set packet size of outgoing packets to value
+.I x
+(maximum 4000). The actual packet size depends on the hardware
+driver and may be smaller than
+.I x
+(e.g. with the teles driver). There will be
+.B no
+error message if the value is bigger than the hardware driver
+can process. However the size of the outgoing packets will be
+set correctly.
+.TP
+.B AT&D2
+DTR falling edge: hang up and return to command mode (default).
+.TP
+.B AT&D3
+DTR falling edge: hang up, return to command mode and reset all
+registers.
+.TP
+.BI AT&E x
+Set MSN (Euro-ISDN, EDSS1) or EAZ (German 1TR6) to value
+.IR  x .
+For MSNs,
+.I x
+is a string of digits representing the local phone number, while for EAZs
+.I x
+should be only the last digit of the Number.
+.TP
+.B AT&F
+Set all registers and profile to "factory-defaults".
+.TP
+.BI AT&L plist
+Set list of phone numbers to listen on.
+.I plist
+is a list of wildcard patterns separated by semicolon. If this is
+set, it has precedence over the MSN set by AT&E.
+.TP
+.B AT&V
+Show current register settings.
+.TP
+.B AT&W0
+Write registers and EAZ/MSN to profile. (You need to run
+.BR iprofd (8)
+for making changes permanent.)
+.TP
+.B AT&X0
+Disable BTX-Mode (default).
+.TP
+.B AT&X1
+Enable BTX-Mode.
+.SH ESCAPE SEQUENCE
+During a data connection, the driver can be set to command mode by
+typing in
+.IB delay +++ delay\c
+.RB .
+The escape character (default "+") may be set via register 2. The
+.I delay
+must be at least 1.5 seconds and between each escape
+character the pause must not exceed 0.5 seconds.
+.I
+ATO
+brings the modem emulation back to data mode.
+.SH REGISTERS
+.TP
+.BR 0 " (default 0)"
+Number of rings on which the "modem" will answer. (S0=0 will
+disable auto answering).
+.TP
+.BR 1 " (default 0)"
+Counts and stores the number of rings from an incoming call.
+.TP
+.BR 2 " (default 43 = '+')"
+ASCII code of the escape character.
+.TP
+.BR 3 " (default 13 = CR)"
+ASCII code of Carriage Return.
+.TP
+.BR 4 " (default 10 = LF)"
+ASCII code of Line Feed.
+.TP
+.BR 5 " (default 8 = BS)"
+ASCII code of Backspace.
+.TP
+.BR 6 " (default 3)"
+Duration, in number of seconds, modem waits before dialling.
+.TP
+.BR 7 " (default 60)"
+Wait time for carrier in seconds.
+.TP
+.BR 8 " (default 2)"
+Pause time for comma (',') in dial command in seconds (ignored).
+.TP
+.BR 9 " (default 6)"
+Carrier detect time in tenths of seconds (ignored).
+.TP
+.BR 10 " (default 7)"
+Wait time until hangup after carrier loss in tenths of seconds
+(ignored).
+.TP
+.BR 11 " (default 70)
+Duration and delay in milliseconds for touch tone dialling
+(ignored).
+.TP
+.BR 12 " (default 69)
+Bit-mapped register.
+.br
+Bit	Description
+.br
+0	0 = Suppress response messages.
+.br
+	1 = Show response messages.
+.br
+1	0 = Response messages as text.
+.br
+	1 = Numeric response messages.
+.br
+2	0 = Echo off.
+.br
+	1 = Echo on.
+.br
+3	0 = DCD always on.
+.br
+	1 = DCD follows carrier.
+.br
+4	0 = CTS follows RTS.
+.br
+	1 = Ignore RTS, CTS always on.
+.br
+5	0 = Low-edge on DTR: Hangup and return
+.br
+		to command mode.
+.br
+	1 = Same as 0 but also resets all
+.br
+		registers.
+.br
+6	0 = DSR always on.
+.br
+	1 = DSR on only if channel is available.
+.br
+7	0 = Cisco-PPP-flag-hack off.
+.br
+	1 = Cisco-PPP-flag-hack on.
+.TP
+.BR 13 " (default 4)"
+Bit-mapped register.
+.br
+Bit	Description
+.br
+0	0 = Use delayed sending of data.
+.br
+	1 = Immediately send data.
+.br
+1	0 = T.70 protocol off.
+.br
+	1 = T.70 protocol on.
+.br
+2	0 = Don't hangup on DTR low.
+.br
+	1 = Hangup on DTR low.
+.br
+3	0 = Standard response messages.
+.br
+	1 = Extended response messages.
+.br
+4	0 = CALLER NUMBER before every RING.
+.br
+	1 = CALLER NUMBER after first RING.
+.br
+5	0 = Disable extended T.70 protocol.
+.br
+	1 = Enable extended T.70 protocol.
+.br
+6	0 = Disable RUNG message.
+.br
+	1 = RUNG on cancelled incoming call.
+.br
+7	0 = Disable display messages from net.
+.br
+	1 = Enable disable messages from net.
+.TP
+.BR 14 " (default 0)
+Layer-2 protocol.
+.br
+ 0 = X75/LAPB with I-frames.
+.br
+ 1 = X75/LAPB with UI-frames.
+.br
+ 2 = X75/LAPB with BUI-frames.
+.br
+ 3 = HDLC.
+.br
+ 4 = TRANSPARENT.
+.br
+10 = Analog Modem. (only if hardware supports this)
+.br
+11 = Fax G3. (only if hardware supports this)
+.TP
+.BR 15 " (default 0)"
+Layer-3 protocol.
+.br
+0 = transparent
+.br
+1 = transparent with audio features (e.g. DSP)
+.br
+2 = Fax G3
+.TP
+.BR 16 " (default 250)"
+Outgoing packet size / 16.
+.TP
+.B 17
+reserved.
+.TP
+.BR 18 " (default 4)"
+Service-Octet-1 to accept or to be used on dial out.
+.br
+Bit-mapped register.
+.br
+Bit	Description
+.br
+0	Service 1 (audio) when set.
+.br
+1	Service 5 (BTX) when set.
+.br
+2	Service 7 (data) when set.
+.br
+.RS
+.HP
+Note:
+It is possible to set more than one bit. In this case, on outgoing
+calls, the most significant 1-bit is chosen to select the outgoing
+service octet. On incoming calls the selected services are accepted,
+contents of register 14 is ignored and the Layer-2-protocol is
+automatically set with the following values to match the service
+of the incoming call:
+.RS
+.TP
+.RI "Incoming service " audio " (Reg. 20.0 = 1)"
+L2-protocol is set to 4 (TRANSPARENT).
+.TP
+.RI "Incoming service " BTX " (Reg. 20.1 = 1)"
+L2-protocol is set to 0 (X75/LAPB with I-frames).
+.TP
+.RI "Incoming service " date " (Reg. 20.2 = 1)"
+L2-protocol is set to 0 (X75/LAPB with I-frames).
+.RE
+.RE
+.TP
+.BR 19 " (default 0)"
+Service-Octet-2 (ignored when using EDSS1).
+.TP
+.BR 20 " (read only)"
+Service-Octet-1 of last incoming call. This bit-mapped register is set
+on incoming call (during RING). Mapping is the same like register 18.
+.TP
+.BR 21 " (read only)"
+Bit-mapped register. Set on incoming call (during RING) to the
+value of octet 3 of calling party number Information Element (Numbering plan).
+See section
+.BR 4.5.10 " of " "ITU Q.931" .
+.TP
+.BR 22 " (read only)"
+Bit-mapped register. Set on incoming call (during RING) to the
+value of octet 3a of calling party number Information Element (Screening info).
+See section
+.BR 4.5.10 " of " "ITU Q.931" .
+.TP
+.BR 23 " (default 0)"
+Bit-mapped register.
+.br
+Bit	Description
+.br
+0	0 = Disable CPN extended RING.
+.br
+	1 = Enable CPN extended RING.
+.br
+1	0 = Disable CPN extended FCON.
+.br
+	1 = Enable CPN extended FCON.
+.TP
+.SH NOTE
+There used also be
+.I cui
+devices (major device number 44), but since the
+.I cua
+devices for regular tty devices are no longer supported in the kernel,
+these are also no longer supported for ISDN4linux.
+
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.br
+modified by Paul Slootman <paul@isdn4linux.de>
+
+.SH SEE ALSO
+.BR icnctrl "(8), " telesctrl "(8), " isdninfo "(4), " isdn_audio "(4), "
+.BR isdnctrl (8).

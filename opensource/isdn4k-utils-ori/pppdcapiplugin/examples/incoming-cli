@@ -1,0 +1,7 @@
+sync
+noauth
+plugin /etc/ppp/plugins/capiplugin.so
+controller 1
+inmsn MSN
+protocol hdlc
+192.168.0.1:

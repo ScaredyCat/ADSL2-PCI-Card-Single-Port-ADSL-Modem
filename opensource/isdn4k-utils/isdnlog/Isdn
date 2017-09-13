@@ -1,0 +1,152 @@
+#
+# X11/Motif interface for ISDN accounting for isdn4linux.
+#
+# Copyright 1996 by Oleg von Styp Rekowski (os@Kool.f.EUnet.de)
+#
+# This revision is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#
+# Revision: 0.01       Date: 10.02.96          Author: os
+#
+
+### General setup: change for your taste
+*XmMessageBox.messageAlignment:	XmALIGNMENT_CENTER
+*Background:			gray
+*Foreground:			black
+*FontList:			lucidasans-bold-14=B,\
+				*-helvetica-bold-*-*-*-25-*-*=T,\
+				*-helvetica-bold-r-*-*-*-140-*,\
+				*-helvetica-medium-o-*-*-*-140-*=I,\
+				*-courier-bold-r-*-*-*-140-*=CW,\
+				*-helvetica-bold-r-*-*-*-240-*=BIG,\
+		                *-helvetica-bold-r-*-*-*-240-*=HUGE
+
+*XmtInputField.matchAll:	False
+*XmtInputField.background:	gray93
+*XmtInputField*Translations:           #override \n\
+        <Key>osfUp:             process-up() \n\
+        <Key>osfActivate:       process-down() \n\
+        <Key>Return:            process-down() \n\
+        <Key>osfDown:           process-down()
+
+### ListWidget setup
+### *XmList.background:		white
+### You should not use a proportional font for List
+*XmList.fontList:		lucidasanstypewriter-bold-14
+
+### Do not change the resource names (i.e. MainWindow, etc.)
+
+### Initial values for the MainWindow widget
+*MainWindow.width:		640
+*MainWindow.height:		480
+
+### Initial values for the List widgets
+*CurrentList.visibleItemCount:	4
+*ClosedList.visibleItemCount:	20
+*RowColumn_0.labelType:		XmPIXMAP
+*RowColumn_0.labelPixmap:	ISDN
+
+*MenuBar.buttonCount:		2
+*MenuBar.buttonMnemonics:       F,H
+*MenuBar.buttons:               Funktionen,Hilfe
+
+*MenuBar_pd_0.buttonCount:      4
+*MenuBar_pd_0.buttonType:       XmPUSHBUTTON,XmPUSHBUTTON,XmSEPARATOR,XmPUSHBUTTON
+*MenuBar_pd_0.buttons:          Löschen,Protokoll,,Ende
+*MenuBar_pd_0.buttonMnemonics:  L,P,,E
+*MenuBar_pd_0.buttonAccelerators: <Key>Delete,<Key>P,'\0'
+*MenuBar_pd_0.buttonAcceleratorText: <-,P,,Alt+F10
+
+*MenuBar_pd_1.buttonCount:      2
+*MenuBar_pd_1.buttons:          Version,Beschreibung
+*MenuBar_pd_1.buttonMnemonics:  V,B
+*MenuBar_pd_1.buttonAccelerators:	<Key>V,<Key>F1
+*MenuBar_pd_1.buttonAcceleratorText:	V,F1
+
+Isdn.xmtChildren:		XmMainWindow MainWindow;
+
+*NewCaller.dialogTitle:	Eintragen eines neuen Teilnehmers
+*NewCaller.xmtChildren:	XmtInputField	phone, faxnr, fname, lname,	\
+					email, street, city, country;
+*NewCaller.layout:	Line Bottom 0 4 Fixed LREvenSpaced		\
+		Row {	Color "maroon" Bitmap "ISDN"			\
+			Color "red" FlushBottom "@f[HUGE]Neuer Teilnehmer"} \
+		Row {\
+		  Col {	2.5 in FlushRight Caption "@fIRufnummer"phone	\
+			2.5 in FlushRight Caption "@fIFaxnummer"faxnr	\
+			2.5 in FlushRight Caption "@fIVorname"	fname	\
+			2.5 in FlushRight Caption "@fINachname"	lname }	\
+		  Col {	2.5 in FlushRight Caption "@fIE-Mail"	email	\
+			2.5 in FlushRight Caption "@fIStraße"	street	\
+			2.5 in FlushRight Caption "@fIPLZ Ort"	city	\
+			2.5 in FlushRight Caption "@fILand"	country}\
+                } <>\
+			Fixed Etched Top Equal Even			\
+		Row {\
+			XmPushButton ok\
+			XmPushButton cancel\
+			XmPushButton help\
+                }
+*phone.pattern:		dddddddddddddddddd
+*faxnr.pattern:		dddddddddddddddddd
+*fname.pattern:		Accccccccccccccccccc
+*lname.pattern:		Acccccccccccccccccccccccc
+*email.pattern:		cccccccccccccccccccccccccccccccccccccccc
+*street.pattern:	Acccccccccccccccccccccccc
+*city.pattern:		ddddd Accccccccccccccccccc
+*country.pattern:	Accccccccccccccccccc
+
+*NewCaller.ok.labelString:		Eintragen
+*NewCaller.cancel.labelString:		Ignorieren
+*NewCaller.help.labelString:		Hilfe
+
+*IsdnProt.dialogTitle:		Meldungen vom isdnlog
+*IsdnProt.marginHeight:		2
+*IsdnProt.marginWidth:		2
+*IsdnProt.width:		640
+*IsdnProt.listVisibleItemCount:	20
+*IsdnProt.okLabelString:	Speichern
+*IsdnProt.applyLabelString:	Löschen
+*IsdnProt.cancelLabelString:	Verlassen
+*IsdnProt.helpLabelString:	Hilfe
+*IsdnProtLabel.topOffset:	7
+*IsdnProtText.value:		1000
+*IsdnProtText.background:	White
+*IsdnProtLabel.labelString:	Anzahl Zeilen
+_Bitmaps_.ISDN:\
+#define ISDN_width 64\n\
+#define ISDN_height 32\n\
+static unsigned char ISDN_bits[] = {\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0xe0, 0x00, 0x3f, 0xe0, 0x7f, 0x00, 0x07, 0x70, 0xe0, 0xc0, 0x7f, 0xe0,\n\
+   0xff, 0x01, 0x07, 0x70, 0xe0, 0xe0, 0xf1, 0xe0, 0xe0, 0x03, 0x0f, 0x70,\n\
+   0xe0, 0x70, 0xe0, 0xe0, 0x80, 0x03, 0x0f, 0x70, 0x70, 0x38, 0xe0, 0x70,\n\
+   0x00, 0x87, 0x1f, 0x38, 0x70, 0x38, 0x00, 0x70, 0x00, 0x87, 0x1b, 0x38,\n\
+   0x70, 0x78, 0x00, 0x70, 0x00, 0x87, 0x3b, 0x38, 0x70, 0xf0, 0x01, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x38, 0xe0, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f, 0xfe, 0xff, 0xff, 0xff,\n\
+   0xff, 0xff, 0xff, 0x7f, 0x38, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x1c, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1c, 0x07, 0x70, 0x1c,\n\
+   0xc0, 0xe3, 0xe0, 0x0e, 0x1c, 0x07, 0x78, 0x1c, 0xe0, 0xe1, 0xc0, 0x0e,\n\
+   0x1c, 0x0f, 0x3c, 0x1c, 0xf0, 0xe0, 0xc0, 0x0f, 0x0e, 0x3e, 0x1f, 0x0e,\n\
+   0x7c, 0x70, 0x80, 0x07, 0x0e, 0xfc, 0x0f, 0xfe, 0x3f, 0x70, 0x80, 0x07,\n\
+   0x0e, 0xf0, 0x03, 0xfe, 0x0f, 0x70, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n\
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};

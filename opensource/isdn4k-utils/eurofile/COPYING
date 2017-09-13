@@ -1,0 +1,34 @@
+Source code in directories src and src/lib is subject to the
+`GNU LIBRARY GENERAL PUBLIC LICENSE' [ LGPL ], refer to COPYING.LIB.
+It is copyrighted by Henner Eisen.
+Although some files will not build as a library but as unix
+executables, they are licensed under the LGPL nevertheless.
+This permits you to use them under the terms of the GPL as well as
+modifying them such that they become part of a library which can be
+licensed under the terms of the LGPL.
+
+Source code in directory src/authlib is subject to different licenses
+(a BSD style license with advertisment clause). Refer to COPYING.auth
+for further details.
+
+Note that with the default configuration, eftd needs src/authlib to
+work. With former versions of eftp4linux, some license restrictions
+of authlib conflicted with the LGPL.
+
+As of eftp4linux-0.0.3, the authorization routines are attached to the
+EUROFILE state machine code at run time by means of function calls and
+parameters. Thus, a server using the eftp4linux library and
+attaching authlib is a work that uses the library (the LGPL'ed
+code) in the sense of the LGPL. Thus, there is no problem with
+distributing eftd binaries any more (and the specially granted
+permissions necessary in eftp4linux-0.0.2 are obsolete now).
+
+Note that the eftp client program is linked with the GNU readline
+library which is licensend under the GPL. Thus, the eftp binary
+automatically is subject to the GPL, even though the sources of eftp
+itsself are licensed under the LGPL (which explicitly permits to
+to also licence the code under ther GPL).
+
+Henner
+
+

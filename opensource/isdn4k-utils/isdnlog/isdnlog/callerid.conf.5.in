@@ -1,0 +1,248 @@
+.\" $Id: callerid.conf.5.in,v 1.4 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH callerid.conf 5 "@MANDATE_CALLERID@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+
+.SH NAME
+@I4LCONFDIR@/@CALLERIDFILE@ \- config file for isdnlog numbers and scripts
+
+.SH FORMAT
+This file has the format described in isdnformat(5). It must be owned by
+root, and only root may have write access. Every user can create his
+private telephone book as ~/.isdn with the same file format.
+
+.SH VARIABLES SECTION
+Like in isdn.conf, this file has an optional [VARIABLES] section. All
+variable names must be uppercase. Warning: variables in callerid.conf
+will override variables in isdn.conf, and variables in ~/.isdn will
+override variables in both files. First all variables are read, then they
+are substituted, so a variable defined in ~/.isdn can be used in isdn.conf.
+This might be a security hole. However, if programs are to be run as root,
+these files (and the program) cannot be writeable for non-root users.
+
+Using variables: if a reference to a non existing variable is used,
+isdnrep and isdnlog will give warning messages, and use the variable
+name (e.g if $FRED isn't set, isdnlog will use "$FRED"). The dollar sign
+can be backslashed if a real dollar sign is needed instead of variable
+substitution (e.g. \\$PATH will be "$PATH").
+
+.SH NUMBER and MSN
+In [NUMBER] sections, you can supply information for the outer world,
+in [MSN] sections; you can supply information about your msns. The
+format is the same:
+
+.TP 4
+.B NUMBER=xxxx
+Set the telephone number. This should be your msn or the telephone
+number with area code (with or without areprefix, countrycode and
+countryprefix)
+
+.TP
+.B SI=x
+Service indicator. Isdnlog knows these service indicators:
+.nf
+1   speech (telephone, fax g3, modem etc.)
+2   restricted digital information
+3   unrestricted digital information with tones/announcements
+4   video
+7   unrestricted digital information (hdlc, x.75 etc.)
+.fi
+
+.TP
+.B Alias=xxxx
+Supply a name as alias (e.g. ALIAS=Fred's Number)
+
+.TP
+.B ZONE=xxx
+Only useful with remote numbers: billing zone for connections to this
+number:
+.nf
+0   internal connection in your s0 bus (no charge)
+1   city area
+2   region 50
+3   region 200
+4   far region
+5   the same as 1
+.fi
+
+.TP
+.B INTERFACE=xxx
+Isdn network interface. This information is required with the
+"-hx" / hangup="value" option.
+
+.TP
+.B START
+You can define a subsection here. The whole section is ignored unless you
+gave the "-S" / start=yes option. Each subsection should have the name
+[FLAG]. It may hold these values:
+
+.RS
+.TP 4
+.B FLAGS=x|y|z 
+Combine these flags (with or without the pipe "|" char; with is preferred)
+to get the combination you want:
+
+.RS
+Part 1: Incoming and Outgoing
+.TP 4
+I
+Incoming call
+.TP
+O
+Outgoing call
+.RE
+
+.RS
+Part 2: Signals from isdn system
+.TP 4
+C
+Connect (can be used with interval, see below)
+.TP
+B
+Busy
+.TP
+E
+Error
+.TP
+R
+Ring (can be used with interval, see below)
+.TP
+A
+AOCD (advice of charge signal)
+.TP
+H
+Hangup
+.RE
+
+.RS
+Part 3: Modifiers
+.PD 0
+.TP 4
+L
+Start the program again and again every time it terminates.
+.TP
+U
+Start the program only once within a interval. Without this, several
+instances of a program can run in parallel. (Interval required.)
+.TP
+K
+Kill program at the end of the interval.
+.RE
+
+.TP 
+.B USER=xxx
+Isdnlog will not run programs as root, and will switch to a different
+user id for security. You must give the name or uid of the user isdnlog
+has to use here.
+
+.TP
+.B GROUP=xxx
+Isdnlog will not run programs as group root, and will switch to a
+different group id for security. You must give the name or gid of the
+groups isdnlog has to use here.
+
+.TP
+.B TIME=xx
+Restrict this flag to a special time. Pleas read isdntime(5).
+
+.TP
+.B INTERVAL=xx
+With connect (C) or ring (R) flag you can specify an interval, so
+isdnlog will start the program after every interval. The interval is in
+seconds and should be at least 2 seconds. If the flags do not include C
+or R, this option is ignored.
+
+.TP
+.B PROGRAM=xxx
+.RS
+The program you want to start, with the required arguments. You may use the
+following special tokens:
+
+.PD 0
+.TP
+\\$1
+flags that caused execution, e.g. "IR", "OC". There are always
+.B exactly
+two characters.
+.TP
+\\$2
+Caller number (complete with area code).
+.TP
+\\$3
+Called number (complete with area code).
+.TP
+\\$4
+Time the connection started. Example:
+.br
+"Wed May 28 23:07:44 1997".
+.br
+Contains "?" if there is no connection yet (e.g. still at RING phase).
+.TP
+\\$5
+Duration of connection up to now (in seconds).
+.TP
+\\$6
+Time the connection ended. Same format as \\$4.
+.TP
+\\$7
+Number of input bytes.
+.TP
+\\$8
+Number of output bytes.
+.TP
+\\$9
+Input bytes per second.
+.TP
+\\$10
+Output bytes per second.
+.TP
+\\$11
+Service indicator.
+.TP
+\\$12
+Charges.
+.TP
+\\$13
+Caller country code.
+.TP
+\\$14
+Called country code.
+.TP
+\\$15
+Caller area code.
+.TP
+\\$16
+Called area code.
+.TP
+\\$17
+Caller town (derived from area code).
+.TP
+\\$18
+Called town
+.TP
+\\$19
+Caller alias.
+.TP
+\\$20
+Called alias.
+.RE
+
+.RS
+Note: within a string you must use \\${1} \\${2} ...
+.RE
+
+
+.SH FILES
+.TP
+.B @I4LCONFDIR@/@CALLERIDFILE@
+This file.                                                       
+
+.TP
+.B ~/.isdn
+Per user telephone book.
+
+.SH SEE ALSO
+.B isdnlog(8) isdnformat(5) isdntime(5)
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

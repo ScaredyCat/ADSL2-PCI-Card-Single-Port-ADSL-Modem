@@ -1,0 +1,469 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 1\r\n"
+    "#pragma code_page(950)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\PCAUARes.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.cht\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,8,0,1
+ PRODUCTVERSION 0,8,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040404b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "CCL/ITRI\0"
+            VALUE "FileDescription", "PCAUARes DLL\0"
+            VALUE "FileVersion", "0, 8, 0, 1\0"
+            VALUE "InternalName", "PCAUARes\0"
+            VALUE "LegalCopyright", "Copyright (C) 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "PCAUARes.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "PCAUARes Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 8, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CALLLOG_IN_MISS     BITMAP  DISCARDABLE     "res\\calllog_in_miss.bmp"
+IDB_CALLLOG_IN_REJECT   BITMAP  DISCARDABLE     "res\\calllog_in_reject.bmp"
+IDB_CALLLOG_OUT         BITMAP  DISCARDABLE     "res\\calllog_out.bmp"
+IDB_CALLLOG_OUT_FAIL    BITMAP  DISCARDABLE     "res\\calllog_out_fail.bmp"
+IDB_SKIN_DISABLE        BITMAP  DISCARDABLE     "SkinImg\\Phone\\disable.bmp"
+IDB_SKIN_DISABLE2       BITMAP  DISCARDABLE     "SkinImg\\Phone\\disable2.bmp"
+IDB_SKIN_DOWN           BITMAP  DISCARDABLE     "SkinImg\\Phone\\down.bmp"
+IDB_SKIN_DOWN2          BITMAP  DISCARDABLE     "SkinImg\\Phone\\down2.bmp"
+IDB_SKIN_MASK           BITMAP  DISCARDABLE     "SkinImg\\Phone\\mask.bmp"
+IDB_SKIN_NORMAL         BITMAP  DISCARDABLE     "SkinImg\\Phone\\main.bmp"
+IDB_SKIN_NORMAL2        BITMAP  DISCARDABLE     "SkinImg\\Phone\\main2.bmp"
+IDB_SKIN_OVER           BITMAP  DISCARDABLE     "SkinImg\\Phone\\over.bmp"
+IDB_SKIN_PANEL_DISABLE  BITMAP  DISCARDABLE     "SkinImg\\Panel\\disable.bmp"
+IDB_SKIN_PANEL_DOWN     BITMAP  DISCARDABLE     "SkinImg\\Panel\\down.bmp"
+IDB_SKIN_PANEL_MAIN     BITMAP  DISCARDABLE     "SkinImg\\Panel\\main.bmp"
+IDB_SKIN_PANEL_MASK     BITMAP  DISCARDABLE     "SkinImg\\Panel\\mask.bmp"
+IDB_SKIN_PANEL_OVER     BITMAP  DISCARDABLE     "SkinImg\\Panel\\over.bmp"
+IDB_VIDEO_TITLEBAR      BITMAP  DISCARDABLE     "res\\videotitle.bmp"
+IDB_VIDEO_TITLEBAR2     BITMAP  DISCARDABLE     "res\\videotitle2.bmp"
+IDB_VIDEOLABEL          BITMAP  DISCARDABLE     "res\\videolabel.bmp"
+IDB_VIDEOLABEL_W        BITMAP  DISCARDABLE     "res\\videolabel_w.bmp"
+IDB_VOICEMAIL           BITMAP  DISCARDABLE     "res\\voicemail.bmp"
+IDB_PRE_OFFLINE         BITMAP  DISCARDABLE     "res\\pre_offline.bmp"
+IDB_PRE_ONLINE          BITMAP  DISCARDABLE     "res\\pre_online.bmp"
+IDB_PRE_UNKNOWN         BITMAP  DISCARDABLE     "res\\pre_unknown.bmp"
+IDB_MC_PANEL            BITMAP  DISCARDABLE     "res\\mcPanel.bmp"
+IDB_MCICON_ALERT        BITMAP  DISCARDABLE     "res\\mcicon_alert.bmp"
+IDB_MCICON_CONN         BITMAP  DISCARDABLE     "res\\mcicon_conn.bmp"
+IDB_MCICON_HOLD         BITMAP  DISCARDABLE     "res\\mcicon_hold.bmp"
+IDB_MCICON_RINGBK       BITMAP  DISCARDABLE     "res\\mcicon_ringbk.bmp"
+IDB_CALLLOG_IN          BITMAP  DISCARDABLE     "res\\calllog_in.bmp"
+IDB_BTN_ADD             BITMAP  DISCARDABLE     "res\\btnAdd.bmp"
+IDB_BTN_CLEAR           BITMAP  DISCARDABLE     "res\\btnClear.bmp"
+IDB_BTN_DEL             BITMAP  DISCARDABLE     "res\\btnDel.bmp"
+IDB_BTN_DETAIL          BITMAP  DISCARDABLE     "res\\btnDetail.bmp"
+IDB_BTN_DIAL            BITMAP  DISCARDABLE     "res\\btnDial.bmp"
+IDB_BTN_EDIT            BITMAP  DISCARDABLE     "res\\btnEdit.bmp"
+IDB_BTN_LISTEN          BITMAP  DISCARDABLE     "res\\btnListen.bmp"
+IDB_BTN_PROFILE         BITMAP  DISCARDABLE     "res\\btnProfile.bmp"
+IDB_BTN_SEARCH          BITMAP  DISCARDABLE     "res\\btnSearch.bmp"
+IDB_BTN_SETTING         BITMAP  DISCARDABLE     "res\\btnSetting.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ITIR_EDIT DIALOG DISCARDABLE  0, 0, 188, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "EDIT Address Data"
+FONT 9, "Times New Roman"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,24,141,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,92,141,50,14
+    LTEXT           "Name",IDC_STATIC,36,26,19,8
+    LTEXT           "ID",IDC_STATIC,47,44,8,8
+    EDITTEXT        IDC_ITIR2_NAME,80,25,71,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITIR2_ID,80,47,70,14,ES_AUTOHSCROLL
+    RTEXT           "Department \n ID",IDC_STATIC,12,68,43,18
+    EDITTEXT        IDC_ITIR2_DEPID,80,69,70,14,ES_AUTOHSCROLL
+    LTEXT           "Ext.",IDC_STATIC,42,92,13,8
+    EDITTEXT        IDC_ITIR2_EXT,80,89,70,14,ES_AUTOHSCROLL
+    LTEXT           "Remark",IDC_STATIC,29,113,26,8
+    EDITTEXT        IDC_ITIR2_REMARK,80,113,70,14,ES_AUTOHSCROLL
+END
+
+IDD_RepeatOptDlg DIALOG DISCARDABLE  0, 0, 227, 107
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Duplicate Data "
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,117,86,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,86,50,14
+    LTEXT           "r",IDC_STATIC_M,22,7,184,18
+    CONTROL         "Replace this one",IDC_RADIO1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,24,29,196,10
+    CONTROL         "Replace all",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,24,
+                    43,196,10
+    CONTROL         "Skip this one",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
+                    24,58,196,10
+    CONTROL         "Skip all",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,24,73,
+                    196,10
+END
+
+IDD_ITIR_EDIT1 DIALOG DISCARDABLE  0, 0, 188, 162
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "EDIT Address Data"
+FONT 9, "Times New Roman"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,24,141,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,92,141,50,14
+    LTEXT           "Name",IDC_STATIC,36,26,19,8
+    LTEXT           "ID",IDC_STATIC,47,44,8,8
+    EDITTEXT        IDC_ITIR2_NAME,80,25,71,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITIR2_ID,80,47,70,14,ES_AUTOHSCROLL
+    RTEXT           "Department \n ID",IDC_STATIC,12,68,43,18
+    EDITTEXT        IDC_ITIR2_DEPID,80,69,70,14,ES_AUTOHSCROLL
+    LTEXT           "Ext.",IDC_STATIC,42,92,13,8
+    EDITTEXT        IDC_ITIR2_EXT,80,89,70,14,ES_AUTOHSCROLL
+    LTEXT           "Remark",IDC_STATIC,29,113,26,8
+    EDITTEXT        IDC_ITIR2_REMARK,80,113,70,14,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\PCAUA.ico"
+IDI_V3OIP               ICON    DISCARDABLE     "res\\v3oip.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ITIR_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        VERTGUIDE, 55
+        VERTGUIDE, 80
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+
+    IDD_RepeatOptDlg, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        VERTGUIDE, 24
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 100
+    END
+
+    IDD_ITIR_EDIT1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        VERTGUIDE, 55
+        VERTGUIDE, 80
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 155
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PCAUA_DIALOG DIALOGEX 0, 0, 285, 287
+STYLE WS_POPUP | WS_VISIBLE
+EXSTYLE WS_EX_APPWINDOW
+FONT 9, "????", 0, 0, 0x1
+BEGIN
+END
+
+IDD_REMOTE_VIDEO DIALOGEX 0, 0, 191, 126
+STYLE DS_MODALFRAME | WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+END
+
+IDD_SPLASH DIALOG DISCARDABLE  0, 0, 185, 76
+STYLE DS_MODALFRAME | WS_POPUP
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "SoftPhone",IDC_APPNAME,34,22,137,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,9,14,20,20
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,4,177,68
+    LTEXT           "",IDC_SPLASH_MSG,34,37,141,29
+END
+
+IDD_UACOM DIALOGEX 0, 0, 191, 126
+STYLE DS_MODALFRAME | WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_UACONTROL1,"{D851737B-22E8-4947-B812-5FF1F9212732}",
+                    WS_TABSTOP,10,10,107,44
+END
+
+IDD_PREFERENCE DIALOG DISCARDABLE  0, 0, 229, 330
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SoftPhone Preference"
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "Environment Mode:",IDC_STATIC,9,9,64,8
+    COMBOBOX        IDC_CONFIG_MODE,77,7,140,73,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Basic",IDC_STATIC,7,37,213,65
+    LTEXT           "Select Local IP Address:",IDC_STATIC,14,51,76,8
+    COMBOBOX        IDC_LOCALIPLIST,99,49,114,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "User Name:",IDC_STATIC,14,67,37,8
+    EDITTEXT        IDC_EDIT_USERNAME,55,65,158,14,ES_AUTOHSCROLL
+    GROUPBOX        "Authentication",IDC_STATIC,7,97,213,65
+    LTEXT           "Realm:",IDC_STATIC,14,113,23,8
+    EDITTEXT        IDC_CRE_REALM,50,110,163,14,ES_AUTOHSCROLL
+    LTEXT           "Account: ",IDC_STATIC,14,128,36,8
+    EDITTEXT        IDC_CRE_ACCOUNT,50,126,163,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,14,143,36,8
+    EDITTEXT        IDC_CRE_PASSWORD,50,142,163,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,7,166,213,56
+    CONTROL         "Use Deploy Server",IDC_USEDEPLOY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,165,74,10
+    LTEXT           "Address:",IDC_STATIC,14,182,28,8
+    EDITTEXT        IDC_DSIP,46,180,113,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,166,182,16,8
+    EDITTEXT        IDC_EDIT_DSPORT,185,180,28,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Check for new version automatically",IDC_UPDATE_CHK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,196,130,10
+    CONTROL         "Auto start SoftPhone when user login Windows",
+                    IDC_AUTOSTART_CHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    13,208,185,10
+    GROUPBOX        "",IDC_STATIC,7,226,213,48
+    CONTROL         "Use VoiceMail Integration",IDC_USEVM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,226,97,10
+    LTEXT           "VoiceMail Box No:",IDC_STATIC,13,242,62,8
+    EDITTEXT        IDC_VMACCOUNT,81,240,132,14,ES_AUTOHSCROLL
+    LTEXT           "VoiceMail Password:",IDC_STATIC,13,258,66,8
+    EDITTEXT        IDC_VMPASSWORD,81,256,132,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,117,311,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,311,50,14
+    PUSHBUTTON      "Advanced...",IDC_BTN_ADVANCED,7,311,50,14
+    CONTROL         "Better",IDC_RAD_BETTER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,77,24,35,10
+    CONTROL         "Faster",IDC_RAD_FASTER,"Button",BS_AUTORADIOBUTTON,119,
+                    24,34,10
+    LTEXT           "Quality:",IDC_STATIC,9,24,26,8
+    CONTROL         "Accept Call Waiting",IDC_CALL_WAITING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,82,198,10
+    GROUPBOX        "",IDC_STATIC,7,278,213,29
+    CONTROL         "Use LMS",IDC_USELMS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,278,44,10
+    LTEXT           "Address:",IDC_STATIC,15,292,28,8
+    EDITTEXT        IDC_LMSIP,47,290,113,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,167,292,16,8
+    EDITTEXT        IDC_LMSPORT,186,290,28,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PCAUA_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 278
+    END
+
+    IDD_SPLASH, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 181
+        VERTGUIDE, 34
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_PREFERENCE, DIALOG
+    BEGIN
+        VERTGUIDE, 9
+        VERTGUIDE, 73
+        BOTTOMMARGIN, 309
+        HORZGUIDE, 284
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_UACOM DLGINIT
+BEGIN
+    IDC_UACONTROL1, 0x376, 16, 0
+0x0000, 0x0000, 0x0300, 0x0000, 0x161e, 0x0000, 0x0918, 0x0000, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_REG_FAIL            "Unable to register call server.\nYou can change preference settings or retry later.\nDo you want to change preference setting?"
+    IDS_NOTIFY_NEW_VERSION  "SoftPhone has newer version now.\nDo you want to download the latest version?"
+    IDS_ABOUT_PCAUA         "Version %s"
+    IDS_REG_FAIL2           "Press Yes to stop SoftPhone and try later, or press No to run it without server."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "PCA SoftPhone"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE 4, 1
+#pragma code_page(950)
+#endif //_WIN32
+#include "res\PCAUARes.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.cht\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+modprobe atrcm
+modprobe ath_pci
+modprobe wlan_xauth
+modprobe wlan_ccmp
+modprobe wlan_tkip
+modprobe wlan_wep
+modprobe wlan_acl
+#modprobe ath_pktlog

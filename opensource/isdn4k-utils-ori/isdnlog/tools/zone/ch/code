@@ -1,0 +1,38 @@
+1	Zurich          1
+21	Lausanne        1
+22	Geneva          1
+24	Lausanne        1
+26	Fribourg        1
+27	Sion            1
+31	Berne           1
+32	Biel            1
+34	Berne           1
+40	Paging System   1
+41	Lucerne         1
+46	HCD             1
+48	Voice Mail      1
+49	Telepac         1
+50	Special Services 1
+51	SBB             1
+52	Winterthur      1
+55	Rapperswil      1
+56	Baden           1
+61	Basel           1
+62	Olten           1
+71	St. Gallen      1
+74	Paging Service  1
+76	Orange Mobile   102
+77	Natel C		100
+78	Diax Mobile	101
+79	Swisscom Mobile 100
+80	Freephone       0
+81	Chur            1
+840	Lokaltarif national 0
+842	Lokaltarif national 0
+844	0844 local 0
+848	0848 national	2
+86	Message box	2
+87	IN-based services 1
+90	Swiss Premium Rate 90
+91	Bellinzona	1
+99	VPN-service ID	99

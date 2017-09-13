@@ -1,0 +1,116 @@
+$Id: TODO,v 1.7 1999/10/11 21:22:23 he Exp $
+
+
+Important:
+ 
+   The server and client initially need to run with root privileges.
+   Thus, those parts need careful review by experienced unix
+   programmers who should watch out for potential security hazards.
+
+   In particular buffer overflows triggered by cmd line options or
+   environment (eftp) or received protocol data units (eftd)
+   The server authentication procedure is a port from wu-ftpd.
+   Check 0-Termination of received string parameters.
+
+Not showstoppers, but should be done before a possible stable release:
+
+	- more casefix testing with new mangeling method
+	- selectively and automatically (for file systems not supporting
+	  symlinks) disallow symlink-based transfer name database
+	  lookup   
+	- certain disconnect scenarios result in error/warning
+          messages which are harmless, but might confuse novice users.
+	  (in particular, release amd wait for release seems to be buggy)
+	- scan all source files for FIXME/XXX/#if 0 labels and
+	  try cleaning this up.
+	- improve autoconf readline support (support non-default 
+          locations of libreadline and lib[n]curses).
+	- autoconf is somewhat ugly as several configuration variables
+	  are passed to the source files by different channels
+	  (config.h, -D option) and name schemes are inconsistent.
+	- improved event logging (with error indications and
+	  distinction of successful/failed requests).
+	- improved parameter logging within events (handle unset
+	  parameters nicer).
+
+   Currently, when requesting establishment of association and access
+   regime, the parameters in the corresponding positive response are
+   not evaluated properly. This might leed to inconsistencies between
+   the peer's and our own idea of those protocol parameter settings.
+
+   To do:  Review and improve those regime establishment (and release)
+	   processing.
+
+
+   Currently, exception and error events are often not dealed with
+   or generated properly. Error events are not counted. Thus, this
+   implementation might fail if certain error conditions occur.
+
+   To do:  Review and improve error handling
+
+
+   Currently the CI field of the result/reason parameter of received
+   T-response-pos/neg is not always checked for matching the corresponding
+   command CI.
+
+   To do:  Check and implement appropriate exception actions if
+           mismatch is detected.
+
+
+   Currently the file header is neither analysed nor processed
+   (just stripped) when files are received.
+
+   To do:  Analyse file headers and implement appropriate actions.
+
+
+   Currently, certain ETS 300 075 services (in particular T_Delete, T_Rename,
+   T_Read_Restart) are not supported. The supported
+   services don't support all (optional) parameters. Thus, the corresponding
+   Eurofile services are not supported, either (in particular no
+   deletion nor renaming of files).
+
+   To do:
+
+   Enhance protocol processing.
+
+
+
+
+Not urgent at all, might take care of after the first stable release
+if anybody is interested:
+
+   For future portability to non-posix system, consider implementing a
+   tdu_stream object which is based on standard C file handles
+   instead of unix file-descriptors. This might also improve performance
+   due to internal buffering.
+
+   The eftp client provided with eftp4linux is a rather primitive
+   front end (this is intentional) to the eft protocol library's
+   client code.
+
+   To Do: write more user friendly client front ends. Or even better,
+          add eurofile support to existing user tools (i.e. mozilla,
+	  GUI file managers) or write an eft-http gateway by means
+          of the eftp4linux core library.
+
+   Support other authentification methods (PAM comes to mind) 
+
+
+   And the "to do" list is incomplete as well.
+
+   Meta to do: Enhance "to do" list.
+
+
+
+Supplement by ms@msdatec.de:
+
+Until nobody complains, in short form and in German:
+
+- über Konfiguration durch /etc/isdn/eftd.conf nachdenken
+- einkommende Dateien schützen
+- Log- von Debug-Infos trennen, Loginfos sollen statistikfähig sein 
+- how2 schreiben
+- NEWS-File
+- "install" in "Makefile" implementieren
+- Versionsnummern von Protokollimplementation, eftd und eftp trennen.
+- Sollte das pid-file nicht von eftd selbst gesetzt/geloescht werden?

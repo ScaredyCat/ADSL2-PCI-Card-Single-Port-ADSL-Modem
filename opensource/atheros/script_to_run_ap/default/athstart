@@ -1,0 +1,53 @@
+#!/bin/sh
+
+. /etc/ath/apcfg
+# create VAP using base device wifi0 in ap mode
+# only single VAP is supported
+wlanconfig ath create wlandev wifi0 wlanmode ap
+
+# increase queue length
+ifconfig ath0 txqueuelen 1000
+ifconfig wifi0 txqueuelen 1000
+
+# 11n configuration section
+#
+
+# turn off halfgi
+iwpriv ath0 shortgi 0
+
+# mode is 11ng which is the only supported mode
+if [ $AP_CONTROL_CH -gt 14 ] ; then
+		iwpriv ath0 mode 11na
+else
+		iwpriv ath0 mode 11ng
+fi
+
+# cwmmode 0 is static 20; cwmmode 1 is dyn 2040; cwmmode 2 is static 40
+iwpriv ath0 cwmmode 2
+
+# set extension channel below control channel
+iwpriv ath0 extoffset $AP_EXTN_CH_OFFSET
+# set extension channel offset to 20Mhz (25Mhz not supported yet)
+iwpriv ath0 extprotspac 0
+
+# disable aggregation
+#iwpriv ath0 ampdu 0
+
+# set ampdu limit to 50000
+iwpriv ath0 ampdulimit 50000
+
+# set debug mode output
+echo 0x100 > /proc/sys/net/ath0/debug
+
+# set SSID and frequency
+iwconfig ath0 essid $AP_SSID mode Master  freq $AP_CONTROL_CH
+
+# setting a static rate will disable rate control
+#
+# set static rate series and tries
+# iwconfig ath0 rate 11n 0x8c8c8c8c
+# iwconfig ath0 retries 11n 0x04040404
+
+# set default chainmask
+echo 7 > /proc/sys/dev/ath/hal/rx_chainmask
+echo 7 > /proc/sys/dev/ath/hal/tx_chainmask

@@ -1,0 +1,107 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA96884; Sun, 9 Feb 1997 15:55:20 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id PAA01990; Sun, 9 Feb 1997 15:56:26 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vtYgt-000oPHa; Sun, 9 Feb 97 13:49 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vtIhQ-001IXqa; Sat, 8 Feb 97 20:44 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vtIhK-001IXoE; Sat, 8 Feb 97 20:44 MET
+Received: from frog.informatik.uni-stuttgart.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vtIgU-000Bo1C; Sat, 8 Feb 97 20:43 MET
+Received: from localhost (hgfelger@localhost)
+          by frog.informatik.uni-stuttgart.de (8.8.5/8.8.4) with SMTP
+	  id UAA00991 for <isdn4linux@hub-wue.franken.de>; Sat, 8 Feb 1997 20:42:39 +0100
+X-Authentication-Warning: frog.informatik.uni-stuttgart.de: hgfelger owned process doing -bs
+Date: Sat, 8 Feb 1997 20:42:39 +0100 (CET)
+From: Hartwig Felger <hgfelger@trick.informatik.uni-stuttgart.de>
+X-Sender: hgfelger@frog.informatik.uni-stuttgart.de
+To: isdn4linux-Mialinglist <isdn4linux@hub-wue.franken.de>
+Subject: ipppd with IPX... Geht <freu!!!!>
+Message-Id: <Pine.LNX.3.95.970208202145.771B-100000@frog.informatik.uni-stuttgart.de>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Salut,
+mit hilfe des Patch von Jens Brambring und, wenn man mehr als einmal
+einw=E4hlen m=F6chte, meines Workaround geht jetzt sowohl Dialin von Linux =
+als
+auch von Win95, jeweils mit Linux als Server.
+
+Der Einzeilerpatch von Jens Brambring war:
+auf ipppd 2.2.7-debug anzuwenden!
+in ipxcp.c Ziele 354
+- wo->neg_router=3D1
++ wo->neg_router=3D6
+Ohne diesen Patch passiert schlimmes mit eurem Logfile (ich sag nur
+Bl=E4hungen!)
+
+Damit es =F6fer als einmal geht mu=DF im /etc/ppp/ipx_down eine Zeile
+eingef=FCgt werden (ich habe aber den Parameterkommentar noch dazu gelegt):
+# args are: interface-name   tty-device   speed  network-number
+#              local-IPX-node-address      remote-IPX-node-address
+#              local-IPX-routing-protocol  remote-IPX-routing-pro=AD
+#              tocol local-IPX-router-name  remote-IPX-router-name
+#              ipparam pppd-pid
+# example:  ippp0 /dev/ippp0 38400 ...
+# interface=3D$1 line=3D$2 speed=3D$3 localaddr=3D$4 remoteaddr=3D$5
+logger -t ipx-down -p local2.info $*
+/usr/bin/ipx_interface del $1 EtherII
+
+Wenn durch die letzte Zeile nicht das IPX-Interface gel=F6scht wird, steht
+es das n=E4chste mal im Weg!
+
+Ich denke, da=DF das in den ipppd wandern mu=DF (Michael???). Nach einem Bl=
+ick
+in die message-Logs mu=DF ich sagen, da=DF der Jenssche-Patch zwar tut, abe=
+r
+wohl auch nur als Workaround anzusehen ist. Er f=FChr dazu, da=DF kein
+Routing-Protokoll vereinbart wird, was aber nicht st=F6rt. Ich konnte
+zumindest alles tun. Ob sich jetzt aber zwei LAN ohne Routing-Protokoll
+verbinden lassen wei=DF ich nicht (kann ich auch eben nicht pr=FCfen, da ic=
+h
+zu Hause kein LAN hab - das Finanzamt macht ja schon bei einem
+Rechner ...).
+
+Damit Linux zu Linux tut, mu=DF ein zweites IPX-Interface aufgesetzt werden=
+=2E
+Notfalls das dummy0. Das meldet man dann als primary an (Option -p im
+ipx_interface-Befehl). Das sorgt eben f=FCr ein Prim=E4res und erm=F6glicht=
+,
+sobald die Leitung steht dem ipxd (aus ipxripd-0.7) zu starten (er braucht
+mindestens zwei IPX-Interfaces zum starten). Danach gehen slist und
+ncpmount!!!=20
+
+Wenn die Leitung abgebaut und sp=E4ter wieder aufgebaut wird, mu=DF ipxd ni=
+cht
+neu gestartet werden. Nach ca 30 Sekunden hat der ipxd das neue
+IPX-Interface erkann.
+
+Der ipxd startet nat=FCrlich nicht von selbst. Damit man das zweitemal nich=
+t
+so lange (30 Sec.) warten mu=DF kann man ein ipx-up schreiben, welches
+pr=FCft, ob ipxd l=E4uft und ihm ein HUP schicken, dann sieht er sofort das
+neue Interface, oder sonst startet.
+
+Wenn die Leitung abgebaut und sp=E4ter wieder aufgebaut wird, mu=DF ipxd ni=
+cht
+neu gestartet werden. Nach ca 30 Sekunden hat der ipxd das neue
+IPX-Interface erkann.
+
+Gru=DF Hartwig ;-)
+
+768/CA2159D9 Hartwig Felger <hgfelger@trick.informatik.uni-stuttgart.de>
+Fingerprint: 18 49 5E 6E 4E 47 3D F5  28 3E 11 C9 05 26 F3 46
+
+
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

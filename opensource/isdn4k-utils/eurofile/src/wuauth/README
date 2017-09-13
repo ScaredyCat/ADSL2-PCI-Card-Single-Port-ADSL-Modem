@@ -1,0 +1,94 @@
+/*
+		AUTHLIB 
+
+  Date: 980525
+
+Changes:
+        980622 some minor changes (name changes, pathnames) for ease
+               inclusion in eftp4linux source tree by Henner Eisen.
+*/
+
+
+This library is derived from some parts of wu-ftpd, the FTP server
+of the Washington University. (See copyright restrictions at
+the beginning of any source file containing WU code).
+
+It was written for use with eftd, the Euro File Transfer Daemon
+written by Henner Eisen for isdn4linux.
+
+As eftd is rather tighly related to the Linux OS, some OS independent
+parts have been removed for more readability (E.g. an ANSI C compiler
+is required).
+
+It passes the function "wuftp_check_user" to the outside as main
+benefit:
+
+int wuftp_check_user (char *name, char *passwd, char *isdnno)
+
+Arguments:
+  - name =   The user name.
+             Use ftp, anonymous or blank for anonymous logins
+  - passwd = The password the client issued
+  - isdnno = Instead of an IP-no as when used with ftpd, the isdn
+             number of the client can or should be passed.
+
+Returns:
+  - 0        On failure.
+             The user/password combination is wrong or the user
+             is not allowed to log in.
+             See "autherrmsg" for further information.
+  - 1        On successful login.
+             If the user is using a guest account (e.g., an 
+             anonymous user), a chroot/chdir will have been
+             performed by the library.
+             The user id of the running program is set to the
+             user id of the user logged in.
+
+This library tries to keep close to the auth-schemes as used by
+wu-ftpd. However, some adaptions have taken place:
+
+ - Like with wu-ftpd, you might either set the pathnames of
+   ftpaccess, ftphosts, ftpusers... in "pathnames.h" or
+   declare their directory in config.h. 
+
+   However, all files related to this library are starting with
+   "eft" instead of "ftp". Therefore, e.g. users forbidden to
+   login through this library are listed in "eftusers".
+
+ - The guest-server directive may be used to restrict anonymous
+   access by isdn-nr (instead of alias or fqdn-dns-name).
+   However, the user will not get informed about other servers.
+
+ - Whereever you might restrict or enable the access in the
+   config files by ip-number or fqdn-name, the isdn-nr will
+   be used instead of ip-name or ip-number.
+
+List of exported variables:
+
+IMPORTED:
+use_accessfile  Defaults to 0
+                If set to 1 before calling wuftp_check_user,
+                eftaccess will be interpreted and applied.
+
+EXPORTED:
+char *autherrmsg - Whenever authentication has proceeded, this string
+                is set to either an explanation why access was
+                not granted or a welcome message like 
+                "guest login o.k., access restrictions apply"
+
+
+int guest       0 if normal user, 1 if "chrooted"
+int anonymous   0 if normal user, 1 if anonymous login
+
+
+Enjoy!
+
+Georg v.Zezschwitz, georg@auf-der-er.de
+
+
+This product includes software developed by the Washington University
+in Saint Louis and its contributors.
+
+This product includes software developed by the University of
+California, Berkeley and its contributors.
+

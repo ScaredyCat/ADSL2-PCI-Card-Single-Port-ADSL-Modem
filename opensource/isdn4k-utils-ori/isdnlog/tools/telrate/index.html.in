@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 5.0::19981217::extensions to HTML 4.0//EN" "hmpro5.dtd">
+
+<HTML>
+
+<HEAD>
+<TITLE>@TITLE@ - Telefonkosten</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+NS4 = document.layers ? 1 : 0;
+IE4 = document.all ? 1 : 0;
+ver4 = (NS4 || IE4) ? 1 : 0;
+function pl(img)
+{if(!ver4) return 0;
+  var a=new Image(); a.src='./'+img+'.jpg'; return a;
+}
+eg0=pl("eg0");
+eg1=pl("eg1");
+gm0=pl("gm0");
+gm1=pl("gm1");
+info0=pl("info0");
+info1=pl("info1");
+list0=pl("list0");
+list1=pl("list1");
+function swap(what,on) {
+if(!ver4) return;
+var i=on?"1":"0";
+document[what].src=eval(what+i+'.src');
+}
+//-->
+</SCRIPT>
+
+<STYLE TYPE="text/css">
+<!--
+.t {font-family:Sans Serif;font-size:10pt}
+.sm {font-family:Sans Serif;font-size:9pt}
+i {color:#000080}
+h1 {font-family:Courier New,Courier}
+p,td,th,body { font-family:Sans Serif,Arial }
+-->
+</STYLE>
+
+</HEAD>
+
+<BODY BGCOLOR="#ffffe0">
+<H1 ALIGN="center">@TITLE@ - Telefonkosten</H1>
+<P><I>Wieviel</I> kostet ein <I>wie</I> langes Telefongespr&auml;ch von <I>wo</I> <I>wohin</I> um <I>welche</I> Zeit mit
+<I>welchem</I> Telefonprovider und <I>warum</I> eigentlich? <I>Wie</I> teuer kommt mir ein bestimmter Gespr&auml;chsmix
+zu verschiedenen Zielen? Und <I>wenn</I> man die Geb&uuml;hren dazurechnet, <I>was</I> kostet es dann?</P>
+<P>Und vorallem: &quot;<I>Wer</I> ist dabei der billigste?&quot;<br>
+Das und vieles mehr erfahren Sie hier, &uuml;bersichtlich aufbereitet in Tabellen und Grafiken.</P>
+<BLOCKQUOTE><TABLE>
+<TR>
+<TD ALIGN="right"> <A HREF="/@CGIBIN@/telrate.cgi" ONMOUSEOVER="swap('eg',1)"
+ONMOUSEOUT="swap('eg',0)"><B>Einzelgespr&auml;che</B></A><A HREF="/@CGIBIN@/telrate.cgi"
+ONMOUSEOVER="swap('eg',1)" ONMOUSEOUT="swap('eg',0)"><IMG SRC="eg0.jpg" ALT="Einzelgespr&auml;ch" BORDER="0" WIDTH="80"
+HEIGHT="40" NAME="eg" HSPACE="10"></A></TD>
+<TD ROWSPAN="2"><A HREF="/@CGIBIN@/telrate.cgi" ONMOUSEOVER="swap('eg',1)" ONMOUSEOUT="swap('eg',0)"><IMG SRC="graf.gif"
+BORDER="0" HSPACE="40" ALT="Grafik Einzelgespr&auml;chskosten" WIDTH="226" HEIGHT="110"></A> </TD>
+<TD ALIGN="left"> <A HREF="info.html" ONMOUSEOVER="swap('info',1)" ONMOUSEOUT="swap('info',0)"><IMG
+SRC="info0.jpg" ALT="Info" BORDER="0" WIDTH="80" HEIGHT="40" NAME="info" HSPACE="10"></A><A HREF="info.html"
+ONMOUSEOVER="swap('info',1)" ONMOUSEOUT="swap('info',0)"><B>Info / Hilfe</B></A> </TD>
+</TR>
+<TR>
+<TD ALIGN="right" VALIGN="MIDDLE">
+<A HREF="/@CGIBIN@/telrate.cgi?mix=10" ONMOUSEOUT="swap('gm',false)"
+ ONMOUSEOVER="swap('gm',true)"><B>Gespr&auml;chsmix</B></A><A HREF="/@CGIBIN@/telrate.cgi?mix=10" ONMOUSEOUT="swap('gm',false)"
+ONMOUSEOVER="swap('gm',true)"><IMG SRC="gm0.jpg" ALT="Gespr&auml;chsmix" BORDER="0" WIDTH="80" HEIGHT="40" NAME="gm"
+HSPACE="10"></A> </TD>
+<TD ALIGN="left"> <A HREF="/@CGIBIN@/telrate.cgi?list=1" ONMOUSEOVER="swap('list',1)" ONMOUSEOUT="swap('list',0)"><IMG
+SRC="list0.jpg" ALT="Providerliste" BORDER="0" WIDTH="80" HEIGHT="40" NAME="list" HSPACE="10"></A><A HREF="/@CGIBIN@/telrate.cgi?list=1"
+ONMOUSEOVER="swap('list',1)" ONMOUSEOUT="swap('list',0)"><B>Providerliste</B></A> </TD></TR>
+</TABLE>
+</BLOCKQUOTE>
+<P ALIGN="CENTER"><IMG SRC="hr.gif" WIDTH="600" HEIGHT="4"></P>
+<DIV ALIGN="RIGHT">
+<P CLASS="sm">This calculationengine is powered by <IMG SRC="tux.gif" ALT="Linux" BORDER="0"> , created by the
+<A HREF="http://www.isdn4linux.de">Isdn-Crew</A>.<BR>
+HTML page and CGI program created by <A HREF="http://www.toetsch.at">Leopold T&ouml;tsch</A>, (c) 1999 by
+<A HREF="mailto:lt@toetsch.at">-lt-</A>.</P>
+</DIV>
+</BODY>
+</HTML>
+

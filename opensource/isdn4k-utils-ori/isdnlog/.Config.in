@@ -1,0 +1,50 @@
+mainmenu_option next_comment
+comment 'Options for isdnlog package'
+int 'Server listen at port' CONFIG_ISDNLOG_SERV_PORT
+string 'User file' CONFIG_ISDNLOG_USERFILE
+string 'Charge file' CONFIG_ISDNLOG_CHARGEFILE
+string 'Log file' CONFIG_ISDNLOG_LOGFILE
+string 'Reload command' CONFIG_ISDNLOG_RELOADCMD
+string 'Stop command' CONFIG_ISDNLOG_STOPCMD
+string 'Reboot command' CONFIG_ISDNLOG_REBOOTCMD
+string 'Old config directory' CONFIG_ISDNLOG_OLDI4LCONFDIR
+string 'Old config file' CONFIG_ISDNLOG_OLDI4LCONFFILE
+bool 'Support postgres95 SQL-Database' CONFIG_ISDNLOG_POSTGRES
+if [ "$CONFIG_ISDNLOG_POSTGRES" = "y" ]; then
+	string 'directory of postgres95' CONFIG_ISDNLOG_POSTGRESDIR
+fi
+bool 'Support mysql SQL-Database' CONFIG_ISDNLOG_MYSQLDB
+if [ "$CONFIG_ISDNLOG_MYSQLDB" = "y" ]; then
+	string 'directory of mysql' CONFIG_ISDNLOG_MYSQLDIR
+fi
+bool 'Support Oracle SQL-Database' CONFIG_ISDNLOG_ORACLE
+choice 'Country specific chargeinfo support' \
+	"DE CONFIG_ISDN_LOG_DE \
+	 AT CONFIG_ISDN_LOG_AT \
+	 NL CONFIG_ISDN_LOG_NL \
+	 LU CONFIG_ISDN_LOG_LU \
+	 CH CONFIG_ISDN_LOG_CH \
+	 XX CONFIG_ISDN_LOG_XX" DE
+if [ "$CONFIG_ISDN_LOG_DE" = "y" ]; then
+	CONFIG_ISDN_LOG_DEST_DE="y"
+fi
+if [ "$CONFIG_ISDN_LOG_AT" = "y" ]; then
+	CONFIG_ISDN_LOG_DEST_AT="y"
+fi
+if [ "$CONFIG_ISDN_LOG_NL" = "y" ]; then
+	CONFIG_ISDN_LOG_DEST_NL="y"
+fi
+if [ "$CONFIG_ISDN_LOG_CH" = "y" ]; then
+	CONFIG_ISDN_LOG_DEST_CH="y"
+fi
+if [ "$CONFIG_ISDN_LOG_XX" = "y" ]; then
+	string "Please enter your iso country code here" CONFIG_ISDN_LOG_CC
+fi
+choice 'Primary language for country names' \
+	"DE CONFIG_ISDN_LOG_CC_DE \
+	 EN CONFIG_ISDN_LOG_CC_EN" DE
+bool 'Include German cities in destination database' CONFIG_ISDN_LOG_DEST_DE y
+bool 'Include Austrian cities in destination database' CONFIG_ISDN_LOG_DEST_AT y
+bool 'Include Dutch cities in destination database' CONFIG_ISDN_LOG_DEST_NL y
+bool 'Include Swiss cities in destination database' CONFIG_ISDN_LOG_DEST_CH y
+endmenu

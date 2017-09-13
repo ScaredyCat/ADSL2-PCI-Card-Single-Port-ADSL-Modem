@@ -1,0 +1,7 @@
+This dir contains 3 files:
+- README.isdnbill > this file
+- LIESMICH.isdnbill > german version of this file
+- isdnbill.tar.gz > some Tcl/Tk scripts to display user's units and colourful
+  buttons, if you want to use the -i or -S-- option of ISDNLOG without sound...
+
+Sorry, but there is no english version of the DOCU yet !

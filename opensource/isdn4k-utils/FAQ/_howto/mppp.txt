@@ -1,0 +1,142 @@
+Sender: Okane@em.uni-frankfurt.de
+Date: Fri, 08 Nov 1996 20:31:01 +0100
+From: "Robert O'Kane" <okane@em.uni-frankfurt.de> Organization: OTHERSPACE
+To: Matthias Hessler <hessler@wi-inf.uni-essen.de> Subject: Re: Though put over multiple ISDN channels
+
+Matthias Hessler wrote:
+> 
+> Hi Robert,
+> 
+> ich kann Dir bei den Durchsatzproblemen nicht helfen, allerdings wuerden wir
+> uns gerne freuen, wenn wir die FAQ um ein paar Hinweise zum Channel-Bundling
+> erweitern koennten (es kommt immer wieder zu Fragen in dieser Richtung).
+> 
+> Koenntest Du uns Deine Konfigurationsskripte zukommen lassen? Oder gar
+> einige Frage/Anwort-Paare - um anderen beim Ueberwinden der schwierigsten
+> Huerden zu helfen?
+> 
+> Vielen Dank.
+> 
+> Matthias
+
+Hello,
+
+   Attached is the script I use to setup multiple channels to be used as 1 network device. Mind you the throughput isn't really great. So it might not be worth the effort until we can get the network device to feed more data to the ISDN device.
+
+Please feel free to add this to the FAQ if you like.
+
+Bob.
+
+-- 
+---------------------------------------------- Unfortunatly, I find language (like politics) necessary for humans.
+Leider finde Ich Sprache (wie Politik) fuer die Menschen notwendig.
+---------------------------------------------- Robert O'Kane
+OTHERSPACE
+Founding Member and Linker
+
+URL  : http://www.rz.uni-frankfurt.de/~okane email: okane@em.uni-frankfurt.de
+---------------------------------------------- Ok,  here is a script used to set up multiple isdn "devices" to be used as one for a network.
+LOTS here were picked up from the Isdn$Linux Mail list ;-}  
+
+Maybe someone else can use things in here.
+Included:
+   startisdn        <- script to setup the ISDN and network devices 
+
+
+NOTE:  1: Depending on your setup (modules, card_id's, etc..) you
+        : may want to bind the devices to certain cards/channels
+        : so things work the way you want.
+
+       2: I couldn't get any 'real' speed up. The maximum throughput
+        : I got was arround 10K - 12K. YMMV (You mileage may vary)
+
+##################################################################### #####################################################################
+
+: /usr/local/isdn/startisdn
+
+#! /bin/sh
+
+#####################################
+## Startup script for ISDN network.
+##
+## On "other" machine, reverse REMOTE and LOCAL ##
+
+REMOTE_IP="machine2"
+REMOTE_NUMBER0="xxxxxx35"
+REMOTE_NUMBER1="xxxxxx36"
+REMOTE_NUMBER2="xxxxxx38"
+REMOTE_NUMBER3="xxxxxx39"
+
+LOCAL_IP="machine1"
+LOCAL_NUMBER0="xxxxxx46"
+LOCAL_NUMBER1="xxxxxx47"
+LOCAL_NUMBER2="xxxxxx49"
+LOCAL_NUMBER3="xxxxxx50"
+
+CHANNELS="1 2 3"
+
+SYSPATH="/sbin"
+ISDNCTRL="/sbin/isdnctrl"
+ENCAP="rawip"
+DEVICE="isdn0"
+SLAVE="isdnsl"
+
+case "$1" in
+    start)
+		### install modules if not there, ASSUME teles irq bug
+        ### found in the original teles driver.
+        if [ ! "`lsmod | grep teles`" ]; then
+                echo "teles module NOT found:  INSTALLING"
+                   modprobe telesall   
+                sleep 1
+                rmmod telesall
+                sleep 1
+                modprobe telesall
+        fi
+
+        $ISDNCTRL addif      $DEVICE
+        $ISDNCTRL eaz        $DEVICE $LOCAL_NUMBER0
+        $ISDNCTRL addphone   $DEVICE in "*$REMOTE_NUMBER0"
+        $ISDNCTRL addphone   $DEVICE out $REMOTE_NUMBER0
+        $ISDNCTRL l2_prot    $DEVICE x75i
+        $ISDNCTRL l3_prot    $DEVICE trans
+        $ISDNCTRL encap      $DEVICE $ENCAP
+        $ISDNCTRL huptimeout $DEVICE 60
+        $ISDNCTRL chargehup  $DEVICE off
+        $ISDNCTRL ihup       $DEVICE off
+        $ISDNCTRL secure     $DEVICE on
+        $ISDNCTRL sdelay     $DEVICE 15
+
+        for i in  $CHANNELS ; do
+            $ISDNCTRL addslave   $DEVICE  $SLAVE$i
+            $ISDNCTRL eaz        $SLAVE$i $[LOCAL_NUMBER$i]
+            $ISDNCTRL addphone   $SLAVE$i in "*$[REMOTE_NUMBER$i]"
+            $ISDNCTRL addphone   $SLAVE$i out $[REMOTE_NUMBER$i]
+            $ISDNCTRL l2_prot    $SLAVE$i x75i
+            $ISDNCTRL l3_prot    $SLAVE$i trans
+            $ISDNCTRL encap      $SLAVE$i $ENCAP
+            $ISDNCTRL huptimeout $SLAVE$i 30
+            $ISDNCTRL chargehup  $SLAVE$i off
+            $ISDNCTRL ihup       $SLAVE$i off
+            $ISDNCTRL secure     $SLAVE$i on
+            $ISDNCTRL sdelay     $SLAVE$i 15
+            done
+
+        $SYSPATH/ifconfig $DEVICE inet $LOCAL_IP \
+                                 pointopoint $REMOTE_IP metric 1
+        $SYSPATH/route add -host $REMOTE_IP $DEVICE
+        ;;
+    stop)
+        $SYSPATH/ifconfig $DEVICE down
+        $ISDNCTRL delif      $DEVICE
+        ;;
+    hangup)
+        $ISDNCTRL hangup     $DEVICE
+        ;;
+    *)
+        echo "$0 : <start|stop|hangup>"
+        exit 1
+        ;;
+esac
+
+##################################################################### 

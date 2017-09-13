@@ -1,0 +1,121 @@
+.\" $Id: actctrl.man.in,v 1.3 1999/09/06 08:03:23 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:23 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii actctrl.1 for ASCII output, or
+.\" groff -man -Tps actctrl.1 for PostScript output
+.\"
+.TH ACTCTRL 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+actctrl \- configure IBM Active 2000 ISDN adaptor
+.SH SYNOPSIS
+.B actctrl [-d
+.IB Driver-Id ]
+.I action options
+.B ...
+.SH DESCRIPTION
+.B actctrl
+is used to setup the IBM Active 2000
+.SM ISDN
+device driver and for downloading the firmware into the
+.SM ISDN
+card.
+.LP
+The use of
+.I actctrl
+makes sense, if you are using an IBM Active 2000 card only.
+.LP
+.SH OPTIONS
+.TP
+.BI "-d " Driver-Id
+selects the S0 interface named by
+.IR Driver-Id .
+Driver-Ids are defined during driver initialisation. See
+.BR act2000 (4)
+for a description of the syntax to be used for modularized and
+monolithic driver versions.
+This option
+.B must
+be used to identify the S0 interface if more than one S0 interface is
+existent. If a single IBM Active 2000 is used, it may be omitted.
+If using more than one card, support for the other cards is enabled
+with the
+.B add
+action of actctrl. Ids may
+.B not
+start with
+.B digits
+or small
+.BR x ,
+because these values are misinterpreted
+as numeric parameters by
+.BR insmod .
+For loading the module, always the
+newest
+.B modutils
+package should be used to avoid problems during load.
+.LP
+The following 
+.I actions
+may be given to
+.BR actctrl .
+.TP
+.BI "add [" bus "[ " port "[ " irq "[ " id ]]]]
+enables support for an additional card in the driver.
+.I bus
+is is an integer describing the bus-type of the card. Currently,
+the only value which is allowed here is
+.B 1
+meaning ISA-bus. In the future, the values
+.B 2
+(for MCA) and
+.B 3
+(for PCMCIA) will be available.
+.I port
+is either an integer describing the base port, or the string
+.B auto
+which enables autoprobing.
+.I irq
+is either an integer describing the IRQ to use, the string
+.BR auto ,
+which enables grabbing of the next free IRQ or the string
+.B none
+which enables polled mode for this card.
+.I id
+is an arbitrary string for referencing the card at a later time.
+.TP
+.BI "dproto " protocol " [" msn0 , msn1 ", ... " msn9 ]
+selects the D-channel protocol and defines MSN's if using Euro protocol.
+.I protocol
+may be either the string
+.B 1tr6
+or the string
+.BR euro .
+If selecting Euro protocol, a comma-separated list of up to 10 MSN's
+may be appended. For defining an empty entry in this list, use a dash.
+.TP
+.BI "load " firmware
+downloads the firmware into the card and starts operation.
+Usually the images are located in
+.IR @CONFIG_DATADIR@ .
+The firmware is named
+.IR bip1120.bpl .
+.TP
+.B dump
+is available if the program is configured using the
+.B --enable-dump
+option only. The contents of internal driver variables is dumped on stdout.
+.SH FILES
+.TP
+.I @CONFIG_DATADIR@/bip1120.bpl
+This is the image of the firmware designed for both the German 1TR6 protocol
+and Euro ISDN.
+.LP
+.SH BUGS
+No bugs so far.
+.SH AUTHOR
+\(co 1997 by Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.BR isdnctrl "(8), " act2000 "(4), " isdnctrl "(4), " ttyI (4).

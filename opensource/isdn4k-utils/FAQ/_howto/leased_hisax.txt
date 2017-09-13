@@ -1,0 +1,120 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA62050; Tue, 28 Jan 1997 01:28:05 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id BAA13753; Tue, 28 Jan 1997 01:29:02 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0voydq-000oJ3a; Mon, 27 Jan 97 22:31 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0voyhI-001Idqa; Mon, 27 Jan 97 22:34 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0voyhD-001IdoE; Mon, 27 Jan 97 22:34 MET
+Received: from mail.space.net by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0voyad-000BlxC; Mon, 27 Jan 97 22:27 MET
+Received: from euler.space.net ([194.59.182.7]) by mail.space.net with SMTP id <30273-3309>; Mon, 27 Jan 1997 22:28:57 +0100
+Received: by euler.space.net (Smail3.1.29.1 #4)
+	id m0voyZy-000ZzNC; Mon, 27 Jan 97 22:27 MET
+Received: from lx01.temic (isdn4@lx01.temic [192.9.216.171]) by temic-ech.spacenet.de (8.6.12/1.02KKe) with ESMTP id WAA14625; Mon, 27 Jan 1997 22:22:33 +0100
+Received: (from isdn4@localhost) by lx01.temic (8.6.12/1.02KKe) id WAA24950; Mon, 27 Jan 1997 22:20:41 +0100
+Message-Id: <Mutt.19970127222041.isdn4@lx01.temic>
+Date: Mon, 27 Jan 1997 22:20:41 +0100
+From: isdn4@temic-ech.spacenet.de (Karsten Keil)
+To: chrk@netfire.aball.de (Christian Kleinfeld)
+Cc: isdn4linux@hub-wue.franken.de
+Subject: Re: Standleitung mit I4L ?
+References: <32ECE75C.7C9CE872@netfire.aball.de>
+X-Mailer: Mutt 0.58.1
+Mime-Version: 1.0
+In-Reply-To: <32ECE75C.7C9CE872@netfire.aball.de>; from Christian Kleinfeld on Jan 27, 1997 18:35:24 +0100
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Christian Kleinfeld writes:
+> bestimmt steht das die Antwort in einer Doku oder FAQ, leider habe ich
+> in den Dokumenten keine richtigen Hinweise gefunden deshalb poste ich
+> einfach mal hier.
+Du hast recht es steht nicht drin, weil es das noch nicht offiziell gibt.
+
+> Ich moechte mit meiner TelesS0 16.0 (LinuX 2.0.25, i4l mit oder ohne
+> HiSax ist egal da als Modul eingebunden <grin>) auf ueber D64S
+Egal nicht geht nur mit HiSax2.0.
+> Standleitung zum Provider gehen, naja Standleitung ist auch schon bis
+> ins Haus gelegt und kostet Geld ;(. Meine eigentlich Frage kommt jetzt.
+> Gibt es irgendwelche besonderheiten bei der Konfiguration auf eine
+> Standleitung wenn ja welche ?
+Also seit ca. 1 Woche laeuft HiSax mit Standleitung, unten kommt die
+Anleitung.
+>
+> Hat schon jemand erfahrung damit gehabt ? 
+Es laeuft bei jemanden, der sich bestimmt auch noch bei Dir meldet mit
+einer Cisco als Gegenstelle. Wichtig KeepAlive bei Cisco ausschalten !!!
+Falls Du Prbleme hast, Mail an meine Adresse keil@temic-ech.spacenet.de,
+dann gibt es Telefonsupport.
+
+Fuer den leased Mode ist eine vorab version aus dem CVS Entwickler tree
+notwendig, Anleitung war im November vom Fritz auf der Liste, Du bekommst
+eine Kopie per extra Mail.
+
+Anleitung zur Installation des isdn trees.
+
+1. Einen 2.0.X kernel mit HiSax 1.X (wichtig mit HiSAX !)
+
+2. ins CVS isdn wechseln und 
+   ./std2kern -d
+   aufrufen
+4. Im kernel make (menu)config;make dep; make clean; make modules 
+
+Hier ein Beispielscript zum leased mod, module werden direkt aus dem 
+kernel geladen (kein make module_install notwendig)
+Alle Telefonnummern sind erlaubt, sie spielen keine Rolle.
+
+#!/bin/sh
+cd /usr/src/linux/modules
+/sbin/insmod -m isdn.o > /tmp/isdn/isdn.map
+/sbin/insmod -m hisax.o type=3 io=0x180 protocol=1 irq=10 id=HiSax \
+  > /tmp/isdn/hisax.map
+/bin/cat /System.map /tmp/isdn/isdn.map /tmp/isdn/hisax.map | \
+  sort > /tmp/isdn/System.map
+# Full debug  nur fuer tests , muss wenns geht runtergesetzt werden
+/sbin/telesctrl HiSax 1  0xffff
+/sbin/telesctrl HiSax 11 0xff
+# normal debug
+#/sbin/telesctrl HiSax 1  0x31
+#/sbin/telesctrl HiSax 11 0x01
+
+# Setzen in leased Mode
+/sbin/telesctrl HiSax 5  0
+# interface
+/sbin/isdnctrl addif isdn0
+# wichtig
+/sbin/isdnctrl huptimeout isdn0 0
+# binde Interface an 1. BChannel (,1 fuer 2.)
+/sbin/isdnctrl bind HiSax,0
+# dummy
+/sbin/isdnctrl eaz isdn0 1
+/sbin/isdnctrl l2_prot isdn0 hdlc
+# dummy
+/sbin/isdnctrl addphone isdn0 out 2
+/sbin/isdnctrl addphone isdn0 in  3
+/sbin/isdnctrl l3_prot isdn0 trans
+# nur bei cisco
+#/sbin/isdnctrl encap isdn0 cisco-h
+
+# interface starten
+/sbin/ifconfig isdn0 192.1.1.1 up
+# route zur Gegenstelle
+/sbin/route add 192.1.1.2 isdn0
+mv /tmp/isdnctrl.log /tmp/isdnctrl.log.o
+cat /dev/isdnctrl >/tmp/isdnctrl.log &
+
+-- 
+Dipl.Ing. Karsten Keil                        Microcontroller Developement
+email: keil@temic-ech.spacenet.de                Temic Semiconducters GmbH
+Any opinions in this posting are my own and not those of my present
+or previous employers.
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

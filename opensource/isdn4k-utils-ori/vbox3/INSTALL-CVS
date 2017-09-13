@@ -1,0 +1,17 @@
+
+If you checkout this package from the current isdn4linux CVS tree, you need
+the last "autoconf" and "automake" (check your next gnu mirror) installed to
+complete the package.
+
+Before you compile do the following steps from the main directory:
+
+% aclocal
+% autoheader
+% autoconf
+% automake
+
+This will create all needed files not included with the copy of the CVS
+tree.
+
+Note: aclocal must be call before autoheader or some define's will not be
+      created!

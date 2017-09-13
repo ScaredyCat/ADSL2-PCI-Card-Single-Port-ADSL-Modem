@@ -1,0 +1,122 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA15640; Sun, 5 Jan 1997 18:04:15 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id SAA22736; Sun, 5 Jan 1997 18:05:24 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vgt53-000oLra; Sun, 5 Jan 97 14:57 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vgt3F-001IV9a; Sun, 5 Jan 97 14:55 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vgt3C-001IV8E; Sun, 5 Jan 97 14:55 MET
+Received: from wildsau.idv.uni-linz.ac.at by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vgt3I-000BmIC; Sun, 5 Jan 97 14:55 MET
+Received: (from herp@localhost) by wildsau.idv.uni-linz.ac.at (8.6.12/8.6.9) id OAA19933 for isdn4linux@hub-wue.franken.de; Sun, 5 Jan 1997 14:52:07 +0100
+From: Herbert Rosmanith <herp@wildsau.idv.uni-linz.ac.at>
+Message-Id: <199701051352.OAA19933@wildsau.idv.uni-linz.ac.at>
+Subject: ip-masq, sample setup
+To: isdn4linux@hub-wue.franken.de
+Date: Sun, 5 Jan 1997 14:52:07 +0100 (MET)
+X-Mailer: ELM [version 2.4 PL25]
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+
+since there have been question about ip-masquerading recently, here
+is a sample setup. note: this is no isdn-setup anymore (it was before),
+but the machine now has two ethernet cards (the customer bought a leased
+line). note also that there is a particular network which stupidly has
+been setup as internal network allthough the numbers have already been
+officially assigned elsewhere. thanks to "daten technik" for this
+very clever network design ... :-(
+
+some words to the configuration: the maschine has two network cards,
+one for the internal network, one with a real IP address.
+
+eth0:      10.0.0.0	internal
+eth0:1     192.34.0.0	"internal"
+eth1:      x.x.x.x      external, real address
+
+you may find the setup for the masquerading part a bit strange.
+however, I chosed to configure that based on network cards, not on
+ip-numbers. this can be done using the "-W" option from ipfwadm.
+so, the last lines below read "accept all traffic from card
+1 unchanged, but masquerade it on card 2". this makes sense, since card 2
+is the only one with a real ip-addess.
+
+-----------------------------------------------------------------------------
+#!/bin/sh
+iw=/sbin/ipfwadm
+h=linux.xxxxxxx.co.at
+#
+# start with a clean configuration...
+#
+$iw -If
+#
+# default policy: paranoid...
+#
+$iw -Ip deny
+#
+# allow only ICMP ECHO REPLY from outside.
+# this allows us to ping other hosts, but disables
+# others to ping ourselves.
+#
+$iw -Ia accept -S 0/0 0 -D $h -P icmp -W eth1
+$iw -Ia deny -S 0/0 -D $h -P icmp -W eth1
+#
+# allow incoming smtp connections from outside (internet)
+# force local users to use mail-relay
+#
+$iw -Ia accept -S 0/0 -D xxx.xxx.xxx.xx smtp -P tcp -W eth1
+$iw -Ia accept -S 0/0 -D 192.34.70.254 smtp -P tcp -W eth0
+$iw -Ia accept -S 0/0 -D 10.0.0.1 smtp -P tcp -W eth0:1
+$iw -Ia accept -S 0/0 -D 127.0.0.1 smtp -P tcp -W lo
+$iw -Ia deny -S 0/0 -D 0/0 smtp -P tcp
+#
+# loopback, eth0 and eth0:1 is allowed to do (nearly) everything, of course ...
+#
+$iw -Ia accept -S 0/0 -D 0/0 -W lo
+$iw -Ia accept -S 0/0 -D 0/0 -W eth0
+$iw -Ia accept -S 0/0 -D 0/0 -W eth0:1
+#
+# domain may only speak with domain
+#
+$iw -Ia accept -S 0/0 domain -D $h domain -P tcp -W eth1
+$iw -Ia accept -S 0/0 domain -D $h domain -P udp -W eth1
+#
+# allow incoming traffic once the connection has been built.
+# - note: this is the same as the cisco-keyword "established"
+#
+# nota bene: since we already accept everything from lo, eth0 and eth0:1,
+# it is not (seems not to be) neccessary to check the SYN flag, too.
+#
+$iw -Ia accept -S 0/0 -D $h -k -W eth1
+#
+# allow yyyyyy to do some service
+#
+$iw -Ia accept -S yyyyyyy.yyyyyy.co.at -D $h -W eth1
+#
+# allow yyyyyy ftp
+#
+$iw -Ia accept -S ftp.yyyyyy.co.at -D $h -W eth1
+$iw -Ia accept -S ftp.yyyyyy.co.at -D $h -W eth1
+#
+$iw -Ia accept -S $h -D 0/0 -W eth1
+#
+# now for the masquerading part
+#
+$iw -Ff
+$iw -Fp deny
+$iw -Fa accept -S 0/0 -D 0/0 -W eth0
+$iw -Fa accept -S 0/0 -D 0/0 -W eth0:1
+$iw -Fa masquerade -S 0/0 -D 0/0 -W eth1
+
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

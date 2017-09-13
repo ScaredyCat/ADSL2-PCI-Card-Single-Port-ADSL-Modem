@@ -1,0 +1,71 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA57806; Sat, 8 Feb 1997 02:28:15 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id CAA05402; Sat, 8 Feb 1997 02:29:21 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vszst-000oHTa; Sat, 8 Feb 97 00:39 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vszrK-001IX0a; Sat, 8 Feb 97 00:37 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vszrD-001IWvE; Sat, 8 Feb 97 00:37 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vszrI-000BnoC; Sat, 8 Feb 97 00:37 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vszr5-001IWvE; Sat, 8 Feb 97 00:37 MET
+To: isdn4linux@hub-wue.franken.de
+Xref: oops de.alt.comm.isdn4linux:1463
+From: Jens Brambring <jens.brambring@p-net.de>
+Newsgroups: de.alt.comm.isdn4linux
+Subject: Re: IPX/SPX ueber isdn4linux und WIN95
+Date: Sat, 08 Feb 1997 01:26:50 +0100
+Organization: Customer of EUnet Germany; Info: info@Germany.EU.net
+Lines: 31
+Distribution: world
+Message-Id: <32FBC837.340A@p-net.de>
+References: <32F53265.5E65@p-net.de>
+Nntp-Posting-Host: peu-18.d.eunet.de
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 3.01Gold [de] (Macintosh; I; 68K)
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Hallo,
+
+zu Eurer Information, mit dem ipppd 2.2.7 geht es jetzt auch:-)
+Ich musste aber noch in der Datei ipxcp die Zeile 354 aendern!
+
+alt: wo->neg_router=1
+neu: wo->neg_router=6
+
+Danach kommt eine saubere Verbindung zwischen dem 
+WIN95-Rechner und dem Linux-Rechner zustande :-))
+Es sind auch keine scripts mehr auf der Win95-Seite notwendig!
+Ihr muesst aber nach geschlossener verbindung das ipx_interface, dass
+vom ipppd eingerichtet wird wieder loeschen, am besten in der Datei
+ipx-down,
+sonst kriegt Ihr nur einmal eine Verbindung hergestellt!!
+
+Hier meine Datei /etc/ppp/ioptions:
+
+-detach
+192.9.215.80:192.9.215.70
+defaultroute
+mru 1524
+debug
+/dev/ippp1
++ipx
+ipx-routing 2
+ipxcp-max-failure 20
+ipx-node 4:5
+ipx-network 0x3000
+
+Ciao, Jens!
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

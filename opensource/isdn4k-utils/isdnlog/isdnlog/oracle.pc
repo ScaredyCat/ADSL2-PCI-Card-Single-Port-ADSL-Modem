@@ -1,0 +1,217 @@
+/*
+ * Copyright (C) 1999 Jan Bolt
+ *
+ * Permission to use, copy and distribute this software for
+ * non-commercial purposes is hereby granted without fee,
+ * provided that this copyright and permission notice appears
+ * in all copies.   
+ *
+ * This software is provided "as-is", without ANY WARRANTY.
+ *
+ * oracle.pc 1999/01/07 Jan Bolt
+ *
+ * $Log: oracle.pc,v $
+ * Revision 1.1  1999/12/31 13:30:02  akool
+ * isdnlog-4.00 (Millenium-Edition)
+ *  - Oracle support added by Jan Bolt (Jan.Bolt@t-online.de)
+ *
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+#include <time.h>
+#include <syslog.h>
+/*#define SQLCA_STORAGE_CLASS extern*/
+/*#include <sqlca.h>*/
+#include <sqlcpr.h>
+#include "oracle.h"
+
+static const char rcsid[] = "$Id: oracle.pc,v 1.1 1999/12/31 13:30:02 akool Exp $";
+
+static int debug, connected;
+const char *db_load_error = DB_LOAD_ERROR;
+
+static
+void sql_error(const char *msg)
+{
+	char buf[128];
+	size_t buf_len = sizeof(buf), msg_len;
+
+	sqlglm(buf, &buf_len, &msg_len);
+	buf[msg_len] = '\0';
+	if (buf[msg_len-1] == '\n') buf[msg_len-1] = '\0';
+	syslog(LOG_ERR, "%s: %s", msg, buf);
+}
+
+static
+void prtDbStrIn(const oracle_DbStrIn *call)
+{
+	char buf[80];
+
+	strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M:%S", localtime(&call->connect));
+	syslog(LOG_DEBUG, "connect=%s", buf);
+	syslog(LOG_DEBUG, "calling=\"%s\"", call->calling);
+	syslog(LOG_DEBUG, "called=\"%s\"", call->called);
+	syslog(LOG_DEBUG, "duration=%d", call->duration);
+	syslog(LOG_DEBUG, "hduration=%d", call->hduration);
+	syslog(LOG_DEBUG, "aoce=%d", call->aoce);
+	syslog(LOG_DEBUG, "dialin='%s'", call->dialin);
+	syslog(LOG_DEBUG, "cause=%d", call->cause);
+	syslog(LOG_DEBUG, "ibytes=%d", call->ibytes);
+	syslog(LOG_DEBUG, "obytes=%d", call->obytes);
+	syslog(LOG_DEBUG, "version=\"%s\"", call->version);
+	syslog(LOG_DEBUG, "si1=%d", call->si1);
+	syslog(LOG_DEBUG, "si11=%d", call->si11);
+	syslog(LOG_DEBUG, "currency_factor=%5.4f", call->currency_factor);
+	syslog(LOG_DEBUG, "currency=\"%s\"", call->currency);
+	syslog(LOG_DEBUG, "pay=%g", call->pay);
+	syslog(LOG_DEBUG, "provider=%d", call->provider);
+	syslog(LOG_DEBUG, "provider_name=\"%s\"", call->provider_name);
+	syslog(LOG_DEBUG, "zone=%d", call->zone);
+}
+
+static
+void sqlDbStrIn(FILE *fp, const oracle_DbStrIn *call)
+{
+	char buf[80];
+
+	strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M:%S", localtime(&call->connect));
+	fprintf(fp,
+		"insert into isdn"
+		"(sdate, calling, called, msec, sec, charge, dir, status,"
+		" in_bytes, out_bytes, vrsion, service, source, currency, "
+		"factor, pay, provider, provider_name, zone)"
+		" values ("
+		"to_date('%s', 'dd.mm.yyyy hh24:mi:ss'), "
+		"'%s', '%s', %d, %d, %d, '%s', %d, %ld, %ld, '%s', %d, %d, '%s', "
+		"%g, %g, %d, '%s', %d"
+		");\n",
+		buf,
+		call->calling,
+		call->called,
+		call->hduration,
+		call->duration,
+		call->aoce,
+		call->dialin,
+		call->cause,
+		call->ibytes,
+		call->obytes,
+		call->version,
+		call->si1,
+		call->si11,
+		call->currency,
+		call->currency_factor,
+		call->pay,
+		call->provider,
+		call->provider_name,
+		call->zone);
+
+/* call->aoce == -1 ? "null" : call->aoce */
+}
+
+int loadError(const oracle_DbStrIn *call)
+{
+	FILE *fp;
+
+	if (!db_load_error) return 0;
+	if (!(fp = fopen(db_load_error, "a")))
+	{
+		syslog(LOG_ERR, "%s: %s", db_load_error, strerror(errno));
+		return -1;
+	}
+	sqlDbStrIn(fp, call);
+	fclose(fp);
+
+	return 0;
+}
+
+/*****************************************************************************
+*
+*****************************************************************************/
+int oracle_dbAdd(const oracle_DbStrIn *call)
+{
+	char buf[80];
+	short aoce_ind;
+	int rv;
+
+	if (debug)
+	{
+		syslog(LOG_DEBUG, "oracle_dbAdd");
+		prtDbStrIn(call);
+	}
+
+	if (!connected && oracle_dbOpen())
+	{
+		loadError(call);
+		return -1;
+	}
+
+	strftime(buf, sizeof(buf), "%d.%m.%Y %H:%M:%S", localtime(&call->connect));
+	aoce_ind = /*call->aoce == -1 ? -1 : */0;
+
+	exec sql insert into isdn
+	(sdate,
+	 calling, called,
+	 charge, dir, in_bytes, out_bytes,
+	 msec, sec, status, service, source, vrsion, factor,
+	 currency, pay, provider, provider_name, zone) values
+	(to_date(:buf, 'dd.mm.yyyy hh24:mi:ss'),
+	 :call->calling, :call->called,
+	 :call->aoce:aoce_ind, :call->dialin, :call->ibytes, :call->obytes,
+	 :call->hduration, :call->duration, :call->cause, :call->si1, :call->si11,
+	 :call->version, :call->currency_factor, :call->currency, :call->pay,
+	 :call->provider, :call->provider_name, :call->zone);
+
+	if ((rv = sqlca.sqlcode))
+	{
+		sql_error("oracle_dbAdd");
+		loadError(call);
+	}
+
+	exec sql commit work;
+
+	return rv;
+}
+
+/*****************************************************************************
+*
+*****************************************************************************/
+int oracle_dbOpen()
+{
+	const char *login = getenv("DB_CONNECT_STRING");
+	if (!login) login = DB_CONNECT_STRING;
+	exec sql connect :login;
+	if (sqlca.sqlcode)
+	{
+		syslog(LOG_ERR, "%s", "Login to Oracle failed");
+		sql_error("oracle_dbOpen");
+		connected = 0;
+		return -1;
+	}
+	connected = 1;
+
+	if (debug) syslog(LOG_DEBUG, "oracle_dbOpen: connected as %s", login);
+
+	return 0;
+}
+
+/*****************************************************************************
+*
+*****************************************************************************/
+int oracle_dbClose()
+{
+	exec sql commit work release;
+
+	if (sqlca.sqlcode) sql_error("oracle_dbClose");
+	connected = 0;
+	if (debug) syslog(LOG_DEBUG, "oracle_dbClose: disconnected");
+
+	return sqlca.sqlcode;
+}
+
+int oracle_dbStatus() /* returns -1 when not open */
+{
+	return connected ? 0 : -1;
+}

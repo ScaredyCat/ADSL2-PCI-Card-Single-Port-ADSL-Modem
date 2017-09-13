@@ -1,0 +1,39 @@
+.\" $Id: vboxd.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxd 8 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+vboxd \- isdn voice box daemon
+.SH SYNOPSIS
+.B vboxd
+.I "[OPTION] [OPTION] [...]"
+.br
+.SH "DESCRIPTION"
+Vboxd is a daemon which is accessed via tcp/ip and can give you the
+messages recorded with vboxgetty, or change them.
+
+vboxd uses port 20012 (tcp and udp), as described in /etc/services.
+.SH OPTIONS
+.TP
+.B \-f, \-\-file FILE
+Config file to use. Default is the file '@I4LCONFDIR@/vboxd.conf'.
+.TP
+.B \-t, \-\-timeout SECS
+Timeout for waiting for commands from the client. If no command is
+received within this time, the daemon exits. Default value is 600
+seconds.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-v, \-\-version
+Show version of program.
+.SH NOTE
+After the start the timeout is set to 30 seconds. It will change after
+the first command to the value set with --timeout.
+.SH "FILES"
+.TP
+.B @I4LCONFDIR@/vboxd.conf
+default config file
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

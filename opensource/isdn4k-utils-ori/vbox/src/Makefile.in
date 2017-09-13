@@ -1,0 +1,156 @@
+#
+# $Id: Makefile.in,v 1.12 2000/08/04 11:10:56 paul Exp $
+
+#----------------------------------------------------------------------------#
+# The information below is modified by the configure script when Makefile is #
+# generated from Makefile.in. You shouldn't normally modify any of this      #
+# stuff by hand.                                                             #
+#----------------------------------------------------------------------------#
+
+NCURSES_LIBS	= @LINK_NCURSES_LIBS@
+NCURSES_HAVE    = @HAVE_NCURSES_PACK@
+
+TCL_LIBS	= @LINK_TCL_LIBS@
+TCL_HAVE	= @HAVE_TCL_PACK@
+
+#----------------------------------------------------------------------------#
+# Headers                                                                    #
+#----------------------------------------------------------------------------#
+
+HEADERS		= init.h lists.h lock.h log.h modem.h streamio.h perms.h \
+		  rcgetty.h script.h voice.h vboxgetty.h rcvbox.h \
+		  vboxctrl.h vboxd.h config.h
+
+#----------------------------------------------------------------------------#
+# Object compile modes                                                       #
+#----------------------------------------------------------------------------#
+
+log.o:		$(HEADERS) log.c
+		$(CC) $(CFLAGS) -c log.c
+
+init.o:		$(HEADERS) init.c
+		$(CC) $(CFLAGS) -c init.c
+
+rcgetty.o:	$(HEADERS) rcgetty.c
+		$(CC) $(CFLAGS) -c rcgetty.c
+
+lists.o:	$(HEADERS) lists.c
+		$(CC) $(CFLAGS) -c lists.c
+
+script.o:	$(HEADERS) script.c
+		$(CC) $(CFLAGS) -DBINDIR='"$(VBOX_BINDIR)"' -c script.c
+
+voice.o:	$(HEADERS) voice.c
+		$(CC) $(CFLAGS) $(VBOX_SUSPEND_DEF) -c voice.c
+
+streamio.o:	$(HEADERS) streamio.c
+		$(CC) $(CFLAGS) -c streamio.c
+
+perms.o:	$(HEADERS) perms.c
+		$(CC) $(CFLAGS) -c perms.c
+
+modem.o:	$(HEADERS) modem.c
+		$(CC) $(CFLAGS) -c modem.c
+
+lock.o:		$(HEADERS) lock.c
+		$(CC) $(CFLAGS) -c lock.c
+
+rcvbox.o:	$(HEADERS) rcvbox.c
+		$(CC) $(CFLAGS) -c rcvbox.c
+
+vboxgetty.o:	$(HEADERS) vboxgetty.c
+		$(CC) $(CFLAGS) -DGETTYRC='"$(VBOX_GETTYCONF)"' -c vboxgetty.c
+
+vboxconvert.o:	$(HEADERS) vboxconvert.c
+		$(CC) $(CFLAGS) -c vboxconvert.c
+
+libvbox.o:	$(HEADERS) libvbox.c
+		$(CC) $(CFLAGS) -c libvbox.c
+
+vboxctrl.o:	$(HEADERS) vboxctrl.c
+		$(CC) $(CFLAGS) -c vboxctrl.c
+
+vboxbeep.o:	$(HEADERS) vboxbeep.c
+		$(CC) $(CFLAGS) -c vboxbeep.c
+
+vboxd.o:	$(HEADERS) vboxd.c
+		$(CC) $(CFLAGS) -DVBOXDRC='"$(VBOX_VBOXDCONF)"' -c vboxd.c
+
+vbox.o:		$(HEADERS) vbox.c
+		$(CC) $(CFLAGS) -DPLAY='"$(VBOX_BINDIR)/vboxplay"' -c vbox.c
+
+#----------------------------------------------------------------------------#
+
+all:		vboxlib vboxd vboxgetty vboxconvert vboxctrl vboxbeep vbox
+
+#----------------------------------------------------------------------------#
+# Compiling vboxlib                                                          #
+#----------------------------------------------------------------------------#
+
+VBOXLIBOBJS	= libvbox.o
+
+vboxlib:	  $(VBOXLIBOBJS)
+		  $(AR) cru libvbox.a $(VBOXLIBOBJS)
+		 -$(RANLIB) libvbox.a
+
+#----------------------------------------------------------------------------#
+# Compiling vboxgetty                                                        #
+#----------------------------------------------------------------------------#
+
+VBOXGETTYOBJS	= vboxgetty.o init.o log.o perms.o lock.o streamio.o modem.o \
+		  script.o voice.o lists.o rcvbox.o rcgetty.o \
+
+
+vboxgetty:	  $(VBOXGETTYOBJS)
+		  $(CC) $(CFLAGS) $(VBOXGETTYOBJS) -o vboxgetty $(TCL_LIBS) -L. -lvbox
+
+#----------------------------------------------------------------------------#
+# Compiling vbox                                                             #
+#----------------------------------------------------------------------------#
+
+VBOXOBJS	= vbox.o streamio.o
+
+vbox:		  $(VBOXOBJS) libvbox.c libvbox.h
+		  $(CC) $(CFLAGS) $(VBOXOBJS) -o vbox $(NCURSES_LIBS) -L. -lvbox
+
+#----------------------------------------------------------------------------#
+# Compiling vboxconvert                                                      #
+#----------------------------------------------------------------------------#
+
+VBOXCONVOBJS	= vboxconvert.o
+
+vboxconvert:	  $(VBOXCONVOBJS)
+		  $(CC) $(CFLAGS) $(VBOXCONVOBJS) -o vboxconvert -L. -lvbox
+
+#----------------------------------------------------------------------------#
+# Compiling vboxctrl                                                         #
+#----------------------------------------------------------------------------#
+
+VBOXCTRLOBJS	= vboxctrl.o
+
+vboxctrl:	  $(VBOXCTRLOBJS)
+		  $(CC) $(CFLAGS) $(VBOXCTRLOBJS) -o vboxctrl -L. -lvbox
+
+#----------------------------------------------------------------------------#
+# Compiling vboxbeep                                                         #
+#----------------------------------------------------------------------------#
+
+VBOXBEEPOBJS	= vboxbeep.o
+
+vboxbeep:	  $(VBOXBEEPOBJS)
+		  $(CC) $(CFLAGS) $(VBOXBEEPOBJS) -o vboxbeep -L. -lvbox
+
+#----------------------------------------------------------------------------#
+# Compiling vboxd                                                            #
+#----------------------------------------------------------------------------#
+
+VBOXDOBJS	= vboxd.o streamio.o
+
+vboxd:		  $(VBOXDOBJS)
+		  $(CC) $(CFLAGS) $(VBOXDOBJS) -o vboxd -L. -lvbox
+
+distclean: clean
+
+clean:
+	-rm -f *.o
+	-rm -f vboxd vbox vboxgetty vboxconvert vboxctrl vboxbeep

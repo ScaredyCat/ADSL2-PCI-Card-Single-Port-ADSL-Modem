@@ -1,0 +1,6 @@
+
+This is the directory where sadc, the system activity data
+collector called by sar, will be located.
+sa1 and sa2 shell scripts will also be saved in that directory.
+The default answer should be OK there.
+

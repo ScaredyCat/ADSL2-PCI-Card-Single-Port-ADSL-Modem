@@ -1,0 +1,28 @@
+=head1 NAME
+
+cdbget -- look up a key in a constant database
+
+=head1 SYNOPSIS
+
+cdbget I<key> E<lt>F<file>
+
+=head1 DESCRIPTION
+
+B<cdbget> looks up key I<key> in a constant database. B<cdbget>
+assumes that standard input has the database open in readable and
+seekable form (This means pipes will not work).
+
+B<cdbget> will print the key to standard output, and will B<not> add
+any newlines or extra characters.
+
+=head1 RETURN VALUES
+
+0 on match, 1 on a miss, 111 on error.
+
+=head1 BUGS
+
+B<cdbget> does not check for write errors.
+
+=head1 SEE ALSO
+
+L<cdbdump(1)|cdbdump(1)>, L<cdbmake(1)|cdbmake(1)>, L<cdbstats(1)|cdbstats(1)>

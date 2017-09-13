@@ -1,0 +1,52 @@
+.\" $Id: imon.man.in,v 1.2 1999/09/06 08:03:24 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:24 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii imon.8 for ASCII output, or
+.\" groff -man -Tps imon.8 for PostScript output
+.\"
+.TH IMON 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+imon \- watch ISDN activities
+.SH SYNOPSIS
+.BI "imon [ -q] [-p " phonebook ]
+.br
+.SH DESCRIPTION
+.I imon
+is a ncurses based utility for watching ISDN activity.
+.LP
+.SH OPTIONS
+.TP 5
+.B -q      
+If this option is given, the facility of terminatig the program by
+pressing 'Q' is disabled and the signals SIGHUP and SIGINT are caught.
+This option is intended for starting imon from within an rc script
+with redirecting input/output to some otherwise unused virtual console
+at boot time.
+.LP
+.TP 5
+.BI -p " phonebook"
+is used to supply imon with a
+.I phonebook
+file. The format of a
+.I phonebook
+file is very
+simple: Every line has two elements separated by a
+.BR TAB .
+The first element is a phone number which can contain wildcards.
+The second element is a descriptive string. For each active connection,
+this string is shown instead the phone number. Pressing 'S' toggles
+between display of strings and phone numbers. Pressing 'R' rereads the
+phonebook file in case of changes during program execution.
+.LP
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.I ttyI\c
+\&(4),
+.I isdnctrl\c
+\&(8),
+.I isdninfo\c
+\&(4).

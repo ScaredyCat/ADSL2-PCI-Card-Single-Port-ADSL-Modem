@@ -1,0 +1,11 @@
+Diese Verzeichnis enthaelt 3 Files:
+- LIESMICH.isdnbill > dieses File
+- README.isdnbill > englische Version dieses Files
+- isdnbill.tar.gz > einige Tcl/Tk scripts, um Einheiten eines Users anzuzeigen,
+sowie einige bunte Buttons, wenn man die -i oder -S-- Option von ISDNLOG ohne
+Sound verwenden will...
+
+Die Scripts wurden mit ISDNLOG 2.30 getestet, Hinweise zur neuen Version 2.40
+in der DOKU !
+
+Doku (bis jetzt nur auf deutsch) als PostScript im isdnbill.tar.gz !

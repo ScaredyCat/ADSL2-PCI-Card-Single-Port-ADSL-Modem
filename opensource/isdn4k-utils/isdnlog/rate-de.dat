@@ -1,0 +1,3459 @@
+V:2.02 [29-Jun-2002 12:27:46]
+
+# Währungsformat
+U:%.3f EUR
+
+# Diese Tariftabelle ist ein Service der I4L-Tarifdatenbank-Crew.
+# Alle Angaben erfolgen ohne Gewähr
+#
+# (C) Copyright 1999, 2001 by Andreas Kool (akool@isdn4linux.de)
+#
+# $Id: rate-de.dat,v 1.121 2002/06/29 10:43:42 akool Exp $
+#
+#
+# Das "A:" Tag muß folgendermaßen gefüllt werden:
+#
+#   A:0191011     Sonderrufnummer (nur innerhalb eines Landes gültig,
+#                 und daher _ohne_ Landesvorwahl!
+#   A:+496171     Normale Telefonnummer _immer_ mit Landesvorwahl, und
+#                 ohne führende "0"
+#
+#   Handy-Rufnummern werden _mit_ Landesvorwahl eingetragen!
+#
+#
+# Zonenzuordnung für Deutschland
+#
+# ! ! !  A C H T U N G  ! ! !
+#
+# Die Zonenzuordnung hat sich geändert !  Die alte Zuordnung befindet
+# sich zum Vergleich weiter unten.  Aktualisiert werden aber nur noch
+# die Zonen nach der nun folgenden, neuen Zuordnung !
+#
+#   0 -   9     : Inland
+#  10 -  30     : Handies (D-Netze, E-Netze)
+#  31 -  39     : Satelitenfunk (Inmarsat, Iridium)
+#  40 -  59     : Telefonauskünfte
+#  60 -  79     : Cityruf, Scall, Quix etc.
+#  80 -  89     : Shared Cost (0180)
+#  90 -  99     : Premium Rate (0190)
+# 100 - 159     : Internet Tarife
+# 160 - 169     : Televotum, etc.
+# 170           : Persönliche Rufnummer (0700)
+# 171 - 199     : Sonstiges
+# 200 - xxx     : Auslandstarife
+#
+# Beschreibung einzelner Zonen
+#
+#    0 -   9 : Inland
+#    0 : Verbindungen an der eigenen Tk-Anlage (zwangsläufig kostenlos)
+#        sowie alle "FreeCall" (kostenlos) Nummern des jeweiligen Providers
+#    1 : Ortszone (alle Nummern, die ohne Vorwahl erreichbar sind.
+#                  Z.Zt. nur über den preselected Provider erreichbar)
+#    2 : Cityzone (Nummern im Umkreis von max. 20 km)
+#    3 : Region 50 (Nummern im Umkreis von max. 50 km)
+#    4 : Fernzone (Deutschlandweit)
+#    5 -   9 : bei Bedarf, weitere Inlandszonen
+#
+#   10 -  30 : Handies, GSM-Netze
+#   10 : C-Mobilbox
+#   11 : C-Netz
+#   12 : T-D1
+#   13 : D2-Privat
+#   14 : E-Plus
+#   15 : City-Partner (E2)
+#   16 -  30 : bei Bedarf, weitere Mobiltelefonnetze
+#
+#   31 : Iridium A GSM-homed
+#   32 : Iridium B Iridium-homed
+#   33 : Inmarsat A
+#   34 : Inmarsat A Daten/Fax
+#   35 : Inmarsat Aero
+#   36 : Inmarsat B
+#   37 : Inmarsat B HSD
+#   38 : Inmarsat M
+#   39 : Inmarsat Mini-M
+#
+#   40 -  59 : Auskunftstarife
+#
+#   60 -  79 : Pieper
+#   60 : Cityruf automatic      (0164,01682-9)
+#   61 : Cityruf Operator       (016951-2)
+#   62 : Scall IVR              (01680)
+#   63 : Scall DTMF             (01681)
+#   64 : Scall Operator         (01699)
+#   65 : Scall Modem            (01696)
+#   66 : TeLMI automatic        (01660,5,9)
+#   67 : TeLMI Operator         (01661)
+#   68 : Skyper                 (01692-3)
+#   69 : Skyper Operator        (016953)
+#   70 : Quix Service           (01650,01655)
+#   71 : Quix DTMF              (01651)
+#   72 : Quix Modem             (016591-3)
+#   73 : Quix Operator 1        (01653)
+#   74 : Quix IVR               (01654)
+#   75 : Quix Operator 2        (01656)
+#
+#   80 -  89 : Shared Cost Service 0180
+#   81 : Service 0180-1
+#   82 : Service 0180-2
+#   83 : Service 0180-3
+#   84 : Service 0180-4
+#   85 : Service 0180-5
+#
+#   90 -  99 : Premium Rate Service 0190
+#   91 : Service 0190-1, 0190-2, 0190-3, 0190-5
+#   92 : Service 0190-4, 0190-6
+#   93 : Service 0190-7, 0190-9
+#   94 : Service 0190-8
+#
+#  100 - 159 : Internet Tarife
+#  100 : T-Online
+#  101 : AOL
+#  102 - 159 : bei Bedarf, weitere Internettarife
+#
+#  160 - 169 : Televotum
+#  160 : Televotum              (0137)
+#  161 : Teledialog             (0138)
+#  162 : T-VoteCall 1           (01371)
+#  163 : T-VoteCall 2           (01372)
+#  164 : DTAG Ansagedienste
+#
+#  170 : Persönliche Rufnummer  (0700)
+#
+#  171 - 199 : Sonstiges
+#  171 : Expo 2000              (02000)
+#
+#  ab 200    : Auslandstarife
+#
+# Hier nochmal die alte, nicht mehr unterstützte Zoneneinteilung.  Änderungen
+# sollten an diesen Zonen nicht mehr vorgenommen werden.
+#
+#   0 : Verbindungen an der eigenen Tk-Anlage (zwangsläufig kostenlos)
+#       sowie alle "FreeCall" (kostenlos) Nummern des jeweiligen Providers
+#   1 : Ortszone (alle Nummern, die ohne Vorwahl erreichbar sind.
+#                 Z.Zt. nur über den preselected Provider erreichbar)
+#   2 : Cityzone (Nummern im Umkreis von max. 20 km)
+#   3 : Region 50 (Nummern im Umkreis von max. 50 km)
+#   4 : Fernzone (Deutschlandweit)
+#
+#   5 : C-Mobilbox
+#   6 : C-Netz
+#   7 : D1-Netz
+#   8 : D2-Netz
+#   9 : E-plus-Netz
+#  10 : E2-Netz
+#
+#  21 : Auskunft Inland
+#  22 : Auskunft Ausland
+#
+#  20 : Internet
+#
+#  11 : Euro City
+#  12 : Euro 1
+#  13 : Euro 2
+#  14 : Welt 1
+#  15 : Welt 2
+#  16 : Welt 3
+#  17 : Welt 4
+#
+# Die DTAG-Zonen
+#  Vis-a-vis 1
+#  Vis-a-vis 2
+#  Vis-a-vis 3
+#  Konferenzzuschlag
+#  T-Net-Box
+#  Interntarif Draht-Funk
+#  Interntarif Funk-Draht
+#  Interntarif Funk-Funk
+#  Interntarif Draht-Draht
+#  D1Ext
+# werden z.Zt. nicht unterstützt
+#
+#####################################################################
+#
+#
+# Sonderrufnummern:
+S:Auftrags- und Ansagedienst
+N:01141
+#
+# Internetzugaenge zzgl. Grundgebuehr
+S:UUnet classic
+N:0191999
+S:T-Online SLIP
+N:01910
+S:T-Online
+N:0191011
+S:T-Online by call
+N:019104981
+S:AOL
+N:01914, 019161
+S:CompuServe PPP Access
+N:0191919  # 010880191919
+#
+S:Internet by call
+N:0191501   # o.tel.o Online                           # 010110191501   (User:otelo; pw:online)
+N:019160    # CompuServeOffice			       # 019160
+N:0191799   # Planet-Interkom Internet-by-Call         # 010900191799   (User:internet@planetbycall.de; pw:internet)
+N:0191955   # knuut-by-call (Worldcom/UUnet)           # 010880191955   (User:knuut; pw:knuut)
+N:0192020   # Yahoo! Online (Arcor)                    # 010700192020   (User:yahoo; pw:yahoo)
+N:0192070   # Arcor Internet-by-Call                   # 010700192070   (User:arcor; pw:internet)
+N:0192134   # Drillisch online Standard                # 0100500192134  (User:Drillisch@internet; pw:beliebig)
+N:0192300   # surf callino                             # 010750192300   (User:callino; pw:internet)
+N:0192340   # net@home (GTS Esprit) Call by Call 01040 # 010400192340   (User:esprit; pw:telecom oder User:gts; pw:internet)
+N:0192343   # Call.POP/Imagecom (GTS Esprit)           # 010400192343   (User:call; pw:pop)
+N:0192361   # Lübecker Nachrichten LN-Online           # 010880192361   (User:LN; pw:online)
+N:01924924  # Internet Private CbC Telepassport        # 0102401924924  (User:beliebig: pw:beliebig)
+N:019251    # Talknet (Talkline)                       # 01050019251    (User:talknet: pw:talknet)
+N:0192658   # MSN Easysurfer (Worldcom/UUnet)	       # 0192658   	(User:beliebig; pw:beliebig)
+N:0192666120# MDS-Online                               # 010750192666120(User:mds; pw:online)
+N:0192666210# T-link                                   # 010750192666210(User:gast; pw:terra)
+N:01928111  # comsign AG surfsolution                  # 0101901928111  (User:beliebig; pw:beliebig)
+N:01928120  # eXpress-Net eXpress-Dial                 # 0101901928120  (User:beliebig; pw:beliebig)
+N:01928121  # netweaver netweaver                      # 0101901928121  (User:beliebig; pw:beliebig)
+N:01928128  # Argonsoft goOnline                       # 0101901928128  (User:goOnline; bundesweit)
+N:01928150  # Corax Coraxline                          # 0101901928150  (User:beliebig; pw:beliebig)
+N:019282200 # X9MEDIA Internet by Call                 # 01019019282200 (User:beliebig; pw:beliebig)
+N:019282500 # surflos Internet by Call                 # 01019019282500 (User:beliebig; pw:beliebig)
+N:01929     # 01019Freenet (Mobilcom)                  # 0101901929     (User:beliebig; pw:beliebig)
+N:0193094100# clara.net Internet by Call               # 010880193094100(User:claranet; pw:claranet)
+#
+# S:T-VoteCall
+# N:01371, 01372, 01373, 01374, 0138
+#
+# S:Cityruf
+# N:01640, 01641, 01642, 01643, 01644, 01645, 01646, 01647, 01648, 01649
+# N:01682, 01683, 01684, 01685, 01686, 01687, 01688, 01689, 01690, 01691
+# N:016951, 016952
+#
+# S:Quix
+# N:016500, 016501, 016502, 016503, 016504, 016505, 016506, 016507
+# N:016508, 01651, 01653, 01654, 01655, 01656, 016591, 016592, 016593
+#
+# S:TeLMI
+# N:01660, 01661, 01665, 01669
+#
+# S:Scall
+# N:01680, 01681, 01696, 01699
+#
+# S:Skyper
+# N:01692, 01693, 016953
+#
+# S:C-Netz
+# N:01610*, 01611*, 01612*, 01613*, 01614*, 01615*, 01616*, 01617*, 01619*
+#
+# S:T-C-Tel Voice Mail
+# N:01618*
+#
+# S:D1
+# N:0170*, 0171*, 0175*
+#
+# S:D2
+# N:0172*, 0173*, 0174*
+#
+# S:Eplus
+# N:0177*, 0178*
+#
+# S:E2
+# N:0176*, 0179*
+#
+# S:Shared Cost Service 01801
+# N:01801*
+#
+# S:Shared Cost Service 01802
+# N:01802*
+#
+# S:Shared Cost Service 01803
+# N:01803*
+#
+# S:Shared Cost Service 01804
+# N:01804*
+#
+# S:Shared Cost Service 01805
+# N:01805*
+#
+# S:Service 01901
+# N:01901*
+#
+# S:Service 01902
+# N:01902*
+#
+# S:Service 01903
+# N:01903*
+#
+# S:Service 01904
+# N:01904*
+#
+# S:Service 01905
+# N:01905*
+#
+# S:Service 01906
+# N:01906*
+#
+# S:Service 01907
+# N:01907*
+#
+# S:Service 01908
+# N:01908*
+#
+# S:Service 01909
+# N:01909*
+#
+# S:Expo 2000 Hotline
+# N:02000
+#
+# S:Persönliche Rufnummer
+# N:0700*
+#
+# S:freecall
+# N:0130*, 0800*
+#
+# S:Polizei / Notruf
+# N:110
+#
+# S:Feuerwehr / Rettungsleitstelle
+# N:112
+#
+S:Auskunft
+N:11811 # DTV
+N:11818 # Debitel
+N:11822 # GTS
+N:11833 # DTAG Inland
+N:11834 # DTAG Ausland
+N:11850 # Talkline
+N:11870 # Mannesmann Arcor
+N:11871 # Mannesmann Arcor
+N:11880 # Telegate
+N:11890 # Telegate
+#
+S:Weckruf
+N:0190600000 # Virtual Interactive Phone GmbH, VIP Wecker (0,81 Pf/min)
+#########################################################################
+# Der Nummernraum für das öffentliche Telefonnetz/ISDN in Deutschland
+# Stand: 30.08.1999
+#
+# S:nationale Verkehrsausscheidungsziffer
+# N:0*
+#
+# S:Fernvermittlung Hand der DTAG (auslaufend)
+# N:0010*
+#
+# S:internationale Verkehrsausscheidungsziffer
+# N:00*
+#
+# S:Ortsnetzkennzahlen (ONKz); Ausnahmen: 0xyyyy mit x = 2 ... 9 und y = 0 ... 9
+# N:0xy, 0xyy, 0xyyy
+#
+# S:Teilnehmerrufnummern; Ausnahmen: mit x = 1 ... 9 und y = 0 ... 9
+# N:xyy (auslaufend)
+# N:xy
+# N:yy (auslaufend),
+# N:x yy yy, xy yy
+# N:yy,
+# N:x yy yy yy, xy
+# N:yy yy yy
+#
+# S:optional der Verkehrsausscheidungsziffer voranzustellende Ziffernfolge zur Verbindungsnetzbetreiberauswahl Call-by-Call (010xy, 0100yy mit x = 1 ... 9 und y = 0 ... 9)
+# N:010*, 0100*
+
+S:Mehrwertdienste # (auslaufend) Verlagerung wird gegenwaertig vorbereitet; danach: Reserve
+N:011*
+
+S:Innovative Dienste
+N:012*
+
+S:Freephone # (auslaufend)
+N:0130*
+
+S:Zugänge zu Datennetzen der DTAG # (auslaufend)
+N:013111*, 013115*, 013119*
+
+S:frei (Planung:"Mabez"-Dienste)
+N:0136*
+
+S:Televotum, Teledialog # (Planung: Verlagerung nach 0136 bzw. 0902 danach Reserve)
+N:0137*, 01381*
+
+# S:C-Netz # (TMobil)
+# N:0161*
+
+S:Testbetrieb Ermes
+N:0163*
+
+S:Cityruf # (TMobil)
+N:0164*
+
+S:Quix # (Miniruf GmbH)
+N:0165*
+
+S:Telmi # (Deutsche Funkruf GmbH)
+N:0166*
+
+S:Scall # (TMobil)
+N:0168*
+
+S:Cityruf, Scall, Skyper # (TMobil)
+N:0169*
+
+# S:D1 # (TMobil)
+# N:0170*, 0171*, 0175*
+
+# S:D2 # (Mannesmann Mobilfunk) # 0174:Nutzung ab 17.01.2000
+# N:0172*, 0173*, 0174*
+
+# S:E1 # (E-Plus Mobilfunk)
+# N:0177*, 0178*
+
+# S:E2 # (Viag Interkom)
+# N:0179*, 0176*
+
+S:Shared Cost
+N:0180*
+
+S:IVPN # Internationale Virtuelle Private Netze (0181xxx, 0181xxxx)
+N:0181*
+
+S:geschlossene Nutzergruppen # Ausnahme: 018xyyy, 018xyyyy, 018xyyyyy, 018xyyyyyy mit x = 2 ... 9 und y = 0 ... 9)
+N:018*
+
+S:UPT # DTAG, auslaufend
+N:0182*
+
+S:Premium Rate # (Planung: Verlagerung nach 0900; danach: Reserve)
+N:0190*
+
+S:Online-Dienste # (019xz, 019yzzz mit x = 1 ... 3, y = 1 ... 4 und z = 0 ... 9) (Planung: Verlagerung nach 0905; danach: Reserve)
+N:019*
+
+S:Zugänge zu Datennetzen der DTAG # (auslaufend)
+N:0195*, 0197*
+
+S:Routingnummern für Auskunftsdienste
+N:01989*
+
+S:Netzinterne Verkehrslenkung
+N:0199*
+
+S:Testrufnummern # z.b. 031000:Ansage des aktuellen CbC-Anbieters
+N:031*
+
+S:Persönliche Rufnummern
+N:0700*, 0701*
+
+S:Freephone
+N:0800*, 0801*
+
+S:frei # (Nutzung für Premium Rate-Dienste ist in Vorbereitung)
+N:0900*
+
+S:frei # (Planung: "Mabez"-Dienste)
+N:0902*
+
+S:frei # Reserve für Telekommunikationsdienste
+N:0901*, 0903*, 0904*
+
+S:frei # Reserve für Online-Dienste
+N:0905*
+
+S:Polizei
+N:110
+
+S:Notruf, Feuerwehr
+N:112
+
+S:Auskunftsdienste # 118xy, 1180yy mit x = 1 ... 9 und y = 0 ... 9; Rufnummern der Struktur 1180yy werden nur zugeteilt, wenn keine Rufnummern der Struktur 118xy mehr verfügbar sind
+N:118*
+
+S:netzinterne Nutzung
+N:011*
+#####################################################################
+#
+# Aktuelle (24-Jun-00  18:13) Preise für Sonderrufnummern:
+# 0700:    tagsüber 24 Pf/Min
+#          abends   12 Pf/Min
+#
+# 0800:    immer kostenfrei
+# 0130:
+#
+# 0180-1:  zum Ortstarif erreichbar
+# 0180-2:  einmalig 12 Pfennig egal wie lange der Anruf dauert
+# 0180-3:  18 Pf/Min
+# 0180-4:  einmalig 48 Pfennig egal wie lange der Anruf dauert
+# 0180-5:  24 Pf/Min
+# 0190-4/6:      81 Pf/Min
+# 0190-1/2/3/5:  121 Pf/Min
+# 0190-7/9:      242 Pf/Min
+# 0190-8:        363 Pf/Min
+#
+#####################################################################
+#
+#
+P:112,0 010012 Telecom GmbH
+B:010012
+C:Address:Postfach 200743, 40104 Düsseldorf
+C:Name:010012 Telecom GmbH
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 National
+A:+49
+T:*/09-18=0.06/60 Tagtarif
+T:*/18-09=0.04/60 Nachttarif
+Z:10 Mobilfunknetz D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.26/60
+Z:11 Mobilfunknetz E
+A:_DEME1
+A:_DEME2
+A:_DEMQ
+T:*/*=0.29/60
+#####################################################################
+#
+#
+# NEU
+P:11,0 o.tel.o CbC
+B:01011
+# G:21-Nov-2001
+D:dtag
+C:Name:o.tel.o CbC
+C:Address:Mannesmann Zwölfte Verwaltungsgesellschaft mbH, Mannesmannufer 2, 40213 Düsseldorf
+C:Homepage:http://www.o-tel-o.de
+C:Hotline:01803/1998 oder 0800/7370 (Geschaeftskunden)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:0, 2	-   4	Deutschland
+C:10	-  11	Mobilfunk
+C:45		Auskunft o.tel.o
+C:102		o.tel.o online
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+A:_F800
+T:*/*=0
+Z:2-4 Inlandsverbindungen
+A:DE
+T:W/07-18=0.092/60
+T:W/18-20=0.031/60
+T:W/20-07=0.019/60
+T:E,H/*=0.019/60
+Z:11 D1 Netz
+A:_DEMD1
+T:*/*=0.245/60
+Z:12 D2 Netz
+A:_DEMD2
+T:W/07-18=0.245/60 Hauptzeit
+T:W/18-07=0.235/60 Nebenzeit
+T:E,H/*=0.235/60 Freizeit
+Z:14 E-Plus Netz
+A:_DEME1
+T:*/*=0.276/60
+Z:15 E2 Netz
+A:_DEME2
+T:*/*=0.291/60
+#####################################################################
+#
+#
+P:13,0 Tele2 Privat CbC
+B:01013
+C:Name:Tele2 CbC
+C:Address:Telecommunications Services GmbH, Postfach 130840, 40558 Düsseldorf
+C:Homepage:http://www.tele2.de
+C:Telefon:01805-01013-1
+C:Hotline:0800/24-01013
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Euro
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:200	- 205	Ausland
+# G:07-May-2001
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 National
+A:+49
+T:W/07-19=0.02/0,0.04/60
+T:W/19-07=0.02/0,0.02/60
+T:E,H/*=0.02/0,0.02/60
+Z:10 Mobilfunknetz
+A:_DEMF
+T:*/*=0.04/0,0.23/60
+#
+Z:200 Mobilfunk Euro
+# tobiasb/2002-04-19: Mobilfunk auskommentiert,
+# wenn nicht in country[-de].dat vom 22-Nov-2001.
+#A:Alaska Mobilfunk, Andorra Mobilfunk
+A:_BEMF,_DKMF
+#A:Färöer Inseln Mobilfunk
+A:_FIMF,_FRMF
+A:_UKMF
+#A:Hawaii Mobilfunk
+A:_IEMF,_ISMF
+A:_ITMF,_CAMF
+#A:Liechtenstein Mobilfunk
+A:_LUMF
+A:_MCMF,_NLMF,_NOMF,_ATMF
+A:_PTMF,_PRMF
+#A:San Marino Mobilfunk
+A:_SEMF
+A:_CHMF,_ESMF
+#A:USA Mobilfunk, Vatikanstadt Mobilfunk
+A:_GRMF
+#A:Jugoslawien Mobilfunk
+A:_PLMF
+A:_RUMF,_CZMF
+A:_TRMF,_HUMF
+T:*/*=0.04/0,0.23/60
+Z:201 Euro 1
+A:_ALAS,AD,BE,DK
+A:FO,FI,FR
+A:UK,_HAWA,IE,IS
+A:IT,CA,LI,LU
+A:MC,NL,NO,AT
+A:PT,PR,SM,SE
+A:CH,ES,US,VA
+T:*/*=0.04/0,0.04/60
+Z:202 Euro 2
+A:GR,YU,PL
+A:SU,CZ
+A:TR,HU
+T:*/*=0.04/0,0.20/60
+Z:203 Ozeanien
+A:AU,CN,HK
+A:JP,NZ,SG
+A:TW
+T:*/*=0.04/0,0.30/60
+Z:204 Welt 1
+A:AL,DZ,BA
+A:BG,EE,GI
+A:IL,HR,LV,LY
+A:LT,MT,EH,MK
+A:MD,RO,SK,SI
+A:TN,UA,BY,CY
+T:*/*=0.04/0,0.46/60
+Z:205 Welt 2
+A:+
+C:Welt 2 gilt nicht für Inmarsat.
+T:*/*=0.04/0,1/60
+#####################################################################
+P:13,1 Tele2 Privat Preselection
+B:01013
+C:Name:Tele2 Privat Preselection
+C:Address:Telecommunications Services GmbH, Postfach 130840, 40558 Düsseldorf
+C:Homepage:http://www.tele2.de
+C:Telefon:01805-01013-1
+C:Hotline:0800/24-01013
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:200	- 205	Ausland
+# G:15-Jun-2000
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 National
+A:+49
+T:W/07-19=0.02/0,0.04(60)/1
+T:W/19-07=0.02/0,0.02(60)/1
+T:E,H/*=0.02/0,0.02(60)/1
+Z:10 Mobilfunknetz
+A:_DEMF
+T:*/*=0.04/0,0.23(60)/1
+#
+Z:200 Mobilfunk Euro
+# tobiasb/2002-04-19: Mobilfunk auskommentiert,
+# wenn nicht in country[-de].dat vom 22-Nov-2001.
+#A:Alaska Mobilfunk, Andorra Mobilfunk
+A:_BEMF,_DKMF
+#A:Färöer Inseln Mobilfunk
+A:_FIMF,_FRMF
+A:_UKMF
+#A:Hawaii Mobilfunk
+A:_IEMF,_ISMF
+A:_ITMF,_CAMF
+#A:Liechtenstein Mobilfunk
+A:_LUMF
+A:_MCMF,_NLMF,_NOMF,_ATMF
+A:_PTMF,_PRMF
+#A:San Marino Mobilfunk
+A:_SEMF
+A:_CHMF,_ESMF
+#A:USA Mobilfunk, Vatikanstadt Mobilfunk
+A:_GRMF
+#A:Jugoslawien Mobilfunk
+A:_PLMF
+A:_RUMF,_CZMF
+A:_TRMF,_HUMF
+T:*/*=0.04/0,0.23(60)/1
+Z:201 Euro 1
+A:_ALAS,AD,BE,DK
+A:FO,FI,FR
+A:UK,_HAWA,IE,IS
+A:IT,CA,LI,LU
+A:MC,NL,NO,AT
+A:PT,PR,SM,SE
+A:CH,ES,US,VA
+T:*/*=0.04/0,0.04(60)/1
+Z:202 Euro 2
+A:GR,YU,PL
+A:SU,CZ
+A:TR,HU
+T:*/*=0.04/0,0.20(60)/1
+Z:203 Ozeanien
+A:AU,CN,HK
+A:JP,NZ,SG
+A:TW
+T:*/*=0.04/0,0.30(60)/1
+Z:204 Welt 1
+A:AL,DZ,BA
+A:BG,EE,GI
+A:IL,HR,LV,LY
+A:LT,MT,EH,MK
+A:MD,RO,SK,SI
+A:TN,UA,BY,CY
+T:*/*=0.04/0,0.46(60)/1
+Z:205 Welt 2
+A:+
+C:Welt 2 gilt nicht für Inmarsat.
+T:*/*=0.04/0,1(60)/1
+#####################################################################
+#
+#
+P:19,0 Mobilcom CbC
+B:01019
+C:Name:01019 Telefondienste GmbH
+C:Address:01019 Telefondienste GmbH, Postfach 520, 24753 Rendsburg-Büdelsdorf
+C:Homepage:http://www.mobilcom.de
+C:Hotline:0800/01019-09
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		01019freenet
+# G:unknown
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Ferngespräche bundesweit
+A:+49
+T:*/07-19=0.0608/60 Standard
+T:*/19-22=0.0455/60 Standard
+T:*/22-07=0.0251/60 Spar
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.2454/60
+Z:102 01019freenet
+A:01929
+S:Internet by call
+T:*/*=0.0251/60 FreeNet
+#####################################################################
+P:19,1 Mobilcom Preselection/Profi
+B:01019
+C:Name:MobilCom Preselection/Profi
+C:Address:City LINE GmbH, Holler Str. 126, 24782 Büdelsdorf
+C:Homepage:http://www.mobilcom.de
+C:Hotline:01805/191919
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		01019freenet
+C:200	-	Ausland
+# G:01.08.2001
+# FIXME Sekundentaktung? Aus Website nicht ganz klar ersichtlich
+C:MobilCom AG
+C:Homepage: http://www.mobilcom.de
+C:Hotline:  01805/191919
+C:Adresse:  Postfach 1249
+C:	    24822 Schleswig
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2 Orts-/Nahzone
+T:*/*=0.0455(60)/1
+Z:3-4 Fernzone
+A:+49
+T:*/*=0.0608(60)/1
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+A:_DEMQ
+T:*/*=0.25(60)/1
+Z:102 01019freenet
+A:01929
+S:Internet by call
+T:*/*=0.0251(60)/1 FreeNet
+#####################################################################
+P:19,2 Mobilcom Preselection/Privat
+B:01019
+C:Name:MobilCom Preselection/Privat
+C:Address:City LINE GmbH, Holler Str. 126, 24782 Büdelsdorf
+C:Homepage:http://www.mobilcom.de
+C:Hotline:01805/191919
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		01019freenet
+C:200	-	Ausland
+# G:01.08.2001
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Ferngespräche bundesweit
+A:+49
+T:*/07-19=0.0608/60 Standard
+T:*/19-22=0.0455/60 Spar
+T:*/22-07=0.0250/60 Nacht
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.2454/60
+Z:102 01019freenet
+A:01929
+S:Internet by call
+T:*/*=0.0251/60 FreeNet
+#####################################################################
+P:19,3 Mobilcom Aktiv 8
+B:01019
+C:Name:MobilCom CbC
+C:Address:City LINE GmbH, Holler Str. 126, 24782 Büdelsdorf
+C:Homepage:http://www.mobilcom.de
+C:Hotline:01805/191919
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		01019freenet
+C:200		Ausland Gruppe A
+# G:01-Oct-2001
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Ferngespräche bundesweit
+A:+49
+T:W/08-18=0.045/60 Standard
+T:W/18-08=0.0245/60 Spar
+T:E,H/*=0.0245/60 Spar
+Z:10 Mobilfunk D
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.1984/60
+Z:11 Mobilfunk E
+A:_DEME1
+A:_DEME2
+T:*/*=0.2291/60
+Z:102 01019freenet
+A:01929
+S:Internet by call
+# eXpress Net: http://www.express-net.de
+A:01928120
+T:*/*=0.0250/60 FreeNet
+#####################################################################
+#####################################################################
+#
+#
+P:24,0 TelePassport
+B:01024
+C:Name:Telepassport 99 Plus
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassprt, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		TelePassport-Online
+C:200	-	Ausland
+# G:15-Jul-1999
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 Lokal
+T:W/08-18=0.12/60 Geschäftszeit
+T:W/18-08=0.08/60 Freizeit
+T:E,H/*=0.08/60 Wochenende
+Z:3 Nah
+T:W/08-18=0.14/60 Geschäftszeit
+T:W/18-08=0.10/60 Freizeit
+T:E,H/*=0.10/60 Wochenende
+Z:4 Fern
+A:+49
+T:W/08-18=0.16/60 Geschäftszeit
+T:W/18-08=0.12/60 Freizeit
+T:E,H/*=0.12/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:W/08-18=0.56/60 Geschäftszeit
+T:W/18-08=0.46/60 Freizeit
+T:E,H/*=0.46/60 Wochenende
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:*/*=0.06/60
+Z:200 Euro 1
+A:AD,BE,DK,FO,FI,FR,GR
+A:UK,_UKIM,IE,IS,IT,_UKIK
+A:LI,LU,MC,NL,_UKIR,NO
+A:AT,PL,PT,SM,SE,CH,SK
+A:ES,CZ,VA
+T:*/*=0.56/60
+Z:201 Euro 2
+A:AL,BA,BG,EE,GI,IL
+A:YU,HR,LV,LT,MT,MK,MD
+A:RO,SU,SI,TR,UA,HU,BY,CY
+T:*/*=0.96/60
+Z:202 Welt 1
+A:CA,US
+T:*/*=0.46/60
+Z:203 Welt 2
+A:AU,HK,KR,JP,SG,NZ
+T:*/*=0.96/60
+Z:204 Welt 3
+A:+
+T:*/*=1.96/60
+#####################################################################
+P:24,1 Telepassport Plus
+B:01024
+# G:15-Jul-1999
+C:Name:Telepassport Plus
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		TelePassport-Online
+C:200	-	Ausland
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Inland
+A:+49
+T:W/08-18=0.16/60 Geschäftszeit
+T:W/18-08=0.12/60 Freizeit
+T:E,H/*=0.12/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.56/60
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:W/08-18=0.08/60 Geschäftszeit
+T:W/18-08=0.06/60 Freizeit
+T:E,H/*=0.08/60 Wochenende
+Z:200 Euro 1
+A:AD,BE,DK,FO,FI,FR,GR
+A:UK,_UKIM,IE,IS,IT,_UKIK
+A:LI,LU,MC,NL,_UKIR,NO
+A:AT,PL,PT,SM,SE,CH,SK
+A:ES,CZ,VA
+T:*/*=0.56/60
+Z:201 Euro 2
+A:AL,BA,BG,EE,GI,IL
+A:YU,HR,LV,LT,MT,MK,MD
+A:RO,SU,SI,TR,UA,HU,BY,CY
+T:*/*=0.96/60
+Z:202 Welt 1
+A:CA,US
+T:*/*=0.46/60
+Z:203 Welt 2
+A:AU,HK,KR,JP,SG,NZ
+T:*/*=0.96/60
+Z:204 Welt 3
+A:+
+T:*/*=1.96/60
+#####################################################################
+P:24,2 Telepassport CbC
+B:01024
+# G:15-Jul-1999
+C:Name:Telepassport CbC
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		TelePassport-Online
+C:200	-	Ausland
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Inland
+A:+49
+T:*/07-21=0.14/60 Geschäftszeit
+T:*/21-07=0.10/60 Freizeit
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.56/60
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:W/08-18=0.08/60 Geschäftszeit
+T:W/18-08=0.06/60 Freizeit
+T:E,H/*=0.08/60 Wochenende
+Z:200 Euro 1
+A:AD,BE,DK,FO,FI,FR,GR
+A:UK,_UKIM,IE,IS,IT,_UKIK
+A:LI,LU,MC,NL,_UKIR,NO
+A:AT,PL,PT,SM,SE,CH,SK
+A:ES,CZ,VA
+T:*/*=0.56/60
+Z:201 Euro 2
+A:AL,BA,BG,EE,GI,IL
+A:YU,HR,LV,LT,MT,MK,MD
+A:RO,SU,SI,TR,UA,HU,BY,CY
+T:*/*=0.96/60
+Z:202 Welt 1
+A:CA,US
+T:*/*=0.46/60
+Z:203 Welt 2
+A:AU,HK,KR,JP,SG,NZ
+T:*/*=0.96/60
+Z:204 Welt 3
+A:+
+T:*/*=1.96/60
+#####################################################################
+P:24,3 Telepassport RegionalTarif Plus
+B:01024
+# G:01.05.1999
+C:Name:Telepassport RegionalTarif Plus
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Sondertarif 5 "Bundesland/Region":Gespräche innerhalb des Bundeslandes/Region
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:5		Sondertarif
+C:10		Mobilfunk
+C:102		TelePassport-Online
+C:200	-	Ausland
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 Lokal
+T:*/*=0.10/60
+Z:3-4 Fern
+A:+49
+T:*/*=0.16/60
+Z:5 Bundesland/Region
+T:*/*=0.14/60
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.56/60
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:*/*=0.06/60
+Z:200 International 1
+A:AD,BE,DK,FO,FI,FR,GR
+A:UK,_UKIM,IE,IS,IT,_UKIK
+A:LI,LU,MC,NL,_UKIR,NO
+A:AT,PL,PT,SM,SE,CH,SK
+A:ES,CZ,VA
+A:CA,US
+T:*/*=0.56/60
+Z:201 International 2
+A:AL,BA,BG,EE,GI,IL
+A:YU,HR,LV,LT,MT,MK,MD
+A:RO,SU,SI,TR,UA,HU,BY,CY
+A:AU,HK,KR,JP,SG,NZ
+T:*/*=0.96/60
+Z:202 International 3
+A:+
+T:*/*=1.96/60
+#####################################################################
+P:24,4 Telepassport SüdOst-Tarif
+B:01024
+# G:01.05.1999
+C:Name:Telepassport SüdOst-Tarif
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		TelePassport-Online
+C:200	-	Ausland
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 Lokal
+T:*/*=0.12/60
+Z:3 Nah
+T:W/08-18=0.16/60 Geschäftszeit
+T:W/18-08=0.12/60 Freizeit
+T:E,H/*=0.12/60 Wochenende
+Z:4 Fern
+A:+49
+T:W/08-18=0.18/60 Geschäftszeit
+T:W/18-08=0.12/60 Freizeit
+T:E,H/*=0.12/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:W/08-18=0.58/60 Geschäftszeit
+T:W/18-08=0.48/60 Freizeit
+T:E,H/*=0.48/60 Wochenende
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:W/08-18=0.08/60 Geschäftszeit
+T:W/18-08=0.06/60 Freizeit
+T:E,H/*=0.08/60 Wochenende
+Z:200 Global 1
+A:BE,DK,FI,FR,GR,UK
+A:IE,IS,IT,LI,LU,MC,NL
+A:NO,AT,PL,PT,SE,CH,SK,ES
+A:CZ,TR,US,CA
+T:*/*=0.68/60
+Z:201 Global 2
+A:AL,BA,BG,IL,YU,HR
+A:MT,MK,RO,SI,HU,CY
+A:AZ,EE,LV,LT,MD,SU
+A:TJ,UA,BY
+A:AU,TW,HK,KR,ID,JP
+A:MY,NZ,PH,SG,TH
+T:*/*=0.88/60
+Z:202 Global 3
+A:AM,GE,KZ,KG,TM,UZ
+A:ZA
+T:*/*=1.48/60
+Z:203 Global 4
+A:+
+T:*/*=1.98/60
+#####################################################################
+P:24,5 Telepassport SüdOst
+B:01024
+# G:01.05.1999
+C:Name:Telepassport SüdOst
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Inland
+A:+49
+T:W/08-18=0.18/60 Geschäftszeit
+T:W/18-08=0.12/60 Freizeit
+T:E,H/*=0.12/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.56/60
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:*/*=0.08/60
+Z:200 Global 1
+A:BE,DK,FI,FR,GR,UK
+A:IE,IS,IT,LI,LU,MC,NL
+A:NO,AT,PL,PT,SE,CH,SK,ES
+A:CZ,TR,US,CA
+T:*/*=0.68/60
+Z:201 Global 2
+A:AL,BA,BG,IL,YU,HR
+A:MT,MK,RO,SI,HU,CY
+A:AZ,EE,LV,LT,MD,SU
+A:TJ,UA,BY
+A:AU,TW,HK,KR,ID,JP
+A:MY,NZ,PH,SG,TH
+T:*/*=0.88/60
+Z:202 Global 3
+A:AM,GE,KZ,KG,TM,UZ
+A:ZA
+T:*/*=1.48/60
+Z:203 Global 4
+A:+
+T:*/*=1.98/60
+#####################################################################
+P:24,6 Telepassport StudentenTarif
+B:01024
+# G:01.05.1999
+C:Name:Telepassport StudentenTarif
+C:Address:Telepassport Service GmbH, Schwindstraße 3, 60325 Frankfurt
+C:Adresss:Telepassport, Juri-Gagarin-Ring 88, 99084 Erfurt
+C:Homepage:http://www.telepassport.de
+C:Hotline:0800/808 808 8
+C:Telefon:0361/594 2500
+C:Telefax:0800/808 808 9
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 Lokal
+T:*/*=0.10/60
+Z:3 Nah
+T:W/08-18=0.12/60 Geschäftszeit
+T:W/18-08=0.10/60 Freizeit
+T:E,H/*=0.10/60 Wochenende
+Z:4 Fern
+A:+49
+T:W/08-18=0.14/60 Geschäftszeit
+T:W/18-08=0.10/60 Freizeit
+T:E,H/*=0.10/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMCM
+A:_DEMC
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:W/08-18=0.58/60 Geschäftszeit
+T:W/18-08=0.48/60 Freizeit
+T:E,H/*=0.48/60 Wochenende
+Z:102 TelePassport-Online
+A:01924924
+S:Internet by call
+T:W/08-18=0.08/60 Geschäftszeit
+T:W/18-08=0.06/60 Freizeit
+T:E,H/*=0.06/60 Wochenende
+Z:200 Ausland Spezial
+A:BE,DK,FI,FR,UK,IT
+A:NL,NO,AT,SE,CH
+A:CA,US
+T:*/*=0.48/60
+Z:201 International 1
+A:AD,FO,GR,IE,IS,LI,LU
+A:MC,PL,PT,SM,SK,ES
+A:CZ,VA
+T:*/*=0.68/60
+Z:202 International 2
+A:AL,BA,BG,EE,GI,IL
+A:YU,HR,LV,LT,MT,MK,MD
+A:RO,SU,SI,TR,UA,HU,BY,CY
+A:AU,HK,KR,JP,SG,NZ
+T:*/*=0.98/60
+Z:203 Global 4
+A:+
+T:*/*=1.98/60
+#####################################################################
+P:24,7 Super 24
+B:01024
+C:*** Die Euro-Preise sind bislang nicht bekanntgegeben worden!
+C:*** Daher bislang schlicht umgerechnet! 30.Dec.2001/AK
+C:Name:Super 24
+C:Hotline:0800/24-01024
+C:Homepage:http://www.super24.com
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Erfasste Zonen:
+C:2	-   4	Deutschland
+C:10		Mobilfunk
+C:102		SUPER24 Internet
+C:200	-	Ausland
+# G:13.06.2000
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Inland
+A:+49
+T:*/*=0.03/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.19/60
+#####################################################################
+#
+#
+P:27,0 Nordcom nordFon(Net) ISDN
+B:01027
+C:Name:Nordcom nordFon(Net) ISDN
+C:Address:Nordcom GmbH, Dötlinger Str. 6-8, 28197 Bremen
+C:Homepage:http://www.nordcom.net
+C:Sondertarif 5 "Nordcom-Nordcom": Netzinterne Gespräche zwischen Nordcom Kunden
+C:Euro
+C:Erfasste Zonen:
+C:1     -   4   Deutschland
+C:5             Sondertarif
+C:10            Mobilfunk
+C:102           nordNet
+C:nordNet: Internet Zugang, 0,025 DM / Min
+C:Stand: 2001-06-01
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-3 Ortstarif
+T:W/06-18=0.031(60)/1 Tag
+T:W/18-06=0.015(60)/1 Freizeit
+T:E,H/*=0.015(60)/1 Wochenende
+Z:4 Ferntarif
+T:W/06-18=0.061(60)/1 Tag
+T:W/18-06=0.026(60)/1 Freizeit
+T:E,H/*=0.026(60)/1 Wochenende
+A:DE
+Z:5 Nordcom-Nordcom
+T:W/06-18=0.02(60)/1 Tag
+T:W/18-06=0.01(60)/1 Freizeit
+T:E,H/*=0.01(60)/1 Wochenende
+Z:12-13 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.245(60)/1
+Z:14 Mobilfunk E-plus
+A:_DEME1
+T:W/06-18=0.276(60)/1 Tag
+T:W/18-06=0.245(60)/1 Freizeit
+Z:15 Mobilfunk E2
+A:_DEME2
+T:W/06-18=0.291(60)/1 Tag
+T:W/18-06=0.245(60)/1 Freizeit
+T:E,H/*=0.245(60)/1 Wochenende
+Z:102 nordNet
+A:+494212774003
+A:+494713084003
+T:*/*=0.013(60)/1
+#####################################################################
+P:27,1 Nordcom nordFonNet Pro
+B:01027
+C:Name:Nordcom nordFonNet Pro
+C:Address:Nordcom GmbH, Dötlinger Str. 6-8, 28197 Bremen
+C:Sondertarif 5 "Nordcom-Nordcom": Netzinterne Gespräche zwischen Nordcom
+C:Kunden
+C:Euro
+C:Erfasste Zonen:
+C:1     -   4   Deutschland
+C:5             Sondertarif
+C:10            Mobilfunk
+C:102           nordNet Flatrate
+C:Stand: 2001-06-01
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-3 Ortstarif
+T:W/06-18=0.031(60)/1 Tag
+T:W/18-06=0.015(60)/1 Freizeit
+T:E,H/*=0.015(60)/1 Wochenende
+Z:4 Ferntarif
+T:W/06-18=0.061(60)/1 Tag
+T:W/18-06=0.026(60)/1 Freizeit
+T:E,H/*=0.026(60)/1 Wochenende
+A:DE
+Z:5 Nordcom-Nordcom
+T:W/06-18=0.02(60)/1 Tag
+T:W/18-06=0.01(60)/1 Freizeit
+T:E,H/*=0.01(60)/1 Wochenende
+Z:12-13 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.245(60)/1
+Z:14 Mobilfunk E-plus
+A:_DEME1
+T:W/06-18=0.276(60)/1 Tag
+T:W/18-06=0.245(60)/1 Freizeit
+T:E,H/*=0.245(60)/1 Wochenende
+Z:15 Mobilfunk E2
+A:_DEME2
+T:W/06-18=0.291(60)/1 Tag
+T:W/18-06=0.276(60)/1 Freizeit
+T:E,H/*=0.276(60)/1 Wochenende
+Z:102 nordNet Flatrate
+A:+494212774003
+A:+494713084003
+T:*/*=0/60
+#####################################################################
+#
+#
+P:33,0 DTAG T-ISDN Standard
+B:01033
+# G:26-Dez-2001
+D:dtag
+C:Name:Deutsche Telekom AG
+C:Address:Deutsche Telekom AG, Friedrich-Ebert-Allee 140, 53113 Bonn
+C:Homepage:http://www.dtag.de
+C:Hotline:0800/33-01000, T-Online Tarifhotline: 0800/33-03333
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Quelle:"Preisliste Telefondienst (Inlandsverbindungen)", Stand 2002-05-01
+C:Quelle:http://www.telekom.de/dtag/agb/dokument/pdf/0,1384,225,00.pdf
+C:Quelle:"Preisliste Auskunftsdienst", Stand 2002-06-03
+#C:Quelle:(derzeit offenbar nur auf Anfrage von info@telekom.de erhältlich)
+#C:Quelle:Pressemeldung "Neues Tarifmodell Inlandsauskunft", 2002-05-31
+#C:Quelle:http://www.telekom.de/dtag/presse/artikel/0,1018,x1641,00.html
+C:Quelle:"Preisliste Telefondienst (Auslandsverbindungen)", Stand 2002-03-01
+C:Quelle:http://www.telekom.de/dtag/agb/dokument/pdf/0,1384,71,00.pdf
+C:Euro
+C:Erfasste Zonen:
+C:   0 -   4 Deutschland
+C:  10 -  12 Mobilfunk
+C:  29 -  39 Satellitenfunk
+C:  40 -  41 Auskunft DTAG Inland/Ausland
+C:  60 -  67 Funkruf Cityruf, Scall, Skyper
+C:  80 -  84 Shared Cost 0180
+C:  90 -  94 Premium Rate 0190
+C: 100       T-Online
+C: 160 - 162 T-VoteCall 0137,0138
+C: 170       Persönliche Rufnummer 0700
+C: 171       Ansage Lotto (01162) und Zeit (01191)
+C: 250 - 271 Ausland Mobilfunk
+C: 280 - 295 Ausland
+# Auslandszonen 200-249 für AktivPlus in P:33,1 (vorrangig) freigehalten.
+# nicht erfasst nach Inlandspreisliste:
+#   012, 01672, 0181-0189, 'Mobilfunk MobilCom'
+# nach Auslandspreisliste:
+#   div. Satelliten- und ausländische Mobilfunknetze, Zonen sind auskommentiert
+#   Vis-à-Vis-Tarife in Grenzgebieten, Global 269 (+269800)
+#
+Z:0 FreeCall
+A:08003301113
+A:08003301000
+A:08003301115
+A:08003301136
+A:08003302000
+A:08003301172
+A:08003301174
+A:08003302050
+A:01136
+A:110
+A:112
+# A:+10         # Operator Service
+A:0800
+A:_NLFF,_CHFF
+A:_F800
+A:0800*,0801*
+A:031*
+T:*/*=0
+#
+Z:1-2 City
+A:01141
+A:0193066
+T:[-24.12.2002]W/07-18=0.059972/90 Tag	# 0.0517 +16%
+T:[-24.12.2002]W/18-07=0.059972/240 Abend	# 0.0517 +16%
+T:[-24.12.2002]E,H/*=0.059972/240 Abend	# 0.0517 +16%
+T:[24.12.2002-02.01.2003]*/*=0.059972/240 Weihnachten	# 0.0517 +16%
+T:[02.01.2003]W/07-18=0.059972/90 Tag	# 0.0517 +16%
+T:[02.01.2003]W/18-07=0.059972/240 Abend	# 0.0517 +16%
+T:[02.01.2003]E,H/*=0.059972/240 Abend	# 0.0517 +16%
+Z:3-4 Deutschland
+A:DE
+T:[-24.12.2002]W/07-18=0.091988/60 Tag	# 0.0793 +16%
+T:[-24.12.2002]W/18-07=0.030624/60 Abend	# 0.0264 +16%
+T:[-24.12.2002]E,H/*=0.030624/60 Abend	# 0.0264 +16%
+T:[24.12.2002-02.01.2003]*/*=0.030624/60 Weihnachten	# 0.0264 +16%
+T:[02.01.2003]W/07-18=0.091988/60 Tag	# 0.0793 +16%
+T:[02.01.2003]W/18-07=0.030624/60 Abend	# 0.0264 +16%
+T:[02.01.2003]E,H/*=0.030624/60 Abend	# 0.0264 +16%
+#
+Z:10 Mobilfunknetz D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.24534/60	# 0.2115 +16%
+Z:11 Mobilfunknetz E-Plus
+A:_DEME1
+T:*/*=0.27608/60	# 0.2380 +16%
+Z:12 Mobilfunknetz E2/Quam
+A:_DEME2
+A:_DEMQ
+T:*/*=0.291392/60	# 0.2512 +16%
+#
+# FIXME: gem. header nur Z:31-39 für Satellitenfunk
+# FIXME: fehlt in country-de.dat [22-Nov-2001]
+# Z:29 Thuraya
+# A:+88216
+# T:*/*=4.5936(60)/0.8	# 3.9600 +16%
+# Z:30 EMSAT
+# A:+88213
+# T:*/*=3.0624(60)/1.2	# 2.6400 +16%
+Z:31 Inmarsat A
+A:_INA_
+T:*/*=5.267328(60)/0.7	# 4.5408 +16%
+Z:32 Inmarsat B HSD
+A:_INBH
+T:*/*=12.2496(60)/0.3	# 10.5600 +16%
+Z:33 Inmarsat B
+A:_INB_
+T:*/*=4.5936(60)/0.8	# 3.9600 +16%
+Z:34 Inmarsat Aero
+A:_INAE
+T:*/*=5.267328(60)/0.7	# 4.5408 +16%
+Z:35 Inmarsat M
+A:_INM_
+T:*/*=4.5936(60)/0.8	# 3.9600 +16%
+Z:36 Inmarsat Mini-M
+A:_INMM
+T:*/*=3.67488(60)/1	# 3.1680 +16%
+Z:37 Inmarsat A Daten/Fax
+A:_INDF
+T:*/*=5.267328(60)/0.7	# 4.5408 +16%
+Z:38 Iridium
+A:_IR16,_IR17
+T:*/*=4.5936(60)/0.8	# 3.9600 +16%
+# FIXME: fehlt in country-de.dat [22-Nov-2001]
+# Z:39 GeoVerse
+# A:+88210
+# T:*/*=0.119944(60)/30	# 0.1034 +16%
+#
+Z:40 Auskunft DTAG Inland
+A:11833,11836,11837
+T:*/*=0.24998/0,0.098948/6 	# 0.2155 0.0853 +16%  FIXME: nach Weitervermittlung falsch
+Z:41 Auskunft DTAG Ausland
+A:11834
+T:*/*=0.556452/20	# 0.4797 +16%
+#
+# Funkrufdienste analog header (S:/N:) mit nationalen Rufnummern
+# (in country als +491... definiert, fuer Tarife zu undifferenziert)
+Z:60 Cityruf
+A:0164
+A:01682,01683,01684,01685,01686,01687,01688,01689
+A:01690,01691
+T:W/09-18=0.061248/20 Standard	# 0.0528 +16%
+T:W/18-09=0.061248/30 Spar	# 0.0528 +16%
+T:E,H/*=0.061248/30 Spar	# 0.0528 +16%
+Z:61 Cityruf 01695-[12]
+A:016951,016952
+T:*/*=0.061248/5	# 0.0528 +16%
+Z:62 Scall 01680
+A:01680
+T:*/*=0.30624/0,0/60	# 0.2640 +16%
+Z:63 Scall 01681
+A:01681
+T:W/09-18=0.734976/0,0/60 Standard	# 0.6336 +16%
+T:W/18-09=0.489984/0,0/60 Spar	# 0.4224 +16%
+T:E,H/*=0.489984/0,0/60 Spar	# 0.4224 +16%
+Z:64 Scall 01696
+A:01696
+T:*/*=0.489984/0,0/60	# 0.4224 +16%
+Z:65 Scall 01699
+A:01699
+T:*/*=1.22496/0,0/60	# 1.0560 +16%
+Z:66 Skyper
+A:01692,01693
+T:*/*=0.489984/0,0/60	# 0.4224 +16%
+Z:67 Skyper 016953
+A:016953
+T:*/*=1.22496/0,0/60	# 1.0560 +16%
+#
+Z:80 Shared Cost 0180-1
+A:01801
+T:*/09-18=0.045936/60 Standard	# 0.0396 +16%
+T:*/18-09=0.02494/60 Spar	# 0.0215 +16%
+Z:81 Shared Cost 0180-2
+A:01802
+T:*/*=0.059972/0,0/60	# 0.0517 +16%
+Z:82 Shared Cost 0180-3
+A:01803
+T:*/*=0.0899/60	# 0.0775 +16%
+Z:83 Shared Cost 0180-4
+A:01804
+T:*/*=0.239888/0,0/60	# 0.2068 +16%
+Z:84 Shared Cost 0180-5
+A:01805
+T:*/*=0.119944/60	# 0.1034 +16%
+#
+Z:90 Premium Rate 0190-0
+A:01900
+T:*/*=5.00/60 variabel! 	# nach Ansage bzw. 0800-33-00900
+Z:91 Premium Rate 0190-[1235]
+A:01901,01902,01903,01905
+T:*/*=0.061828/6	# 0.0533 +16%
+Z:92 Premium Rate 0190-[46]
+A:01904,01906
+T:*/*=0.061828/9	# 0.0533 +16%
+Z:93 Premium Rate 0190-[79]
+A:01907,01909
+T:*/*=0.061828/3	# 0.0533 +16%
+Z:94 Premium Rate 0190-8
+A:01908
+T:*/*=0.061828/2	# 0.0533 +16%
+#
+Z:100 T-Online
+# nur bei Tarif 'eco' oder 'DSL-flat' richtig, für 'by call' s. u.
+A:0191011
+T:*/*=0.0148248/60 eco	# 0.01278 +16%
+# T-Online by call läuft auch über die 0191011, dann diese T-Zeile:
+# T:*/*=0.01993/60 by call 	# (Netto-DM-Preis / 1.95583 * 1.16)
+#
+Z:160 T-VoteCall 0137-1
+A:01371
+T:*/*=0.119944/0,0/60	# 0.1034 +16%
+Z:161 T-VoteCall 0137-[234], 0138
+A:01372,01373,01374,0138
+T:*/*=0.119944/30,0.059972/30	# 0.1034 0.0517 +16%
+Z:162 T-VoteCall 0137-9
+A:01379
+T:*/*=0.489984/0,0/60	# 0.4224 +16%
+#
+Z:170 Persönliche Rufnummer
+A:0700
+T:W/09-18=0.061248/30	# 0.0528 +16%
+T:W/18-09=0.061248/60	# 0.0528 +16%
+T:E,H/*=0.061248/60	# 0.0528 +16%
+#
+Z:171 Ansage Lotto/Zeit
+A:01162,01191
+T:*/*=0.061248/30	# 0.0528 +16%
+#
+Z:250 Welt Mobilfunk 1
+A:_ESMF
+T:*/*=0.27086(60)/60	# 0.2335 +16%
+Z:251 Welt Mobilfunk 2
+# A:Andorra Mobilfunk
+A:_BEMF,_DKMF
+A:_FIMF,_IEMF,_ITMF
+# FIXME: Liechtenstein Mobilfunk: Alias in country falsch (=Liechtenstein)
+A:_LUMF
+# A:Malta Mobilfunk
+A:_MCMF,_NOMF,_ATMF
+# A:Vatikanstadt Mobilfunk
+T:*/*=0.342432(60)/60	# 0.2952 +16%
+Z:252 Welt Mobilfunk 3
+# A:Färöer Mobilfunk
+A:_FRMF,_UKMF
+# A:Insel Man Mobilfunk, Kanalinseln Mobilfunk
+A:_NLMF
+# A:Nordirland Mobilfunk
+A:_PTMF,_SEMF,_CHMF
+T:*/*=0.372592(60)/60	# 0.3212 +16%
+Z:253 Welt Mobilfunk 4
+A:_TRMF,_HUMF
+T:*/*=0.393588(60)/60	# 0.3393 +16%
+# Z:254 Welt Mobilfunk 5
+# A:Bosnien und Herzegowina Mobilfunk
+# T:*/*=0.454952(60)/60	# 0.3922 +16%
+Z:255 Welt Mobilfunk 6
+A:_GRMF,_ISMF
+# A: Jugoslawien Mobilfunk, Kroatien Mobilfunk
+A:_PLMF
+# A: Slowakai Mobilfunk, Slowenien Mobilfunk
+A:_CZMF,_CYMF
+T:*/*=0.46516(60)/60	# 0.4010 +16%
+# Z:256 Welt Mobilfunk 7
+# A:Albanien Mobilfunk
+# T:*/*=0.526524(60)/60	# 0.4539 +16%
+Z:257 Welt Mobilfunk 8
+A:_RUMF
+T:*/*=0.551232(60)/6.67	# 0.4752 +16%
+# Z:258 Welt Mobilfunk 9
+# A:Bulgarien Mobilfunk, Mazedonien (ehemalige jugoslawische Republik) Mobilfunk
+# A:Ukraine Mobilfunk, Weißrussland Mobilfunk
+# T:*/*=0.61248(60)/6	# 0.5280 +16%
+Z:259 Welt Mobilfunk 10
+A:_ILMF,_ROMF
+T:*/*=0.673728(60)/5.46	# 0.5808 +16%
+Z:260 Welt Mobilfunk 11
+A:_EEMF
+# A:Lettland Mobilfunk
+A:_LBMF
+# A:Marokko Mobilfunk, Moldau (Republik) Mobilfunk
+T:*/*=0.734976(60)/5	# 0.6336 +16%
+# Z:261 Welt Mobilfunk 12
+# A:Litauen Mobilfunk
+# T:*/*=0.796224(60)/4.62	# 0.6864 +16%
+Z:262 Welt Mobilfunk 13
+A:_AUMF,_HKMF
+T:*/*=0.91872(60)/4	# 0.7920 +16%
+Z:263 Welt Mobilfunk 14
+A:_TWMF,_JPMF,_KRMF
+T:*/*=0.979968(60)/3.75	# 0.8448 +16%
+# Z:264 Welt Mobilfunk 15
+# A:Kasachstan Mobilfunk
+# T:*/*=1.041216(60)/3.53	# 0.8976 +16%
+Z:265 Welt Mobilfunk 16
+A:_BRMF,_SGMF
+T:*/*=1.22496(60)/3	# 1.0560 +16%
+Z:266 Welt Mobilfunk 17
+A:_NZMF
+T:*/*=1.286208(60)/2.86	# 1.1088 +16%
+Z:267 Welt Mobilfunk 18
+A:_CLMF,_CNMF
+# A:Georgien Mobilfunk
+T:*/*=1.347456(60)/2.73	# 1.1616 +16%
+Z:268 Welt Mobilfunk 19
+A:_COMF,_PHMF,_ZAMF
+T:*/*=1.5312(60)/2.40	# 1.3200 +16%
+Z:269 Welt Mobilfunk 20
+A:_MYMF
+T:*/*=1.653696(60)/2.23	# 1.4256 +16%
+Z:270 Welt Mobilfunk 21
+# A:Armenien Mobilfunk, Aruba Mobilfunk, Aserbaidschan Mobilfunk
+# A:Bahrain Mobilfunk, Bolivien Mobilfunk
+# A:Brunei Darussalam Mobilfunk, Burkino Faso Mobilfunk,
+A:_ECMF
+# A:Gabun Mobilfunk, Kamerun Mobilfunk
+A:_KGMF
+# A:Kuba Mobilfunk, Myanmar Mobilfunk
+A:_PAMF
+# A:Sambia Mobilfunk, Tadschikistan Mobilfunk
+A:_THMF
+# A:Turkmenistan Mobilfunk, Uganda Mobilfunk
+# A:Uruguay Mobilfunk, Usbekistan Mobilfunk, Vietnam Mobilfunk
+T:*/*=1.714944(60)/2.15	# 1.4784 +16%
+Z:271 Welt Mobilfunk 22
+A:_SVMF,_IDMF,_PEMF
+A:_VEMF
+T:*/*=1.776192(60)/2.07	# 1.5312 +16%
+#
+Z:280 Welt 1
+A:AD,BE,DK,FO,FI,FR
+A:GI,UK,_UKIM,IE,IT
+A:CA,_UKIK,LI,LU
+A:MT,MC,NL,_UKIR,NO
+A:AT,PT,PR,SM,SE
+A:CH,ES,VA,US
+T:*/*=0.122612(60)/60	# 0.1057 +16%
+Z:281 Welt 2
+A:GR,IS,YU,HR,PL
+A:SK,SI,CZ,TR
+A:HU,CY
+T:*/*=0.24534(60)/60	# 0.2115 +16%
+Z:282 Welt 3
+A:AL,BA
+T:*/*=0.306704(60)/60	# 0.2644 +16%
+Z:283 Welt 4
+A:SU
+T:*/*=0.367488(60)/10	# 0.3168 +16%
+Z:284 Welt 5
+A:BG,BY
+T:*/*=0.428736(60)/8.6	# 0.3696 +16%
+Z:285 Welt 6
+A:IL,MK
+A:RO,UA
+T:*/*=0.489984(60)/7.5	# 0.4224 +16%
+Z:286 Welt 7
+A:EG,DZ,EE,JO,LV,LB
+A:LY,LT,EH
+A:MD,SY
+A:TN
+T:*/*=0.61248(60)/6	# 0.5280 +16%
+Z:287 Welt 8
+A:AU,TW,HK
+A:JP,KR
+A:AQ,NF
+T:*/*=0.796224(60)/4.62	# 0.6864 +16%
+Z:288 Welt 9
+A:KZ
+T:*/*=0.91872(60)/4	# 0.7920 +16%
+Z:289 Welt 10
+A:BR,DO,MX
+A:AN
+T:*/*=1.041216(60)/3.55	# 0.8976 +16%
+Z:290 Welt 11
+A:NZ,SG
+T:*/*=1.102464(60)/3.34	# 0.9504 +16%
+Z:291 Welt 12
+A:AR,CL,CN,GE,LS
+T:*/*=1.22496(60)/3	# 1.0560 +16%
+Z:292 Welt 13
+A:ZA
+T:*/*=1.347456(60)/2.73	# 1.1616 +16%
+Z:293 Welt 14
+A:IR,CO,PH
+A:SA,AE
+T:*/*=1.408704(60)/2.61	# 1.2144 +16%
+Z:294 Welt 15
+A:MY
+T:*/*=1.5312/2.4	# 1.3200 +16%
+Z:295 Welt 16 (andere)
+A:+
+T:*/*=1.592448(60)/2.31	# 1.3728 +16%
+#
+#####################################################################
+P:33,1 DTAG T-ISDN 300
+# Dieser Tarif gilt auch bei AktivPlus
+B:01033
+# G:26-Dec-2001
+D:dtag
+C:Name:Deutsche Telekom AG AktivPlus
+C:Address:Deutsche Telekom AG, Friedrich-Ebert-Allee 140, 53113 Bonn
+C:Homepage:http://www.dtag.de
+C:Hotline:0800/33-01000, T-Online Tarifhotline: 0800/33-03333
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Quelle:"Preisliste T-ISDN 300", Stand 2002-02-25
+C:Quelle:http://www.telekom.de/dtag/agb/produkte?nr=ISDN300c
+# C:Quelle:http://www.telekom.de/dtag/agb/dokument/pdf/0,1384,107,00.pdf
+C:Grundgebühr zusätzlich für diesen Tarif: 9,90 DM / Monat
+C:Euro
+C:Erfasste Zonen:
+C:   1 -   4 Deutschland
+C:  10 -  12 Mobilfunk
+C: 200 - 209 Ausland Mobilfunk AktivPlus
+C: 220 - 225 Ausland AktivPlus
+C: 254 - 271 Ausland Mobilfunk
+C: 282 - 295 Ausland
+# 250- manuell von (33,0) übernommen und um 200-225 ausgedünnt, so keine Fehler-
+# meldungen und R-Tag auf 200- bei xxl (33,2) ist moeglich
+C:Uebernommene Zonen von DTAG T-ISDN Standard (33,0):
+C:   0       Freecall
+C:  31 - 171 nationale Dienste + Satellitenfunk
+R:33,0;0,31-171
+#
+Z:1-2 City
+A:01141
+A:0193066
+T:[-24.12.2002]W/09-18=0.030624/60 Tag	# 0.0264 +16%
+T:[-24.12.2002]W/18-09=0.015312/60 Spar	# 0.0132 +16%
+T:[-24.12.2002]E,H/*=0.015312/60 Spar	# 0.0132 +16%
+T:[24.12.2002-02.01.2003]*/*=0.015312/60 Weihnachten	# 0.0132 +16%
+T:[02.01.2003-]W/09-18=0.030624/60 Tag	# 0.0264 +16%
+T:[02.01.2003-]W/18-09=0.015312/60 Spar	# 0.0132 +16%
+T:[02.01.2003-]E,H/*=0.015312/60 Spar	# 0.0132 +16%
+Z:3-4 Deutschland
+A:DE
+T:[-24.12.2002]W/09-18=0.045936/60 Tag	# 0.0396 +16%
+T:[-24.12.2002]W/18-09=0.02552/60 Spar	# 0.0220 +16%
+T:[-24.12.2002]E,H/*=0.02552/60 Spar	# 0.0220 +16%
+T:[24.12.2002-02.01.2003]*/*=0.02552/60 Weihnachten	# 0.0220 +16%
+T:[02.01.2003-]W/09-18=0.045936/60 Tag	# 0.0396 +16%
+T:[02.01.2003-]W/18-09=0.02552/60 Spar	# 0.0220 +16%
+T:[02.01.2003-]E,H/*=0.02552/60 Spar	# 0.0220 +16%
+#
+Z:10 Mobilfunknetz D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.199404/60	# 0.1719 +16%
+Z:11 Mobilfunknetz E-Plus
+A:_DEME1
+T:*/*=0.230028/60	# 0.1983 +16%
+Z:12 Mobilfunknetz E2/Quam
+A:_DEME2
+A:_DEMQ
+T:*/*=0.24534/60	# 0.2115 +16%
+#
+# 1.2 bedeutet in Preisliste Nr. 1 mit Fussnote ** für Mobilfunkzuschlag usw.
+Z:200 Welt Mobilfunk AktivPlus 1.1
+A:_ESMF
+T:*/*=0.194184/60	# 0.0396+0.1278 +16%
+Z:201 Welt Mobilfunk AktivPlus 1.2
+# A:Andorra Mobilfunk
+A:_BEMF,_DKMF,_FIMF
+A:_IEMF,_ITMF
+# FIXME: Liechtenstein Mobilfunk: Alias in country falsch (=Liechtenstein)
+A:_LUMF
+# A:Malta Mobilfunk
+A:_MCMF,_NOMF,_ATMF
+# A:Vatikanstadt Mobilfunk
+T:*/*=0.265756/60	# 0.0396+0.1895 +16%
+Z:202 Welt Mobilfunk AktivPlus 1.3
+# A:Färöer Mobilfunk
+A:_FRMF,_UKMF
+# A:Insel Man Mobilfunk, Kanalinseln Mobilfunk
+A:_NLMF
+# A:Nordirland Mobilfunk
+A:_SEMF,_CHMF
+T:*/*=0.295916/60	# 0.0396+0.2155 +16%
+Z:203 Welt Mobilfunk AktivPlus 2.3
+A:_PTMF
+T:*/*=0.347072/60	# 0.0837+0.2155 +16%
+Z:204 Welt Mobilfunk AktivPlus 3.2
+A:_GRMF,_ISMF,_CZMF
+T:*/*=0.368068/60	# 0.1278+0.1895 +16%
+Z:205 Welt Mobilfunk AktivPlus 4.1
+A:_TRMF,_HUMF
+T:*/*=0.347652/60	# 0.1719+0.1278 +16%
+Z:206 Welt Mobilfunk AktivPlus 4.2
+# A:Jugoslawien Mobilfunk, Kroatien Mobilfunk
+A:_PLMF
+# A:Slowakei Mobilfunk, Slowenien Mobilfunk
+A:_CYMF
+T:*/*=0.419224/60	# 0.1719+0.1895 +16%
+# Z:207 Welt Mobilfunk AktivPlus 5.1
+# A:Ukraine Mobilfunk
+# T:*/*=0.449848/60	# 0.2600+0.1278 +16%
+Z:208 Welt Mobilfunk AktivPlus 5.2
+A:_RUMF
+# A: Weißrussland Mobilfunk
+T:*/*=0.52142/60	# 0.2600+0.1895 +16%
+# Z:209 Welt Mobilfunk AktivPlus 6.1
+# A:Kasachstan Mobilfunk
+# T:*/*=0.6032/60	# 0.3922+0.1278 +16%
+#
+Z:220 Welt AktivPlus 1
+A:AD,BE,DK,FO,FI,FR
+A:GI,UK,_UKIM,IE,IT,CA
+A:_UKIK,LI,LU,MT,MC,NL
+A:_UKIR,NO,AT,SM
+A:SE,CH,ES,VA,US
+T:*/*=0.045936/60	# 0.0396 +16%
+Z:221 Welt AktivPlus 2
+A:PT,PR
+T:*/*=0.097092/60	# 0.0837 +16%
+Z:222 Welt AktivPlus 3
+A:GR,IS,CZ
+T:*/*=0.148248/60	# 0.1278 +16%
+Z:223 Welt AktivPlus 4
+A:YU,HR,PL,SK,SI,TR
+A:HU,CY
+T:*/*=0.199404/60	# 0.1719 +16%
+Z:224 Welt AktivPlus 5
+A:SU,UA,BY
+T:*/*=0.3016/60	# 0.2600 +16%
+Z:225 Welt AktivPlus 6
+A:KZ
+T:*/*=0.454952/60	# 0.3922 +16%
+#
+# Z:254 Welt Mobilfunk 5
+# A:Bosnien und Herzegowina Mobilfunk
+# T:*/*=0.454952(60)/60	# 0.3922 +16%
+# Z:256 Welt Mobilfunk 7
+# A:Albanien Mobilfunk
+# T:*/*=0.526524(60)/60	# 0.4539 +16%
+# Z:258 Welt Mobilfunk 9
+# A:Bulgarien Mobilfunk, Mazedonien (ehemalige jugoslawische Republik) Mobilfunk
+# T:*/*=0.61248(60)/6	# 0.5280 +16%
+Z:259 Welt Mobilfunk 10
+A:_ILMF,_ROMF
+T:*/*=0.673728(60)/5.46	# 0.5808 +16%
+Z:260 Welt Mobilfunk 11
+A:_EEMF
+# A:Lettland Mobilfunk
+A:_LBMF
+# A:Marokko Mobilfunk, Moldau (Republik) Mobilfunk
+T:*/*=0.734976(60)/5	# 0.6336 +16%
+# Z:261 Welt Mobilfunk 12
+# A:Litauen Mobilfunk
+# T:*/*=0.796224(60)/4.62	# 0.6864 +16%
+Z:262 Welt Mobilfunk 13
+A:_AUMF,_HKMF
+T:*/*=0.91872(60)/4	# 0.7920 +16%
+Z:263 Welt Mobilfunk 14
+A:_TWMF,_JPMF,_KRMF
+T:*/*=0.979968(60)/3.75	# 0.8448 +16%
+Z:265 Welt Mobilfunk 16
+A:_BRMF,_SGMF
+T:*/*=1.22496(60)/3	# 1.0560 +16%
+Z:266 Welt Mobilfunk 17
+A:_NZMF
+T:*/*=1.286208(60)/2.86	# 1.1088 +16%
+Z:267 Welt Mobilfunk 18
+A:_CLMF,_CNMF
+# A:Georgien Mobilfunk
+T:*/*=1.347456(60)/2.73	# 1.1616 +16%
+Z:268 Welt Mobilfunk 19
+A:_COMF,_PHMF,_ZAMF
+T:*/*=1.5312(60)/2.40	# 1.3200 +16%
+Z:269 Welt Mobilfunk 20
+A:_MYMF
+T:*/*=1.653696(60)/2.23	# 1.4256 +16%
+Z:270 Welt Mobilfunk 21
+# A:Armenien Mobilfunk, Aruba Mobilfunk, Aserbaidschan Mobilfunk
+# A:Bahrain Mobilfunk, Bolivien Mobilfunk
+# A:Brunei Darussalam Mobilfunk, Burkino Faso Mobilfunk,
+A:_ECMF
+# A:Gabun Mobilfunk, Kamerun Mobilfunk
+A:_KGMF
+# A:Kuba Mobilfunk, Myanmar Mobilfunk
+A:_PAMF
+# A:Sambia Mobilfunk, Tadschikistan Mobilfunk
+A:_THMF
+# A:Turkmenistan Mobilfunk, Uganda Mobilfunk
+# A:Uruguay Mobilfunk, Usbekistan Mobilfunk, Vietnam Mobilfunk
+T:*/*=1.714944(60)/2.15	# 1.4784 +16%
+Z:271 Welt Mobilfunk 22
+A:_SVMF,_IDMF,_PEMF
+A:_VEMF
+T:*/*=1.776192(60)/2.07	# 1.5312 +16%
+#
+Z:282 Welt 3
+A:AL,BA
+T:*/*=0.306704(60)/60	# 0.2644 +16%
+Z:284 Welt 5
+A:BG
+T:*/*=0.428736(60)/8.6	# 0.3696 +16%
+Z:285 Welt 6
+A:IL,MK
+A:RO
+T:*/*=0.489984(60)/7.5	# 0.4224 +16%
+Z:286 Welt 7
+A:EG,DZ,EE,JO,LV,LB
+A:LY,LT,EH
+A:MD,SY
+A:TN
+T:*/*=0.61248(60)/6	# 0.5280 +16%
+Z:287 Welt 8
+A:AU,TW,HK
+A:JP,KR
+A:AQ,NF
+T:*/*=0.796224(60)/4.62	# 0.6864 +16%
+Z:289 Welt 10
+A:BR,DO,MX
+A:AN
+T:*/*=1.041216(60)/3.55	# 0.8976 +16%
+Z:290 Welt 11
+A:NZ,SG
+T:*/*=1.102464(60)/3.34	# 0.9504 +16%
+Z:291 Welt 12
+A:AR,CL,CN,GE,LS
+T:*/*=1.22496(60)/3	# 1.0560 +16%
+Z:292 Welt 13
+A:ZA
+T:*/*=1.347456(60)/2.73	# 1.1616 +16%
+Z:293 Welt 14
+A:IR,CO,PH
+A:SA,AE
+T:*/*=1.408704(60)/2.61	# 1.2144 +16%
+Z:294 Welt 15
+A:MY
+T:*/*=1.5312/2.4	# 1.3200 +16%
+Z:295 Welt 16 (andere)
+A:+
+T:*/*=1.592448(60)/2.31	# 1.3728 +16%
+#
+#####################################################################
+P:33,2 DTAG T-ISDN xxl
+B:01033
+# G:01-Jun-2000
+D:dtag
+C:Name:Deutsche Telekom AG AktivPlus xxl
+C:Address:Deutsche Telekom AG, Friedrich-Ebert-Allee 140, 53113 Bonn
+C:Homepage:http://www.dtag.de
+C:Hotline:0800/33-01000, T-Online Tarifhotline: 0800/33-03333
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Quelle:"Preisliste T-ISDN xxl", Stand 2002-02-25
+C:Quelle:http://www.telekom.de/dtag/agb/dokument/pdf/0,1384,142,00.pdf
+C:Tarif gilt nur in Verbindung mit T-ISDN xxl Anschluss für min. 31,28 EUR/Monat.
+C:Euro
+C:Erfasste Zonen:
+C:   1 -   4 Deutschland
+C: 180       Auftragsdienst DTAG (01141)
+C:Uebernommene Zonen von DTAG T-ISDN Standard (33,0):
+C:   0       Freecall
+C:  31 - 171 nationale Dienste + Satellitenfunk
+C:Uebernommene Zonen von DTAG T-ISDN 300 (33,1):
+C:  10 -  12 Mobilfunk
+C: 200 -     Ausland
+R:33,0;0,31-171
+R:33,1;10-12,200-
+#
+Z:1-2 City
+A:0193066
+T:[-24.12.2002]W/09-18=0.030624/60 Tag	# 0.0264 +16%
+T:[-24.12.2002]W/18-09=0.015312/60 Spar	# 0.0132 +16%
+T:[-24.12.2002]6/*=0.015312/60 Spar	# 0.0132 +16%
+T:[-24.12.2002]7,H/*=0/60 xxl unentgeltlich
+T:[24.12.2002-02.01.2003]W,6/*=0.015312/60 Weihnachten	# 0.0132 +16%
+T:[24.12.2002-02.01.2003]7,H/*=0/60 xxl unentgeltlich
+T:[02.01.2003-]W/09-18=0.030624/60 Tag	# 0.0264 +16%
+T:[02.01.2003-]W/18-09=0.015312/60 Spar	# 0.0132 +16%
+T:[02.01.2003-]6/*=0.015312/60 Spar	# 0.0132 +16%
+T:[02.01.2003-]7,H/*=0/60 xxl unentgeltlich
+Z:3-4 Deutschland
+A:DE
+T:[-24.12.2002]W/09-18=0.045936/60 Tag	# 0.0396 +16%
+T:[-24.12.2002]W/18-09=0.02552/60 Spar	# 0.0220 +16%
+T:[-24.12.2002]6/*=0.02552/60 Spar	# 0.0220 +16%
+T:[-24.12.2002]7,H/*=0/60 xxl unentgeltlich
+T:[24.12.2002-02.01.2003]W,6/*=0.02552/60 Weihnachten	# 0.0220 +16%
+T:[24.12.2002-02.01.2003]7,H/*=0/60 xxl unentgeltlich
+T:[02.01.2003-]W/09-18=0.045936/60 Tag	# 0.0396 +16%
+T:[02.01.2003-]W/18-09=0.02552/60 Spar	# 0.0220 +16%
+T:[02.01.2003-]6/*=0.02552/60 Spar	# 0.0220 +16%
+T:[02.01.2003-]7,H/*=0/60 xxl unentgeltlich
+#
+Z:180
+A:01141
+T:W/09-18=0.030624/60	# 0.0264 +16%
+T:W/18-09=0.015312/60	# 0.0132 +16%
+T:E,H/*=0.015312/60	# 0.0132 +16%
+#
+#####################################################################
+#
+#
+P:40,0 Ventelo
+B:01040
+# G:14-Feb-2000
+D:dtag
+C:Ventelo Deutschland GmbH, Am Seestern 3, 40547 Düsseldorf
+C:Euro
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Deutschland
+A:+49
+T:W/08-19=0.08/60 Hauptzeit
+T:W/19-21=0.05/60 Freizeit
+T:W/21-08=0.0219/60 Nebenzeit
+T:E,H/08-21=0.041/60 Wochenende
+T:E,H/21-08=0.0219/60 Wochenende
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:W/07-19=0.33/60
+T:W/19-07=0.25/60
+T:E,H/*=0.25/60
+#####################################################################
+#
+#
+# P:50 Talkline
+# B:01050
+# C:PS PhoneServices GmbH, Adenauer Damm 1, 25337 Elmshorn 01050
+# C:Homepage:	http://www.null1050.de (??)
+# C:oder:  	http://www.talkline.de
+# C:Hotline:  01802/2002
+# C:Faxabruf: 01802/2001
+#####################################################################
+P:50,0 Talkline ID CbC
+B:01050
+C:Name:Talkline ID GmbH
+C:Address:Talkline GmbH & Co. KG, Talkline-Platz 1, 25388 Elmshorn
+C:Homepage:http://www.talkline.de
+C:Telefon:01802 / 2002
+C:Telefax:01802 / 2001
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+C:Erfasste Zonen:
+C:   1 -   4	Deutschland
+C:  10 -  15	Mobilfunk
+C:  40		Talkline Auskunft
+C: 102		Internet Talkline By Call
+C: 200 - 	Ausland
+D:dtag
+# G:17-Jun-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Fern
+A:DE
+T:W/07-18=0.082/60
+T:W/18-22=0.039/60
+T:W/22-07=0.019/60
+T:E,H/07-18=0.05/60
+T:E,H/18-22=0.039/60
+T:E,H/22-07=0.019/60
+Z:10 Mobil
+A:_DEMF
+T:*/*=0.185/60
+#####################################################################
+#
+#
+P:51,0 01051
+B:01051
+C:ID-Switch GmbH, Graf-Adolf-Straße, 40210 Düsseldorf
+# G:18-Feb-2000
+C:Homepage: http://www.01051.com
+C:Adresse:  ID-Switch GmbH, Koenigsallee 60f, 40210 Duesseldorf
+C:Name:01051
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Ferngespräche
+A:DE
+T:*/*=0.036/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.2045/60
+#####################################################################
+#
+#
+P:55,0 prompt
+B:01055
+# G:29-Dec-2001
+C:Address:prompt GmbH & C0. KG
+C:Name:prompt
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Fern
+A:+49
+T:W/08-18=0.046/60 Standard
+T:W/18-08=0.024/60 Standard
+T:E,H/*=0.024/60 Spar
+Z:10 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.1891/60
+Z:11 Mobilfunk E1/E2
+A:_DEME1
+A:_DEME2
+T:*/*=0.2147/60
+#####################################################################
+#
+#
+P:58,0 01058
+B:01058
+C:Address:KaTel Gesellschaft für Telekommunikation mbH, Mathias-Brüggen-Straße 87-89, 50829 Köln
+C:Name:KaTel
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Deutschland
+A:+49
+T:*/*=0.035/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.205/60
+#####################################################################
+#
+#
+P:63,0 Conos CbC
+B:01063
+C:Address:Conos AG, Mottmannstraße 2, 53842 Troisdorf
+C:URL: http://www.conos-ag.de
+C:Name:KDD-Conos PrivateCall easy
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+C:Special:Preselection
+C:Special:Sondertarif für Gespräche zu KDD-Conos Mobilfunkteilnehmern vorhanden
+C:Preselection
+C:Erfasste Zonen:
+C:0	-   4	Deutschland
+C:5		Sondertarif
+C:10		Mobilfunk
+C:200	- 209	Ausland
+C:Sondertarif 5: Gespräche zu KDD-Conos Mobilfunkteilnehmern
+# G: 07-99
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:10 Mobilfunk D
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.189(60)/30
+Z:11 Mobilfunk E
+A:_DEME1
+A:_DEME2
+T:*/*=0.204(60)/30
+#####################################################################
+P:63,1 Conos PrivatePhone genau
+B:01063
+C:Corporate Network & Services Aktiengesellschaft Lievelingsweg 125 52119 Bonn 01063
+C:Address:Corporate Network & Services Aktiengesellschaft, Lievelingsweg 125, 5
+C:URL: http://www.kdd-conos.de
+C:Name:KDD-Conos PrivateCall genau
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://www.digitalprojects.com
+C:Special:Preselection
+C:Special:Sondertarif für Gespräche zu KDD-Conos Mobilfunkteilnehmern vorhanden
+C:Preselection
+C:Erfasste Zonen:
+C:0	-   4	Deutschland
+C:5		Sondertarif
+C:10		Mobilfunk
+C:200	- 209	Ausland
+C:Sondertarif 5: Gespräche zu KDD-Conos Mobilfunkteilnehmern
+D:dtag
+# G: 07-99
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Deutschland
+A:+49
+T:W/08-18=0.051(60)/1
+T:W/18-21=0.03(60)/1
+T:W/21-08=0.028(60)/1
+T:E,H/*=0.028(60)/1
+Z:10 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.255(60)/1
+Z:11 Mobilfunk E1/E2
+A:_DEME1
+A:_DEME2
+T:*/*=0.28(60)/1
+#####################################################################
+P:63,2 Conos PrivatePhone easy
+B:01063
+C:Corporate Network & Services Aktiengesellschaft Lievelingsweg 125 52119 Bonn 01063
+C:Address:Corporate Network & Services Aktiengesellschaft, Lievelingsweg 125, 5
+C:URL: http://www.kdd-conos.de
+C:Name:KDD-Conos PrivateCall genau
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://www.digitalprojects.com
+C:Special:Preselection
+C:Special:Sondertarif für Gespräche zu KDD-Conos Mobilfunkteilnehmern vorhanden
+C:Preselection
+C:Erfasste Zonen:
+C:0	-   4	Deutschland
+C:5		Sondertarif
+C:10		Mobilfunk
+C:200	- 209	Ausland
+C:Sondertarif 5: Gespräche zu KDD-Conos Mobilfunkteilnehmern
+D:dtag
+# G: 26-Dez-2001
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Deutschland
+A:+49
+T:W/08-18=0.04/60
+T:W/18-21=0.028/60   
+T:W/21-08=0.025/60
+T:E,H/*=0.025/60
+Z:10 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.25/60
+Z:11 Mobilfunk E1/E2
+A:_DEME1
+A:_DEME2
+T:*/*=0.275/60
+#####################################################################
+#
+#
+P:66,0 Interoute
+B:01066
+C:Address:Interoute Telecom Deutschland GmbH, Lyoner Str. 15, 60528 Frankfurt
+C:Name:Interoute
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Bei Preselection sekundengenaue Taktung
+C:Euro
+D:dtag
+# G:01-Nov-2000
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 National
+A:+49
+T:W/08-17=0.03/0,0.032/60
+T:W/17-18=0.03/0,0.03/60
+T:W/18-22=0.03/0,0.022/60
+T:W/22-08=0.03/0,0.019/60
+T:E,H/08-22=0.03/0,0.022/60
+T:E,H/22-08=0.03/0,0.019/60
+Z:10-15 Mobil
+A:_DEMF
+T:*/08-17=0.03/0,0.30(60)/1
+T:*/17-08=0.03/0,0.25(60)/1
+#####################################################################
+#
+#
+P:70,0 Arcor CbC
+B:01070
+# G:01-Jul-2001
+C:Mannesmann Arcor
+C:Address:Mannesmann AG & Co., Kölner Str. 12, 65760 Eschborn
+C:Name:Arcor CbC
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Inland
+A:+49
+T:W/07-18=0.092/60
+T:W/18-20=0.031/60
+T:W/20-07=0.019/60
+T:E,H/*=0.019/60
+Z:11 D1 Netz
+A:_DEMD1
+T:*/*=0.245/60
+Z:12 D2 Netz
+A:_DEMD2
+T:W/07-18=0.245/60 Hauptzeit
+T:W/18-07=0.235/60 Nebenzeit
+T:E,H/*=0.235/60 Freizeit
+Z:14 E-Plus Netz
+A:_DEME1
+T:*/*=0.276/60
+Z:15 E2 Netz
+A:_DEME2
+T:*/*=0.291/60
+#####################################################################
+P:70,1 Arcor Town to Town sunny
+B:01070
+# G:01.07.2001
+C:Mannesmann Arcor
+C:Mannesmann AG & Co., Kölner Str. 12, 65760 Eschborn 01070
+C:Address:Mannesmann AG & Co., Kölner Str. 12, 65760 Eschborn
+C:Name:Arcor Town to Town
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://www.digitalprojects.com
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 Nah
+T:W/09-18=0.0307/60 Hauptzeit
+T:W/18-09=0.0153/60 Nebenzeit
+T:E,H/*=0.0153/60 Nebenzeit
+Z:3-4 Fern
+T:W/09-18=0.046/60 Hauptzeit
+T:W/18-09=0.0205/60 Nebenzeit
+T:E,H/*=0.0205/60 Nebenzeit
+A:+49
+Z:11 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.1994/60
+Z:14 E-Plus Netz
+A:_DEME1
+T:*/*=0.2301/60
+Z:15 E2 Netz
+A:_DEME2
+T:*/*=0.2454/60
+#####################################################################
+P:70,2 Arcor Town to Town world
+B:01070
+# G:01.11.2001
+C:Mannesmann Arcor
+C:Mannesmann AG & Co., Kölner Str. 12, 65760 Eschborn 01070
+C:Address:Mannesmann AG & Co., Kölner Str. 12, 65760 Eschborn
+C:Name:Arcor Town to Town Sekunde
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://www.digitalprojects.com
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Inland
+T:W/07-19=0.05/60 Hauptzeit
+T:W/19-07=0.02/60 Nebenzeit
+T:E,H/*=0.02/60 Nebenzeit
+A:+49
+Z:11 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.24/60
+Z:14 E-Plus Netz
+A:_DEME1
+T:*/*=0.27/60
+Z:15 E2 Netz
+A:_DEME2
+T:*/*=0.29/60
+#####################################################################
+#
+#
+P:78,0 3U
+B:01078
+# G:10-Aug-2000
+C:Name:3U
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Address:3U Telecom AG
+C:Address:Mergenthalerallee 79-81
+C:Address:65760 Eschborn
+C:Homepage:http://www.uuu.de/
+C:EMail:info@3u.net
+C:Telefon:0800-01078-00
+C:Telefax:0800-01078-01
+C:Hotline:01805/01078-0
+C:Quelle:Gesamtpreisliste 2002, Stand 2002-01-02
+C:TarifURL:http://www.3u.net/download/Preisliste_D_3U.pdf
+C:Euro
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 Fern
+T:W/08-18=0.046(60)/1
+T:W/18-08=0.025(60)/1
+T:E,H/*=0.025(60)/1
+A:+49
+Z:10-15
+A:_DEMF
+T:*/*=0.245(60)/1
+# FIXME: Ausland fehlt
+#####################################################################
+#
+#
+P:86,0 One.Tel
+B:01086
+C:Address:ONE.TEL Limited (UK), Clements House, 14-18 Gresham Street, London, EC2V 7JE, England
+C:Name:ONE.TEL
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Euro
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:21-Dec-2001
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:2-4 National
+A:+49
+T:*/06-18=0.03(60)/240
+T:*/18-06=0.02(60)/240
+Z:10 Mobilfunknetz
+A:_DEMF
+T:*/*=0.30/60
+#####################################################################
+#
+#
+P:89,0 M'net Klassik
+B:01089
+D:dtag
+C:Address:M'net Telekommunikations GmbH, Müllerstraße 7, 80469 München
+C:Name:M'net
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Euro
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 City
+T:W/08-18=0.01|0.0297(60)/1
+T:W/18-08=0.01|0.017(60)/1
+T:E,H/*=0.01|0.017(60)/1
+Z:3 Bayern
+# FIXME Zone stimmt nicht
+T:W/08-18=0.01|0.046(60)/1
+T:W/18-08=0.01|0.0297(60)/1
+T:E,H/*=0.01|0.0297(60)/1
+Z:4 Deutschland
+A:DE
+T:W/08-18=0.01|0.061(60)/1
+T:W/18-08=0.01|0.0297(60)/1
+T:E,H/*=0.01|0.0297(60)/1
+
+Z:5 M'net zu M'net
+# Alle bekannten Anschlussinhaber bei M'net in der Form
+# A:+49<Vorwahl><Nummer> eintragen
+#A:+498912345678
+T:W/08-18=0.01|0.0148(60)/1
+T:W/18-08=0/60
+T:E,H/*=0/60
+
+Z:10 Mobilfunk D1/D2/E2
+A:_DEMD1
+A:_DEMD2
+A:_DEME2
+T:*/*=0.01|0.2505(60)/1
+
+Z:11 Mobilfunk E-plus/Quam
+A:_DEME1
+A:_DEMQ
+T:*/*=0.01|0.3017(60)/1
+
+P:89,1 M'net Klassik plus
+B:01089
+D:dtag
+C:Address:M'net Telekommunikations GmbH, Müllerstraße 7, 80469 München
+C:Name:M'net
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-2 City
+T:W/08-18=0.01|0.0256(60)/1
+T:W/18-08=0.01|0.0153(60)/1
+T:E,H/*=0.01|0.0153(60)/1
+
+Z:3 Bayern
+# FIXME Zone stimmt nicht
+T:W/08-18=0.01|0.0358(60)/1
+T:W/18-08=0.01|0.0256(60)/1
+T:E,H/*=0.01|0.0256(60)/1
+
+Z:4 Deutschland
+A:DE
+T:W/08-18=0.01|0.0409(60)/1
+T:W/18-08=0.01|0.0256(60)/1
+T:E,H/*=0.01|0.0256(60)/1
+
+Z:5 M'net zu M'net
+# Alle bekannten Anschlussinhaber bei M'net in der Form
+# A:+49<Vorwahl><Nummer> eintragen
+#A:+498912345678
+T:W/08-18=0.01|0.0128(60)/1
+T:W/18-08=0/60
+T:E,H/*=0/60
+
+Z:10 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.01|0.22(60)/1
+
+Z:11 Mobilfunk E-plus/Quam
+A:_DEME1
+A:_DEMQ
+T:*/*=0.01|0.3017(60)/1
+
+Z:12 Mobilfunk E2
+A:_DEME2
+T:*/*=0.01|0.2505(60)/1
+
+P:89,2 M'net GGD
+B:01089
+D:dtag
+C:Address:M'net Telekommunikations GmbH, Müllerstraße 7, 80469 München
+C:Name:M'net
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-3 Bayern
+T:*/08-18=0.028/60 Hauptzeit
+T:*/18-21=0.0256/60 Freizeit
+T:*/21-08=0.02/60 Nebenzeit
+
+Z:4 National
+A:DE
+T:*/08-18=0.0307/60 Hauptzeit
+T:*/18-21=0.0256/60 Freizeit
+T:*/21-08=0.02/60 Nebenzeit
+
+Z:5 M'net zu M'net
+# Alle bekannten Anschlussinhaber bei M'net in der Form
+# A:+49<Vorwahl><Nummer> eintragen
+#A:+498912345678
+T:*/08-18=0.01|0.01/60 Hauptzeit
+T:*/18-21=0.01|0.005/60 Freizeit
+T:*/21-08=0/60 Nebenzeit
+
+Z:10 Mobilfunk D1/D2
+A:_DEMD1
+A:_DEMD2
+T:*/*=0.22/60
+
+Z:11 Mobilfunk E-plus/Quam 
+A:_DEME1
+A:_DEMQ
+T:*/*=0.3017/60
+
+Z:12 Mobilfunk E2
+A:_DEME2
+T:*/*=0.2505/60
+
+#####################################################################
+#
+#
+P:90,0 BT Ignite CbC
+B:01090
+# G:21-Dec-2001
+C:Address:BT Ignite Deutschland, c/o nexnet, Postfach 270247, 12472 Berlin
+C:Name:BT Ignite
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+D:dtag
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 Fern
+A:+49
+T:W/08-18=0.07/60 Hauptzeit
+T:[18.02.2002-31.03.2002]W/08-18=0.029/60 Hauptzeit Sonderaktion
+T:W/18-08=0.029/60 Freizeit
+T:E,H/*=0.029/60 Freizeit
+Z:10 Mobil
+A:_DEMF
+T:W/08-18=0.40/60 Hauptzeit
+T:W/18-08=0.25/60 Freizeit
+T:E,H/*=0.25/60 Freizeit
+Z:11 Mobil E2
+A:_DEME2
+T:*/*=0.23/60 Standard
+Z:21 Telefonauskunft
+A:11881
+T:*/*=1.59/0,0.22(60)/10
+Z:100 Internet planet-interkom
+A:0191799
+T:W/08-18=0.032(60)/1
+T:W/18-08=0.025(60)/1
+T:E,H/*=0.025(60)/1
+Z:170 Persönliche Rufnummer
+A:0700
+T:W/09-18=0.24/60 Hauptzeit
+T:W/18-08=0.12/60 Nebenzeit
+T:E,H/*=0.12/60 Nebenzeit
+Z:200 EuroNah
+A:AD,BE,DK,FO,FI,FR,GI
+A:GR,UK,IE,IS,IT,LI
+A:LU,MC
+A:NL,NO,AT,PL,PT,_AZOR,_MADE
+A:SM,SE,CH,SK,ES,CZ
+A:HU,VA,CY
+T:*/*=0.39/60
+Z:201 EuroFern
+A:AL,BA,BG,EE,YU
+A:YU,YU,HR,LV,LT,MT,MK
+A:MD
+A:RO,MOW,SI,TR,UA
+A:BY
+T:*/*=0.99/60
+Z:202 Nordamerika
+A:CA,US,_ALAS
+T:*/*=0.39/60
+Z:203 Asien Pazifik
+A:AU,HK,JP,KR,MY
+A:NZ,SG
+T:*/*=1.49/60
+#Z:204 Sonstige Länder
+#A:+
+#T:*/*=1.99/60
+#####################################################################
+#
+#
+P:100,0 TELELEV
+B:010000
+C:Name:TELELEV
+C:Address:Telekommunikation GmbH, Dönhoffstraße 39, 51373 Leverkusen
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+##################################################################
+P:100,1 Meocom
+B:010000
+C:EMail: service@meocom.de
+C:Address: MEOCOM Telekommunikation, Burgstr. 1, 45467 Mülheim a. d. Ruhr
+C:Telefon: 0800/0-636-636
+C:Homepage: http://www.meocom.de
+C:Name:Meocom ISDN
+C:Zusaetzliche Tarife: Meocom-direkt (analog) und -ISDN-plus
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Meocom ist nur als Preselection-Tarif nutzbar (minutengenaue Abrechnung)
+C:Meocom-Kunden untereinander telefonieren fuer 1 Cent/min (Mo-So, 0-24 Uhr)
+C: Es fehlen weitere Sonderrufnummern (0180,0190,0900,... [wie Telekom]
+C: Auslandsmobilfunk [+0,25 Euro zu den Auslandstarifen])
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1 Meocom lokal
+A:+49208*
+T:W/8-18=0.31(600)/60
+T:W/18-8=0.03(120)/60
+T:E,H/*=0.03(120)/60
+Z:2 Meocom City
+A:+49201*,+492041*,+492043*,+492045*,+492051*,+492054*,+492056*,+492858*
+A:+492064*,+492065*,+492066*,+49209*,+492102*,+492841*,+492843*,+492844*
+A:+492855*
+T:W/8-18=0.31(600)/60
+T:W/18-8=0.03(120)/60
+T:E,H/*=0.03(120)/60
+Z:3 Meocom Regional
+A:+49202*,+492052*,+492053*,+492058*,+492058*
+A:+492103*,+492104*,+492104*,+49211*,+49212*,+492131*,+492132*,+492133*
+A:+492137*,+492150*,+492151*,+492152*,+492153*,+492154*,+492156*,+492158*
+A:+492159*,+492159*,+492161*,+492162*,+492171*,+492173*,+492174*,+492175*
+A:+492181*,+492182*,+492191*,+492192*,+492195
+A:+492302*,+492304*,+492305*,+492306*,+492309*,+49231*,+492323*,+492324*
+A:+492325*,+492327*,+492330*,+492332*,+492333*,+492335*,+492336*,+492338*
+A:+492339*,+49234*,+492360*,+492361*,+492362*,+492363*,+492364*,+492364*
+A:+492365*,+492366*,+492367*,+492368*,+492369*
+A:+492592*,+492594*,+492595*
+A:+492801*,+492802*,+492803*,+492804*,+49281*,+492831*,+492832*,+492833*
+A:+492834*,+492835*,+492836*,+492838*,+492839*,+492845*,+492850*,+492851*
+A:+492852*,+492853*,+492856*,+492856*,+492857*,+492859*,+492861*,+492864*
+A:+492865*,+492865*,+492866*,+492867*,+49287*,+492873*,+492874*
+T:W/8-18=0.23(300)/60
+T:W/5-8,18-22=0.31(600)/60
+T:W/22-5=0.02(60)/60
+T:E,H/*=0.31(600)/60
+Z:4 Meocom fern
+A:DE
+T:W/8-18=0.36(300)/60
+T:W/5-8,18-22=0.31(600)/60
+T:W/22-5=0.02(60)/60
+T:E,H/*=0.31(600)/60
+Z:12 Mobilfunk D1
+A:_DEMD1
+T:*/*=0.47(120)/60
+Z:13 Mobilfunk D2
+A:_DEMD2
+T:*/*=0.47(120)/60
+Z:14 Mobilfunk E+
+A:_DEME1
+T:*/*=1.38(300)/60
+Z:15 Mobilfunk E2
+A:_DEME2
+T:*/*=2.91(600)/60
+Z:100 MeoSurf
+A:01921560
+T:*/*=1.23(6000)/60
+Z:201 Europa 1
+A:AD,BE,DK,TO,FI,FR,GI,UK
+A:IE,IT,LI,LU,_MADE
+A:NL,NO,AT,PT,SM,SE
+A:CH,ES,VA
+T:*/*=0.12(60)/60
+Z:202 Europa 2
+A:AL,BA,GR,IS,YU,HR,MT,MC
+A:PL,SK,SI,CZ,TR,HU,CY
+T:*/*=0.25(60)/60
+Z:203 Europa 3
+A:BG,KZ,MK,MD,RO,SU,BY
+T:*/*=0.45(60)/60
+Z:204 Nordamerika
+A:CA,US,_HAWA
+T:*/*=0.12(60)/60
+Z:205 Suedamerika/Suedafrika
+A:AR,CL,CO,LS,ZA
+T:*/*=1.20(60)/60
+Z:206 Welt 1
+A:EG,DZ,EE,IL,JO,LB,LY,LV,LT
+A:EH,SY,TN
+T:*/*=0.60(60)/60
+Z:207 Welt 2
+A:AU,CN,HK,JP,KR,NZ,SG,TW
+T:*/*=0.80(60)/60
+Z:208 Welt 3
+A:BR,DO,MX
+T:*/*=1.00(60)/60
+Z:209 Welt 4 (restliche Laender)
+T:*/*=1.40(60)/60
+#####################################################################
+P:100,2 Meocom ISDN plus
+B:010000
+C:EMail: service@meocom.de
+C:Address: MEOCOM Telekommunikation, Helmholtzstr. 144, 46045 Oberhausen
+C:Telefon: 0800/0-636-636
+C:Homepage: http://www.meocom.de
+C:Name:Meocom ISDN
+C:Zusaetzliche Tarife: Meocom-direkt (analog) und -ISDN-plus
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:Meocom ist nur als Preselection-Tarif nutzbar (minutengenaue Abrechnung)
+C:Meocom-Kunden untereinander telefonieren fuer 1 Cent/min (Mo-So, 0-24 Uhr)
+C: Es fehlen weitere Sonderrufnummern (0180,0190,0900,... [wie Telekom]
+C: Auslandsmobilfunk [+0,25 Euro zu den Auslandstarifen])
+Z:0 FreeCall
+A:0130*,0800*
+A:110
+A:112
+T:*/*=0
+Z:1 Meocom Lokal
+A:+49208*
+T:W/8-18=0.13(300)/60
+T:W/18-8=0.03(120)/60
+T:E,H/*=0.03(120)/60
+Z:2 Meocom City
+A:+49201*,+492041*,+492043*,+492045*,+492051*,+492054*,+492056*,+492858*
+A:+492064*,+492065*,+492066*,+49209*,+492102*,+492841*,+492843*,+492844*
+A:+492855*
+T:W/8-18=0.13(300)/60
+T:W/18-8=0.03(120)/60
+T:E,H/*=0.03(120)/60
+Z:3 Meocom Regional
+A:+49202*,+492052*,+492053*,+492058*,+492058*
+A:+492103*,+492104*,+492104*,+49211*,+49212*,+492131*,+492132*,+492133*
+A:+492137*,+492150*,+492151*,+492152*,+492153*,+492154*,+492156*,+492158*
+A:+492159*,+492159*,+492161*,+492162*,+492171*,+492173*,+492174*,+492175*
+A:+492181*,+492182*,+492191*,+492192*,+492195
+A:+492302*,+492304*,+492305*,+492306*,+492309*,+49231*,+492323*,+492324*
+A:+492325*,+492327*,+492330*,+492332*,+492333*,+492335*,+492336*,+492338*
+A:+492339*,+49234*,+492360*,+492361*,+492362*,+492363*,+492364*,+492364*
+A:+492365*,+492366*,+492367*,+492368*,+492369*
+A:+492592*,+492594*,+492595*
+A:+492801*,+492802*,+492803*,+492804*,+49281*,+492831*,+492832*,+492833*
+A:+492834*,+492835*,+492836*,+492838*,+492839*,+492845*,+492850*,+492851*
+A:+492852*,+492853*,+492856*,+492856*,+492857*,+492859*,+492861*,+492864*
+A:+492865*,+492865*,+492866*,+492867*,+49287*,+492873*,+492874*
+T:W/8-18=0.23(300)/60
+T:W/5-8,18-22=0.02(60)/60
+T:W/22-5=0.03(120)/60
+T:E,H/*=0.02(60)/60
+Z:4 Meocom fern
+A:DE
+T:W/8-18=0.23(300)/60
+T:W/5-8,18-22=0.13(300)/60
+T:W/22-5=0.02(60)/60
+T:E,H/*=0.13(300)/60
+Z:12 Mobilfunk D1
+A:_DEMD1
+T:*/*=1.99(600)/60
+Z:13 Mobilfunk D2
+A:_DEMD2
+T:*/*=1.99(600)/60
+Z:14 Mobilfunk E+
+A:_DEME1
+T:*/*=0.23(60)/60
+Z:15 Mobilfunk E2
+A:_DEME2
+T:*/*=0.49(120)/60
+Z:100 MeoSurf
+A:01921560
+T:*/*=0.36(3000)/60
+Z:201 Europa 1
+A:AD,BE,DK,TO,FI,FR,GI,UK
+A:IE,IT,LI,LU,_MADE
+A:NL,NO,AT,PT,SM,SE
+A:CH,ES,VA
+T:*/*=0.12(60)/60
+Z:202 Europa 2
+A:AL,BA,GR,IS,YU,HR,MT,MC
+A:PL,SK,SI,CZ,TR,HU,CY
+T:*/*=0.25(60)/60
+Z:203 Europa 3
+T:*/*=0.45(60)/60
+A:BG,KZ,MK,MD,RO,SU,BY
+Z:204 Nordamerika
+A:CA,US,_HAWA
+T:*/*=0.12(60)/60
+Z:205 Suedamerika/Suedafrika
+A:AR,CL,CO,LS,ZA
+T:*/*=1.20(60)/60
+Z:206 Welt 1
+A:EG,DZ,EE,IL,JO,LB,LY,LV,LT
+A:EH,SY,TN
+T:*/*=0.60(60)/60
+Z:207 Welt 2
+A:AU,CN,HK,JP,KR,NZ,SG,TW
+T:*/*=0.80(60)/60
+Z:208 Welt 3
+A:BR,DO,MX
+T:*/*=1.00(60)/60
+Z:209 Welt 4 (restliche Laender)
+T:*/*=1.40(60)/60
+#####################################################################
+#
+#
+P:224,0 Pennyphone
+B:0190024
+C:Address:
+C:Name:Pennyphone (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:02-Apr-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.026/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.195/60
+#####################################################################
+#
+#
+P:229,0 Telebillig*
+B:0190029
+C:Address:
+C:Name:Telebillig (01051)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:02-Apr-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.024/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.20/60
+#####################################################################
+#
+#
+P:231,0 Teledump*
+B:0190031
+C:Address:
+C:Name:Teledump (01051)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:23-Apr-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.028/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.165/60
+#####################################################################
+#
+#
+P:232,0 Phonedump
+B:0190032
+C:Address:
+C:Name:Phonedump (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:26-Jun-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.028/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.169/60
+#####################################################################
+#
+#
+P:235,0 TeleDiscount*
+B:0190035
+C:Address:
+C:Name:TeleDiscount (01051)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.029/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.19/60
+#####################################################################
+#
+#
+P:237,0 Fonfux
+B:0190037
+C:Address:
+C:Name:Fonfux (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.026/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.179/60
+#####################################################################
+#
+#
+P:249,0 Germanphone
+B:0190049
+C:Address:
+C:Name:Germanphone (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:22-Jun-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.018(60)/300
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.16(60)/300
+#####################################################################
+#
+#
+P:254,0 Calladin!
+B:0190054
+C:Address:
+C:Name:Calladin (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:23-Apr-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:W/08-19=0.03/0,0.026/60 Hauptzeit
+T:W/19-08=0.03/0,0.018/60 Nebenzeit
+T:E,H/*=0.03/0,0.018/60 Freizeit
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.185/60
+#####################################################################
+#
+#
+P:271,0 RapidCall!
+B:0190071
+C:Address:
+C:Name:RapidCall (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+C:TarifURL:http://www.rapidcall.de/tarife.php
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:W/08-19=0.024(60)/240 Hauptzeit
+T:W/19-08=0.019(60)/240 Nebenzeit
+T:E,H/*=0.019(60)/240 Freizeit
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.16(60)/240
+#####################################################################
+#
+#
+P:276,0 Telestunt*
+B:0190076
+C:Address:
+C:Name:Telestunt (01051)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:01-Mai-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.019/60
+Z:10 Mobilfunk
+A:_DEMF
+T:*/*=0.15(60)/240
+#####################################################################
+#
+#
+P:282,0 lightTALK
+B:0190082
+C:Address:
+C:Name:lightTALK (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:W/08-19=0.044(60)/1
+T:W/19-08=0.024(60)/1
+T:E,H/*=0.024(60)/1
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.244(60)/1
+#####################################################################
+#
+#
+P:284,0 maxbell
+B:0190084
+C:Address:
+C:Name:maxbell (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+# G:26-Jun-2002
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.020/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.20/60
+#####################################################################
+#
+#
+P:287,0 Phonecraft
+B:0190087
+C:Address:
+C:Name:Phonecraft (01058)
+C:Maintainer:Tarif Datenbank Crew <crew@rates4linux.sourceforge.net>
+C:Special:Die Homepage der Tarif-Datenbank Crew: http://rates4linux.sourceforge.net
+Z:0 FreeCall
+A:011*
+A:0130*,0800*,0801*
+A:031*
+A:110
+A:112
+T:*/*=0
+Z:1-4 GermanCall
+A:+49
+T:*/*=0.025/60
+Z:10 Mobilfunk
+A:_DEMD1
+A:_DEMD2
+A:_DEME1
+A:_DEME2
+T:*/*=0.20/60
+#####################################################################

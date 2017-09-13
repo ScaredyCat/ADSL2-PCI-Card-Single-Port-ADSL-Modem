@@ -1,0 +1,611 @@
+# $Id: CHANGES,v 1.16 1998/11/17 18:25:34 paul Exp $
+#
+# [New] - Means news or changes
+# [Fix] - Means bug fix
+# [Rel] - Means new release
+
+
+**************************
+Changes since 2.0.0 Beta 5
+**************************
+
+17-Nov-98
+=========
+
+[New] Some automake additions for documentation, manpages, etc:
+      - renamed: aclocal.m4 to acinclude.m4
+      - changed: configure.in
+      - added:   aclocal.m4
+      - added:   doc/Makefile.am doc/de/Makefile.am utils/Makefile.am
+      - added:   doc/Makefile.in doc/de/Makefile.in utils/Makefile.in
+      - added:   doc/*.man
+      Manpages and automake stuff comes from Debian (Andreas Jellinghaus).
+[Fix] Now doesn't insist on installing in /usr/local, but listens to what
+      is configured in the toplevel config.
+
+
+**************************
+Changes since 2.0.0 Beta 4
+**************************
+
+31-Mar-98
+=========
+
+[Rel] 2.0.0 beta 5 released.
+
+26-Mar-98
+=========
+
+[New] src/libvbox.h
+      src/modem.c
+      src/modem.h
+      src/voice.c
+      src/voice.h
+      src/vbox.c
+
+	SUSPEND support for newer Hisax (only 2.1.X kernel in the moment)
+
+
+**************************
+Changes since 2.0.0 Beta 3
+**************************
+
+03-Jun-97
+=========
+
+[Rel] 2.0.0 beta 4 released.
+
+[New] doc/de/vbox.sgml.in
+	Function vbox_message_info() documented.
+
+[Fix] Makefile.in
+	Configuration files now installed with mode 0640.
+
+
+02-Jun-97
+=========
+
+[New] aclocal.m4
+	Functions added to find ncurses/tcl better.
+
+[New] src/vbox.c
+	Own window clear function added. wclear() from ncurses looks a little
+	bit strange.
+
+[New] src/vbox.c
+	Message info ('I') implemented.
+
+[New] src/script.c
+	New tcl function vbox_message_info() added.
+
+
+01-Jun-97
+=========
+
+[Fix] src/streamio.c
+	Bug in streamio_open(). Memory block to store the filename need
+	one more byte (end of string) [Thomas Hepper <th@ant.han.de>].
+
+
+25-May-97
+=========
+
+[New] doc/de/vbox.sgml.in:
+	Description of the new variable "debuglevel" added.
+
+[New] src/rcgetty.c:
+	New variable "debuglevel" added. 
+
+[Fix] src/vboxlib.c:
+	Including <errno.h> for glibc2.
+
+[Fix] src/vbox.c:
+	Including <errno.h> for glibc2.
+
+
+19-May-97
+=========
+
+[New] src/script.c:
+	Better error report. Now the functions report if a function or a
+	variable can't be created.
+
+[New] src/script.c:
+	The function run_script() initialize the tcl interpreter, the new
+        tcl functions and the new variables. If all is correct done, they
+	answer the call and run the tcl script.
+
+[New] src/vboxgetty.c:
+	The program quits if answer_call() returns error. I hope this is a
+	good workaround for the "can't initialize tcl interpreter" problem.
+        I don't know where the error is and why the interpreter can't
+	initialized.
+
+[New] src/vboxgetty.c:
+	Function answer_call() not longer answer the call :-) They calls
+	only run_script() and return its error code.
+
+
+**************************
+Changes since 2.0.0 Beta 2
+**************************
+
+10-May-97
+=========
+
+[Rel] 2.0.0 Beta 3 released.
+
+
+09-May-97
+=========
+
+[New] src/vbox.c:
+	Function to create/delete control files implemented.
+
+[New] src/vbox.c:
+	Help function added.
+
+
+08-May-97
+=========
+
+[New] doc/de/vbox.sgml.in:
+	Section "Bezugsquellen" written.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Danksagungen" written.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Programme/vboxbeep" written.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Programme/vboxtoau" written.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Programme/autovbox" written.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Programme/vboxmode" written.
+
+
+07-May-97
+=========
+
+[New] src/vboxbeep.c
+	Support for vboxd removed. Since the COUNT command in vboxd needs
+	a login, it's not a good idea to use this function :-) vboxbeep now
+	can only check spools on local machine.
+
+[New] doc/de/vbox.sgml.in
+	Section "Programme/vbox" written.
+
+[New] doc/de/vbox.sgml.in
+	Section "Programme/vboxgetty" written.
+
+[New] doc/de/vbox.sgml.in
+	Section "Programme/vboxd" written.
+
+[New] src/vboxd.c:
+	Functions REMOVECTRL and CREATECTRL implemented.
+
+[New] src/vboxd.c:
+	Control functions now check if the name begins with CTRL_NAME_MAGIC.
+
+[New] src/libvbox.c:
+	Control functions now check if the name begins with CTRL_NAME_MAGIC.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Skriptsprache" updated.
+
+[New] src/vboxd.c:
+	Now the command COUNT needs a successful login and counts only
+	message into the users incoming directory. I think vboxbeep
+	must be rewritten to operate only local and not over the daemon.
+
+[Fix] src/vboxd.c:
+	All server commands now remove the path in a message name.
+
+
+06-May-97
+=========
+
+[New] doc/de/vbox.sgml.in
+	Section "Konfiguration/.vboxrc" written.
+
+[New] doc/de/vbox.sgml.in
+	Section "Konfiguration/vbox.conf" written.
+
+[New] doc/de/vbox.sgml.in
+	Section "Vorwort" written.
+
+[New] CHANGES:
+	Many people ask me if I can write the CHANGES in english, so I will
+	try it. My english is not the best, but I hope all can understand
+	what is changed :-)
+
+[New] doc/de/vbox.sgml.in:
+	Section "Konfiguration/vboxd.conf" written.
+
+
+01-May-97
+=========
+
+[Fix] src/vbox.c:
+	If the cursor was on the last message and the user press 'D' to
+	delete/undelete a message, the line was not updated.
+
+[Fix] *:
+	GNU's gettext support *totally* removed. Some programs killed with
+	SIGSEGV on random positions. Since gettext is remove there are no
+	problems :-/
+
+
+27-Apr-97
+=========
+
+[New] src/vboxd.c:
+	Errors are now reported via the syslog() function.
+
+[New] utils/vboxplay.in:
+	Support for the volumecontrol added.
+
+[New] src/vbox.c:
+	Volumecontrol implemented. The volume is passed as 2nd argument to
+	the play command.
+
+[New] src/vbox.c:
+	Functions to toggle read/unread and delete/undelete added.
+
+[New] src/vboxd.c:
+	Functions TOGGLE and DELETE implemented.
+
+[New] src/vbox.c:
+	Now with ~/.vboxrc the display of vbox can be changed. This file also
+	holds the username and password for vboxd.
+
+
+**************************
+Changes since 2.0.0 Beta 1
+**************************
+
+
+26-Apr-97
+=========
+
+[Rel] 2.0.0 Beta 2 released.
+
+[Fix] src/lists.c:
+	List functions to hold the break touchtones are broken. For the
+	first time vboxgetty use a fixed array. Later I will replace this
+	with dynamicaly allocation.
+
+[New] doc/de/vbox.sgml.in:
+	Section "Erste Schritte" written.
+
+
+
+
+
+
+
+o [Neu] vbox kann jetzt Nachrichten vom Server holen und spielen :-)
+
+o [Neu] Funktion MESSAGE und HEADER in vboxd so umgeschrieben, das die
+	Daten binär und nicht mehr Zeilenweise übertragen werden (das
+	zeilenweise Lesen hat *lokal* mehrere Sekunden benötigt).
+
+o [Fix] In vboxcnvt fehlte der Signalhändler für SIGPIPE.
+
+
+25-Apr-97
+=========
+
+o [Neu] Neue Zeile bei LIST in vboxd: M <Zeit> gibt die mtime der
+	Nachricht an.
+
+o [Neu] Mit vbox begonnen :-)
+
+
+24-Apr-97
+=========
+
+o [Fix] vboxd hat sich nicht beendet wenn er ein EOF gelesen hat.
+
+o [Neu] Der voreingestellte Port von vboxbeep und vbox ist jetzt nicht
+	mehr eincompiliert, sondern wird mit getservbyname() geholt.
+
+o [Fix] Einlesen der Kommandozeile von vboxd geändert.
+
+o [Fix] Komisches Verhalten von configure behoben, der libintl.h nicht
+        finden wollte, wenn vorher nach locale.h gesucht wurde?!
+
+o [Fix] Variablen in standard.tcl.example angepasst.
+
+o [Fix] Vergessenes AT in interninitb hinzugefügt.
+
+o [Fix] For-Schleifen im Makefile angepasst.
+
+o [Fix] Änderungen in INSTALL bezüglich der Mailingliste.
+
+
+04-Apr-97
+=========
+
+o [Fix] Änderungen am Makefile.in.
+
+
+25-Mär-97
+=========
+
+o [Neu] Dokumentation geschrieben.
+
+
+24-Mär-97
+=========
+
+o [Neu] Neues Target 'create-de-sgml' im Makefile. Damit läßt sich ein
+	sgml-Source der Dokumentation für weitere Umwandlungen
+	erzeugen.
+
+o [Neu] Dokumentation geschrieben.
+
+
+23-Mär-97
+=========
+
+o [Neu] Programm vboxbeep so angepasst, das es vboxd benutzt.
+
+o [Neu] Funktion count in vboxd so umgeschrieben, das sie die Anzahl
+	der neuen Nachrichten *und* das Datum der neusten Nachricht
+	ausgibt.
+
+
+22-Mär-97
+=========
+
+o [Neu] Dateien im Verzeichnis examples/ auf den neusten Stand
+	gebracht.
+
+o [Neu] Konfigurationsskripts so umgeschrieben, das alle exportierten
+	Variablen mit VBOX_ beginnen.
+
+o [Neu] Die Datei in der sich die Konfigurationen des Users befinden
+	wurde in vbox.conf umbenannt. Sie befindet sich jetzt
+	standardmäßig im Spoolverzeichnis des jeweiligen Users. Die
+	Konfiguration wird nur noch von vboxgetty selbst
+	benötigt. Alle anderen Programme können die Daten aus dem
+	Header der Nachrichten oder von vboxd auslesen!
+
+
+21-Mär-97
+=========
+
+o [Neu] Server Kommandos count, message und header in vboxd
+	implementiert.
+
+
+20-Mär-97
+=========
+
+o [Neu] Neues Programm 'vboxd': Der Daemon funktioniert ähnlich dem
+	nntpd und kann vbox Nachrichten bearbeiten. Der Daemon wird
+	vom inetd gestartet und kann dann z.B. über telnet oder
+	Sockets angesprochen werden.
+
+
+15-Mär-97
+=========
+
+o [Neu] Option '--with-localedir' ins Konfigurationsskripts einge-
+	baut. Damit kann festgelegt werden, in welches Verzeichnis die
+	Kataloge kopiert werden sollen (die verschiedenen libc's haben
+	verschiedene Pfade aus denen sie lesen).
+
+o [Neu] Option '--disable-nls' ins Konfigurationsskripts eingebaut um
+	den 'native language support' auszuschalten (es würde auch
+	reichen die Kataloge nicht zu kopieren :-)
+
+o [Neu]	Programm 'vboxbeep' beendet und lokalisiert.
+
+o [Neu] Konfigurationsskripts und Makefiles angepasst. Es sollte immer
+	mit der Option -O2 (oder höher) compiliert werden, da der
+	Compiler sonst bei den Includes von *linux* meckert!
+
+
+14-Mär-97
+=========
+
+o [Neu] Signalhändler in 'vboxtoau' und 'autovbox' eingebaut, damit
+	die temporären Dateien bei einem Abbruch ordentlich gelöscht
+	werden.
+
+o [Neu] Programm 'vboxconvert' lokalisiert.
+
+
+13-Mär-97
+=========
+
+o [Neu] Programm 'vboxctrl' lokalisiert.
+
+o [Neu] Unterstützung für gnu's gettext Paket eingebaut. Entweder wird
+	die glibc ab Version 2 (libc.so.6) oder ein installiertes
+	gettext Paket benötigt. Das Konfigurationsskript sucht sich
+	selbst die beste Möglichkeit aus.
+
+o [Neu] Funktion lock_type_lock() belegt Speicher für den Namen jetzt
+	selbst.
+
+o [Neu]	Funktion log_init() belegt Speicher für den Namen jetzt selbst.
+
+
+12-Mär-97
+=========
+
+o [Neu] Konfigurationsskripts und Makefiles komplett überarbeitet.
+	Angefangen Unterstützung für Katalogdateien zu implementieren
+	(gnu's gettext).
+
+
+08-Mär-97
+=========
+
+o [Neu]	Neues Programm vboxbeep: überwacht ein oder mehrere Spoolverzeich-
+	nisse und gibt einen Signalton aus, wenn sich in einem davon neue
+	Nachrichten befinden.
+
+
+07-Mär-97
+=========
+
+o [Neu] Funktionen vbox_get_nr_new_messages() & vbox_get_nr_all_messages()
+	in Tcl implementiert.
+
+o [Fix] Funktion parse_cmp() hat die Kompression zwar ganz toll ausgewert-
+	et, aber nicht gesetzt.
+
+
+03-Mär-97
+=========
+
+o [Neu]	Datei INSTALL ins englische übersetzen lassen (Rainer Scholz
+	<jrs@startrek.franken.de).
+
+
+28-Feb-97
+=========
+
+o [Neu]	Funktion eingebaut die berechnet wielange die internen Routinen
+	gebraucht haben um ein Audiosample ans Modem zu schicken und
+	wielange der Kernel bräuchte diese Daten komplett zu spielen. Wenn
+	die internen Routinen schneller waren, wird solange gewartet bis der
+	Kernel zuende gespielt hat.
+
+27-Feb-97
+=========
+
+o [Neu] Funktion modem_raw_read() komplett überarbeitet. Die Routine liest
+	intern immern einen großen Buffer ein (wenn soviele Daten da sind)
+	und gibt diese dann bei Anfrage weiter. Somit können alle weiteren
+	Modem-Funktionen Byte-Weise lesen ohne großen Overhead! Wenn
+	Probleme mit dieser neuen Funktion auftreden bitte in modem.c den
+	#define USE_NEW_MODEM_READER löschen.
+
+o [Neu] Option '--with-tcllib' in 'configure.in' eingebaut, damit man
+	angeben kann, welche tcl Library man benutzen möchte. Voreingestellt
+	wird jetzt nach den Libraries tcl8.0, dann tcl7.6 und zum Schluß
+	nach tcl gesucht (Andreas Jaeger <aj@arthur.pfalz.de>).
+
+o [Fix]	Einige Änderungen an den Sourcen gemacht, damit vbox mit der neuen
+	glibc 2.0.x compiliert (Andreas Jaeger <aj@arthur.pfalz.de>).
+
+
+26-Feb-97
+=========
+
+o [Neu] Abspielen von voice Samples funktioniert jetzt wieder.
+
+o [Neu] Voreinstellung für das Log-Verzeichnis ist jetzt '/var/log/vbox' und
+	nicht mehr '/var/log'.
+
+o [Neu] Programm vboxctrl hinzugefügt, mit dem Kontrolldateien erzeugt
+	und/oder gelöscht werden können.
+
+o [Neu]	Die Kontrolldateien 'vboxctrl-answernow' und 'vboxctrl-reject'
+	werden beim starten des Programms gelöscht.
+
+
+25-Feb-97
+=========
+
+o [Neu] Sourcen in CVS eingebunden. 
+
+o [Neu] Beim ersten erscheinen der CALLER NUMBER wird im S-Register 20
+	geprüft ob der Wert 1 (Voice) ist. Anrufe werden nur noch beant-
+	wortet, wenn das S-Register ausgelesen werden konnte!
+
+o [Neu] Wenn bei einem Anruf die Kontrolldatei 'vboxctrl-reject' exist-
+	iert, wird der Anruf nicht angenommen - egal was in den Konfig-
+	urationen eingestellt wurde. Die Datei wird dann von vboxgetty
+	gelöscht.
+
+o [Neu] Wenn bei einem Anruf die Kontrolldatei 'vboxctrl-answerall' oder
+	'vboxctrl-answernow' existiert, wird der Anruf - ohne rücksicht-
+	name auf die eingestellten Rings - sofort beantwortet. Die Datei
+	'vboxctrl-answernow' wird von vboxgetty zuvor gelöscht!
+
+o [Neu] Flags TOLLRINGS und TOLLCHECK eingebaut. Bei neuen Nachrichten kann
+	damit eine neue Anzahl Rings festgelegt werden.
+
+o [Neu] Support-Funktionen in einer Library zusammengefasst. Diese kann ohne
+	Zusatz von anderen Programmen verwendet werden.
+
+o [Neu] Beim "Alive-Check" und bei einem eingehenden Anruf wird geprüft ob
+	sich die Datei 'vboxctrl-stop' im Spoolverzeichnis befindet. Wenn ja
+	killt sich der vboxgetty selbst!
+
+o [Neu] Wenn sich beim Starten die Datei 'vboxctrl-stop' im Spoolverzeichnis
+	befindet, wartet vboxgetty solange, bis diese wieder gelöscht ist.
+	Der Modemport wird *nicht* geöffnet, somit kann an Tk-Anlagen der
+	Anrufschutz benutzt werden. Es wird alle 5 Sekunden geprüft ob die
+	Datei noch existiert (von Ralf G. R. Bergs <rabe@RWTH-Aachen.DE>).
+
+
+24-Feb-97
+=========
+
+o [Neu] Skripte vboxmail und vboxplay an den eigenen Konverter angepasst.
+
+o [Neu] Beim locken werden jetzt die Rechte der Locks auf die des Benutzers
+	gesetzt, damit diese beim beenden wieder entfernt werden können.
+
+o [Neu] Die Dokumentation und die Skripts werden jetzt von einem SED-Sktipt
+	bearbeitet um die eingestellten Pfade zu ersetzen.
+
+o [Neu] Globale Variable I4LCONFDIR in configure.in eingebaut. Die Environ-
+	ment wird als Voreinstellung genommen, wenn diese nicht gesetzt ist
+	/etc/isdn.
+
+o [Neu]	Programm vboxconvert fertiggestellt. Konvertierung ist jetzt von
+	au nach vbox und von vbox nach au möglich.
+
+o [Neu] Einige kleine Änderungen in den Makefile's gemacht.
+
+
+16-Feb-97
+=========
+
+o [Neu]	Unterstützung für die Modemgeschwindigkeit entfernt. Es wird jetzt
+	immer mit 57600 gearbeitet.
+
+o [Neu] Unterstützung für das Hangup-Kommando entfernt. Es wird jetzt immer
+	'drop data terminal line' benutzt.
+
+o [Neu]	Unterstützung für Flow-Control entfernt. Es wird jetzt immer mit
+	CTS/RTS gearbeitet.
+
+o [Neu] Angabe einer umask eingebaut und die Funktionen zum setzten der
+	Rechte angepasst.
+
+
+12-Feb-97
+=========
+
+o [Neu] Das Programm läuft jetzt unter den Rechten des jeweiligen Benutzers.
+	Die Einschränkungen, Nachrichten nur aus dem Spoolverzeichnis zu
+	spielen oder zu speichern bestehen jetzt nicht mehr.
+
+o [Neu]	Locking komplett geändert. Der Lock für das ttyI-Device bleibt jetzt
+	*immer* bestehen!
+
+o [Neu]	In bestimmten Fällen ist es *normal*, daß vboxgetty sich beendet;
+	nämlich dann, wenn z.B. der Port nicht mehr initialisiert werden
+	konnte. Der getty sollte daher immer von einem Skript oder aus der
+	/etc/inittab gestartet werden!
+
+o [Neu]	Beim initialisieren wird geprüft, ob die Datei 'vboxrc' existiert.
+	Die Datei kann leer, muß aber vorhanden sein. Das Programm beendet
+	sich, wenn die Datei nicht existiert.
+
+o [Neu]	Tcl Skriptunterstützung eingebaut. Es wird *immer* ein Skript ge-
+	braucht, auch wenn nur Anrufe aufgezeichnet werden sollen!
+

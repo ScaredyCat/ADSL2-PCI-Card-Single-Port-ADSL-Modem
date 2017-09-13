@@ -1,0 +1,13 @@
+Angrenzende Bezirke in verschiedenen Bundeslaender werden
+als Oesterreichtarif berechnet
+
+# mkuta <code.bl
+erzeugt zoneall.uta
+
+# ../../redzone -z zoneall.uta -r zred.uta -n
+generiert die reduzierte Verzonung
+
+# ../../mkzonedb -r zred.uta -d ../../../../zone-at-uta.gdbm -c ../code 
+die Datenbank.
+
+leo

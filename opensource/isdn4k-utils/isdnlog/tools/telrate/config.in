@@ -1,0 +1,77 @@
+#! @PERL@ -w
+
+# I could use GNU configure, but this file is 1K vs 40K :-)
+
+require 5.000;
+use strict;
+
+my(@files) = qw( Makefile.in index.html.in info.html.in telrate.cgi.in);
+my(@progs) = qw( perl mktemp isdnrate install sh );
+my($perlp, $mktempp, $isdnratep, $installp, $shp);
+my(@vars) = qw( cgibin cc title teldir cgidir gdvers gifpng sockets sockname piddir);
+my($cgibin, $cc, $title, $teldir, $cgidir, $gdvers, $gifpng, $sockets, $sockname, $piddir);
+
+# defaults
+$sockname='/tmp/isdnrate'; # s. also isdnrate -O ...
+$piddir='/var/run';        # s. also isdnrate -P ...
+$cgibin='/cgi-bin';
+$cgidir='/usr/local/httpd/cgi-bin';
+$cc='de';
+$title='Tel-R.at';
+$teldir='/usr/local/httpd/htdocs/telrate';
+$gdvers='1.21';
+$sockets=1;
+
+if($gdvers lt '1.21') {
+  $gifpng='gif';
+}
+else {
+  $gifpng='png';
+}
+
+my $hn = `hostname -f`;
+chomp($hn);
+
+sub get_args {
+	A: while(my $a = shift(@ARGV)) {
+		foreach (@vars) {
+			eval("\$$_=shift(\@ARGV)"),next A if ($a =~ /--?$_/);
+		}
+	}
+	print "\nConfiguration:\n";
+	map { print "\t--$_ '", eval("\$$_"),"'\n" } @vars;
+}
+
+sub get_paths {
+	foreach (@progs) {
+		eval("\$${_}p=`which $_`;chomp(\$${_}p)");
+	}
+}
+
+sub subst_paths {
+	my($f, $of, $p);
+	foreach $f (@files) {
+		open(IN, $f) || die("Can't read $f");
+		$of = $f;
+		$of =~ s/\.in$//;
+		open(OUT, ">$of") || die("Can't write $of");
+		undef $/;
+		$_ = <IN>;
+		foreach $p (@progs) {
+			my($up)=uc $p;
+			s/\@$up\@/"\$${p}p"/gee;
+		}
+		foreach $p (@vars) {
+			my($up)=uc $p;
+			s/\@$up\@/"\$$p"/gee;
+		}
+		print OUT $_;
+		close(IN);
+		close(OUT);
+	}
+}
+
+get_args;
+get_paths;
+subst_paths;
+print "\n";

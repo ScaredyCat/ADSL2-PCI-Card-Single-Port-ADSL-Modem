@@ -1,0 +1,2 @@
+p0:23:respawn:/usr/sbin/pppd call incoming
+p1:23:respawn:/usr/sbin/pppd call incoming

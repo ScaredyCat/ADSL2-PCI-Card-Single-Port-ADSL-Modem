@@ -1,0 +1,221 @@
+ISDNTOOLS                                                 25-FEB-97
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+void set_print_fct_for_lib(int (*new_print_msg)(const char *, ...))
+
+Alle Ausgaben werden nicht durch printf() oder aehnlichem in dieser gesamten
+Lib realisiert, sondern durch die Funktion, die hier gesetzt wird. Daher
+sollte diese Funktion zuerst aufgerufen werden, bevor eine andere Funktion
+aus dieser Lib verwendet wird.
+
+new_print_msg: Hat die glieche Syntax wie printf.
+
+Wenn diese Funtktion vorher nicht aufgerufen wird, wird printf verwendet.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int num_match(char* Pattern, char *number)
+
+Vergleicht zwei Nummern miteinander.
+
+Pattern: Ist eine Telefonnummer, die auch Wildcards, wie '*' und '?'
+         beinhalten kann. Es koennen hier auch mehrere Nummern hinter
+         einander stehen, durch Kommata getrennt:
+         "21103", "07531 / 2110-*", "+49 7531 21103, 9124*, 441777"
+         Es muessen hier weder eine Laender- noch eine Ortsvorwahl
+         vorhanden sein. Diese werden durch AREACODE und COUNTRYCODE
+         ergaenzt.
+
+number:  Ist _eine_ _vollstaendige_ (mit Laender- und Ortsvorwahl) Nummer.
+         Das Prefix der Laendervorwahl muss identisch sein mit S_COUNTRY_PREFIX!
+
+         S_COUNTRY_PREFIX = "00" -> "0049753121103"
+         S_COUNTRY_PREFIX = "haha" -> "haha49753121103"
+
+
+Liefert bei Gleichheit 0 zurück, andernfalls != 0.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+char *expand_number(char *s)
+
+Expandiert eine Nummer auf ihre volle Laenge mit Laender- und Ortsvorwahl.
+Der Prefix der Laendervorwahl wird S_COUNTRY_PREFIX gesetzt.
+Es werden folgende Zeichen herausgefiltert: " /-". Wenn das '+' an erster
+Stelle steht, wird es durch S_COUNTRY_PREFIX ersetzt.
+
+"21103" -> "0049753121103"
+"040/441777" -> "004940441777"
+"+49 7531/2110*" -> "004975312110*"
+
+s: Beinhaltet die Telefonnummer, die expandiert werden soll.
+
+Der Rueckgabewert ist _immer_ ein String. Im Fehlerfall ein leerer String.
+Der Rueckgabewert ist eine statische Variable. Daher sollte der Rueckgabewert
+immer anschliessend kopiert werden. Wenn diese Funktion zweimal hinter einander
+aufgerufen wird, wird der erste Rueckgabewert ueberschrieben.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+char *expand_file(char *s)
+
+Expandiert ein Dateinamen fuer einen Benutzerverzeichnis:
+
+User fred: "~/..." -> "/home/fred/..."
+           "~hans/..." -> "/home/hans/..."
+
+s: beinhaltet den zu expandierenden Dateinamen.
+
+Der Rueckgabewert ist _immer_ ein String. Im Fehlerfall ein leerer String.
+Der Rueckgabewert ist eine statische Variable. Daher sollte der Rueckgabewert
+immer anschliessend kopiert werden. Wenn diese Funktion zweimal hinter einander
+aufgerufen wird, wird der erste Rueckgabewert ueberschrieben.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+char *confdir(void)
+
+Liefert das aktuelle Konfigurations-Verzeichnis fuer isdn zurueck.
+
+Der Ruekgabewert enthaelt defaultmaessig den eincompilierten Pfad (/etc/isdn).
+Wenn die Umgebungsvariable "ISDN_CONF_PATH" gesetzt ist, wird dieser
+zurueckgeliefert.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int handle_runfile(const char *progname, char **devices, int flag)
+
+Legt eine PID-Datei im Verzeichnis RUNDIR (/var/run)  und die
+entsprechenden LOCK-Dateien im Verszeichnis LOCKDIR (/var/lock) an. In den
+Dateien steht im ASCII-Format die Prozess-ID des aktuellen Prozesses.
+Oder Loescht alle angelegt Dateien.
+
+progname: Ist der Name, der als PID-Datei angelegt wird. Es wird dort noch
+          der erste Name des Devices angehaengt.
+          progname = "fred", devices[0] = "null" -> "/var/run/fred.null.pid"
+
+devices: Ist eine List mit den verwendeten Devices. Das letzte Element der 
+         Liste muss NULL enthalten.
+
+flag: Kann zwei Werte beinhalten: START_PROG (legt die o.g. Dateien an) oder
+      STOP_PROG (loescht die angelegten Dateien wieder).
+
+Rueckgabewert:
+Wenn schon ein gueltiger/laufender Prozess mit der ID besteht liefert
+Die Funktion die PID zurueck.
+Wenn die Datei ordnungsgemaess angelegt werden konnte liefert sie 0 zurueck,
+andernfalls -1.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int Set_Codes(section* Section)
+
+Setzt die Eintraege der Section [GLOBAL] in die entsprechenden
+Variablen. Ausserdem wird die Section [VARIABLES] gesetzt. Alle Entries
+aus dieser Section werden als Umgebungsvariablen gesetzt.
+
+Section: ist der Pointer der auf die Sectionen zeigt. Diesen erhaelt man
+         von einer Funktion, die die Konfigurationsdateien einliest.
+
+
+Es werden folgende Variablen gesetzt:
+
+COUNTRYCODE -> mycountry
+AREACODE    -> myarea
+AREALIB     -> acFileName
+AVONLIB     -> avonlib
+
+Rueckgabewert:
+Wenn nicht mindestens COUNTRYCODE und AREACODE gesetzt werden, liefert
+die Funktion -1 zurueck, andernfalls 0.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+char *get_areacode(char *code, int *Len, int flag)
+
+Liefert zu der uebergebenen Telefonnummer den Ortsnamen oder falls diese
+nicht bekannt den Laendernamen (falls diese bekannt ist ;-)).
+Diese Informationen werden entweder dem areacode oder dem AVON entnommen
+(je nachdem mit was diese Lib uebersetzt wurde.
+
+code: Beinhaltet die Telefonnummer.
+
+Len:  Wenn dieser Wert != NULL, wird hier der Laenge der Vorwahl oder
+      der Laenderkennung (je nachdem was gefunden wurde) zurueckgegeben.
+      Wenn kein Name vorhanden ist, wird -1 zurueckgeliefert.
+
+flag: Kann folgende Werte besitzen, die mit ODER verknuepft werden koennen:
+      C_NO_EXPAND: Die Telefonnummer soll vorher nicht mit expand_number()
+                   expandiert werden.
+      C_NO_WARN  : Es sollen keine Warings-Meldungen ausgegeben werden.
+      C_NO_ERROR : Es sollen keine Error-Meldungen ausgegeben werden.
+
+
+Rueckgabewert:
+Wenn ein Name gefunden wurde, wird dieser zurueck geliefert.
+Der Rueckgabewert ist eine statische Variable. Daher sollte der Rueckgabewert
+immer anschliessend kopiert werden. Wenn diese Funktion zweimal hinter einander
+aufgerufen wird, wird der erste Rueckgabewert ueberschrieben.
+Im Fehlerfall wird NULL zurueckgeliefert.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int read_conffiles(section **Section, char *groupfile)
+
+Liest die Konfigurationsfiles "`confdir()`/isdn.conf", groupfile und "~/.isdn"
+nacheinander ein und stellt sicher, dass die Sectionen [MSN] und [NUMBER]
+anhand von von der Telefonnummer (Entry NUMBER) eindeutig sind.
+Anschliessend wird Set_Codes() ausgefuehrt.
+Diese Funktion liest die Sectionen nur neu ein, wenn einer der oben
+genannten Dateien veraendert wurde. Nur beim ersten mal werden die
+Informationen auf jeden Fall gelesen.
+
+Section: ist der Pointer des Pointers der auf die Sectionen zeigt. Dieser
+         _MUSS_ beim ersten Aufruf NULL sein. Andernfalls ist mit einem
+         Absturz zu rechnen!!!!
+
+groupfile: Wird fuer Ghandi's vbox  benoetigt.
+
+Rueckgabewert:
+Liefert 1 zurueck, wenn die Konfiguration neu eingelesen wurde. Wurde keine
+Konfiguration seit dem letzten Einlesen veraendert, wird 0 zurueck geliefert.
+Im Fehlerfalle wird -1 geliefert.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int paranoia_check(char *cmd)
+
+Prueft, ob das auszufuehrende Programm die User-ID 0 (root) hat, und prueft
+dann, ob das Programm "cmd"
+- auch vom owner root ist
+- nur schreibberechtigung fuer root besitzt.
+
+cmd: Beinhaltet einen Datenamen
+
+Rueckgabewert:
+0, wenn die Bedingungen eingehalten wurden,
+Ansonsten -1.
+
+-----------------------------------------------------------------------------
+

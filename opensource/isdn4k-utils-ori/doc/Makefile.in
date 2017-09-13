@@ -1,0 +1,63 @@
+# $Id: Makefile.in,v 1.11 1999/12/24 14:14:50 akool Exp $
+#
+# Makefile for ISDN manpages
+# (C) 1997 Fritz Elfert
+#
+#
+SHELL			= /bin/sh
+AWK				= @AWK@
+SED				= @SED@
+MANDIR			= @CONFIG_MANDIR@
+MANPAGES		= ttyI.4 isdninfo.4 isdn_audio.4 isdnctrl.4 isdn_cause.7
+INSTALL_MAN		= @INSTALL@ -o 0 -g 0 -m 0644
+prefix			= @prefix@
+
+%.1: %.man
+	cp $< $@
+
+%.5: %.man
+	cp $< $@
+
+%.4: %.man
+	MANDATE=`grep CHECKIN $< | $(AWK) '{print $$4}'`; \
+	$(SED) -e s%@MANDATE@%$$MANDATE%g $< > $@
+
+%.7: %.man
+	MANDATE=`grep CHECKIN $< | $(AWK) '{print $$4}'`; \
+	$(SED) -e s%@MANDATE@%$$MANDATE%g $< > $@
+
+%.8: %.man
+	MANDATE=`grep CHECKIN $< | $(AWK) '{print $$4}'`; \
+	$(SED) -e s%@MANDATE@%$$MANDATE%g $< > $@
+
+all: $(MANPAGES)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+install: $(MANPAGES) Makefile
+	@for i in $(MANPAGES) ; do \
+		MANSECT=`echo $$i | cut -d. -f2` ;\
+		DEST=$(DESTDIR)$(MANDIR)/man$$MANSECT ;\
+		mkdir -p $$DEST ;\
+		$(INSTALL_MAN) $$i $$DEST/$$i ;\
+	done
+
+uninstall: Makefile
+	for i in $(MANPAGES) ; do \
+		MANSECT=`echo $$i | cut -d. -f2` ;\
+		DEST=$(DESTDIR)$(MANDIR)/man$$MANSECT ;\
+		rm -f $$DEST/$$i ;\
+	done
+
+clean:
+	rm -f $(MANPAGES) *~
+
+distclean: clean
+	rm -f config.status config.cache config.log Makefile *.man

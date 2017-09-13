@@ -1,0 +1,8 @@
+./configure \
+    --sockets 0 \
+    --cgibin cgi-bin \
+    --cc de \
+    --gdvers 1.25 \
+    --title telrate \
+    --gifpng gif \
+#    && make install

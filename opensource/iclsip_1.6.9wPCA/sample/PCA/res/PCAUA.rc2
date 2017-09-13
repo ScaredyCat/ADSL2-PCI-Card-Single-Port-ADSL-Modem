@@ -1,0 +1,57 @@
+//
+// PCAUA.RC2 - resources Microsoft Visual C++ does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by Microsoft Visual C++
+#endif //APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Add manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+#include "VersionNo.h"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION FILEVER
+ PRODUCTVERSION PRODUCTVER
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040404b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "CCL/ITRI\0"
+            VALUE "FileDescription", "PCA SoftPhone\0"
+            VALUE "FileVersion", STRFILEVER
+            VALUE "InternalName", "PCAUA\0"
+            VALUE "LegalCopyright", "Copyright (C) 2003 CCL/ITRI\0"
+            VALUE "LegalTrademarks", "PCA SoftPhone\0"
+            VALUE "OriginalFilename", "PCAUA.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "PCA SoftPhone\0"
+            VALUE "ProductVersion", STRPRODUCTVER
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x404, 1200
+    END
+END

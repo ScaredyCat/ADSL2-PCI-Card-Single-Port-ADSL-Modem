@@ -1,0 +1,101 @@
+
+                                    VBOX
+
+                  A Voice Answering Machine for isdn4linux
+
+                             Copyright 1996-1998
+             Michael 'Ghandi' Herold <michael@abadonna.mayn.de>
+
+
+Installation requirements
+=========================
+
+   The following packages are required to compile vbox and must be
+installed:
+
+  1.) Linux kernel 2.1.120 or higher with the newest isdn4linux
+      compiled in (I don't know if vbox works on 2.0.x kernels)
+      and ISDN support enabled (including ISDN AUDIO support).
+
+  2.) Tcl 8.0 or higher.
+
+  3.) NCurses 3.0 or higher (I recomment ncurses 3.0)
+
+
+Installation
+============
+
+   For generic installation instructions see the file `INSTALL'.
+
+   The `configure' script recognizes the following additional options
+to control how it operates.
+
+`--with-tcl-include=DIR'
+    The directory where the tcl include `tcl.h' is installed. This is
+    only needed if `configure' can't find the file in the default
+    location.
+
+`--with-tcl-library=DIR'
+    The directory where the tcl library `tcl.so' is installed. This is
+    only needed if `configure' can't find the library in the default
+    location.
+
+`--with-logdir=DIR'
+    The directory where the logs should be saved. Default is
+    `/var/log'.
+
+`--with-lockdir=DIR'
+    The directory where the lock files should be created. The default
+    is `/var/lock'.
+
+`--with-piddir=DIR'
+    The directory where the process id files should be created. The
+    default is `/var/run'.
+
+
+Mailinglist
+===========
+
+   There are two mailinglists available, `vbox' and `vboxdev'.
+
+   `vbox' is a public mailinglist, open for discussion about problems
+on installing or running vbox (or general vbox things :-).
+
+   There is no need to subscribe if you want to write a message to
+the list. But you will only receive messages from the list if you
+are subscribed!
+
+   `vboxdev' is a closed mailinglist (for subscribers only) and only
+for development. If you want to develop vbox or packages for vbox,
+feel free to subscribe.
+
+   If you want to subscribe to one of the both lists, write a email
+to:
+
+   vbox-subscribe@abadonna.mayn.de
+
+      or
+
+   vboxdev-subscribe@abadonna.mayn.de
+
+   `vbox-subscribe' adds you to the public and `vboxdev-subscribe' to
+the developer mailing list.
+
+
+Contacts
+========
+
+   To contact one of the package writers, take a look at the file
+`AUTHORS' in each package subdirectory.
+
+
+Changes
+=======
+
+   Please see the `CHANGES' file for detailed informations about the
+actual development and the history of vbox.
+
+
+
+Michael Herold
+(michael@abadonna.mayn.de)

@@ -1,0 +1,226 @@
+lib.o: lib.c config.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdlib.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/features.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_config.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/cdefs.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/stddef.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/waitflags.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/waitstatus.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/endian.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/endian.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/types.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/types.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/kernel_types.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/pthreadtypes.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sched.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/time.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/select.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/select.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigset.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/time.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/sysmacros.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/alloca.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdio.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_stdio.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/wchar.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/wchar.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/stdarg.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/stdio_lim.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/string.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/ctype.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_touplow.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/time.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/unistd.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix_opt.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/environments.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/wordsize.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/confname.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/getopt.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_clk_tck.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/signal.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/signum.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/siginfo.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigaction.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigcontext.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/sigcontext.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigstack.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/ucontext.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/ucontext.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigthread.h \
+  lib.h common.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/socket.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/uio.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uio.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/socket.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/limits.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/syslimits.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/limits.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix1_lim.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/local_lim.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/linux/limits.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix2_lim.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/xopen_lim.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sockaddr.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/socket.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/sockios.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/ioctl.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/netinet/in.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdint.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/in.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/byteswap.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/syslog.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/syslog.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/semaphore.h \
+  domnode.h srvnode.h
+
+config.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdlib.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/features.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_config.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/cdefs.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/stddef.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/waitflags.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/waitstatus.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/endian.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/endian.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/types.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/types.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/kernel_types.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/pthreadtypes.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sched.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/time.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/select.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/select.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigset.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/time.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/sysmacros.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/alloca.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdio.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_stdio.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/wchar.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/wchar.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/stdarg.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/stdio_lim.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/string.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/ctype.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_touplow.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/time.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/unistd.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix_opt.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/environments.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/wordsize.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/confname.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/getopt.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_clk_tck.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/signal.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/signum.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/siginfo.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigaction.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigcontext.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/sigcontext.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigstack.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/ucontext.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/ucontext.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sigthread.h:
+
+lib.h:
+
+common.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/socket.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/uio.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uio.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/socket.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/limits.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/syslimits.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/limits.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix1_lim.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/local_lim.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/linux/limits.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/posix2_lim.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/xopen_lim.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/sockaddr.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/socket.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/sockios.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/asm/ioctl.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/netinet/in.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdint.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/in.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/byteswap.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/syslog.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/syslog.h:
+
+/opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/semaphore.h:
+
+domnode.h:
+
+srvnode.h:

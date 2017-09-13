@@ -1,0 +1,31 @@
+  README for Distributors
+  -----------------------
+
+  Some remarks for binary distributions of isdnlog
+  
+  Isdnlog contains till now some country specific code, which makes it
+  difficult, to build a binary version of isdnlog.
+  The problem is, that in the ISDN-protocol there are some country specifc
+  variations, which are by now handled by preprocessor defines in code itself.
+  An isdnlog binary built for Germany or Austria might run in other
+  countrys too, but is not guaranteed to.
+  
+  Isdnlog and the accompanying utils isdnrate and isdnrep rely on
+  datafiles, which are by now built during the make-run for the selected
+  country from make config => Options for isdnlog
+  (s. tools/zone/Makefile.in and tools/dest/Makefile.in for details).
+  Nethertheless there are targets to build all possible datafiles:
+  	tools/zone: make zonefiles
+	tools/dest: make alldata
+  The destination database has also a paramete LANG which allowes to
+  build a database with english country names (s. dest/makedest for usage)
+  
+  There is also country specific stuff in decoding telephonnumbers for
+  alternate telephon providers, where every country has it's own method to
+  encode such a number.
+  These options are since isdnlog 3.57 configurable with config-variables 
+  (s. isdnlog/samples/idsn.conf.CC), but might not handle all possiblities.
+  
+  -lt- 
+  Leopold Toetsch <lt@toetsch.at>	26.10.1999
+  

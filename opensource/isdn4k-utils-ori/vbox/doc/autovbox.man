@@ -1,0 +1,45 @@
+.\" $Id: autovbox.man,v 1.3 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH autovbox 1 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+autovbox \- isdn voice box (sound converter)
+.SH SYNOPSIS
+.B autovbox
+.I "[OPTION] [OPTION] [...] < IN-FILE > OUT-FILE"
+.SH "DESCRIPTION"
+Convert au files (sun audio format) into vbox files (vbox audio header).
+autovbox is a link to vboxcnvt.
+.SH OPTIONS
+Autovbox reads from stdin and writes to stdout.
+.TP
+.B \-2, \-\-adpcm\-2
+Convert to ADPCM 2 format.
+.TP
+.B \-3, \-\-adpcm\-3
+Convert to ADPCM 3 format.
+.TP
+.B \-4, \-\-adpcm\-4
+Convert to ADPCM 4 format.
+.TP
+.B \-u, \-\-ulaw
+Convert to ulaw format (default).
+.TP
+.B \-n, \-\-name NAME
+Name to write into the header.
+.TP
+.B \-p, \-\-phone PHONE
+Telephone number to write into the header.
+.TP
+.B \-l, \-\-location LOCATION
+City to write into the header.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-v, \-\-version
+Show version of program.
+.SH SEE ALSO
+.B rmdtovbox(1), vboxtoau(1), vboxmode(1), vboxcnvt(1), vbox(5)
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

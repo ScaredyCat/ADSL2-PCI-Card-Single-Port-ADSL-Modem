@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Please send complaints about this script to michael.mauch@gmx.de,
+# don't blame Henner Eisen for it.
+
+# set -x
+
+
+Username=$1
+Userhomes=/home/eftp
+Usergroup=users
+Usershell=/etc/ftponly
+Authfile=/etc/isdn/eftaccess
+
+
+if [ "$1" == "" -o "$1" == "-h" ] ; then
+	cat <<-EOF
+		Syntax: eft_adduser <username>
+
+		eft_adduser creates a new eftp account in group $Usergroup below $Userhomes
+		with ftp only access ($Usershell as user shell).
+		$Usershell will be created if it does not exist already.
+		Also, eft_adduser will create $Authfile if you don't have it.
+
+		You might want to customize this script to fit your needs.
+	EOF
+	exit 1
+fi
+
+if [ ! -x "`which useradd`" ] ; then
+    echo "Can't find the useradd program, I'm sorry."
+    exit 2
+fi
+
+if egrep "^$Username" /etc/passwd ; then
+    echo "There is already a user \"$Username\" on your system, I'm sorry."
+    exit 3
+fi
+
+if [ ! -x $Usershell ] ; then
+    if [ ! -e $Usershell ] ; then
+	echo "$Usershell does not exist, I'll create it."
+	cat >$Usershell <<-EOF
+		#!/bin/sh
+		echo "This is an (e)ftp only account, no login possible. Bye."
+	EOF
+	chmod 700 $Usershell
+	echo "Please make sure that $Usershell fits your needs, and add it to"
+	echo "your /etc/shells file (/etc/shells.in on SuSE - run SuSEconfig afterwards)."
+    else
+	echo "You already have a file \"$Usershell\", but it is not executable."
+	echo "Please do something about it or change this script."
+	exit 4
+    fi
+fi
+
+mkdir -p $Userhomes/$Username
+useradd -g $Usergroup -d $Userhomes/$Username -s $Usershell $Username
+echo "We need a password for the new user:"
+passwd $Username
+chown $Username. $Userhomes/$Username
+chmod 700 $Userhomes/$Username
+cat >$Userhomes/$Username/!$Username.txt <<-EOF
+	This is the eftp directory of user "$Username".
+EOF
+
+if [ ! -e $Authfile ] ; then
+	echo "You don't have $Authfile, I'll create it."
+	cat >$Authfile <<-EOF
+		class guest guest,anonymous *
+		guestgroup users guest
+		log commands anonymous,guest,real
+		log transfers anonymous,guest,real inbound,outbound
+	EOF
+	echo "Please check if $Authfile fits your needs"
+	echo "and start eftd with the -a option to enable wuauth."
+	echo "eftd must have been built with the CONFIG_EFTD_WUAUTH option"
+	echo "(this is the default)."
+	echo "See eft_wuath(5) for details."
+fi

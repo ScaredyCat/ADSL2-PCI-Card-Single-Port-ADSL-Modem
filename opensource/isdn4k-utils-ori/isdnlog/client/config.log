@@ -1,0 +1,63 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:581: checking host system type
+configure:602: checking target system type
+configure:620: checking build system type
+configure:673: checking for a BSD compatible install
+configure:742: checking whether build environment is sane
+configure:789: checking for working aclocal
+configure:802: checking for working autoconf
+configure:815: checking for working automake
+configure:828: checking for working autoheader
+configure:841: checking for working makeinfo
+configure:854: checking whether make -j 2 sets ${MAKE}
+configure:941: checking for gcc
+configure:1018: checking whether the C compiler (gcc -g -Wall -DDEBUG ) works
+configure:1032: gcc -o conftest -g -Wall -DDEBUG   conftest.c  1>&5
+configure:1029: warning: return-type defaults to `int'
+configure:1052: checking whether the C compiler (gcc -g -Wall -DDEBUG ) is a cross-compiler
+configure:1057: checking whether we are using GNU C
+configure:1081: checking whether gcc accepts -g
+configure:1109: checking how to run the C preprocessor
+configure:1174: checking for c++
+configure:1205: checking whether the C++ compiler (c++ -g -Wall -DDEBUG ) works
+configure:1219: c++ -o conftest -g -Wall -DDEBUG   conftest.C  1>&5
+configure:1245: checking whether the C++ compiler (c++ -g -Wall -DDEBUG ) is a cross-compiler
+configure:1250: checking whether we are using GNU C++
+configure:1274: checking whether c++ accepts -g
+configure:1302: checking whether ln -s works
+configure:1324: checking for AIX
+configure:1349: checking for minix/config.h
+configure:1404: checking whether NLS is requested
+configure:1425: checking for msgfmt
+configure:1459: checking for gmsgfmt
+configure:1491: checking for xgettext
+configure:1547: checking for dirent.h that defines DIR
+configure:1585: checking for opendir in -ldir
+configure:1673: checking how to run the C++ preprocessor
+configure:1710: checking for ANSI C header files
+configure:1819: checking for fcntl.h
+configure:1819: checking for sys/time.h
+configure:1819: checking for unistd.h
+configure:1819: checking for sys/cdefs.h
+configure:1859: checking for fnmatch.h
+configure:1859: checking for sysent.h
+configure:1859: checking for strings.h
+configure:1859: checking for sys/stat.h
+configure:1897: checking for socket in -lsocket
+configure:1941: checking for X
+configure:2174: checking for QT-1.30
+configure:2369: checking for moc
+configure:2403: checking for KDE
+configure:2530: checking for main in -lcompat
+configure:2566: checking for giflib
+configure:2613: checking for jpeglib
+configure:2687: checking whether time.h and sys/time.h may both be included
+configure:2724: checking for bool
+configure:2766: checking if you need GNU extensions
+configure:2791: checking for socket
+configure:2791: checking for vsnprintf
+configure:2847: checking for setenv
+configure:2912: checking for getdomainname
+configure:2968: checking for the third argument of getsockname

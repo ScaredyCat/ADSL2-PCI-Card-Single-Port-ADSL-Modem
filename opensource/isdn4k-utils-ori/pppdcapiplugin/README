@@ -1,0 +1,28 @@
+
+You need a pppd with plugin support:
+	kernel 2.2.X	-	ppp-2.3.11
+	kernel 2.3.99	-	ppp-2.4.0b2
+	kernel 2.4.X	-	ppp-2.4.1
+since ppp-2.4.1 the pppd will load the plugins from
+/usr/lib/pppd/<pppd-version>.
+So use "plugin capiplugin.so" instead of
+"plugin /etc/ppp/plugin/capiplugin.so" with ppp-2.4.1 or later.
+
+Usage example:
+
+Make a single call to arcor:
+	pppd call isdn/arcor
+
+Make a call on demand to arcor:
+	pppd demand connect "" idletime 30 holdoff 1 call isdn/arcor
+
+Make a multilink call with to channels to AVM test server:
+(Only working with 2.3.99-pre8 with ppp_synctty patch)
+	pppd call isdn/avm-ml
+	pppd call isdn/avm-ml
+
+Make a single call to arcor with outside dialing prefix "0"
+	pppd call isdn/arcor numberprefix 0
+
+Make a single call to arcor using controller 2:
+	pppd call isdn/arcor controller 2

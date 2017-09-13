@@ -1,0 +1,44 @@
+# @configure_input@
+# from $Id: eft.conf.in,v 1.2 1999/10/08 16:25:35 he Exp $
+#
+# MSNs to be used be eurofile server and client.
+#
+# (yes, I'm aware that some countries don't provide MSNs, then the
+# config scripts need to be tuned by others means)
+#
+# For minimizing trouble when trying out the test-installation:
+# - Choose different MSNs for the client and the server.
+# - If other (non-eurofile) isdn network interface are active while
+#   you are testing eftp4linux, choose MSNs different from those other
+#   isdn network interface MSNs. (otherwise, you need to tune the
+#   default scripts)
+#
+EFT_SERVER_MSN=@EFTD_SERVER_MSN@
+# dont use quotes around or trailing blanks after the next parameter
+# because it is parsed from the eftp binary
+EFT_CLIENT_MSN=@EFTP_CLIENT_MSN@
+#
+# As currently the eurofile client script "eftp.sh" needs to be run as
+# root in order to configure the network interfaces, that script will
+# su to a regular user id before it starts the eft client "eftp".
+# Set this to the user id under which the client shall run
+# (this is a temporary config variable which will be removed soon
+# because the eftp.sh script is now obsolete)
+#
+EFT_CLIENT_USERID=xxxx
+#
+# define this if you want x25trace debugging output
+# EFTD_X25TRACE=1
+#
+# If this is set then you can test eurofile client and server locallay
+# on top of the isdnloop HL driver (no external isdn connection
+# required). To do so, just type `eftp -x 1 -u USER' (where USER is
+# your login name)
+#
+# EFTD_WITH_LOOP=y
+#
+# other variables which are set in eftd.sh before this file is
+# included, might also be (re-)set here
+#
+
+

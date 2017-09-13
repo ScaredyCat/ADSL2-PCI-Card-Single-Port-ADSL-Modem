@@ -1,0 +1,473 @@
+#!/bin/sh
+#
+# $Id: ix25test,v 1.1 1999/06/30 17:02:18 he Exp $
+#
+# READ and EDIT this script before using it!
+# Usage message is at the very end.
+#
+#          This script sets up a test configuration for x25 over isdn4linux.
+#
+#          To start the test configuration type
+#
+#             ix25test start
+#
+#          This loads the x25 and the isdn modules, two isdn HL drivers, sets
+#          up a few isdn network interfaces, some corresponding x.25 routes,
+#          and optinally a server (x25-based telnetd or x25.echod) listening
+#          on a specifiable x.25 address. After that, you can test
+#          x25 on top of isdn4linux using several different configurations.
+#
+#          All isdn and x25 related kernel modules should be unloaded
+#          before calling this script with the "start" option
+#
+#          To shut down the test configuration type
+#
+#             ix25test stop
+#
+#          This will remove all isdn and x25 modules again.
+#
+#          After calling this script with the "start" option you can start
+#          x.25 applications. The destination x.25 address used by the
+#          x.25 applications setting up the x.25 connections determines the
+#          underlaying physical connection beeing used. The following x.25
+#          adresses/routes are set up by this script:
+#
+#          01   Loop back connection to own computer on top of isdnloop driver.
+#          02   Same as above, but using a l2_prot x.25dte/dce instead of x75
+#          03   Real isdn connection to your own computer. This will occupy
+#               both B-channels of your S_0 interface. And your PTT will
+#               usually charge you for the outgoing connction!
+#          05   Real isdn connection to a remote computer (isdn number of
+#               remote computer must be configured in this script file).
+#
+#          If you want to connect to your own computer (x.25 addresses 01,
+#          02 and 03) you will need to start a server listening on the called
+#          x.25 address. This scripts knows about two different servers:
+#          The first ist the x25 based telnetd distributed with the x25-utility
+#          package. The other one is the x25.echod.
+#
+#          I.e., if you want this script implicitly to start the x25 telnetd
+#          listening on x25 address 01, call this script as
+#
+#             ix25test start telnetd 01
+#
+#          This will call the required server in an infinite loop. If you
+#          Type ^C while a server is looping, the server will be killed and
+#          the test configuration will be automatically stopped (likewise
+#          the by "ix25test stop" command).
+#
+#          If you didn't implicitly start a server you will need to start
+#          the server (or possibly several identical or different servers
+#          listening on different addresses) by hand.          
+#
+#          After that (assuming your x25 based telnet client resides in
+#          x25bin/telnet) you can test x25 connections by calling i.e.
+#
+#             x25bin/telnet 00 01
+#
+#
+#*****************************
+#
+# Parameters to be configured by the user of this script
+#
+#******************************
+#
+#Location of my developement kernel. Modules are not installed
+#(no 'make modules_install' after compiling the kernel) but loaded
+#directly from the kernel source tree location.
+#
+# The directory where all my development kernel trees are located
+#
+KHOME=/home/kernel
+#
+#The basename of the directory where the linux kernel with experimental
+# "x25-on-top-of-isdn"-extensions is located. (To override the default
+# location set the environment variable KERNEL before calling this script)
+#
+KERNEL=${KERNEL:-linux-ix25}
+#
+#Where the x25 utility package is located
+#
+X25UTIL=$KHOME/util/x25/x25-utils-2.1.20
+#
+# Location of the loopctrl binary from the isdn4k-util package
+#
+LOOPCTRL=$KHOME/isdn4k-utils/loop/loopctrl
+#
+# Location of the (patched) isdnctrl binary that supports the x25 features
+#
+ISDNCTRL=$KHOME/isdn4k-utils/isdnctrl/isdnctrl
+#
+#you will need an actual version of insmod working with your current 2.1.x
+#kernel. I didn't install this in /sbin, thus
+#
+INSMOD=/usr/local/bin/insmod
+#
+#
+#insmod shall load the modules directly from the devolpment kernel source tree
+#
+MODPATH=${MODPATH:-$KHOME/$KERNEL/modules/}; export MODPATH
+#
+#remount the follwing file system read only before testing kernel stuff
+#FILE_SYSTEMS="/home /usr"
+FILE_SYSTEMS=""
+#
+#
+# The remaining parameters are only needed if you want to set up
+# connections on top of real isdn HL drivers. If you only want to use
+# loopback connections (on top of the isdnloop HL driver) you are done now.
+#
+#
+#MSN used for outgoing and incoming real isdn interfaces. Place your own MSN
+#here if you want to use real isdn HL drivers.
+MSN=XXXXXX
+#The aerea code prefix to your own MSN (without leading 0)
+AREA_PREFIX=40
+# ISDN number of your remote peer
+DIALOUT5=XXXXXXX
+
+
+RCFILE=/home/kernel/.ix25test
+if [ -f $RCFILE ]; then
+    . $RCFILE
+fi
+
+#
+#**********************************************
+#
+# End of user variable configuration section
+#
+# You might still need to adjust the hardware parameters according to your
+# local isdn hardware configuration when insmoding your HL drivers below.
+#
+#**********************************************
+#
+
+
+if [ x$1 = xstart ]; then 
+
+trap "$0 stop" 2 3
+
+for i in $FILE_SYSTEMS
+    do
+	echo remountig $i read only
+	mount $i -r -o remount
+done
+
+sync
+
+echo "kernel modules will be loaded from $MODPATH" >&2
+
+$INSMOD -m isdn > /var/modules/isdn.map
+$INSMOD -m x25 > /var/modules/x25.map
+
+# For testing of x.25 connections on top of real isdn connections
+# make a real isdn HL driver available. This script should also work if you
+# replace the hisax driver by any other HL driver as long as it supports
+# l2_prot x75i and its id is bri_t0.
+#
+# The hardware parameters probably need to be changed by you.
+#
+$INSMOD -m hisax io=0xd80 irq=5 mem=0xd0000 type=1 protocol=2 id=bri_t0  > /var/modules/hisax.map
+telesctrl bri_t0 1 20
+
+
+# for local testing of x.25 connections on top of isdnloop driver
+
+$INSMOD -m isdnloop isdnloop_id=isdnfake > /var/modules/isdnloop.map
+$LOOPCTRL -d isdnfake start dss1 00000 00001 00002
+
+#uncomment this for logging /dev/isdnctrl messages
+
+cat /dev/isdnctrl > /tmp/isdnctrl &
+echo $! > /var/run/isdnlog.pid
+$ISDNCTRL verbose 3
+
+#
+#  create a System.map suitable for ksymoops and alike that contains symbols
+#  of resident kernel as well as of all currently loaded modules
+#
+cat $KHOME/$KERNEL/System.map > /tmp/System.map
+for i in `cat /proc/modules | sed 's/ .*$//'`
+do
+	grep '^c' < /var/modules/$i.map | sed "s/$/@$i/"
+done | sort >> /tmp/System.map
+
+# write a script file which can be called in case of a kernel oops
+# to decode the oops message (you need to compile ksymoops before using it).
+
+cat > /tmp/oops_decode <<HERE
+#!/bin/sh
+cd /tmp
+tail -50 /var/log/messages|sed 's/^.*kernel: //' |tee /dev/tty| $KHOME/$KERNEL/scripts/ksymoops /tmp/System.map
+HERE
+chmod a+x /tmp/oops_decode
+
+# A local pair of incoming and outgoing interfaces operating on top of the
+# isdnloop driver. X.25 call requests to X.25 address 01 will be routet
+# to the outgoing interface isdnxlo1. That call request will be looped back
+# to your own machine (via the incoming interface isdnxli1).
+#
+
+#for encap x25iface 
+
+$ISDNCTRL addif isdnxlo1 
+$ISDNCTRL addif isdnxli1 
+
+$ISDNCTRL eaz isdnxlo1 00000
+$ISDNCTRL eaz isdnxli1 00001
+$ISDNCTRL addphone isdnxlo1 out 00001
+$ISDNCTRL addphone isdnxli1 in  00000
+$ISDNCTRL l2_prot isdnxlo1 x75i
+$ISDNCTRL l2_prot isdnxli1 x75i
+$ISDNCTRL encap isdnxlo1  x25iface
+$ISDNCTRL encap isdnxli1  x25iface
+$ISDNCTRL huptimeout isdnxlo1 1800
+$ISDNCTRL ihup isdnxli1 off
+$ISDNCTRL secure isdnxli1 on
+$ISDNCTRL status isdnxli1 on    
+$ISDNCTRL status isdnxlo1 on    
+$ISDNCTRL bind isdnxlo1 isdnfake,0
+# Another local pair of incoming and outgoing interfaces operating on top of
+# the isdnloop driver (using l2_prot x25dte and x25dce instead of x75i).
+# X.25 call requests to X.25 address 02 will be routed to the outgoing
+# interface isdnxlo2. That call request will be looped back to your own
+# machine (delivered via the incoming interface isdnxli2).
+
+$ISDNCTRL addif isdnxlo2
+$ISDNCTRL addif isdnxli2
+
+$ISDNCTRL eaz isdnxlo2 00000
+$ISDNCTRL eaz isdnxli2 00002
+$ISDNCTRL addphone isdnxlo2 out 00002
+$ISDNCTRL addphone isdnxli2 in  00000
+$ISDNCTRL l2_prot isdnxlo2 x25dte
+$ISDNCTRL l2_prot isdnxli2 x25dce
+$ISDNCTRL encap isdnxlo2  x25iface
+$ISDNCTRL encap isdnxli2  x25iface
+$ISDNCTRL huptimeout isdnxlo2 1800
+$ISDNCTRL ihup isdnxli2 off
+$ISDNCTRL secure isdnxli2 on
+$ISDNCTRL status isdnxli2 on    
+$ISDNCTRL status isdnxlo2 on    
+$ISDNCTRL bind isdnxlo2 isdnfake,0
+
+
+
+# A pair of incoming and outgoing interfaces operating on top of
+# the HiSax driver. X.25 call requests to X.25 address 03 will be routet to
+# the outgoing interface isdnxho3. That call request will cause a real
+# isdn connection to your own machine beeing set up (you probably
+# have to pay for it!). The isdn call will be accepted by the incoming
+# interface isdnxhi3 such that the x.25 connection on top of it can be
+# accepted on your machine. This occupies both B channels of your S_0
+# interface and leave traces on your phone bill.
+
+$ISDNCTRL addif isdnxho3
+$ISDNCTRL addif isdnxhi3
+
+$ISDNCTRL eaz isdnxho3 $MSN
+$ISDNCTRL eaz isdnxhi3 $MSN
+$ISDNCTRL addphone isdnxho3 out $MSN
+$ISDNCTRL addphone isdnxhi3 in $AREA_PREFIX$MSN
+$ISDNCTRL l2_prot isdnxho3 x75i
+$ISDNCTRL l2_prot isdnxhi3 x75i
+$ISDNCTRL encap isdnxho3  x25iface
+$ISDNCTRL encap isdnxhi3  x25iface
+$ISDNCTRL huptimeout isdnxho3 110
+$ISDNCTRL ihup isdnxhi3 off
+$ISDNCTRL secure isdnxhi3 on
+$ISDNCTRL secure isdnxho3 on
+$ISDNCTRL status isdnxhi3 on    
+$ISDNCTRL status isdnxho3 on    
+$ISDNCTRL bind isdnxho3 bri_t0,0
+
+
+
+# Outgoing Interface on top of  HiSax  to  remote  server
+
+$ISDNCTRL addif isdnxho5 
+
+$ISDNCTRL eaz isdnxho5 $MSN
+$ISDNCTRL bind isdnxho5 bri_t0,0
+$ISDNCTRL addphone isdnxho5 out $DIALOUT5
+$ISDNCTRL l2_prot isdnxho5 x75i
+$ISDNCTRL encap isdnxho5  x25iface
+$ISDNCTRL huptimeout isdnxho5 110
+$ISDNCTRL secure isdnxho5 on
+$ISDNCTRL status isdnxho5 on    
+
+
+ifconfig isdnxlo1 up
+ifconfig isdnxli1 up
+ifconfig isdnxlo2 up
+ifconfig isdnxli2 up
+ifconfig isdnxho3 up
+ifconfig isdnxhi3 up
+ifconfig isdnxho5 up
+
+echo $X25UTIL/route/x25route add 01 isdnxlo1
+$X25UTIL/route/x25route add 01 isdnxlo1
+echo $X25UTIL/route/x25route add 02 isdnxlo2
+$X25UTIL/route/x25route add 02 isdnxlo2
+echo $X25UTIL/route/x25route add 03 isdnxho3
+$X25UTIL/route/x25route add 03 isdnxho3
+echo $X25UTIL/route/x25route add 05 isdnxho5
+$X25UTIL/route/x25route add 05 isdnxho5
+
+#
+#this will log all x25 traffic received from network interfaces to stdout
+#
+$X25UTIL/trace/x25trace -h &
+#> /tmp/x25trace &
+echo $! > /var/run/x25trace.pid
+#
+#
+sync
+
+while :
+do
+
+case x$2 in
+    xx25\.echod)
+	~kernel/eftp4linux-work/src/x25.echod "$3" &
+    ;;
+    xtdu\.echod)
+	~kernel/eftp4linux-work/src/tdu.echod "$3" &
+    ;;
+    xeftd)
+	~kernel/eftp4linux-work/src/eftd "$3" &
+    ;;
+    xtelnetd)
+	$X25UTIL/telnetd/telnetd "$3" &
+    ;;
+    x*)
+        exit
+    ;;
+esac
+td_pid=$!
+
+echo $td_pid > /var/run/x25telnetd.pid
+echo "daemon started, pid=$td_pid"
+sync
+  wait $td_pid
+  echo "daemon (pid=$td_pid) exited"
+  sleep 3
+done
+#
+# now you can start your i.e. telnet client like this:
+#$X25UTIL/telnet/telnet 00 01
+#
+# you may want to watch kernel log messages and the files
+# /proc/{modules,net/{dev,x25*}} 
+#
+#When finished, you can undo this whole setup with
+#
+#  ix25test  stop
+#
+# If you have started other processes which use isdn or x25 resources,
+# be sure that they are terminated before calling 'ix25test stop'.
+#
+# If you type ^C while this script is runnung, it will re-invoke itself
+# with the stop option.
+#
+#
+#
+#
+#
+elif [ x$1 = xstop ]; then
+#sleep 2
+echo 'killing daemon ...'
+echo 'killing daemon ...' > /dev/tty10
+kill `cat /var/run/x25telnetd.pid`
+#sleep 2
+#echo 'hanging up ...'
+#echo 'hanging up ...' > /dev/tty10
+#isdnctrl hangup isdnx01
+#sleep 2
+echo 'killing x25trace ...'
+echo 'killing x25trace ...' > /dev/tty10
+kill `cat /var/run/x25trace.pid`
+#sleep 2
+echo 'killing isdnlog ...'
+echo 'killing isdnlog ...' > /dev/tty10
+kill `cat /var/run/isdnlog.pid`
+
+#cat /proc/modules
+#ps -eax
+echo 'deleting x25 routes ...'
+echo 'deleting x25 routes ...' > /dev/tty10
+
+
+$X25UTIL/route/x25route del 01 isdnxlo1
+#cat /proc/modules
+$X25UTIL/route/x25route del 02 isdnxlo2
+#cat /proc/modules
+$X25UTIL/route/x25route del 03 isdnxho3
+#cat /proc/modules
+$X25UTIL/route/x25route del 05 isdnxho5
+#cat /proc/modules
+
+#cat /proc/modules
+
+ISDNIF_OUT="isdnxlo1 isdnxlo2 isdnxho3 isdnxho5"
+ISDNIF_IN="isdnxli1 isdnxli2 isdnxhi3"
+
+for i in $ISDNIF_OUT
+do
+    echo "ifconfiging $i down ..."
+    echo "ifconfiging $i down ..." > /dev/tty10
+    ifconfig $i down
+done
+sleep 2
+for i in $ISDNIF_IN
+do
+    echo "ifconfiging $i down ..."
+    echo "ifconfiging $i down ..." > /dev/tty10
+    ifconfig $i down
+done
+
+
+#cat /proc/modules
+sleep 2
+
+echo 'deleting isdn interfaces ...'
+echo 'deleting isdn interfaces ...' > /dev/tty10
+
+for i in $ISDNIF_OUT $ISDNIF_IN
+    do
+	$KHOME/util/isdn/isdnctrl delif $i
+done
+
+echo 'removing isdn modules ...'
+echo 'removing isdn modules ...' > /dev/tty10
+
+rmmod isdnloop
+rmmod hisax
+rmmod isdn
+#sleep 2;
+echo 'removing x25 modules ...'
+echo 'removing x25 modules ...' > /dev/tty10
+
+rmmod x25
+
+for i in $FILE_SYSTEMS;
+    do
+:
+#	echo remountig $i writable again
+#	mount $i -w -o remount
+done
+
+
+else
+
+echo "usage: $0 start                        boot ix25 test configuration"
+echo "       $0 start telnetd X25-ADDRESS    additionally start x25 telnetd"
+echo "                                       listening on X25-ADDRESS"
+echo "       $0 start x25.echod X25-ADDRESS  additionally start x25 echod"
+echo "                                       listening on X25-ADDRESS"
+echo "usage: $0 stop                         shut down ix25 test configuration"
+echo "       typing ^C while x25 telnetd or x25.echod is running will"
+echo "       automatically shut down the ix25 test configuration"
+
+fi

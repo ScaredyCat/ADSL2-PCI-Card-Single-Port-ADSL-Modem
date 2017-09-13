@@ -1,0 +1,23 @@
+#
+# Dummy Makefile for disabled sub-package. Used if
+# configure of a sub-package failed.
+#
+
+all: warn
+
+install: warn
+
+uninstall: warn
+
+config: warn
+
+clean:
+
+distclean:
+	rm -f Makefile config.log confdefs.h
+
+warn:
+	@echo ""
+	@echo WARNING: package disabled because of config-error
+	@echo ""
+	@sleep 1

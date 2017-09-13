@@ -1,0 +1,7 @@
+man_MANS = qos.7 sap.7
+
+LDFLAGS = @LDFLAGS@ $(IFX_LDFLAGS)
+CFLAGS = @CFLAGS@ $(IFX_CFLAGS)
+
+EXTRA_DIST = $(man_MANS)
+

@@ -1,0 +1,28 @@
+XCOMM $XConsortium: Imakefile,v 1.12 93/09/20 10:18:26 kaleb Exp $
+        DEPLIBS = XawClientDepLibs
+LOCAL_LIBRARIES = XawClientLibs
+  SYS_LIBRARIES = MathLibrary
+
+           SRCS = xmonisdn.c Net.c
+           OBJS = xmonisdn.o Net.o
+        HEADERS = NetP.h Net.h
+
+   INSTPGMFLAGS = -m 0755 -s
+
+ComplexProgramTarget(xmonisdn)
+
+install.bitmap:
+	[ -d $(DESTDIR)$(INCROOT)/X11/bitmaps ] || \
+		mkdir -p $(DESTDIR)$(INCROOT)/X11/bitmaps
+	$(INSTALL) $(INSTALLFLAGS) -m 644 netinactive netwaiting netactive netactiveout netstart netstop $(DESTDIR)$(INCROOT)/X11/bitmaps/
+
+xmonisdn.man: xmonisdn.man.in
+	MANDATE=`grep CHECKIN $< | awk '{print $$4}'`; \
+	sed \
+	  -e "s#\@MANDATE\@#$${MANDATE}#g" \
+	  -e "s#\@I4LVERSION\@#${I4LVERSION}#g" \
+	  -e s,\@CONFIG_XMONISDN_UPCMD\@,${CONFIG_XMONISDN_UPCMD},g \
+	  -e s,\@CONFIG_XMONISDN_DOWNCMD\@,${CONFIG_XMONISDN_DOWNCMD},g \
+	  < $< > $@
+
+install.all: install 	install.man 	install.bitmap

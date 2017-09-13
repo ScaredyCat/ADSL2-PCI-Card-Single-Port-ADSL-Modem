@@ -1,0 +1,292 @@
+Installation instructions for eftp4linux
+
+Quick Install:
+
+eftp4linux needs a 2.2.x kernel which supports some special features
+and recent isdn4k-utils.
+
+Provided that your distribution is delivered with such a 2.2.x kernel
+pre-installed, you might be able to use the basic functionality of
+the eftp4linux package without any further modifications to your system.
+You can test this by running the shell script by changing to the
+"scripts"-sub-directory and typing
+
+sh check_system
+
+On success, you can directly go to the "This eftp4linux package"
+section and proceed. Otherwise, you need to upgrade your system.
+
+(Presence of the x25_utils packages, the isdnloop driver and the
+loopctrl binary is not checked by the script. But most features
+of eftp4linux will work without them. You can upgrade later after
+your first success events with eftp4linux).
+
+
+Kernel
+======
+
+eftp4linux needs a 2.2.x kernel with X.25 PLP support and
+"X.25 on top of isdn" support.
+
+As early 2.2.x kernels contain outdated isdn code, it is recommended
+to use kernel 2.2.12 or newer.
+
+When configuring the kernel for compilation, (i.e. by `make
+menuconfig') enable the following:
+
+
+Code maturity level options  --->
+	Enable	"Prompt for development and/or incomplete
+		code/drivers" (CONFIG_EXPERIMENTAL)  [select "y"]
+
+Networking options  --->  
+	Enable  "CCITT X.25 Packet Layer" [select "m" or "y"]
+
+	(if this menu entry is missing, you probably havn't
+	enabled the experimental features above).
+
+ISDN subsystem  ---> 
+	configure this as usual and additionally enable
+
+		"X.25 PLP on top of ISDN"      [select "y"]
+
+	(if this menu entry is missing, you probably havn't
+	enabled the X25 PLP support from the networking options).
+
+	Further, beside your standard isdn HL drivers, also enable
+	the isdnloop driver (preferably as a module). 
+
+Set all other options as usual and then compile your kernel, i.e.
+
+make dep
+make [b]zImage modules
+make modules_install
+
+"make modules_install" is recommended after compilation.
+
+If your Linux-Distribution comes with a 2.2.x kernel pre-installed, you can
+additionally do a `make install'. If not, you still could do so,
+but be aware that this might possibly overwrite your old 2.0.36+
+kernel which might cause some problems with other parts of your
+Linux distribution. Therefor, with an old linux distribution, it
+recommended to omit `make install' for the first tests. You will
+need to add an additional entry to your /etc/lilo.conf file for
+booting your 2.2.x kernel as an alternative to 2.0.x. 
+
+It is possible (but not necessary) to apply additional
+patches to the kernel before compilation:
+
+ix25-2.1.128.patch	fixes a bug in the Linux X.25 PLP layer. This is
+			only necessary to communicate with certain
+			buggy eft clients (CSD isdn toolbox,
+			maybe also some RVS clients). If you want to
+			communicate with buggy clients, also
+			enable the "#define X25_PEER_IS_BUGGY"
+			at the very end of include/net/x25.h
+			before compiling the kernel.
+
+isdn4linux CVS snapshot can be used to replace your kernel's isdn
+			subsystem whith a more recent versions.
+
+			As Kernels 2.2.12 and 2.3.15 now contain
+			up-to-date isdn versions, this should no longer
+			be necessary.
+	
+
+isdn4k-utils
+============
+
+  You need a recent isdnctrl utility (and maybe the loopctrl binary if
+  you want to test locally with the isdnloop driver).
+  You need at least isdn4k-utils-3.0beta2.tar.gz or newer.
+
+  The utilities must be compiled against the 2.2.x
+  kernel headers. The location of that kernel can be set from the
+  isdn4k-utils configuration menu.
+ 
+  The recent isdn4k-utils package is availabe from ftp.isdn4linux.de.
+
+
+x25_utils
+=========
+
+The x25_utils are no longer strictly necessary for basic operation of
+the eftp4linux packages. But some sections in the script (those
+releted to local testing with the isdnloop driver and debugging)
+might require the x25_route and the x25_trace utility. Thus, it
+is recommended to install the x25_utils package. Otherwise, the
+corresponding features (in particular local testing with the isdnloop
+driver) of the eftd.sh script cannot be used.
+
+The package should be available from the same site as this eftp4linux
+packages or from ftp.hes.iki.fi:/pub/ham/linux/ax25/    (don't confuse
+the x25-utils with the ax25-utils, you only need the x25-utils).
+
+Make sure that the compiler/preprocessor finds the include/linux/x25.h
+file. Either add some flags to the makefile or make /usr/src/linux a
+symbolic link pointing to your 2.2 kernel's include/linux directory.
+
+
+This eftp4linux package
+=======================
+
+Just untar the package and type 'make config; make' in the top
+level directory.
+
+It is now also possible (and probably the least troublesome method)
+to compile eftp4linux as part of the isdn4k-utils package. Do a 
+Do a 'make config' in the isdn4k-utils top level directors. You need
+to enable CONFIG_EXPERIMENTAL in order to make the eurofile submenu
+visible. (Say 'y' to 'Prompt for development and/or incomplete code'
+in the 'Code maturity level options' menu). People who install
+eftp4linux for the first time can safely say 'y' to all eurofile
+config options. After configuration, do a 'make';
+
+(Exceptions: people needing to be paranoid about security might
+say 'n' to 'install eftp suid root'. People who already installed
+a former version of eftp4linux and have installed modified versions
+of eftp4linux config files might choose to disable overwriting
+existing configuration files).
+
+After that, do a 'make install'. If you have configured eftp4linux
+by means of the isdn4k-utils config menu and said 'y' to all options,
+eftp4linux should be ready for use now. You might skip the remaining
+part of this chapter if you are not interested in details and only
+come back here if problems are observed later.
+
+If you compile eftp4linux stand-alone, and you want to use
+non-standard default locations of certain files, you can edit
+the configure script and change the values of the CONFIG_* variables
+before.
+
+The directory where the isdn configuration files are located is
+assumed to be /etc/isdn. If this is not true for your installation,
+either create that directory or set the environment variable
+CONFIG_I4LCONFDIR to an alternative directory prior to compilation.
+(this is usually done automatically if you configure eftp4linuyx my
+means of the isdn4k-utils config menu).
+
+As I could not test with all compiler/libc/distribution combinations,
+maybe I missed something. If configuration should fail or some files
+are not found during compilation, please tell me.
+
+As of eftp4linux-0.0.7, command line editing in eftp by means of
+the GNU readline library is enabled by default. For command
+line editing in eftp to work, you need a sufficiently recent
+GNU readline library that supports the "alternative interface".
+You also need the ncurses library. If the approriate libraries are
+not found, readline support will be automatically disabled.
+
+After successful compilation, you should be able to start
+the eurofile client or server.
+
+If you need to fix something that might influence the configuration
+process, do a 'make distclean' before recompiling.
+
+
+
+Starting the Eurofile applications
+==================================
+
+General preparation
+===================
+
+If you needed to re-compile your kernel and have omitted the
+"make modules_install" after your kernel compilation, the default
+eft scripts (and probably the init scripts
+of your linux distribution as well) won't be able to load the modules
+corresponding to your (patched) kernel version. In that case, either
+modify all scripts to load the proper modules by absolute pathname
+or set the enviromnemnt variable MODPATH to the "modules" directory
+of your developer kernel's source tree. (But be aware: MODPATH is
+only acknoledged by insmod. If you insert modules on your own by modprobe,
+MODPATH has no effect).
+
+Boot your linux 2.2.x kernel. The isdn subsystem should be
+set up to a state where a HL driver capable of l2_prot x75i is
+working. If your boot sequence ends up in a state where you can set up
+connections on the /dev/ttyI* devices, then you are already done with this.
+After that, you need to insmod the x25 module with
+
+insmod x25
+or
+modprobe x25
+
+People who have said 'y' to the the 'install a default eft.conf file'
+menu entry are done now.
+
+People who have choosen not to install the eft.conf file should have a
+look at the the eft.conf as present in the examples directory,
+compare it with a their already installed version in the
+I4LCONFDIR (probably /etc/isdn) and decide whether their
+own eft.conf file needs to be edited.
+
+
+Starting the Eurofile server
+============================
+
+There is a schell script present in the scripts directory to start
+the eurofile daemon.
+
+Start the daemon as root using the script as present in the "scripts"-
+directory (or in the sysv init directory if the script is installed)
+by typing
+
+eftd.sh start
+
+After that, you should be able to connect with an eft client to your
+linux server via isdn. If your client can only access upper or only
+lower case file names (or has other interworking problems), try
+prepending a '+' to the user name when logging in. 
+
+You can stop EUROFILE service again by
+
+eftd.sh stop
+
+
+The eftd.sh script locates the eftd binary (as well as all other
+utility programs) from the stardard PATH environment variable.
+Thus, make sure that eftd's installation directory (as configured
+in the isdn4k-utils config menu) is in your PATH environment variable.
+If you have not done a 'make install' yet and want to test eftd
+before, just prepend the source directory of eftd to the PATH
+environment variable.
+
+People who want to start eftd at boot time from sysvinit and have
+installed eftd at an unusual location also need to make sure that
+the PATH as seen by sysvinit contains the appropriate directory
+
+If you have multiple utility versions installed, make sure that the 
+utility found first is the one just compiled as above (against the
+[patched] 2.2 kernel header files). 
+
+
+
+Starting the Eurofile client
+============================
+
+
+To start the client, type
+
+eftp -i ISDN_NO -u USER
+
+where ISDN_NO specifies the isdn number of the remote server and USER
+is the login name on the remote server.
+
+root priviliges are needed for doing so. Non-root users can also use
+eftp if it is installed suid root as there is special support for
+running eftp suid root now. Please refer to the eftp documentation
+in the doc directory for details about some security related issues.
+
+It is also possible to test eftp and eftd locally with the isdnloop
+driver module (no paying isdn connections involved, no root
+permissions for eftp necessary). To do so, uncomment the line
+"EFTD_WITH_LOOP=y" in /etc/isdn/eft.conf before you start the
+eftd.sh script. Then, simply type
+
+eftp -x 1 -u USER
+
+where USER is your unix login name on your machine and enter your login
+password when prompted. For this to work, you need the x25_route
+program from the x25_utils installed and you also must have compiled and
+installed the isdnloop driver kernel module and the loopctrl utility.

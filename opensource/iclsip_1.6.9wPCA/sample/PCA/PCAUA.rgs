@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{5693C0B9-424C-44F8-8204-61505AB51E8A} = s 'PCAUA'
+		'PCAUA.EXE'
+		{
+			val AppID = s {5693C0B9-424C-44F8-8204-61505AB51E8A}
+		}
+	}
+}

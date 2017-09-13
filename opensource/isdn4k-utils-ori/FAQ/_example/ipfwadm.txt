@@ -1,0 +1,71 @@
+From: Torsten Hentschel <Torsten.Hentschel@DInet.de> Subject: Re: IPFWADM
+To: isdn4linux@hub-wue.franken.de
+Date: Thu, 7 Nov 1996 11:03:15 +0100 (MET) Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+Hallo!
+
+Vielleicht kann ich helpfen ;-)
+Zuerstmal lass mich wiederholen, ob ich Deine Frage richtig verstanden habe. Mal angenommen Du hast auf den drei Netzwerk- Karten jeweils ein Class-C -Netz und hast die Dinger so etwa wie folgt konfiguriert:
+
+  ifconfig eth0 194.77.88.7 netmask 255.255.255.0 broadcast 194.77.88.255
+  ifconfig eth1 194.77.89.4 netmask 255.255.255.0 broadcast 194.77.89.255
+  ifconfig eth2 194.77.90.2 netmask 255.255.255.0 broadcast 194.77.90.255
+  route add -net 194.77.88.0 eth0
+  route add -net 194.77.89.0 eth1
+  route add -net 194.77.90.0 eth2
+
+In dieser Weise wuerde ja nun schlichtweg _alles_ von einem Interface zum anderen geroutet werden und Dein Rechner wie ein Gateway funktionieren.
+Du willst, so habe ich es verstanden, aber nur einen ganz bestimmten Rechner zwischen den Interfaces "durchlassen" waehrend Dein "Gateway" aber selber alle Rechner erreichen kann und alle Rechner Dein "Gateway" erreichen koennen.
+Nehmen wir mal an, der Rechner an eht0, der auf eth1 zugreifen koennen soll, habe die IP-Adresse 194.77.88.15.
+
+Die professionelle Vorgehensweise ist dann:
+
+   - Ausschallten der FORWARDING-Funktion im Kernel
+     durch Neukompilieren
+
+   - Aufsetzen der folgenden Befehle für die Firewall:
+
+        ipfwadm -F -p deny        # Routing zwischen den Interfaces
+                                  # erstmal generell verbieten
+
+        ipfwadm -I -p accept      # Input auf allen Interfaces erlauben
+                                  # betrifft Pakete, die Dein Rechner
+                                  # auf seinen Interfaces empfaengt
+
+        ipfwadm -O -p accept      # Output auf allen Interfaces erlauben
+                                  # betrifft alle Pakete, die Dein Rechner
+                                  # selber erzeugt hat und an jemanden
+                                  # senden will
+
+        ipfwadm -F -a accept -S 194.77.88.15/32 -D 194.77.90.0/24
+                                  # Zuletzt wird explizit das Forwarding
+                                  # zwischen dem Rechner auf eth0 und
+                                  # allen Rechnern auf eth2 erlaubt.
+
+Wenn Du keinen neuen Kernel kompilieren willst, geht das auch mit eingeschaltetem Forwarding im Kernel. Das ist dann aber nicht so sicher, da man mit etwas Koepfchen die Firewall dann umgehen kann.
+
+Keine Garantie. Das Zeugs habe ich nicht ausprobiert. Muesste aber so klappen. - Bitte korrigiert mich, wenn ich falsch liege.
+
+Gruesse,
+
+   Torsten
+
+> Ich habe ein rechner mit 3 netzkarten ( eth0..eth2 ). Jetzt will ich mit
+> ipfwadm einen specielen rechner vom eth0 nach eth1 routen ( wie ein gateway ).
+> 
+> Kann jemand mich helpfen?
+> 
+> 
+> ---------------------------------------------------
+> To remove yourself from this mailing list send
+> email to majordomo@hub-wue.franken.de containing
+> "unsubscribe isdn4linux <your_email_address>" in
+> the message body [-vg]
+> 
+
+
+-- 
+                                        http://www.DInet.de/
+    /\                                  von-Siemens-Str. 12 
+   /  \       Delta Internet GmbH       59757 Arnsberg
+  /    \   Netzwerkdienst & Vertrieb    Tel. +49 2932 91 61 32  /______\                               Fax. +49 2932 91 61 91 --------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

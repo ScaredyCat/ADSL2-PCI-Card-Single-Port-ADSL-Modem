@@ -1,0 +1,98 @@
+PCA UA Coding Guide
+
+-------------------
+
+[2006/07/06] - by sjhuang
+
+[PCAUA, UACom]
+
+@@
+- problem [PCAUA]
+  重新initial之後, local video視窗常常位移, 已修正.(跟babuzu project相同)
+
+- key word
+  @ PCAUA: m_bShowVideo / CPCAUADlg::DoSwitchUAVideo() / s_InitVideoPos
+  @ PCAUA: InitSoftphone()
+
+@@
+- problem [PCAUA]
+  登入時, dial button沒有enable, 第一次收到對方來電無法接聽, 
+  flag 設定問題.
+
+- key word
+  @ 原因: OnInitDialog() -> UpdatePhoneState() -> SetButtonEnable( "OPRBTN_DIALANSWER", FALSE )
+    解決: UpdateFeatureButtons() 加入 SetButtonEnable( "OPRBTN_DIALANSWER", TRUE );
+
+  @ 原因: !m_bUIAnswer -> AniRingAlert( FALSE ); (將m_bUIAnswer初始化即可)
+
+@@
+- problem [UACom]
+  收到 SID frame會造成系統 crash, PCAUA消失不見.原因是因為
+  putPacket(0, VPM_CODEC_G723_1A, serial723, FT_SID, 0); <-- 最後一個參數不可為零, 應該為 SID length.
+  所以必須修改RTP2Wav(), 以及RTP function -> cclGetRTPFromJB(char *buf,int *type,int *length) 改寫。
+  多增加第三個參數.
+
+- key word
+  @ UACom: putPacket() / cclGetRTPFromJB() 
+  
+
+-------------------
+
+-------------------
+
+[2006/06/22] - by sjhuang
+
+[PCAUA, UACom]
+
+@@
+- problem
+  首頁介面設定常常當機, 或與page介面設定不一制, 原因如下:
+  
+  PCAUA
+  -----------------
+            profile
+       ---->
+  UACom
+  -----------------
+
+  由於 PCAUA 與 UACom 設計的方式, profile 會暫存一份 registry 的資料, 
+  因此當PCAUA更新 registry 的資料時, profile 所擁有的資料卻還是舊的,
+  很多問題可能由此產生.
+
+- resolve method
+  因此解決方法為當PCAUA重新設定 registry 後, 
+  馬上更新 profile 內容, 此功能需要 UACom 提供新介面, 
+ 
+
+- key word
+  @ PCAUA: pUAControlDriver->Test("");
+  @ UACom: CUAControl::Test();
+
+- comment
+  UACom 應該提供新的function名稱, 而非 Test();
+
+@@
+- problem
+  CUAControl::ShowPreferences 需要回傳值, 但在 uacom.cpp 中, 
+  原本的 bool IUAControl::ShowPreferences() 寫法錯誤, 此處修正之.
+
+- key word
+  @ bool IUAControl::ShowPreferences();
+
+
+-------------------
+
+format:
+
+[date] - by somebody
+
+[project name]
+- problem & resolve method
+  ...
+
+- key word
+  @ ...
+  @ ...
+
+- comment
+

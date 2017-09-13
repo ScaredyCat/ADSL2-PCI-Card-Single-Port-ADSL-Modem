@@ -1,0 +1,13 @@
+pp_rate is the rate-files preprocessor
+It take a rate-file and converts countriy / city names in A:tag to their codes.
+
+usage 
+
+pp_rate [infile [outfile]]
+
+If infile is not given /usr/lib/isdn/rate-at.dat is used.
+If outfile is not given .new is appended to infile.
+
+
+After the first run aliases, which were given interactively are rememberd
+in ~/country-alias.

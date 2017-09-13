@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 5.0::19981217::extensions to HTML 4.0//EN" "hmpro5.dtd">
+
+<HTML>
+<!-- -*-html_mode-*- -->
+
+<HEAD>
+<TITLE>@TITLE@ - Info</TITLE>
+<script language="JavaScript">
+<!--
+NS4 = document.layers ? 1 : 0;
+IE4 = document.all ? 1 : 0;
+ver4 = (NS4 || IE4) ? 1 : 0;
+function pl(img)
+{if(!ver4) return 0;
+  var a=new Image(); a.src='/telrate/'+img+'.jpg'; return a;
+}
+eg0=pl("eg0");
+eg1=pl("eg1");
+gm0=pl("gm0");
+gm1=pl("gm1");
+list0=pl("list0");
+list1=pl("list1");
+start0=pl("start0");
+start1=pl("start1");
+function swap(what,on) {
+if(!ver4) return;
+var i=on?"1":"0";
+document[what].src=eval(what+i+'.src');
+}
+// -->
+</script>
+<STYLE TYPE="text/css">
+<!--
+.t {font-family:Sans Serif;font-size:10pt}
+.sm {font-family:Sans Serif;font-size:9pt}
+.in {font-family:Sans Serif;font-size:18pt}
+i {color:#000080}
+h1 {font-family:Courier New,Courier}
+h2,h3,h4,p,td,th,body { font-family:Sans Serif,Arial }
+-->
+</STYLE>
+
+</HEAD>
+
+<BODY BGCOLOR="#ffffe0">
+<H1 ALIGN="center">@TITLE@ - Info</H1>
+<UL>
+<LI><A HREF="#allg">Allgemein</A> </LI>
+<LI><A HREF="#help">Hilfe</A> </LI>
+<LI><A HREF="#calc">Berechnungsmethode</A> </LI>
+<LI><A HREF="#gloss">Glossar</A> </LI>
+<LI><A HREF="#autor">Datenpfleger</A> </LI>
+<LI><A HREF="#prog">Programmautoren</A> </LI>
+</UL>
+<H2><A NAME="allg">Allgemein</A></H2>
+<span class="in">H</span>ier werden Telefonkosten berechnet und zwar
+<ul>
+<li>f&uuml;r ein Einzelgespr&auml;ch
+<li>f&uuml;r einen Gespr&auml;chsmix (mehrere unterschiedliche Gespr&auml;che verschiedener L&auml;nge)
+<li>f&uuml;r einen Gespr&auml;chsmix inklusive allf&auml;lliger Geb&uuml;hren
+</ul>
+und das
+<ul>
+<li>sekundengenau (aber auch durchschittlichen Minutenpreise)
+<li>von ihrem Standort zu einer beliebig anderen Vorwahl
+</ul>
+Das Ergebnis wird in Listen oder Grafiken &uuml;bersichtlich dargestellt.
+<p><span class="in">D</span>etails wie alle Inlands- und Auslandspreise oder Kontaktinformation erhalten Sie jeweils
+bei einem Klick auf die Providerbezeichnung.</p>
+
+<H2><A NAME="help">Hilfe</A></H2>
+<P><span class="in">D</span>ie Eingabemasken f&uuml;r Einzelgespr&auml;che und Gespr&auml;chsmix bieten eine Vielzahl von Eingabe- und
+Auswahlm&ouml;glichkeiten. Die meisten davon sind aber eher selbsterkl&auml;rend. <BR>
+Tats&auml;chlich eingeben m&uuml;ssen Sie nur die Vorwahl, von der aus Sie w&auml;hlen und die Vorwahl des
+gew&uuml;nschten Zieles, alle anderen Felder haben eine Standardeinstellung.<BR>
+Sollten Sie weitere Information ben&ouml;tigen, klicken Sie einfach auf das<IMG SRC="help.gif" HSPACE="4"
+ALIGN="middle" ALT="Fragezeichen" WIDTH="24" HEIGHT="24"> neben dem fraglichen Feld.</P>
+<P><span class="in">E</span>ine &Uuml;bersicht &uuml;ber alle Eingabem&ouml;glichkeiten erhalten Sie <A
+HREF="/@CGIBIN@/telrate.cgi?help=3">hier</A>. <center><IMG SRC="hr.gif" WIDTH="600" HEIGHT="4" ALT="-----"></center> </P>
+
+<H2><A NAME="calc">Berechnungsmethode</A></H2>
+<P><span class="in">D</span>ie Berechnung der gew&uuml;nschten Verbindung erfolgt nach dem selben Takt- und Zonenmodell, wie es der jeweilige
+Provider verwendet. Dabei werden auch Takt- oder Geb&uuml;hrenwechsel wie z.B. um 18<SUP><FONT
+SIZE="-1">00</FONT></SUP> ber&uuml;cksichtigt. <BR>
+Bei Providern, die keinen Sekundentakt verwenden, sind die echten Gepr&auml;chskosten daher oft h&ouml;her als die
+theoretischen, durchschnittlichen Minutenpreise, die normalerweise genannt werden.</P>
+<P><span class="in">D</span>ie Daten k&ouml;nnen nat&uuml;rlich nur so exakt sein, als die Provider Informationen zur Verf&uuml;gung stellen,
+besonders die Zonentabellen sind h&auml;ufig ein Geheimnis der Firmen.
+<BR>Wenn Sie also eine Ungenauigkeit feststellen sollten, teilen Sie <A HREF="#autor">uns</A> das bitte mit. Wir sind
+bem&uuml;ht, die Daten immer auf dem letzten Stand zu halten, was nebenbei bemerkt durch die Dynamik des Marktes nicht
+ganz einfach ist.</P>
+<P> <center><IMG SRC="hr.gif" WIDTH="600" HEIGHT="4" ALT="-----"></center> </P>
+<H2><A NAME="gloss">Glossar</A></H2>
+<DL>
+<DT><span class="in">D</span>urchschnittlicher Minutenpreis</DT>
+<DD>siehe Minutenpreis</DD>
+<DT><span class="in">G</span>espr&auml;chsherstellungsgeb&uuml;hr</DT>
+<DD>F&auml;llt bei jedem Gespr&auml;ch zus&auml;tzlich zu der Gespr&auml;chsgeb&uuml;hr an - unabh&auml;ngig von der
+Gespr&auml;chsl&auml;nge. </DD>
+<DT><span class="in">M</span>indestgespr&auml;chsgeb&uuml;hr</DT>
+<DD>Sie zahlen zumindest diese Geb&uuml;hr - ist Ihr Gespr&auml;ch teurer, fallen keine erh&ouml;hten Kosten an. </DD>
+<DT>Minutenpreis</DT>
+<DD>Vergleichswert f&uuml;r Gespr&auml;chskosten, ohne weitere Geb&uuml;hren - stimmt bestenfalls dann mit den
+wirklichen Kosten &uuml;berein, wenn 60 durch den Takt ohne Rest teilbar ist. </DD>
+<DT><span class="in">S</span>chwund</DT>
+<DD>Die durch die Taktung oder Mindestentgelte verursachte Gespr&auml;chsgeb&uuml;hr.
+<br>Tip: versuchen Sie mal eine <a href ="/@CGIBIN@/telrate.cgi?tel=US&len=5&now=on&tab=GO&_3D=on">5 Sekunden lange Verbindung in die USA</a> (z.B. es
+meldet sich der Anrufbeantworter und Sie legen auf), ob Sie 30g oder 4 Schilling zahlen,
+ist ein sch&ouml;ner Unterschied, besonders wenn das h&auml;ufiger passiert.
+<DT><span class="in">T</span>ag / Zeit</DT>
+<DD>Einige Povider verrechnen pro Tageszeit / Wochentag unterschiedliche Preise, andere haben Einheitspreise. </DD>
+<DT>Takt</DT>
+<DD>Bei jedem Taktimpuls erh&ouml;ht sich der Gespr&auml;chspreis um die Geb&uuml;hreneinheit. Je k&uuml;rzer der Takt,
+umso genauer die Abrechnung. <BR>
+Bei einem Takt von 60 Sekunden und einer durchschnittlichen Gespr&auml;chszeit von einer Minute sind die
+Gespr&auml;chskosten im Schnitt um 50 % h&ouml;her, als bei sekundengenauer Abrechnung. </DD>
+<br>Tip: versuchen Sie folgenden <a href ="/@CGIBIN@/telrate.cgi?from=01&tel0=01&len0=72&oft0=50&dday0=W&tel1=01&len1=%7E72&oft1=50&dday1=W&tab=Tabelle&mix=10&best=30&takt=9999&_3D=on">Gespr&auml;chsmix</a>.
+<DT>Takt 60/1</DT>
+<DD>Sie zahlen auf jeden Fall die erste Minute, auch wenn sie k&uuml;rzer telefonieren, nach der ersten Minute wird
+sekundengenau abgerechnet. </DD>
+<DT>Takt <I>n</I>/<I>m</I></DT>
+<DD>Allgemein, sie zahlen zumindest <I>n</I> Sekunden, am Ende des Gespr&auml;chs ist der Takt dann <I>m</I> Sekunden.
+</DD>
+<DT><span class="in">V</span>ariabler Takt</DT>
+<DD>Die Taktl&auml;nge ist nicht konstant, sondern &auml;ndert sich mit der Tageszeit. </DD>
+<DT><span class="in">Z</span>one</DT>
+<DD>Gebiet mit gleichen Geb&uuml;hren, von Provider zu Provider unterschiedlich. Im Inland verzichten immer mehr
+Provider auf eine Unterteilung in Zonen. </DD>
+</DL>
+<center><IMG SRC="hr.gif" WIDTH="600" HEIGHT="4" ALT="-----"></center> <H2><A NAME="autor">Pfleger der Tarifdaten</A></H2>
+<H3>&Ouml;sterreich</H3>
+<UL>
+<LI><A HREF="mailto:reinelt@eurnet.at">Michael Reinelt</A> </LI>
+<LI><A HREF="mailto:lt@toetsch.at">Leopold T&ouml;tsch</A> </LI>
+</UL>
+<P></P>
+<H3>Deutschland</H3>
+<UL>
+<LI><A HREF="mailto:joe@mbs.gtn.com">Jochen Erwied</A> </LI>
+<LI><A HREF="mailto:akool@isdn4linux.de">Andreas Kool</A> </LI>
+<LI><A HREF="mailto:ASkwar@DigitalProjects.com">Alexander Skwar</A> </LI>
+</UL>
+<H3>Niederlande</H3>
+<UL>
+<LI><A HREF="mailto:paul@isdn4linux.de">Paul Slootman</A> </LI>
+</UL>
+<H2><A NAME="prog">Programmautoren</A></H2>
+<UL>
+<LI><A HREF="mailto:akool@isdn4linux.de">Andreas Kool</A> </LI>
+<LI><A HREF="mailto:reinelt@eurnet.at">Michael Reinelt</A> </LI>
+<LI><A HREF="mailto:lt@toetsch.at">Leopold T&ouml;tsch</A> </LI>
+</UL>
+<center><IMG SRC="hr.gif" WIDTH="600" HEIGHT="4" ALT="-----"> </center>
+    <P>
+    <table width="100%" border=0>
+      <tr align="center">
+	<td>
+	  <A HREF="/telrate/index.html" onmouseover="swap('start',1)" onmouseout="swap('start',0)">
+	    <IMG WIDTH="80" HSPACE="4" HEIGHT="40" BORDER="0" NAME="start" SRC="/telrate/start0.jpg" ALT="Startseite"><br>
+	    <font size="-2">Startseite</font>
+	  </A>
+	</td>
+	<td>
+	  <A HREF="/@CGIBIN@/telrate.cgi" onmouseover="swap('eg',1)" onmouseout="swap('eg',0)">
+	    <IMG WIDTH="80" HSPACE="4" HEIGHT="40" BORDER="0" NAME="eg" SRC="/telrate/eg0.jpg" ALT="Einzelgespr&auml;ch"><br>
+	    <font size="-2">Einzelgespr&auml;ch</font>
+	  </a>
+	</td>
+	<td>
+	  <A HREF="/@CGIBIN@/telrate.cgi?mix=10" onmouseover="swap('gm',1)" onmouseout="swap('gm',0)">
+	    <IMG WIDTH="80" HSPACE="4" HEIGHT="40" BORDER="0" NAME="gm" SRC="/telrate/gm0.jpg" ALT="Gespr&auml;chsmix"><br>
+	    <font size="-2">Gespr&auml;chsmix</font>
+	  </a>
+	</td>
+	<td>
+	  <A HREF="/@CGIBIN@/telrate.cgi?list=1" onmouseover="swap('list',1)" onmouseout="swap('list',0)">
+	    <IMG WIDTH="80" HSPACE="4" HEIGHT="40" BORDER="0" NAME="list" SRC="/telrate/list0.jpg" ALT="Providerliste"><br>
+	    <font size="-2">Providerliste</font>
+	  </a>
+	</td>
+      </tr>
+    </table>
+    </P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,22 @@
+#! /usr/bin/perl
+
+$f= '/usr/src/isdn4k-utils/lib/avon/avons';
+
+open(IN,$f) || die("Can't read $f");
+while (<IN>) {
+  if(/^1/) {
+    chomp;
+    ($cod, $nam) = split(/:/);
+    next if ($nam=~/canada|mexico/i);
+    next if ($cod==1);
+    next if ($nam=~/unassigned/i);
+    next if ($nam=~/^\[/);
+    $nam =~ s/\(.*?\)//;
+    $nam =~ s/all parts of\s+//i;
+    $nam =~ s/, and/,/;
+    $nam =~ s/\s+and/,/;
+    $nam =~ s/\s*,[^,]+$//;
+    $cod =~ s/^1//;
+    print "$cod\t$nam\n";
+  }
+}  

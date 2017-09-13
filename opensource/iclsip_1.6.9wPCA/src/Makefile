@@ -1,0 +1,133 @@
+###############################################################################
+#
+# Makefile for CCL SIP Stack.
+# Experiment by Mac at Nov. 20, 2002
+# Refer to http://www.gnu.org/software/make/manual/html_mono/make.html
+#
+###############################################################################
+
+
+PROJECT_ROOT = .
+include ./make/common.mk
+
+MODULES = cm dx sip
+MODULES_DIR = common adt sip
+
+# add transaction layer if we are building for proxy, or add libraries for UA
+ifneq ($(proxy), )
+	MODULES += Txa
+	MODULES_DIR += Txa
+else
+#	MODULES += sdp rtp sipTx DlgLayer callctrl UACore SessAPI
+#	MODULES_DIR += sdp rtp sipTx DlgLayer callcontrol UACore SessAPI
+	MODULES += sdp rtp sipTx UACore
+	MODULES_DIR += sdp rtp sipTx UACore	
+endif
+
+# add cx_ex and build cx6 if we're using the ipv6 feature
+ifneq ($(IPv6), )
+	MODULES += cx_ex cx6
+	MODULES_DIR += cx_ex low
+else
+	MODULES += cx
+	MODULES_DIR += low
+endif
+
+# I want to pass down IPv6 (always build IPv6 version on UNIXes)
+export IPv6
+
+STACK = cclsip
+#APPS = sipua sipAcc dlgtest UaCoreTest callcontroltest SessAPItest
+APPS = 
+INSTALL_DIR = /Danube/3.0.5/source/user/ifx/IFXAPIs
+SIP_INC_FILES = cclsip.h sip.h sip_cm.h sip_cfg.h sip_url.h sip_req.h \
+		sip_rsp.h sip_tx.h sip_hdr.h sip_bdy.h sip_int.h base64.h
+SDP_INC_FILES = sdp.h sdp_sess.h sdp_to.h sdp_tc.h sdp_tk.h sdp_tb.h \
+	sdp_tses.h sdp_tt.h sdp_tr.h sdp_tz.h sdp_ta.h \
+	sdp_mses.h sdp_tm.h sdp_utl.h sdp_def.h
+CM_INC_FILES = common.h
+
+# delete current target on error
+.DELETE_ON_ERROR:
+
+# enforce target 'clean' even there does exist a file named 'clean'
+.PHONY: clean
+
+# cancel all default implicit rules for 'make'
+.SUFFIXES:
+
+ALL = 
+ifneq ($(words $(MODULES)), 0)
+	ALL+= libs
+endif
+ALL+= $(STACK)
+ifneq ($(words $(APPS)), 0)
+	ALL+= apps
+endif
+
+all: $(ALL)
+
+libs: 
+	echo $(x)
+	for subdir in $(MODULES_DIR); do \
+	  echo making $@ in $$subdir; \
+	  ($(MAKE) -C $$subdir) || exit 1; \
+	done
+
+apps: 
+	for subdir in $(APPS); do \
+	  echo making $@ in $$subdir; \
+	  (cd ../sample/$$subdir && $(MAKE) ) || exit 1; \
+	done
+
+LIB_OUT = $(foreach file, $(MODULES), $(libdir)/lib$(file).a)
+
+$(STACK):
+	cd $(libdir);
+	$(RM) -f $(libdir)/lib$(STACK).a *.o
+	for file in $(LIB_OUT); do \
+	  echo Extracting $$file...; \
+	  $(AR) x $$file; \
+	  $(RM) -f _____*; \
+	done 
+	$(AR) $(ARFLAGS) $(libdir)/lib$(STACK).a *.o 
+	-$(RANLIB) $(libdir)/lib$(STACK).a
+	$(RM) -f *.o
+
+clean:
+	$(RM) -f $(objdir)/*.o
+	$(RM) -f $(objdir)/*.d
+	$(RM) -f $(libdir)/*.a
+	$(RM) -f $(bindir)/*
+	$(RM) -f ../sample/sipua/*.o
+
+install: $(ALL) $(install_libdir)/nul $(install_incdir)/nul
+	$(RM) -f $(install_libdir)/*.a
+	$(RM) -f $(install_incdir)/*.h
+	cp $(libdir)/lib$(STACK).a $(install_libdir)
+	chmod 644 $(libdir)/lib$(STACK).a
+	for file in $(SIP_INC_FILES); do \
+		cp $(PROJECT_ROOT)/sip/$$file $(install_incdir); \
+		chmod 644 $(install_incdir)/$$file; \
+	done
+	for file in $(SDP_INC_FILES); do \
+		cp $(PROJECT_ROOT)/sdp/$$file $(install_incdir); \
+		chmod 644 $(install_incdir)/$$file; \
+	done
+#	for file in $(CM_INC_FILES); do \
+#		cp $(PROJECT_ROOT)/common/$$file $(install_incdir); \
+#		chmod 644 $(install_incdir)/$$file; \
+#	done
+
+$(install_libdir)/nul:
+	if ( test ! -f $(instal_libdir)/nul) ; then \
+		mkdir -p $(install_libdir); \
+		echo "" > $(install_libdir)/nul; \
+	fi
+
+$(install_incdir)/nul:
+	if ( test ! -f $(instal_incdir)/nul) ; then \
+		mkdir -p $(install_incdir); \
+		echo "" > $(install_incdir)/nul; \
+	fi
+# DO NOT DELETE

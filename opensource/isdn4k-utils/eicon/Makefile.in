@@ -1,0 +1,132 @@
+# $Id: Makefile.in,v 1.7 2002/07/19 18:42:01 armin Exp $
+#
+# Makefile for eiconctrl
+# (C) 1997 Fritz Elfert
+# (C) 1998-2000 Armin Schindler
+# (C) 1999,2000 Cytronics & Melware
+#
+
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2 -DUNIX -DLINUX
+INCLUDES		= -I. -Iinclude
+LDFLAGS			= -L../lib @LIBS@
+PROGRAMS		= 
+PROGRAM			= eiconctrl
+DIVALOADPROGRAM		= divaload
+DIVALOGDPROGRAM		= divalogd
+DIVALOGPROGRAM		= divalog
+DIVAPROGRAMS		= $(DIVALOADPROGRAM) $(DIVALOGDPROGRAM) $(DIVALOGPROGRAM)
+MANPAGE			= eiconctrl.8
+INSTALL			= @INSTALL@
+SBINDIR			= @CONFIG_SBINDIR@
+DATA_DIR		= @CONFIG_DATADIR@
+MANDIR			= @CONFIG_MANDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_DATA	= $(INSTALL) -o 0 -g 0 -m 0644
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+CC				= @CC@
+COPTS			= -DDATADIR=\"$(shell echo $(DESTDIR)$(DATA_DIR))\"
+
+ifeq ("@CONFIG_EICONCTRL_DEBUG@","y")
+	COPTS		+= -DDEBUG
+endif
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o $@ $<
+
+PROGRAMS = $(PROGRAM)
+
+ifeq ("@HAVE_NATIVE@","n")
+	PROGRAMS += $(DIVAPROGRAMS)
+endif
+
+all: $(PROGRAMS)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+$(PROGRAM):
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o eiconctrl.o eiconctrl.c 
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o ./divautil/xlog.o ./divautil/xlog.c  
+ifeq ("@HAVE_NATIVE@","n")
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o ./divautil/lindiload.o ./divautil/lindiload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o ./divautil/linload.o ./divautil/linload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o ./divautil/lindownload.o ./divautil/lindownload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL $(COPTS) -c -o linuxcfg.o linuxcfg.c  
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL eiconctrl.o ./divautil/lindiload.o ./divautil/linload.o ./divautil/lindownload.o ./divautil/xlog.o linuxcfg.o $(LDFLAGS) -o $(PROGRAM) 
+else
+	$(CC) $(CFLAGS) $(INCLUDES) -DEICONCTRL eiconctrl.o ./divautil/xlog.o $(LDFLAGS) -o $(PROGRAM) 
+endif
+
+$(DIVALOADPROGRAM):
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/lindiload.o ./divautil/lindiload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/linload.o ./divautil/linload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/lindownload.o ./divautil/lindownload.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o linuxcfg.o linuxcfg.c  
+	$(CC) $(CFLAGS) $(INCLUDES) ./divautil/lindiload.o ./divautil/linload.o ./divautil/lindownload.o linuxcfg.o $(LDFLAGS) -o $(DIVALOADPROGRAM)
+
+$(DIVALOGDPROGRAM):
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/divalogdchr.o ./divautil/divalogdchr.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/loglib.o ./divautil/loglib.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o linuxcfg.o linuxcfg.c  
+	$(CC) $(CFLAGS) $(INCLUDES) ./divautil/divalogdchr.o ./divautil/loglib.o linuxcfg.o $(LDFLAGS) -o $(DIVALOGDPROGRAM)
+
+$(DIVALOGPROGRAM):
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/divalog.o ./divautil/divalog.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/loglib.o ./divautil/loglib.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/idilog.o ./divautil/idilog.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o ./divautil/xlog.o ./divautil/xlog.c  
+	$(CC) $(CFLAGS) $(INCLUDES) $(COPTS) -c -o linuxcfg.o linuxcfg.c  
+	$(CC) $(CFLAGS) $(INCLUDES) ./divautil/divalog.o ./divautil/loglib.o ./divautil/idilog.o ./divautil/xlog.o linuxcfg.o $(LDFLAGS) -o $(DIVALOGPROGRAM)
+
+install-data:
+	mkdir -p $(DESTDIR)$(DATA_DIR)
+	tar xpCfz $(DESTDIR)$(DATA_DIR) firmware/eicon_firm.tgz
+
+install-man: $(PROGRAM).man
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install: all install-man install-data
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+ifeq ("@HAVE_NATIVE@","n")
+	$(INSTALL_PROGRAM) $(DIVALOADPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOADPROGRAM)
+	$(INSTALL_PROGRAM) $(DIVALOGDPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOGDPROGRAM)
+	$(INSTALL_PROGRAM) $(DIVALOGPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOGPROGRAM)
+endif
+
+install-strip: all
+	$(INSTALL_PROGRAM) -s $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+ifeq ("@HAVE_NATIVE@","n")
+	$(INSTALL_PROGRAM) -s $(DIVALOADPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOADPROGRAM)
+	$(INSTALL_PROGRAM) -s $(DIVALOGDPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOGDPROGRAM)
+	$(INSTALL_PROGRAM) -s $(DIVALOGPROGRAM) $(DESTDIR)$(SBINDIR)/$(DIVALOGPROGRAM)
+endif
+
+uninstall:
+	rm -f $(DESTDIR)$(SBINDIR)/$(PROGRAM) $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+ifeq ("@HAVE_NATIVE@","n")
+	rm -f $(DESTDIR)$(SBINDIR)/$(DIVALOADPROGRAM)
+	rm -f $(DESTDIR)$(SBINDIR)/$(DIVALOGDPROGRAM)
+	rm -f $(DESTDIR)$(SBINDIR)/$(DIVALOGPROGRAM)
+endif
+
+clean:
+	rm -f *.o *~ $(PROGRAM)
+	rm -f $(DIVALOADPROGRAM)
+	rm -f $(DIVALOGDPROGRAM)
+	rm -f $(DIVALOGPROGRAM)
+	rm -f ./divautil/*.o ./divautil/*~
+
+distclean: clean
+	rm -f config.status config.cache config.log config.h Makefile eiconctrl.man

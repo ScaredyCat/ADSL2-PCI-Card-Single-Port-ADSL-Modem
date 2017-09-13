@@ -1,0 +1,1911 @@
+## $Id: Makefile.in,v 1.203 2002/07/19 19:03:55 keil Exp $
+##
+## ISDN accounting for isdn4linux.
+##
+## Copyright 1995 .. 2000 by Andreas Kool (akool@isdn4linux.de)
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2, or (at your option)
+## any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+##
+## $Log: Makefile.in,v $
+## Revision 1.203  2002/07/19 19:03:55  keil
+## First changes to compile utils without /usr/src/linux/drivers/isdn
+##
+## Revision 1.202  2002/06/07 15:39:23  akool
+## isdnlog-4.59: New TK-Providers added
+##
+## Revision 1.201  2002/04/22 19:07:49  akool
+## isdnlog-4.58:
+##   - Patches from Enrico Scholz <enrico.scholz@informatik.tu-chemnitz.de>
+##     - uninitialized variables in
+##     	- isdn4k-utils/isdnlog/connect/connect.c
+##       - isdn4k-utils/isdnlog/tools/rate.c
+##     - return() of a auto-variable in
+##       - isdn4k-utils/isdnlog/isdnlog/user_access.c
+##
+##     *Many* thanks to Enrico!!
+##
+##   - New rates as of April, 23. 2002 (EUR 0,014 / minute long distance call ;-)
+##
+## Revision 1.200  2002/03/01 19:33:52  akool
+## isdnlog-4.57:
+##  - implemented
+##      0190054 Calladin
+## 		 0190076 Telestunt
+## 		 0190082 Talk Light
+##  - current rates as of today
+##
+## Revision 1.199  2002/01/26 20:43:30  akool
+## isdnlog-4.56:
+##  - dont set the Provider-field of the MySQL DB to "?*? ???" on incoming calls
+##
+##  - implemented
+##      0190029 Telebillig        (17,5 Cent/minute to any cellphone)
+## 		 0190031 Teledump
+## 		 0190035 TeleDiscount
+## 		 0190037 Fonfux            (1,5 Cent/minute german-call)
+## 		 0190087 Phonecraft
+##
+##    you have to change:
+##
+##    1. "/etc/isdn/rate.conf" - add the following:
+##
+##      P:229=0		#E Telebillig
+## 		 P:231=0		#E Teledump
+## 		 P:235=0		#E TeleDiscount
+## 		 P:237=0		#E Fonfux
+## 		 P:287=0		#E Phonecraft
+##
+##    2. "/etc/isdn/isdn.conf" (or "/etc/isdn/callerid.conf"):
+##
+## 	     VBN = 010
+##
+## 	   to
+##
+## 	     VBN = 010:01900
+##
+## Revision 1.198  2001/12/30 17:17:40  akool
+## isdnlog-4.55:
+##   Tatahhh: isdnlog speaks Euro :-)
+##
+## 	Many thanks to Bernhard Schmidt (berni@birkenwald.de)!
+##
+## 	** At least, you have to install "/usr/lib/isdn/rate-de.dat"
+##   ** and modify your "/etc/isdn/isdn.conf" or "/etc/isdn/callerid.conf"
+##   ** to read:
+##   **   [ISDNLOG]
+## 	**	   CURRENCY = 0.062,EUR
+##
+## I wish all of you a happy new year!
+##
+## Revision 1.197  2001/11/22 15:09:01  akool
+## isdnlog-4.54
+##   added new prefix 01505 Quam (new german cellphone company)
+##
+## Revision 1.196  2001/10/15 19:51:47  akool
+## isdnlog-4.53
+##  - verified Leo's correction of Paul's byte-order independent Patch to the CDB
+##    (now it's Ok, Leo, and *many* thanks to Paul!)
+##  - "rate-de.dat" updated
+##  - added "-Q" option to isdnlog
+##
+## Revision 1.195  2001/06/12 13:56:47  paul
+## zone files are now created byte-order independent, so:
+## - creating the zone files works on sparc
+## - CDB files created on e.g. intel can be used without problem om sparc
+## Our copy of CDB has also been modified for this.
+##
+## Revision 1.194  2001/04/03 19:15:28  akool
+## isdnlog-4.52
+##  - small bugfix within "isdnbill" (segfault ...)
+##
+## Revision 1.193  2001/03/13 14:39:30  leo
+## added IIOCNETGPN support for 2.0 kernels
+## s. isdnlog/kernel_2_0/README for more information (isdnlog 4.51)
+##
+## Revision 1.192  2001/01/31 11:58:00  leo
+## Fixed length of Alias in ilp.c
+##
+## Revision 1.191  2001/01/14 12:13:49  akool
+## isdnlog-4.49
+##  - added more Euracom decodings
+##
+##  - added new prefixes
+##      0151 - Germany cellphone D1
+##      0152 - Germany cellphone D2
+##      0163 - Germany cellphone Eplus
+##    to "country-de.dat"
+##
+##  - removed Freecall "0130" and "Germany cellphone C"
+##
+## Revision 1.190  2000/12/23 10:36:29  leo
+## Fixed makeing with ILP
+##
+## Revision 1.189  2000/12/21 09:56:46  leo
+## modilp, ilp - show duration, bugfix
+## s. isdnlog/ilp/README for more information isdnlog 4.48
+##
+## Revision 1.188  2000/12/15 14:36:04  leo
+## modilp, ilp - B-chan usage in /proc/isdnlog
+## s. isdnlog/ilp/README for more information
+##
+## Revision 1.187  2000/12/12 21:07:32  akool
+## isdnlog-4.46
+##   010050: Drillisch AG -> ElisaNet GmbH
+##
+##     WARNING: Please update your "/etc/isdn/rate.conf"
+##     	     (see "samples/rate.conf.de" for details)
+## 	     Drillisch "Superregionen" is no longer a CbC service ...
+##              only "P:150=0 #E ElisaNet" is CbC by now!
+##
+## Revision 1.186  2000/12/07 16:25:27  leo
+## Pauls 2.2/2.4 patch, rate.c: 4.45
+##
+## Revision 1.185  2000/11/19 14:31:52  leo
+## Work around a SIGSEGV with R:Tags - V4.44
+##
+## Revision 1.184  2000/09/19 16:29:33  leo
+## avoid double includes
+##
+## Revision 1.183  2000/09/08 10:41:54  paul
+## Replaced {,} expansions, those only work with SHELL = /bin/bash,
+## not with a POSIX-compliant shell.
+##
+## Revision 1.182  2000/09/05 17:27:36  paul
+## runtime selection of country behaviour; version 4.42
+##
+## Revision 1.181  2000/09/01 06:30:20  paul
+## Now install country-de.dat as country.dat; renaming the source can be done by
+## someone who is more experienced with CVS.
+## Default value for country.dat changed in isdnconf.c; also default zonefile
+## etc. changed from .gdbm to .cdb
+##
+## Revision 1.180  2000/08/27 15:18:19  akool
+## isdnlog-4.41
+##  - fix a fix within Change_Channel()
+##
+##  - isdnlog/tools/dest/CDB_File_Dump.pm ... fixed bug with duplicates like _DEMD2
+##
+##    After installing this, please rebuild dest.cdb by:
+##    $ cd isdnlog/tools/dest
+##    $ rm dest.cdb
+##    $ make alldata
+##    $ su -c "cp ./dest.cdb /usr/lib/isdn"
+##
+##  - isdnlog/isdnlog/processor.c ... fixed warning
+##
+## Revision 1.179  2000/08/17 21:34:42  akool
+## isdnlog-4.40
+##  - README: explain possibility to open the "outfile=" in Append-Mode with "+"
+##  - Fixed 2 typos in isdnlog/tools/zone/de - many thanks to
+##      Tobias Becker <tobias@talypso.de>
+##  - detect interface (via IIOCNETGPN) _before_ setting CHARGEINT/HUPTIMEOUT
+##  - isdnlog/isdnlog/processor.c ... fixed wrong init of IIOCNETGPNavailable
+##  - isdnlog/isdnrep/isdnrep.c ... new option -S summary
+##  - isdnlog/isdnrep/rep_main.c
+##  - isdnlog/isdnrep/isdnrep.1.in
+##  - isdnlog/tools/NEWS
+##  - isdnlog/tools/cdb/debian ... (NEW dir) copyright and such from orig
+##  - new "rate-de.dat" from sourceforge (hi and welcome: Who is "roro"?)
+##
+## Revision 1.178  2000/08/14 18:41:43  akool
+## isdnlog-4.39
+##  - fixed 2 segfaults in processor.c
+##  - replaced non-GPL "cdb" with "freecdb_0.61.tar.gz"
+##
+## Revision 1.177  2000/08/06 13:06:52  akool
+## isdnlog-4.38
+##  - isdnlog now uses ioctl(IIOCNETGPN) to associate phone numbers, interfaces
+##    and slots in "/dev/isdninfo".
+##    This requires a Linux-Kernel 2.2.12 or better.
+##    Support for older Kernel's are implemented.
+##    If IIOCNETGPN is available, the entries "INTERFACE = xxx" in
+##    "/etc/isdn/isdn.conf" are obsolete.
+##  - added 01013:Tele2 totally Freecall on 12. and 13. August 2000
+##  - resolved *any* warning's from "rate-de.dat" (once more ...)
+##  - Patch from oliver@escape.de (Oliver Wellnitz) against
+##  	 "Ziffernwahl verschluckt Nummern"
+##
+##    **Please "make clean" before using this version of isdnlog!!**
+##
+## Revision 1.176  2000/08/04 11:08:26  paul
+## Also remove *.gdbm in distclean target
+##
+## Revision 1.175  2000/08/01 20:31:28  akool
+## isdnlog-4.37
+## - removed "09978 Schoenthal Oberpfalz" from "zone-de.dtag.cdb". Entry was
+##   totally buggy.
+##
+## - isdnlog/isdnlog/processor.c ... added err msg for failing IIOCGETCPS
+##
+## - isdnlog/tools/cdb       ... (NEW DIR) cdb Constant Data Base
+## - isdnlog/Makefile.in     ... cdb Constant Data Base
+## - isdnlog/configure{,.in}
+## - isdnlog/policy.h.in
+## - isdnlog/FAQ                 sic!
+## - isdnlog/NEWS
+## - isdnlog/README
+## - isdnlog/tools/NEWS
+## - isdnlog/tools/dest.c
+## - isdnlog/tools/isdnrate.man
+## - isdnlog/tools/zone/Makefile.in
+## - isdnlog/tools/zone/configure{,.in}
+## - isdnlog/tools/zone/config.h.in
+## - isdnlog/tools/zone/common.h
+## - isdnlog/tools/dest/Makefile.in
+## - isdnlog/tools/dest/configure{,.in}
+## - isdnlog/tools/dest/makedest
+## - isdnlog/tools/dest/CDB_File_Dump.{pm,3pm} ... (NEW) writes cdb dump files
+## - isdnlog/tools/dest/mcdb ... (NEW) convert testdest dumps to cdb dumps
+##
+## - isdnlog/tools/Makefile ... clean:-target fixed
+## - isdnlog/tools/telnum{.c,.h} ... TELNUM.vbn was not always initialized
+## - isdnlog/tools/rate.c ... fixed bug with R:tag and isdnlog not always
+##                            calculating correct rates (isdnrate worked)
+##
+##  s. isdnlog/tools/NEWS on details for using cdb. and
+##     isdnlog/README 20.a Datenbanken for a note about databases (in German).
+##
+##  As this is the first version with cdb and a major patch there could be
+##  still some problems. If you find something let me know. <lt@toetsch.at>
+##
+## Revision 1.174  2000/07/24 17:02:56  akool
+## isdnlog-4.36
+##  - added new provider 01017.com
+##  - removed too long CbC-entries in "samples/isdn.conf.de"
+##
+## Revision 1.173  2000/07/21 18:46:24  akool
+## isdnlog-4.35
+##  - isdnlog/aclocal.m4 ... postgre95 in mysql, thx Daniel Pluta
+##  - isdnlog/configure  ... -""-
+##  - country-de.dat enhanced
+##  - new provider One.Tel added (starts next week)
+##
+## Revision 1.172  2000/07/19 19:41:32  akool
+## isdnlog-4.34
+##   - since around Linux-2.2.16 signals are *not* reset to their default
+##     behavior when raised :-( (bug or feature?).
+##   - isdnlog/rate-pl.dat ... changes from Karsten Voss <vossdoku@gmx.net>
+##   - populated "samples/isdn.conf.de" with all german Internet-by-Call numbers
+##
+## Revision 1.171  2000/07/18 22:26:02  akool
+## isdnlog-4.33
+##   - isdnlog/tools/rate.c ... Bug fixed
+##   - isdnlog/isdnlog/isdnlog.c ... check for callfmt
+##   - "rate-de.dat" corrected (duplicates removed)
+##
+## Revision 1.170  2000/07/17 16:34:20  akool
+## isdnlog-4.32
+##  - added new Prefixes 0160 (D1) and 0162 (D2) to "country-de.dat"
+##  - corrected all german mobil phone numbers (many thank's to
+##    Tobias Becker <i4l-projects@talypso.de> for the tool "fix_rates.pl")
+##  - isdnlog/tools/rate.c ... New R:-tag
+##  - isdnlog/tools/isdnrate.c ... print warnings from getRate if verbose
+##  - isdnlog/tools/rate-files.man ... New R:-tag
+##  - isdnlog/tools/NEWS ... New R:-tag
+##  - isdnlog/README ... New R:-tag
+##  - isdnlog/samples/rtest.dat ... example rate-file for testing R:
+##
+## Revision 1.169  2000/07/16 00:46:00  akool
+## isdnlog-4.31
+##  - isdnlog/rate-pl.dat ... changed charges
+##  - isdnlog/tools/zone/lu/code	... NEW please check this - thx
+##
+## Revision 1.168  2000/07/07 19:38:29  akool
+## isdnlog-4.30
+##  - isdnlog/tools/rate-at.c ... 1001 onlinetarif
+##  - isdnlog/rate-at.dat ... 1001 onlinetarif
+##  - isdnlog $ILABEL / $OLABEL may now contain "\t" (Tab)
+##  - isdnlog/isdnlog/processor.c ... clearchan .pay = -1
+##  - added
+##     - freenet PowerTarif
+##     - DTAG flatrate
+##       if you really want to use a flatrate please start isdnlog with the
+##       Option "-h86399 -I86399" to hangup after 23 hour's 59 seconds ;-)
+##
+##     - new Provider 01094:Startec, 010012:11883 Telecom, 010021:FITphone
+##
+## Revision 1.167  2000/06/20 17:09:58  akool
+## isdnlog-4.29
+##  - better ASN.1 display
+##  - many new rates
+##  - new Option "isdnlog -Q" dump's "/etc/isdn/isdn.conf" into a SQL database
+##
+## Revision 1.166  2000/06/02 12:14:26  akool
+## isdnlog-4.28
+##  - isdnlog/tools/rate.c ... patch by Hans Klein, unknown provider
+##  - fixed RR on HFC-cards
+##
+## Revision 1.165  2000/05/27 22:13:05  akool
+## isdnlog-4.26
+##  - isdnlog support for Switzerland added
+##    *MANY* thanks to gandalf <gandalf@szene.ch>
+##
+## Revision 1.164  2000/05/27 14:55:29  akool
+## isdnlog-4.25
+##  - isdnlog/isdnrep/isdnrep.c ... bugfix for wrong providers and duration
+##                                  by Hans Klein on d.a.c.i
+##
+##  - isdnlog/tools/rate-at.c ... 1046 Neu, 1002 ab 1.6., 1024
+##  - isdnlog/rate-at.dat ... 1046 Neu, 1002 ab 1.6., 1024
+##  - new rates 01078:3U and 01024:Super_24
+##
+## Revision 1.163  2000/05/16 16:24:02  akool
+## isdnlog-4.24
+## - isdnlog/tools/rate.c ... bugfix for eXceptions w/o z-entry
+##
+## Revision 1.162  2000/05/15 19:00:19  akool
+## - isdnlog/tools/rate-at.c ... 1001, 1012
+##
+## Revision 1.161  2000/05/13 14:22:15  akool
+## isdnlog-4.22
+##  - isdnlog/country-de.dat  ... Patch from Andreas Barth
+##  - isdnlog/rate-at.dat  ... 1001, 1012
+##  - isdnlog/tools/rate.c ... 1001, 1012
+##
+##  - rate-de.dat : added "CompuServeOffice"
+##
+## Revision 1.160  2000/05/07 11:29:31  akool
+## isdnlog-4.21
+##  - isdnlog/tools/rate.{c,h} ...     new X:tag for exclusions
+##  - isdnlog/tools/telnum.c ... 	    new X:tag for exclusions
+##  - isdnlog/tools/rate-files.man ... -"-
+##  - isdnlog/tools/NEWS ... 	    -"-
+##  - isdnlog/README ... 		    -"-
+##  - new rates
+##
+## Revision 1.159  2000/04/30 17:31:24  akool
+## isdnlog-4.20
+##  - isdnlog/tools/rate-at.c ... patch for max (new rates)
+##  - isdnlog/rate-at.dat  ... max new rates
+##  - isdnlog/country-de.dat ... _TRMF, some duplicate N entries
+##  - isdnlog/tools/NEWS ... hint for rebuilding dest.gdbm
+##
+##  => ** Please rebuild the destination database! **
+##
+## Revision 1.158  2000/04/25 20:12:20  akool
+## isdnlog-4.19
+##   isdnlog/isdnlog/processor.c ... abclcr (-d0) turn off
+##   isdnlog/tools/dest.c ... isKey
+##
+## Revision 1.157  2000/04/13 11:02:17  paul
+## Prevent "ls: zone-nl-*.db: No such file or directory" error during make install
+##
+## Revision 1.156  2000/04/02 17:35:06  akool
+## isdnlog-4.18
+##  - isdnlog/isdnlog/isdnlog.8.in  ... documented hup3
+##  - isdnlog/tools/dest.c ... _DEMD1 not recogniced as key
+##  - mySQL Server version 3.22.27 support
+##  - new rates
+##
+## Revision 1.155  2000/03/19 20:26:56  akool
+## isdnlog-4.17
+##  - new rates
+##  - Provider 01080:Telegate aus "samples/rate.conf.de" entfernt, Dienst wurde
+##    eingestellt
+##  - isdnlog/tools/tools.c  ... fixed sarea ($17, $18)
+##
+## Revision 1.154  2000/03/09 18:50:01  akool
+## isdnlog-4.16
+##  - isdnlog/samples/isdn.conf.no ... changed VBN
+##  - isdnlog/isdnlog/isdnlog.c .. ciInterval
+##  - isdnlog/isdnlog/processor.c .. ciInterval
+##  - isdnlog/tools/tools.h .. ciInterval, abclcr conf option
+##  - isdnlog/tools/isdnconf.c .. ciInterval, abclcr conf option
+##  - isdnlog/tools/isdnrate.c .. removed a warning
+##  - isdnlog/NEWS ... updated
+##  - isdnlog/README ... updated
+##  - isdnlog/isdnlog/isdnlog.8.in ... updated
+##  - isdnlog/isdnlog/isdnlog.5.in ... updated
+##  - isdnlog/samples/provider ... NEW
+##
+##    ==> Please run a make clean, and be sure to read isdnlog/NEWS for changes
+##    ==> and new features.
+##
+## Revision 1.153  2000/03/06 07:03:19  akool
+## isdnlog-4.15
+##   - isdnlog/tools/tools.h ... moved one_call, sum_calls to isdnrep.h
+##     ==> DO A 'make clean' PLEASE
+##   - isdnlog/tools/telnum.c ... fixed a small typo
+##   - isdnlog/isdnrep/rep_main.c ... incl. dest.h
+##   - isdnlog/isdnrep/isdnrep.c ... fixed %l, %L
+##   - isdnlog/isdnrep/isdnrep.h ... struct one_call, sum_calls are now here
+##
+##   Support for Norway added. Many thanks to Tore Ferner <torfer@pvv.org>
+##     - isdnlog/rate-no.dat  ... NEW
+##     - isdnlog/holiday-no.dat  ... NEW
+##     - isdnlog/samples/isdn.conf.no ... NEW
+##     - isdnlog/samples/rate.conf.no ... NEW
+##
+## Revision 1.152  2000/02/28 19:53:54  akool
+## isdnlog-4.14
+##   - Patch from Roland Rosenfeld <roland@spinnaker.de> fix for isdnrep
+##   - isdnlog/tools/rate.c ... epnum
+##   - isdnlog/tools/rate-at.c ... new rates
+##   - isdnlog/rate-at.dat
+##   - isdnlog/tools/rate-files.man ... %.3f
+##   - doc/Configure.help ... unknown cc
+##   - isdnlog/configure.in ... unknown cc
+##   - isdnlog/.Config.in ... unknown cc
+##   - isdnlog/Makefile.in ... unknown cc
+##   - isdnlog/tools/dest/Makefile.in ... LANG => DEST_LANG
+##   - isdnlog/samples/rate.conf.pl ... NEW
+##   - isdnlog/samples/isdn.conf.pl ... NEW
+##   - isdnlog/rate-pl.dat ... NEW
+##   - isdnlog/tools/isdnrate.c ... fixed -P pid_dir, restarts on HUP now
+##   - isdnlog/tools/isdnrate.man ... SIGHUP documented
+##
+## Revision 1.151  2000/02/22 20:04:09  akool
+## isdnlog-4.13
+##  - isdnlog/tools/rate-at.c ... chg. 1003
+##  - isdnlog/tools/country.c ... no dupl. area warning
+##  - isdnlog/rate-at.dat ... chg. 1003
+##  - isdnlog/tools/dest/pp_rate ... added 'q'
+##  - isdnlog/country-de.dat ... splitted _INM*
+##
+##  - isdnlog/tools/rate.c ... getSpecial, vbn2prefix fixed, include
+##  - isdnlog/tools/dest/pp_rate ... include
+##  - isdnlog/tools/rate-files.man ... include
+##
+##  - new rates, Services (S:, N:) reenabled
+##
+## Revision 1.150  2000/02/20 19:03:07  akool
+## isdnlog-4.12
+##  - ABC_LCR enhanced
+##  - country-de.dat more aliases
+##  - new rates
+##  - isdnlog/Makefile.in ... defined NATION
+##  - isdnlog/isdnlog/processor.c ... msn patch for NL
+##  - isdnlog/tools/isdnconf.c ... default config
+##
+## Revision 1.149  2000/02/12 23:50:12  keil
+## Fix some syntax error in install
+##
+## Revision 1.148  2000/02/12 16:40:21  akool
+## isdnlog-4.11
+##  - isdnlog/Makefile.in ... sep install-targets, installs samples, no isdnconf
+##  - isdnlog/samples/rate.conf.{lu,nl} ... NEW
+##  - isdnlog/samples/isdn.conf.lu ... chg provider
+##  - isdnlog/samples/stop ... chg \d,\d => \d.\d
+##  - isdnlog/samples/isdnlog.isdnctrl0.options ... NEW
+##  - isdnlog/samples/isdnlog.users ... NEW
+##  - isdnlog/country-de.dat ... _DEMF again
+##  - isdnlog/isdnlog/processor.c ... LCR
+##  - isdnlog/tools/isdnrate.c ... fmt of s
+##
+##    Old config is not installed anymore, to acomplish this do
+##
+##    make install-old-conf
+##    make install
+##
+##    A running isdnlog is now HUP-ed not KILL-ed
+##
+## Revision 1.147  2000/02/11 10:41:50  akool
+## isdnlog-4.10
+##  - Set CHARGEINT to 11 if < 11
+##  - new Option "-dx" controls ABC_LCR feature (see README for infos)
+##  - new rates
+##
+## Revision 1.146  2000/02/07 20:32:38  akool
+## isdnlog-4.09
+##   - NEW: 01078:3U and 010050:Drillisch foreign countries
+##   - isdnlog/isdnrep/isdnrep.c ... moved hist, provider ok again
+##   - isdnlog/isdnrep/CHANGES.isdnrep ... NEW (old changes)
+##   - isdnlog/isdnlog/isdnlog.8.in ... addded signals
+##   - isdnlog/README ... upd. core (SIGSEGV), files
+##
+## Revision 1.145  2000/02/03 18:24:49  akool
+## isdnlog-4.08
+##   isdnlog/tools/rate.c ... LCR patch again
+##   isdnlog/tools/isdnrate.c ... LCR patch again
+##   isdnbill enhanced/fixed
+##   DTAG AktivPlus fixed
+##
+## Revision 1.144  2000/02/02 22:43:08  akool
+## isdnlog-4.07
+##  - many new rates per 1.2.2000
+##
+## Revision 1.143  2000/01/26 20:19:38  akool
+## isdnlog-4.06
+##
+##  - isdnlog/Makefile.in ... make install copied / to /etc/isdn sometimes
+##  - new "rate-de.dat" - the first one
+##      from our new cvs-Server at sourceforge.net!
+##
+## Revision 1.142  2000/01/24 23:06:20  akool
+## isdnlog-4.05
+##  - ABC_LCR tested and fixed. It's really working now, Detlef!
+##  - Patch from Hans Klein <hansi.klein@net-con.net>
+##    German-"Verzonungstabelle" fixed
+##  - new "zone-de-dtag.gdbm" generated
+##
+## Revision 1.141  2000/01/23 22:31:13  akool
+## isdnlog-4.04
+##  - Support for Luxemburg added:
+##   - isdnlog/country-de.dat ... no +352 1 luxemburg city
+##   - isdnlog/rate-lu.dat ... initial LU version NEW
+##   - isdnlog/holiday-lu.dat ... NEW - FIXME
+##   - isdnlog/.Config.in  ... LU support
+##   - isdnlog/configure.in ... LU support
+##   - isdnlog/samples/isdn.conf.lu ... LU support NEW
+##
+##  - German zone-table enhanced
+##   - isdnlog/tools/zone/de/01033/mk ...fixed, with verify now
+##   - isdnlog/tools/zone/redzone ... fixed
+##   - isdnlog/tools/zone/de/01033/mzoneall ... fixed, faster
+##   - isdnlog/tools/zone/mkzonedb.c .... data Version 1.21
+##
+##  - Patch from Philipp Matthias Hahn <pmhahn@titan.lahn.de>
+##   - PostgreSQL SEGV solved
+##
+##  - Patch from Armin Schindler <mac@melware.de>
+##   - Eicon-Driver Support for isdnlog
+##
+## Revision 1.140  2000/01/16 12:36:58  akool
+## isdnlog-4.03
+##  - Patch from Gerrit Pape <pape@innominate.de>
+##    fixes html-output if "-t" option of isdnrep is omitted
+##  - Patch from Roland Rosenfeld <roland@spinnaker.de>
+##    fixes "%p" in ILABEL and OLABEL
+##
+## Revision 1.139  2000/01/12 23:22:50  akool
+## - isdnlog/tools/holiday.c ... returns ERVERYDAY for '*'
+## - FAQ/configure{,.in} ...  test '==' => '='
+## - isdnlog/tools/dest/configure{,.in} ...  test '==' => '='
+## - isdnlog/tools/dest/Makefile.in ...  test '==' => '='
+## - isdnlog/tools/zone/configure{,.in} ...  test '==' => '='
+##
+## - isdnlog/tools/rate-at.c ... P:1069
+## - isdnlog/rate-at.dat ... P:1069
+## - isdnlog/country-de.dat ... _DEMF
+##
+## - many new rates
+## - more EURACOM sequences decoded
+##
+## Revision 1.138  2000/01/01 15:05:22  akool
+## isdnlog-4.01
+##  - first Y2K-Bug fixed
+##
+## Revision 1.137  1999/12/31 13:57:17  akool
+## isdnlog-4.00 (Millenium-Edition)
+##  - Oracle support added by Jan Bolt (Jan.Bolt@t-online.de)
+##  - resolved *any* warnings against rate-de.dat
+##  - Many new rates
+##  - CREDITS file added
+##
+## Revision 1.136  1999/12/24 14:17:02  akool
+## isdnlog-3.81
+##  - isdnlog/tools/NEWS
+##  - isdnlog/tools/telrate/info.html.in  ... bugfix
+##  - isdnlog/tools/telrate/telrate.cgi.in ... new Service query
+##  - isdnlog/tools/telrate/Makefile.in ... moved tmp below telrate
+##  - isdnlog/samples/rate.conf.at ... fixed
+##  - isdnlog/tools/rate-at.c ... some changes
+##  - isdnlog/rate-at.dat ... ditto
+##  - isdnlog/tools/Makefile ... added path to pp_rate
+##  - isdnlog/tools/rate.{c,h}  ... getServiceNames, Date-Range in T:-Tag
+##  - isdnlog/tools/isdnrate.c ... fixed sorting of services, -X52 rets service names
+##  - isdnlog/tools/rate-files.man ... Date-Range in T:-Tag, moved from doc
+##  - isdnlog/tools/isdnrate.man ... moved from doc
+##  - doc/Makefile.in ... moved man's from doc to tools
+##  - isdnlog/Makefile.in ... man's, install isdn.conf.5
+##  - isdnlog/configure{,.in} ... sed, awk for man's
+##  - isdnlog/tools/zone/Makefile.in ... dataclean
+##  - isdnlog/tools/dest/Makefile.in ... dataclean
+##  - isdnlog/isdnlog/isdnlog.8.in ... upd
+##  - isdnlog/isdnlog/isdn.conf.5.in ... upd
+##
+## Revision 1.135  1999/12/19 20:24:44  akool
+## isdnlog-3.80
+##   - resolved most of the Warnings
+##   - enhanced "isdnbill"
+##
+## Revision 1.134  1999/12/17 22:51:52  akool
+## isdnlog-3.79
+##  - isdnlog/isdnrep/isdnrep.{c,h} ... error -handling, print_msg
+##  - isdnlog/isdnrep/rep_main.c
+##  - isdnlog/isdnrep/isdnrep.1.in
+##  - isdnlog/tools/rate.c  ... dupl entry in rate.conf
+##  - isdnlog/tools/NEWS
+##  - isdnlog/tools/isdnrate.c
+##  - isdnlog/tools/dest/configure{,.in}
+##  - isdnlog/tools/zone/configure{,.in}
+##
+## Revision 1.133  1999/12/16 23:08:26  akool
+## isdnlog-3.78
+##  - isdnlog/tools/isdnrate.c ... new sOcket option
+##  - isdnlog/tools/NEWS ... new sOcket option
+##  - doc/isdnrate.man ... ditto
+##  - isdnlog/tools/telrate/config.in ... ditto
+##  - isdnlog/tools/telrate/telrate.cgi.in ... ditto
+##  - isdnlog/tools/telrate/README-telrate ditto
+##
+## Revision 1.132  1999/12/14 21:02:36  akool
+## isdnlog-3.77
+##   corrected german zone file
+##
+## Revision 1.131  1999/12/12 17:21:09  akool
+## isdnlog-3.76
+## - isdnlog/Makefile.in ... added dep for Makefile.in
+## - isdnlog/tools/zone/configure{,.in} ... better error msg if bzip2 not found
+## - isdnlog/tools/dest/configure{,.in} ... better error msg if bzip2 not found
+## - tools for generating a fully expanded zonefile added
+##
+## Revision 1.130  1999/12/12 14:35:51  akool
+## isdnlog-3.75
+##  - ABC_LCR support (untested)
+##
+## Revision 1.129  1999/12/07 20:07:20  akool
+## isdnlog-3.74
+##   new rates, faster isdnbill
+##
+## Revision 1.128  1999/12/02 19:28:02  akool
+## isdnlog-3.73
+##  - isdnlog/tools/telrate/telrate.cgi.in faster
+##  - doc/isdnrate.man ... -P
+##  - isdnlog/tools/isdnrate.c ... -P
+##  - isdnlog/tools/NEWS ... -P
+##  - isdnlog/tools/rate-at.c ... 194040
+##  - isdnlog/rate-at.dat
+##  - isdnlog/tools/rate.c ... SIGSEGV
+##
+## Revision 1.127  1999/12/01 21:47:23  akool
+## isdnlog-3.72
+##   - new rates for 01051
+##   - next version of isdnbill
+##
+##   - isdnlog/tools/telnum.c ... cleanup
+##   - isdnlog/tools/isdnrate.c ... -s Service
+##   - isdnlog/tools/rate.{c,h} ... -s
+##   - isdnlog/tools/NEWS ... -s
+##   - doc/isdnrate.man .. updated -o, -s
+##   - doc/rate-files.man ... updated
+##   - isdnlog/tools/dest/README.makedest ... updt.
+##   - isdnlog/isdnlog/isdnlog.8.in .. updt.
+##
+##   Telrate
+##   - isdnlog/tools/telrate/README-telrate
+##   - isdnlog/tools/telrate/config.in 	NEW
+##   - isdnlog/tools/telrate/configure 	NEW
+##   - isdnlog/tools/telrate/Makefile.in 	NEW
+##   - isdnlog/tools/telrate/index.html.in 	was index.html
+##   - isdnlog/tools/telrate/info.html.in 	was info.html
+##   - isdnlog/tools/telrate/telrate.cgi.in 	was telrate.cgi
+##   - isdnlog/tools/telrate/leo.sample 	NEW sample config
+##   - isdnlog/tools/telrate/alex.sample 	NEW sample config
+##
+## Revision 1.126  1999/11/28 19:32:41  akool
+## isdnlog-3.71
+##
+## Revision 1.125  1999/11/28 11:15:41  akool
+## isdnlog-3.70
+##   - patch from Jochen Erwied (j.erwied@gmx.de)
+##
+## Revision 1.124  1999/11/27 19:24:17  akool
+## isdnlog-3.69
+##
+## Revision 1.123  1999/11/25 22:58:38  akool
+## isdnlog-3.68
+##  - new utility "isdnbill" added
+##  - patch from Jochen Erwied (j.erwied@gmx.de)
+##  - new rates
+##  - small fixes
+##
+## Revision 1.122  1999/11/16 18:09:36  akool
+## isdnlog-3.67
+##   isdnlog-3.66 writes wrong provider number into it's logfile isdn.log
+##   there is a patch and a repair program available at
+##   http://www.toetsch.at/linux/i4l/i4l-3_66.htm
+##
+## Revision 1.121  1999/11/12 20:50:48  akool
+## isdnlog-3.66
+##   - Patch from Jochen Erwied <mack@joker.e.ruhr.de>
+##       makes the "-O" and "-C" options usable at the same time
+##
+##   - Workaround from Karsten Keil <kkeil@suse.de>
+##       segfault in ASN.1 parser
+##
+##   - isdnlog/tools/rate.c ... ignores "empty" providers
+##   - isdnlog/tools/telnum.h ... fixed TN_MAX_PROVIDER_LEN
+##
+## Revision 1.120  1999/11/08 21:09:36  akool
+## isdnlog-3.65
+##   - added "B:" Tag to "rate-xx.dat"
+##
+## Revision 1.119  1999/11/07 13:29:25  akool
+## isdnlog-3.64
+##  - new "Sonderrufnummern" handling
+##
+## Revision 1.118  1999/11/05 20:21:59  akool
+## isdnlog-3.63
+##  - many new rates
+##  - cosmetics
+##
+## Revision 1.117  1999/11/02 21:01:56  akool
+## isdnlog-3.62
+##  - many new rates
+##  - next try to fix "Sonderrufnummern"
+##
+## Revision 1.116  1999/10/30 14:38:46  akool
+## isdnlog-3.61
+##
+## Revision 1.115  1999/10/29 19:45:59  akool
+## isdnlog-3.60
+##  - sucessfully ported/tested to/with:
+##      - Linux-2.3.24 SMP
+##      - egcs-2.91.66
+##    using -DBIG_PHONE_NUMBERS
+##
+##  - finally added working support for HFC-card in "echo mode"
+##    try this:
+##      hisaxctrl bri 10 1
+##      hisaxctrl bri 12 1
+##      isdnlog -21 -1
+## -----------------^^ new option
+##
+## Revision 1.114  1999/10/29 12:43:02  akool
+## fixed "make install"
+##
+## Revision 1.113  1999/10/28 18:36:43  akool
+## isdnlog-3.59
+##  - problems with gcc-2.7.2.3 fixed
+##  - *any* startup-warning solved/removed (only 4u, Karsten!)
+##  - many new rates
+##
+## Revision 1.112  1999/10/26 18:17:11  akool
+## isdnlog-3.58
+##   - big cleanup ( > 1.3 Mb removed!)
+##   - v0.02 of destination support - better, but not perfect
+##     (does't work with gcc-2.7.2.3 yet - use egcs!)
+##
+## Revision 1.111  1999/10/25 18:33:13  akool
+## isdnlog-3.57
+##   WARNING: Experimental version!
+##   	   Please use isdnlog-3.56 for production systems!
+##
+## Revision 1.110  1999/10/22 19:57:58  akool
+## isdnlog-3.56 (for Karsten)
+##
+## Revision 1.109  1999/09/26 10:55:19  akool
+## isdnlog-3.55
+##   - Patch from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+##     added hup3 to option file
+##   - changed country-de.dat to ISO 3166 Countrycode / Airportcode
+##
+## Revision 1.108  1999/09/22 09:02:59  akool
+## isdnlog-3.54
+##
+## Revision 1.107  1999/09/19 14:16:26  akool
+## isdnlog-3.53
+##
+## Revision 1.106  1999/09/16 20:27:21  akool
+## isdnlog-3.52
+##
+## Revision 1.105  1999/09/13 09:09:42  akool
+## isdnlog-3.51
+##   - changed getProvider() to not return NULL on unknown providers
+##     many thanks to Matthias Eder <mateder@netway.at>
+##   - corrected zone-processing when doing a internal -> world call
+##
+## Revision 1.104  1999/09/11 22:28:22  akool
+## isdnlog-3.50
+##   added 3. parameter to "-h" Option: Controls CHARGEHUP for providers like
+##   DTAG (T-Online) or AOL.
+##   Many thanks to Martin Lesser <m-lesser@lesser-com.de>
+##
+## Revision 1.103  1999/09/09 11:21:04  akool
+## isdnlog-3.49
+##
+## Revision 1.102  1999/08/29 10:28:11  akool
+## isdnlog-3.48
+##   cosmetics
+##
+## Revision 1.101  1999/08/27 20:56:28  akool
+## Patch from Kai
+##
+## Revision 1.100  1999/08/25 17:05:57  akool
+## isdnlog-3.46
+##
+## Revision 1.99  1999/08/21 21:11:31  akool
+## rate-de.dat :: V:1.10-Germany [21-Aug-1999 22:26:53]
+##
+## Revision 1.98  1999/08/20 19:27:18  akool
+## isdnlog-3.45
+##  - removed about 1 Mb of (now unused) data files
+##  - replaced areacodes and "vorwahl.dat" support by zone databases
+##  - fixed "Sonderrufnummern"
+##  - rate-de.dat :: V:1.10-Germany [20-Aug-1999 21:23:27]
+##
+## Revision 1.97  1999/08/04 23:11:15  akool
+## isdnlog-3.44
+##
+## Revision 1.96  1999/07/25 15:57:01  akool
+## isdnlog-3.43
+##   added "telnum" module
+##
+## Revision 1.95  1999/07/24 08:43:38  akool
+## isdnlog-3.42
+##   rate-de.dat 1.02-Germany [18-Jul-1999 10:44:21]
+##   better Support for Ackermann Euracom
+##   WEB-Interface for isdnrate
+##   many small fixes
+##
+## Revision 1.94  1999/07/10 21:37:36  akool
+## isdnlog-3.41
+##   rate-de.dat V:1.02-Germany [10-Jul-1999 23:32:27]
+##   country-de.dat V:1.02-Germany [10-Jul-1999 23:32:36]
+##   added all "zone-*" files in binary mode
+##
+## Revision 1.93  1999/07/03 10:23:55  akool
+## fixed Makefile
+##
+## Revision 1.92  1999/06/30 17:17:10  akool
+## isdnlog Version 3.39
+##
+## Revision 1.91  1999/06/28 19:14:59  akool
+## isdnlog Version 3.38
+##   - new utility "isdnrate" started
+##
+## Revision 1.90  1999/06/26 12:25:04  akool
+## isdnlog Version 3.37
+##   fixed some warnings
+##
+## Revision 1.89  1999/06/26 10:11:06  akool
+## isdnlog Version 3.36
+##  - EGCS 1.1.2 bug correction from Nima <nima_ghasseminejad@public.uni-hamburg.de>
+##  - zone-1.11
+##
+## Revision 1.88  1999/06/21 19:32:08  akool
+## isdnlog Version 3.35
+##   zone data for .nl (many thanks to Paul!)
+##
+##   WARNING: This version of isdnlog dont even compile! *EXPERIMENTAL*!!
+##
+## Revision 1.87  1999/06/16 19:11:54  akool
+## isdnlog Version 3.34
+##   fixed some memory faults
+##
+## Revision 1.86  1999/06/15 20:02:54  akool
+## isdnlog Version 3.33
+##   - big step in using the new zone files
+##   - *This*is*not*a*production*ready*isdnlog*!!
+##   - Maybe the last release before the I4L meeting in Nuernberg
+##
+## Revision 1.85  1999/06/13 14:06:53  akool
+## isdnlog Version 3.32
+##
+##  - new option "-U1" (or "ignoreCOLP=1") to ignore CLIP/COLP Frames
+##  - TEI management decoded
+##
+## Revision 1.84  1999/06/09 19:57:22  akool
+## isdnlog Version 3.31
+##  - Release 0.91 of zone-Database (aka "Verzonungstabelle")
+##  - "rate-de.dat" V:1.02-Germany [09-Jun-1999 21:45:26]
+##
+## Revision 1.83  1999/06/03 18:49:36  akool
+## isdnlog Version 3.30
+##  - rate-de.dat V:1.02-Germany [03-Jun-1999 19:49:22]
+##  - small fixes
+##
+## Revision 1.82  1999/05/22 10:17:50  akool
+## isdnlog Version 3.29
+##
+##  - processing of "sonderrufnummern" much more faster
+##  - detection for sonderrufnummern of other provider's implemented
+##    (like 01929:FreeNet)
+##  - Patch from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+##  - Patch from Markus Schoepflin <schoepflin@ginit.de>
+##  - easter computing corrected
+##  - rate-de.dat 1.02-Germany [22-May-1999 11:37:33] (from rate-CVS)
+##  - countries-de.dat 1.02-Germany [22-May-1999 11:37:47] (from rate-CVS)
+##  - new option "-B" added (see README)
+##    (using "isdnlog -B16 ..." isdnlog now works in the Netherlands!)
+##
+## Revision 1.81  1999/05/13 11:38:43  akool
+## isdnlog Version 3.28
+##
+##  - "-u" Option corrected
+##  - "ausland.dat" removed
+##  - "countries-de.dat" fully integrated
+##      you should add the entry
+##      "COUNTRYFILE = /usr/lib/isdn/countries-de.dat"
+##      into section "[ISDNLOG]" of your config file!
+##  - rate-de.dat V:1.02-Germany [13-May-1999 12:26:24]
+##  - countries-de.dat V:1.02-Germany [13-May-1999 12:26:26]
+##
+## Revision 1.80  1999/05/11 20:27:01  akool
+## isdnlog Version 3.27
+##
+##  - country matching fixed (and faster)
+##
+## Revision 1.79  1999/05/10 20:37:11  akool
+## isdnlog Version 3.26
+##
+##  - fixed the "0800" -> free of charge problem
+##  - *many* additions to "ausland.dat"
+##  - first relase of "rate-de.dat" from the CVS-Server of the I4L-Tarif-Crew
+##
+## Revision 1.78  1999/05/09 18:23:42  akool
+## isdnlog Version 3.25
+##
+##  - README: isdnconf: new features explained
+##  - rate-de.dat: many new rates from the I4L-Tarifdatenbank-Crew
+##  - added the ability to directly enter a country-name into "rate-xx.dat"
+##
+## Revision 1.77  1999/05/04 19:32:02  akool
+## isdnlog Version 3.24
+##
+##  - fully removed "sondernummern.c"
+##  - removed "gcc -Wall" warnings in ASN.1 Parser
+##  - many new entries for "rate-de.dat"
+##  - better "isdnconf" utility
+##
+## Revision 1.76  1999/04/30 19:07:28  akool
+## isdnlog Version 3.23
+##
+##  - changed LCR probing duration from 181 seconds to 153 seconds
+##  - "rate-de.dat" filled with May, 1. rates
+##
+## Revision 1.75  1999/04/29 19:02:56  akool
+## isdnlog Version 3.22
+##
+##  - T-Online corrected
+##  - more online rates for rate-at.dat (Thanks to Leopold Toetsch <lt@toetsch.at>)
+##
+## Revision 1.74  1999/04/26 22:11:33  akool
+## isdnlog Version 3.21
+##
+##  - CVS headers added to the asn* files
+##  - repaired the "4.CI" message directly on CONNECT
+##  - HANGUP message extended (CI's and EH's shown)
+##  - reactivated the OVERLOAD message
+##  - rate-at.dat extended
+##  - fixes from Michael Reinelt
+##
+## Revision 1.73  1999/04/25 17:34:27  akool
+## isdnlog Version 3.20
+##
+##  - added ASN.1 Parser from Kai Germaschewski <kai@thphy.uni-duesseldorf.de>
+##    isdnlog now fully support all fac- and cf-messages!
+##
+##  - some additions to the "rate-de.dat"
+##
+## Revision 1.72  1999/04/19 21:25:06  akool
+## change permissions of "countries-at.dat"
+##
+## Revision 1.71  1999/04/19 19:23:14  akool
+## isdnlog Version 3.18
+##
+## - countries-at.dat added
+## - spelling corrections in "countries-de.dat" and "countries-us.dat"
+## - LCR-function of isdnconf now accepts a duration (isdnconf -c .,duration)
+## - "rate-at.dat" and "rate-de.dat" extended/fixed
+## - holiday.c and rate.c fixed (many thanks to reinelt@eunet.at)
+##
+## Revision 1.70  1999/04/17 14:10:36  akool
+## isdnlog Version 3.17
+##
+## - LCR functions of "isdnconf" fixed
+## - HINT's fixed
+## - rate-de.dat: replaced "1-5" with "W" and "6-7" with "E"
+##
+## Revision 1.69  1999/04/16 14:39:07  akool
+## isdnlog Version 3.16
+##
+## - more syntax checks for "rate-xx.dat"
+## - isdnrep fixed
+##
+## Revision 1.68  1999/04/15 19:14:09  akool
+## isdnlog Version 3.15
+##
+## - reenable the least-cost-router functions of "isdnconf"
+##   try "isdnconf -c <areacode>" or even "isdnconf -c ."
+## - README: "rate-xx.dat" documented
+## - small fixes in processor.c and rate.c
+## - "rate-de.dat" optimized
+## - splitted countries.dat into countries-de.dat and countries-us.dat
+##
+## Revision 1.67  1999/04/14 13:16:01  akool
+## isdnlog Version 3.14
+##
+## - "make install" now install's "rate-xx.dat", "rate.conf" and "ausland.dat"
+## - "holiday-xx.dat" Version 1.1
+## - many rate fixes (Thanks again to Michael Reinelt <reinelt@eunet.at>)
+##
+## Revision 1.66  1999/04/10 16:34:57  akool
+## isdnlog Version 3.13
+##
+## WARNING: This is pre-ALPHA-dont-ever-use-Code!
+## 	 "tarif.dat" (aka "rate-xx.dat"): the next generation!
+##
+## You have to do the following to test this version:
+##   cp /usr/src/isdn4k-utils/isdnlog/holiday-de.dat /etc/isdn
+##   cp /usr/src/isdn4k-utils/isdnlog/rate-de.dat /usr/lib/isdn
+##   cp /usr/src/isdn4k-utils/isdnlog/samples/rate.conf.de /etc/isdn/rate.conf
+##
+## After that, add the following entries to your "/etc/isdn/isdn.conf" or
+## "/etc/isdn/callerid.conf" file:
+##
+## [ISDNLOG]
+## SPECIALNUMBERS = /usr/lib/isdn/sonderrufnummern.dat
+## HOLIDAYS       = /usr/lib/isdn/holiday-de.dat
+## RATEFILE       = /usr/lib/isdn/rate-de.dat
+## RATECONF       = /etc/isdn/rate.conf
+##
+## Please replace any "de" with your country code ("at", "ch", "nl")
+##
+## Good luck (Andreas Kool and Michael Reinelt)
+##
+## Revision 1.65  1999/04/03 12:46:39  akool
+## - isdnlog Version 3.12
+## - "%B" tag in ILABEL/OLABEL corrected
+## - isdnlog now register's incoming calls when there are no free B-channels
+##   (idea from sergio@webmedia.es)
+## - better "samples/rate.conf.de" (suppress provider without true call-by-call)
+## - "tarif.dat" V:1.17 [03-Apr-99]
+## - Added EWE-Tel rates from Reiner Klaproth <rk1@msjohan.dd.sn.schule.de>
+## - isdnconf can now be used to generate a Least-cost-router table
+##   (try "isdnconf -c .")
+## - isdnlog now simulate a RELEASE COMPLETE if nothing happpens after a SETUP
+## - CHARGEMAX Patches from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+##
+## Revision 1.64  1999/03/25 19:39:41  akool
+## - isdnlog Version 3.11
+## - make isdnlog compile with egcs 1.1.7 (Bug report from Christophe Zwecker <doc@zwecker.com>)
+##
+## Revision 1.63  1999/03/24 19:37:29  akool
+## - isdnlog Version 3.10
+## - moved "sondernnummern.c" from isdnlog/ to tools/
+## - "holiday.c" and "rate.c" integrated
+## - NetCologne rates from Oliver Flimm <flimm@ph-cip.uni-koeln.de>
+## - corrected UUnet and T-Online rates
+##
+## Revision 1.62  1999/03/20 16:54:37  akool
+## isdnlog 3.09 : support for all Internet-by-call numbers
+##
+## Revision 1.61  1999/03/20 14:32:29  akool
+## - isdnlog Version 3.08
+## - more tesion)) Tarife from Michael Graw <Michael.Graw@bartlmae.de>
+## - use "bunzip -f" from Frank Elsner <Elsner@zrz.TU-Berlin.DE>
+## - show another "cheapest" hint if provider is overloaded ("OVERLOAD")
+## - "make install" now makes the required entry
+##     [GLOBAL]
+##     AREADIFF = /usr/lib/isdn/vorwahl.dat
+## - README: Syntax description of the new "rate-at.dat"
+## - better integration of "sondernummern.c" from mario.joussen@post.rwth-aachen.de
+## - server.c: buffer overrun fix from Michael.Weber@Post.RWTH-Aachen.DE (Michael Weber)
+##
+## Revision 1.60  1999/03/16 17:37:08  akool
+## - isdnlog Version 3.07
+## - Michael Reinelt's patch as of 16Mar99 06:58:58
+## - fix a fix from yesterday with sondernummern
+## - ignore "" COLP/CLIP messages
+## - dont show a LCR-Hint, if same price
+##
+## Revision 1.59  1999/03/15 21:27:30  akool
+## - isdnlog Version 3.06
+## - README: explain some terms about LCR, corrected "-c" Option of "isdnconf"
+## - isdnconf: added a small LCR-feature - simply try "isdnconf -c 069"
+## - isdnlog: dont change CHARGEINT, if rate is't known!
+## - sonderrufnummern 1.02 [15-Mar-99] :: added WorldCom
+## - tarif.dat 1.09 [15-Mar-99] :: added WorldCom
+## - isdnlog now correctly handles the new "Ortstarif-Zugang" of UUnet
+##
+## Revision 1.58  1999/03/14 14:26:10  akool
+## - isdnlog Version 3.05
+## - new Option "-u1" (or "ignoreRR=1")
+## - added version information to "sonderrufnummern.dat"
+## - added debug messages if sonderrufnummern.dat or tarif.dat could not be opened
+## - sonderrufnummern.dat V 1.01 - new 01805 rates
+##
+## Revision 1.57  1999/03/14 12:15:56  akool
+## - isdnlog Version 3.04
+## - general cleanup
+## - new layout for "rate-xx.dat" and "holiday-xx.dat" files from
+##     Michael Reinelt <reinelt@eunet.at>
+##     unused by now - it's a work-in-progress !
+## - bugfix for Wolfgang Siefert <siefert@wiwi.uni-frankfurt.de>
+##     The Agfeo AS 40 (Software release 2.1b) uses AOC_AMOUNT, not AOC_UNITS
+## - bugfix for Ralf G. R. Bergs <rabe@RWTH-Aachen.DE> - 0800/xxx numbers
+##     are free of charge ;-)
+## - tarif.dat V 1.08 - new mobil-rates DTAG
+##
+## Revision 1.56  1999/03/11 09:21:58  paul
+## fixed problems with yesterday's commit
+##
+## Revision 1.55  1999/03/10 08:35:48  paul
+## use DATADIR from "make config" phase instead of hardcoded /usr/lib/isdn
+##
+## Revision 1.54  1999/03/07 18:18:21  akool
+## - new 01805 tarif of DTAG
+## - new March 1999 tarife
+## - added new provider "01051 Telecom"
+## - fixed a buffer overrun from Michael Weber <Michael.Weber@Post.RWTH-Aachen.DE>
+## - fixed a bug using "sondernnummern.c"
+## - fixed chargeint change over the time
+## - "make install" now install's "sonderrufnummern.dat", "tarif.dat",
+##   "vorwahl.dat" and "tarif.conf"! Many thanks to
+##   Mario Joussen <mario.joussen@post.rwth-aachen.de>
+## - Euracom Frames would now be ignored
+## - fixed warnings in "sondernnummern.c"
+## - "10plus" messages no longer send to syslog
+##
+## Revision 1.53  1999/02/28 19:32:17  akool
+## Fixed a typo in isdnconf.c from Andreas Jaeger <aj@arthur.rhein-neckar.de>
+## CHARGEMAX fix from Oliver Lauer <Oliver.Lauer@coburg.baynet.de>
+## isdnrep fix from reinhard.karcher@dpk.berlin.fido.de (Reinhard Karcher)
+## "takt_at.c" fixes from Ulrich Leodolter <u.leodolter@xpoint.at>
+## sondernummern.c from Mario Joussen <mario.joussen@post.rwth-aachen.de>
+## Reenable usage of the ZONE entry from Schlottmann-Goedde@t-online.de
+## Fixed a typo in callerid.conf.5
+##
+## Revision 1.52  1999/01/10 15:22:43  akool
+##  - "message = 0" bug fixed (many thanks to
+##    Sebastian Kanthak <sebastian.kanthak@muehlheim.de>)
+##  - CITYWEEKEND via config-file possible
+##  - fixes from Michael Reinelt <reinelt@eunet.at>
+##  - fix a typo in the README from Sascha Ziemann <szi@aibon.ping.de>
+##  - Charge for .at optimized by Michael Reinelt <reinelt@eunet.at>
+##  - first alpha-Version of the new chargeinfo-Database
+##    ATTENTION: This version requires the following manual steps:
+##      cp /usr/src/isdn4k-utils/isdnlog/tarif.dat /usr/lib/isdn
+##      cp /usr/src/isdn4k-utils/isdnlog/samples/tarif.conf /etc/isdn
+##
+## Revision 1.51  1998/12/29 14:51:37  paul
+## added isdnconf manpage
+##
+## Revision 1.50  1998/12/01 16:57:09  paul
+## support for .in manpages
+##
+## Revision 1.49  1998/11/24 20:50:59  akool
+##  - changed my email-adress
+##  - new Option "-R" to supply the preselected provider (-R24 -> Telepassport)
+##  - made Provider-Prefix 6 digits long
+##  - full support for internal S0-bus implemented (-A, -i Options)
+##  - isdnlog now ignores unknown frames
+##  - added 36 allocated, but up to now unused "Auskunft" Numbers
+##  - added _all_ 122 Providers
+##  - Patch from Jochen Erwied <mack@Joker.E.Ruhr.DE> for Quante-TK-Anlagen
+##    (first dialed digit comes with SETUP-Frame)
+##
+## Revision 1.48  1998/11/07 17:12:45  akool
+## Final cleanup. This _is_ isdnlog-3.00
+##
+## Revision 1.47  1998/11/05 19:09:42  akool
+##  - Support for all the new L2 frames from HiSax 3.0d (RR, UA, SABME and
+##    tei management)
+##  - CityWeekend reimplemented
+##    Many thanks to Rainer Gallersdoerfer <gallersd@informatik.rwth-aachen.de>
+##    for the tip
+##  - more providers
+##  - general clean-up
+##
+## Revision 1.46  1998/11/01 08:49:22  akool
+##  - fixed "configure.in" problem with NATION_*
+##  - DESTDIR fixes (many thanks to Michael Reinelt <reinelt@eunet.at>)
+##  - isdnrep: Outgoing calls ordered by Zone/Provider/MSN corrected
+##  - new Switch "-i" -> running on internal S0-Bus
+##  - more providers
+##  - "sonderrufnummern.dat" extended (Frag Fred, Telegate ...)
+##  - added AVM-B1 to the documentation
+##  - removed the word "Teles" from the whole documentation ;-)
+##
+## Revision 1.45  1998/10/16 12:38:04  keil
+## fixes to compile and install under 2.0.36
+##
+## Revision 1.44  1998/10/13 22:17:09  luethje
+## isdnlog: evaluate the variable PATH for program starts.
+##
+## Revision 1.43  1998/10/03 18:05:48  akool
+##  - processor.c, takt_at.c : Patch from Michael Reinelt <reinelt@eunet.at>
+##    try to guess the zone of the calling/called party
+##
+##  - isdnrep.c : cosmetics (i hope, you like it, Stefan!)
+##
+## Revision 1.42  1998/09/27 11:47:21  akool
+## fix segfault of isdnlog after each RELASE
+##
+## Revision 1.41  1998/09/26 18:28:32  akool
+##  - quick and dirty Call-History in "-m" Mode (press "h" for more info) added
+##    - eat's one more socket, Stefan: sockets[3] now is STDIN, FIRST_DESCR=4 !!
+##  - Support for tesion)) Baden-Wuerttemberg Tarif
+##  - more Providers
+##  - Patches from Wilfried Teiken <wteiken@terminus.cl-ki.uni-osnabrueck.de>
+##    - better zone-info support in "tools/isdnconf.c"
+##    - buffer-overrun in "isdntools.c" fixed
+##  - big Austrian Patch from Michael Reinelt <reinelt@eunet.at>
+##    - added $(DESTDIR) in any "Makefile.in"
+##    - new Configure-Switches "ISDN_AT" and "ISDN_DE"
+##      - splitted "takt.c" and "tools.c" into
+##          "takt_at.c" / "takt_de.c" ...
+##          "tools_at.c" / "takt_de.c" ...
+##    - new feature
+##        CALLFILE = /var/log/caller.log
+##        CALLFMT  = %b %e %T %N7 %N3 %N4 %N5 %N6
+##      in "isdn.conf"
+##  - ATTENTION:
+##      1. "isdnrep" dies with an seg-fault, if not HTML-Mode (Stefan?)
+##      2. "isdnlog/Makefile.in" now has hardcoded "ISDN_DE" in "DEFS"
+##      	should be fixed soon
+##
+## Revision 1.40  1998/06/14 15:33:42  akool
+## AVM B1 support (Layer 3)
+## Telekom's new currency DEM 0,121 supported
+## Disable holiday rates #ifdef ISDN_NL
+## memory leak in "isdnrep" repaired
+##
+## Revision 1.39  1998/06/07 21:07:50  akool
+## - Accounting for the following new providers implemented:
+##     o.tel.o, Tele2, EWE TEL, Debitel, Mobilcom, Isis, NetCologne,
+##     TelePassport, Citykom Muenster, TelDaFax, Telekom, Hutchison Telekom,
+##     tesion)), HanseNet, KomTel, ACC, Talkline, Esprit, Interoute, Arcor,
+##     WESTCom, WorldCom, Viag Interkom
+##
+##     Code shamelessly stolen from G.Glendown's (garry@insider.regio.net)
+##     program http://www.insider.org/tarif/gebuehr.c
+##
+## - Telekom's 10plus implemented
+##
+## - Berechnung der Gebuehrenzone implementiert
+##   (CityCall, RegioCall, GermanCall, GlobalCall)
+##   The entry "ZONE" is not needed anymore in the config-files
+##
+##   you need the file
+##     http://swt.wi-inf.uni-essen.de/~omatthes/tgeb/vorwahl2.exe
+##   and the new entry
+##     [GLOBAL]
+##       AREADIFF = /usr/lib/isdn/vorwahl.dat
+##   for that feature.
+##
+##   Many thanks to Olaf Matthes (olaf.matthes@uni-essen.de) for the
+##   Data-File and Harald Milz for his first Perl-Implementation!
+##
+## - Accounting for all "Sonderrufnummern" (0010 .. 11834) implemented
+##
+##   You must install the file
+##     "isdn4k-utils/isdnlog/sonderrufnummern.dat.bz2"
+##   as "/usr/lib/isdn/sonderrufnummern.dat"
+##   for that feature.
+##
+## ATTENTION: This is *NO* production-code! Please test it carefully!
+##
+## Revision 1.38  1998/05/10 22:11:47  luethje
+## Added support for VORWAHLEN2.EXE
+##
+## Revision 1.37  1998/03/29 23:17:47  luethje
+## mySQL-Patch of Sascha Matzke
+##
+## Revision 1.36  1998/03/29 19:54:04  luethje
+## idnrep: added html feature (incoming/outgoing calls)
+##
+## Revision 1.35  1998/03/15 22:35:44  tsbogend
+## not every CPU is from Intel (greetings from Digital :-))
+##
+## Revision 1.34  1998/03/08 11:42:27  luethje
+## I4L-Meeting Wuerzburg final Edition, golden code - Service Pack number One
+##
+## Revision 1.33  1997/10/26 23:14:38  fritz
+## Get rid of including ../.config in Makefile
+## Now all configuration is done in configure.
+## Moved depend depency from install to build
+## where it belongs.
+##
+## Revision 1.32  1997/09/26 09:13:01  fritz
+## Set SUBDIRS always to overwrite environment.
+##
+## Revision 1.31  1997/09/07 00:43:06  luethje
+## create new error messages for isdnrep
+##
+## Revision 1.30  1997/06/21 13:48:55  fritz
+## Create ./bin if necessary
+##
+## Revision 1.29  1997/06/15 23:49:28  luethje
+## Some new variables for the isdnlog
+## isdnlog starts programs noe with the file system rights
+## bugfixes
+##
+## Revision 1.28  1997/05/25 19:40:43  luethje
+## isdnlog:  close all files and open again after kill -HUP
+## isdnrep:  support vbox version 2.0
+## isdnconf: changes by Roderich Schupp <roderich@syntec.m.EUnet.de>
+## conffile: ignore spaces at the end of a line
+##
+## Revision 1.27  1997/05/20 19:00:51  luethje
+## some primitve changes
+##
+## Revision 1.26  1997/05/19 22:58:02  luethje
+## - bugfix: it is possible to install isdnlog now
+## - improved performance for read files for vbox files and mgetty files.
+## - it is possible to decide via config if you want to use avon or
+##   areacode.
+##
+## Revision 1.25  1997/05/17 01:08:11  luethje
+## some bugfixes
+##
+## Revision 1.24  1997/05/15 22:32:41  luethje
+## new version
+##
+## Revision 1.23  1997/05/11 22:59:14  luethje
+## new version
+##
+## Revision 1.22  1997/05/10 01:20:52  luethje
+## some primitive changes
+##
+## Revision 1.21  1997/05/09 23:30:37  luethje
+## isdnlog: new switch -O
+## isdnrep: new format %S
+## bugfix in handle_runfiles()
+##
+## Revision 1.20  1997/05/06 22:13:21  luethje
+## bugfixes in HTML-Code of the isdnrep
+##
+## Revision 1.19  1997/05/05 21:22:14  luethje
+## new version
+##
+## Revision 1.18  1997/05/04 20:19:34  luethje
+## README completed
+## isdnrep finished
+## interval-bug fixed
+##
+## Revision 1.17  1997/04/20 23:44:46  luethje
+## some primitve changes
+##
+## Revision 1.16  1997/04/20 22:55:14  luethje
+## isdnrep has new features (Documentation will follow ;-)):
+##   -variable format string
+##   -can create html output (option -w1 or ln -s isdnrep isdnrep.cgi)
+##    idea and design by Dirk Staneker (dirk.staneker@student.uni-tuebingen.de
+## bugfix of processor.c from akool
+##
+## Revision 1.15  1997/04/17 23:29:39  luethje
+## new structure of isdnrep completed.
+##
+## Revision 1.14  1997/04/16 22:22:43  luethje
+## some bugfixes, README completed
+##
+## Revision 1.13  1997/04/15 22:36:58  luethje
+## allows the character `"' in the program argument like the shell.
+## some bugfixes.
+##
+## Revision 1.12  1997/04/15 00:19:53  luethje
+## replace variables: some bugfixes, README comleted
+##
+## Revision 1.11  1997/04/10 23:32:04  luethje
+## Added the feature, that environment variables are allowed in the config files.
+##
+## Revision 1.10  1997/04/08 21:56:42  luethje
+## Create the file isdn.conf
+## some bug fixes for pid and lock file
+## make the prefix of the code in `isdn.conf' variable
+##
+## Revision 1.9  1997/04/08 00:02:05  luethje
+## Bugfix: isdnlog is running again ;-)
+## isdnlog creates now a file like /var/lock/LCK..isdnctrl0
+## README completed
+## Added some values (countrycode, areacode, lock dir and lock file) to
+## the global menu
+##
+## Revision 1.8  1997/04/06 21:07:25  luethje
+## renamed file isdnrep.c to rep_main.c and function.c to isdnrep.c
+##
+## Revision 1.7  1997/04/03 22:32:36  luethje
+## copy the old config files into the new dirctory and create the new config files.
+##
+## Revision 1.6  1997/04/03 08:56:58  fritz
+## Bugfix: Changes for bash-2.00.0:
+##         workaround for empty list in for-loops.
+##         workaround for missing allow_null_glob_expansion
+## Bugfix: CONFIG_HASX11 was not reset on non-X11 systems.
+##
+## Revision 1.5  1997/03/24 22:52:00  luethje
+## isdnrep completed.
+##
+## Revision 1.4  1997/03/24 04:03:12  fritz
+## Added uninstall target, changed rootperm target.
+##
+## Revision 1.3  1997/03/24 01:42:31  fritz
+## Added capbility to override CFLAGS from commandline.
+##
+## Revision 1.2  1997/03/23 23:11:48  luethje
+## improved performance
+##
+## Revision 1.1  1997/03/23 19:22:33  fritz
+## Make isdnlog configurable.
+##
+## Revision 2.6.37  1997/02/11  17:53:19  akool
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+SHELL			:= /bin/sh
+GENCONF   := install/genconf
+
+#
+# autoconf generic stuff
+#
+PREFIX			:= @prefix@
+EXEC_PREFIX		:= @exec_prefix@
+BINDIR			:= @bindir@
+SBINDIR			:= @sbindir@
+LIBEXECDIR		:= @libexecdir@
+DATADIR			:= @datadir@
+SYSCONFDIR		:= @sysconfdir@
+SHAREDSTATEDIR		:= @sharedstatedir@
+LOCALSTATEDIR		:= @localstatedir@
+LIBDIR			:= @libdir@
+INFODIR			:= @infodir@
+INCLUDEDIR		:= @includedir@
+OLDINCLUDEDIR		:= @oldincludedir@
+MANDIR			:= @mandir@
+MAN1DIR			:= $(MANDIR)/man1
+MAN5DIR			:= $(MANDIR)/man5
+MAN8DIR			:= $(MANDIR)/man8
+MAN1EXT			:= .1
+MAN5EXT			:= .5
+MAN8EXT			:= .8
+SRCDIR			:= @srcdir@
+
+#
+# end of autoconf generic stuff
+#
+
+#
+# autoconf isdnlog specific stuff
+#
+INSTALL			:= @INSTALL@
+INSTALL_DIR		:= $(INSTALL) -m 0755 -o 0 -g 0 -d
+INSTALL_SBIN		:= $(INSTALL) -m 0700 -o 0 -g 0
+INSTALL_BIN		:= $(INSTALL) -m 0755 -o 0 -g 0
+INSTALL_DATA		:= $(INSTALL) -m 0644 -o 0 -g 0
+
+BZIP2                   := @BZIP2@
+BUNZIP2                 := $(BZIP2) -f -d
+AWK				= @AWK@
+SED				= @SED@
+
+LIBISDNDIR		:= @LIBISDNDIR@
+I4LCONFDIR		:= @I4LCONFDIR@
+CONFFILE		:= @CONFFILE@
+CALLERIDFILE		:= @CALLERIDFILE@
+OLDCONFDIR		:= @OLDCONFDIR@
+OLDCONFFILE		:= @OLDCONFFILE@
+RUNDIR			:= @RUNDIR@
+DBMLIB			:= @DBMLIB@
+POSTGRES		:= @POSTGRES@
+POSTGRESDIR		:= @POSTGRESDIR@
+MYSQLDB			:= @MYSQLDB@
+MYSQLDIR		:= @MYSQLDIR@
+ORACLE			:= @ORACLE@
+SERV_PORT		:= @SERV_PORT@
+USERFILE		:= @USERFILE@
+CDBEXTRALIBS		:= @CDBEXTRALIBS@
+DEFS			:=
+SUBDIRS			:= tools/zone tools/dest
+
+NATION			:= @NATION@
+
+export LOGFILE		:= @LOGFILE@
+export COUNTRYCODE	:= @COUNTRYCODE@
+export COUNTRYPREFIX	:= @COUNTRYPREFIX@
+export AREAPREFIX	:= @AREAPREFIX@
+
+export ILABEL        := %b %e %T %ICall to tei %t from %N2 on %n2
+export OLABEL        := %b %e %T %Itei %t calling %N2 with %n2
+export CHARGEMAX     := 1000.00
+
+ifndef ROOTDIR
+export ROOTDIR=$(shell pwd)
+MAKELIB  =1
+else
+#PREFIXDIR=$(ROOTDIR)
+endif
+
+PREFIXDIR=.
+
+ifeq ($(MAKELIB),1)
+SUBDIRS     += $(LIBISDNDIR)
+endif
+
+# export CFLAGS  = -Wall -pipe -O6 -fomit-frame-pointer -fforce-mem -fforce-addr -funroll-loops -fstrength-reduce
+
+export CFLAGS  = -Wall -pipe
+ifndef _CC
+export _CC  = gcc
+endif
+
+CC          = $(_CC)
+
+INCLUDE     = -I./isdnlog -I./connect -I./tools -I$(PREFIXDIR) -I$(LIBISDNDIR)
+
+LIB         = $(DBMLIB) -lm
+
+SERVICEFILE = /etc/services
+
+
+######################################################################
+# DON'T EDIT BELOW THIS LINE
+######################################################################
+
+VERSION     = 4.59
+
+MANPAGES    = isdnlog/callerid.conf.5 isdnlog/isdn.conf.5 \
+	      isdnlog/isdnformat.5 isdnlog/isdnlog.5 isdnlog/isdnlog.8 \
+	      isdnlog/isdnlog.users.5 isdnrep/isdnrep.1 isdnconf/isdnconf.1 \
+	      tools/isdnrate.1 tools/rate-files.5
+
+ifeq ($(POSTGRES),1)
+DEFS       += -DPOSTGRES
+INCLUDE    += -I$(POSTGRESDIR)/include
+LIB        += -L$(POSTGRESDIR)/lib -lpq
+endif
+
+ifeq ($(MYSQLDB),1)
+DEFS 	   += -DMYSQLDB
+INCLUDE    += -I$(MYSQLDIR)/include
+LIB        += -L$(MYSQLDIR)/lib/mysql -L$(MYSQLDIR)/lib -lmysqlclient -lm
+endif
+
+ifeq ($(ORACLE),1)
+DEFS       += -DORACLE
+INCLUDE    += -I$(ORACLE_HOME)/precomp/public
+ORALIBS = -L$(ORACLE_HOME)/lib \
+	-lclntsh $(ORACLE_HOME)/lib/scorept.o $(ORACLE_HOME)/lib/sscoreed.o \
+    $(ORACLE_HOME)/rdbms/lib/kpudfo.o \
+    -lclient -lsql $(ORACLE_HOME)/lib/nautab.o $(ORACLE_HOME)/lib/naeet.o \
+    $(ORACLE_HOME)/lib/naect.o $(ORACLE_HOME)/lib/naedhs.o \
+    `cat $(ORACLE_HOME)/lib/naldflgs` \
+    -lnetv2 -lnttcp -lnetwork -lncr -lnetv2 -lnttcp -lnetwork \
+    -lclient -lvsn -lcommon -lgeneric -lmm -lnlsrtl3 -lcore4 \
+    -lnlsrtl3 -lcore4 -lnlsrtl3 -lnetv2 -lnttcp -lnetwork -lncr \
+    -lnetv2 -lnttcp -lnetwork -lclient -lvsn -lcommon -lgeneric \
+    $(ORACLE_HOME)/lib/libplsf.a $(ORACLE_HOME)/lib/libplsb.a \
+    $(ORACLE_HOME)/lib/libextp.a \
+    -lepc -lnlsrtl3  -lcore4 -lnlsrtl3 -lcore4 -lnlsrtl3 -lclient \
+    -lvsn -lcommon -lgeneric -lnlsrtl3  -lcore4 -lnlsrtl3 -lcore4 -lnlsrtl3 \
+    `cat $(ORACLE_HOME)/lib/sysliblist` -ldl -lm
+endif
+
+ifdef DBMALLOC
+DEFS       += -DDBMALLOC=1
+LIB        += -ldbmalloc
+endif
+
+DEFS       += \
+               -DVERSION=\"$(VERSION)\"   \
+               -DI4LVERSION=\"$(I4LVERSION)\"   \
+	       -D@NATION_MACRO@=1		\
+ 	       -DNATION=\"$(NATION)\"		\
+	       -DBIG_PHONE_NUMBERS=1
+ifdef ILP
+DEFS	+= -DILP=1
+endif
+
+ifdef IIOCNETGPN
+DEFS += -DIIOCNETGPN=-1
+endif
+
+PC = proc
+PCFLAGS = mode=oracle ireclen=160 lines=yes
+
+%.o: %.c
+	@echo Compiling $<
+	@$(CC) $(CFLAGS) $(DEFS) $(INCLUDE) -c -o $@ $<
+
+%.1: %.man
+	MANDATE=`grep CHECKIN $< | $(AWK) '{print $$4}'`; \
+	$(SED) -e s%@MANDATE@%$$MANDATE%g $< > $@
+
+%.5: %.man
+	MANDATE=`grep CHECKIN $< | $(AWK) '{print $$4}'`; \
+	$(SED) -e s%@MANDATE@%$$MANDATE%g $< > $@
+
+
+
+ISDNLOG_OBJS =  isdnlog/isdnlog.o isdnlog/processor.o isdnlog/functions.o \
+                isdnlog/server.o isdnlog/start_prog.o isdnlog/messages.o  \
+                connect/connect.o connect/socket.o tools/tools.o      	  \
+                connect/conv_address.o isdnlog/user_access.o 		  \
+                tools/isdnconf.o tools/telnum.o tools/dest.o		  \
+		tools/rate.o tools/zone.o tools/holiday.o tools/zone/upack.o \
+		isdnlog/asn1.o isdnlog/asn1_generic.o isdnlog/asn1_aoc.o  \
+		isdnlog/asn1_address.o isdnlog/asn1_diversion.o           \
+		isdnlog/asn1_basic_service.o isdnlog/asn1_comp.o          \
+		$(LIBISDNDIR)/libisdn.a $(CDBEXTRALIBS)
+
+
+ifeq ($(POSTGRES),1)
+ISDNLOG_OBJS += isdnlog/postgres.o
+endif
+
+ifeq ($(MYSQLDB),1)
+ISDNLOG_OBJS += isdnlog/mysqldb.o
+endif
+
+ifeq ($(ORACLE),1)
+ISDNLOG_OBJS += isdnlog/oracle.o
+endif
+
+ifdef TESTCENTER
+ISDNLOG_OBJS += isdnlog/test_center.o
+endif
+
+ifdef ILP
+ISDNLOG_OBJS += isdnlog/ilp/ilp.o
+endif
+
+
+ISDNREP_OBJS =  isdnrep/rep_main.o tools/tools.o tools/isdnconf.o         \
+                isdnlog/messages.o isdnrep/isdnrep.o     		  \
+		tools/rate.o tools/zone.o tools/holiday.o tools/dest.o \
+		tools/telnum.o tools/zone/upack.o		  \
+                $(LIBISDNDIR)/libisdn.a $(CDBEXTRALIBS)
+
+ISDNBILL_OBJS = isdnrep/isdnbill.o tools/tools.o tools/isdnconf.o         \
+                isdnlog/messages.o					  \
+		tools/rate.o tools/zone.o tools/holiday.o tools/dest.o	  \
+		tools/telnum.o tools/zone/upack.o			  \
+                $(LIBISDNDIR)/libisdn.a $(CDBEXTRALIBS)
+
+ISDNCONF_OBJS=  isdnconf/isdnconf.o tools/tools.o tools/isdnconf.o        \
+		tools/rate.o tools/zone.o tools/holiday.o \
+		tools/telnum.o	tools/dest.o tools/zone/upack.o		  \
+                $(LIBISDNDIR)/libisdn.a $(CDBEXTRALIBS)
+
+ISDNRATE_OBJS=  tools/isdnrate.o tools/isdnconf.o tools/tools.o           \
+		tools/rate.o tools/zone.o tools/dest.o \
+		tools/holiday.o \
+		tools/telnum.o tools/zone/upack.o			  \
+                $(LIBISDNDIR)/libisdn.a $(CDBEXTRALIBS)
+
+
+ORA_LOAD_OBJS= isdnlog/ora_load.o isdnlog/oracle.o
+ISDNLOG      =  bin/isdnlog
+ISDNCONF     =  bin/isdnconf
+ISDNREP      =  bin/isdnrep
+ISDNBILL     =  bin/isdnbill
+ISDNRATE     =  bin/isdnrate
+ORA_LOAD     =  bin/ora_load
+
+MODS         =  *.o */*.o
+
+PROGS        =  $(ISDNLOG) $(ISDNREP) $(ISDNBILL) $(ISDNCONF) $(ISDNRATE)
+
+ifeq ($(ORACLE),1)
+PROGS += $(ORA_LOAD)
+endif
+
+all:            depend libs mybin progs $(MANPAGES)
+
+ifdef IIOCNETGPN
+ISDNLOG_OBJS += isdnlog/kernel_2_0/iiocnetgpn.o
+isdnlog/kernel_2_0/iiocnetgpn.o:	isdnlog/kernel_2_0/iiocnetgpn.c
+	cd isdnlog/kernel_2_0 && make 
+endif	
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+options:
+	@echo Making $< with
+	@echo $(CC) $(CFLAGS) $(DEFS) $(INCLUDE)
+
+progs:		options $(PROGS)
+
+mybin:
+		-mkdir -p bin
+
+libs:
+		set -e; for i in `echo $(SUBDIRS)`; do $(MAKE) -C $$i; done
+
+clean:
+		-rm -f $(MODS)
+		set -e; for i in `echo $(SUBDIRS)`; do $(MAKE) -C $$i clean; done
+ifdef IIOCNETGPN
+	    cd isdnlog/kernel_2_0 && make clean
+endif
+
+distclean:      clean
+		-rm -f $(MANPAGES)
+		-rm -f $(PROGS) .depend config.h config.status config.cache \
+		config.log Makefile confdefs.h policy.h *~ *.gdbm *.cdb *.db
+		set -e; for i in `echo $(SUBDIRS)`; do $(MAKE) -C $$i distclean; done
+
+ifeq (.depend,$(wildcard .depend))
+include .depend
+HEADERS := $(HEADERS) .depend
+endif
+
+rootperm:
+	@echo 'main(int argc,char**argv){unlink(argv[0]);return(getuid()==0);}'>g
+	@if gcc -x c -o G g && rm -f g && ./G ; then \
+		echo ""; echo 'Do "make (un)install" as root!' ;echo ""; false; \
+	fi
+
+uninstall: rootperm
+		if ps x | fgrep $(ISDNLOG) >/dev/null; then kill `cat $(RUNDIR)/isdnlog.isdnctrl0.pid` 2>/dev/null; fi
+		rm -f	$(DESTDIR)$(SBINDIR)/$(ISDNLOG) \
+			$(DESTDIR)$(BINDIR)/$(ISDNREP)	\
+			$(DESTDIR)$(BINDIR)/$(ISDNCONF)
+		rm -f	$(DESTDIR)$(MAN8DIR)/isdnlog$(MAN8EXT)		\
+			$(DESTDIR)$(MAN1DIR)/isdnrep$(MAN1EXT)		\
+			$(DESTDIR)$(MAN1DIR)/isdnconf$(MAN1EXT)		\
+			$(DESTDIR)$(MAN5DIR)/callerid.conf$(MAN5EXT)	\
+			$(DESTDIR)$(MAN5DIR)/isdnlog$(MAN5EXT)		\
+			$(DESTDIR)$(MAN5DIR)/isdnlog.users$(MAN5EXT)    \
+			$(DESTDIR)$(MAN1DIR)/isdnrate$(MAN1EXT)		\
+			$(DESTDIR)$(MAN5DIR)/rate-files$(MAN5EXT)	\
+			$(DESTDIR)$(MAN5DIR)/isdn.conf$(MAN5EXT)	\
+			$(DESTDIR)$(MAN5DIR)/isdnformat$(MAN5EXT)	\
+			$(DESTDIR)$(DATADIR)/country-$(NATION).dat	\
+			$(DESTDIR)$(DATADIR)/rate-$(NATION).dat         \
+			$(DESTDIR)$(DATADIR)/dest.gdbm			\
+			$(DESTDIR)$(DATADIR)/dest.db			\
+			$(DESTDIR)$(DATADIR)/dest.cdb
+
+
+installdirs: rootperm
+		$(INSTALL_DIR) $(DESTDIR)$(I4LCONFDIR)
+		$(INSTALL_DIR) $(DESTDIR)$(BINDIR)
+		$(INSTALL_DIR) $(DESTDIR)$(SBINDIR)
+		$(INSTALL_DIR) $(DESTDIR)$(MAN1DIR)
+		$(INSTALL_DIR) $(DESTDIR)$(MAN5DIR)
+		$(INSTALL_DIR) $(DESTDIR)$(MAN8DIR)
+		$(INSTALL_DIR) $(DESTDIR)$(DATADIR)
+
+install: all rootperm installdirs install-conf install-progs install-data
+
+install-old-conf:
+		@if [ -n "$(DESTDIR)$(OLDCONFDIR)" -a "$(DESTDIR)$(OLDCONFDIR)" != '/' ] ; then \
+			test ! -f "$(DESTDIR)$(OLDCONFDIR)/$(USERFILE)" || cp -auv $(DESTDIR)$(OLDCONFDIR)/$(USERFILE) $(DESTDIR)$(I4LCONFDIR) ; \
+			if [ -f "$(DESTDIR)$(OLDCONFDIR)/$(OLDCONFFILE)" ] ; then \
+				cp -auv $(DESTDIR)$(OLDCONFDIR)/$(OLDCONFFILE) $(DESTDIR)$(I4LCONFDIR) ; \
+		 		mv $(DESTDIR)$(I4LCONFDIR)/$(OLDCONFFILE) $(DESTDIR)$(I4LCONFDIR)/$(OLDCONFFILE).old ; \
+			fi ; \
+		fi
+
+install-conf:
+		@for f in rate isdn ; do \
+		        if [ ! -f "samples/$$f.conf.$(NATION)" ] ; then \
+				echo ; \
+				echo It looks like isdnlog doesn\'t know your countries config ; \
+				echo Please read README.Internationalization. ; \
+				echo ; \
+				echo ; \
+				sleep 3 ; \
+			elif [ ! -f "$(DESTDIR)$(I4LCONFDIR)/$$f.conf" ]; then \
+				$(INSTALL_DATA) samples/$$f.conf.$(NATION) $(DESTDIR)$(I4LCONFDIR)/$$f.conf ; \
+				echo Please edit $(DESTDIR)$(I4LCONFDIR)/$$f.conf ; \
+				sleep 2 ; \
+			else \
+				$(INSTALL_DATA) samples/$$f.conf.$(NATION) $(DESTDIR)$(I4LCONFDIR)/$$f.conf.new ; \
+			fi ; \
+		done
+		@for f in callerid.conf isdnlog.isdnctrl0.options isdnlog.users ; do \
+			if [ ! -f "$(DESTDIR)$(I4LCONFDIR)/$$f" ]; then \
+				$(INSTALL_DATA) samples/$$f $(DESTDIR)$(I4LCONFDIR)/$$f ; \
+				echo Please edit $(DESTDIR)$(I4LCONFDIR)/$$f ; \
+				sleep 2 ; \
+			else \
+				$(INSTALL_DATA) samples/$$f $(DESTDIR)$(I4LCONFDIR)/$$f.new ; \
+			fi ; \
+		done
+		@for f in stop ; do \
+			if [ ! -f "$(DESTDIR)$(I4LCONFDIR)/$$f" ]; then \
+				$(INSTALL_BIN) samples/$$f $(DESTDIR)$(I4LCONFDIR)/$$f ; \
+				echo Please edit $(DESTDIR)$(I4LCONFDIR)/$$f ; \
+				sleep 2 ; \
+			else \
+				$(INSTALL_BIN) samples/$$f $(DESTDIR)$(I4LCONFDIR)/$$f.new ; \
+			fi ; \
+		done
+
+
+install-progs:
+		$(INSTALL_BIN) $(ISDNLOG)  $(DESTDIR)$(SBINDIR)
+		$(INSTALL_BIN) $(ISDNREP)  $(DESTDIR)$(BINDIR)
+		$(INSTALL_BIN) $(ISDNCONF) $(DESTDIR)$(BINDIR)
+		$(INSTALL_BIN) $(ISDNRATE) $(DESTDIR)$(BINDIR)
+		-@if (ps x | fgrep $(ISDNLOG) | grep -v grep) >/dev/null; then \
+			kill -HUP `cat $(RUNDIR)/isdnlog.isdnctrl0.pid 2>/dev/null`; \
+			echo "Restarting running isdnlog!" ; \
+		fi
+
+install-data:
+		$(INSTALL_DATA) isdnlog/isdnlog.8       $(DESTDIR)$(MAN8DIR)/isdnlog$(MAN8EXT)
+		$(INSTALL_DATA) isdnrep/isdnrep.1       $(DESTDIR)$(MAN1DIR)/isdnrep$(MAN1EXT)
+		$(INSTALL_DATA) isdnconf/isdnconf.1     $(DESTDIR)$(MAN1DIR)/isdnconf$(MAN1EXT)
+		$(INSTALL_DATA) isdnlog/callerid.conf.5 $(DESTDIR)$(MAN5DIR)/callerid.conf$(MAN5EXT)
+		$(INSTALL_DATA) isdnlog/isdnlog.5       $(DESTDIR)$(MAN5DIR)/isdnlog$(MAN5EXT)
+		$(INSTALL_DATA) isdnlog/isdnlog.users.5 $(DESTDIR)$(MAN5DIR)/isdnlog.users$(MAN5EXT)
+		$(INSTALL_DATA) isdnlog/isdn.conf.5 $(DESTDIR)$(MAN5DIR)/isdn.conf$(MAN5EXT)
+		$(INSTALL_DATA) isdnlog/isdnformat.5 $(DESTDIR)$(MAN5DIR)/isdnformat$(MAN5EXT)
+		$(INSTALL_DATA) tools/isdnrate.1     $(DESTDIR)$(MAN1DIR)/isdnrate$(MAN1EXT)
+		$(INSTALL_DATA) tools/rate-files.5     $(DESTDIR)$(MAN5DIR)/rate-files$(MAN5EXT)
+		$(INSTALL_DATA) country-de.dat	$(DESTDIR)$(DATADIR)/country.dat
+		$(INSTALL_DATA) rate-$(NATION).dat      $(DESTDIR)$(DATADIR)
+		$(INSTALL_DATA) holiday-$(NATION).dat   $(DESTDIR)$(DATADIR)
+		@for f in `ls zone-$(NATION)-*.gdbm zone-$(NATION)-*.db zone-$(NATION)-*.cdb tools/dest/dest.gdbm tools/dest/dest.db tools/dest/dest.cdb 2>/dev/null` ; do \
+		  $(INSTALL_DATA) $$f $(DESTDIR)$(DATADIR); \
+		  echo Installing $(DESTDIR)$(DATADIR)/$$f; \
+		done
+		@(grep isdnlog $(SERVICEFILE) >/dev/null) || \
+		(echo "";echo "";echo "Add a line to the file $(SERVICEFILE)" ;echo "";echo ""; \
+		echo "isdnlog $(SERV_PORT)/tcp        isdnlog" >> $(SERVICEFILE))
+
+install-strip:
+		$(MAKE) INSTALL_BIN='$(INSTALL_BIN) -s' \
+			INSTALL_SBIN='$(INSTALL_SBIN) -s' install
+
+distrib: distclean
+		cd .. && tar cf /tmp/isdnlog-$(I4LVERSION).tar    \
+		  isdnlog-$(I4LVERSION)/Makefile       \
+		  isdnlog-$(I4LVERSION)/Isdn           \
+		  isdnlog-$(I4LVERSION)/README         \
+		  isdnlog-$(I4LVERSION)/NEWS           \
+		  isdnlog-$(I4LVERSION)/COPYING        \
+		  isdnlog-$(I4LVERSION)/BUGS           \
+		  isdnlog-$(I4LVERSION)/TODO           \
+		  isdnlog-$(I4LVERSION)/FAQ            \
+		  isdnlog-$(I4LVERSION)/samples        \
+		  isdnlog-$(I4LVERSION)/tools          \
+		  isdnlog-$(I4LVERSION)/isdnconf       \
+		  isdnlog-$(I4LVERSION)/isdnlog        \
+		  isdnlog-$(I4LVERSION)/isdnrep        \
+		  isdnlog-$(I4LVERSION)/connect        \
+		  isdnlog-$(I4LVERSION)/lib            \
+		  isdnlog-$(I4LVERSION)/contrib	       \
+		  isdnlog-$(I4LVERSION)/bin
+		gzip -f9 /tmp/isdnlog-$(I4LVERSION).tar
+#		uuencode /tmp/isdnlog-$(I4LVERSION).tar.gz isdnlog-$(I4LVERSION).tar.gz > /tmp/isdnlog-$(I4LVERSION).uue
+
+$(ISDNLOG):     $(ISDNLOG_OBJS)
+		$(CC) -o $(ISDNLOG) $(LFLAGS) $(ISDNLOG_OBJS) $(ORALIBS) $(LIB)
+
+$(ISDNREP):     $(ISDNREP_OBJS)
+		$(CC) -o $(ISDNREP) $(LFLAGS) $(ISDNREP_OBJS) $(LIB)
+
+$(ISDNBILL):    $(ISDNBILL_OBJS)
+		$(CC) -o $(ISDNBILL) $(LFLAGS) $(ISDNBILL_OBJS) $(LIB)
+
+$(ISDNCONF):    $(ISDNCONF_OBJS)
+		$(CC) -o $(ISDNCONF) $(LFLAGS) $(ISDNCONF_OBJS) $(LIB)
+
+$(ISDNRATE):    $(ISDNRATE_OBJS)
+		$(CC) -o $(ISDNRATE) $(LFLAGS) $(ISDNRATE_OBJS) $(LIB)
+
+$(ORA_LOAD):    $(ORA_LOAD_OBJS)
+		$(CC) -o $(ORA_LOAD) $(LFLAGS) $(ORA_LOAD_OBJS) $(ORALIBS)
+
+isdnlog/oracle.o: isdnlog/oracle.pc
+	$(PC) $(PCFLAGS) include=isdnlog code=ansi_c lname=isdnlog/_kgw.lis \
+		iname=$< oname=isdnlog/_kgw.c
+	$(CC) $(CFLAGS) $(DEFS) $(INCLUDE) -o $@ -c isdnlog/_kgw.c
+	$(RM) isdnlog/_kgw.c
+	$(RM) isdnlog/_kgw.lis
+
+tools/tools.h: $(LIBISDNDIR)/libisdn.h $(PREFIXDIR)/policy.h
+		touch tools/tools.h
+
+depend: .depend
+
+.depend:
+		$(CPP) -M $(CFLAGS) $(DEFS) $(INCLUDE) */*.c >.depend
+ifeq ($(ORACLE),1)
+		$(CPP) -M $(CFLAGS) $(DEFS) $(INCLUDE) - < isdnlog/oracle.pc | \
+		sed s/-:/oracle.o:/ >>.depend
+endif
+#		$(CPP) -M $(CFLAGS) $(DEFS) $(INCLUDE) */*.c */*/*.c >.depend

@@ -1,0 +1,180 @@
+.\" $Id: isdninfo.man.in,v 1.4 1999/09/06 08:03:23 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:23 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii isdninfo.4 for ASCII output, or
+.\" groff -man -Tps isdninfo.4 for PostScript output
+.\"
+.TH isdninfo 4 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Special files"
+.SH NAME
+isdninfo \- ISDN status device
+.SH SYNOPSIS
+.B #include <linux/isdn.h>
+.SH DESCRIPTION
+.I /dev/isdninfo
+is a character device with major number
+.B 45
+and minor number
+.BR 255 .
+It delivers status information from the Linux
+.SM ISDN
+subsystem to user level.
+.SH DATA FORMAT
+When reading from this device, the current status of the Linux
+.SM ISDN
+subsystem is delivered in
+.B 6
+lines of text. Each line starts with a tag string followed by a colon and
+whitespace. After that the status values are appended separated
+by whitespace.
+.TP
+.B idmap
+is the tag of the first line. In this line for every virtual channel,
+the Id-string of the corresponding lowlevel driver is shown. If no driver
+is loaded, a - (hyphen) is shown.
+.TP
+.B chmap
+is the tag of line 2. In this line for every virtual channel, the channel
+number of the corresponding lowlevel driver is shown. If no driver is
+loaded, -1 is shown.
+.TP
+.B drmap
+is the tag of line 3. In this line for every virtual channel, the index
+number of the corresponding lowlevel driver is shown. If no driver is
+loaded, -1 is shown.
+.TP
+.B usage
+is the tag of line 4. In this line for every virtual channel, the current
+usage is shown. The following usage constants are defined:
+.RS
+.TP
+.BR ISDN_USAGE_NONE " (0)"
+Unused channel
+.TP
+.BR ISDN_USAGE_RAW " (1)"
+Channel used by raw device (currently unsupported)
+.TP
+.BR ISDN_USAGE_MODEM " (2)"
+Channel used by some ttyI
+.TP
+.BR ISDN_USAGE_NET " (3)"
+Channel used by an ISDN net-interface
+.TP
+.BR ISDN_USAGE_VOICE " (4)"
+Channel used by some ttyI in voice mode.
+.TP
+.BR ISDN_USAGE_EXCLUSIVE " (64)"
+Channel exclusively preserved for a net-interface. This value is
+logically or'ed with one of the other codes.
+.TP
+.BR ISDN_USAGE_OUTGOING " (128)"
+Channel is used outgoing. This value is logically or'ed with one of
+the other codes. It is set, when dialling is started and reset, when
+either dialling failed or after hangup. Therefore, it is
+.B not
+always an indicator for an established connection. To get a reliable
+indicator for an established connection, the driver flags (see below)
+have to be inspected also.
+.RE
+.TP
+.B flags
+is the tag of line 5. In this line for every driver slot, it's B-Channel
+status is shown. If no driver is registered in a slot, a ? is shown.
+For every established B-Channel of the driver, a bit is set in the shown
+value. The driver's first channel is mapped to bit 0, the second channel
+to bit 1 and so on. 
+.TP
+.B phone
+is the tag of line 6. In this line for every virtual channel, the remote
+phone number is shown if the channel is active. A ??? is shown, if the
+channel is inactive.
+
+.SH BLOCKING BEHAVIOUR
+After opening the device, at most 6 lines can be read by a user process.
+After that, the user process is blocked. Whenever a status change happens,
+the process is allowed to read 6 more lines, starting with line one.
+
+.SH IOCTL FUNCTIONS
+Currently, there are two ioctl calls supported:
+.TP
+.B IIOCGETDVR
+Get Revision information.
+.RS
+Returns an unsigned long value
+.IR v ,
+representing various user level interface revisions, where
+.TP
+.BI ( v " & 0xff)"
+is the revision of the modem-register info, available via ioctl on
+.IR /dev/isdnctrl .
+.TP
+.BI (( v " >> 8) & 0xff)"
+is the revision of the net-interface config data, available via ioctl on
+.IR /dev/isdnctrl .
+and
+.TP
+.BI (( v " >> 16) & 0xff)"
+is the revision of the data delivered via
+.I /dev/isdninfo
+itself.
+.RE
+.TP
+.B IIOCGETCPS
+Get transfer statistics.
+.RS
+Returns the number of bytes transferred so far for all
+virtual channels. The third parameter should be a pointer to an array
+of unsigned long of size ISDN_MAX_CHANNELS * 2. This array is filled
+with the byte counter values upon return.
+.RE
+.SH OTHER CONSTANTS
+There are some more useful constants defined in
+.IR /usr/include/linux/isdn.h :
+.TP
+.B ISDN_TTY_MAJOR
+The major device number of
+.IR /dev/ttyI .
+.TP
+.B ISDN_TTYAUX_MAJOR
+The major device number of
+.IR /dev/cui .
+.TP
+.B ISDN_MAJOR
+The major device number of
+.IR /dev/isdnctrl ", " /dev/isdninfo ", " /dev/ippp " and " /dev/isdn
+.TP
+.B ISDN_MAX_DRIVERS
+The number of driver slots.
+.TP
+.B ISDN_MAX_CHANNELS
+The number of virtual channels.
+.TP
+.B ISDN_MINOR_CTRL
+The minor device number of
+.IR /dev/isdnctrl0 .
+.TP
+.B ISDN_MINOR_CTRLMAX
+The minor device number of
+.IR /dev/isdnctrl63 .
+.TP
+.B ISDN_MINOR_PPP
+The minor device number of
+.IR /dev/ippp0 .
+.TP
+.B ISDN_MINOR_PPPMAX
+The minor device number of
+.IR /dev/ippp64 .
+.TP
+.B ISDN_MINOR_STATUS
+The minor device number of
+.IR /dev/isdninfo .
+.LP
+Other constants, necessary for ioctl's on
+.I /dev/isdnctrl
+are listed in
+.BR isdnctrl (4).
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.SH SEE ALSO
+.BR isdnctrl "(4), " icnctrl (4).

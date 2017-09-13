@@ -1,0 +1,155 @@
+// CallManager.h: interface for the CCallManager class.
+//
+//////////////////////////////////////////////////////////////////////
+
+#if !defined(AFX_CALLMANAGER_H__7A8D4546_53AA_4D88_993C_CFE5A432D008__INCLUDED_)
+#define AFX_CALLMANAGER_H__7A8D4546_53AA_4D88_993C_CFE5A432D008__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+#include "stdafx.h"
+//#include <winsock2.h>
+#include <low/cx_sock.h>
+#include <uacore/ua_core.h>
+
+#ifdef _simple
+#include <simpleapi/simple_api.h>
+#endif
+
+#include "UACommon.h"
+#include "UAProfile.h"
+#include "MediaManager.h"
+#include "SDPManager.h"
+
+#ifdef _simple
+#include "..\Simple\PresManager.h"
+#endif
+
+#include <low/cx_mutex.h>
+
+#define MAX_DLG_COUNT 10
+
+struct UICmdMsgObj {
+	unsigned int CmdID;
+	int dlgHandle1;
+	int dlgHandle2;
+	char dialURL[256];
+	UaContent content;
+};
+
+typedef struct UICmdMsgObj* UICmdMsg;
+
+class CUAControl;
+class CPresManager;
+
+class CCallManager  
+{
+	friend CSDPManager;
+	friend CPresManager;
+	friend CUAControl;
+
+public:
+	void reqHTTPTunnel(BOOL isOpen,CString localPort, CString remoteIP,CString remotePort);
+	CString getHTTPTunnel(CString page,CString strOP,CString localPort, CString remoteIP,CString remotePort);
+	RCODE SendMessage(MyCString dialURL, UaContent content);
+	void ProcessCmd(UICmdMsg uimsg);
+	void AddCommand(int CommandID, int dlgHandle1, int dlgHandle2, const char* dialURL, UaContent content);
+	CCallManager();
+	virtual ~CCallManager();
+
+	void init();
+	void stop();
+
+	static void UAEvtCB(UAEvtType event, void* msg);
+	static DWORD __stdcall CallManagerThreadFunc( LPVOID pParam);
+	static DWORD __stdcall UAThreadFunc( LPVOID pParam);
+	
+	static CCallManager* GetCallMgr()
+	{
+		return s_pCallManager;
+	}
+
+	/* public call control functions */
+	RCODE MakeCall(MyCString DialURL, int& dlgHandle);
+	RCODE CancelCall();
+	RCODE AcceptCall(int dlgHandle);
+	RCODE RejectCall(int dlgHandle);
+	RCODE DisconnectCall(int dlgHandle);
+	RCODE Hold(); 
+	RCODE UnHold(int dlgHandle);
+	RCODE AttendTransfer(int dlgHandle1, int dlgHandle2);
+	RCODE UnAttendTransfer(int dlgHandle, MyCString XferURL);
+	
+	RCODE Register();
+	RCODE UnRegister();
+	RCODE Query();
+	RCODE DisconnectAll();
+
+	RCODE ModifySession();
+
+	/* public utility functions */
+	MyCString CountElapsedTime();
+	const char* GetRemoteParty(int dlgHandle);
+	BOOL IsInitialized()
+	{
+		return m_bInitialized;
+	}
+
+	// sam add
+	const char* GetRemotePartyDisplayName(int dlgHandle);
+
+	// support SIP INFO 
+	RCODE SendInfo(MyCString strURI, MyCString strBodyType, MyCString strBody);
+
+private:
+	
+	/* privagte call control functions */
+	RCODE MakeCallbyRefer(UaDlg ReferDlg);
+	RCODE CallDisconnected(UaDlg dlg, UACallStateType dlgState);
+	RCODE CallEstablished(UaDlg dlg, SdpSess sdp, short status);
+
+	/* private utility functions */
+	RCODE ValidateURL(MyCString strURL);
+	UaDlg GetDlgFromHandle(int dlgHandle);
+	int GetHandleFromDlg(UaDlg dlg);
+	int InsertDlgMAP(UaDlg dlg);
+	BOOL DeleteDlgMAP(UaDlg dlg);
+
+	void ProcessEvt(UaMsg uamsg);
+
+	HANDLE		m_hCMThread;
+	HANDLE		m_hUAThread;
+	
+	SipConfigData	m_ConfigStr;
+	UaUser			m_UaUser;
+	UaCfg			m_UaCfg;
+	UaMgr			m_UaMgr;
+	UaMgr			m_UaMgr2;
+
+	CString			m_DialURL;
+	BOOL			m_bDoing;
+	BOOL			m_bInitialized;
+	BOOL			m_bSingleCall;
+	BOOL			m_bRTPConnected;
+	BOOL			m_bClient;
+	UaDlg			m_ActiveDlg;
+	UaDlg			dlgMAP[MAX_DLG_COUNT];
+	unsigned short	m_DlgCount;
+
+	unsigned short	m_ElapsedSecs;
+	unsigned short	m_ElapsedMins;
+	unsigned short  m_ElapsedHours;
+	
+	CRITICAL_SECTION m_CallMgrCS;
+	static CCallManager* s_pCallManager;
+
+	DxLst m_EventMsgLst;
+	DxLst m_UICmdMsgLst;
+
+	//  183 early media
+	BOOL m_bEarlyMedia;
+};
+
+#endif // !defined(AFX_CALLMANAGER_H__7A8D4546_53AA_4D88_993C_CFE5A432D008__INCLUDED_)

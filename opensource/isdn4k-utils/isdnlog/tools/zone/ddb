@@ -1,0 +1,123 @@
+#!/usr/bin/perl
+
+# dump database
+#
+# Copyright 1999 by Leopold Toetsch <lt@toetsch.at>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+use strict;
+use GDBM_File;
+use Getopt::Std;
+
+my $LINK = 127;
+
+my($L) = 'S'; # pack short
+$| =1;
+
+my($zonef, $reducedf, $from, $to, $auto,$verbose, $mem, %all, %link);
+my($halt, $codef, %zones, $reverse, $dbm, @nums);
+my $reduce_a=1; #dont't turn on, it doesn't work
+&getargs;
+&read_compact;
+
+sub min {
+ return $_[0] < $_[1] ? $_[0] : $_[1];
+} 
+sub read_compact {
+    my ($from,$to,$z,$n, $cc);
+	$verbose=3;
+	
+    print "Reading $reducedf...\n" if($verbose);
+		my(%db,$key,$value);	
+		tie(%db, 'GDBM_File',$reducedf, GDBM_READER, 644);
+		my ($vers) = $db{"vErSiO\x0"};
+		print "$vers\n" if($verbose);
+		my (@vinfo) = split(/ /, $vers);
+		my ($v, $pack_key, $pack_table, $n, $t, $i, $ind);
+		foreach (@vinfo) {
+			$v = $1 if(/V(.*)/);
+			$pack_key = $1 if(/K(\w)/);
+			$pack_table = $1 if(/C(\w)/);
+			$n = $1 if(/N(\d+)/);
+			$t = $1 if(/T(\d+)/);
+			$cc = $1 if(/A(\d+)/);
+		}
+		my($bnum) =	 $db{"_tAbLe\x0"};
+		my %len = ('C' => 1, 'S' => 2, 'L' => 4);
+		print "pack_table $pack_table pack_ke $pack_key\n" if($verbose>=2);
+		$i=min($n, 256);
+		@nums = unpack("$pack_table$i", $bnum);
+		print "Table $i:\n@nums\n" if($verbose>=3);
+		$n=0;
+		print "Entries\n";
+		while ( ($key, $value) = each(%db) ) {
+		    next if ($key eq "_tAbLe\x0" || $key eq "vErSiO\x0");
+		    my($temp) = unpack($pack_key, $key);
+		    next if( $temp !~ /\d/);
+			if ($cc) {
+				my($ind);
+				my($ort) = substr($value,0, $ind=index($value, "\x0"));
+				print "$temp $ort\n";
+				$value = substr($value, $ind+1);
+			}	
+		    my($count) = unpack('S', $value);
+		    $value=substr($value, 2); # past count
+		    while ($count--) {
+				my($b, $z, $v);
+				$z = unpack("C", $value);
+			    $value=substr($value, 1);
+				$L = 'C';
+				$ind = 1;
+				if ($z >= 128) {
+					$z -= 128;
+					$L = $pack_key;
+					$ind=0;
+				}	
+				$b = unpack($L, $value);
+			    $value=substr($value, $len{$L});
+				print STDERR "$n\r" if ($verbose==1 && $n%1000==0);
+				$n++;
+				$b = $nums[$b] if($ind);
+				print "$temp $b $z\n" if($verbose==3);
+				$all{"$temp $b"} = $z;
+				$link{$temp} = $b if($z eq $LINK);
+			}    
+	    } # while each
+		print STDERR "$n\n" if ($verbose);
+		untie(%db);
+    print STDERR "$n\n" if ($verbose);
+	exit;
+}
+
+
+sub getargs {
+	my(%opt);
+	$from = $to = '';
+	$auto=0;
+	$dbm=0;
+	$halt=1;
+	$mem=1; # for mem = 0, data must be resorted for 'look'
+	$verbose=1;
+	push(@ARGV,'-V'); # last options seems not to work, so I push 1 more
+	getopt('d:v:', \%opt);
+	$reducedf=$opt{'d'};
+	$verbose=$opt{'v'} if($opt{'v'} ne '');
+	$verbose=3;
+	&usage unless($reducedf);
+}
+
+sub usage {
+	print "ddb -d database\n";
+	exit 1;
+}
+
+

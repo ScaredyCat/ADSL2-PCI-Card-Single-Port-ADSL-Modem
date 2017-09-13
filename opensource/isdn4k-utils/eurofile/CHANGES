@@ -1,0 +1,232 @@
+/* $Id: CHANGES,v 1.9 2000/01/26 20:11:33 he Exp $
+#  Change log for eftp4Linux
+#
+# [new] means 'new feature added'
+# [fix] means 'bug fixed'
+# [chg] means 'changed' (algorithm, data types or somewhat)
+# [imp] means 'improved' (more robust/efficient/comfortable code)
+#
+# in chronological order from bottom to top
+#
+#
+#
+# Changelog starts with 0.0.5, based on patches submitted by Matthias
+# Stolte ms@msdatec.de.
+#
+# (The inital Changlogs have been compressed. Hopefully, I did not
+# miss any important info -- HE).
+#
+
+$Log: CHANGES,v $
+Revision 1.9  2000/01/26 20:11:33  he
+Fixed a y2k bug, several typos, and removes absolute pathnames for
+utilities execuded by eftd.sh
+
+- [fix] fileheader.c: fixed y2k bug (cosmetic, only
+	affected display output of eftp's xdir command).
+- [chg] eftd.sh.in: utility programs are now located using the
+	standard search PATH rather than by absolute path name.
+
+Revision 1.8  1999/10/11 21:22:23  he
+more isdn4k-utils install changes
+
+- [imp] config/autoconf changes. Partially changed autoconf parameter
+	names. Support `make install'. Improved integration in
+	isdn4k-utils menu config.
+- [imp] Makefile: "install" target will try to create symlinks
+	/etc/isdn/eft{access,users} to /etc/ftp{access,users} such
+	that default access control will be the same as for ftp.
+
+Revision 1.7  1999/10/06 18:16:21  he
+removed some dead code and pipe proof command line reading (eftp)
+
+
+- [imp] eftp.c: new cmd read implementation. Should now work under any
+	circumstances such as when reading from a pipe. readline()
+	support can now also be disabled by command line option -r.
+	
+
+Revision 1.6  1999/10/05 21:23:20  he
+glibc2 compatibility and misc other cleanups
+
+- [chg] src/eft* #include <stdlib.h> where needed for realpath()
+	(for glibc2 support)
+- [imp] added paranoia check in eftd.c authentification handling.
+- [imp] wuauth/{main,access,acl}.c: reject login if access file is required
+	but opening or reading fails
+- [imp] wuauth/{*.c,config.h}: changed ordering of #include's and added
+	some conditional #define's to suppress glibc2 warnings
+ 
+
+Revision 1.5  1999/07/26 22:04:24  he
+eftp suid support
+
+
+- [imp] eftp.c, eft_i4l.c: suid support with isdn connect permission
+	check added.
+- [chg] eftd.sh, eft.conf and several other doc files modified to
+	reflect above changes
+
+Revision 1.4  1999/07/25 21:55:25  he
+Changes for eftp supervisor based call control
+
+- [chg] eft_i4l.c: Replaced calls to external programmes (isdnctrl,x25_route,
+	ifconfig, scripts) by directly calling ioctl()'s.
+- [new] eft_i4l.c: Support for supervisor based isdn call control.
+- [chg] eftp.c: Supporting above supervisor based isdn call control.
+	(prepares eftp for use by non-root users).
+- [chg] eftp_setup: Removed, no longer needed with above changes.
+- [fix] eftd.sh: Moved isdnloop setup before iface setup such that script
+	will also work if no other HL drivers are present.
+- [chg] Makefile: Dummy "install" target to keep isdn4k-utils root makefile
+	happy.
+
+ 
+Revision 1.3  1999/06/30 22:00:27  he
+
+Version 0.0.11
+
+===============
+Revision 1.2  1999/06/29 18:37:10  he
+Were initially missing or wrong
+
+- [new] doc/design.txt added (needs completion)
+- [chg] src/*: changed directory names and structure which also affects
+	#include directives and Makefiles.
+- [chg] The config file (former /etc/isdn/eft.msn) has been renamed to
+	eft.conf. If you want want to re-use an already installed
+	config file, you also need to rename it. Otherwise, the new
+	script files won't find it.
+- [chg] Support for CVS in build procedure.
+
+--------------
+Version 0.0.10
+--------------
+- [fix] tdu_buf.c::tdu_parse_li():   fixed base (255 -> 256)
+- [imp] eft_server.c, eft_dir.c, eftd.c, eft.c: modified (also format
+	changes!!) and added more LogBook messages.
+- [fix] tdu_log.c::tdu_mk_printable:   proper handling for len<0
+	(cures previous segmentation faults).
+- [imp] eftd.sh.in: automatically remove '-m' option when EFTD_DEBUG=1
+	(for debugging under gdb) is set.
+
+-------------
+Version 0.0.9
+-------------
+- [imp] eftd.c, eftp.c, tdu_log.c: support for udata and address
+	logging.
+- [fix] eftd.sh EFTD_OPTIONS set from from eft.msn could be lost.
+	Clarified some comments.
+- [imp] eftd.c Proposed some locations for end of session LogBook messages. 
+
+-------------
+Version 0.0.8
+-------------
+- [fix] Updated README, ETSI standards now available free of charge.
+- [new] 18.02.1999, ms@msdatec.de
+    eftd.8.sgml created.
+- [chg] 17.02.1999, ms@msdatec.de
+	src/lib/eftc, set_default_adress: Now using combination of
+	gethostname() and gethostbyname() because getdomainname()
+	didn't work as expected. 
+- [imp] eftd.sh: (based on patch provided by Matthias Stolte)
+	Better custumization by means of more variables.
+- [imp] eftd.sh: (based on suggestion from Knuth Posern)
+	Support for several different MSNs on different
+	interfaces. This allows the server to accept connections
+	from different S0 interfaces which cannot use a common MSN.
+- [imp] tdu_log.c and several other files: Changes in logging
+	infrastructure (in particular for a supporting an eft log
+	file facilty). (loggin to log file with several processes
+	in parallel has not been tested yet and might cuase problems).
+- [chg]	eftd.c, doc/eftd: The log changes imply changes for eftd's
+	command line interface. New option -b for selecting log[book]
+	file. Removed -v. New semantics for -l -d and -L.
+	This might break old script files.
+- [chg]	eft_names.c, eft_server.c, eft_dir.c: some modification in
+	filename-transfername-mapping.
+
+-------------
+Version 0.0.7
+-------------
+Integrated Michael Mauch's improved readline and mget/mput support:
+- [imp] eftp.c new readline support, using the alternate interface.
+- [chg] eftp.c non-terminal input now read by fgets or getdelim
+  instead of read
+- [chg] read_line.c removed
+- [chg] src/Makefile and configure.in adapted for readline support.
+- [new] eftp.c mget/mput added.
+Fixes for glibc2 compatibility (thanks to Michael Dietrich)
+- [fix] eftp.c, eftd.c: sigset now initialized by utility functions.
+- [fix] eft_names.c: errno.h included.
+- [fix] eft_tmpfile.c zeroed struct stat instances before symlink
+	attack paranoia check.
+Misc
+- [chg] moved eft_map_to_user() handling to eft_server.c and change to
+	default user only if user is not in passwd database. This also
+	fixes a bug (username wrong in logfile output).
+- [fix] eft_dir.c::eft_valid_dent_s_k() now only selects symlinks that
+	refer to regular files.
+- [fix] eft_names.c::eft_file_is_hidden() added missing resetting of errno
+- [fix] eft_server.c::eft_log_xfer() use eft->user_name for username field
+- [imp] eft_dir.c: (several locations) modified generation of
+	filestore references. Now, no longer should any client have an
+	excuse to break on this.
+- [imp] eftd.c can now listen simultaneously on different X.25
+	adresses
+
+-------------
+Version 0.0.6
+-------------
+
+  The first 3 changes were contributed by Michael Mauch <michael.mauch@gmx.de>
+- [new] eftp.c  started implementing readline support.
+- [new] eftp.c  some new local commands, in particular `lcd' and `!` shell
+  escape
+- [fix] calc date (month was one to large) in fileheader.c::fh2timet()
+- [fix] removed erroneous return in lib/eft_client.c::eft_getcwd()
+- [chg] Istructions in README updated for newer kernels and
+	isdn4k-utils 3.0beta2.
+- [new] eftd.c, eftd.sh: Added support for serving multiple connections
+        simultaneously [-m option]. 
+- [new] eftd.c, eft_i4l.c: network interface names are now determined
+	automatically by analysing /proc filesystem entries.
+- [chg] added RCS/CVS $Id macros to almost all files
+	(preparation for later inclusion in i4l CVS tree)
+- [imp] eft_dir.c: now generating globally unique filestore reference
+	strings (for SLIST primitive) which conform better with
+	ETS 300 383 annex C (that annex is informative only).
+- [chg] added RCS/CVS  $Id macros to almost all files
+	(preparation for later inclusion in i4l CVS tree)
+- [fix] tdu.h,slave.c: return type of tdu_typed_data_received()
+- [fix] eftd.c: parantheses in have_opt() for clarifying if-else
+- [fix] #define'd HAVE_GETCWD (hack) in authlib/divfunc.c
+- [chg] include public header files eft.h and tdu_user.h with
+	bracket <> notation, change make rules accordingly and
+	remove *.h symlinks
+- [imp] new database lookup and mangeling based transfer name mapping
+        improved. Now activated by default.
+
+-------------
+Version 0.0.5
+-------------
+
+1998-11-30
+integrated changes provided by ms@msdatec.de
+
+  - [new] eft.c: initial address now <host>.<domain>, if possible
+  - [new] eftd.c, option '-h/-?' 
+  - [new] eftd.c, eft_check_user(), main(), show_help()
+    user mapping (option -n)
+    if authentification fails and "eft_map_to_user" is not null, 
+	"eft_map_to_user" is tried for authentification (a password isn't
+	supported yet)
+  - [imp] eft_dir, eft_store_slist()
+          hardcoded ".++eft_flat" replaced by eft_flat_dir_name
+  - [imp] eftd.c, eft_setup_user(): 
+          hardcoded ".++eft_flat" replaced by eft_flat_dir_name
+  - [new] src/eftd.c: haveopt() created
+  - [new] src/eftd.c: main()
+          version output on command line request 'V'	  
+  - [new] eftd.c, show_help() created
+  - [imp] eftd.sh 

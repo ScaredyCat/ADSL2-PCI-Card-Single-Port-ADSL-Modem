@@ -1,0 +1,149 @@
+#
+# ipppd makefile for Linux
+# $Id: Makefile.in,v 1.16 2002/07/19 19:03:53 keil Exp $
+#
+
+HAVE_LIBDES   := @HAVE_LIBDES@
+HAVE_LIBCRYPT := @HAVE_LIBCRYPT@
+HAVE_SHADOW_H := @HAVE_SHADOW_H@
+HAVE_LZSCOMP_H:= @HAVE_LZSCOMP_H@
+SBINDIR       := @CONFIG_SBINDIR@
+MANDIR        := @CONFIG_MANDIR@
+CC            := @CC@
+INSTALL       := @INSTALL@
+INSTALL_DIR   := $(INSTALL) -m 0755 -o 0 -g 0 -d
+INSTALL_SBIN  := $(INSTALL) -m 0700 -o 0 -g 0
+INSTALL_BIN   := $(INSTALL) -m 0755 -o 0 -g 0
+INSTALL_DATA  := $(INSTALL) -m 0644 -o 0 -g 0
+RADIUS_CLIENT_CONFIG_FILE := @RADIUS_CLIENT_CONFIG_FILE@
+
+ifeq (@CONFIG_IPPPD_MSCHAP@,y)
+USE_MSCHAP    := 1
+endif
+
+ifeq (@CONFIG_IPPPD_RADIUS@,y)
+RADIUS :=1
+endif
+
+ifeq (@CONFIG_RADIUS_WTMP_LOGGING@,y)
+RADIUS_WTMP_LOGGING := 1
+endif
+
+PPPDSRCS = main.c magic.c fsm.c lcp.c ipcp.c upap.c chap.c md5.c ccp.c \
+	   ipxcp.c auth.c options.c sys-linux.c cbcp.c environ.c readpw.c
+HEADERS =  callout.h pathnames.h patchlevel.h chap.h md5.h \
+	   ipxcp.h cbcp.h environ.h
+MANPAGES = ipppd.8
+PPPDOBJS = main.o magic.o fsm.o lcp.o ipcp.o upap.o chap.o md5.o ccp.o \
+	   auth.o options.o sys-linux.o cbcp.o ipxcp.o environ.o readpw.o
+
+all: ipppd
+
+%.8: %.man
+	cp $< $@
+
+install-man: $(MANPAGES)
+	for i in $(MANPAGES) ; do \
+		MANSECT=`echo $$i | cut -d. -f2` ;\
+		$(INSTALL_DIR) $(DESTDIR)$(MANDIR)/man$$MANSECT ;\
+		$(INSTALL_DATA) $$i $(DESTDIR)$(MANDIR)/man$$MANSECT/$$i ;\
+	done
+
+uninstall-man:
+	for i in $(MANPAGES) ; do \
+		MANSECT=`echo $$i | cut -d. -f2` ;\
+		rm -f $(DESTDIR)$(MANDIR)/man$$MANSECT/$$i ;\
+	done
+
+uninstall: uninstall-man
+	rm -f $(DESTDIR)$(SBINDIR)/ipppd
+
+install: ipppd install-man
+	$(INSTALL_DIR) $(DESTDIR)$(SBINDIR)
+	$(INSTALL_SBIN) ipppd $(DESTDIR)$(SBINDIR)/ipppd
+
+ifeq (.depend,$(wildcard .depend))
+include .depend
+HEADERS := $(HEADERS) .depend
+endif
+
+DEBUG_FLAGS   = @CONFIG_IPPPD_DEBUGFLAGS@
+COMPILE_FLAGS = 
+CFLAGS        = -O2 -fomit-frame-pointer -Wall
+VER           = 2.2.0
+
+# it's a hack
+ifeq ($(HAVE_LIBCRYPT),1)
+LIBS        = -lcrypt -lutil
+endif
+
+
+SOURCE = RELNOTES configure *.in $(PPPDSRCS) $(HEADERS) $(MANPAGES)
+
+MSG    = ''
+ifdef USE_MSCHAP
+	ifeq ($(HAVE_LIBDES),1)
+		PPPDSRCS += md4.c chap_ms.c
+		PPPDOBJS += md4.o chap_ms.o
+		HEADERS  += md4.h chap_ms.h
+		COPTS    += -DUSE_MSCHAP
+		LIBS     += -ldes
+	else
+		MSG = '\n\nLibrary libdes not found, USE_MSCHAP disabled\n\n'
+	endif
+endif
+
+ifdef RADIUS
+	PPPDSRCS += radius.c
+	PPPDOBJS += radius.o
+	COPTS    += -DRADIUS -D_linux_=1 -I/usr/local/include 
+	COPTS 	 += -DPATH_RADIUSCLIENT_CONF=\"$(RADIUS_CLIENT_CONFIG_FILE)\"
+	LIBS     += -L/usr/local/lib -lradiusclient
+	ifdef RADIUS_WTMP_LOGGING
+        	COPTS    += -DRADIUS_WTMP_LOGGING
+	endif
+endif
+
+ifeq ($(HAVE_SHADOW_H),1)
+PPPDOBJS += isexpired.o
+PPPDSRCS += isexpired.c
+endif
+
+ifeq ($(HAVE_LZSCOMP_H),1)
+	CFLAGS += -DHAVE_LZSCOMP_H
+endif
+
+%.8: %.man
+	cp $< $@
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+#
+# Makefile in depencies forces rebuild after running
+# configure.
+#
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(COPTS) $(DEBUG_FLAGS) $(COMPILE_FLAGS) -c -o $@ $<
+
+ipppd: $(PPPDOBJS)
+	$(CC) $(CFLAGS) -o ipppd $(PPPDOBJS) $(LIBS)
+	@echo -n $(MSG)
+
+ipppd.tar: $(SOURCE)
+	tar -cvf ipppd.tar $(SOURCE)
+
+ipppd.tar.gz: ipppd.tar
+	gzip ipppd.tar
+
+clean:
+	rm -f $(PPPDOBJS) ipppd *~ #* core
+
+distclean: clean
+	rm -f config.h config.status config.cache config.log *.man *.8 pathnames.h Makefile
+
+depend:
+	$(CPP) -M $(CFLAGS) $(COPTS) $(DEBUG_FLAGS) $(COMPILE_FLAGS) $(PPPDSRCS) >.depend

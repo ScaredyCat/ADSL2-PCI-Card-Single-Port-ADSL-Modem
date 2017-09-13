@@ -1,0 +1,337 @@
+[1 01/19/14:49:03] <sipLibInit>:using local ip=140.96.102.14
+[2 01/19/14:49:03] <sipLibInit>:SIP stack 1.6.8 is running!
+[3 01/19/14:49:03] <sipLibInit>:TCP port=1111
+[4 01/19/14:49:03] [SIPTX] [sipTxLibInit] sipTxLib initialized
+[5 01/19/14:49:07] [Rev from cx]
+INVITE sip:1@140.96.102.14:1111 SIP/2.0
+To: <sip:1@140.96.102.14>
+From: 90003<sip:90003@140.96.200.102>;tag=1a338d02
+Via: SIP/2.0/UDP 140.96.102.14:5060;branch=z9hG4bK-d87543-689733570-1--d87543-;rport
+Call-ID: 2532d7645338995c
+CSeq: 1 INVITE
+Contact: <sip:90003@140.96.102.14:5060>
+Max-Forwards: 70
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, MESSAGE, SUBSCRIBE, INFO
+Content-Type: application/sdp
+User-Agent: eyeBeam release 3004t stamp 16741
+Content-Length: 270
+
+v=0
+o=- 606732 606761 IN IP4 140.96.102.14
+s=eyeBeam
+c=IN IP4 140.96.102.14
+t=0 0
+m=audio 8702 RTP/AVP 100 6 0 8 3 18 5 101
+a=alt:1 1 : 1C01BB0A 56B65144 140.96.102.14 8702
+a=fmtp:101 0-15
+a=rtpmap:100 speex/16000
+a=rtpmap:101 telephone-event/8000
+a=sendrecv
+
+[6 01/19/14:49:07] [sipRev request]
+INVITE sip:1@140.96.102.14:1111 SIP/2.0
+Allow:INVITE,ACK,OPTIONS,BYE,CANCEL,INFO,REFER,SUBSCRIBE,NOTIFY,MESSAGE
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:270
+Content-Type:application/sdp
+CSeq:1 INVITE
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Max-Forwards:70
+To:<sip:1@140.96.102.14>
+User-Agent:eyeBeam release 3004t stamp 16741
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-689733570-1--d87543-
+
+v=0
+o=- 606732 606761 IN IP4 140.96.102.14
+s=eyeBeam
+c=IN IP4 140.96.102.14
+t=0 0
+m=audio 8702 RTP/AVP 100 6 0 8 3 18 5 101
+a=alt:1 1 : 1C01BB0A 56B65144 140.96.102.14 8702
+a=fmtp:101 0-15
+a=rtpmap:100 speex/16000
+a=rtpmap:101 telephone-event/8000
+a=sendrecv
+
+[7 01/19/14:49:07] [SIPTX] [UDPEventHandle] Entering
+[8 01/19/14:49:07] [SIPTX] [UDPEventHandle] Request received from 140.96.102.14:5060 
+
+INVITE sip:1@140.96.102.14:1111 SIP/2.0
+Allow:INVITE,ACK,OPTIONS,BYE,CANCEL,INFO,REFER,SUBSCRIBE,NOTIFY,MESSAGE
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:270
+Content-Type:application/sdp
+CSeq:1 INVITE
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Max-Forwards:70
+To:<sip:1@140.96.102.14>
+User-Agent:eyeBeam release 3004t stamp 16741
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-689733570-1--d87543-
+
+v=0
+o=- 606732 606761 IN IP4 140.96.102.14
+s=eyeBeam
+c=IN IP4 140.96.102.14
+t=0 0
+m=audio 8702 RTP/AVP 100 6 0 8 3 18 5 101
+a=alt:1 1 : 1C01BB0A 56B65144 140.96.102.14 8702
+a=fmtp:101 0-15
+a=rtpmap:100 speex/16000
+a=rtpmap:101 telephone-event/8000
+a=sendrecv
+
+[9 01/19/14:49:07] [SIPTX] [UDPEventHandle] Create a new transaction 
+[10 01/19/14:49:07] [SIPTX] [sipTxServerNew] new TX_SERVER_INVITE transaction
+[11 01/19/14:49:07] [SIPTX] [InsertTransaction] 2532d7645338995c
+[12 01/19/14:49:07] [SIPTX] [sipTxServerNew] Transaction internal id:(1)
+[13 01/19/14:49:07] [SIPTX] [sipTxServerNew] Current transaction count: 1
+[14 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Entering INVITE Transaction
+[15 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Transaction internal id:(1)
+[16 01/19/14:49:07] [SIPTX] [Server_Invite_SM] TxState = TX_INIT
+[17 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Tx -> INIT
+[18 01/19/14:49:07] [SIPTX] [TRANSPORT] Sending response to 140.96.102.14:5060 (UDP) 
+
+SIP/2.0 100 Trying
+Call-ID:2532d7645338995c
+Content-Length:0
+CSeq:1 INVITE
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+To:<sip:1@140.96.102.14>
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-689733570-1--d87543-
+
+[19 01/19/14:49:07] [SIPTX] [TRANSPORT] UDP sent successful 
+[20 01/19/14:49:07] [SIPTX] [g_txEvtCB] Post event to TU: TX_REQ_RECEIVED
+[21 01/19/14:49:07] [UACORE] [TxEvtCB] Receive REQ
+ 
+[22 01/19/14:49:07] [uaProcessReqTx] uaDlg count = 1
+[23 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Tx -> PROCEEDING
+[24 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Leaving
+[25 01/19/14:49:07] [SIPTX] [UDPEventHandle] Leaving
+[26 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Entering INVITE Transaction
+[27 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Transaction internal id:(1)
+[28 01/19/14:49:07] [SIPTX] [Server_Invite_SM] TxState = TX_PROCEEDING
+[29 01/19/14:49:07] [SIPTX] [TRANSPORT] Sending response to 140.96.102.14:5060 (UDP) 
+
+SIP/2.0 180 Ringing
+Call-ID:2532d7645338995c
+Contact:1<sip:1@140.96.102.14:1111>
+Content-Length:0
+CSeq:1 INVITE
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+To:<sip:1@140.96.102.14>;tag=3a-606171
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-689733570-1--d87543-
+
+[30 01/19/14:49:07] [SIPTX] [TRANSPORT] UDP sent successful 
+[31 01/19/14:49:07] [SIPTX] [Server_Invite_SM] Leaving
+[32 01/19/14:49:08] [uaAddTimer] cxTimer set successful!!
+[33 01/19/14:49:08] [SIPTX] [Server_Invite_SM] Entering INVITE Transaction
+[34 01/19/14:49:08] [SIPTX] [Server_Invite_SM] Transaction internal id:(1)
+[35 01/19/14:49:08] [SIPTX] [Server_Invite_SM] TxState = TX_PROCEEDING
+[36 01/19/14:49:08] [SIPTX] [TRANSPORT] Sending response to 140.96.102.14:5060 (UDP) 
+
+SIP/2.0 200 OK
+Allow:INVITE,ACK,OPTIONS,BYE,CANCEL,REGISTER,INFO,PRACK,REFER
+Call-ID:2532d7645338995c
+Contact:1<sip:1@140.96.102.14:1111>
+Content-Length:192
+Content-Type:application/sdp
+CSeq:1 INVITE
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Supported:replaces
+To:<sip:1@140.96.102.14>;tag=3a-606171
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-689733570-1--d87543-
+
+v=0
+o=1 607443 607443 IN IP4 140.96.102.14
+s=Session SDP
+c=IN IP4 140.96.102.14
+t=0 0
+m=audio 9000 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000/1
+a=ptime:20
+a=rtpmap:101 telephone-event/8000/1
+[37 01/19/14:49:08] [SIPTX] [TRANSPORT] UDP sent successful 
+[38 01/19/14:49:08] [SIPTX] [InsertTransaction] 2532d7645338995c
+[39 01/19/14:49:08] [SIPTX] [sipTx2xxClientNew] Transaction internal id:(2)
+[40 01/19/14:49:08] [SIPTX] [sipTx2xxClientNew] Current transaction count: 2
+[41 01/19/14:49:08] [SIPTX] [sipTxAddTimer] Timer #2 set successful!!
+[42 01/19/14:49:08] [SIPTX] [Server_Invite_SM] Tx -> TERMINATED
+[43 01/19/14:49:08] [SIPTX] [g_txEvtCB] Post event to TU: TX_TERMINATED_EVENT
+[44 01/19/14:49:08] [SIPTX] [Server_Invite_SM] Leaving
+[45 01/19/14:49:08] [Rev from cx]
+ACK sip:1@140.96.102.14:1111 SIP/2.0
+To: <sip:1@140.96.102.14>;tag=3a-606171
+From: 90003<sip:90003@140.96.200.102>;tag=1a338d02
+Via: SIP/2.0/UDP 140.96.102.14:5060;branch=z9hG4bK-d87543-585044608-1--d87543-;rport
+Call-ID: 2532d7645338995c
+CSeq: 1 ACK
+Contact: <sip:90003@140.96.102.14:5060>
+Max-Forwards: 70
+User-Agent: eyeBeam release 3004t stamp 16741
+Content-Length: 0
+
+
+[46 01/19/14:49:08] [sipRev request]
+ACK sip:1@140.96.102.14:1111 SIP/2.0
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:0
+CSeq:1 ACK
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Max-Forwards:70
+To:<sip:1@140.96.102.14>;tag=3a-606171
+User-Agent:eyeBeam release 3004t stamp 16741
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-585044608-1--d87543-
+
+
+[47 01/19/14:49:08] [SIPTX] [UDPEventHandle] Entering
+[48 01/19/14:49:08] [SIPTX] [UDPEventHandle] Request received from 140.96.102.14:5060 
+
+ACK sip:1@140.96.102.14:1111 SIP/2.0
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:0
+CSeq:1 ACK
+From:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Max-Forwards:70
+To:<sip:1@140.96.102.14>;tag=3a-606171
+User-Agent:eyeBeam release 3004t stamp 16741
+Via:SIP/2.0/UDP 140.96.102.14:5060;rport;branch=z9hG4bK-d87543-585044608-1--d87543-
+
+
+[49 01/19/14:49:08] [SIPTX] [UDPEventHandle] Found an existing transaction 
+[50 01/19/14:49:08] [SIPTX] [Client_2XX_SM] Entering INVITE Transaction
+[51 01/19/14:49:08] [SIPTX] [Client_2XX_SM] Transaction internal id:(2)
+[52 01/19/14:49:08] [SIPTX] [Client_2XX_SM] TxState = TX_COMPLETED
+[53 01/19/14:49:08] [SIPTX] [Client_2XX_SM] ACK Received
+[54 01/19/14:49:08] [SIPTX] [g_txEvtCB] Post event to TU: TX_ACK_RECEIVED
+[55 01/19/14:49:08] [UACORE] [TxEvtCB] Receive ACK
+ 
+[56 01/19/14:49:08] [UACORE] [uaDelTimer] Get a final response -> delete timer of expires !
+ 
+[57 01/19/14:49:08] [SIPTX] [sipTxFree] TU free TX #2
+[58 01/19/14:49:08] [SIPTX] [sipTxDelTimer] Timer #0 delete successful
+[59 01/19/14:49:08] [SIPTX] [sipTxAddTimer] Timer #2 set successful!!
+[60 01/19/14:49:08] [SIPTX] [Client_2XX_SM] Tx -> CONFIRMED
+[61 01/19/14:49:08] [SIPTX] [Client_2XX_SM] Leaving
+[62 01/19/14:49:08] [SIPTX] [UDPEventHandle] Leaving
+[63 01/19/14:49:13] [SIPTX] [sipTxTimerProcess] Timer I Fired:(2)
+[64 01/19/14:49:13] [SIPTX] [sipTxTimerProcess] TimerQ : size = 1 
+[65 01/19/14:49:13] [SIPTX] [sipTxEvtDispatch] Process TimerQ : size = 1 
+[66 01/19/14:49:13] [SIPTX] [Client_2XX_SM] Entering INVITE Transaction
+[67 01/19/14:49:13] [SIPTX] [Client_2XX_SM] Transaction internal id:(2)
+[68 01/19/14:49:13] [SIPTX] [Client_2XX_SM] TxState = TX_CONFIRMED
+[69 01/19/14:49:13] [SIPTX] [Client_2XX_SM] Process Timer I
+[70 01/19/14:49:13] [SIPTX] [Client_2XX_SM] Tx -> TERMINATED
+[71 01/19/14:49:13] [SIPTX] [Client_2XX_SM] Leaving
+[72 01/19/14:49:13] [SIPTX] [sipTxEvtDispatch] Collect garbage transaction txtype = TX_CLEINT_2XX 
+[73 01/19/14:49:13] [SIPTX] [_sipTxFree] Free TX_CLIENT_2XX Transaction
+[74 01/19/14:49:13] [SIPTX] [_sipTxFree] Transaction internal id:(2)
+[75 01/19/14:49:13] [SIPTX] [_sipTxFree] Left transaction count: 1
+[76 01/19/14:49:31] [uaBYEMsg]create a BYE message
+BYE sip:90003@140.96.102.14:5060 SIP/2.0
+Call-ID:2532d7645338995c
+Content-Length:0
+CSeq:1 BYE
+From:<sip:1@140.96.102.14>;tag=3a-606171
+Max-Forwards:70
+To:90003<sip:90003@140.96.200.102>;tag=1a338d02
+User-Agent:CCLSP
+
+!
+[77 01/19/14:49:31] [SIPTX] [sipTxClientNew] new TX_CLIENT_NON_INVITE transaction
+[78 01/19/14:49:31] [SIPTX] [InsertTransaction] 2532d7645338995c
+[79 01/19/14:49:31] [SIPTX] [sipTxClientNew] Transaction internal id:(3)
+[80 01/19/14:49:31] [SIPTX] [sipTxClientNew] Current transaction count: 2
+[81 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Entering BYE Transaction
+[82 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Transaction internal id:(3)
+[83 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] TxState = TX_INIT
+[84 01/19/14:49:31] [SIPTX] [TRANSPORT] Sending request to 140.96.102.14:5060 (UDP) 
+
+BYE sip:90003@140.96.102.14:5060 SIP/2.0
+Call-ID:2532d7645338995c
+Content-Length:0
+CSeq:1 BYE
+From:<sip:1@140.96.102.14>;tag=3a-606171
+Max-Forwards:70
+To:90003<sip:90003@140.96.200.102>;tag=1a338d02
+User-Agent:CCLSP
+Via:SIP/2.0/UDP 140.96.102.14:1111;rport;branch=z9hG4bKf2595ce7d2b03b12792bfad8f705a570
+
+[85 01/19/14:49:31] [SIPTX] [TRANSPORT] UDP sent successful 
+[86 01/19/14:49:31] [SIPTX] [sipTxAddTimer] Timer #3 set successful!!
+[87 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Tx -> TRYING
+[88 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Leaving
+[89 01/19/14:49:31] [Rev from cx]
+SIP/2.0 200 OK
+To: 90003<sip:90003@140.96.200.102>;tag=1a338d02
+From: <sip:1@140.96.102.14>;tag=3a-606171
+Via: SIP/2.0/UDP 140.96.102.14:1111;rport=1111;branch=z9hG4bKf2595ce7d2b03b12792bfad8f705a570;received=140.96.102.14
+Call-ID: 2532d7645338995c
+CSeq: 1 BYE
+Contact: <sip:90003@140.96.102.14:5060>
+Content-Length: 0
+
+
+[90 01/19/14:49:31] [sipRev response]
+SIP/2.0 200 OK
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:0
+CSeq:1 BYE
+From:<sip:1@140.96.102.14>;tag=3a-606171
+To:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Via:SIP/2.0/UDP 140.96.102.14:1111;rport=1111;received=140.96.102.14;branch=z9hG4bKf2595ce7d2b03b12792bfad8f705a570
+
+
+[91 01/19/14:49:31] [SIPTX] [UDPEventHandle] Entering
+[92 01/19/14:49:31] [SIPTX] [UDPEventHandle] Response received from 140.96.102.14:5060 
+
+SIP/2.0 200 OK
+Call-ID:2532d7645338995c
+Contact:<sip:90003@140.96.102.14:5060>
+Content-Length:0
+CSeq:1 BYE
+From:<sip:1@140.96.102.14>;tag=3a-606171
+To:90003<sip:90003@140.96.200.102>;tag=1a338d02
+Via:SIP/2.0/UDP 140.96.102.14:1111;rport=1111;received=140.96.102.14;branch=z9hG4bKf2595ce7d2b03b12792bfad8f705a570
+
+
+[93 01/19/14:49:31] [SIPTX] [UDPEventHandle] Found an existing transaction 
+[94 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Entering BYE Transaction
+[95 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Transaction internal id:(3)
+[96 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] TxState = TX_TRYING
+[97 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] RSP Received
+[98 01/19/14:49:31] [SIPTX] [g_txEvtCB] Post event to TU: TX_RSP_RECEIVED
+[99 01/19/14:49:31] [SIPTX] [sipTxDelTimer] Timer #0 delete successful
+[100 01/19/14:49:31] [SIPTX] [sipTxAddTimer] Timer #3 set successful!!
+[101 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Tx -> COMPLETED
+[102 01/19/14:49:31] [SIPTX] [Client_Non_Invite_SM] Leaving
+[103 01/19/14:49:31] [SIPTX] [UDPEventHandle] Leaving
+[104 01/19/14:49:36] [SIPTX] [sipTxTimerProcess] Timer K Fired:(3)
+[105 01/19/14:49:36] [SIPTX] [sipTxTimerProcess] TimerQ : size = 1 
+[106 01/19/14:49:36] [SIPTX] [sipTxEvtDispatch] Process TimerQ : size = 1 
+[107 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] Entering BYE Transaction
+[108 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] Transaction internal id:(3)
+[109 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] TxState = TX_COMPLETED
+[110 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] Process Timer K
+[111 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] Tx -> TERMINATED
+[112 01/19/14:49:36] [SIPTX] [g_txEvtCB] Post event to TU: TX_TERMINATED_EVENT
+[113 01/19/14:49:36] [TxEvtCB] ref count : 1
+[114 01/19/14:49:36] [UACORE] [TxEvtCB] Destroy transaction
+ 
+[115 01/19/14:49:36] [SIPTX] [sipTxFree] TU free TX #3
+[116 01/19/14:49:36] [SIPTX] [Client_Non_Invite_SM] Leaving
+[117 01/19/14:49:36] [SIPTX] [sipTxEvtDispatch] Collect garbage transaction txtype = TX_CLIENT_NON_INVITE 
+[118 01/19/14:49:36] [SIPTX] [_sipTxFree] Free BYE client Transaction
+[119 01/19/14:49:36] [SIPTX] [_sipTxFree] Transaction internal id:(3)
+[120 01/19/14:49:36] [SIPTX] [_sipTxFree] Left transaction count: 1
+[121 01/19/14:49:40] [UACORE] [uaDlgRelease] all tx in list is terminated,so fun dlgfree! 
+[122 01/19/14:49:40] [uaMgrDelDlgLink] uaDlg count = 0
+[123 01/19/14:49:40] [SIPTX] [sipTxFree] TU free TX #1
+[124 01/19/14:49:40] [SIPTX] [sipTxEvtDispatch] Collect garbage transaction txtype = TX_SERVER_INVITE 
+[125 01/19/14:49:40] [SIPTX] [_sipTxFree] Free INVITE server Transaction
+[126 01/19/14:49:40] [SIPTX] [_sipTxFree] Transaction internal id:(1)
+[127 01/19/14:49:40] [SIPTX] [_sipTxFree] Left transaction count: 0

@@ -1,0 +1,263 @@
+-= CCL SIP UACom Release Note =-
+
+-------------------
+Version 1.3.2.6
+2006/11/29 by sjhuang
+
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	- none
+	
+[Bug Fix]
+	- SDPManager ¬Û®e©ó sip stack 1.6.7
+	
+[Known Bugs]
+	- none
+
+-------------------
+Version 1.3.2.5
+2006/11/14 by sjhuang
+
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	- none
+	
+[Bug Fix]
+	- when change network interface, rtp can't receive success.
+	  [void CMediaManager::init()]
+	
+[Known Bugs]
+	- none
+
+-------------------
+Version 1.3.2.4
+2006/07/28 by sjhuang
+
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	- support PDA video, by sjhuang 2006/07/20 [Video/tmn.cpp]
+	
+[Bug Fix]
+	- When audio codec setting is G711u first, then change setting to G723, system will crash.
+	  [DSPThreadFunc() error]
+	
+[Known Bugs]
+	- none
+
+-------------------
+Version 1.3.2.3
+2006/07/06 by sjhuang
+
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- When RTP receive SID frame, will cause system crash, PCA will disappear, fix it.
+	
+[Known Bugs]
+	- none
+
+
+
+Version 1.2.8.0
+------------------
+2005/10/24
+
+[Library]
+        - K3 Middleware "WinXP_VoIP_Lib_b20051013"
+        - N1 Video Codec "Alcatel_lib_release_v10_941013"
+
+
+8/15 1.0.1.7
+------------------------------------------------
+- Fixed version before SIPit 13
+
+
+7/15 1.0.1.4
+------------------------------------------------
+- Support SIMPLE
+
+
+7/3 1.0.1.3
+------------------------------------------------
+- Add StartRemoteVideoEx to specify window handle,
+  position and scale for draw remote video
+- Add StartLocalVideoEx to specify window handle and
+  position for draw local video
+
+
+6/18 1.0.1.2
+------------------------------------------------
+- Fix "no video after transfer" bug
+- H.263 codec interoperable with InnoMedia videophone
+- Improve MPEG4 codec stability
+
+
+5/30 1.0.0.9
+------------------------------------------------
+- Added StopRemoteVideo interface
+  parameters: none
+
+- Added StartRemoteVideo interface
+  Parameters:
+  long x: remote video display x axis position
+  long y: remote video display y axis position
+  long scale: the display scale ratio
+
+HISTORY:
+5/15 1.0.0.8
+------------------------------------------------
+- Support QCIF & CIF video picture size
+- Added GetAudioType interface
+  return value meaning: 
+  WAV_NULL = -1,
+  WAV_PCMU = 0,
+  WAV_GSM = 3,
+  WAV_G723 = 4,
+  WAV_PCMA = 8,
+  WAV_G729 = 18
+  
+- Added GetVideoType interface
+  return value meaning:
+  VIDEO_NULL = -1,
+  VIDEO_H261 = 0,
+  VIDEO_H263 = 1,
+  VIDEO_MPEG4 = 2
+
+- Added GetVideoSize interface
+  return value meaning:
+  QCIF = 2,
+  CIF = 3
+
+- Added GetRemotePartyDisplayName interface (Sam)
+- Added GetMediaReceiveQuality interface (Sam)
+- Added TransportErr event
+- Added RegistrationTxpErr event
+- Fixed Win98 crash bug (Sam)
+
+*(Change) Log setting according to registry HKCU/SOFTWARE/CCL.ITRI/UACom/Debug (Sam)
+*(Change) Local video should be opened after connected
+
+4/30 1.0.0.7
+------------------------------------------------
+- Added MPEG4 video codec support
+
+4/15 1.0.0.6
+------------------------------------------------
+- Improve user experience when using tcp
+
+3/30 1.0.0.5
+------------------------------------------------
+- Fixed "DTMF malfunction under G.729 codec" bug
+
+3/15 1.0.0.4
+------------------------------------------------
+- Added 2833 out-of-band DTMF (not tested yet)
+
+3/1 1.0.0.3
+------------------------------------------------
+- Added G.723 audio codec support
+
+2/15 1.0.0.2
+------------------------------------------------
+- Fixed deployment bugs
+
+2/1 1.0.0.1
+------------------------------------------------
+- Switch to COM architecture
+
+12/1 0.67 beta
+------------------------------------------------
+- Added dynamic RTP payload size
+
+10/29 0.5 beta
+------------------------------------------------
+- Added H.263 video codec support
+
+10/28 0.39 beta
+------------------------------------------------
+- Fix bug:"Pingtel BYE match to OPTIONS transaction"
+
+10/25 0.38 beta
+------------------------------------------------
+- Fix SDP video selection bug
+- Added SDP selection box
+- Removed use topmost SDP check box
+
+10/24 0.37 beta
+------------------------------------------------
+- Added use topmost SDP check box
+- Added use video check box
+
+10/23 0.36 beta
+------------------------------------------------
+- Codec selection preference work now
+  (Thank Acer for new uaSDP API suite!)
+- Incoporate ITU-T G.729 codec reference implementation
+  (contributed by tyhuang)
+
+10/16 0.34 beta
+------------------------------------------------
+- Add Codec selection page
+- Fix bug:"reset callManager cause creating new log file"
+
+10/15 0.32 beta
+------------------------------------------------
+- Add confirm dialog when press DEL key to try to delete a 
+  credetial entry
+- Hide password from credential list
+- Change scheme to coincide with Vontel Megaco Softphone
+
+10/14 0.31 beta
+------------------------------------------------
+- Fix sipTx Timer bug
+- Fix cancel behavior when in Dialing state
+
+10/11 0.30 beta
+------------------------------------------------
+- Added Credential setting page
+
+10/4 0.28 beta
+------------------------------------------------
+- New bitmaps and skin ini
+- Added current time display while in On-Hook mode
+- Fixed bug:"Registration function can only used once before CallMaager reset"
+
+10/3 0.27 beta
+------------------------------------------------
+- Added Elapsed time display
+- Reorder SDP codec sequence for Vontel's request
+
+9/29 0.25 beta
+------------------------------------------------
+- Added Delay media SDP exchange scheme for Vontel's request
+
+9/24 0.24 beta
+------------------------------------------------
+- Using WriteProfileXXX/GetProfileXXX series function
+  instead of WritePrivateProfileXXX/GetPrivateProfileXXX
+  series function.
+
+9/19 0.2 beta
+------------------------------------------------
+- Add Dial history comboList
+- Support IP auto detection
+- Configuration automation
+- Enable Apply button in Preferences
+- Fix bug:"BYE won't follow transport assigned in the Contact field"
+- Fix bug:"487 Request Cancel take place mistakenly"
+- Fix bug:"Wave does not play correctly when act as UAS"
+- Fix bug:"Return Busy code while already has a dialog"
+- Fix bug:"Via header lost in ACK for 200 OK"

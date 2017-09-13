@@ -1,0 +1,98 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA92926; Wed, 12 Feb 1997 18:49:14 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id SAA23322; Wed, 12 Feb 1997 18:50:16 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vudjc-000oIya; Wed, 12 Feb 97 13:24 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vudg4-001ITGa; Wed, 12 Feb 97 13:20 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vudfw-001ITEE; Wed, 12 Feb 97 13:20 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vudfL-000BlxC; Wed, 12 Feb 97 13:19 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vudft-001ITEE; Wed, 12 Feb 97 13:20 MET
+To: isdn4linux@hub-wue.franken.de
+Xref: oops de.alt.comm.isdn4linux:1555
+Newsgroups: de.alt.comm.isdn4linux
+From: keil@temic-ech.spacenet.de (Karsten Keil)
+Subject: Re: Isdn4Linux an Standleitung?
+X-Newsreader: TIN [version 1.2 PL2]
+Organization: temic
+Message-Id: <E5HLEu.Kn@temic-ech.spacenet.de>
+References: <5ds4i9$9ut$1@News.CoLi.Uni-SB.DE>
+Date: Wed, 12 Feb 1997 11:04:06 GMT
+Lines: 63
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Joerg Dorchain (dorchain@mpi-sb.mpg.de) wrote:
+: Ist es möglich mit, mit einer Teles- (oder auch sonstigen Karte),
+: Isdn4Linux an einer Standleitung zu betreiben? Genauer gesagt an einer
+: SoFMV-Verbindungen (Die Variante mit 1 B-Kanal).
+: Falls ja, kann mir jemand eine Kurzanleitung schicken?
+Ist mit dem HiSax aus dem CVS Tree moeglich.
+Wie Du an den CVS tree kommst ging ein paar mal ueber die Liste.
+(Das letzte Mal mit Subject: Re: Absturz des ISDN
+ am 5 Feb 1997.)
+
+Anleitung zur Installation des isdntrees.
+1. Einen 2.0.X kernel mit HiSax 1.X (wichtig mit HiSAX)
+
+2. ins CVS isdn wechseln und 
+   ./std2kern -d
+   aufrufen
+4. Im kernel make (menu)config;make dep; make clean; make modules 
+
+Hier ein Beispielscript zum leased mod, module werden direkt aus dem 
+kernel geladen (kein make module_install notwendig)
+Alle Telefonnummern sind erlaubt, sie spielen keine Rolle.
+
+#!/bin/sh
+cd /usr/src/linux/modules
+/sbin/insmod -m isdn.o > /tmp/isdn/isdn.map
+/sbin/insmod -m hisax.o type=3 io=0x180 protocol=1 irq=10 id=HiSax \
+  > /tmp/isdn/hisax.map
+/bin/cat /System.map /tmp/isdn/isdn.map /tmp/isdn/hisax.map | \
+  sort > /tmp/isdn/System.map
+# Full debug  nur fuer tests , muss wenns geht runtergesetzt werden
+/sbin/telesctrl HiSax 1  0xffff
+/sbin/telesctrl HiSax 11 0xff
+# normal debug
+#/sbin/telesctrl HiSax 1  0x31
+#/sbin/telesctrl HiSax 11 0x01
+
+# Setzen in leased Mode
+/sbin/telesctrl HiSax 5  0
+# interface
+/sbin/isdnctrl addif isdn0
+# wichtig
+/sbin/isdnctrl huptimeout isdn0 0
+# binde Interface an 1. BChannel (,1 fuer 2.)
+/sbin/isdnctrl bind HiSax,0
+# dummy
+/sbin/isdnctrl eaz isdn0 1
+/sbin/isdnctrl l2_prot isdn0 hdlc
+# dummy
+/sbin/isdnctrl addphone isdn0 out 2
+/sbin/isdnctrl addphone isdn0 in  3
+# interface starten
+/sbin/ifconfig isdn0 192.1.1.1 up
+# route zur Gegenstelle
+/sbin/route add 192.1.1.2 isdn0
+mv /tmp/isdnctrl.log /tmp/isdnctrl.log.o
+cat /dev/isdnctrl >/tmp/isdnctrl.log &
+
+
+-- 
+Dipl.Ing. Karsten Keil                        Microcontroller Developement
+email: keil@temic-ech.spacenet.de                Temic Semiconducters GmbH
+Any opinions in this posting are my own and not those of my present
+or previous employers.
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

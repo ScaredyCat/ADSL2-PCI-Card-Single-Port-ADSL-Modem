@@ -1,0 +1,68 @@
+# $Id: Makefile.in,v 1.7 2002/07/19 19:03:50 keil Exp $
+#
+# Makefile for avmcapictrl
+# (C) 1997 Carsten Paeth
+#
+#
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2
+LDFLAGS			= -L../lib @LIBS@
+INCLUDES		= -I.
+PROGRAMS		= avmcapictrl
+MODULES			= avmcapictrl.o
+MANPAGES		= avmcapictrl.8
+SBINDIR			= @CONFIG_SBINDIR@
+MANDIR			= @CONFIG_MANDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL			= @INSTALL@
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+CC				= @CC@
+
+%.8: %.man
+	cp $< $@
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEFS) -c -o $@ $<
+
+all: $(PROGRAMS) $(MANPAGES)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+avmcapictrl: $(MODULES)
+	$(CC) $(CFLAGS) $? $(LDFLAGS) -o $@
+
+install: $(PROGRAMS) $(MANPAGES)
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	$(INSTALL_PROGRAM) $(PROGRAMS) $(DESTDIR)$(SBINDIR)
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $(MANPAGES) $(DESTDIR)$(MAN8DIR)
+
+install-strip: $(PROGRAMS) $(MANPAGES)
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	$(INSTALL_PROGRAM) -s $(PROGRAMS) $(DESTDIR)$(SBINDIR)
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $(MANPAGES) $(DESTDIR)$(MAN8DIR)
+
+uninstall:
+	@for i in `echo $(PROGRAMS)` ; do \
+		rm -f $(DESTDIR)$(SBINDIR)/$$i ; \
+	done
+	@for i in `echo $(MANPAGES)` ; do \
+		rm -f $(DESTDIR)$(MAN8DIR)/$$i ; \
+	done
+
+clean:
+	rm -f *.o *~ $(PROGRAMS) *.8
+
+distclean: clean
+	rm -f config.status config.cache config.log confdefs.h Makefile *.man

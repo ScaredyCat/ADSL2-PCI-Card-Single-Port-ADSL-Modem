@@ -1,0 +1,10 @@
+#! /bin/sh
+##
+## $Id: mkdev,v 1.2 1997/10/22 20:47:28 fritz Exp $
+
+./utils/mksed <./doc/de/vbox.sgml.in >/home/www/local/tools/vbox/vbox.sgml
+
+cd /home/www/local/tools/vbox
+
+sgml2html -img -l vbox.sgml
+sgml2txt -l vbox.sgml

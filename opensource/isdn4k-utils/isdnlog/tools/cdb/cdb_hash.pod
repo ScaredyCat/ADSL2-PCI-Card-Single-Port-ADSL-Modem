@@ -1,0 +1,21 @@
+=head1 NAME
+
+cdb_hash -- the hash function used by cdb
+
+=head1 SYNOPSIS
+
+B<#include E<lt>freecdb.hE<gt>>
+
+uint32 B<cdb_hash>(unsigned char *I<buf>, unsigned int I<len>);
+
+=head1 DESCRIPTION
+
+Return a hash for the first I<len> bytes of I<buf>.
+
+=head1 RETURN VALUE
+
+The hash.
+
+=head1 SEE ALSO
+
+L<cdb_seek(3)|cdb_seek(3)>

@@ -1,0 +1,70 @@
+# $Id: Makefile.in,v 1.2 2002/07/19 19:03:51 keil Exp $
+#
+# Makefile for hisaxctrl adapted from telesctrl
+# (C) 1997 Fritz Elfert
+# (C) 2000 Karsten Keil
+#
+#
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2 -I.
+LDFLAGS			= -L../lib @LIBS@
+PROGRAMS		=
+MODULES			= hisaxctrl.o
+MANPAGES		=
+INSTALL			= @INSTALL@
+SBINDIR			= @CONFIG_SBINDIR@
+DATADIR			= @CONFIG_DATADIR@
+MANDIR			= @CONFIG_MANDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_DATA	= $(INSTALL) -o 0 -g 0 -m 0644
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+ifeq ("@CONFIG_HISAXCTRL@","y")
+	PROGRAMS	+= hisaxctrl
+	MANPAGES	+= hisaxctrl.8
+endif
+CC				= @CC@
+
+#.SUFFIXES:
+#.SUFFIXES: .c .o
+
+%.8: %.man
+	cp $< $@
+
+all: $(PROGRAMS) $(MANPAGES)
+
+config:
+	@./configure
+
+hisaxctrl:	$(MODULES)
+	$(CC) $(CFLAGS) $? $(LDFLAGS) -o $@
+
+install: $(PROGRAMS) $(MANPAGES)
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	$(INSTALL_PROGRAM) $(PROGRAMS) $(DESTDIR)$(SBINDIR)
+	mkdir -p $(DESTDIR)$(DATADIR)
+	$(INSTALL_DATA) ISAR.BIN $(DESTDIR)$(DATADIR)/ISAR.BIN
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $(MANPAGES) $(DESTDIR)$(MAN8DIR)
+
+install-strip: $(PROGRAMS) $(MANPAGES)
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	$(INSTALL_PROGRAM) -s $(PROGRAMS) $(DESTDIR)$(SBINDIR)
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $(MANPAGES) $(DESTDIR)$(MAN8DIR)
+
+uninstall:
+	@for i in `echo $(PROGRAMS)` ; do \
+		rm -f $(DESTDIR)$(SBINDIR)/$$i ; \
+	done
+	@for i in `echo $(MANPAGES)` ; do \
+		rm -f $(DESTDIR)$(MAN8DIR)/$$i ; \
+	done
+
+clean:
+	rm -f *.o *~ $(PROGRAMS) *.8 *.man
+
+distclean: clean
+	rm -f config.status config.cache config.log Makefile

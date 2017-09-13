@@ -1,0 +1,86 @@
+#!/usr/bin/make -f
+#
+# Copyright (C) 1999 Roberto Lumbreras <rover@debian.org>
+# Copyright (C) 1999-2002 Juan Cespedes <cespedes@debian.org>
+# Copying: GPL
+
+SHELL	=	bash
+
+PACKAGE	=	$(shell perl -e 'print <> =~ /^(.*) \(.*\)/' debian/changelog)
+PKG_VER	=	$(shell perl -e 'print <> =~ /\((.*)\)/' debian/changelog)
+PKG_UPVER=	$(shell perl -e 'print <> =~ /\((.*)-[^-]*\)/' debian/changelog)
+
+BINS	=	ip/ip
+SBINS	=	ip/rtmon ip/rtacct tc/tc
+SHBINS	=	ip/routef ip/routel # ip/ifcfg ip/rtpr
+DOCS	=	README* doc/Plan debian/README.Debian
+MAN7	=	debian/iproute.7
+MAN8	=	debian/tc.8 debian/tc-cbq.8 debian/tc-htb.8
+MAN8	+=	debian/tc-pbfifo.8 debian/tc-pfifo_fast.8 debian/tc-prio.8
+MAN8	+=	debian/tc-red.8 debian/tc-sfq.8 debian/tc-tbf.8
+MANLINKS=	ip rtmon rtacct tc routef routel
+TEXDOCS	=	ip-cref ip-tunnels api-ip6-flowlabels
+
+build:		stamp-build
+
+stamp-build:
+		$(MAKE) KERNEL_INCLUDE=/usr/include
+		$(MAKE) -C doc
+		touch stamp-build
+
+binary:		binary-indep binary-arch
+
+binary-indep:
+
+binary-arch:	checkroot stamp-build
+		$(RM) -r debian/tmp
+		install -d -m0755 debian/tmp/{DEBIAN,bin,sbin,usr/{bin,share/doc/$(PACKAGE),share/man/man{7,8}}}
+		install -s -m0755 $(BINS) debian/tmp/bin/
+		install -s -m0755 $(SBINS) debian/tmp/sbin/
+		ln -s /bin/ip debian/tmp/sbin/ip
+		install -m0755 $(SHBINS) debian/tmp/usr/bin/
+		cp -p $(DOCS) debian/tmp/usr/share/doc/$(PACKAGE)/
+		cp -rp examples debian/tmp/usr/share/doc/$(PACKAGE)/
+		find debian/tmp/usr/share/doc/$(PACKAGE)/examples -type f -exec chmod -x {} \;
+		install -m0644 debian/changelog debian/tmp/usr/share/doc/$(PACKAGE)/changelog.Debian
+		cp -p RELNOTES debian/tmp/usr/share/doc/$(PACKAGE)/changelog
+		for i in $(TEXDOCS); do \
+			install -m0644 doc/$$i.tex debian/tmp/usr/share/doc/$(PACKAGE)/; \
+			install -m0644 doc/$$i.dvi debian/tmp/usr/share/doc/$(PACKAGE)/; \
+			install -m0644 doc/$$i.ps debian/tmp/usr/share/doc/$(PACKAGE)/; \
+		done
+		install -m0644 $(MAN7) debian/tmp/usr/share/man/man7/
+		install -m0644 $(MAN8) debian/tmp/usr/share/man/man8/
+		gzip -9fr debian/tmp/usr/share || true
+		ln -s tc-pbfifo.8.gz debian/tmp/usr/share/man/man8/tc-pfifo.8.gz
+		ln -s tc-pbfifo.8.gz debian/tmp/usr/share/man/man8/tc-bfifo.8.gz
+		for i in $(MANLINKS); do \
+			ln -s ../man7/iproute.7.gz debian/tmp/usr/share/man/man8/$$i.8.gz; \
+		done
+		cp -p debian/copyright debian/tmp/usr/share/doc/$(PACKAGE)/
+		cp -rp etc debian/tmp/
+		install -m0644 debian/conffiles debian/tmp/DEBIAN/
+		install debian/postinst debian/tmp/DEBIAN/
+		install debian/prerm debian/tmp/DEBIAN/
+		install debian/postrm debian/tmp/DEBIAN/
+
+		dpkg-shlibdeps $(BINS)
+		dpkg-gencontrol -isp
+		chown -R root.root debian/tmp
+		chmod -R u=rwX,go=rX debian/tmp
+		dpkg --build debian/tmp ..
+
+checkdir:
+		@test -f debian/rules
+
+checkroot:	checkdir
+		@test 0 = `id -u` || { echo "Error: not super-user"; exit 1; }
+
+clean:		checkdir debian/control
+		$(RM) stamp-build debian/files debian/substvars
+		$(MAKE) clean
+		$(MAKE) -C doc clean
+		$(RM) `find . -name "*~" -o -name core`
+		$(RM) -r debian/tmp
+
+.PHONY: build binary binary-arch binary-indep checkdir checkroot clean

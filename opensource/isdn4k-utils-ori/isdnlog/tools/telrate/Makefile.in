@@ -1,0 +1,50 @@
+# Makefile.in for telrate.cgi
+# run ./configure to generate Makefile
+# or look at the .samples configurations
+
+VERSION		= 1_20
+SHELL		= @SH@
+PROGRAM		= telrate.cgi
+CGIDIR		= @CGIDIR@
+TELDIR		= @TELDIR@
+INSTALL		= @INSTALL@
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0755
+INSTALL_FILE	= $(INSTALL) -o 0 -g 0 -m 0644
+
+FILES = index.html info.html *.jpg *.gif tt.js
+
+all: ;
+
+.PHONY: install-file install uninstall clean distclean all
+install-file: $(FILES)
+	mkdir -p $(TELDIR)
+	mkdir -p $(TELDIR)/tmp
+	@for F in `echo $(FILES)` ; do \
+		$(INSTALL_FILE) $$F $(TELDIR)/$$F ; \
+	done ; \
+	echo "" ; \
+	echo Please chmod $(TELDIR)/tmp to uid/gid of your web server. ;\
+	echo "" ; sleep 3
+
+install: $(PROGRAM) install-file
+	$(INSTALL_PROGRAM) $(PROGRAM) $(CGIDIR)/$(PROGRAM)
+
+uninstall:
+	rm -f $(CGIDIR)/$(PROGRAM)
+	rm -f $(TELDIR)
+
+clean:
+	rm -f $(PROGRAM) index.html info.html
+
+distclean: clean
+	rm -f Makefile config
+
+distrib: distclean
+	(cd .. && tar -czvf telrate-$(VERSION).tar.gz \
+		telrate/configure \
+		telrate/*.in \
+		telrate/*.gif \
+		telrate/*.jpg \
+		telrate/*.html \
+		telrate/tt.js \
+		telrate/*.sample )

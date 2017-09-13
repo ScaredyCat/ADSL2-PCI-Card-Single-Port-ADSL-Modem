@@ -1,0 +1,88 @@
+
+CallManager.o: /Danube/3.0.5/source/user/ifx/drv_tapi/src/common/src/sys_drv_ifxos.h
+CallManager.o: /usr/include/stdio.h /usr/include/features.h
+CallManager.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+CallManager.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+CallManager.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+CallManager.o: /usr/include/_G_config.h /usr/include/wchar.h
+CallManager.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+CallManager.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+CallManager.o: /usr/include/time.h /usr/include/bits/time.h
+CallManager.o: ../../src/UACore/ua_core.h ../../src/UACore/ua_cm.h
+CallManager.o: ../../src/sip/sip_cm.h ../../src/common/cm_def.h
+CallManager.o: /usr/include/string.h ../../src/adt/dx_lst.h
+CallManager.o: ../../src/common/cm_trace.h ../../src/common/cm_def.h
+CallManager.o: ../../src/UACore/ua_cfg.h ../../src/sipTx/sipTx.h
+CallManager.o: ../../src/sip/sip.h ../../src/sip/sip_cm.h
+CallManager.o: ../../src/sip/sip_cfg.h ../../src/sip/sip_tx.h
+CallManager.o: ../../src/sip/sip_req.h ../../src/sip/sip_hdr.h
+CallManager.o: ../../src/sip/sip_bdy.h ../../src/sip/sip_url.h
+CallManager.o: ../../src/sip/rfc822.h ../../src/adt/dx_str.h
+CallManager.o: ../../src/sip/sip_rsp.h ../../src/common/cm_utl.h
+CallManager.o: /usr/include/stdlib.h /usr/include/sys/types.h
+CallManager.o: /usr/include/endian.h /usr/include/bits/endian.h
+CallManager.o: /usr/include/sys/select.h /usr/include/bits/select.h
+CallManager.o: /usr/include/bits/sigset.h /usr/include/sys/sysmacros.h
+CallManager.o: /usr/include/alloca.h ../../src/sip/sip_int.h
+CallManager.o: ../../src/sip/base64.h ../../src/adt/dx_hash.h
+CallManager.o: ../../src/UACore/ua_dlg.h ../../src/sdp/sdp.h
+CallManager.o: ../../src/sdp/sdp_sess.h ../../src/sdp/sdp_to.h
+CallManager.o: ../../src/sdp/sdp_def.h ../../src/sdp/sdp_tc.h
+CallManager.o: ../../src/sdp/sdp_tk.h ../../src/sdp/sdp_tb.h
+CallManager.o: ../../src/sdp/sdp_tses.h ../../src/sdp/sdp_tt.h
+CallManager.o: ../../src/sdp/sdp_tr.h ../../src/sdp/sdp_tz.h
+CallManager.o: ../../src/sdp/sdp_ta.h ../../src/sdp/sdp_mses.h
+CallManager.o: ../../src/sdp/sdp_tm.h ../../src/sdp/sdp_utl.h
+CallManager.o: ../../src/UACore/ua_int.h ../../src/UACore/ua_mgr.h
+CallManager.o: ../../src/sip/sip_cfg.h ../../src/UACore/ua_user.h
+CallManager.o: ../../src/UACore/ua_msg.h ../../src/UACore/ua_sdp.h
+CallManager.o: ../../src/UACore/ua_content.h ../../src/UACore/ua_sub.h
+CallManager.o: ../../src/UACore/ua_sipmsg.h ../../src/UACore/ua_class.h
+CallManager.o: ../../src/UACore/ua_evtpkg.h CallManager.h MediaManager.h
+CallManager.o: ../../src/adt/dx_buf.h SDPManager.h UACommon.h
+CallManager.o: ../../src/sdp/sdp_sess.h cclRtp.h ../../src/rtp/rtp.h
+CallManager.o: ../../src/rtp/config.h ../../src/rtp/config_unix.h
+CallManager.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+CallManager.o: /usr/include/bits/confname.h /usr/include/sys/socket.h
+CallManager.o: /usr/include/sys/uio.h /usr/include/bits/uio.h
+CallManager.o: /usr/include/bits/socket.h /usr/include/limits.h
+CallManager.o: /usr/include/bits/posix1_lim.h /usr/include/bits/local_lim.h
+CallManager.o: /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/limits.h
+CallManager.o: /usr/include/bits/sockaddr.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/socket.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/sockios.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/ioctl.h
+CallManager.o: /usr/include/sys/time.h /usr/include/sys/ioctl.h
+CallManager.o: /usr/include/bits/ioctls.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/ioctls.h
+CallManager.o: /usr/include/bits/ioctl-types.h /usr/include/sys/ttydefaults.h
+CallManager.o: /usr/include/netinet/in.h /usr/include/stdint.h
+CallManager.o: /usr/include/bits/in.h /usr/include/bits/byteswap.h
+CallManager.o: /usr/include/arpa/inet.h /usr/include/fcntl.h
+CallManager.o: /usr/include/bits/fcntl.h /usr/include/errno.h
+CallManager.o: /usr/include/bits/errno.h
+CallManager.o: /Danube/3.0.5/source/kernel/opensource/linux-2.4.31/include/linux/errno.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/errno.h
+CallManager.o: /usr/include/assert.h /usr/include/netdb.h
+CallManager.o: /usr/include/rpc/netdb.h /usr/include/bits/netdb.h
+CallManager.o: ../../src/rtp/rtp_error.h common.h /usr/include/sys/stat.h
+CallManager.o: /usr/include/bits/stat.h /usr/include/getopt.h
+CallManager.o: /usr/include/signal.h /usr/include/bits/signum.h
+CallManager.o: /usr/include/bits/siginfo.h /usr/include/bits/sigaction.h
+CallManager.o: /usr/include/bits/sigcontext.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/asm/sigcontext.h
+CallManager.o: /usr/include/math.h /usr/include/bits/huge_val.h
+CallManager.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+CallManager.o: /usr/include/sys/wait.h /usr/include/sys/resource.h
+CallManager.o: /usr/include/bits/resource.h /usr/include/bits/waitflags.h
+CallManager.o: /usr/include/bits/waitstatus.h /usr/include/sys/poll.h
+CallManager.o: /usr/include/bits/poll.h /usr/include/ctype.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/drv_tapi/src/common/src/ifx_types.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/drv_vmmc/src/vmmc_io.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/drv_vmmc/src/drv_vmmc_errno.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/drv_tapi/src/drv_tapi_io.h
+CallManager.o: system.h tapidemo.h ../../src/low/cx_event.h
+CallManager.o: ../../src/low/cx_sock.h ../../src/low/cx_mutex.h
+CallManager.o: ../../src/low/cx_thrd.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/include/ifx_common.h
+CallManager.o: /Danube/3.0.5/source/user/ifx/IFXAPIs/../../ifx/ifx_httpd/ifx_amazon_cfg.h

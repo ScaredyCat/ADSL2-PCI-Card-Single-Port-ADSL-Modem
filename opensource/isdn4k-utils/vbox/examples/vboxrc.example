@@ -1,0 +1,23 @@
+# Beispiel einer ~/.vboxrc
+
+# Username & password for vboxd login
+
+#USERNAME		<username>	# Username to login
+#PASSWORD		<password>	# Password to login
+
+# Default volume (vboxplay)
+
+VOLUME			200		# Default volume (NAS)
+
+# Color definitions for vbox
+
+C_BACKGROUND		GRAY:BLACK	# Background
+C_STATUSBAR		GRAY:BLUE	# Statusbar
+C_STATUSBAR_HL		YELLOW:BLUE	# Statusbar (highlight)
+C_POWERLED_ON		GREEN:BLUE	# Power led (on)
+C_POWERLED_OFF		RED:BLUE	# Power led (off)
+C_STATUSLED_ON		YELLOW:BLUE	# Status led (on)
+C_STATUSLED_OFF		BLACK:BLUE	# Status led (off)
+C_LIST			GRAY:BLACK	# Message list
+C_LIST_SELECTED		GRAY:RED	# Message list (selected)
+C_INFOTEXT		GREEN:BLACK	# Information

@@ -1,0 +1,4 @@
+#!/bin/sh
+/sbin/rmmod hisax
+/sbin/modprobe hisax io=1,2,12,0xd0000,0xd80 HiSax_id=bri1
+/sbin/telesctrl bri1 1 4

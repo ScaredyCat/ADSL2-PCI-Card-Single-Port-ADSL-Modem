@@ -1,0 +1,327 @@
+$Id: eftp,v 1.3 1999/07/26 22:04:33 he Exp $
+
+Sorry, rather incomplete and not in man page format.
+
+But feel free to submit patches :-)
+
+
+eftp is a simple EUROFILE transfer client with a command line user
+interface roughly resembling the ftp client.
+
+Synopsis:
+
+	eftp [ -i ISDN_NO ] [ -x X25_ADDRESS ] [ -u USER[/PASSWORD] ]
+		[-p] [-h]
+ 
+Novice users are initially recommended to invoke eftp as
+
+	eftp -i ISDN_NO -u USER
+
+where ISDN_NO specifies the isdn number of the remote server and USER
+is the login name on the remote server
+
+eftp supports the following command line options:
+
+	-i ISDN_NO
+			specify the isdn no of the remote EUROFILE
+			server to connect to. The client will try to
+			set up an isdn connection to this number and
+			an X.25 DTE-DTE connection on top of this.
+	
+	-x X25_ADDRESS
+			directly specify the X.25 address used for
+			setting up the X.25 connection. For eftp to
+			work, an X.25 route for that address must
+			already be present. The X.25 route must point
+			to an isdn4linux network interface that is
+			configured for outgoing connections to a
+			destination EUROFILE server. The encapsulation
+			of the interface must be "x25iface", l2_prot
+			must be x75i.
+
+	If neither -i nor -x option is specified, the behavior is like
+	an empty string -x option ( as if called like  "eftp -x ''" ) 
+
+	-u USER[/PASSWORD]
+			The user identity used to login to the
+			remote EUROFILE server. The password can
+			be appended to the user id seperated by a
+			'/' character. If no '/' is present in the
+			paramater of the -u option, eftp will prompt
+			for a password.
+			 
+CAUTION:
+
+	Entering the password on the command line allows other users
+	to spoof the password, e.g. by means of the ps command. The
+	password might also leave other traces, e.g. in your shell's
+	history file. Thus, DON'T include the passwd in the -u argument
+	on machines where this is a concern (e.g. when untrusted users
+	have shell accounts on the machine).
+
+			If the -u option is missing, the client will
+			try to login without a user id (some servers
+			will treat this as anonymous access).
+		
+		-p	suppress prompting for a password even if the
+			argument to the -u option does not contain a
+			password. This is useful for accounts on
+			EUROFILE servers without password protection.
+		
+		-h	print a help message to stdout.
+
+
+
+eftp can also be invoked by means of the eftp.sh shell script:
+
+	eftp.sh ISDN_NUMBER [ID]
+
+where ISDN_NUMBER is the isdn number of the peer server to connect to.
+ID is usually entered as USER or USER/PASSWD, consisting of the
+userid and the password on the remote EUROFILE server.
+The shell script is obsolete now because the eftp suid support offers
+better functionality.
+
+
+ISDN CONNECTIONS
+================
+
+If invoked with the -i option, eftp will try its best to create and
+set up all related isdn interfaces automatically and to remove them
+after the end of the session. In order to undo the setup after the
+end of the session reliably (i.e. even when the eftp process crashes),
+eftp forks a child process which is in charge of processing the
+eurofile session while taking care itself only for supervising the
+isdn connection setup and undoing all temporary isdn configurations
+after the child exits.
+	
+However, the control and configuration of isdn connections requires
+certain privileges (netadmin capability, write access to
+/dev/isdnctrl). Thus, this will currently only work if eftp is
+executed by the root user, which is undesirable.
+
+To overcome this problem, eftp now has special support to execute suid
+root. To take advantage of this, make root the owner of the eftp
+binary and set the suid bit.
+
+WARNING/DISCLAIMER: suid programmes are inherently dangerous because
+potential bugs in the programme, the kernel or standard libraries
+might be exploitable to gain root priviliges. If this is a concern,
+don't install eftp suid root. If installed suid root, also consider
+to clear the world executable bit of the eftp binary and to change
+its group to a group of trusted users who are allowed to execute
+the setuid eftp programme. 
+
+eftp will change the uid of the forked child process (which is in
+charge of the protocol procession) to the (less priviliged) real
+user id of the caller as soon as possible. Only the parent process,
+which does not interact with the user directly and needs more
+priviliges in order to clean up the isdn setup,
+continues to run suid root. The real userid of the parent
+will be switched to the effective userid (root). 
+
+A suid root eftp will not allow all users to set up eurofile isdn
+connections. eftp checks whether the user has write permissions for the
+/dev/ttyI0 special file. Only if this check is passed, the isdn
+connection will be set up. This algorithm ensures that only users, who
+are already permitted to set up isdn connections by other means
+(by writing AT commands to /dev/ttyI0), can set up isdn connections for
+eurofile.
+
+Similarily, in order to set up isdn4linux network interfaces, the
+eftp.sh script needs to be called from the root user. Before the
+eftp programme itself is executed, the userid is switched (configurable
+in the /etc/isdn/eft.conf file) and the working directory is changed
+to /tmp. This old method of invoking eftp is obsolete now and will
+cease to be supported because the above suid/access algorithm is
+superior. If ISDN_NUMBER is the string "localhost", the eftp.sh
+scripts tries to set up a connection to the own computer by means of
+the isdnloop driver, for the benefit of your phone bill.
+
+
+COMMAND INPUT
+=============
+
+When eftp has established the connection, it issues the "eftp>" prompt
+and waits for commands that will be read from standard input.
+If configured before compilation, interactive input can be edited by
+means of the GNU readline library.
+
+The following commands are recognised:
+
+
+
+Commands for Listing and Transferring Files
+
+
+dir [PATTERN]
+
+	This corresponds to ETS 300-075 and ETS 300-383 T-DIRECTORY
+	primitive. It prints a list of files contained in the current
+	working directory (ETSI calls it the "current filestore").
+	PATTERN is a pattern as defined in ETS 300-075 and selects a
+        subset of those files to be displayed. ETS 300-075 pattern are
+	different from shell wildcard or regular expressions, but the
+	pattern "*" matches all filenames as you'd expect. I won't
+	explain further pattern rules here because most servers don't
+	recognise any patterns different from "*" anyway. 
+
+	If pattern is omitted, the * pattern is assumed.
+
+	Pattern applies to the EUROFILE transfer name of the files,
+	which is not necessarily identical to the filename itself.
+
+	Likewise, the output of the  command does not list the
+	filenames, but the transfer names of the files and the file
+	length. Note that only regular files are listed. For listing
+	subdirectories, there are the list and slist commands.
+	
+
+xdir [PATTERN]
+	
+	This is similar to the dir command but requests the directory
+	contents in extended format. In addition to the transfer name,
+	this will also contain the real name of the file and the time
+	stamp of the last write access.
+
+	Note that not all servers support directory requests with
+	extended format. Some of those servers will respond with
+	a normal directory contents file, others will reject the
+	request. In the former case, eftp will issue a warning message
+	and use the transfer name for the file name and use 1970-01-01
+	as the last access date. (The eftp4linux server supports
+	extended directory formats).
+
+
+get TRANSFER_NAME [PATH_NAME]
+
+	This corresponds to the  300-075 T-LOAD primitive and
+	tries to load the file identified by TRANSFER_NAME
+	from the remote server and stores it locally using PATH_NAME
+	as the destination. If PATH_NAME is omitted, TRANSFER_NAME is
+	also used as the destination name.
+
+	
+put [PATH_NAME] TRANSFER_NAME 
+
+	This corresponds to the ETS 300-075 T-SAVE primitive and
+	tries to upload the local file identified by PATH_NAME
+	to the remote server, using TRANSFER_NAME as the destination. 
+	If PATH_NAME is omitted, TRANSFER_NAME is also used as to
+	identify the local file.
+
+mget PATTERN
+
+	get multiple files whose transfer names match PATTERN. PATTERN
+	is (currently) interpreted a shell glob pattern, not an
+	ETS 300 075 pattern.
+
+mput PATTERN
+
+	put multiple files whose names match PATTERN. PATTERN is
+	interpreted a shell glob pattern, not an ETS 300 075 pattern.
+
+	NOTE: The matched name is also used as the transfer name.
+	If pattern matched local files whose file name do not form
+	a valid ETS 300-383 transfer name, the transfer of those
+	files might fail.	
+	
+prompt [on|off]
+	
+	If "on", prior to each file transferred by mput or mget, the
+	user is prompted for confirmation. If no parameter is given
+	the on/off value is toggled.
+
+	Possible user responses to the prompt:
+
+	y	transfer the file
+	n	don't transfer the file and prompt for the next one
+
+case [on|off]
+
+	If "off", cases are ignored when matching PATTERN in mget and mput.
+	If parameter is missing, toggle current parameter value.
+
+	This currently does nor work with all versions of libc.
+
+
+Navigation Commands (related to directories)
+
+	These commands are likely to fail because many servers don't
+	support the navigation facility. (The eftp4linux server,
+	however, supports this :-)
+
+cd [DIRECTORY]
+
+	This changes the current working directory ("current
+	filestore") to DIRECTORY. If DIRECTORY is omitted,
+	the default directory (this is the one initially entered
+	when logged in) is changed to.
+
+	This command is likely to fail because many servers don't
+	support the navigation facility.
+
+pwd
+
+	This prints the name of the server's current working directory
+	("current filestore") to stdout.
+
+slist
+
+	This corresponds to the  300-383 S-LIST primitive.
+	It prints a list of the subdirectories contained in the
+	current working directory. The list items consist of
+	a so called file store reference followed by the filestore
+	(directory) name. (The eftp4linux server supports this, but
+	the filestore references are currently not generated totally
+	norm conforming.)
+	
+
+list
+
+	This corresponds to the ETS 300-383 LIST primitive.
+	It is similar to the slist command, but prints a list of all
+	directories of the server. (Even the eftp4linux server does not
+	support this).
+
+
+
+Misc Commands
+
+msg MESSAGE
+ 
+	The MESSAGE string is send literally to the remote server
+	if the server supports it (most servers won't) by means of
+	the ETS 300-075 T-TYPED_DATA primitive.
+
+	If MESSAGE is ommitted, the client will prompt for the message
+	string (can currently cause problems as protocol precessing is
+	currently not performed whil waiting for the user input).
+
+lcd DIR
+
+	change local working directory to DIR
+
+! COMMAND-STRING
+	
+	execute COMMAND-STRING as a shell command.
+
+quit
+
+	This will quit the EUROFILE session, close the connection, and
+	exit the eftp programme.
+
+
+Readline Support
+================
+
+When eftp is compiled with the CONFIG_EFTP_READLINE option set to "y"
+in the configure shell script, command line editing is performed by
+means of the GNU readline library. (Thanks to Michael Mauch for adding
+this).
+
+When using the readline code, the terminal might be left in a strange
+mode if the program didn't exit properly. In such a case you can
+return to the normal terminal mode by running the program "reset",
+which is a link to "tset" (see tset(1)).
+

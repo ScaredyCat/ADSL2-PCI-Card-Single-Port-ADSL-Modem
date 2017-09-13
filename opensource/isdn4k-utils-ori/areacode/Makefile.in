@@ -1,0 +1,45 @@
+# 
+# This Makefile is used for compatibility to the
+# isdn4k-utils package. In order to superseede
+# the original Makefile, it is called GNUmakefile.
+#
+
+ifeq (../.config,$(wildcard ../.config))
+	include ../.config
+	DATAOPTS := DATATARGET=$(shell echo $(DESTDIR)$(CONFIG_DATADIR))/areacodes
+	#
+	# Install as root with numeric Id's, since these are the
+	# only ones that _really_ exist on _every_ system.
+	#
+	BUILDOPTS   := $(DATAOPTS)
+	INSTALLOPTS := $(DATAOPTS) INSTALL="install -o 0 -g 0 -m 644"
+endif
+
+all: .depend
+	$(MAKE) -f make/linux.mak $(BUILDOPTS) all
+
+depend dep: .depend
+
+.depend:
+	$(MAKE) -f make/linux.mak $(BUILDOPTS) depend
+
+config:
+	@cp Makefile.in GNUmakefile
+
+clean:
+	$(MAKE) -f make/linux.mak clean
+
+distclean:
+	$(MAKE) -f make/linux.mak distclean
+	rm -f GNUmakefile
+
+install-man:
+
+install: all
+ifeq ($(CONFIG_LIB_AREACODE),y)
+		mkdir -p $(DESTDIR)$(CONFIG_DATADIR)
+		$(MAKE) -f make/linux.mak $(INSTALLOPTS) install
+endif
+
+uninstall:
+	rm -f $(shell echo $(DESTDIR)$(CONFIG_DATADIR))/areacodes

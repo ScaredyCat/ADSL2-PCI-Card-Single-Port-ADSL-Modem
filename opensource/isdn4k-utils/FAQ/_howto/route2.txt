@@ -1,0 +1,115 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA773032; Wed, 4 Dec 1996 19:25:55 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id TAA04351; Wed, 4 Dec 1996 19:27:00 +0100
+Received: from hub-wue.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vVFcT-000oJ0a; Wed, 4 Dec 96 12:36 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vVFZi-000Boma; Wed, 4 Dec 96 12:33 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vVFbR-001IV5a; Wed, 4 Dec 96 12:35 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vVFbO-001IV3E; Wed, 4 Dec 96 12:34 MET
+Received: from dino.nus.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vVFYU-000BomC; Wed, 4 Dec 96 12:31 MET
+Received: from localhost (nils@localhost [127.0.0.1]) by dino.nus.de (8.7.6/8.7.3) with ESMTP id MAA09043 for <isdn4linux@hub-wue.franken.de>; Wed, 4 Dec 1996 12:35:02 +0100
+Date: Wed, 4 Dec 1996 12:35:02 +0100 (MET)
+From: Nils Rennebarth <nils@nus.de>
+To: isdn4linux@hub-wue.franken.de
+Subject: Re: ISDN-Problem
+In-Reply-To: <199612031939.UAA07539@mail.germanlloyd.de>
+Message-Id: <Pine.LNX.3.95.961204114817.1062I-100000@dino.nus.de>
+Mime-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Reply-To: isdn4linux@hub-wue.franken.de
+Status:   
+
+On Tue, 3 Dec 1996, Martin Bauer wrote:
+
+>Moin moin,
+>
+>ich habe da ein kleines Problem:
+>
+[Emma und Gegenstelle unterhalten sich prima, aber von keinem Rechner im
+Netz der Gegenstelle geht es zu Emma]
+Emma:
+eth0    inet addr:192.168.10.1  Bcast:192.168.10.255  Mask:255.255.255.0
+isdn0   inet addr:192.168.11.1  P-t-P:192.168.11.3
+>
+>Kernel IP routing table
+>Destination     Gateway         Genmask         Flags Metric Ref    Use =
+Iface
+>172.20.1.4      0.0.0.0         255.255.255.255 UH    0      0       11 =
+isdn0
+>192.168.11.3    0.0.0.0         255.255.255.255 UH    0      0        3 =
+isdn0
+>192.168.10.0    0.0.0.0         255.255.255.0   U     0      0        0 =
+eth0
+
+>0.0.0.0         192.168.11.3    0.0.0.0         UG    0      0        2 =
+isdn0
+>
+>
+>
+>Die Gegenstelle:
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+eth0      inet addr:172.20.1.4  Bcast:172.20.255.255  Mask:255.255.0.0
+isdn0     inet addr:192.168.11.3  P-t-P:192.168.11.1  Mask:255.255.255.0
+
+>Kernel IP routing table
+>Destination     Gateway         Genmask         Flags Metric Ref    Use =
+Iface
+>192.168.11.1    0.0.0.0         255.255.255.255 UH    0      0       15 =
+isdn0
+>192.168.10.0    192.168.11.1    255.255.255.0   UG    0      0        3 =
+isdn0
+>172.20.0.0      0.0.0.0         255.255.0.0     U     0      0       39 =
+eth0
+
+>0.0.0.0         172.20.1.1      0.0.0.0         UG    0      0        3 =
+eth0
+Es ist kein ISDN Problem, es ist ein routing Problem.
+
+"Gegenstelle" bekommt =FCber ISDN ein Paket mit 192.168.11.3 als Gateway,
+wei=DF aber routing-technisch nicht, das es das selber ist.
+!! Allein durch Einrichten eines Point-to-Point Interfaces
+!! wei=DF ein Rechner noch nicht, da=DF IP-Pakete an die auf seiner Seite
+!! konfigurierte Adresse auch an ihn sind.
+
+Mit anderen Worten: es fehlt auf "Gegenstelle" der Befehl
+route add -host 192.168.11.3 dev isdn0
+
+N.B.: Warum machst Du es nicht einfacher, wenn Du Point-to-Point routen
+verwendest:
+
+auf Emma:
+ifconfig isdn0 192.168.10.1 pointopoint 172.20.1.4 -arp -broadcast
+route add -host 172.20.1.4
+route add default gw 172.20.1.4
+
+auf Gegenstelle:
+ifconfig isdn0 172.20.1.4 pointopoint 192.168.10.1 -arp -broadcast
+route add -host 192.168.10.1
+route add -net 192.168.10.0 gw 192.168.10.1
+
+Nils
+
+--
+     \              /                        | Nils Rennebarth
+    --* WINDOWS 42 *--                       | Schillerstr. 61=20
+     /              \                        | 37083 G=F6ttingen
+                                             | ++49-551-71626
+   Micro$oft's final answer                  | http://www.nus.de/~nils
+
+
+
+
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

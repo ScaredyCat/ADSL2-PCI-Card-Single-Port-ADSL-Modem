@@ -1,0 +1,1130 @@
+﻿<!--Param.xml for Agent-->
+<?xml version="1.0" encoding="UTF-8"?>
+<TR069 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/root/param.xsd">
+<trf>
+    <obj name="InternetGatewayDevice" rw="0">
+        <param name="LANDeviceNumberOfEntries" rw="0" type="u" noti="1" dev_func="dev_landev_num">
+        </param>
+	    <param name="WANDeviceNumberOfEntries" rw="0" type="u" dev_func="dev_wandev_num">
+        </param>
+        <obj name="DeviceInfo" rw="0">
+           <param name="Manufacturer" rw="0" type="s" dev_func="dev_Manufacturer">      
+	          </param>
+	        <param name="ManufacturerOUI" rw="0" type="s" dev_func="dev_ManufacturerOUI">
+	        </param>
+	        <param name="ModelName" rw="0" type="s" dev_func="dev_ModelName">
+            </param>
+			<param name="Description" rw="0" type="s" dev_func="dev_Description">
+			</param>
+			<param name="ProductClass" rw="0" type="s" dev_func="dev_ProductClass">
+			</param>
+			<param name="SerialNumber" rw="0" type="s" dev_func="dev_SerialNumber">
+			</param>
+			<param name="HardwareVersion" rw="0" type="s" dev_func="dev_HardwareVersion">
+			 </param>
+			<param name="SoftwareVersion" rw="0" type="s" noti="2" noti_rw="0" dev_func="dev_SoftwareVersion">
+			</param>
+			<param name="ModemFirmwareVersion" rw="0" type="s" dev_func="dev_Modem_Ver">
+			</param>
+			<param name="EnabledOptions" rw="0" type="s" dev_func="dev_Enable_Opt">
+			</param>
+			<param name="AdditionalHardwareVersion" rw="0" type="s" dev_func="dev_Additional_Hard_Ver">
+			</param>
+			<param name="AdditionalSoftwareVersion" rw="0" type="s" dev_func="dev_Additional_Soft_Ver">
+			</param>
+			<param name="SpecVersion" rw="0" type="s" dev_func="dev_SpecVersion">
+			</param>
+			<param name="ProvisioningCode" rw="0" type="s" noti="2" noti_rw="0" dev_func="dev_ProvisioningCode">
+			</param>
+			<param name="UpTime" rw="0" type="u" dev_func="dev_UpTime">
+			</param>
+			<param name="FirstUseDate" rw="0" type="d" dev_func="dev_FirstUserDate">
+			</param>
+			<param name="DeviceLog" rw="0" type="s" dev_func="dev_DeviceLog">
+			</param>
+			<param name="VendorConfigFileNumberOfEntries" rw="0" type="s" dev_func="dev_Vendor_CFile_Num">
+			</param>
+	        <obj name="VendorConfigFile" rw="0">
+     	        <obj name="1" rw="0">
+			        <param name="Name" rw="0" type="s" dev_func="dev_VendorFile_name">
+				    </param>
+					<param name="Version" rw="0" type="s" dev_func="dev_VendorFile_version">
+					</param>
+					<param name="Date" rw="0" type="d" dev_func="dev_VendorFile_date">
+				    </param>
+					<param name="Description" rw="0" type="s" dev_func="dev_VendorFile_description">
+				    </param>
+			    </obj>
+		    </obj>
+	    </obj>
+		<obj name="DeviceConfig" rw="0">
+		    <param name="PersistentData" rw="2" type="s" dev_func="dev_PersistentData">
+			</param>
+			<param name="ConfigFile" rw="2" type="s" dev_func="dev_ConfigFile">
+			</param>
+		</obj>
+		<obj name="ManagementServer" rw="0">
+			<param name="URL" rw="2" type="s" dev_func="dev_ManageServer_URL">
+			</param>
+			<param name="Username" rw="1" type="s" dev_func="dev_ManageServer_Username">
+			</param>
+			<param name="Password" rw="2" type="s" dev_func="dev_ManageServer_Password">
+			</param>
+			<param name="PeriodicInformEnable" rw="2" type="b" dev_func="dev_ManageServer_PeriodicInformEnable">
+			</param>
+			<param name="PeriodicInformInterval" rw="2" type="u" dev_func="dev_ManageServer_PeriodicInformInterval">
+			</param>
+			<param name="PeriodicInformTime" rw="2" type="d" dev_func="dev_ManageServer_PeriodicInformTime">
+			</param>
+			<param name="ParameterKey" rw="0" type="s" dev_func="dev_ManageServer_ParameterKey">
+			</param>
+			<param name="ConnectionRequestURL" rw="0" type="s" noti="2" noti_rw="0" dev_func="dev_ManageServer_ConnectionRequestURL">
+			</param>
+			<param name="ConnectionRequestUsername" rw="2" type="s" dev_func="dev_ManageServer_ConnectionRequestUsername">
+			</param>
+			<param name="ConnectionRequestPassword" rw="1" type="s" dev_func="dev_ManageServer_ConnectionRequestPassword">
+			</param>
+			<param name="UpgradesManaged" rw="2" type="b" dev_func="dev_ManageServer_UpgradesManaged">
+			</param>
+			<param name="KickURL" rw="0" type="s" dev_func="dev_ManageServer_KickURL">
+			</param>
+			<param name="DownloadProgressURL" rw="0" type="s" dev_func="dev_ManageServer_DownloadProgressURL">
+			</param>
+		</obj>
+		<obj name="Time" rw="0">
+			<param name="NTPServer1" rw="2" type="s" dev_func="dev_Time_NTPServer1">
+			</param>
+			<param name="NTPServer2" rw="2" type="s" dev_func="dev_Time_NTPServer2">
+			</param>
+			<param name="NTPServer3" rw="2" type="s" dev_func="dev_Time_NTPServer3">
+			</param>
+			<param name="NTPServer4" rw="2" type="s" dev_func="dev_Time_NTPServer4">
+			</param>
+			<param name="NTPServer5" rw="2" type="s" dev_func="dev_Time_NTPServer5">
+			</param>
+			<param name="CurrentLocalTime" rw="0" type="d" dev_func="dev_Time_CurrentLocalTime">
+			</param>
+			<param name="LocalTimeZone" rw="2" type="s" dev_func="dev_Time_LocalTimeZone">
+			</param>
+			<param name="LocalTimeZoneName" rw="2" type="s" dev_func="dev_Time_LocalTimeZoneName">
+			</param>
+			<param name="DaylightSavingsUsed" rw="2" type="b" dev_func="dev_Time_DaylightSavingUsed">
+			</param>
+			<param name="DaylightSavingsStart" rw="2" type="d" dev_func="dev_Time_DaylightSavingStart">
+			</param>
+			<param name="DaylightSavingsEnd" rw="2" type="d" dev_func="dev_Time_DaylightSavingEnd">
+			</param>
+		</obj>	
+		<obj name="UserInterface" rw="0">
+			<param name="PasswordRequired" rw="2" type="b" dev_func="dev_UI_PasswordRequired">
+			</param>
+			<param name="PasswordUserSelectable" rw="2" type="b" dev_func="dev_UI_PasswordUserSelectable">
+			</param>
+			<param name="UpgradeAvailable" rw="2" type="b" dev_func="dev_UI_UpgradeAvailable">
+			</param>
+			<param name="WarrantyDate" rw="2" type="d" dev_func="dev_UI_WarrantyDate">
+			</param>
+			<param name="ISPName" rw="2" type="s" dev_func="dev_UI_ISPName">
+			</param>
+			<param name="ISPHelpDesk" rw="2" type="s" dev_func="dev_UI_ISPHelpDesk">
+			</param>
+			<param name="ISPHomePage" rw="2" type="s" dev_func="dev_UI_ISPHomePage">
+			</param>
+			<param name="ISPHelpPage" rw="2" type="s" dev_func="dev_UI_ISPHelpPage">
+			</param>
+			<param name="ISPLogo" rw="2" type="B" dev_func="dev_UI_ISPLogo">
+			</param>
+			<param name="ISPLogoSize" rw="2" type="u" dev_func="dev_UI_ISPLogoSize">
+			</param>
+			<param name="ISPMailServer" rw="2" type="s" dev_func="dev_UI_ISPMailServer">
+			</param>
+			<param name="ISPNewsServer" rw="2" type="s" dev_func="dev_UI_ISPNewsServer">
+			</param>
+			<param name="TextColor" rw="2" type="s" dev_func="dev_UI_TextColor">
+			</param>
+			<param name="BackgroundColor" rw="2" type="s" dev_func="dev_UI_BackgroundColor">
+			</param>
+			<param name="ButtonColor" rw="2" type="s" dev_func="dev_UI_ButtonColor">
+			</param>
+			<param name="ButtonTextColor" rw="2" type="s" dev_func="dev_UI_ButtonTextColor">
+			</param>
+			<param name="AutoUpdateServer" rw="2" type="s" dev_func="dev_UI_AutoUpdateServer">
+			</param>
+			<param name="UserUpdateServer" rw="2" type="s" dev_func="dev_UI_UserUpdateServer">
+			</param>
+			<param name="ExampleLogin" rw="2" type="s" dev_func="dev_UI_ExampleLogin">
+			</param>
+			<param name="ExamplePassword" rw="2" type="s" dev_func="dev_UI_ExamplePassword">
+			</param>
+		</obj>
+		<obj name="Layer3Forwarding" rw="0">
+			<param name="DefaultConnectionService" rw="2" type="s" dev_func="dev_Layer3_DefaultConnectionService">
+			</param>
+			<param name="ForwardNumberOfEntries" rw="0" type="u" dev_func="dev_Layer3_ForwardNumberOfEntries">
+			</param>
+			<obj name="Forwarding" rw="2" max="9" obj_dev_func="dev_obj_forward" obj_instance_func="get_forwarding_instance">
+				<obj name="0" rw="2">
+					<param name="Enable" rw="2" type="b" dev_func="dev_Forwarding_Enable">
+			   </param>
+					<param name="Status" rw="0" type="s" dev_func="dev_Forwarding_Status">
+			  </param>
+					<param name="Type" rw="2" type="s" dev_func="dev_Forwarding_Type">
+			        </param>
+					<param name="DestIPAddress" rw="2" type="s" dev_func="dev_Forwarding_DestIPAddress">
+			        </param>
+					<param name="DestSubnetMask" rw="2" type="s" dev_func="dev_Forwarding_DestSubnetMask">
+			        </param>
+					<param name="SourceIPAddress" rw="2" type="s" dev_func="dev_Forwarding_SourceIPAddress">
+			        </param>
+					<param name="SourceSubnetMask" rw="2" type="s" dev_func="dev_Forwarding_SourceSubnetMask">
+			        </param>
+					<param name="GatewayIPAddress" rw="2" type="s" dev_func="dev_Forwarding_GatewayIPAddress">
+			        </param>
+					<param name="Interface" rw="2" type="s" dev_func="dev_Forwarding_Interface">
+			        </param>
+					<param name="ForwardingMetric" rw="2" type="i" dev_func="dev_Forwarding_ForwardingMetric">
+			        </param>
+					<param name="MTU" rw="2" type="u" dev_func="dev_Forwarding_MTU">
+			        </param>
+				</obj>
+			</obj>
+		</obj>
+     	<obj name="LANConfigSecurity" rw="0">
+			<param name="ConfigPassword" rw="1" type="s" dev_func="dev_LAN_ConfigPassword">
+			</param>
+		</obj>
+		<obj name="IPPingDiagnostics" rw="0">
+			<param name="DiagnosticsState" rw="2" type="s" dev_func="dev_IPPing_DiagnosticsState">
+			</param>
+			<param name="Interface" rw="2" type="s" dev_func="dev_IPPing_Interface">
+			</param>
+			<param name="Host" rw="2" type="s" dev_func="dev_IPPing_Host">
+			</param>
+			<param name="NumberOfRepetitions" rw="2" type="u" dev_func="dev_IPPing_NumberOfRepetitions">
+			</param>
+			<param name="Timeout" rw="2" type="u" dev_func="dev_IPPing_Timeout">
+			</param>
+			<param name="DataBlockSize" rw="2" type="u" dev_func="dev_IPPing_DataBlockSize">
+			</param>
+			<param name="DSCP" rw="2" type="u" dev_func="dev_IPPing_DSCP">
+			</param>
+			<param name="SuccessCount" rw="0" type="u" dev_func="dev_IPPing_SuccessCount">
+			</param>
+			<param name="FailureCount" rw="0" type="u" dev_func="dev_IPPing_FailureCount">
+			</param>
+			<param name="AverageResponseTime" rw="0" type="u" dev_func="dev_IPPing_AverageResponseTime">
+			</param>
+			<param name="MinimumResponseTmie" rw="0" type="u" dev_func="dev_IPPing_MinimumResponseTime">
+			</param>
+			<param name="MaximumResponseTime" rw="0" type="u" dev_func="dev_IPPing_MaximumResponseTime">
+			</param>
+        </obj>
+        <obj name="LANDevice" rw="0">	 	
+			<obj name="1" rw="0">
+				<param name="LANEthernetInterfaceNumberOfEntries" rw="0" type="u" dev_func="dev_LANDevice_Ethnum">
+				</param>
+				<param name="LANUSBInterfaceNumberOfEntries" rw="0" type="u" dev_func="dev_LANDevice_USBnum">
+				</param>
+				<param name="LANWLANConfigurationNumberOfEntries" rw="0" type="u" dev_func="dev_LANDevice_WLANnum">
+				</param>
+				<obj name="LANHostConfigManagement" rw="0">
+					<param name="DHCPServerConfigurable" rw="2" type="b" dev_func="dev_LANHost_DHCPServerConfigurable">
+					</param>
+					<param name="DHCPServerEnable" rw="2" type="b" dev_func="dev_LANHost_DHCPServerEnable">
+					</param>
+					<param name="DHCPRelay" rw="0" type="b" dev_func="dev_LANHost_DHCPRelay">
+					</param>
+					<param name="MinAddress" rw="2" type="s" dev_func="dev_LANHost_MinAddress">
+					</param>
+					<param name="MaxAddress" rw="2" type="s" dev_func="dev_LANHost_MaxAddress">
+					</param>
+					<param name="ReservedAddresses" rw="2" type="s" dev_func="dev_LANHost_ReservedAddresses">
+					</param>
+					<param name="SubnetMask" rw="2" type="s" dev_func="dev_LANHost_SubnetMask">
+					</param>
+					<param name="DNSServers" rw="2" type="s" dev_func="dev_LANHost_DNSServers">
+					</param>
+					<param name="DomainName" rw="2" type="s" dev_func="dev_LANHost_DomainName">
+					</param>
+					<param name="IPRouters" rw="2" type="s" dev_func="dev_LANHost_IPRouters">
+					</param>
+					<param name="DHCPLeaseTime" rw="2" type="i" dev_func="dev_LANHost_DHCPLeaseTime">
+					</param>
+					<param name="UseAllocatedWAN" rw="2" type="s" dev_func="dev_LANHost_UseAllocatedWAN">
+					</param>
+					<param name="AssociatedConnection" rw="2" type="s" dev_func="dev_LANHost_AssociatedConnection">
+					</param>
+					<param name="PassthroughLease" rw="2" type="u" dev_func="dev_LANHost_PassthroughLease">
+					</param>
+					<param name="PassthroughMACAddress" rw="2" type="s" dev_func="dev_LANHost_PassthroughMACAddress">
+					</param>
+					<param name="AllowedMACAddresses" rw="2" type="s" dev_func="dev_LANHost_AllowedMACAddresses">
+					</param>
+					<param name="IPInterfaceNumberOfEntries" rw="0" type="u" dev_func="dev_LANHost_IPnum">
+					</param>
+					<obj name="IPInterface" rw="2" max="3" obj_dev_func="dev_obj_IPInterface" obj_instance_func="get_ipinterface_instance">
+						<obj name="0" rw="2">
+							<param name="Enable" rw="2" type="b" dev_func="dev_LH_IPInterface_Enable">
+							</param>
+							<param name="IPInterfaceIPAddress" rw="2" type="s" dev_func="dev_LH_IPInterface_IPAddress">
+							</param> 
+							<param name="IPInterfaceSubnetMask" rw="2" type="s" dev_func="dev_LH_IPInterface_SubnetMask">
+							</param>
+							<param name="IPInterfaceAddressingType" rw="2" type="s" dev_func="dev_LH_IPInterface_AddressingType">
+							</param>
+						</obj>
+					</obj>	
+				</obj>
+				<obj name="LANEthernetInterfaceConfig" rw="0">
+					<obj name="1" rw="0">
+						<param name="Enable" rw="2" type="b" dev_func="dev_Eth_config_Enable">
+						</param>
+						<param name="Status" rw="2" type="s" dev_func="dev_Eth_config_Status">
+						</param>
+						<param name="MACAddress" rw="0" type="s" dev_func="dev_Eth_config_MACAddress">
+						</param>
+						<param name="MACAddressControlEnabled" rw="2" type="b" dev_func="dev_Eth_config_MACControlEnabled">
+						</param>
+						<param name="MaxBitRate" rw="2" type="s" dev_func="dev_Eth_config_MaxBitRate">
+						</param>
+						<param name="DuplexMode" rw="2" type="s" dev_func="dev_Eth_config_DuplexMode">
+						</param>
+						<obj name="Stats" rw="0">
+							<param name="BytesSent" rw="0" type="u" dev_func="dev_LAN_Ethstats_BytesSent">
+							</param>
+							<param name="BytesReceived" rw="0" type="u" dev_func="dev_LAN_Ethstats_BytesReceived">
+							</param>
+							<param name="PacketsSent" rw="0" type="u" dev_func="dev_LAN_Ethstats_PacketsSent">
+							</param>
+							<param name="PacketsReceived" rw="0" type="u" dev_func="dev_LAN_Ethstats_PacketsReceived">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+				<obj name="LANUSBInterfaceConfig" rw="0">
+					<obj name="1" rw="0">
+						<param name="Enable" rw="2" type="b" dev_func="dev_usb_config_Enable">
+						</param>
+						<param name="Status" rw="0" type="s" dev_func="dev_usb_config_Status">
+						</param>
+						<param name="MACAddress" rw="0" type="s" dev_func="dev_usb_config_MACAddress">
+						</param>
+						<param name="MACAddressControlEnabled" rw="2" type="b" dev_func="dev_usb_config_MACControlEnabled">
+						</param>
+						<param name="Standard" rw="0" type="s" dev_func="dev_usb_config_Standard">
+						</param>
+						<param name="Type" rw="0" type="s" dev_func="dev_usb_config_Type">
+						</param>
+						<param name="Rate" rw="0" type="s" dev_func="dev_usb_config_Rate">
+						</param>
+						<param name="Power" rw="0" type="s" dev_func="dev_usb_config_Power">
+						</param>
+						<obj name="Stats" rw="0">
+							<param name="BytesSent" rw="0" type="u" dev_func="dev_LAN_USB_BytesSent">
+							</param>
+							<param name="BytesReceived" rw="0" type="u" dev_func="dev_LAN_USB_BytesReceived">
+							</param>
+							<param name="CellsSent" rw="0" type="u" dev_func="dev_LAN_USB_CellsSent">
+							</param>
+							<param name="CellsReceived" rw="0" type="u" dev_func="dev_LAN_USB_CellsReceived">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+				<obj name="WLANConfiguration" rw="0">
+					<obj name="1" rw="0">
+						<param name="Enable" rw="2" type="b" dev_func="dev_WLAN_Enable">
+						</param>
+						<param name="Status" rw="0" type="s" dev_func="dev_WLAN_Status">
+						</param>
+						<param name="BSSID" rw="0" type="s" dev_func="dev_WLAN_BSSID">
+						</param>
+						<param name="MaxBitRate" rw="2" type="s" dev_func="dev_WLAN_MaxBitRate">
+						</param>
+						<param name="Channel" rw="2" type="b" dev_func="dev_WLAN_Channel">
+						</param>
+						<param name="SSID" rw="2" type="s" dev_func="dev_WLAN_SSID">
+						</param>
+						<param name="BeaconType" rw="2" type="s" dev_func="dev_WLAN_BeaconType">
+						</param>
+						<param name="MACAddressControlEnabled" rw="2" type="b" dev_func="dev_WLAN_MACAddressControlEnabled">
+						</param>
+						<param name="Standard" rw="0" type="s" dev_func="dev_WLAN_Standard">
+						</param>
+						<param name="WEPKeyIndex" rw="2" type="u" dev_func="dev_WLAN_WEPKeyIndex">
+						</param>
+						<param name="KeyPassphrase" rw="1" type="s" dev_func="dev_WLAN_KeyPassphrase">
+						</param>
+						<param name="WEPEncryptionLevel" rw="0" type="s" dev_func="dev_WLAN_WEPEncryptionLevel">
+						</param>
+						<param name="BasicEncryptionModes" rw="2" type="s" dev_func="dev_WLAN_BasicEncryptionModes">
+						</param>
+						<param name="BasicAuthenticationMode" rw="2" type="s" dev_func="dev_WLAN_BasicAuthenticationMode">
+						</param>
+						<param name="WPAEncryptionModes" rw="2" type="s" dev_func="dev_WLAN_WPAEncryptionModes">
+						</param>
+						<param name="WPAAuthenticationMode" rw="2" type="s" dev_func="dev_WLAN_WPAAuthenticationMode">
+						</param>
+						<param name="IEEE11iEncryptionModes" rw="2" type="s" dev_func="dev_WLAN_IEEE11iEncryptionModes">
+						</param>
+						<param name="IEEE11iAuthenticationMode" rw="2" type="s" dev_func="dev_WLAN_IEEE11iAuthenticationMode">
+						</param>
+						<param name="PossibleChannels" rw="0" type="s" dev_func="dev_WLAN_PossibleChannels">
+						</param>
+						<param name="BasicDataTransmitRates" rw="2" type="s" dev_func="dev_WLAN_BasicDataTransmitRates">
+						</param>
+						<param name="OperationalDataTransmitRates" rw="2" type="s" dev_func="dev_WLAN_OperationalDataTransmitRates">
+						</param>
+						<param name="PossibleDataTransmitRates" rw="0" type="s" dev_func="dev_WLAN_PossibleDataTransmitRates">
+						</param>
+						<param name="InsecureOOBAccessEnabled" rw="2" type="b" dev_func="dev_WLAN_InsecureOOBAccessEnabled">
+						</param>
+						<param name="BeaconAdvertisementEnabled" rw="2" type="b" dev_func="dev_WLAN_BeaconAdvertisementEnabled">
+						</param>
+						<param name="RadioEnabled" rw="2" type="b" dev_func="dev_WLAN_RadioEnabled">
+						</param>
+						<param name="AutoRateFallBackEnabled" rw="2" type="b" dev_func="dev_WLAN_AutoRateFallBackEnabled">
+						</param>
+						<param name="LocationDescription" rw="2" type="s" dev_func="dev_WLAN_LocationDescription">
+						</param>
+						<param name="RegulatoryDomain" rw="2" type="s" dev_func="dev_WLAN_RegulatoryDomain">
+						</param>
+						<param name="TotalPSKFailures" rw="0" type="s" dev_func="dev_WLAN_TotalPSKFailures">
+						</param>
+						<param name="Total1egrityFailures" rw="0" type="u" dev_func="dev_WLAN_TotalIntegrityFailures">
+						</param>
+						<param name="ChannelsInUse" rw="0" type="s" dev_func="dev_WLAN_ChannelsInUse">
+						</param>
+						<param name="DeviceOperationMode" rw="2" type="s" dev_func="dev_WLAN_DeviceOperationMode">
+						</param>
+						<param name="DistanceFromRoot" rw="2" type="u" dev_func="dev_WLAN_DistanceFromRoot">
+						</param>
+						<param name="PeerBSSID" rw="2" type="s" dev_func="dev_WLAN_PeerBSSID">
+						</param>
+						<param name="AuthenticationServiceMode" rw="2" type="s" dev_func="dev_WLAN_AuthenticationServiceMode">
+						</param>
+						<param name="TotalBytesSent" rw="0" type="u" dev_func="dev_WLAN_TotalBytesSent">
+						</param>
+						<param name="TotalBytesReceived" rw="0" type="u" dev_func="dev_WLAN_TotalBytesReceived">
+						</param>
+						<param name="TotalPacketsSent" rw="0" type="u" dev_func="dev_WLAN_TotalPacketsSent">
+						</param>
+						<param name="TotalPacketsReceived" rw="0" type="u" dev_func="dev_WLAN_TotalPacketsReceived">
+						</param>
+						<param name="TotalAssociations" rw="0" type="u" dev_func="dev_WLAN_TotalAssociations">
+						</param>
+						<obj name="AssociatedDevice" rw="0">
+							<obj name="1" rw="0">
+								<param name="AssociatedDeviceMACAddress" rw="0" type="s" dev_func="dev_WLAN_Assoc_DeviceMACAddress">
+								</param>
+								<param name="AssociatedDeviceIPAddress" rw="0" type="s" dev_func="dev_WLAN_Assoc_DeviceIPAddress">
+								</param>
+								<param name="AssociatedDeviceAuthenticationState" rw="0" type="b" dev_func="dev_WLAN_Assoc_AuthenticationState">
+								</param>
+								<param name="LastRequestedUnicastCipher" rw="0" type="s" dev_func="dev_WLAN_Assoc_LastRequestedUnicastCipher">
+								</param>
+								<param name="LastRequestedMulticastCipher" rw="0" type="s" dev_func="dev_WLAN_Assoc_LastRequestedMulticastCipher">
+								</param>
+								<param name="LastPMKId" rw="0" type="s" dev_func="dev_WLAN_Assoc_LastPMKId">
+								</param>
+							</obj>
+						</obj>	
+						<obj name="WEPKey" rw="0">
+							<obj name="1" rw="0">
+								<param name="WEPKey" rw="1" type="s" dev_func="dev_WLAN_WEPKey">
+								</param>
+							</obj>
+						</obj>
+						<obj name="PreSharedKey" rw="0">
+							<obj name="1" rw="0">
+								<param name="PreSharedKey" rw="1" type="s" dev_func="dev_WLAN_PreSharedKey_PreSharedKey">
+								</param>
+								<param name="KeyPassphrase" rw="1" type="s" dev_func="dev_WLAN_PreSharedKey_KeyPassphrase">
+								</param>
+								<param name="AssociatedDeviceMACAddress" rw="2" type="s" dev_func="dev_WLAN_PreSharedKey_AssociatedDeviceMACAddress">
+								</param>
+							</obj>
+						</obj>
+					</obj>
+				</obj>	
+			    <obj name="Hosts" rw="0">
+					<param name="HostNumberOfEntries" rw="0" type="u" dev_func="dev_LAN_Hosts_Hostnum">
+					</param>
+					<obj name="Host" rw="0">
+						<obj name="1" rw="0">
+							<param name="IPAddress" rw="0" type="s" dev_func="dev_LAN_Hosts_Host_IPAddress">
+							</param>
+							<param name="AddressSource" rw="0" type="s" dev_func="dev_LAN_Hosts_Host_AddressSource">
+							</param>
+							<param name="LeaseTimeRemaining" rw="0" type="i" dev_func="dev_LAN_Hosts_Host_LeaseTimeRemaining">
+							</param>
+							<param name="MACAddress" rw="0" type="s" dev_func="dev_LAN_Hosts_Host_MACAddress">
+							</param>
+							<param name="HostName" rw="0" type="s" dev_func="dev_LAN_Hosts_Host_HostName">
+							</param>
+							<param name="InterfaceType" rw="0" type="s" dev_func="dev_LAN_Hosts_Host_InterfaceType">
+							</param>
+							<param name="Active" rw="0" type="b" dev_func="dev_LAN_Hosts_Host_Active">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+			</obj>
+		</obj>
+		<obj name="WANDevice" rw="0">
+			<obj name="1" rw="0">
+				<param name="WANConnectionNumberOfEntries" rw="0" type="u" dev_func="dev_WAN_WANnum">
+				</param>
+				<obj name="WANCommonInterfaceConfig" rw="0">
+					<param name="EnabledForInternet" rw="2" type="b" dev_func="dev_WANCommon_If_EnabledForInternet">
+					</param>
+					<param name="WANAccessType" rw="0" type="s" dev_func="dev_WANCommon_If_WANAccessType">
+					</param>
+					<param name="Layer1UpstreamMaxBitRate" rw="0" type="u" dev_func="dev_WANCommon_If_Layer1UpstreamMaxBitRate">
+					</param>
+					<param name="Layer1DownstreamMaxBitRate" rw="0" type="u" dev_func="dev_WANCommon_If_Layer1DownstreamMaxBitRate">
+					</param>
+					<param name="PhysicalLinkStatus" rw="0" type="s" dev_func="dev_WANCommon_If_PhysicalLinkStatus">
+					</param>
+					<param name="WANAccessProvider" rw="0" type="s" dev_func="dev_WANCommon_If_WANAccessProvider">
+					</param>
+					<param name="TotalBytesSent" rw="0" type="u" dev_func="dev_WANCommon_If_TotalBytesSent">
+					</param>
+					<param name="TotalBytesReceived" rw="0" type="u" dev_func="dev_WANCommon_If_TotalBytesReceived">
+					</param>
+					<param name="TotalPacketsSent" rw="0" type="u" dev_func="dev_WANCommon_If_TotalPacketsSent">
+					</param>
+					<param name="TotalPacketsReceived" rw="0" type="u" dev_func="dev_WANCommon_If_TotalPacketsReceived">
+					</param>
+					<param name="MaximumActiveConnections" rw="0" type="u" dev_func="dev_WANCommon_If_MaximumActiveConnections">
+					</param>
+					<param name="NumberOfActiveConnections" rw="0" type="u" dev_func="dev_WANCommon_If_NumberOfActiveConnections">
+					</param>
+					<obj name="Connection" rw="0">
+						<obj name="1" rw="0">
+							<param name="ActiveConnectionDeviceContainer" rw="0" type="s" dev_func="dev_WANCommon_If_DeviceContainer">
+							</param>
+							<param name="ActiveConnectionServiceID" rw="0" type="s" dev_func="dev_WANCommon_If_ServiceID">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+				<obj name="WANDSLInterfaceConfig" rw="0">
+					<param name="Enable" rw="2" type="b" dev_func="dev_WANDSL_If_Enable">
+					</param>
+					<param name="Status" rw="0" type="s" dev_func="dev_WANDSL_If_Status">
+					</param>
+					<param name="ModulationType" rw="0" type="s" dev_func="dev_WANDSL_If_ModulationType">
+					</param>
+					<param name="LineEncoding" rw="0" type="s" dev_func="dev_WANDSL_If_LineEncoding">
+					</param>
+					<param name="DataPath" rw="0" type="s" dev_func="dev_WANDSL_If_DataPath">
+					</param>
+					<param name="InterleaveDepth" rw="0" type="u" dev_func="dev_WANDSL_If_InterleaveDepth">
+					</param>
+					<param name="LineNumber" rw="0" type="i" dev_func="dev_WANDSL_If_LineNumber">
+					</param>
+					<param name="UpstreamCurrRate" rw="0" type="u" dev_func="dev_WANDSL_If_UpstreamCurrRate">
+					</param>
+					<param name="DownstreamCurrRate" rw="0" type="u" dev_func="dev_WANDSL_If_DownstreamCurrRate">
+					</param>
+					<param name="UpstreamMaxRate" rw="0" type="u" dev_func="dev_WANDSL_If_UpstreamMaxRate">
+					</param>
+					<param name="DownstreamMaxRate" rw="0" type="u" dev_func="dev_WANDSL_If_DownstreamMaxRate">
+					</param>
+					<param name="UpstreamNoiseMargin" rw="0" type="i" dev_func="dev_WANDSL_If_UpstreamNoiseMargin">
+					</param>
+					<param name="DownstreamNoiseMargin" rw="0" type="i" dev_func="dev_WANDSL_If_DownstreamNoiseMargin">
+					</param>
+					<param name="UpstreamAttenuation" rw="0" type="i" dev_func="dev_WANDSL_If_UpstreamAttenuation">
+					</param>
+					<param name="DownstreamAttenuation" rw="0" type="i" dev_func="dev_WANDSL_If_DownstreamAttenuation">
+					</param>
+					<param name="UpstreamPower" rw="0" type="i" dev_func="dev_WANDSL_If_UpstreamPower">
+					</param>
+					<param name="DownstreamPower" rw="0" type="i" dev_func="dev_WANDSL_If_DownstreamPower">
+					</param>
+					<param name="ATURVendor" rw="0" type="s" dev_func="dev_WANDSL_If_ATURVendor">
+					</param>
+					<param name="ATURCountry" rw="0" type="u" dev_func="dev_WANDSL_If_ATURCountry">
+					</param>
+					<param name="ATURANSIStd" rw="0" type="u" dev_func="dev_WANDSL_If_ATURANSIStd">
+					</param>
+					<param name="ATURANSIRev" rw="0" type="u" dev_func="dev_WANDSL_If_ATURANSIRev">
+					</param>
+					<param name="ATUCVendor" rw="0" type="s" dev_func="dev_WANDSL_If_ATUCVendor">
+					</param>
+					<param name="ATUCCountry" rw="0" type="u" dev_func="dev_WANDSL_If_ATUCCountry">
+					</param>
+					<param name="ATUCANSIStd" rw="0" type="u" dev_func="dev_WANDSL_If_ATUCANSIStd">
+					</param>
+					<param name="ATUCANSIRev" rw="0" type="u" dev_func="dev_WANDSL_If_ATUCANSIRev">
+					</param>
+					<param name="TotalStart" rw="0" type="u" dev_func="dev_WANDSL_If_TotalStart">
+					</param>
+					<param name="ShowtimeStart" rw="0" type="u" dev_func="dev_WANDSL_If_ShowtimeStart">
+					</param>
+					<param name="LastShowtimeStart" rw="0" type="u" dev_func="dev_WANDSL_If_LastShowtimeStart">
+					</param>
+					<param name="CurrentDayStart" rw="0" type="u" dev_func="dev_WANDSL_If_CurrentDayStart">
+					</param>
+					<param name="QuarterHourStart" rw="0" type="u" dev_func="dev_WANDSL_If_QuarterHourStart">
+					</param>
+					<obj name="Stats" rw="0">
+						<obj name="Total" rw="0">
+							<param name="ReceiveBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_ReceiveBlocks">
+							</param>
+							<param name="TransmitBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_Transmit¬Blocks">
+							</param>
+							<param name="CellDelin" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_CellDelin">
+							</param>
+							<param name="LinkRetrain" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_LinkRetrain">
+							</param>
+							<param name="InitErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_InitErrors">
+							</param>
+							<param name="InitTimeouts" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_InitTimeouts">
+							</param>
+							<param name="LossOfFraming" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_LossOfFraming">
+							</param>
+							<param name="ErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_ErroredSecs">
+							</param>
+							<param name="SeverelyErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_SeverelyErroredSecs">
+							</param>
+							<param name="FECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_FECErrors">
+							</param>
+							<param name="ATUCFECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_ATUCFECErrors">
+							</param>
+							<param name="HECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_HECErrors">
+							</param>
+							<param name="ATUCHECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_ATUCHECErrors">
+							</param>
+							<param name="CRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_CRCErrors">
+							</param>
+							<param name="ATUCCRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Total_ATUCCRCErrors">
+							</param>
+						</obj>
+						<obj name="Showtime" rw="0">
+							<param name="ReceiveBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_ReceiveBlocks">
+							</param>
+							<param name="TransmitBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_TransmitBlocks">
+							</param>
+							<param name="CellDelin" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_CellDelin">
+							</param>
+							<param name="LinkRetrain" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_LinkRetrain">
+							</param>
+							<param name="InitErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_InitErrors">
+							</param>
+							<param name="AInitTimeouts" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_InitTimeouts">
+							</param>
+							<param name="LossOfFraming" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_LossOfFraming">
+							</param>
+							<param name="ErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_ErroredSecs">
+							</param>
+							<param name="SeverelyErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_SeverelyErroredSecs">
+							</param>
+							<param name="FECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_FECErrors">
+							</param>
+							<param name="ATUCFECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_ATUCFECErrors">
+							</param>
+							<param name="HECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_HECErrors">
+							</param>
+							<param name="ATUCHECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_ATUCHECErrors">
+							</param>
+							<param name="CRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_CRCErrors">
+							</param>
+							<param name="ATUCCRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_Showtime_ATUCCRCErrors">
+							</param>
+						</obj>
+						<obj name="LastShowtime" rw="0">
+							<param name="ReceiveBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_ReceiveBlocks">
+							</param>
+							<param name="TransmitBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_TransmitBlocks">
+							</param>
+							<param name="CellDelin" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_CellDelin">
+							</param>
+							<param name="LinkRetrain" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_LinkRetrain">
+							</param>
+							<param name="InitErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_InitErrors">
+							</param>
+							<param name="InitTimeouts" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_InitTimeouts">
+							</param>
+							<param name="LossOfFraming" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_LossOfFraming">
+							</param>
+							<param name="ErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_ErroredSecs">
+							</param>
+							<param name="SeverelyErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_SeverelyErroredSecs">
+							</param>
+							<param name="FECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_FECErrors">
+							</param>
+							<param name="ATUCFECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_ATUCFECErrors">
+							</param>
+							<param name="HECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_HECErrors">
+							</param>
+							<param name="ATUCHECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_ATUCHECErrors">
+							</param>
+							<param name="CRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_CRCErrors">
+							</param>
+							<param name="ATUCCRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_LastShowtime_ATUCCRCErrors">
+							</param>
+						</obj>
+						<obj name="CurrentDay" rw="0">
+							<param name="ReceiveBlocks" rw="0" type="u" dev_func=" dev_WANDSL_Stats_CurrentDay_ReceiveBlocks">
+							</param>
+							<param name="TransmitBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_TransmitBlocks">
+							</param>
+							<param name="CellDelin" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_CellDelin">
+							</param>
+							<param name="LinkRetrain" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_LinkRetrain">
+							</param>
+							<param name="InitErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_InitErrors">
+							</param>
+							<param name="InitTimeouts" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_InitTimeouts">
+							</param>
+							<param name="LossOfFraming" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_LossOfFraming">
+							</param>
+							<param name="ErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_ErroredSecs">
+							</param>
+							<param name="SeverelyErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_SeverelyErroredSecs">
+							</param>
+							<param name="FECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_FECErrors">
+							</param>
+							<param name="ATUCFECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_ATUCFECErrors">
+							</param>
+							<param name="HECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_HECErrors">
+							</param>
+							<param name="ATUCHECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_ATUCHECErrors">
+							</param>
+							<param name="CRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_CRCErrors">
+							</param>
+							<param name="ATUCCRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_CurrentDay_ATUCCRCErrors">
+							</param>
+						</obj>
+						<obj name="QuarterHour" rw="0">
+							<param name="ReceiveBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_ReceiveBlocks">
+							</param>
+							<param name="TransmitBlocks" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_TransmitBlocks">
+							</param>
+							<param name="CellDelin" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_CellDelin">
+							</param>
+							<param name="LinkRetrain" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_LinkRetrain">
+							</param>
+							<param name="InitErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_InitErrors">
+							</param>
+							<param name="InitTimeouts" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_InitTimeouts">
+							</param>
+							<param name="LossOfFraming" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_LossOfFraming">
+							</param>
+							<param name="ErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_ErroredSecs">
+							</param>
+							<param name="SeverelyErroredSecs" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_SeverelyErroredSecs">
+							</param>
+							<param name="FECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_FECErrors">
+							</param>
+							<param name="ATUCFECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_ATUCFECErrors">
+							</param>
+							<param name="HECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_HECErrors">
+							</param>
+							<param name="ATUCHECErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_ATUCHECErrors">
+							</param>
+							<param name="CRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_CRCErrors">
+							</param>
+							<param name="ATUCCRCErrors" rw="0" type="u" dev_func="dev_WANDSL_Stats_QuarterHour_ATUCCRCErrors">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+				<obj name="WANEthernetInterfaceConfig" rw="0">
+					<param name="Enable" rw="2" type="s" dev_func="dev_WANEth_If_Enable">
+					</param>
+					<param name="Status" rw="0" type="s" dev_func="dev_WANEth_If_Status">
+					</param>
+					<param name="MACAddress" rw="0" type="s" dev_func="dev_WANEth_If_MACAddress">
+					</param>
+					<param name="MaxBitRate" rw="2" type="s" dev_func="dev_WANEth_If_MaxBitRate">
+					</param>
+					<param name="DuplexMode" rw="2" type="s" dev_func="dev_WANEth_If_DuplexMode">
+					</param>
+					<obj name="Stats" rw="0">
+						<param name="BytesSent" rw="0" type="u" dev_func="dev_WAN_Ethstats_BytesSent">
+						</param>
+						<param name="BytesReceived" rw="0" type="u" dev_func="dev_WAN_Ethstats_BytesReceived">
+						</param>
+						<param name="PacketsSent" rw="0" type="u" dev_func="dev_WAN_Ethstats_PacketsSent">
+						</param>
+						<param name="PacketsReceived" rw="0" type="u" dev_func="dev_WAN_Ethstats_PacketsReceived">
+						</param>
+					</obj>
+				</obj>
+				<obj name="WANDSLConnectionManagement" rw="0">
+					<param name="ConnectionServiceNumberOfEntries" rw="0" type="u" dev_func="dev_WANDSL_Manage_ServiceNumber">
+					</param>
+					<obj name="ConnectionService" rw="0">
+						<obj name="1" rw="0">
+							<param name="WANConnectionDevice" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_WANConnectionDevice">
+							</param>
+							<param name="WANConnectionService" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_WANConnectionService">
+							</param>
+							<param name="DestinationAddress" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_DestinationAddress">
+							</param>
+							<param name="LinkType" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_LinkType">
+							</param>
+							<param name="ConnectionType" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_ConnectionType">
+							</param>
+							<param name="Name" rw="0" type="s" dev_func="dev_WANDSL_Manage_ConnectionServ_Name">
+							</param>
+						</obj>
+					</obj>
+				</obj>
+				<obj name="WANDSLDiagnostics" rw="0">
+					<param name="LoopDiagnosticsState" rw="2" type="s" dev_func="dev_WANDSL_Diag_LoopDiagnosticsState">
+					</param>
+					<param name="ACTPSDds" rw="0" type="s" dev_func="dev_WANDSL_Diag_ACTPSDds">
+					</param>
+					<param name="ACTPSDus" rw="0" type="s" dev_func="dev_WANDSL_Diag_ACTPSDus">
+					</param>
+					<param name="ACTATPds" rw="0" type="s" dev_func="dev_WANDSL_Diag_ACTATPds">
+					</param>
+					<param name="ACTATPus" rw="0" type="s" dev_func="dev_WANDSL_Diag_ACTATPus">
+					</param>
+					<param name="HLINSCds" rw="0" type="s" dev_func="dev_WANDSL_Diag_HLINSCds">
+					</param>
+					<param name="HLINpsds" rw="0" type="s" dev_func="dev_WANDSL_Diag_HLINpsds">
+					</param>
+					<param name="QLNpsds" rw="0" type="s" dev_func="dev_WANDSL_Diag_QLNpsds">
+					</param>
+					<param name="SNRpsds" rw="0" type="s" dev_func="dev_WANDSL_Diag_SNRpsds">
+					</param>
+					<param name="BITSpsds" rw="0" type="s" dev_func="dev_WANDSL_Diag_BITSpsds">
+					</param>
+					<param name="GAINSpsds" rw="0" type="s" dev_func="dev_WANDSL_Diag_GAINSpsds">
+					</param>
+				</obj>
+				<obj name="WANConnectionDevice" rw="2" max="9" obj_dev_func="dev_obj_wanconndev" obj_instance_func="get_wanconndev_instance">
+					<obj name="0" rw="2">
+						<param name="WANIPConnectionNumberOfEntries" rw="0" type="u" dev_func="dev_WANConnectionDev_IPConnectionNumber">
+						</param>
+						<param name="WANPPPConnectionNumberOfEntries" rw="0" type="u" dev_func="dev_WANConnectionDev_PPPConnectionNumber">
+						</param>
+						<obj name="WANDSLLinkConfig" rw="0">
+							<param name="Enable" rw="2" type="b" dev_func="dev_WANConnectionDev_LinkConfig_Enable">
+							</param>
+							<param name="LinkStatus" rw="0" type="s" dev_func="dev_WANConnectionDev_LinkConfig_LinkStatus">
+							</param>
+							<param name="LinkType" rw="2" type="s" dev_func="dev_WANConnectionDev_LinkConfig_LinkType">
+							</param>
+							<param name="AutoConfig" rw="0" type="b" dev_func="dev_WANConnectionDev_LinkConfig_AutoConfig">
+							</param>
+							<param name="ModulationType" rw="0" type="s" dev_func="dev_WANConnectionDev_LinkConfig_ModulationType">
+							</param>
+							<param name="DestinationAddress" rw="2" type="s" dev_func="dev_WANConnectionDev_LinkConfig_DestinationAddress">
+							</param>
+							<param name="ATMEncapsulation" rw="2" type="s" dev_func="dev_WANConnectionDev_LinkConfig_ATMEncapsulation">
+							</param>
+							<param name="FCSPreserved" rw="2" type="b" dev_func="dev_WANConnectionDev_LinkConfig_FCSPreserved">
+							</param>
+							<param name="VCSearchList" rw="2" type="s" dev_func="dev_WANConnectionDev_LinkConfig_VCSearchList">
+							</param>
+							<param name="ATMAAL" rw="0" type="s" dev_func="dev_WANConnectionDev_LinkConfig_ATMAAL">
+							</param>
+							<param name="ATMTransmittedBlocks" rw="0" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMTransmittedBlock">
+							</param>
+							<param name="ATMReceivedBlocks" rw="0" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMReceivedBlocks">
+							</param>
+							<param name="ATMQoS" rw="2" type="s" dev_func="dev_WANConnectionDev_LinkConfig_ATMQoS">
+							</param>
+							<param name="ATMPeakCellRate" rw="2" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMPeakCellRate">
+							</param>
+							<param name="ATMMaximumBurstSize" rw="2" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMMaximumBurstSize">
+							</param>
+							<param name="ATMSustainableCellRate" rw="2" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMSustainableCellRate">
+							</param>
+							<param name="AAL5CRCErrors" rw="0" type="u" dev_func="dev_WANConnectionDev_LinkConfig_AAL5CRCErrors">
+							</param>
+							<param name="ATMCRCErrors" rw="0" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMCRCErrors">
+							</param>
+							<param name="ATMHECErrors" rw="0" type="u" dev_func="dev_WANConnectionDev_LinkConfig_ATMHECErrors">
+							</param>
+						</obj>
+						<obj name="WANATMF5LoopbackDiagnostics" rw="0">
+							<param name="DiagnosticsState" rw="2" type="s" dev_func="dev_WANConnectionDev_ATMF5_DiagnosticsState">
+							</param>
+							<param name="NumberOfRepetitions" rw="2" type="u" dev_func="dev_WANConnectionDev_ATMF5_NumberOfRepetitions">
+							</param>
+							<param name="Timeout" rw="2" type="u" dev_func="dev_WANConnectionDev_ATMF5_Timeout">
+							</param>
+							<param name="SuccessCount" rw="0" type="u" dev_func="dev_WANConnectionDev_ATMF5_SuccessCount">
+							</param>
+							<param name="FailureCount" rw="0" type="u" dev_func="dev_WANConnectionDev_ATMF5_FailureCount">
+							</param>
+							<param name="AverageResponseTime" rw="0" type="u" dev_func="dev_WANConnectionDev_ATMF5_AverageResponseTime">
+							</param>
+							<param name="MinimumResponseTime" rw="0" type="u" dev_func="dev_WANConnectionDev_ATMF5_MinimumResponseTime">
+							</param>
+							<param name="MaximumResponseTime" rw="0" type="u" dev_func="dev_WANConnectionDev_ATMF5_MaximumResponseTime">
+							</param>
+						</obj>
+						<obj name="WANEthernetLinkConfig" rw="0">
+							<param name="EthernetLinkStatus" rw="0" type="s" dev_func="dev_WANEthConfig_EthernetLinkStatus">
+							</param>
+						</obj>
+						<obj name="WANPOTSLinkConfig" rw="0">
+							<param name="Enable" rw="2" type="b" dev_func="dev_WANPOSTConfig_Enable">
+							</param>
+							<param name="LinkStatus" rw="0" type="s" dev_func="dev_WANPOSTConfig_LinkStatus">
+							</param>
+							<param name="ISPPhoneNumber" rw="2" type="s" dev_func="dev_WANPOSTConfig_ISPPhoneNumber">
+							</param>
+							<param name="ISPInfo" rw="2" type="s" dev_func="dev_WANPOSTConfig_ISPInfo">
+							</param>
+							<param name="LinkType" rw="2" type="s" dev_func="dev_WANPOSTConfig_LinkType">
+							</param>
+							<param name="NumberOfRetries" rw="2" type="u" dev_func="dev_WANPOSTConfig_NumberOfRetries">
+							</param>
+							<param name="DelayBetweenRetries" rw="2" type="u" dev_func="dev_WANPOSTConfig_DelayBetweenRetries">
+							</param>
+							<param name="Fclass" rw="0" type="s" dev_func="dev_WANPOSTConfig_Fclass">
+							</param>
+							<param name="DataModulationSupported" rw="0" type="s" dev_func="dev_WANPOSTConfig_DataModulationSupported">
+							</param>
+							<param name="DataProtocol" rw="0" type="s" dev_func="dev_WANPOSTConfig_DataProtocol">
+							</param>
+							<param name="DataCompression" rw="0" type="s" dev_func="dev_WANPOSTConfig_DataCompression">
+							</param>
+							<param name="PlusVTRCommandSupported" rw="0" type="b" dev_func="dev_WANPOSTConfig_PlusVTRCommandSupported">
+							</param>
+						</obj>
+						<obj name="WANIPConnection" rw="2" max="9" obj_dev_func="dev_obj_wanipconn" obj_instance_func="get_wanipconn_instance">
+							<obj name="0" rw="2">
+								<param name="Enable" rw="2" type="b" dev_func="dev_WANIPConnection_Enable">
+								</param>
+								<param name="ConnectionStatus" rw="0" type="s" dev_func="dev_WANIPConnection_ConnectionStatus">
+								</param>
+								<param name="PossibleConnectionTypes" rw="0" type="s" dev_func="dev_WANIPConnection_PossibleConnectionTypes">
+								</param>
+								<param name="ConnectionType" rw="2" type="s" dev_func="dev_WANIPConnection_ConnectionType">
+								</param>
+								<param name="Name" rw="2" type="s" dev_func="dev_WANIPConnection_Name">
+								</param>
+								<param name="Uptime" rw="0" type="u" dev_func="dev_WANIPConnection_Uptime">
+								</param>
+								<param name="LastConnectionError" rw="0" type="s" dev_func="dev_WANIPConnection_LastConnectionError">
+								</param>
+								<param name="AutoDisconnectTime" rw="2" type="u" dev_func="dev_WANIPConnection_AutoDisconnectTime">
+								</param>
+								<param name="IdleDisconnectTime" rw="2" type="u" dev_func="dev_WANIPConnection_IdleDisconnectTime">
+								</param>
+								<param name="WarnDisconnectDelay" rw="2" type="u" dev_func="dev_WANIPConnection_WarnDisconnectDelay">
+								</param>
+								<param name="RSIPAvailable" rw="0" type="b" dev_func="dev_WANIPConnection_RSIPAvailable">
+								</param>
+								<param name="NATEnabled" rw="2" type="b" dev_func="dev_WANIPConnection_NATEnabled">
+								</param>
+								<param name="AddressingType" rw="2" type="s" dev_func="dev_WANIPConnection_AddressingType">
+								</param>
+								<param name="ExternalIPAddress" rw="2" type="s" noti="2" noti_rw="0" dev_func="dev_WANIPConnection_ExternalIPAddress">
+								</param>
+								<param name="SubnetMask" rw="2" type="s" dev_func="dev_WANIPConnection_SubnetMask">
+								</param>
+								<param name="DefaultGateway" rw="2" type="s" dev_func="dev_WANIPConnection_DefaultGateway">
+								</param>
+								<param name="DNSEnabled" rw="2" type="b" dev_func="dev_WANIPConnection_DNSEnabled">
+								</param>
+								<param name="DNSOverrideAllowed" rw="2" type="b" dev_func="dev_WANIPConnection_DNSOverrideAllowed">
+								</param>
+								<param name="DNSServers" rw="2" type="s" dev_func="dev_WANIPConnection_DNSServers">
+								</param>
+								<param name="MaxMTUSize" rw="2" type="u" dev_func="dev_WANIPConnection_MaxMTUSize">
+								</param>
+								<param name="MACAddress" rw="2" type="s" dev_func="dev_WANIPConnection_MACAddress">
+								</param>
+								<param name="MACAddressOverride" rw="2" type="b" dev_func="dev_WANIPConnection_MACAddressOverride">
+								</param>
+								<param name="ConnectionTrigger" rw="2" type="s" dev_func="dev_WANIPConnection_ConnectionTrigger">
+								</param>
+								<param name="RouteProtocolRx" rw="2" type="s" dev_func="dev_WANIPConnection_RouteProtocolRx">
+								</param>
+								<param name="PortMappingNumberOfEntries" rw="0" type="u" dev_func="dev_WANIPConnection_PortMappingNumberOfEntries">
+								</param>
+							    <obj name="PortMapping" rw="2" max="9" obj_dev_func="dev_obj_ipportmap" obj_instance_func="get_ipportmap_instance">	
+									<obj name="0" rw="2">
+									<param name="PortMappingEnabled" rw="2" type="b" dev_func="dev_WANIP_PortMap_PortMappingEnabled">
+									</param>
+									<param name="PortMappingLeaseDuration" rw="2" type="u" dev_func="dev_WANIP_PortMap_PortMappingLeaseDuration">
+									</param>
+									<param name="RemoteHost" rw="2" type="s" dev_func="dev_WANIP_PortMap_RemoteHost">
+									</param>
+									<param name="ExternalPort" rw="2" type="u" dev_func="dev_WANIP_PortMap_ExternalPort">
+									</param>
+									<param name="InternalPort" rw="2" type="u" dev_func="dev_WANIP_PortMap_InternalPort">
+									</param>
+									<param name="PortMappingProtocol" rw="2" type="s" dev_func="dev_WANIP_PortMap_PortMappingProtocol">
+									</param>
+									<param name="InternalClient" rw="2" type="s" dev_func="dev_WANIP_PortMap_InternalClient">
+									</param>
+									<param name="PortMappingDescription" rw="2" type="s" dev_func="dev_WANIP_PortMap_PortMappingDescription">
+									</param>
+								</obj>
+							</obj>
+								<obj name="Stats" rw="0">
+									<param name="EthernetBytesSent" rw="0" type="u" dev_func="dev_WANIPConnectStats_EthernetBytesSent">
+									</param>
+									<param name="EthernetBytesReceived" rw="0" type="u" dev_func="dev_WANIPConnectStats_EthernetBytesReceived">
+									</param>
+									<param name="EthernetPacketsSent" rw="0" type="u" dev_func="dev_WANIPConnectStats_EthernetPacketsSent">
+									</param>
+									<param name="EthernetPacketsReceived" rw="0" type="u" dev_func="dev_WANIPConnectStats_EthernetPacketsReceived">
+									</param>
+								</obj>
+							</obj>
+						</obj>
+					    <obj name="WANPPPConnection" rw="2" max="9" obj_dev_func="dev_obj_wanpppconn" obj_instance_func="get_wanpppconn_instance">
+							<obj name="0" rw="2">
+								<param name="Enable" rw="2" type="b" dev_func="dev_WANPPP_Enable">
+								</param>
+								<param name="ConnectionStatus" rw="0" type="s" dev_func="dev_WANPPP_ConnectionStatus">
+								</param>
+								<param name="PossibleConnectionTypes" rw="0" type="s" dev_func="dev_WANPPP_PossibleConnectionTypes">
+								</param>
+								<param name="ConnectionType" rw="2" type="s" dev_func="dev_WANPPP_ConnectionType">
+								</param>
+								<param name="Name" rw="2" type="s" dev_func="dev_WANPPP_Name">
+								</param>
+								<param name="Uptime" rw="0" type="u" dev_func="dev_WANPPP_Uptime">
+								</param>
+								<param name="LastConnectionError" rw="0" type="s" dev_func="dev_WANPPP_LastConnectionError">
+								</param>
+								<param name="AutoDisconnectTime" rw="2" type="u" dev_func="dev_WANPPP_AutoDisconnectTime">
+								</param>
+								<param name="IdleDisconnectTime" rw="2" type="u" dev_func="dev_WANPPP_IdleDisconnectTime">
+								</param>
+								<param name="WarnDisconnectDelay" rw="2" type="u" dev_func="dev_WANPPP_ Warn¬Disconnect¬Delay">
+								</param>
+								<param name="RSIPAvailable" rw="0" type="b" dev_func="dev_WANPPP_RSIPAvailable">
+								</param>
+								<param name="NATEnabled" rw="2" type="b" dev_func="dev_WANPPP_NATEnabled">
+								</param>
+								<param name="Username" rw="2" type="s" dev_func="dev_WANPPP_Username">
+								</param>
+								<param name="Password" rw="1" type="s" dev_func="dev_WANPPP_Password">
+								</param>
+								<param name="PPPEncryptionProtocol" rw="0" type="s" dev_func="dev_WANPPP_PPPEncryptionProtocol">
+								</param>
+								<param name="PPPCompressionProtocol" rw="0" type="s" dev_func="dev_WANPPP_PPPCompressionProtocol">
+								</param>
+								<param name="PPPAuthenticationProtocol" rw="0" type="s" dev_func="dev_WANPPP_PPPAuthenticationProtocol">
+								</param>
+								<param name="ExternalIPAddress" rw="0" type="s" noti="2" noti_rw="0" dev_func="dev_WANPPP_ExternalIPAddress">
+								</param>
+								<param name="RemoteIPAddress" rw="0" type="s" dev_func="dev_WANPPP_RemoteIPAddress">
+								</param>
+								<param name="MaxMRUSize" rw="2" type="u" dev_func="dev_WANPPP_MaxMRUSize">
+								</param>
+								<param name="CurrentMRUSize" rw="0" type="s" dev_func="dev_WANPPP_CurrentMRUSize">
+								</param>
+								<param name="DNSEnabled" rw="2" type="b" dev_func="dev_WANPPP_DNSEnabled">
+								</param>
+								<param name="DNSOverrideAllowed" rw="2" type="b" dev_func="dev_WANPPP_DNSOverrideAllowed">
+								</param>
+								<param name="DNSServers" rw="2" type="s" dev_func="dev_WANPPP_DNSServers">
+								</param>
+								<param name="MACAddress" rw="2" type="s" dev_func="dev_WANPPP_MACAddress">
+								</param>
+								<param name="MACAddressOverride" rw="2" type="b" dev_func="dev_WANPPP_MACAddressOverride">
+								</param>
+								<param name="TransportType" rw="0" type="s" dev_func="dev_WANPPP_TransportType">
+								</param>
+								<param name="PPPoEACName" rw="2" type="s" dev_func="dev_WANPPP_PPPoEACName">
+								</param>
+								<param name="PPPoEServiceName" rw="2" type="s" dev_func="dev_WANPPP_PPPoEServiceName">
+								</param>
+								<param name="ConnectionTrigger" rw="2" type="s" dev_func="dev_WANPPP_ConnectionTrigger">
+								</param>
+								<param name="RouteProtocolRx" rw="2" type="s" dev_func="dev_WANPPP_RouteProtocolRx">
+								</param>
+								<param name="PPPLCPEcho" rw="0" type="u" dev_func="dev_WANPPP_PPPLCPEcho">
+								</param>
+								<param name="PPPLCPEchoRetry" rw="0" type="u" dev_func="dev_WANPPP_PPPLCPEchoRetry">
+								</param>
+								<param name="PortMappingNumberOfEntries" rw="0" type="u" dev_func="dev_WANPPP_PortMappingNumberOfEntries">
+								</param>
+								<obj name="PortMapping" rw="2" max="9" obj_dev_func="dev_obj_pppportmap" obj_instance_func="get_pppportmap_instance">
+									<obj name="0" rw="2">
+										<param name="PortMappingEnabled" rw="2" type="b" dev_func="dev_WANPPP_PortMap_PortMappingEnabled">
+										</param>
+										<param name="PortMappingLeaseDuration" rw="2" type="u" dev_func="dev_WANPPP_PortMap_PortMappingLeaseDuration">
+										</param>
+										<param name="RemoteHost" rw="2" type="s" dev_func="ev_WANPPP_PortMap_RemoteHost">
+										</param>
+										<param name="ExternalPort" rw="2" type="u" dev_func="dev_WANPPP_PortMap_ExternalPort">
+										</param>
+										<param name="InternalPort" rw="2" type="u" dev_func="dev_WANPPP_PortMap_InternalPort">
+										</param>
+										<param name="PortMappingProtocol" rw="2" type="s" dev_func="dev_WANPPP_PortMap_PortMappingProtocol">
+										</param>
+										<param name="InternalClient" rw="2" type="s" dev_func="dev_WANPPP_PortMap_InternalClient">
+										</param>
+										<param name="PortMappingDescription" rw="2" type="s" dev_func="dev_WANPPP_PortMap_PortMappingDescription">
+										</param>
+									</obj>
+								</obj>
+								<obj name="Stats" rw="0">
+									<param name="EthernetBytesSent" rw="0" type="u" dev_func="dev_WANPPP_Stats_EthernetBytesSent">
+									</param>
+									<param name="EthernetBytesReceived" rw="0" type="u" dev_func="dev_WANPPP_Stats_EthernetBytesReceived">
+									</param>
+									<param name="EthernetPacketsSent" rw="0" type="u" dev_func="dev_WANPPP_Stats_EthernetPacketsSent">
+									</param>
+									<param name="EthernetPacketsReceived" rw="0" type="u" dev_func="dev_WANPPP_Stats_EthernetPacketsReceived">
+									</param>
+								</obj>
+							</obj>
+						</obj>
+					</obj>
+				</obj>
+			</obj>
+		</obj>
+	</obj>
+</trf>
+<lib name="/usr/lib/libdev.so">
+</lib>
+<wandev name="dev_get_wan_para">
+</wandev>
+<install name="dev_first_install">
+</install>
+<manu name="dev_Manufacturer">
+</manu>
+<oui name="dev_ManufacturerOUI">
+</oui>
+<class name="dev_ProductClass">
+</class>
+<serial name="dev_SerialNumber">
+</serial>
+<paramkey name="dev_ManageServer_ParameterKey">
+</paramkey>
+<upfig name="dev_getconfigfile">
+</upfig>
+<uplog name="dev_getsyslog">
+</uplog>
+<downsys name="get_flash_free_size">
+</downsys>
+<downkil name="kill_all_apps">
+</downkil>
+<downpar name="parse_data">
+</downpar>
+<taskwst name="write_config_file">
+</taskwst>
+<taskweb name="write_web">
+</taskweb>
+<taskfla name="flash_image">
+</taskfla>
+<taskreb name="reboot_dev">
+</taskreb>
+<trcmd name="TR_sys_cmd">
+</trcmd>
+<ca_cert name="/etc/conf/ca.pem">
+</ca_cert>
+<cl_cert name="">
+</cl_cert>
+<cl_key name="">
+</cl_key>
+</TR069>

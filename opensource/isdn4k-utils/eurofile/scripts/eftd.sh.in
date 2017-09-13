@@ -1,0 +1,351 @@
+#!/bin/sh
+# @configure_input@
+#
+# generated from $Id: eftd.sh.in,v 1.8 2002/01/31 18:54:38 paul Exp $
+#
+#  Henner Eisen 1998
+#
+#  Enhancements by Matthias Stolte (MSDatec@msdatec.de)
+#
+#  Debian "restart" and "force-reload" options added
+#  by Paul Slootman <paul@debian.org>
+#
+#
+# This starts or stops eurofile service.
+#
+# Usage: eftd.sh start|stop
+#
+# This script can be called from sysvinit, but be sure that the common
+# isdn setup below is done before.
+#
+#
+# READ and EDIT this script before using it!
+#
+#          For this script to work, the basic setup for the isdn and x25
+#          drivers must be done. The following three modules must be loaded
+#          (or compiled into the kernel) before calling this script:
+#
+#            "x25"       (insmod x25)
+#            "isdn"      (insmod isdn)
+#            At least one isdn HL driver which supports l2_prot x75i
+#                        (i.e. insmod HiSax ...)
+#
+#
+#*****************************
+#
+# Parameters to be configured by the user of this script
+#
+#******************************
+
+
+# Location of a recent isdnctrl binary that supports the x25 features
+#
+ISDNCTRL=isdnctrl
+
+# Location of the loopctrl binary from the isdn4k-util package
+#
+LOOPCTRL=loopctrl
+INSMOD=insmod
+EFTD_BIN=eftd   
+
+# Where to put the eftd-pid-file? Default is /var/run/eftd.pid.
+EFTD_PIDFILE=@RUNDIR@/eftd.pid
+
+X25TRACE_PIDFILE=@RUNDIR@/x25trace.pid
+
+X25TRACE=x25trace
+X25ROUTE=x25route
+
+
+# The MSN (without your local area code) where eftd shall listen for
+# connections.
+EFT_SERVER_MSN=xxxxx
+# It is possible to put several, blank-seperated, MSNs in this variable
+# which are assigned cyclically to the isdn interfaces below. This might be
+# useful if you want to accept connections from several S0_intrafaces that
+# cannot be configured for the same MSNs. In that case, use something like
+# (i.e when 3 MSN shall be assigned)
+# EFT_SERVER_MSN="xxxx yyyy zzzz"
+
+# Names of ISDN interfaces to be configured and used for incoming
+# EUROFILE connections.
+ISDNIF_IN="isdneftd"
+# For experimenting with multiple (i.e. 4) simultaneous connections,
+# use somthing like
+#ISDNIF_IN="isdneft0 isdneft1 isdneft2 isdneft3"
+# and set the -m option  when starting eftd (and maybe several MSNs above)
+
+# Should the interface automagically disconnect after a while of
+# no transmission? If do so, set ISDNIF_HUPTIMEOUT to the number of seconds.
+# This timeout ist set to all interfaces that are defined in ISDNIF_IN.
+ISDNIF_HUPTIMEOUT=180
+
+# The name of the EFT server. If you don't put something in here or in
+# the RCFILE (see below), the default "<host>.<domain>" will be used.
+# EFT_SERVER_NAME="eftd.sh v@I4LVERSION@"
+
+
+# If you want all your clients having access to your server, you can
+# redirect wrong or non existent usernames to standard guest account,
+# e.g. user "ftp". It's only recommended if you have public file offers
+# and may be a security risk.
+# MAP_UNKNOWN_USER_TO="ftp"
+
+
+# If you want eftd to check the ACCESSFILE, uncomment the following line.
+# See eftaccess(5) for more info.
+# EFTD_ACCESS_TO_FILE="yes"
+# If you don't use the default ACCESSFILE, set the next variable to the
+# name of that file:
+# EFTD_ACCESS_FILE=""
+
+# Probably you want to log some server events.
+# Define the log level 
+# EFTD_LOG_OPTIONS="-l 3 "
+
+# Where shell EFTD put it? The default is like
+# EFTD_LOG_FILE="/var/log/eftd.log"
+
+# Define the debug (stderr) log level:
+# EFTD_DEBUG_OPTIONS="-D -1", if you want really all...
+
+# and where to put debug log information?
+# EFTD_DEBUG_FILENAME=/var/log/eftd.dbg
+
+# If set, this will additionally set up an outgoing interface on top
+# of the ISDN loop drivers for local testing. The x25 connections using
+# x25 address "1" as destination address will be routed through this
+# interface.
+# EFTD_WITH_LOOP=y
+
+# rc file, might contain parameters to overide those in this file
+RCFILE=@I4LCONFDIR@/eft.conf
+
+# time between terminating x25 applications and ifconfig'ing down interface
+# or between ifconfig'ing down interface and deleting interface.
+# Should not be necessary at all but for paranoia reasons (old kernel bugs)
+#
+# Try higher values if terminating fails or lower values if you are bored.
+EFTD_IF_SLEEP="sleep 2"
+#
+# You can even add arbitrary other option here (or in your
+# @I4LCONFDIR@/eft.conf file) by something like
+# EFTD_OPTIONS="$EFTD_OPTIONS -X" 
+#
+#**********************************************
+#
+# End of user variable configuration section
+#
+#**********************************************
+
+
+if [ -f $RCFILE ]; then
+  . $RCFILE
+fi
+
+
+case "$1" in
+  start)
+    # another eftd alreay running?
+    if test -f $EFTD_PIDFILE ; then
+      echo "There seems to be an eft daemon already running. Multiple"
+      echo "EFT-daemons are not supported."
+      echo "Try \"$0 stop\" to terminate the running EFT-daemon."
+      exit 1
+    fi
+
+    if test -z $EFT_SERVER_MSN; then
+      echo $'\a'"Error: You must define an MSN/EAZ in @I4LCONFDIR@/eft.conf"
+      exit 1
+    fi
+
+    set -- $EFT_SERVER_MSN
+
+    if [ x$EFTD_WITH_LOOP != x ]; then
+      # for local testing of x.25 connections we load the isdnloop driver
+      $INSMOD -m isdnloop isdnloop_id=eft_loop -o eft_loop> /var/modules/isdnloop.map
+      $LOOPCTRL -d eft_loop start dss1 00000 $EFT_CLIENT_MSN $EFT_SERVER_MSN
+      sleep 1
+      # A local outgoing interface operating on top of (bound to) the
+      # isdnloop driver. X.25 call requests the X.25 address "1"
+      # will be routed through the outgoing interface eft_lout. That call
+      # request will be looped back to our own machine (and received at the
+      # incoming interface created for the eft daemon).
+
+      $ISDNCTRL addif eft_lout
+      $ISDNCTRL eaz eft_lout $EFT_CLIENT_MSN
+      $ISDNCTRL secure eft_lout on
+      $ISDNCTRL addphone eft_lout out $1
+      $ISDNCTRL l2_prot eft_lout x75i
+      $ISDNCTRL encap eft_lout  x25iface
+      $ISDNCTRL huptimeout eft_lout 0
+      $ISDNCTRL dialmode eft_lout auto
+      $ISDNCTRL bind eft_lout eft_loop,0
+
+      ifconfig eft_lout up
+      $X25ROUTE add 1/1 eft_lout
+# we also need to tell eftd to also listen on the second x25 address
+      EFTD_OPTIONS="$EFTD_OPTIONS -x 1 -x \"\" "
+    fi
+
+    for i in $ISDNIF_IN; do
+      # interface alreay defined?
+      if { cat /proc/net/dev | grep $i > /dev/null; } ; then
+        echo "Interface \"$i\" already exists."
+      else
+        $ISDNCTRL addif $i
+      fi
+
+      $ISDNCTRL verbose 1
+
+      $ISDNCTRL eaz $i $1
+      $ISDNCTRL l2_prot $i x75i
+      $ISDNCTRL encap $i  x25iface
+      if [ ! -z "$ISDNIF_HUPTIMEOUT" ]; then
+        $ISDNCTRL huptimeout $i $ISDNIF_HUPTIMEOUT
+      fi
+      # for disabling auto-hangup:
+      #   $ISDNCTRL ihup $i off
+
+      ifconfig $i up
+
+#cyclically assign the next MSN to $1
+      shift
+      if [ -z "$1" ]; then
+	set -- $EFT_SERVER_MSN
+      fi
+
+    done
+
+    if [ x$EFTD_X25TRACE = x1 ]; then
+      # this will log all x25 traffic received from network interfaces to stderr
+      $X25TRACE -h 1>&2 &
+      echo $! >  $X25TRACE_PIDFILE
+    fi
+
+
+    # Prepare options for EFTD start
+
+    if [ "$EFTD_ACCESS_TO_FILE" = "yes" ]; then
+      EFTD_OPTIONS="$EFTD_OPTIONS -a"
+      if [ ! -z "$EFTD_ACCESS_FILE" ]; then
+        EFTD_OPTIONS="$EFTD_OPTIONS \"$EFTD_ACCESS_FILE\""
+      fi
+    fi    
+
+    if [ ! -z "$EFT_SERVER_NAME" ]; then
+      EFTD_OPTIONS="$EFTD_OPTIONS -n \"$EFT_SERVER_NAME\""
+    fi
+
+    if [ ! -z "$MAP_UNKNOWN_USER_TO" ] ; then
+      EFTD_OPTIONS="$EFTD_OPTIONS -U \"$MAP_UNKNOWN_USER_TO\""
+    fi
+
+    if [ ! -z "$EFTD_DEBUG_OPTIONS" ]; then
+      EFTD_OPTIONS="$EFTD_OPTIONS $EFTD_DEBUG_OPTIONS"
+    fi
+
+    if [ ! -z "$EFTD_LOG_OPTIONS" ]; then
+      EFTD_OPTIONS="$EFTD_OPTIONS $EFTD_LOG_OPTIONS"
+    fi
+
+    if [ ! -z "$EFTD_LOG_FILENAME" ]; then
+      EFTD_OPTIONS="$EFTD_OPTIONS -b $EFTD_LOG_FILENAME"
+    fi
+
+    if [ x"$EFTD_DEBUG" = "x1" ] ; then
+      echo "Starting EUROFile daemon under gdb."
+#    remove a possibly present '-m' option
+      EFTD_OPTIONS_WITHOUT_M=`echo "$EFTD_OPTIONS"|sed 's/ -m//'`
+      echo "type \"run $EFTD_OPTIONS_WITHOUT_M -s\" from the gdb prompt."
+      gdb $EFTD_BIN
+    else
+
+      if [ ! -z "$EFTD_DEBUG_FILENAME" ]; then
+	    stderr_redirect="2>> $EFTD_DEBUG_FILENAME"
+      fi
+      if [ ! -z "$EFTD_LOG_FILENAME" ]; then
+	    stdout_redirect=">> $EFTD_LOG_FILENAME"
+      fi
+
+      eval $EFTD_BIN $EFTD_OPTIONS $stderr_redirect "&" 
+
+      td_pid=$!
+      echo $td_pid > $EFTD_PIDFILE
+      echo "EUROFile daemon started, pid=$td_pid"
+
+    fi
+    ;;
+
+  restart|force-reload)
+    # I know, trivial, but debian policy demands it
+    $0 stop || true
+    $1 start
+    ;;
+
+  stop)
+    ISDNIF_FOUND=""
+    if { cat /proc/net/dev | grep eft_lout > /dev/null; } ; then
+      $X25ROUTE del 1/1 eft_lout
+      ISDNIF_FOUND=eft_lout
+    fi
+
+    if test -f $EFTD_PIDFILE ; then
+      echo 'Shutting down eft daemon...'
+      kill `cat $EFTD_PIDFILE`
+      rm -f $EFTD_PIDFILE
+    else
+      echo "eft daemon not running?"
+    fi
+
+    if test -f $X25TRACE_PIDFILE; then
+      echo 'Shutting down x25trace ...'
+      kill `cat /var/run/x25trace.pid`
+      rm -f /var/run/x25trace.pid
+    fi
+
+    for i in $ISDNIF_IN; do
+      if { cat /proc/net/dev | grep $i > /dev/null; } ; then
+        ISDNIF_FOUND="$ISDNIF_FOUND $i"
+      fi
+    done
+
+    if [ -z "$ISDNIF_FOUND" ]; then
+      echo "No interfaces to shut down found"
+    else
+      for i in $ISDNIF_FOUND; do
+        # hangup is done from eftd, but for paranoia reasons again ...
+        isdnctrl hangup $i >/dev/null 2>&1
+      done
+
+      echo -n "ifconfig'ing interfaces down:"
+
+      $EFTD_IF_SLEEP
+
+      for i in $ISDNIF_FOUND; do
+        echo -n " $i"
+        ifconfig $i down
+      done
+      echo ""
+
+      $EFTD_IF_SLEEP
+
+      echo "deleting isdn interfaces:"
+      for i in $ISDNIF_FOUND; do
+        # echo -n " $i"
+        $ISDNCTRL delif $i
+      done
+      echo ""
+
+      if { cat /proc/modules | grep eft_loop > /dev/null; } ; then
+        echo 'removing isdnloop module "eft_loop"'
+        rmmod eft_loop
+      fi
+
+    fi
+    ;;
+  *)
+    echo "usage: $0 start       start EUROFILE server/service"
+    echo "       $0 stop        stop EUROFILE server/service"
+
+esac

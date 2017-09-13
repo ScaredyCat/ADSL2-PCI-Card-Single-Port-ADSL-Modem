@@ -1,0 +1,684 @@
+# Autor: gandalf <gandalf@szene.ch>
+# 
+# Dieses Rate-File ist alles andere als komplett, es hat sehr wahrscheinlich
+# Fehler, aber ich denke  der Grundstein fuer rate-ch.dat ist gelegt =)
+#
+# Der Aufbau 
+# (Weitgehend von rate-de.dat uebernommen):
+#
+#   0 -   9     : Inland
+#  10 -  30     : Natel / GSM
+#  31 -  39     : Satelitenfunk (Inmarsat, Iridium)
+#  40 -  59     : Telefonauskünfte
+#  60 -  79     : Pager Services
+#  80 -  89     : Shared Cost (0180)
+#  90 -  99     : Premium Rate (0190)
+# 100 - 159     : Internet Tarife
+# 160 - 169     : Televotum, etc.
+# 170           : Persönliche Rufnummer (0700)
+# 171 - 199     : Sonstiges
+# 200 - xxx     : Auslandstarife
+#
+# Beschreibung einzelner Zonen
+#
+#    0 -   9 : Inland
+#    0 : Verbindungen an der eigenen Tk-Anlage (zwangsläufig kostenlos)
+#        sowie alle "FreeCall" (kostenlos) Nummern des jeweiligen Providers
+#    1 : Lokal / Region (alle Nummern die ohne Vorwahl erreichbar sind)
+#    4 : National 
+#    5 -   9 : bei Bedarf, weitere Inlandszonen
+#
+#   10 -  30 : Handies, GSM-Netze
+#   11 : Natel C
+#   12 : Natel D
+#   13 -  30 : bei Bedarf, weitere Mobiltelefonnetze
+#
+#   31 : Iridium A GSM-homed         # gibts das ueberhaupt noch? ;)
+#   32 : Iridium B Iridium-homed
+#   33 : Inmarsat A
+#   34 : Inmarsat A Daten/Fax
+#   35 : Inmarsat Aero
+#   36 : Inmarsat B
+#   37 : Inmarsat B HSD
+#   38 : Inmarsat M
+#   39 : Inmarsat Mini-M
+#
+#   40 -  59 : Auskunftstarife
+#
+#   60 -  79 : Pager
+#   60 : AllWireless Telepage private   (074?) # argh! keine infos auf dem www
+#   61 : AllWireless Telepage swiss     (074)  # swisscom soll das doch besser
+#   62 : AllWireless Telepage business  (0152?)# wieder selber machen ;)
+#
+#   80 -  89 : Shared Cost Service 0180
+#   81 : Service 0180-1
+#   82 : Service 0180-2
+#   83 : Service 0180-3
+#   84 : Service 0180-4
+#   85 : Service 0180-5
+#
+#   90 -  99 : Premium Rate Service 0190
+#   91 : Service 0190-1, 0190-2, 0190-3, 0190-5
+#   92 : Service 0190-4, 0190-6
+#   93 : Service 0190-7, 0190-9
+#   94 : Service 0190-8
+#
+#  100 - 159 : Internet Tarife
+#  100 : Swisscom / BlueWindow 	# hier bin ich nicht sicher bezueglich
+#  101 : Diax			# der tarife fuer "cross-provider" calls
+#  102 : Sunrise		# ein bluewin dialup via sunrise z.b. -> ?
+#  103 - 159 : bei Bedarf, weitere Internettarife
+#
+#  160 - 169 : Televotum
+#  160 : Televotum              (0137)
+#  161 : Teledialog             (0138)
+#  162 : T-VoteCall 1           (01371)
+#  163 : T-VoteCall 2           (01372)
+#  164 : DTAG Ansagedienste
+#
+#  170 : Persönliche Rufnummer  (0700)
+#
+#  171 - 199 : Sonstiges
+#  171 : Expo 2000              (02000)
+#
+#  ab 200    : Auslandstarife
+
+V:0.01-Switzerland [09-May-2000]
+
+U:%.3f CHF
+
+# Sondernummern
+S:Polizei
+N:117
+S:Notarzt
+N:144
+S:Feuerwehr
+N:118
+S:Rega
+N:1414
+N:1415
+
+# Hilfsdienste
+S:Strassenhilfe
+N:140
+S:Die dargebotene Hand
+N:143
+S:Telefonhilfe für Kinder und Jugendliche
+N:147
+
+# Auskunftsdienste
+S:Swisscom Geschäftsstelle
+N:113
+S:Auskunft Inland
+N:111
+S:Internationale Auskunft für Österreich
+N:1151
+S:Internationale Auskunft für Deutschland
+N:1152
+S:Internationale Auskunft für Frankreich
+N:1153
+S:Internationale Auskunft für Italien
+N:1154
+S:Internationale Auskunft für andere Länder
+N:1159
+S:Internationale Vermittlung
+N:1141
+S:Nationale Vermittlung für Mobiltelefone
+N:1144
+
+# Services:
+S:Automatischer Weckdienst
+N:150
+S:Sprechende Uhr
+N:161
+S:Wetterprognosen
+N:162
+S:Strassenzustand, Verkehrsinformationen
+N:163
+S:Sportresultate, Gewinnzahlen und -quoten
+N:164
+S:Lawinenbulletin, aktuelle Wettermeldungen
+N:187
+S:Störungsannahme
+N:175
+S:Regionale Informationen
+N:1600
+
+##############################################################################
+# swisscom
+
+P:[01.03.2000]	1			Swisscom
+B:10741 
+D:10741
+C:Name:					Swisscom
+C:Maintainer:				gandalf <gandalf@szene.ch>
+C:TarifChanged:				09.05.2000
+C:Homepage:				http://www.swisscom.com
+C:Hotline:				0800 868 788
+
+Z:0				FreePhone
+T:*/*=0/1
+A:175,+0800
+
+Z:1 				Nahbereich 
+T:W/08-17=0.1/90 		Normaltarif
+T:W/06-08,17-22=0.1/180 	Niedertarif
+T:W/22-06=0.1/353 		Nachttarif
+T:E,H/*=0.1/180:1800,0/1800,0.1/180	Weekend
+A:+411
+
+Z:2                     	Fernbereich
+T:W/8-17=0.1/50			Normaltarif
+T:W/6-8,17-22=0.1/60		Niedertarif
+T:W/22-06=0.1/95		Nachttarif
+T:E,H/*=0.1/60:600,0/3000,0.1/60	Weekend
+A:CH
+
+Z:11				Swiss GSM
+T:W/07-19=0.1/11.2		Normaltarif
+T:W/19-07=0.1/13.33		Niedertarif
+T:E,H/*=0.1/13.33		Weekend
+A:+4176,+4177,+4178,+4179
+
+Z:40                            Auskunftsdienste
+T:*/*=1.6/0,0.1/24:60,0.1/50    Auskunft National
+A:111
+T:*/*=2.5/0,0.1/10.15:90,0.25/60 Auskunft Ausland
+A:115
+
+Z:41				Spezialdienste A
+T:*/*=0.2/0,0/1			-.20 fix
+A:113,117,118,140+1414,1415,143,144,147
+Z:42				Spezialdienste B
+T:*/*=0.5/0,0/1			-.50 fix
+A:150,161,162,163,164,187
+Z:43				RegioInfo
+T:*/*=0.5/0,0.0833/10		RegioInfo
+A:1600
+
+Z:60                            Paging Services 
+T:*/*=0.3/0/60                  Telepage Swiss # exact rate unknown, please fix
+A:+4174,
+
+Z:80				Lokaltarif national
+T:W/08-17=0.1/90		Normaltarif
+T:W/06-08,17-22=0.1/180		Niedertarif
+T:W/22-06=0.1/353		Nachttarif
+T:E,H/*=0.1/180:1800,0/1800,0.1/180 Weekend
+A:+41840,+41842,+41844
+
+Z:81				Ferntarif national
+T:W/8-17=0.1/50			Normaltarif
+T:W/6-8,17-22=0.1/60		Niedertarif
+T:W/22-06=0.1/95		Nachttarif
+T:E,H/*=0.1/60:600,0/3000,0.1/60 Weekend
+A:+41848
+
+Z:90				Premium Rate Services 0190
+T:*/*=0.30/0/60			Swisscom SMS Gateway # exact rate unknown, please fix
+A: +410900900941,+41794998990	
+
+Z:100				Swisscom BlueWindow
+T:W/08-16=0.1/90		Business-Surf
+T:W/16-22=0.1/200		Evening-Surf
+T:*/22-08=0.1/514		Moonlight-Surf
+T:E,H/08-22=0.1/200		Weekend-Daysurf
+A:+41840840111,+41840840222
+
+Z:101				Diax Internet # [not pre-select]
+T:W/08-17=0.0291/30		Normaltarif
+T:W/06-08,17-22=0.0125/30	Niedertarif
+T:*/22-06=0.0041/30		Nachttarif
+T:E,H/06-22=0.0125/30		Weekend
+
+Z:102				Sunrise Internet # [not pre-select]
+T:W/08-23=0.4/60		Normaltarif
+T:W/17-23=0.18/60		Niedertarif
+T:W/23-08=0.7/60		Nachttarif
+A:+41842842222
+
+Z:201				Ausland1
+T:W/*=0.1/50			Normaltarif
+T:E,H/*=0.1/60			Weekend
+A:DE,FR,IT,CA,LI,AT,US
+
+Z:202				Ausland2
+T:W/*=0.1/24			Normaltarif
+T:E,H/*=0.1/30			Weekend
+A:AD,AU,BE,DK,FO,FI,GI,GR,GB,IE,IS,LU,MT,MC,NZ,NL,NO,PT,SM,SE,SP,CY
+
+Z:203				Ausland3
+T:W/*=0.1/10.83			Normaltarif
+T:E,H/*=0.1/12			Weekend
+A:AL,BA,BG,EE,HK,IL,JP,YU,HR,LV,LT,MK,MD,PL,RO,RU,SG,SK,SI,CZ,TR,UA,HU
+
+Z:204				Ausland4
+T:W/*=0.1/4.8			Normaltarif
+T:E,H/*=0.1/6			Weekend
+A:EG,DZ,AR,BR,CL,CN,ID,LY,MY,EH,MX,PH,ZA,KR,TW,TH,TN
+
+Z:205				Ausland5
+T:W/*=0.1/3.75			Normaltarif
+T:E,H/*=0.1/4.28		Weekend
+A:AS,VI,AO,AQ,GQ,AM,AW,ASI,AZ,ET,BS,BH,BD,BB,BJ,BM,BT,BO,BW,BN,BF,BI,CK,CR,DO
+A:EC,SV,ER,FK,FJ,GF,PF,GA,GM,GEA,GH,GP,GU,GT,GN,GW,HT,HN,IQ,IR,JM,YE,JO,KH,CM
+A:KZ,KE,KG,KI,CO,KM,KO,CU,KW,LA,LE,MO,MG,MW,MV,ML,MP,MQ,MU,YT,FM,MN,MZ,MM,NA
+A:NR,NP,NC,NI,AN,NGR,NG,NU,KP,NF,OM,PK,PW,PA,PG,PY,PE,PR,RE,RW,ZM,SB,ST,SA,SN
+A:SC,SL,SO,LK,SD,SR,SZ,SY,TJ,TG,TT,TD,TM,TC,TV,UG,UY,UZ,VU,VE,AE,VN,WF,WS,CF
+
+##############################################################################
+# diax
+P:[07.05.2000]  2			Diax
+B:10766
+C:Name:					Diax
+C:Maintainer:				gandalf <gandalf@szene.ch>
+C:TarifChanged:				09.05.2000
+C:Homepage:				http://www.diax.com
+C:Hotline:				0800 300 600
+
+Z:0				FreePhone
+T:*/*=0/1
+A:175,+0800
+
+Z:1				Festnetz Regional
+T:W/08-17=0.3/268		Normaltarif
+T:W/06-08,17-22=0.3/537		Niedertarif
+T:*/22-06=0.3/1076		Nachttarif
+T:E,H/06-22=0.3/537		Weekend
+A:+411
+
+Z:2				Festnetz National
+T:W/08-17=0.3/180		Normaltarif
+T:W/06-08,17-22=0.3/225		Niedertarif
+T:*/22-06=0.3/450		Nachttarif
+T:E,H/06-22=0.3/225		Weekend
+A:+41
+
+Z:11				Swiss GSM
+T:W/07-19=0.3/38.29		Normaltarif
+T:W/19-07=0.3/42.85		Niedertarif
+T:E,H/*=0.3/42.85		Weekend
+A:_CHMF
+
+Z:12				Diax Mobile
+T:*/*=0.3/47.3			Dauertarif
+A:_CHDIA
+
+Z:40				Auskunfstdienste
+T:*/*=1.6/0,0.1/24:60,0.1/50	Auskunft National
+A:111
+T:*/*=2.5/0,0.1/10.15:90,0.25/60	Auskunft Ausland
+A:115
+
+Z:41				Spezialdienste A
+T:*/*=0.2/0,0/1			-.20 fix
+A:113,117,118,140+1414,1415,143,144,147
+Z:42				Spezialdienste B
+T:*/*=0.5/0,0/1			-.50 fix
+A:150,161,162,163,164,187
+Z:43				RegioInfo
+T:*/*=0.5/0,0.0833/10		RegioInfo
+A:1600
+
+Z:60				Paging Services
+T:*/*=0.2/0/60			Telepage Swiss
+A:+4174
+
+Z:80				Lokaltarif national
+T:W/08-17=0.3/268		Normaltarif
+T:W/06-08,17-22=0.3/537		Niedertarif
+T:*/22-06=0.3/1076		Nachttarif
+T:E,H/06-22=0.3/537		Weekend
+A:+41840,+41842,+41844
+
+Z:81				Ferntarif national
+T:W/08-17=0.3/180		Normaltarif
+T:W/06-08,17-22=0.3/225		Niedertarif
+T:*/22-06=0.3/450		Nachttarif
+T:E,H/06-22=0.3/225		Weekend
+A:+41848
+
+Z:90				Premium Rate Services 0190
+T:*/*=0.30/0/60			Swisscom SMS Gateway
+A: +410900900941,+41794998990
+
+Z:100				Swisscom BlueWindow
+T:W/08-16=0.1/90		Business-Surf
+T:W/16-22=0.1/200		Evening-Surf
+T:*/22-08=0.1/514		Moonlight-Surf
+T:E,H/08-22=0.1/200		Weekend-Daysurf
+A:+41840840111,+41840840222
+
+Z:101				Diax Internet # [diax pre-select]
+T:W/08-17=0.3/268		Normaltarif
+T:W/06-08,17-22=0.3/537		Niedertarif
+T:*/22-06=0.5(0.1)/3600		Nachttarif
+T:E,H/06-22=0.3/537		Weekend
+
+Z:102				Sunrise Internet # [not pre-select]
+T:W/08-17=0.4/60		Normaltarif
+T:W/06-08,17-22=0.18/60		Niedertarif
+T:*/22-06=0.07/60		Nachttarif
+T:E,H/06-22=0.3/537		Weekend
+A:+41842842222
+
+Z:201				Ausland1
+T:*/*=0.3/180			Einheitstarif
+A:DE,FR,IT,CA,LI,AT,US
+
+Z:202				Ausland2
+T:*/*=0.3/112.5			Einheitstarif
+A:AU,BE,DK,FI,GB,IE,LU,NZ,NL,NO,PT,SE,SM,SP
+
+# exact diax international rates unknown (not on webpage), please fix
+#Z:203				Ausland3
+#T:W/*=0.1/10.83			Normaltarif
+#T:E,H/*=0.1/12				Weekend
+#A:AL,BA,BG,EE,HK,IL,JP,YU,HR,LV,LT,MK,MD,PL,RO,RU,SG,SK,SI,CZ,TR,UA,HU
+#A:EG,DZ,AR,BR,CL,CN,ID,LY,MY,EH,MX,PH,ZA,KR,TW,TH,TN,UZ,VU,VE,AE,VN,WF,WS,CF
+#A:AS,VI,AO,AQ,GQ,AM,AW,ASI,AZ,ET,BS,BH,BD,BB,BJ,BM,BT,BO,BW,BN,BF,BI,CK,CR,DO
+#A:EC,SV,ER,FK,FJ,GF,PF,GA,GM,GEA,GH,GP,GU,GT,GN,GW,HT,HN,IQ,IR,JM,YE,JO,KH,CM
+#A:KZ,KE,KG,KI,CO,KM,KO,CU,KW,LA,LE,MO,MG,MW,MV,ML,MP,MQ,MU,YT,FM,MN,MZ,MM,NA
+#A:NR,NP,NC,NI,AN,NGR,NG,NU,KP,NF,OM,PK,PW,PA,PG,PY,PE,PR,RE,RW,ZM,SB,ST,SA,SN
+#A:SC,SL,SO,LK,SD,SR,SZ,SY,TJ,TG,TT,TD,TM,TC,TV,UG,UY
+
+
+##############################################################################
+# sunrise
+P:[14.02.2000]  3			Sunrise
+B:10707
+C:Name:					Sunrise
+C:Maintainer:				gandalf <gandalf@szene.ch>
+C:TarifChanged:				09.05.2000
+C:Homepage:				http://www.sunrise.ch
+C:Hotline:				0800 707 707
+
+Z:0				FreePhone
+T:*/*=0/1
+A:175,+0800
+
+Z:1				Sunrise Local Calls
+T:W/08-17=0.065(60)/20/1	Normaltarif
+T:W/17-23=0.0325(60)/20/1	Niedertarif
+T:*/23-08=0.0163(60)/20/1	Nachttarif
+T:E,H/08-23=0.0325(60)/20/1	Weekend
+A:+411
+
+Z:2				Sunrise National Calls
+T:W/08-17=0.1(60)/20/1		Normaltarif
+T:W/17-23=0.08(60)/20/1		Niedertarif
+T:*/23-08=0.04(60)/20/1		Nachttarif
+T:E,H/08-23=0.0(60)/20/1	Weekend
+A:CH
+
+Z:11				Swiss GSM
+T:W/08-17=0.5925(60)/20/1	Normaltarif
+T:W/17-08=0.3975(60)/20/1	Niedertarif
+T:E,H/*=0.03975(60)/20/1	Weekend
+A:_CHMF
+
+Z:33				Inmarsat A
+T:*/*=5.72(60)/20/1		Einheitstarif
+A:_INA_
+Z:36				Inmarsat B
+T:*/*=4.06(60)/20/1		Einheitstarif
+A:_INB_
+Z:38				Inmarsat M
+T:*/*=3.38(60)/20/1		Einheitstarif
+A:_INM_
+Z:39				Inmarsat Mini M
+T:*/*=2.54(60)/20/1		Einheitstarif
+A:_INMM
+
+Z:40				Auskunfstdienste
+T:*/*=1.6/0,0.1/24:60,0.1/50	Auskunft National
+A:111
+T:*/*=2.5/0,0.1/10.15:90,0.25/60	Auskunft Ausland
+A:115
+
+Z:41				Spezialdienste A
+T:*/*=0.2/0,0/1			-.20 fix
+A:113,117,118,140+1414,1415,143,144,147
+Z:42				Spezialdienste B
+T:*/*=0.5/0,0/1			-.50 fix
+A:150,161,162,163,164,187
+Z:43				RegioInfo
+T:*/*=0.5/0,0.0833/10		RegioInfo
+A:1600
+
+Z:60				Paging Services
+T:*/*=0.2/0/60			Telepage Swiss
+A:+4174
+
+Z:80				Lokaltarif national
+T:W/08-17=0.065(60)/20/1	Normaltarif
+T:W/17-23=0.0325(60)/20/1	Niedertarif
+T:*/23-08=0.0163/60/20/1	Nachttarif
+T:E,H/08-23=0.0325/60/20/1	Weekend
+A:+41840,+41842,+41844
+
+Z:81				Ferntarif national
+T:W/08-17=0.1(60)/20/1		Normaltarif
+T:W/17-23=0.08(60)/20/1		Niedertarif
+T:*/23-08=0.04(60)/20/1		Nachttarif
+T:E,H/08-23=0.08(60)/20/1	Weekend
+A:+41848
+
+Z:90				Premium Rate Services 0190
+T:*/*=0.30/0/60			Swisscom SMS Gateway # exact rate unknown, please fix
+A: +410900900941,+41794998990
+
+Z:100				Swisscom BlueWindow
+T:W/08-16=0.1/90		Business-Surf
+T:W/16-22=0.1/200		Evening-Surf
+T:*/22-08=0.1/514		Moonlight-Surf
+T:E,H/08-22=0.1/200		Weekend-Daysurf
+A:+41840840111,+41840840222
+
+Z:101				Diax Internet # [not pre-select]
+T:W/08-17=0.0291/30		Normaltarif
+T:W/06-08,17-22=0.0125/30	Niedertarif
+T:*/22-06=0.0041/30		Nachttarif
+T:E,H/06-22=0.0125/30		Weekend-Daysurf
+
+Z:102				Sunrise Internet # [pre-select]
+T:W/08-23=0.167/60		Normaltarif
+T:W/23-08=0.083/60		Nachttarif
+A:+41842842222
+
+Z:201				Ausland1
+T:*/*=0.1(60)/20/1		Einheitstarif
+A:DE,FR,IT,CA,LI,AT,US,VA
+
+Z:202				Ausland2
+T:*/*=0.2(60)/20/1		Einheitstarif
+A:BE,DK,FI,GR,GB,IE,LU,NL,PT,SE,SP
+
+Z:203				Ausland3
+T:W/*=0.3(60)/20/1		Normaltarif
+T:E,H/*=0.25(60)/20/1		Niedertarif
+A:AD,FO,IS,MC,NO,CY
+
+Z:204				Ausland4
+T:W/08-17=0.35(60)/20/1		Normaltarif
+T:W/17-08=0.25(60)/20/1		Niedertarif
+T:E,H/*=0.25(60)/20/1		Weekend
+A:MT
+
+Z:205				Ausland5
+T:W/08-17=0.35(60)/20/1		Normaltarif
+T:W/17-08=0.25(60)/20/1		Niedertarif
+T:E,H/*=0.25(60)/20/1		Weekend
+A:GI,SM
+
+Z:206				Ausland6
+T:W/08-17=0.45(60)/20/1		Normaltarif
+T:W/17-08=0.35(60)/20/1		Niedertarif
+T:E,H/*=0.35(60)/20/1		Weekend
+A:AU,JP,CC,NZ,TR
+
+Z:207				Ausland7
+T:W/08-17=0.59(60)/20/1		Normaltarif
+T:W/17-08=0.46(60)/20/1		Niedertarif
+T:E,H/*=0.46(60)/20/1		Weekend
+A:AQ,CX
+
+Z:208				Ausland8
+T:W/08-17=0.64(60)/20/1		Normaltarif
+T:W/17-08=0.5(60)/20/1		Niedertarif
+T:E,H/*=0.5(60)/20/1		Weekend
+A:BG,EE,LV,LT,MD,PL,RO,SK,CZ,UA,HU
+
+Z:209				Ausland9
+T:W/08-17=0.75(60)/20/1		Normaltarif
+T:W/17-08=0.5(60)/20/1		Niedertarif
+T:E,H/*=0.5(60)/20/1		Weekend
+A:AL,BA,HR,YU,MK,SI
+
+Z:210				Ausland10
+T:W/08-17=0.8(60)/20/1		Normaltarif
+T:W/17-08=0.6(60)/20/1		Niedertarif
+T:E,H/*=0.6(60)/20/1		Weekend
+A:HK,IL,SG
+
+Z:211				Ausland11
+T:W/08-17=0.83(60)/20/1		Normaltarif
+T:W/17-08=0.65(60)/20/1		Niedertarif
+T:E,H/*=0.65(60)/20/1		Weekend
+A:RU				
+
+Z:212				Ausland12
+T:W/08-17=1.07(60)/20/1		Normaltarif
+T:W/17-08=0.8(60)/20/1		Niedertarif
+T:E,H/*=0.8(60)/20/1		Weekend
+A:DZ,AZ,BR,CL,LY,MA,MX,SA,ZA,KR,TN
+
+Z:213				Ausland13
+T:W/08-17=0.59(60)/20/1		Normaltarif
+T:W/17-08=0.46(60)/20/1		Niedertarif
+T:E,H/*=0.46(60)/20/1		Weekend
+A:EG,AS,AO,AI,AG,AR,AW,AC,ET,BS,BH,BD,BB,BZ,BJ,BM,BT,BO,BW,BN,BI,KY,CN,CK,CR
+A:DJ,DM,DO,EC,SV,ER,FK,FJ,GF,PF,GA,GM,GH,GD,GL,GP,GU,GT,GY,GN,HT,HN,IN,ID,IQ
+A:JM,VG,VI,CM,CV,KZ,KE,CO,CG,CU,KW,LA,LS,LR,MO,MG,MW,MY,MV,ML,MH,MQ,MR,MU,FM
+A:MN,MS,MZ,MM,NA,NP,NC,AN,NE,NG,NU,KP,NF,OM,PK,PA,PG,PY,PE,PH,PR,QA,RE,RW,SN
+A:SL,SO,LK,SH,PM,SD,SR,SZ,TW,TZ,TH,TG,TO,TT,TV,TC,UG,UY,VU,VE,AE,VN,CD,ZW
+
+Z:214				Ausland14
+T:W/08-17=1.39(60)/20/1		Normaltarif
+T:W/17-08=1.04(60)/20/1		Niedertarif
+T:E,H/*=1.04(60)/20/1		Weekend
+A:AM,GE,IR,JO,SY		
+
+Z:215				Ausland15
+T:W/08-17=1.66(60)/20/1		Normaltarif
+T:W/17-08=1.25(60)/20/1		Niedertarif
+T:E,H/*=1.25(60)/20/1		Weekend
+A:GQ,BF,KH,KI,KM,NR,PW,SC,TJ,TK,TD,TM,UZ,WF,CF
+
+
+##############################################################################
+# tele2
+
+P:[09.05.2000]	4			Tele2
+B:10753
+C:Name:					Tele2
+C:Maintainer:				gandalf <gandalf@szene.ch>
+C:TarifChanged:				09.05.2000
+C:Homepage:				http://www.tele2.ch
+C:Hotline:				0800 242 420
+
+Z:0				FreePhone
+T:*/*=0/1
+A:175,+0800
+
+Z:1 				Nahbereich 
+T:W/*=0.06(60)/30/1 		Einheitstarif
+T:E,H/*=0.04(60)/30/1		Weekend
+A:+411
+
+Z:2                     	Fernbereich
+T:W/*=0.08(60)/30/1 		Einheitstarif
+T:E,H/*=0.04(60)/30/1		Weekend
+A:CH
+
+Z:11				Swiss GSM
+T:W/*=0.45(60)/30/1 		Einheitstarif
+T:E,H/*=0.35(60)/30/1		Weekend
+A:+4176,+4177,+4178,+4179
+
+Z:40                            Auskunftsdienste
+T:*/*=1.6/0,0.1/24:60,0.1/50    Auskunft National
+A:111
+T:*/*=2.5/0,0.1/10.15:90,0.25/60 Auskunft Ausland
+A:115
+
+Z:41				Spezialdienste A
+T:*/*=0.2/0,0/1			-.20 fix
+A:113,117,118,140+1414,1415,143,144,147
+Z:42				Spezialdienste B
+T:*/*=0.5/0,0/1			-.50 fix
+A:150,161,162,163,164,187
+Z:43				RegioInfo
+T:*/*=0.5/0,0.0833/10		RegioInfo
+A:1600
+
+Z:60                            Paging Services
+T:*/*=0.3/0/60                  Telepage Swiss
+A:+4174,
+
+Z:80				Lokaltarif national
+T:W/*=0.06(60)/30/1 		Einheitstarif
+T:E,H/*=0.04(60)/30/1		Weekend
+A:+41840,+41842,+41844
+
+Z:81				Ferntarif national
+T:W/*=0.08(60)/30/1 		Einheitstarif
+T:E,H/*=0.04(60)/30/1		Weekend
+A:+41848
+
+Z:90				Premium Rate Services 0190
+T:*/*=0.30/0/60			Swisscom SMS Gateway
+A: +410900900941,+41794998990
+
+Z:100				Swisscom BlueWindow
+T:W/08-16=0.1/90		Business-Surf
+T:W/16-22=0.1/200		Evening-Surf
+T:*/22-08=0.1/514		Moonlight-Surf
+T:E,H/08-22=0.1/200		Weekend-Daysurf
+A:+41840840111,+41840840222
+
+Z:101				Diax Internet # [not pre-select]
+T:W/08-17=0.0291/30		Normaltarif
+T:W/06-08,17-22=0.0125/30	Niedertarif
+T:*/22-06=0.0041/30		Nachttarif
+T:E,H/06-22=0.0125/30		Weekend
+
+Z:102				Sunrise Internet # [not pre-select]
+T:W/08-23=0.4/60		Normaltarif
+T:W/17-23=0.18/60		Niedertarif
+T:W/23-08=0.7/60		Nachttarif
+A:+41842842222
+
+Z:201				Ausland1
+T:W/*=0.08(60)/30/1		Einheitstarif
+A:DE,FR,IT,CA,LI,AT,US,GB
+
+Z:202				Ausland2
+T:W/*=0.19(60)/30/1		Einheitstarif
+A:BE,DK,FI,GI,GR,HK,IE,IS,JP,LU,MC,NL,NO,PT,SE,SP,CY,AU,NZ
+
+Z:203				Ausland3
+T:W/*=0.59(60)/30/1		Einheitstarif
+A:FO,AD,AL,BA,BG,EE,IL,SM,YU,HR,LV,MT,LT,MK,MD,PL,RO,RU,SG,SK,CZ,TR,UA,HU
+A:DZ,AR,BR,CL,CN,ID,LY,MY,EH,MX,PH,ZA,KR,TW,TH,TN,BM,BS,KY,CR,DO,EC,GF,GU
+A:MQ,NA,AN,PR,SZ,VE,UY,SI
+
+Z:204				Ausland4
+T:W/*=1(60)/30/1		Einheitstarif
+A:AS,VI,AO,AQ,GQ,AM,AW,ASI,AZ,ET,BH,BD,BB,BJ,BT,BO,BW,BN,BF,BI,CK
+A:SV,ER,FK,FJ,PF,GA,GM,GEA,GH,GP,GT,GN,GW,HT,HN,IQ,IR,JM,YE,JO,KH,CM
+A:KZ,KE,KG,KI,CO,KM,KO,CU,KW,LA,LE,MO,MG,MW,MV,ML,MP,MU,YT,FM,MN,MZ,MM
+A:NR,NP,NC,NI,NGR,NG,NU,KP,NF,OM,PK,PW,PA,PG,PY,PE,RE,RW,ZM,SB,ST,SA,SN
+A:SC,SL,SO,LK,SD,SR,SY,TJ,TG,TT,TD,TM,TC,TV,UG,UZ,VU,AE,VN,WF,WS,CF
+A:EG
+

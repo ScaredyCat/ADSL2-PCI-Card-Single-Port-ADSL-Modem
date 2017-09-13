@@ -1,0 +1,10 @@
+#! /bin/sh
+perl=`which perl`
+if [ x$perl = 'x' ] ; then
+	echo "Sorry, no Perl found in $PATH"
+else
+	echo "Found $perl"
+	sed -e"s:@PERL@:$perl:" <config.in >config
+	chmod 755 config
+	./config $@
+fi

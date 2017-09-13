@@ -1,0 +1,54 @@
+Eiconctrl user utility and firmware for supported active ISDN cards
+from Eicon Technology.
+
+Version 2.3 (c) 2000 Cytronics & Melware
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+You will need "eiconctrl" to activate and to load an active card
+with the necessary firmware provided by Eicon Technology.
+These firmware binaries are part of this package and will be installed
+in a specified directory.
+
+In addition, this utility provides some trace and debug features.
+
+If you want to use isdnlog with your active Eicon card, the good
+news are, you can activate this with the command
+
+   eiconctrl isdnlog on
+
+(off course, you can deactivate this using "eiconctrl isdnlog off").
+The bad news are, this is only possible with the
+DIVA Server BRI card or the DIVA Server 4BRI card.
+
+NOTICE : 
+In order to use other isdn4linux features, like isdn-net-devices or
+isdn feature and monitoring tools, you will need other parts from
+the isdn4k-utils package.
+
+
+More information can be found in
+- the README files in /usr/src/linux/Documentation/isdn
+- the man page of eiconctrl
+- the isdn4linux FAQ at http://www.isdn4linux.de
+
+
+Armin Schindler
+mac@melware.de
+
+Cytronics & Melware
+info@melware.de
+

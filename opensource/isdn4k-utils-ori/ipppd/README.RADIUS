@@ -1,0 +1,124 @@
+Here are some notes about RADIUS extension to ipppd.
+Radius related stuff should be reported to 
+
+   Matjaz Godec <gody@master.slon.net>.
+
+1. Current extensions are based on Lars's radiusclient-0.3-alpha-4. Don't be
+scared because of aplha in the name. So before enabling RADIUS features in
+configuration please install those.  You can more information at:
+http://www.cityline.net/~lf/radius/ and get the libraries at
+ftp://ftp.cityline.net/pub/systems/linux/network/radiusclient
+
+2. When compiled ipppd need libradiusclient.so shared library installed in
+apropriate library path. If You prefered static libraries put -static in
+Makefile.
+
+3. in make config You will find few new options under:
+	Options for ipppd  --->
+		[ ] Support for RADIUS protocol                         
+		[ ] Support for RADIUS wtmp logging           
+		"" radiusclient config file path              
+		[ ] Support for parsing .TTY file first 
+
+ Support for RADIUS protocol and radiusclient config file path are
+mandatory if You want to work with RADIUS server. Config file path is for
+unchaged radiuscilent library: /usr/local/lib/radiusclient/radiusclient.conf
+
+RADIUS wtmp logging does also loging into wtmp base, so one can see loged in
+users with w and other tools.
+
+ Support for parsing .TTY file first has no meaning in ipppd since parsing
+of files with tty suffix is disabled by default.
+ 
+
+4. How does it work:
+ There are two new important options for using radius:
+	- radius
+	- radacct
+ With first (radius) one enables authentication thru RADIUS server.
+ With second (radacct) one enables accounting thru RADIUS server. If we
+ don't have PAP authentication for this ppp enabled, then user option is
+ mandatory for accounting.
+
+ Those options are not interchanged in any way. So only specifying radius
+will enable ONLY authentication and not accounting.
+
+ There is also one not so important option:
+	- session-limit
+ With this option one can limit session time unconditionaly. It is
+introduced for the case, where in RADIUS server one specifies session-limit
+for specific user.
+
+5. Setup
+ There are some important issues when invoking ipppd. One should always
+specify IP adresses on command line. If not, static IP assignement via
+RADIUS server would not work correctly (remote IP adress will stay unchanged
+and next user will get someone elses static IP).
+	
+ If one uses proxy arp feature and has subnet for ippp connection one shuld
+also specify netmask at command line.
+
+6. Notes on accounting
+ This version send all basic information needed for RADIUS accounting server
+plus:
+
+	- Input-octets
+	- Input-packets
+	- Output-octets
+	- Output-packets
+	- Caller-station-id
+	- NAS-port-type = ISDN-SYNC
+
+In order to get traffic information one should have kernel compiled with IP
+accounting.
+
+When accounting-START record is sent to RADIUS accounting rules for used ippp
+interface are inserted into accounting chain.
+
+When accounting-STOP record is to be sent to RADIUS, information from above
+mentioned accounting rules are read and accounting rules are deleted from
+accounting chain.
+
+So no admin setup is necessary for this setup to work. However there are
+some thing to remember. If someone manualy zeroes accounting information IP
+traffic between the session measurement won't be acurate. (Unfortunately with
+current iimplementation all information in accounting chain is zeroed when
+one issues command ipfwadm -A -z). 
+
+
+Changes:
+
+19980501:
+
+	- radius_start_acct moved to ipcp_up, so we know what remote address
+	is. It is no longer fatal if accounting START record is not
+	succesfull.  (hint from John Lewis, thanks John).
+
+	- Oh, and in ipcp_up, before we call radius_acct_start, we check if
+	we didn't do this before, so no duplicated entries should hapen.
+
+	- Added PW_FRAMED_ADDRESS to START & STOP records
+
+	- Added PW_CALLER_STATION_ID to START RECORD
+
+	- Added PW_NAS_PORT_TYPE to START RECORD
+
+	- Removed radius_init calls in radius.c; they are in options.c now
+	  and are called only once, when program is started.
+
+	- If radius or radacct are specified and radius_init fails then pppd
+	  dies. It logs cause to SYSLOG before it dies.
+
+	- Question for more knowledgable as me:
+		is it ok to reset session timeout in lcp_echo_lowerdown ? 
+		does it means, that when we enter this funciton link will go
+		down ?  I just saw that idle_timeout is reset in this
+		function and I put reseting session timeout also but don't
+		know if this is OK ?
+
+	- for ipppd when RADIUS is defined also _linux_=1 is defined, so
+	  that we have idle-timeout and session-timeout
+
+	- in main.c char *envtosue is changed to **envtosue, because of
+	  warning messages. Whoever put this in, please check that if this
+	  is OK.

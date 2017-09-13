@@ -1,0 +1,235 @@
+CONFFILE LIB                                                 25-FEB-97
+
+Datenstrukuren:
+
+Die Entries:
+
+typedef struct _entry {
+  char    *name; /* Name des Entries z.B. "NUMBER", hier stehen _immer
+                    Grossbuchstaben!                                   */
+  char    *value; /* Hier steht der Wert, oder NULL, wenn subsection
+                     belegt ist, da nur einer von beiden einen Wert 
+                     haben kann                                        */
+  struct _section *subsection; /* Hier kann wieder eine Subsection
+                                  kommen oder NULL                     */
+  struct _entry *next; /* Hier beginnt die verkettete Liste mit dem
+                          naechsten Entry einer Section                */
+  char   flag;         /* Interne Zwecke                               */
+} entry;
+
+typedef struct _section {
+  char  *name;   /* Name der Setcion z.B. "GLOBAL", hier stehen _immer
+                    Grossbuchstaben!                                   */
+  entry *entries; /* Hier haengt die Liste der Entries fuer diese
+                     Section.                                          */
+  struct _section *next; /* Hier kommen die naechsten Sectionen.
+                            Ist eine verkettete Liste                  */
+  char   flag;           /* Interne Zwecke                             */
+} section;
+
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+int Get_Type_Value(section *Section, char *Path, int Type, void **Pointer)
+
+Section: ist der Pointer der auf die Sectionen zeigt. Diesen erhaelt man
+         von einer Funktion, die die Konfigurationsdateien einliest.
+
+Path: Beschreibt, welchen Wert man haben will in Form eines UNIX-Pfades.
+      Da ein Entry immer in der zweiten Ebene und eine Vielfache davon ist,
+      muss die Pfad-Anzahl immer modulo 2 sein:
+      "NUMBER/ALIAS" (Section,Entry)
+      "NUMBER/START/FLAG/PROGRAMM" (Section,Entry,SubSection,Entry)
+
+Type: Beschreibt den Rueckgabewert. Kann einen der folgenden Werte annehmen:
+      #define R_TYPE_INT    0
+      #define R_TYPE_LONG   1
+      #define R_TYPE_DOUBLE 2
+      #define R_TYPE_CHAR   3
+      #define R_TYPE_STRING 4
+
+Pointer: ist die Variable, in der der Wert gespeichert werden soll. Fuer
+         einen integer, long, double, char und char* immer "&var" verwenden.
+         Bei char* darf kein String uebergeben werden, sonder ein Pointer
+         auf einen char, da hier nur der gefundene String einsetzt wird,
+         und nicht kopiert wird.
+
+
+Als Rueckgabewert erhaelt man -1 bei einem Fehler (nicht gefunden),
+0 bei int, long, double, und char, und bei char* die Laenge des Strings.
+
+Diese Funktion kann in einer while-Schleife verwendet werden. Wenn Section und
+Path beim ersten Aufruf mit einem Wert ungleich NULL belegt werden zur
+Initialisierung. Dann kann man diese bei den naechsten Aufrufen auf NULL
+setzen. Das Prinzip ist das gleich wie die Funktion strtok().
+
+Beispiel:
+
+	...
+	path ="*/double*";
+
+  while (Get_Type_Value(ptr,path,R_TYPE_INT,&iV) >= 0)
+  {
+  	...
+
+    ptr = NULL;
+    path = NULL;
+  }
+
+In diesem Beispiel werden dann alle Werte ausgelesen, die folgende Konditionen
+entsprechen:
+
+- Section muss mit "*" matchen.
+- Entry muss mit "double*" matchen. ("double" und "DOUBLE" ist das gleiche.)
+- Der Wert _muss_ ein double sein!
+
+-----------------------------------------------------------------------------
+
+Funtion:
+
+Get_Type_Match(section *Section, char *Path, char* Pattern,
+                            int  (*_match)(char*, char*), int Type, void **Pointer)
+
+
+
+Hat die gleiche Funktionsweise und Parameter, wie Get_Type_Value. 
+Zusaetzliche Parameter:
+
+Pattern: Ist ein String, der fuer die Funktion match zum Vergleichen
+         verwendet wird.
+
+(*_match): Hier kann eine Funktion uebergeben werden, mit dem der String
+           ("NUMBER= 07531 / 21103", der Teil nach dem "=" ist der String)
+           mit dem Pattern in folgender Form aufgerufen wird:
+           _match(Pattern,String). Hier kann man funktionen wie
+           strcpy(char*,char*) und num_match(char*,char*) (ist eine Funktion
+           zum Vergleichen von Telefonnummern auf Gleichheit) verwenden.
+
+            
+Zu dem obigen Beispiel muesste neben diesen drei Bedingungen noch folgende
+gelten:
+
+- _match(Pattern,String) liefert 0 zurueck.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+char *Get_Value(section *Section, char *Path)
+
+
+Liefert die erste Section zurueck, die auf dem Pfad matched.
+
+
+Section: ist der Pointer der auf die Sectionen zeigt. Diesen erhaelt man
+         von einer Funktion, die die Konfigurationsdateien einliest.
+
+Path: Beschreibt, welchen Wert man haben will in Form eines UNIX-Pfades.
+      Da ein Entry immer in der zweiten Ebene und eine Vielfache davon ist,
+      muss die Pfad-Anzahl immer modulo 2 sein:
+      "NUMBER/ALIAS" (Section,Entry)
+      "NUMBER/START/FLAG/PROGRAMM" (Section,Entry,SubSection,Entry)
+
+Liefert die Section, die auf den Pfad matched, zurueck. Wenn keine (mehr)
+vorhanden ist, dann ist der Rückgabewert NULL.
+
+Diese Funktion kann in einer while-Schleife aufgrufen werden. Dafuer muessen
+die beiden Parameter beim zweiten und weiteren Aufrufen auf NULL gesetzt
+werden.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+section* Get_Section_Match(section* Section, char *Path,
+                           char* Value, int  (*_match)(char*, char*),
+                           entry **RetEntry                          )
+
+Liefert die erste Section zurueck, die auf dem Pfad und auf Value (dieser
+Wert muss mit dem entsprchenden Wert von dem Entry passen, der im Pfad
+gegeben ist. z.B. "NUMBER/NUMBER") matched.
+
+Section: ist der Pointer der auf die Sectionen zeigt. Diesen erhaelt man
+         von einer Funktion, die die Konfigurationsdateien einliest.
+
+Path: Beschreibt, welchen Wert man haben will in Form eines UNIX-Pfades.
+      Da ein Entry immer in der zweiten Ebene und eine Vielfache davon ist,
+      muss die Pfad-Anzahl immer modulo 2 sein:
+      "NUMBER/ALIAS" (Section,Entry)
+      "NUMBER/START/FLAG/PROGRAMM" (Section,Entry,SubSection,Entry)
+
+(*_match): Hier kann eine Funktion uebergeben werden, mit dem der String
+           ("NUMBER= 07531 / 21103", der Teil nach dem "=" ist der String)
+           mit dem Pattern in folgender Form aufgerufen wird:
+           _match(Pattern,String). Hier kann man funktionen wie
+           strcpy(char*,char*) und num_match(char*,char*) (ist eine Funktion
+           zum Vergleichen von Telefonnummern auf Gleichheit) verwenden.
+           Wird fuer diesen Parameter NULL uebergeben, wird ein normaler
+           strcmp() durchgefuert.
+
+Wert: Ist ein Pattern, der mit dem Wert des Entries passen muss.
+      Wenn nach einer Subection gesucht wird, dann kann dieser Parameter
+      genau so wie _match NULL sein.
+
+RetEntry: Optional. Hier wird sonst ein Pointer auf einen Pointer auf
+          einen Entry eingetragen. Dieser liefert dann den gefundenen
+          Entry zurueck.
+
+Rueckgabewert:
+Einweder die gefundene Section oder NULL.
+
+Diese Funktion kann in einer while-Schleife aufgrufen werden. Dafuer muessen
+die beiden Parameter beim zweiten und weiteren Aufrufen auf NULL gesetzt
+werden.
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+section *write_file(section *Section, const char *FileName, char *Program,
+                    char* Version)
+
+Erzeugt eine Datei mit der bekannten Syntax zurueck. Dabei wird ein Datei-
+header erzeugt.
+Diese Datei laesst sich auch sehr sinnvoll fuer Debuggingzwecke nutzen.
+
+
+Section: Beinhaltet den Pointer auf die Struktur, die zurueckgeschrieben
+         wertden soll.
+
+FileName: Beinhaltet den Dateinamen, in der die Struktur abgelegt werden soll.
+          Besteht diese Datei, wird sie ohne Warnung ueberschrieben.
+
+Programm: Name des Programm, das diese Datei anlegen soll.
+
+Version:  Version des Programmes, das diese Datei anlegen soll.
+
+
+Rueckgabewert:
+
+Bei erfolgreicher Erstellung der Datei wird Section zurueckgeliefert.
+Im Fehlerfall NULL.
+
+
+-----------------------------------------------------------------------------
+
+Funktion:
+
+void free_section(section *Ptr)
+
+Loescht eine Section mit ihrer ganzen Unterstruktur. Es wird also die gesamte
+verkettete Liste (inklusive ihrer Subsections) geloescht.
+
+Ptr: Pointer auf eine Struktur, die geloescht werden soll.
+
+
+Rueckgabewert:
+
+Keiner.
+
+-----------------------------------------------------------------------------
+
+Da noch nicht mehr dokumentiert ist, verweise ich mal frech auf die Dateien
+lib/conffile.c ;-(((

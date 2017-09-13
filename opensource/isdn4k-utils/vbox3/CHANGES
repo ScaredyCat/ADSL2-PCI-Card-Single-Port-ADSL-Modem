@@ -1,0 +1,23 @@
+
+
+3.0 BETA 1
+**********
+
+30-Sep-1998  Michael Herold <michael@abadonna.mayn.de>
+
+	* all: Configuration script and Makefiles rewritten.
+
+
+25-Sep-1998  Michael Herold <michael@abadonna.mayn.de>
+
+	* vboxgetty: Section name [vboxgetty-#] renamed to
+          [vboxgetty-phone-#].
+
+
+18-Sep-1998  Michael Herold <michael@abadonna.mayn.de>
+
+	* vboxgetty: New setup parsing added. vboxgetty now use only one
+          config file named 'vboxgetty.conf' who looks like the isdnlog
+          config (see vboxgetty/examples).
+          
+	* vboxgetty: 'userrc.c' and 'userrc.h' removed.

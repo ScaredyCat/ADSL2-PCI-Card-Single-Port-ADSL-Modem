@@ -1,0 +1,45 @@
+
+This is the README for kernel_2_0/iiocnetgpn.c
+
+As my isdnlog 4.50 running on kernel 2.0.36 (isdn ~2.0.38) doesn't
+set the huptime always, I wrote this small addition, for usage with
+2.0 kernels.
+
+The code is ugly (kernel headers are included, with __KERNEL__ defined,
+there are some warnings (which can be ignored), but it seems to work.
+You can try the code standalone, look at the file for a short description.
+
+
+So to use this feature, compile isdnlog with:
+
+touch isdnlog/processor.c
+make IIOCNETGPN=1
+
+Before:
+
+isdnlog: to Magnet-N with ''  No HUP: HUP = 1 c = 8 *INTERFACE=
+
+(so interface was not found)
+
+
+After:
+
+isdnlog: (ISDN subsystem with ISDN_MAX_CHANNELS > 16 detected, \
+         ioctl(IIOCNETGPN) is available)
+isdnlog: isdn.conf:2 active channels, 8 MSN/SI entries
+isdnlog: (watching "/dev/isdnctrl0" as HFC/echo mode)
+isdnlog: (Data versions: iprofd=0x04  net_cfg=0x04  /dev/isdninfo=0x01)
+isdnlog: Everything is fine, isdnlog-4.51 is running in full featured mode.
+...
+isdnlog: to Magnet-N with ''  INTERFACE ippp0 calling 071891xxxx
+...
+isdnlog: to Magnet-N with ''  NEXT CI AFTER 03:00 \
+      (Telekom Austria Min.tarif, Internet, Werktag (Dienstag), Geschäftszeit)
+isdnlog: to Magnet-N with ''  CHARGEINT ippp0 180 (was 160)
+isdnlog: to Magnet-N with ''  HUPTIMEOUT ippp0 8 (was 60)
+
+
+Comments welcome
+-lt 
+Leopold Toetsch <lt@toetsch.at>
+

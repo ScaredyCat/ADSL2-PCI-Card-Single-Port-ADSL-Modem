@@ -1,0 +1,308 @@
+$Id: README,v 1.7 2000/01/26 20:11:33 he Exp $
+
+README file for eftp4linux
+==========================
+
+eftp4linux is an Open Source (tm) implementation of the
+EUROFILE Transfer Protocol as standardised by a set of ETSI norms
+(in particular ETS 300-383 and ETS 300-075). It is freqently used
+to transfer files over ISDN.
+
+Currently, the only target OS is Linux >= 2.2.x. However, the design
+should allow for porting it to other POSIX operating systems
+that provide a select() system call and a socket interface to
+the X.25/ISO-8208 network layer protocol. (Some minor non-POSIX
+features are currently used as well for convenience).
+
+DISCLAIMER
+==========
+
+Use on your own risk -- as usual with open (and even close) source software. 
+
+However, as this is alpha test software, the risk might be higher
+than the risk of just using your favourite linux distribution. 
+Read the COPYING* files present in the distribution for further details.
+
+
+WHAT'S NEW
+==========
+
+See the CHANGES file for details.
+
+General features
+================
+
+eftp4linux consists of a core library that implements the EUROFILE
+related protocols. It also contains two important applications built
+on top of this library:
+
+- An EUROFILE client program with command line interface. Command
+  line editing is supported by means of the GNU readline library.
+
+- An EUROFILE server which can serve multiple connections
+  simulatneously and supports navigation (i.e. changing directories).
+  User authentification is provided by a seperate
+  authentification library derived from wu-ftpd which allows for fine
+  grained access control based on user-id, password, and remote isdn
+  phone number. The design allows for easily exchanging the
+  authentification routines by user-supplied versions.
+
+This is all still alpha test software.
+That means it does certain tasks well at my site, but I know that
+they are incomplete, non-conforming and have other bugs as well.
+However, they are becoming better and better now and I think that 
+there are not so many vital missing features left now.
+Thus, experienced isdn4linux users are encouraged to test this
+and report bugs or success stories, or suggest and contribute improvements.
+
+The navigation support for the server is not fully conformant to the
+protocol specifications with respect to some regards. This might in theory
+confuse certain clients when the navigation facility is used.
+
+The server and client support extended directory service which could
+allow for handling of long filenames, but as several eft implementations
+don't support this, you might not take advantages of that.
+
+During several tests it turned out that many commercial EUROFILE
+implementations are not protocol conformant, either. One major
+inter-working problem is caused by implementations which don't handle
+uppercase/lowercase in filenames appropriately. The result is that
+some clients can only load either uppercase or lowercase filenames.
+A similar problem appears when changing working directories.
+Some clients even use upper/lowercase inconsistently when downloading
+and uploading files, such clients even cannot access a file uploaded by
+themselves before. An even worse problem is that at least one client
+replaces '/' characters in directory name by '\'.
+
+IMHO, this is a bug in the commercial EFT implementations. Until the
+suppliers of those implementations have fixed this, the server provides
+a work-around. If you add a '+' character in front of your login name, the
+server will try to treat file names case insensitively and replace '\'
+by '/' again. This compatibility mode is somewhat restricted: only the
+basename of a file will be handled case-insensitively, the dirname will
+currently always be treated as lower case, when the compatibility mode is
+active. Thus, in order to avoid trouble, you should always use lower
+case directory names in the servers file system tree.
+
+And of course, if multiple files with names differing only in the cases
+of the character, you can only access one of them.
+
+
+
+
+Details on this test distribution
+==================================
+
+In addition to the files contained in this distribution, you will need
+
+- A recent Linux 2.2.x kernel (2.2.12 or newer is recommended).
+
+- There is also a patch ix25-2.1.128.diff that deals with a low layer
+  (X.25) interworking problem observed with some clients
+  (CSD isdn toolbox and maybe also some RVS clients). They send
+  misformatted X.25 call request packets that confuse the linux X.25 layer.
+  Applying this patch enables the kernel to correctly reject the
+  misformatted frames. For working around the interworking problem
+  you also need to uncomment the last line in include/net/x25.h.
+  Please read the doc/INTERWORKING file for further details.
+  The patch should also work with older or newer kernels than 2.1.128.
+ 
+- the current x25-utils-2.1.x  package, which is available  from
+  ftp.hes.iki.fi:/pub/ham/linux/ax25/. The most important programme
+  therein is the x25_route utility. (x25-utils-2.1.20 is still the
+  most current release). Don't confuse the x25-utils with the ax25-utils.
+  The latter is for amateur radio networking and not related to 
+  eftp4linux at all. (You can use eftp4linux without this packages,
+  but local testing without isdn connection won't be possible then)
+ 
+- some of the recent isdn4k-utils, in particular isdnctrl (and
+  loopctrl, if you want to test locally by means of the isdnloop driver).
+  The isdn4k-utils-3.0beta2.tar.gz. (or newer) are fine.
+
+  isdnctrl.c must be compiled against 2.2.x kernel header files.
+  The most recent isdn4k-utils package is availabe from ftp.isdn4linux.de
+
+  You can also use an even newer isdn4k-util snapshot from isdn4linux
+  CVS server. See the isdn4linux FAQ for info about this.
+
+
+How to build:
+=============
+
+
+See the INSTALL file.
+
+After having typed "make" in the top directory, there will
+(hopefully :-) be two important user level programs inside src/*/:
+
+- eftp is a simple EUROFILE client that allows for transferring files
+  between a remote machine and your linux box by means of the EUROFILE
+  transfer protocol on top of isdn. It's command line style user
+  interface consists of a few ftp-like commands.
+
+- eftd is an EUROFILE server.
+
+Some older programmes, which are of less importance now, will also
+build if you type `make really_all':  
+
+- x25.echod listens on an x25 socket and echoes back every packet
+  received. Access to the x25 Q-bit is enabled to demonstrate this
+  feature which is really necessary for eft and has no equivalent in
+  TCP/IP sockets.
+
+- tdud.echod listens on an x25 socket and tries to fake an ETS 300 075
+  protocol session. It mainly encapsulates any received tdu messages in a
+  t-response-positive tdu message and echoes it back.
+
+Now, you are prepared to test EUROFILE or X.25 on top of isdn4linux. For your
+convenience, some scripts are provided in the scripts directory that
+ease the task of setting up your system.
+
+See the end of the INSTALL file for quick start instruction or
+the files in the doc directory for details.
+
+The server's access control is similar as in the wu-ftp server. In fact,
+the access control is taken from wu-ftpd (Georg v.Zezschwitz ported
+this, see src/authlib/README for further information). If USER/PASSWD
+is omitted, anonymous ftp is assumed. Refer to the eft_wuauth man pages
+for learning more about ftp access control and configuring anonymous
+access.
+
+It turned out that most EUROFILE clients insert a default
+userid/passwd when a user/passwd is not provided explicitly.
+With such clients, supply the userid 'ftp' explicitly in order to
+access the anonymous EUROFILE account.
+
+Further, as some clients don't support navigation, you should create a
+symlink in ~ftp named ".++eft_flat" to, i.e., the pub directory
+(cd ~ftp; ln -s pub .++eft_flat). The server will cd to this directory
+after login whenever it thinks that the client does not support
+navigation. (this is in particular useful with anonymous access
+because the ~ftp directory usually contains no downloadable stuff).
+
+The authentication library can even evaluate the peer's
+isdn number for its decisions. For this to work reliably, 
+you need to use the cvs version of isdn4linux as of 1998-08-31 or
+newer or a kernel >= 2.2.12 or 2.3.4. 
+
+
+Other sources of information:
+=============================
+
+As you will be using several somewhat exotic and cutting edge parts
+of the Linux kernel it might be useful to read the following
+mailing lists:
+
+isdn4linux@hub-wue.franken.de  or newsgroup  de.alt.comm.isdn4linux
+linux-x25@vger.rutgers.edu
+linux-kernel[-digest]@vger.rutgers.edu
+linux-net@vger.rutgers.edu
+
+All lists mentioned above can be subscribed to by sending an e-mail
+containing
+
+  subscribe LISTNAME
+
+in the message body to
+
+  majordomo@DOMAIN
+
+(Replace LISTNAME by the name and DOMAIN by the domain name of the
+mailing list).
+
+A description of the linux X.25 implementation and socket interface
+is available from the same locations as the x25-utility package.
+Watch out for a file x25-doc.tar.gz (MS-Word formatted documents).
+
+A lot of documentation of ITU-T protocols (in particular x.25 and isdn)
+is on the "Standards" CD-ROM from Infomagic (http://www.infomagic.com,
+reasonable price).
+
+Original ITU standards are quite expensive (http://www.itu.ch
+and http://www.etsi.fr). But some libraries collect technical standards,
+reading them inside the library is cheaper that ordering them from
+your national standard body. For locating such a library,
+contact the web server (such as www.din.de) of your natinal
+standards body. Users living in Germany might locate such a public
+library by following the links in
+http://www.beuth.de/partner/index.html.
+
+Good News: ETSI recently made their standards available for download --
+Not totally free but at least free of charge. You need to register
+first. Quote from ETSI's announcent:
+
+    This application is located on
+    http://webapp.etsi.org/publicationssearch
+    or can be reached by following "products",
+    "publications Download" from the ETSI home
+    page http://www.etsi.org.
+  
+
+http://www.netsmart.gr/teltest/teltest1.1/Lab_file.html
+contains a descriptions on the eft core concepts.
+
+The home site of this file, older and (possibly) newer versions, is
+ftp://ftp.hamburg.pop.de/pub/LOCAL/linux/i4l-eft/ 
+
+For reporting bugs or submitting patches, you can reach me by e-mail
+(eis@baty.hanse.de).
+
+The file Documentation/isdn/README.x25 present in the (patched) kernel
+sources contains general info on linux isdn-X.25 configuration. The
+sources of the user level programmes in directory src might also
+contain some documentation (and disclaimers :-).
+
+
+Remark on installing kernel image:
+==================================
+
+If your Linux distribution does not support 2.2.x kernels,
+it is recommended that you don't install the compiled 2.2.x kernel
+as your default kernel image until you are sure that everything works
+as expected. You can add additional entries to the /etc/lilo.conf file
+in order to allow booting non-standard kernels from a different
+location. Please refer to the relevant lilo doc (man pages, doc files,
+HOWTOs,..) or refer to an older eftp4linux README file for examples.
+
+
+Thanks
+======
+
+Thanks to all the volunteers who made Linux the powerful OS it is
+today. In particular, to all who contributed to isdn4liunx.
+
+Some contributions have been of central importance to the
+EUROfile project and I'd like to mention them explicitly:
+
+ Jonathan Naylor contributed the Linux X.25 protocol stack
+ 
+ Fritz Elfert contributed the isdnloop driver which was very useful for
+ keeping my phone bill low while testing.
+
+ Lennart Koschella continuously operated a peer eft server that was
+ used for tests during the initial developement phase.
+
+ Point of Presence GmbH provided ftp server space.
+
+ Georg v.Zezschwitz adapted the authentification code from the wu-ftpd
+ which is now used inside the eft server.
+
+ Martin Maurer provided protocol traces in the initial phase of development.
+
+ Michael Dietrich helped fixing compile/build problems.
+
+ Knuth Posern helped tracking down several low layer protocol
+ compatibility problems.
+
+ Matthias Stolte provided enhancements to the setup scripts
+ and added more command line options to the server. 
+
+ Michael Mauch added readline and mget/mput support to eftp.
+
+ As the eft server's authentication code is derived from wu-ftpd,
+ the following acknowledgements hold: This product
+ includes software developed by the Washington University in Saint Louis
+ and its contributors. This product includes software developed by
+ the University of California, Berkeley and its contributors.
+
+- Henner

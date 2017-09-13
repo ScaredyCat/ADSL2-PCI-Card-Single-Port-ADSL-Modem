@@ -1,0 +1,34 @@
+
+# CALLERIDS
+#
+# Format: PATTERN SECTION REALNAME
+
+[CALLERIDS]
+
+9317850413	STANDARD-OWNER		Michael Herold
+9317830022	-			Nicole Sauvage
+*		-			*** Unknown ***
+
+
+# RINGS
+#
+# Format: TIME DAYS RINGS
+
+[RINGS]
+
+23:30-23:59,00:00-08:59		*	1
+*				*	6
+
+
+# [USERSECTIONS]
+#
+# Format: TIME DAYS STANDARD RECTIME [FLAG] [...]
+
+[STANDARD]
+
+20:15-22:14	DO	aktex.msg	60	RINGS=1
+*		*	standard.msg	90	RINGS=6 TOLLRINGS=4 
+
+[STANDARD-OWNER]
+
+*		*	standard.msg	120	RINGS=99

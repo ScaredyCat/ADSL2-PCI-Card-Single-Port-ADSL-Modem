@@ -1,0 +1,188 @@
+#
+# Makefile for mkzonedb (parts borrowed from iMON)
+#
+# (C) 1999 l.toetsch <lt@toetsch.at>
+#
+BZIP2			= @BZIP2@
+SHELL			= /bin/sh
+CFLAGS			= -Wall -g
+INCLUDES		=
+LDFLAGS			= @DBMLIB@
+CDBEXTRALIBS		= @CDBEXTRALIBS@
+DBEXT			= @DBEXT@
+RDBEXT			= @RDBEXT@
+BIGENDIAN		= @WORDS_BIGENDIAN@
+PROGRAM			= mkzonedb
+MODULES			= $(PROGRAM).o upack.o
+MANPAGE			= $(PROGRAM).8
+HEADERS			= config.h common.h upack.h
+MANDIR			= @CONFIG_MANDIR@
+SBINDIR			= @CONFIG_SBINDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL			= @INSTALL@
+INSTALL_PROGRAM		= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+#CC			= @CC@ -V2.7.2.3
+CC			= @CC@
+ifeq ($(BIGENDIAN), yes)
+ZONEFILES=zonefiles
+endif
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+.PHONY: all config zonefiles AT DE NL CH distclean dist test install uninstall country
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(DEFS) $(INCLUDES) -c -o $@ $<
+
+all: cdb $(PROGRAM) country
+
+cdb:
+	@if [ -e ../cdb/i4l_cdb.c ] ; then \
+	    $(MAKE) -C ../cdb ;\
+	fi
+
+country:
+ifeq ($(CONFIG_ISDN_LOG_AT),y)
+	$(MAKE) AT
+endif
+ifeq ($(CONFIG_ISDN_LOG_DE),y)
+	$(MAKE) DE
+endif
+ifeq ($(CONFIG_ISDN_LOG_NL),y)
+	$(MAKE) NL
+endif
+
+
+config:
+	@./configure
+
+config.h: config.h.in
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+$(MODULES): $(HEADERS)
+
+$(PROGRAM):	$(MODULES) $(CDBEXTRALIBS)
+	$(CC) $(CFLAGS) $(MODULES) $(CDBEXTRALIBS) $(LDFLAGS) -o $@
+
+zone: ../zone.c $(HEADERS) Makefile $(CDBEXTRALIBS) upack.o
+	$(CC) -DSTANDALONE -DZONETEST $(CFLAGS) ../zone.c $(CDBEXTRALIBS) upack.o $(LDFLAGS) -o $@
+
+install-man: $(PROGRAM).man
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install: $(PROGRAM) # install-man
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+install-strip: $(PROGRAM)
+	$(INSTALL_PROGRAM) -s $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+uninstall:
+	rm -f $(DESTDIR)$(SBINDIR)/$(PROGRAM) $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+clean:
+	rm -f *.o *~ $(PROGRAM) zone
+	@if [ -e ../cdb/i4l_cdb.c ] ; then \
+	    $(MAKE) -C ../cdb clean ; \
+	fi
+
+dataclean: clean
+	rm -f *.db *.gdbm *.cdb ../../zone*.gdbm ../../zone*.db ../../zone*.cdb
+
+distclean: clean
+	rm -f config.h config.status config.cache config.log *.man Makefile
+	@if [ -e ../cdb/i4l_cdb.c ] ; then \
+	    $(MAKE) -C ../cdb distclean ; \
+	fi
+
+test: zone mkzonedb
+	$(BZIP2) -dc at/pta/zred.pta.bz2 | ./$(PROGRAM) -d zone-at-pta$(DBEXT) -r - -v
+	$(BZIP2) -dc at/pta/zoneall.pta.bz2 | ./zone -d zone-at-pta$(RDBEXT)  -z -  -v
+
+#
+# ATTENTION:
+# zonedatabasefilenames must be zone-CC-*
+#
+zonefiles:	AT DE NL CH
+
+at: AT
+de: DE
+nl: NL
+ch: CH
+
+AT: AT-pta AT-1002 AT-1007 AT-1012 AT-1024 AT-1066 AT-1004 AT-1001
+.PHONY: AT-pta AT-1002 AT-1007 AT-1012 AT-1024 AT-1066 AT-1004 AT-1001
+
+AT-pta:
+	if [ ! -e ../../zone-at-pta$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/pta/zred.pta.bz2 | ./$(PROGRAM) -d ../../zone-at-pta$(DBEXT) -r - -v; \
+	fi
+
+AT-1001:
+	if [ ! -e ../../zone-at-1001$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/1001/zred.bz2 | ./$(PROGRAM) -d ../../zone-at-1001$(DBEXT) -r - -v; \
+	fi
+
+AT-1002:
+	if [ ! -e ../../zone-at-uta$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/uta/zred.uta.bz2 | ./$(PROGRAM) -d ../../zone-at-uta$(DBEXT) -r - -v; \
+	fi
+
+AT-1004:
+	if [ ! -e ../../zone-at-1004$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/1004/zred.bz2 | ./$(PROGRAM) -d ../../zone-at-1004$(DBEXT) -r - -v; \
+	fi
+
+AT-1007:
+	if [ ! -e ../../zone-at-1007$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/1007/zred.bz2 | ./$(PROGRAM) -d ../../zone-at-1007$(DBEXT) -r - -v; \
+	fi
+
+AT-1012:
+	if [ ! -e ../../zone-at-1012$(DBEXT) ] ; then \
+	./$(PROGRAM) -d ../../zone-at-1012$(DBEXT) -r at/1012/zred-at-1012 -v -l4; \
+	fi
+
+AT-1024:
+	if [ ! -e ../../zone-at-1024$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/1024/zred.bz2 | ./$(PROGRAM) -d ../../zone-at-1024$(DBEXT) -r - -v -l4; \
+	fi
+
+AT-1066:
+	if [ ! -e ../../zone-at-1066$(DBEXT) ] ; then \
+	$(BZIP2) -dc at/1066/zred.bz2 | ./$(PROGRAM) -d ../../zone-at-1066$(DBEXT) -r - -v; \
+	fi
+
+DE:	DE-dtag
+.PHONY: DE-dtag
+
+DE-dtag:
+	if [ ! -e ../../zone-de-dtag$(DBEXT) ] ; then \
+	$(BZIP2) -dc de/01033/zred.dtag.bz2 | ./$(PROGRAM) -d ../../zone-de-dtag$(DBEXT) -r - -v; \
+	fi
+
+NL:	NL-kpn
+.PHONY: NL-kpn
+
+NL-kpn:
+	if [ ! -e ../../zone-nl-kpn$(DBEXT) ] ; then \
+	$(BZIP2) -dc nl/kpn/zred.bz2 | ./$(PROGRAM) -d ../../zone-nl-kpn$(DBEXT) -r - -v -o3 -l7; \
+	fi
+
+CH:	CH-10741
+.PHONY: CH-10741
+
+CH-10741:
+	if [ ! -e ../../zone-ch-10741$(DBEXT) ] ; then \
+	./$(PROGRAM) -d ../../zone-ch-10741$(DBEXT) -r ch/10741/zred -v; \
+	fi

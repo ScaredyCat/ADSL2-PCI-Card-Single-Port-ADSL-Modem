@@ -1,0 +1,73 @@
+//603272:leejack Change using version of libcrypt
+
+/* vi: set sw=4 ts=4: */
+/*
+ * Utility routine.
+ *
+ * Copyright (C) 1999-2004 by Erik Andersen <andersen@codepoet.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ */
+
+#include <string.h>
+#if defined(IFX_SMALL_FOOTPRINT) && defined(IFX_DLOAD_LIBCRYPT)
+//603272:leejack start
+#define LIBCRYPT	"libcrypt-0.9.27.so"
+//603272:leejack end
+#include <dlfcn.h>
+#else
+#include <crypt.h>
+#endif
+#include "libbb.h"
+
+
+extern char *pw_encrypt(const char *clear, const char *salt)
+{
+	static char cipher[128];
+	char *cp;
+#if defined(IFX_SMALL_FOOTPRINT) && defined(IFX_DLOAD_LIBCRYPT)
+	char *(*crypt_ptr)(char *,char *) = NULL;
+	void *dlHandle = NULL;
+	char *error = NULL;
+#endif
+
+#ifdef CONFIG_FEATURE_SHA1_PASSWORDS
+	if (strncmp(salt, "$2$", 3) == 0) {
+		return sha1_crypt(clear);
+	}
+#endif
+#if defined(IFX_SMALL_FOOTPRINT) && defined(IFX_DLOAD_LIBCRYPT)
+	dlHandle = dlopen(LIBCRYPT,RTLD_LAZY);
+	if(dlHandle) {
+		crypt_ptr = dlsym(dlHandle,"crypt");
+		if((error = dlerror()) != NULL) {
+			bb_error_msg_and_die ( "could not find function crypt in libcrypt. Error : %s",error);
+		}
+		cp = (char *)(*crypt_ptr)(clear, salt);
+		dlclose(dlHandle);
+	} else {
+		bb_error_msg_and_die ( "could not open library %s",LIBCRYPT);
+	}
+#else
+	cp = (char *) crypt(clear, salt);
+#endif
+	/* if crypt (a nonstandard crypt) returns a string too large,
+	   truncate it so we don't overrun buffers and hope there is
+	   enough security in what's left */
+	safe_strncpy(cipher, cp, sizeof(cipher));
+	return cipher;
+}
+

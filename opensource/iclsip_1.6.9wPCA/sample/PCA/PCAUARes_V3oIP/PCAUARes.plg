@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: PCAUARes - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x404 /fo"Debug/PCAUARes.res" /d "_DEBUG" "D:\ITRI\K2_SIP\sip\sample\PCA\PCAUARes_V3oIP\PCAUARes.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C8.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_MBCS" /D "_USRDLL" /FR"Debug/" /Fp"Debug/PCAUARes.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\ITRI\K2_SIP\sip\sample\PCA\PCAUARes_V3oIP\PCAUARes.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C8.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C9.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_MBCS" /D "_USRDLL" /FR"Debug/" /Fp"Debug/PCAUARes.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\ITRI\K2_SIP\sip\sample\PCA\PCAUARes_V3oIP\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1C9.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1CA.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/PCAUAResd.pdb" /debug /machine:I386 /def:".\PCAUARes.def" /out:"../bin/PCAUAResd.dll" /implib:"Debug/PCAUAResd.lib" /pdbtype:sept 
+.\Debug\PCAUARes.obj
+.\Debug\StdAfx.obj
+.\Debug\PCAUARes.res
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1CA.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+PCAUARes.cpp
+Linking...
+   Creating library Debug/PCAUAResd.lib and object Debug/PCAUAResd.exp
+PCAUAResd.exp : warning LNK4070: /OUT:PCAUARes.dll directive in .EXP differs from output filename "../bin/PCAUAResd.dll"; ignoring directive
+
+
+
+<h3>Results</h3>
+PCAUAResd.dll - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

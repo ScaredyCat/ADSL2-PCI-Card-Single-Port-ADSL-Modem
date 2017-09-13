@@ -1,0 +1,99 @@
+#
+# pppd makefile for Linux
+# $Id: Makefile.ORIG,v 1.2 1998/03/08 13:01:26 hipp Exp $
+#
+
+# These are set from the main Makefile
+# BINDIR = /sbin/
+# MANDIR = /usr/man/
+
+
+PPPDSRCS = main.c magic.c fsm.c lcp.c ipcp.c upap.c chap.c md5.c ccp.c \
+	   ipxcp.c auth.c options.c sys-linux.c cbcp.c
+HEADERS =  callout.h pathnames.h patchlevel.h chap.h md5.h \
+	   ipxcp.h cbcp.h
+MANPAGES = pppd.8
+PPPDOBJS = main.o magic.o fsm.o lcp.o ipcp.o upap.o chap.o md5.o ccp.o \
+		auth.o options.o sys-linux.o cbcp.o ipxcp.o
+
+all: ipppd
+
+#
+# include dependancies if present and backup if as a header file
+ifeq (.depend,$(wildcard .depend))
+include .depend
+HEADERS := $(HEADERS) .depend
+endif
+
+# CC = gcc
+DEBUG_FLAGS = -DDEBUGALL
+# USE_MSCHAP = 1
+# HAS_SHADOW = 1
+# RADIUS = 1
+
+COMPILE_FLAGS = -D_linux_=1 -DHAVE_PATHS_H -Wall -Dlint # -DDEBUGALL  
+COPTS = -O2  -fomit-frame-pointer -m486 # -g
+VER = 2.2.0
+LIBS = -lbsd
+
+CFLAGS= $(COPTS) $(DEBUG_FLAGS) $(COMPILE_FLAGS)
+SOURCE= RELNOTES Makefile.linux $(PPPDSRCS) $(HEADERS) $(MANPAGES)
+
+ifdef USE_MSCHAP
+PPPDSRCS += md4.c chap_ms.c
+PPPDOBJS += md4.o chap_ms.o
+HEADERS  += md4.h ms_chap.h
+CFLAGS   += -DUSE_MSCHAP
+LIBS     += -ldes
+endif
+
+ifdef RADIUS
+CFLAGS   += -DRADIUS -I/usr/local/include
+CFLAGS   += -D_PATH_ETC_RADIUSCLIENT_CONF=\"/usr/local/etc/radclient/radiusclient.conf\"
+LIBS     += -L/usr/local/lib -lradclient
+PPPDOBJS += radius.o
+endif
+
+ifdef USE_MS_DNS
+CFLAGS   += -DUSE_MS_DNS=1
+endif
+
+ifdef HAS_SHADOW
+CFLAGS   += -DHAS_SHADOW
+LIBS     += -lcrypt
+PPPDOBJS += isexpired.o
+PPPDSRCS += isexpired.c
+endif
+
+install: ipppd
+	mkdir -p $(BINDIR) $(MANDIR)
+	install -s -c -m 555 -o root ipppd $(BINDIR)/ipppd
+	install -c -m 555 -o root ipppd.8 $(MANDIR)/man8
+
+ipppd: $(PPPDOBJS)
+	$(CC) $(CFLAGS) -o ipppd $(PPPDOBJS) $(LIBS)
+
+pppd.tar: $(SOURCE)
+	tar -cvf pppd.tar $(SOURCE)
+
+pppd.tar.gz: pppd.tar
+	gzip pppd.tar
+
+clean:
+	rm -f $(PPPDOBJS) ipppd *~ #* core
+
+depend:
+	$(CPP) -M $(CFLAGS) $(PPPDSRCS) >.depend
+#
+# These disable warnings because some people complain about the
+# warnings which do not cause harm.
+#
+main.o: main.c
+	$(CC)  $(CFLAGS) -o main.o -c main.c
+
+auth.o: auth.c
+	$(CC)  $(CFLAGS) -o auth.o -c auth.c
+
+options.o: options.c
+	$(CC)  $(CFLAGS) -o options.o -c options.c
+

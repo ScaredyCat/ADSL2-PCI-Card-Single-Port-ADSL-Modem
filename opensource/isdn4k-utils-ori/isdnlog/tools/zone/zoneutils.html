@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 5.0::19981217::extensions to HTML 4.0//EN" "hmpro5.dtd">
+ 
+<HTML>
+ 
+<HEAD>
+<TITLE>Zoneutils</TITLE>
+</HEAD>
+
+<BODY>
+<H1>Zoneutils</H1>
+<UL>
+<LI><A HREF="#redzone">redzone</A> - Reduce a zonefile</LI>
+<LI><A HREF="#compzone">compzone</A> - Compare/Verify zonefiles</LI>
+<LI><A HREF="#mkzonedb">mkzonedb</A> - Make a gdbm file from a reduced zonefile</LI>
+<LI>zone.c, <A HREF="#zone">zone</A> - i4l-zonefuncs / Standalone zonefile verify</LI>
+</UL>
+<H2><A NAME="redzone">redzone</A></H2>
+<P><CITE>redzone</CITE> reduces a <A HREF="#zonef">Zonefile</A> by inserting wildcards. The reduction for AT is 99,5%,
+for DE 99,3%. </P>
+<H3>Synopsis</H3>
+<PRE>redzone -z<CITE>Zonefile</CITE> -r<CITE>Reducedfile</CITE> [ -v<CITE>verboselevel</CITE> ] [ -n ] [ -llen ] [ -k ] [ -o ]</PRE>
+
+<H3>Options</H3>
+<PRE>-z<CITE>Zonefile</CITE>
+-r<CITE><A HREF="#redf">Reducedfile</A></CITE>
+-v<CITE>verboselevel</CITE> ... default=1
+-n ... Normalize input (i.e. sort ascending)
+-l<CITE>len</CITE> ... a number is maximal <CITE>len</CITE> long, default=4
+-k ... keep intermediate files
+-o ... optimize only (this is the last pass)</PRE>
+
+<H2><A NAME="compzone">compzone</A></H2>
+<P>Verifys a <CITE>Reducedfile</CITE> against a <CITE>Zonefile</CITE> or a <CITE>Zonefile</CITE> against a <CITE><A
+HREF="#codef">Codefile</A></CITE> or querys the zone of two numbers.</P>
+<H3>Synopsis</H3>
+<PRE>compzone -z<CITE>Zonefile</CITE> -r<CITE>Reducedfile</CITE>[-v<CITE>Verboselevel</CITE> ] [ -m[2] ] [-h ] -a [ -d ]
+compzone -z<CITE>Zonefile</CITE> -r<CITE>Reducedfile</CITE>[-v<CITE>Verboselevel</CITE> ] [ -m[2] ] <CITE>from</CITE> <CITE>to</CITE> [ -d ]
+compzone { -z<CITE>Zonefile</CITE> | -r<CITE>Reducedfile</CITE> } -c<CITE>Codefile</CITE> [-vVerboselevel ] [ -h ] [ -m[2] ]\</PRE>
+
+<H3>Options</H3>
+<PRE>-z<CITE>Zonefile</CITE>
+-r<CITE>Reducedfile</CITE>
+-vVerboselevel default=1, 2 prints also the steps for searching the Reducedfile
+-m ... Read reduced file into memory
+-m2 ... Also read zonefile (!!) into memory
+-h ... halt on errors
+-a ... auto, test all
+-d ... the reduced file is a GDBM-file
+-c<CITE>Codefile</CITE></PRE>
+
+<H3>Examples</H3>
+<PRE>./compzone -zzoneall -ccode -a -h0 -m2 | tee loecher</PRE>
+
+<P>Verifys that all combinations of number are in the zonefile <CITE>zoneall</CITE> and write the result also to
+<CITE>loecher</CITE>.</P>
+<PRE>./compzone -zzoneall -rzoneall.red -a -m</PRE>
+
+<P>Verifys the reduced zonefile against the full file and stops on first error.</P>
+<H2><A NAME="mkzonedb">mkzonedb</A></H2>
+<P>Makes a zonedatabase (gdbm - GNU Database or db - Berkeley DB) from a reduced file.</P>
+<H3>Synopsis</H3>
+<PRE>./mkzonedb -d <CITE>zone-CC-PP.gdbm</CITE> -r <CITE>ReducedFile</CITE> -c Codefile [-a CC ] [ -v<CITE>Verboselevel</CITE> ] [ -o Localzone ] [ -l Len ]</PRE>
+
+<H3>Options</H3>
+<PRE>-r <CITE>ReducedFile</CITE> ... reduced zone file from <STRONG>redzone</STRONG>
+-d <CITE>zone-CC-PP.gdbm</CITE> ...CC = Iso-Countrycode, PP = Providername/number
+-c <CITE>Codefile</CITE>
+-v Verboselevel ... default = 1
+-o Localzone ... default = 1
+-l Len ... default = maxlen of data
+-a CC .. Countrycode (only 1 File per country should have this)</PRE>
+
+<P>For examples look at the <TT>Makefile</TT> in target <TT>zonefiles</TT>.</P>
+<H2><A NAME="zone">zone</A></H2>
+<H3>Standalone-Synopsis</H3>
+<PRE>zone -d <CITE>Datafile</CITE> [ -v ] [ -V ] { -z <CITE>zonefile</CITE> | num1 num2 }</PRE>
+
+<P>or</P>
+<PRE>zone -d <CITE>Datafile</CITE> [ -v ] [ -V ] -a CC num1 </PRE>
+<P>or</P>
+<PRE>zone -d <CITE>Datafile</CITE> [ -v ] [ -V ] -a CC -c codefile </PRE>
+
+<H3>Options</H3>
+<PRE>-v ... verbose
+-V ... print version and exit</PRE>
+
+<P>For standalone compile with:</P>
+<PRE>cc -DSTANDALONE -o zone zone.c -lgdbm</PRE>
+
+<H3>I4L-Interface:</H3>
+<PRE>int initZone(int provider, char *datapath, char **msg)<BR>	returns -1 on error, 0 if ok<BR>void exitZone(int provider)<BR>int getZone(int provider, char *from, char *to)<BR>	returns -2 on error, UNKNOWN on not found, zone if ok<BR>int getAreacode(int country, char *num, char **text)<BR>	returns UNKNOWN if not found, or len of areacode<BR>	text is a malloced string containing the name of the area
+	the caller should free this text if returnvalue != UNKNOWN.</PRE>
+
+<H2>Glossary</H2>
+<H4><A NAME="zonef">Zonefile</A></H4>
+<P>A sorted whitespace separated list of entries <TT>from</TT> <TT>to</TT> <TT>zone</TT>, where <TT>to</TT> is greater
+then <TT>from</TT>.</P>
+<PRE>1 2142 0
+1 2143 0
+...
+1 2252 1
+1 2253 1
+...</PRE>
+
+<P>It has N*(N-1)/2 entries.</P>
+<H4><A NAME="redf">Reducedfile</A></H4>
+<P>A Zonefile with wildcards. It must be read top down to get correct rsults. The first matching entry is the right
+one.</P>
+<PRE>
+1 252 1
+...
+2252 228 1
+2252 22 0
+...
+2252 2 1
+...
+2252 7 1
+2253 2252 127
+...       
+1 2 0
+...
+</PRE>
+
+<P>The line with zone 127 is a link to the zone-info 2252, so there are theoretical maximum of 126 zones.</P>
+<H4><A NAME="codef">Codefile</A></H4>
+<P>File of lines of all tel numbers and cits, separated by &lt;tab&gt;s</P>
+<PRE>1	Wien
+2142	Gattendorf
+2143	Berg
+...
+2252	Baden b Wien
+...</PRE>
+
+<H2>Author</H2>
+<ADDRESS>Leopold Toetsch<BR>
+&lt;<A HREF="mailto:leo@toetsch.at?subject=zoneutils">lt@toetsch.at</A>&gt;<BR>
+<A HREF="http://www.toetsch.at">http://www.toetsch.at</A></ADDRESS><H2>Copyright</H2>
+<P> Copyright 1999 by Leopold Toetsch &lt;lt@toetsch.at&gt;.<BR>
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
+License as published by the Free Software Foundation; either version 2, or (at your option) any later version.<BR>
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
+</P>
+</BODY>
+</HTML>
+

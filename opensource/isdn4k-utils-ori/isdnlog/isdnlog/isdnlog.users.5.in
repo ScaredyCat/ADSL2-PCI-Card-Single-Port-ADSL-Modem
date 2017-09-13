@@ -1,0 +1,131 @@
+.\" $Id: isdnlog.users.5.in,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH isdnlog.users 5 "@MANDATE_ISDNLOG_USERS@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+
+.PD 0
+.SH NAME
+@I4LCONFDIR@/@USERFILE@ \- user base isdnlog config file
+
+.SH DESCRIPTION
+This file is only needed if isdnlog is started with the "-xX" / "xisdn="
+option. If this file does not exist, isdnlog will create a default file
+and print a warning. This file contains information about which users
+are permitted to use isdnlog clients, and what their privileges are.
+This file is checked every time a connection to isdnlog is made; thus,
+it is possible to edit this file and have the changes effective immediately
+without having to stop and start isdnlog.
+
+For now there are no real usable clients for isdnlog, so this file
+isn't very useful at the moment.
+
+.SH FORMAT
+Warning: the format of this file may change in the future.
+
+Blank lines are ignored. If a line has a "#", this char and the rest of
+the line is ignored as comment. If the last char of a line is a "\"  the
+line and the next line are considered one line.  These characters are
+considered special:
+"$@#,;\", to use one of these, you must prepend a "\" to escape it.
+
+The file consists of lines; each line begins with the name of a user.
+After the user's name the privileges given to this user are specified
+(on the same line). The following privileges are possible, separated
+by semicolons ";" :
+
+.RS 0
+.TP 4
+.B ALL
+All of the privileges below are given. Should only be given to root.
+
+.TP
+.B MSN=msn[,msn...]
+Only information about events concerning the specified msns is given.
+This includes incoming and outgoing calls, and protocol information.
+Any number of msns may be given. Wildcards (such as used in isdn.conf)
+are permitted. With "MSN=*" all msns are allowed.
+.br
+Unknown numbers (e.g. from outgoing calls from other isdn devices or
+incoming calls from analog connections) cannot be specified with MSN=.
+The only way to allow these calls to be seen is by giving "MSN=*".
+
+.TP
+.B PROTOCOL
+The information specified to isdnlog by the -xX flag (see isdnlog(8))
+is allowed.
+
+.TP
+\fBI4LCONF\fR (planned)
+This gives permission to change isdn4linux properties. This should
+only be allowed to root.
+
+.TP
+\fBADDRESSBOOK\fR (planned)
+This makes it possible to retrieve / store information about a
+caller or called number.
+.RE
+
+
+.B Users
+.br
+At the beginning of the file it is possible to specify users with hostnames:
+
+.in +4
+.nf
+fred@vom.jupiter MSN=4711?
+root@host1.at.home ALL
+.fi
+.in -4
+
+Here the user "fred" can only connect to isdnlog from the host "vom.jupiter".
+Similarly, the user "root" is only allowed when on host "host1.at.home".
+
+.B Groups
+.br
+After the lines with hostnames, it is possible to define groups of
+users and hostnames. A group looks like a section as described in
+isdn.conf(5). It begins with a line such as:
+
+.in +4
+[My_Group]
+.in -4
+
+and ends with the beginning of the next group or the end of the file.
+Group names are not case sensitive. In fact, group names are not
+actually used (except for \fB[world]\fR, see below).
+
+In a group, lines consist of a username \fIor\fR a hostname. Lines
+with a username must also contain those privileges that the user has.
+No privileges can be listed with a hostname.
+
+.in +4
+.nf
+heinz MSN=*;PROTOCOL
+@host1
+@host2
+otto MSN=47111,47112
+@host3
+.fi
+.in -4
+
+The above example allows the users heinz and otto to connect from any
+of the hosts host1, host2 and host3. The user heinz can see information
+about all msns, user otto can only see information about msns 47111 and
+47112.
+
+If anyone is allowed to do anything, then it is enough to put only
+the following line into the file "isdnlog.users":
+
+.in +4
+[world]
+.in -4
+
+.SH FILES
+.TP
+.B @I4LCONFDIR@/@USERFILE@
+This file.                                                       
+
+.SH SEE ALSO
+.B isdnlog(1) 
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

@@ -1,0 +1,223 @@
+
+
+Expert start
+============
+
+This is an older setup procedure kept for compatibility and expert
+users who want to do more with x25 on top of isdn4linux.
+(this is no longer supported but as you are an expert user, you might
+want to edit the scripts such that it works with this release again).
+
+Even if you don't use isdn, this might be useful for testing PF_X25
+network applications. The test distribution supports
+setting up X.25 connections on top of the isdnloop driver. This allows
+you to set up X25 connections between a client and a server application
+running on the same machine. There is no physical x25 network
+interface needed. This is similar to setting up tcp/ip connections
+to the "localhost" IP address. (Using the isdn subsystem for this
+might be overkill, but there is currently no other x25 loop device
+driver at all).
+
+A script "ix25test" is provided inside the scripts
+directory. That script does all the necessary setups needed for
+testing x.25 on top of isdn4linux. You need to edit the script to
+account for your local configuration (i.e. your MSN, ISDN-numbers
+of your peer, location of utility binaries and kernel sources/modules,
+configuration of your isdn HL driver, ...).
+You should unload all isdn drivers modules and the x25 module before
+calling this script.
+
+When done, you can just call "ix25test start". However, read the
+comments in the script file as well as the remaining part of this
+README file and the PROBLEMS.* files before using it. 
+
+
+Now the really cool stuff in detail:
+
+1. Boot your (patched) kernel (see remarks below)
+
+2. log in as root
+
+3. Make sure that all isdn and x25 related modules are unloaded. I also
+   prefer to switch to runlevel 1 (using the command "init 1") when doing
+   my tests, this will usually unload all isdn drivers as well.
+
+   Call the configuration script:
+
+      ix25test start telnetd 01
+
+   (In case of problems, issue the command "ix25test stop", fix
+   the script, and repeat)
+
+4. switch to another virtual terminal, log in (not as root), and
+   start the x25 based telnet client. Assuming your x25 based telnet
+   client resides in x25bin/telnet enter the command
+
+      x25bin/telnet 00 01
+
+   This will open an x25-based telnet session on top of isdn4linux
+   to your own machine. The isdnloop HL driver is used for this, thus
+   no real isdn line is occupied (and no phone bill will result from
+   this). If it works you should be able to log in, issue some commands
+   and log out again.
+
+5. After exiting from the telnet session, switch back to the other
+   virtual console (where you started the ix25test script) and type
+   ^C. This should kill the telnetd and shut down the test
+   configuration again.
+
+
+If this worked well you can try x.25 connections on top of real isdn
+connections to your own computer. Similar procedure as above, but
+slightly different command arguments:
+
+
+3.      ix25test start telnetd 03
+
+4.      x25bin/telnet 00 03
+
+This will establish a real isdn connection on top of hisax to yourself
+(your PTT will probably charge you). Please monitor (i.e by watching
+syslog messages) the isdn connections during and after your tests.
+(Verify that connections are properly released after your tests and
+no power dialing or other expensive actions happen during your tests.)
+
+
+If this worked you might try a connection to a remote computer. Find a
+partner operates an EUROFILE server and agrees that you connect to it
+with this experimental software.
+
+1. boot the test configuration as above. Alternatively, as you don't need
+   an x.25 based server on your own machine, "ix25test start" is
+   sufficient.
+
+2. Assuming your user name on the eft server is "myname" and your
+   password is "mypass", switch to the non-root virtual console and type
+
+       eftp 05 myname/mypass
+
+   from the shell's prompt. This will try to connect to the remote
+   eft server.
+
+3. type 
+      
+        dir *
+
+   from the "eftp>" prompt to list the directory of the eft server.
+
+4. type
+
+        get <filename> [<local filename>]
+
+   from the "eftp>" prompt, where <filename> denotes a file name
+   present on the remote server (such as listed by the previously
+   issued "dir"-command). This will download that file.
+
+5. type 
+
+        put <filename> [<remote filename>]
+
+   to upload a file to the remote server. (This is known not to inter-work
+   with certain remote eftp servers when used with an unpatched 2.1.92
+   kernel).
+
+6. type
+
+        quit
+
+   to exit from the eft session.
+
+7. switch to the root shell's virtual console and type
+
+        ix25test stop
+    
+   (or just ^C, if a server has been started) to shut down the test
+   configuration. The eftp program doesn't hangup the isdn line after
+   the eft connection is closed. (This is currently impossible
+   because the x25 socket interface does not provide for this
+   functionality). Therefor, it is recommended that you manually
+   hang up the isdn line (using "isdnctrl hangup" or shutting down
+   the test configuration). Your eft peer might close the isdn
+   connection after the eft session is finished, but you should not
+   rely on that.
+
+
+
+You can also try to connect with your eftp client locally to the tdu.echod
+server by 
+
+	ix25test start tdu.echod 01
+
+and then
+
+	eftp 01 myname/mypass.
+
+However, as tdu.echod is not an eft server implementation, you will
+only be able connect and disconnect. Any attempt to transfer files will
+only trigger error events of the EUROFILE protocol implementation.  
+
+
+PLEASE, keep in mind that the eftp client (OVER-)writes local files.
+In case of bugs, the file overwritten might be different from the file
+which you specified in the target parameter of the "get" command.
+
+
+If it doesn't work, what to do?
+===============================
+
+Well, this is alpha-test software and you should be able to assist
+me in troubleshooting. To make this task more convenient, the ix25test
+script provides some debugging support.
+
+If you use the script and it fails before any B-channel connection got
+set up you probably did not edit the script successfully. Check it.
+
+If your syslog / isdnctrl messages indicate that the isdn b-channel
+was successfully set up but no further data seems to be transferred, 
+there might be an inter-working problem of the X.25 PLP implementations.
+Uncomment the line in the ix25test script where the x25trace program
+is started and try again. This will leave a protocol trace in /tmp
+which might be helpful in tracking down the problem. If you cannot
+resolve such a problem yourself, please include that trace output in
+your bug report.
+
+If the x.25 connections set up successfully, but eft doesn't work, the
+eft error messages reported by eftp program might reveal the problem.
+The eft protocol implementation is incomplete. Thus, failures are not
+not unlikely to occur.
+
+If the standard error messages don't contain
+enough information, you can make the eft programmes a lot more noisy
+if you locate the line in eftp.c where the variable tdu_stderr_mask
+is set. Change this to
+
+        tdu_stderr_mask = -1
+
+and recompile. A lot of debugging output (protocol and call trace)
+will appear on your terminal while the eftp program is running now.
+ 
+
+Problems with the kernel part might also be present. Please refer to
+the appropriate PROBLEMS-* file available from the same site as this
+test distribution. But I consider the kernel stuff (x25 on top of
+isdn4linux extensions), which I've used since end of May 1997 now with
+only marginal modifications, to be much more stable than the user
+level eft implementation. However, if you faced a serious kernel bug
+(usually indicated by an oops messages in the syslog output) please
+report it to me. The oops message will only be meaningful to me if
+the addresses are reported in symbolic form. Thus, if you faced a
+kernel oops, compile the ksymoops program present in your kernel
+sources "script" directory, i.e (assuming kernel source is in
+/home/kernel/linux-ix25):
+
+  cd /home/kernel/linux-ix25/scripts
+  g++ ksymoops.cc -o ksymoops
+
+The ix25test script leaves a System.map file in the /tmp directory
+which contains all symbolic address mappings of the resident
+kernel as well as all isdn and x25 related modules. You can use this
+file with your ksymoops program. For your convenience, ix25test also
+leaves a script "oops_decode" left in /tmp. Type "/tmp/oops_decode"
+after the oops happened, this will fetch the oops message from your
+/var/log/messages syslog protocol file and decode it to stdout.
+

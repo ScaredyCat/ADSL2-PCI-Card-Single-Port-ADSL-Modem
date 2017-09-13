@@ -1,0 +1,9 @@
+1. cd /export/packages_uclibc/upnp/libupnp-1.2.1/upnp
+2. ./go
+3. install the library to our develop enviroment
+   cp ./bin/* /export/tools/mipsel-linux/lib/
+4. install the library to the target 
+   cp ./bin/* /mnt/ramdisk/mnt/usr/lib
+5. /export/packages_uclibc/upnp/IGD
+6. ./go
+7. cp upnpd  cp ./bin/* /export/tools/usr/sbin

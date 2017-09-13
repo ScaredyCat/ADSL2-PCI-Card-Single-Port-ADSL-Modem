@@ -1,0 +1,78 @@
+V:0.7-Poland [2001-11-16]
+
+# autor: Karsten Voss (vossdoku@gmx.net)
+
+# format waluty
+U:%.2f PLN
+# Podane ceny z podatkiem VAT
+
+#####################################################################
+#
+#####################################################################
+P:33 tpsa
+# D:tpsa
+B:01033
+Z:1 strefowe
+# Nastepna linia dotyczy Warszawe. Ewentualnie zmienic,
+# dopoki nie ma pliku ze strefami (zone-pl-tpsa.cdb).
+A:+4822
+T:*/08-22=0.3538/180 szczyt
+T:*/22-08=0.3538/360 pozaszczytem
+Z:3 strefa III
+A:+48
+T:1-5/08-18=0.3538/43.5 T1
+T:6-7/08-18=0.3538/58 T2
+T:*/18-08=0.3538/87   T3
+Z:101 teleinformatyczne
+# 7% VAT.
+# Polaczenia z internetem w placowkach oswiatoych, szkolach wyzszych 
+# i wyzszych szkolach zawodowych sa zwolnione od podatku VAT. 
+# W tym wypadku jednostka taryf. kosztuje 0.2900 PLN. 
+A:+48202422
+T:1-5/08-18=0.3103/180 szczyt
+T:6-7/08-18=0.3103/360 weekend
+T:*/18-08=0.3103/360 pozaszczytem
+Z:201 Niemcy
+A:+49
+T:*/*=0.3538/11.2
+#####################################################################
+P:44 nom
+# D:nom
+B:01044
+Z:3 miedzystrefowe
+A:+48
+T:1-5/08-18=0.4636/60 T1
+T:6-7/08-18=0.3538/60 T2
+T:*/18-08=0.2318/60   T3
+#####################################################################
+P:55 netia
+# D:netia
+B:01055
+Z:1 lokalne
+# Nastepna linia dotyczy Warszawe. Ewentualnie zmienic,
+# dopoki nie ma pliku ze strefami (zone-pl-netia.cdb).
+A:+4822
+T:*/08-22=0.3050/180 szczyt
+T:*/22-08=0.3050/360 pozaszczytem
+Z:3 miedzystrefowe
+A:+48
+T:1-5/08-18=0.4270/60 T1
+T:6-7/08-18=0.2562/60 T2
+T:*/18-08=0.2562/60   T3
+Z:101 Internetia
+# 7% VAT.
+# Polaczenia z internetem w placowkach oswiatoych, szkolach wyzszych 
+# i wyzszych szkolach zawodowych sa zwolnione od podatku VAT. 
+# W tym wypadku jednostka taryf. kosztuje 0.2300 PLN. 
+A:+48202422
+T:1-5/08-18=0.2461/180 szczyt
+T:6-7/08-18=0.2461/360 weekend
+T:*/18-08=0.2461/360 pozaszczytem
+Z:201 Niemcy
+A:+49
+T:*/*=1.6958/60
+Z:301 Niemcy
+# Polaczenia w systemie *00 (000) 
+# telefonia internetowa (VoIP)
+A:00049
+T:*/*=1.2200/60

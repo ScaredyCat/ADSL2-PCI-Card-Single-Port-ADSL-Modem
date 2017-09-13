@@ -1,0 +1,97 @@
+V:0.2-Slovensko
+
+#2001.05.01 Zmeneny tarif ISDN internet 1.5.2001
+#C:Name:           Slovak Telecom
+#C:Maintainer:     Martin Dziuban dziuban@stonline.sk
+#C:TarifChanged:   1.5.2001 
+
+U:%.2f SK
+#C:Name:		Telecom
+
+#####################################################################
+#
+#####################################################################
+P:421 Bratislava
+B:ST
+S:Inet
+N:+4217019*
+#Z:1-5 Slovensko
+# Z:50 Mobilne telefony
+#Z:100 Internet
+
+#Z:0 Lokalny
+#A:+4217654417;6544173,+421820555,0820555
+#T:W/07-19=2.50/120 Den
+#T:W/19-21=2.50/240 Vecer
+#T:W/21-5=2.50/360 Noc
+#T:W/5-7=2.50/240 Rano
+#T:E,H/*=2.50/360 Weekend
+
+
+Z:1 Bratislava
+A:+4217
+A:*
+T:1-5/07-19=2.50/120 Den
+T:1-5/19-21=2.50/240 Vecer
+T:1-5/21-5=2.50/360 Noc
+T:1-5/5-7=2.50/240 Rano
+T:E,H,6-7/*=2.50/360 Volno
+
+Z:2 KratsiaVzdialenost
+A:+42131,031
+
+T:1-5/07-19=2.50/60 Den
+T:1-5/19-21=2.50/120 Vecer
+T:1-5/21-5=2.50/260 Noc
+T:1-5/5-7=2.50/260 Rano
+T:E,H,6-7/*=2.50/260 Volno
+
+Z:3 KratkaVzdialenost
+A:+42141,041
+
+T:1-5/07-19=2.50/60 Den
+T:1-5/19-21=2.50/120 Vecer
+T:1-5/21-5=2.50/260 Noc
+T:1-5/5-7=2.50/260 Rano
+T:E,H,6-7/*=2.50/260 Volno
+
+Z:4 DlhsiaVzdialenost
+A:+42154,054
+
+T:1-5/07-19=2.50/60 Den
+T:1-5/19-21=2.50/120 Vecer
+T:1-5/21-5=2.50/260 Noc
+T:1-5/5-7=2.50/260 Rano
+T:E,H,6-7/*=2.50/260 Volno
+
+Z:5 DlhaVzdialenost
+A:+421
+
+T:1-5/07-19=2.50/60 Den
+T:1-5/19-21=2.50/120 Vecer
+T:1-5/21-5=2.50/260 Noc
+T:1-5/5-7=2.50/260 Rano
+T:E,H,6-7/*=2.50/260 Volno
+
+Z:50 Mobil
+A:+421903 #Eurotel
+A:+421905 #Globtel
+
+T:W/07-19=2.50/0,2.50/0,2.50/15 Den
+T:W/19-21=2.50/0,2.50/22.5 Vecer
+T:W/21-5=2.50/0,2.50/22.5 Noc
+T:W/5-7=2.50/0,2.50/22.5 Rano
+T:E,H/*=2.50/0,2.50/45 Weekend
+
+Z:100 Internet
+A:+4217019,+4211
+
+T:1-5/07-19=2.50/240 DenInet
+T:1-5/19-21=2.50/900 VecerInet
+T:1-5/21-5=2.50/3600 NocInet
+T:1-5/5-7=2.50/900 RanoInet
+T:E,H,6-7/21-5=2.50/3600 WeekendNocInet
+T:E,H,6-7/5-7=2.50/900 WeekendRanoInet
+T:E,H,6-7/7-19=2.50/480 WeekendDenInet
+T:E,H,6-7/19-21=2.50/900 WeekendVecerInet
+

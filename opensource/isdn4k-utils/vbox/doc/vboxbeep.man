@@ -1,0 +1,46 @@
+.\" $Id: vboxbeep.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxbeep 1  "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+vboxbeep \- isdn voice box (beeper)
+.SH SYNOPSIS
+.B vboxbeep
+.I "[OPTION] [OPTION] [...]"
+.SH "DESCRIPTION"
+vboxbeep is a daemon, that watches several message directories. If new
+messages are found it will beep. Vboxbeep does not use vboxd, it can
+only watch local directories.
+
+Vboxbeep is also used to stop this annoying beep.
+.SH OPTIONS
+Without any options, vboxbeep will signal an already running vboxbeep to
+stop its beep. Only root can start it as daemon.
+.TP
+.B \-s, \-\-sound HOURS
+Hours to play beep signal. Use 24 hour format, like 0-23. Multiple hours
+can be given separated by commas, a "*" is used for always, "-" for
+never.
+.TP
+.B \-m, \-\-messagebox DIR
+Message directory to scan. You can use this option several times.
+.TP
+.B \-p, \-\-pause SECS
+Time to wait between every check. Default is 5 seconds.
+.TP
+.B \-k, \-\-kill
+Kill a running vboxbeep. This option can only be used by root.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-v, \-\-version
+Show version of program.
+.SH NOTE
+vboxbeep will only work if it is installed suid root. This may be a
+security hole, so many distributions do not install it suid root, and
+thus it's useless. If you want to enable vboxbeep, please read the
+distribution-specific documentation how to do that (e.g. with debian
+gnu/linux read /usr/doc/isdnutils/README.debian).
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

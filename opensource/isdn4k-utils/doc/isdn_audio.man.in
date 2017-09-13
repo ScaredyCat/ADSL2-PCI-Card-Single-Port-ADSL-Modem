@@ -1,0 +1,261 @@
+.\" $Id: isdn_audio.man.in,v 1.5 1999/09/06 08:03:23 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:23 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii isdn_audio.4 for ASCII output, or
+.\" groff -man -Tps isdn_audio.4 for PostScript output
+.\"
+.TH isdn_audio 4 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Special files"
+.SH NAME
+isdn_audio \- audio extension of ttyI ISDN character devices
+.SH DESCRIPTION
+This document describes the audio related extensions of the modem
+emulation, provided by
+.IR /dev/ttyIx .
+
+The
+.SM ISDN
+tty devices are equipped with a modem emulation implementing a set of
+traditional and some special AT commands. This provides easy use
+together with almost all communication software that uses modem
+commands:
+.BR minicom (1),
+.BR seyon (1),
+.BR XCept (1),
+.BR uucico (8),
+.BR mgetty (8),
+.BR dip (8),
+.BR pppd (8)
+and more. When enabled during kernel configuration, the emulator
+is capable of a reduced set of commands to support audio. To use
+audio features, an
+.SM ISDN
+card with a audio-capable low-level driver is needed. Currently
+the only audio-capable drivers are the teles and HiSax driver.
+
+The port speed of the
+.SM ISDN
+tty devices is always 64000 bps.
+
+.SH AUDIO RELATED AT COMMAND SET
+This description does
+.B not
+include the standard AT command set. For a description of the standard
+AT command set, provided by the Linux
+.SM ISDN
+subsystem, see
+.BR ttyI (4).
+All commands starting with
+.B AT+
+except
+.B AT+FCLASS
+are enabled only, if audio mode is active.
+The following 
+.B audio related AT commands
+are supported by
+.SM ISDN
+tty devices:
+.TP
+.B AT+FCLASS=0
+Disable audio mode (default). This command sets register
+.IR 18 " to " 4 .
+.TP
+.B AT+FCLASS=8
+Enable audio mode. This command sets register
+.IR 18 " to " 5 .
+.TP
+.B AT+FCLASS=?
+Show possible modes.
+.TP
+.B AT+FCLASS?
+Show current mode.
+.TP
+.BI AT+VNH= x
+No function, provided for compatibility only.
+.TP
+.B AT+VNH=?
+Always showing "1".
+.TP
+.B AT+VNH?
+Always showing "1".
+.TP
+.B AT+VIP
+Reset all audio parameters.
+.TP
+.BI AT+VLS= x
+Select line
+.IR x ", where " x
+is one of the following:
+.RS
+0 = No device.
+.br
+2 = Phone line.
+.RE
+.TP
+.B AT+VLS=?
+Always showing "0,2".
+.TP
+.B AT+VLS?
+Show current line.
+.TP
+.B AT+VRX
+Start audio recording. See below for more information.
+.TP
+.BI AT+VSD= x , y
+Set silence-detection parameters. 
+.RS
+Possible parameters:
+.br
+.IR x " = 0 ... 31  sensitivity threshold level."
+.br
+(default 0 , deactivated)
+.br
+.IR y " = 0 ... 255 range of interval in units of 0.1 second. (default 70)"
+.RE
+.TP
+.B AT+VSD=?
+Show possible parameters.
+.TP
+.B AT+VSD?
+Show current parameters.
+.TP
+.BI AT+VSM= x
+Select audio data format to
+.IR x ", where " x " is:"
+.RS
+2 = ADPCM-2
+.br
+3 = ADPCM-3
+.br
+4 = ADPCM-4
+.br
+5 = aLAW
+.br
+6 = uLAW
+.RE
+.TP
+.B AT+VSM=?
+Show possible audio data formats.
+.TP
+.B AT+VSM?
+Show current audio data format.
+.TP
+.B AT+VTX
+Start audio playback. See below for more information.
+.SH GENERAL BEHAVIOUR
+On incoming calls, if the application responds to a
+.BR RING " by sending " ATA ,
+depending on the calling service, the emulator responds with either
+.BR CONNECT " (data call) or " VCON " (voice call)."
+
+When starting audio playback or recording, the emulator responds
+with
+.BR CONNECT .
+After that, the data transfer  protocol described below is used.
+It is possible to initiate full duplex data transfer by issuing
+.B AT+VRX+VTX
+in a
+.B single
+command. In this case,
+.B no
+CONNECT message is sent to the application and the protocol described
+below is started immediately.
+
+When stopping audio playback or recording, the message returned by
+the emulator depends on how the data transfer is stopped. If the
+data transfer is stopped by a remote hangup,
+.B NO CARRIER
+is sent to the application, while stopping data transfer with one
+of the DLE sequences,
+.B VCON
+is sent. In any case, the message is preceeded by the appropriate
+DLE sequence for end of audio data and/or abort respectively.
+
+On outgoing voice calls, the emulator responds with
+.B VCON
+upon connection setup.
+.SH AUDIO DATA FORMAT
+When recording or playing back audio data, a kind of modified bisync
+protocol is used. When recording audio data, the modem emulator is
+considered to be the
+.BR sender ,
+while the application is the
+.BR receiver .
+When playing back, this relationship is reversed: The modem emulator acts
+as
+.BR receiver ,
+while the application is the
+.BR sender .
+With the bisync protocol the character
+.B DLE
+(0x10) has a special meaning and is used like an escape character.
+It is always followed by a second character which has the following
+meanings defined:
+.TP
+.BR ETX " (0x03)"
+End of audio data. This code has to be sent by the
+.BR sender ,
+indicating end of audio data.
+.TP
+.BR DC4 " (0x14)"
+Abort sending. This code has to be sent by the
+.BR receiver ,
+when it wishes to abort receiving data. The
+.B sender
+has to reply by stop sending data and finally indicating end of audio data.
+.TP
+.BR DLE " (0x10)"
+a single byte with value 0x10 in the data stream.
+.TP
+.B 0
+Touch-tone "0" received. Valid only in direction from emulator to application.
+.TP
+.B 1
+Touch-tone "1" received. Valid only in direction from emulator to application.
+.TP
+.B 2
+Touch-tone "2" received. Valid only in direction from emulator to application.
+.TP
+.B 3
+Touch-tone "3" received. Valid only in direction from emulator to application.
+.TP
+.B 4
+Touch-tone "4" received. Valid only in direction from emulator to application.
+.TP
+.B 5
+Touch-tone "5" received. Valid only in direction from emulator to application.
+.TP
+.B 6
+Touch-tone "6" received. Valid only in direction from emulator to application.
+.TP
+.B 7
+Touch-tone "7" received. Valid only in direction from emulator to application.
+.TP
+.B 8
+Touch-tone "8" received. Valid only in direction from emulator to application.
+.TP
+.B 9
+Touch-tone "9" received. Valid only in direction from emulator to application.
+.TP
+.B #
+Touch-tone "#" received. Valid only in direction from emulator to application.
+.TP
+.B *
+Touch-tone "*" received. Valid only in direction from emulator to application.
+.TP
+.B A
+Touch-tone "A" received. Valid only in direction from emulator to application.
+.TP
+.B B
+Touch-tone "B" received. Valid only in direction from emulator to application.
+.TP
+.B C
+Touch-tone "C" received. Valid only in direction from emulator to application.
+.TP
+.B D
+Touch-tone "D" received. Valid only in direction from emulator to application.
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.SH SEE ALSO
+.BR ttyI (4).

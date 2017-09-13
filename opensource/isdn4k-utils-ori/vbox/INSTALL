@@ -1,0 +1,106 @@
+
+                                    VBOX
+
+                 Copyright 1996,1997 Michael 'Ghandi' Herold
+
+
+Presettings for a successfull compilation/installation of vbox:
+
+- ncurses 1.9.9g (or higher),
+- tcl 7.6b1 (or higher),
+- kernel 2.0.30 with hisax 2.1 (or higher),
+- isdn4linux with audio support enabled.
+
+The above specified version numbers are matching the development environment
+of vbox.
+
+
+Extract the vbox archive using 'tar -xvzf vbox-x.y.z.tgz' and cd to its main
+directory (x.y.z. must be replaced with the version number).
+
+Before you start to compile you have to call './configure' to create a
+Makefile, which matches your local environment. A './configure --help'
+displays modifiable settings. Following options are relevant for vbox (the
+default settings are specified in [] brackets):
+
+--prefix=PREFIX		Path in which the vbox directory tree will be
+--exec-prefix=EPREFIX	installed [/usr/local/vbox].
+
+--sbindir=DIR		Directory for vbox specific programs, which will
+			be launched by the super user only [EPREFIX/sbin].
+
+--bindir=DIR		Directory for programs used by all vbox users
+			[EPREFIX/bin].
+
+--sysconfdir=DIR	Directory, which will contain the vbox configs. You
+			can use the global isdn configuration directory if
+			you want [PREFIX/etc].
+
+--with-spooldir=DIR     Directory in which vbox users specific sub dirs will
+			be placed. These sub dirs will contain individual
+			vbox configs, recoreded and playable voice messages
+			[/var/spool/vbox].
+
+--with-logdir=DIR       Directory in which log files will be placed
+			[/var/log/vbox].
+
+--with-piddir=DIR       Directory, which contains the pids of the different
+			vboxgetty daemons [/var/run].
+
+--with-lockdir=DIR      This Directory contains the device locking files,
+			which will be created by the vboxgettys [/var/lock].
+
+--with-i4lconfdir=DIR	Directory, which contains the configuration files of
+			the i4l package. The config of vbox could also be
+			installed in this place (see --sysconfdir)
+			[/etc/isdn].
+
+--with-tcllib=LIB	Tcl library to use. Normaly, the configure script
+			scans for tcl8.0, then tcl7.6 and last for tcl. If
+			it can't find your tcl library you can use this
+			option to specify the name of the library [tcl].
+
+--with-tcldir=DIR	Tcl base directory to use. If configure can't find
+			your tcl includes or the tcl library you can use this
+			option to specify the base directory to search. The
+			directory must contain the subdirectories 'include'
+			and 'libs' [].
+
+
+No other options than the above specified are used by the vbox package!
+
+
+You could modify the Makefile after a successful call to './configure' to
+your own liking, but the default settings should be sufficient.
+
+You're able to start the compilation using 'make'. 'make install' will
+create the neccessary sub dirs and install the executables and config.
+No configuration file will be overwritten! If a old configuration file
+exists, the new one is copied with the suffix '.new'.
+
+
+Now you're ready to set up user specific configurations and voice messages.
+For precise information about this topic see the manual. Please note that
+the full documentation if available in german only!
+
+Please read the manual carefully! There have been a number of changes since
+version 2.0 of vbox. Your old config files are *not* compatibel and couldn't
+therfore used any longer! Existing old voice messages must be converted to
+the .au format, and afterwards converted to the new vbox format using
+'autovbox'.
+
+
+There's a mailing list available for support, discussions and suggestions
+about vbox. To suscribe to the vbox mailing list, send an e-mail to:
+
+majordomo@abadonna.mayn.de
+
+with the line
+
+subscribe vbox <youraddress>
+
+in the message body (replace <youraddress> with your email address).
+
+Postings to this list are mainly German, although English letters are
+welcome and will be answered so good as I can ;-)
+

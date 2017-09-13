@@ -1,0 +1,149 @@
+From: Philippe Le Foll <phillf@iu-vannes.fr> Subject: Re: Namesserver Config
+To: isdn4linux@hub-wue.franken.de
+Date: Wed, 30 Oct 1996 19:09:10 +0100 (MET) Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+I send to some people a small set of shell and example in order to set up a local name server on a Linux box.
+
+I translate in aproximative english the README, which should in any case be easier to read that the french version.
+
+Some people ask be for seting this in an ftp site unfortunately my university did not open yet an anonymous ftp.
+
+phillf@iu-vannes.
+
+
+Author: Philippe Le Foll: 30-oct-96
+e-mail: phillf@iu-vannes.fr
+
+All these shells are coming from Rennes Hight Brittany University they generate from /etc/hosts the DNS database, I modify them in order to run on my linux box.
+
+(c) This is public program and you use them at your own risk
+    they will probably not run without some adaptation to your site.
+
+All this example refer to the following configuration ------------------------------------------------------------
+
+      ---------------
+      | to Internet |
+      --------------
+             |
+             |
+         dial-out/PPP
+      (dynamic IP number)
+             |
+             |
+   +------------------------+        +----------------------------+
+   |                        |        |                            |
+   |   DNS server           |        |     DNS slave              |
+   |    Linux 2.x           |        |    Linux or NT             |
+   |   name: bisig          |        |    name fridu              |
+   |                        |        |                            |
+   |   pppd     [IP]        |        |                            |
+   |   leafnode [news]      |        |   Netcape [html+news+mail] |
+   |   harvest  [html cache]|        |   Eudora  [mail]           |
+   |   popd     [mail]      |        |                            |
+   |   metahtml [local http]|        |                            |
+   +------------------------+        +----------------------------+
+       200.200.200.1                     200.200.200.1
+             |                                 | +----------------------------------------------|---------------------------+      
+        Unregistered 200.200.200" network, "domain sene.bzh"
+            
+Note: 
+
+1)    This configuration give to all Slaves computer the impression
+      to be officially onto Internet without really be registrated.    
+
+2)    It allows to run a cache even when INTERNET dial-up connection
+      is down.
+
+3)    It obviously read news during the night, but this is an other story.
+
+
+To Do in order to install DNS
+------------------------------
+
+If you are running a DNS at home like me you probably have to choose for an unregistrated domain name as me.
+Running on an official Internet network does not change anything except that you don't have to worry about your name and your net number.
+
+
+- If you don't want to place your DNS data base in
+  /var/etc/named/DNS you will have to hack the shell
+  almost everything is hard coded
+
+- create the destination directory /var/etc/named/DNS
+
+- Copy all etc/*header* file in  /var/etc/named/DNS then
+  adapt them to your site [here: network is 200.200.200].
+
+- Allow named to start at boot time, for this remove comment
+  before named lines in /etc/rc.d/rc.inet2
+
+- copy etc/named.boot file in  /etc adapt it to your site
+  primary & forwarders lines syntax is:
+
+         PRIMARY myDomainename [here sene.bzh] headerPathName [here:sene.bzh.header.db] 
+         FORWARDERS IP_NUMBER for your DNS parent [usually your provider].
+
+  example
+         primary    sene.bzh    /var/etc/named/DNS/sene.bzh.header.db
+         forwarders 194.51.217.1 194.51.3.49
+
+- Normally /etc/resolv.conf is not mandatory, nevertheless 
+  I place my local domain name in with the following line.  
+
+         domain sene.bzh
+
+- .cache directive refer to a standard file that you should have no
+   trouble with. Syntax is:
+
+         cache . /var/etc/named/DNS/named.root
+
+    NOTE: You can retrieve a more update named.root file true FTP  
+          FTP.RS.INTERNIC.NET. (But for this named should work !!!)
+
+- Build/update your /etc/hosts file. WARNING: all your local hosts  
+  should have as main name   host.YourDomainName INCLUDING localhost.YourDomainName
+          [see example in etc/hosts]
+
+- Generate your DNS data base, this is the only thing you should have to
+  do at each /etc/hosts change. In fact this job is done automatically
+  with the following shell, syntax
+
+          make_db            YourDomainName             [ex: make_db sene.bzh]
+          make_in-addr.arpa  Net_Value.._in-addr.arpa   [ex: make_in-addr.arpa 200.200.200._in-addr.arpa]
+
+  nota: These two commands should generate you the two following files 
+        YourDomainName.db & Net_Value.in-addr.arpa.db
+        in /var/etc/named/DNS. Both file are include from your
+        header.db files.
+
+- If you have secondary computers that use your local server,
+  just write the two following line in there /etc/resolv.conf
+
+         domain sene.bzh   [where sene.bzh is your domaineName]
+         nameserver 200.200.200.1 [where 200.200.200.1 is your local DNS]
+
+  WARNING:  NameServer should be an IP number and not a symbolic name
+            and this even if it is declare in your /etc/hosts.
+
+- It is now time to start your name server, by just typing in:   
+
+         named
+
+- Check your name server is effectively working
+
+         dnsquery -h your_host_name 
+
+WARNING:   Even if your dialup line with INTERNET is broken your 
+           name server should answer you. The only time it should   
+           timeout is when you type in a wrong name, it with case it
+           should try reaching a forwarder.
+
+Good Luck   
+
+Kenavo
+
+phillf@iu-vannes.fr
+
+ps: Sorry for the English, if someone want to set it up in real english
+    I will be please to replace my own README with a better one. 
+
+--------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

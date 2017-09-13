@@ -1,0 +1,36 @@
+.\" $Id: vbox_file.man,v 1.1 2001/03/01 14:45:07 paul Exp $
+.\" CHECKIN $Date: 2001/03/01 14:45:07 $
+.TH vbox 5 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+vbox files \- file format
+.SH FORMAT
+With version 2.0.0 of vbox the recorded files have a new header, that
+does not only include compression mode and connection information, but
+also information about the caller.
+
+The current headers hold this information:
+
+.in +4
+\fBtime\fR of recording the message, 
+.br
+\fBcompression\fR mode,
+.br
+\fBCALLER\fR ID,
+.br
+\fBname\fR,
+.br
+\fBtelephone\fR number,
+.br
+\fBcity\fR
+.in -4
+
+With this information it's possible for other programs to get the
+information about a message. The detailed format is described in the
+file libvbox.h as structure vaheader_t (this file is not included in
+debian gnu/linux; if you want to develop isdn programs you should get
+the source code).
+.SH SEE ALSO
+.B autovbox(1), vboxtoau(1), vboxmode(1), vboxcnvt(1)
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

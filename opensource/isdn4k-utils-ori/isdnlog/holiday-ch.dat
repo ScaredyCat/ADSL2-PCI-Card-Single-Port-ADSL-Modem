@@ -1,0 +1,27 @@
+V:1.1-Switzerland [12-Apr-1999]
+
+W:1		Montag
+W:2		Dienstag
+W:3		Mittwoch
+W:4		Donnerstag
+W:5		Freitag
+W:6		Samstag
+W:7		Sonntag
+W:W		Werktag
+W:E		Wochenende
+W:H		Feiertag
+W:*		täglich
+
+D:1.1		Neujahr
+D:easter		Ostersonntag
+D:easter+1	Ostermontag
+D:1.5		Maifeiertag
+D:easter+39	Christi Himmelfahrt
+D:easter+49	Pfingstsonntag
+D:easter+50	Pfingstmontag
+#D:easter+60	Fronleichnam
+D:1.8		Bundesfeiertag
+#D:15.8		Maria Himmelfahrt
+#D:1.11		Allerheiligen
+D:25.12		1. Weihnachtsfeiertag
+D:26.12		2. Weihnachtsfeiertag

@@ -1,0 +1,106 @@
+------------------------------------------------------------------------------
+ README file for the PCBIT-D Device Driver.
+------------------------------------------------------------------------------
+ This README file is in portuguese since the board is manufactured and
+ used, to my knowledge, only in Portugal.  
+ In case you are interessed in a translation just mail me.
+------------------------------------------------------------------------------ 
+
+
+ O driver para a PCBIT implementa as funções de comunicação com a
+ placa e uma maquina de estados que controla o establecimento de
+ ligacoes. Destina-se a ser utilizado em conjunto com o modulo
+ "isdn4linux" (ftp://ftp.franken.de/pub/isdn4linux) que se espera que
+ integre futuramente a distribuição do kernel. Este modulo realiza o
+ interface entre o ISDN e os interfaces normais de um sistema Unix
+ (ttys e devices de rede).
+
+ O driver destina-se a ser instalado em "run-time" no kernel através
+ do comando "insmod".
+
+ exemplo: root_shell# insmod pcbit [irq=X mem=0x?????]
+
+ A PCBIT utiliza por defeito o endereço de memoria 0xD0000 e o irq 5.
+ Caso os parametros de irq e memória base não sejam fornecidos o
+ driver tentará utilizar os valores por defeito.
+
+ A PCBIT necessita, na sua versão mais comum, que seja feito o load do
+ firmware. O comando pcbitctl permite, apos a instalacao do driver,
+ carregar o firmware da placa. O firmware não é distribuido com o
+ driver podendo encontrar-se nas disquetes que vêm com a placa ou em
+ ftp://puma.inesc.pt/. 
+ São necessários os ficheiros:
+	- stpd.1 
+ 	- stpd.2
+	- bitd.hex
+
+ Aviso: Estes ficheiros são distribuidos em modo de ficheiro de texto
+ de DOS. O comando pcbitctl necessita desses ficheiros em modo binario
+ (i.e. um ficheiro normal sem os LF e Ctrl-Z).
+
+
+ Para os utilizadores da RCU:
+
+ A RCU utiliza routers cisco como pontos de entrada, configurados para
+ utilizar PPP sincrono (i.e. encapsulação PPP sobre tramas HDLC no
+ canal B). Como tal é necessário utilizar devices de rede isdn com
+ encapsulação "syncPPP".
+
+ um exemplo de um script de para iniciar um interface:
+
+#!/bin/bash
+PATH=$PATH:<PATH_TO_ISDN_STUFF>
+
+isdnctrl addif ippp0
+isdnctrl l2_prot ippp0 hdlc
+isdnctrl l3_prot ippp0 trans
+
+isdnctrl encap ippp0 syncppp
+
+isdnctrl addphone ippp0 out <num_isdn_da_rcu>
+
+ifconfig ippp0 <ip-atribuido-ao-utilizador> pointopoint <ip-do-router> 
+route add default ippp0
+
+isdnctrl huptimeout ippp0 180
+ipppd   /dev/ippp0 /dev/ippp1 useifip \
+        -detach debug \
+        mru 1524 -ac -vj \
+        +ua /etc/ppp/isdn-auth
+
+ nota: 
+ o ficheiro /etc/ppp/isdn-auth é um ficheiro da forma:
+
+username
+passwd
+
+
+ o interface de rede é activado (e a conexão isdn establecida) quando
+ o utilizador der algum comando que implique acesso á rede.
+ ex: ping -c 1 <hostname>.
+
+ [normalmente existe um delay de 3-4 segundos no establecimento da ligação]
+
+
+ BUGS:
+ - o driver não permite um reload do firmware após o firmware ter sido
+ carregado.
+ - existem erros de comunicação driver/placa que se exibem em
+ situações de tráfego intenso. (alguns deste problemas podem mesmo ser
+ provocados por bugs no firmware da placa)
+
+
+ Mailing lists:
+ isdn4linux - isdn4linux@hub-wue.franken.de    (majordomo)
+
+ enviar:
+ - informação sobre bugs, comentários, sujestões e patchs ao código p/
+   roque@di.fc.ul.pt.
+
+ - flames p/
+   /dev/null
+
+
+
+						Pedro.
+

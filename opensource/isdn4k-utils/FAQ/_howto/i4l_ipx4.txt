@@ -1,0 +1,123 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA25458; Mon, 10 Feb 1997 02:33:01 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id CAA16866; Mon, 10 Feb 1997 02:34:07 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vtj9I-000oKia; Mon, 10 Feb 97 00:59 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vtj8I-001Ibia; Mon, 10 Feb 97 00:58 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vtj8D-001IbgE; Mon, 10 Feb 97 00:58 MET
+Received: from frog.informatik.uni-stuttgart.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vtj7p-000BikC; Mon, 10 Feb 97 00:57 MET
+Received: from localhost (hgfelger@localhost)
+          by frog.informatik.uni-stuttgart.de (8.8.5/8.8.4) with SMTP
+	  id AAA00744 for <isdn4linux@hub-wue.franken.de>; Mon, 10 Feb 1997 00:57:17 +0100
+X-Authentication-Warning: frog.informatik.uni-stuttgart.de: hgfelger owned process doing -bs
+Date: Mon, 10 Feb 1997 00:57:16 +0100 (CET)
+From: Hartwig Felger <hgfelger@trick.informatik.uni-stuttgart.de>
+X-Sender: hgfelger@frog.informatik.uni-stuttgart.de
+Cc: isdn4linux-Mialinglist <isdn4linux@hub-wue.franken.de>
+Subject: Re: IPX / callback und anderes mit neuem ipppd
+In-Reply-To: <Pine.LNX.3.95.970208201737.771A-100000@frog.informatik.uni-stuttgart.de>
+Message-Id: <Pine.LNX.3.95.970210004715.538A-101000@frog.informatik.uni-stuttgart.de>
+Mime-Version: 1.0
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323584-669190516-855532636=:538"
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+  Send mail to mime@docserver.cac.washington.edu for more info.
+
+--8323584-669190516-855532636=:538
+Content-Type: TEXT/PLAIN; charset=ISO-8859-1
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+
+Salut,
+On Sat, 8 Feb 1997, Hartwig Felger wrote:
+
+> Sorry,
+> On Sat, 8 Feb 1997, Raphael Leiteritz wrote:
+>=20
+> > | Sorry beim Bauen ist mir eingefallen, da=DF f=FCr den USE_MS_DNS ein =
+kleiner
+> > | Patch n=F6tig ist:
+> > | -------------o<------------
+> > | pp4i4k-2.2.6g-alpha/ipppd.2.2.6g/ipcp.h
+> > | 58a59,60
+> > |>   /*@@@ added by dy */
+> > |>     u_int32_t winsaddr[2];   /* Primary and secondary MS WINS entrie=
+s */
+> > | -------------->o-----------
+> > Hattest Du denn ansonsten Erfolg? Bei mir hat es naemlich immer
+> > noch nicht geklappt (s. meine mail an die Liste).
+> das war wohl nur ein Patch um copilieren zu k=F6nnen. Irgendwo in meinem
+> Win95 mu=DF wohl noch ein Verweis auf den Firmen-DNS sein, denn ich kann =
+mit
+> Namen arbeiten. Wenn ich ins Log schaue, steht da aber =FCberall REJ. Ich
+> konnte aber weder in der Registry noch in irgendeiner .INI was finden. Di=
+e
+> Frage w=E4re nat=FCrlich, ob Win95 auch nicht einfach den Rechner nimmt, =
+wo
+> man sich gerade eingew=E4hlt hat. Da ist bei uns auch der DNS drauf. ????
+>=20
+> Gru=DF Hartwig :-(
+>=20
+> 768/CA2159D9 Hartwig Felger <hgfelger@trick.informatik.uni-stuttgart.de>
+> Fingerprint: 18 49 5E 6E 4E 47 3D F5  28 3E 11 C9 05 26 F3 46
+Ich habe heute 'mal die pppd-2.2.0f mit dem ipppd verglichen, bez=FCglich
+des MS-DNS und MS-WINS. Ich habe dann das ipppd angepa=DFt und siehe da die
+Logs sagen nicht mehr REJ. Ich mich dann per IPX eingew=E4hlt. Nachdem ich
+vorher alle =FCbrigen festen DNS-Eintragungen aus win95 entfernnt hatte,
+ging der Zugriff perfekt. Der restliche Patch ist angeh=E4ngt!
+
+Achtung: damit IPX mit ipppd und win95 =FCberhaupt geht, m=FCssen die beide=
+n
+Workarounds eingebracht werden, die ich zusammen schon gemailt habe.
+
+Viel Spa=DF ;-)
+
+P.S.: Ich habe heute schon meine Killerapplikation per ipppd/IPX-Dialin
+laufen lassen: NWADMIN f=FCr einen NW4.10. Das Laden des Programms hat zwar
+fast 5 Minuten gedauert, aber dann kann man arbeiten. Ich werde mir das
+Programm eben lokal installieren.. Dieser Test impliziert, da=DF =FCber
+diese Verbindung auf NDS zugegriffen werden kann.
+
+768/CA2159D9 Hartwig Felger <hgfelger@trick.informatik.uni-stuttgart.de>
+Fingerprint: 18 49 5E 6E 4E 47 3D F5  28 3E 11 C9 05 26 F3 46
+
+
+--8323584-669190516-855532636=:538
+Content-Type: APPLICATION/octet-stream; name="patch-ms-dns.gz"
+Content-Transfer-Encoding: BASE64
+Content-ID: <Pine.LNX.3.95.970210005716.538B@frog.informatik.uni-stuttgart.de>
+Content-Description: gziped patch f|r option.c
+
+H4sICN1h/jIAA3BhdGNoLW1zLWRucwCdlG1r2zAQgD+3v+IIjNqu3cQJSZaG
+DMbGIFBKoIwNSgmurcQCxxKS0qyU/PedFPktTZu0+mL5dPfodG+e5wHjirJc
+XsVXTNDl2d06h1/kEWAE4fC627nuDiEcjYbnQRBUuvtqg+v+aKfmNZf+h25n
+5HfDr2AEmrMTjAD3wTmAVJGiMdBcgSSKch6JaAXz+cxxUObHaSTQ1nXHr3R5
+xGPxzFWpfEiJJhk5iZayLGGLxUm6SS6jJBEHdS/3dDf0HeUGWBATgH9cMMXe
+fdRaErqg/JjOggqpjqit3j/mm4wtGxqHctzrD/zeoF/luNcfomBY5Fivl5bN
+bcuH0K/leuufnbU9LQD0VcaCYkrNCVEEA9UuAUXCkdDx6xWACCTMvs/QTsoN
+E4kEkpsjktQJuhqq+/Fn60NjIcZUjKIrAhldUQWOJDHLE+nWQbZaSpb938cZ
+oH5ZUV2Ge5C4kgGWVQm0JVYDIunn7R1oKZESFkyASglwQsSFBEy3pl1WNF14
+Ja6owibvz/QosHAvZ1iZiNORbxRqQdTuURk9YvCms78/ZuBEeaK3jVcGlvJp
+TEmyPdDyO37VEc34IyuOsszkGg8d17xxOjNPlnW3qmapeFaASOToaBiBNl8I
+toJorVIUoZ8aKsiKKROwgzMw7PZx5vUGtSkYdocoGozqPYIL8w4T8Jz1HPut
+150r8NyUB9/SuXZ6bBW3VSToAhzKYz7Hl7KNHdL3RiIzph6ubCXddx5gMoGO
+Cy/VbScbar/GtroKu02Uq5PMrM9AMoziR28PP3f7vtkWv3YrML0iByc009oe
+tD196jUmdmBaV/eEFhWN4hDpGt32m7Nez0oonSoGfiSWT9ryxfpRpVjbFY5K
+JdaxHhhSEaR4KR9Xrhs/JngdUaYenB20sNW1sFOZQBC65U32yEk5Gi/1tJLq
+8TnHCWsBrra4/X1z07DRaxfiORGCCadF86coo0k5M6oxffFFXphOsJPHGrb8
+Jq6xms7bZbPTqYm31dYG4O3+eJXto/1RJK3eIM1SO8mykcQjRfq2YdkkH/Qg
+/KwHNcMi2OVoqTeKPfgPxzKysjUKAAA=
+--8323584-669190516-855532636=:538--
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

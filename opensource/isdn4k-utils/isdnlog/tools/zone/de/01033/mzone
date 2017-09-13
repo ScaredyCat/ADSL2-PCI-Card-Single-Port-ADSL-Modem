@@ -1,0 +1,115 @@
+#!/usr/bin/perl -w
+
+# zones.de mit rdde erzeugt
+# 12345:Ort:C:num ...:R:num ...
+
+use strict;
+my($in, $outz, $outc, $expand_all);
+$|=1;
+
+$expand_all=1;
+$in='zneu.de9';
+$outz='zoneall';
+#$outz .= '.all' if($expand_all);
+$outc='code';
+
+my($CITY, $REGIO, $FERN);
+$CITY=2;
+$REGIO=3;
+$FERN=4;
+
+open(IN, $in) || die("Can't read $in");
+open(OZ, ">$outz.temp") || die("Can't write $outz.temp");
+open(OC, ">$outc") || die("Can't write $outc");
+
+my($i, $num, @all, %all);
+$i=0;
+print "Making $outc...\n";
+while(<IN>) {
+    print ("$i\r") if($i%100==0);
+    ($num) = split(/:/);
+    push(@all, $num);
+    $all{$num}=1;
+    print OC "$num\n";
+    $i++;
+}    
+close(OC);
+print "Making $outz...\n";
+seek(IN,0,0);
+my(@fields,@cnum,@rnum,$f, %done, %first,$c);
+$i=0;
+while(<IN>) {
+    chomp;
+    print "$i\r";
+    $i++;
+    (@fields) = split(/:/);
+    @cnum=@rnum=();
+    %first=%done=();
+    $num=$fields[0];
+    if ($fields[2] eq 'C') {
+	(@cnum) = split(/ /,$fields[3]);
+	if ($fields[4] eq 'R') {
+	    (@rnum) = split(/ /,$fields[5]);
+	}
+    }	
+    elsif ($fields[2] eq 'R') {
+        (@rnum) = split(/ /,$fields[3]);
+    }
+    foreach $f (@cnum) {
+	print1($num, $f, $CITY);
+    }	
+    foreach $f (@rnum) {
+	print1($num, $f, $REGIO);
+    }	
+    if ($expand_all) {
+        foreach $f (@all) {
+	    next if ($done{$f});
+	    $c=substr($f,0,1);
+	    next if ($done{$c});
+	    if ($first{$c} && $f gt $num) {
+		print1($num, $f, $FERN);
+	    }	
+	    elsif (!$done{$c}) {
+		print OZ "$num $c $FERN\n";
+		$done{$c}=1;
+	    }	
+	}    
+    }	
+    else {
+	print OZ "$num XXXXX $FERN\n";
+    }	
+}    
+close(IN);
+close(OZ);
+system("export TMPDIR=.;sort <$outz.temp|uniq>$outz");
+unlink("outz.temp");
+    
+sub print1 {
+    my($from, $to, $z) = @_;
+    my($t, @at);
+    return if($from eq $to);
+    # look if to is a shortcut
+    if ($all{$to}) {
+	return if($to eq $from);
+	$done{$to}=1;
+	($to, $from) = ($from, $to) if($from gt $to);
+	$first{substr($to,0,1)}=1;
+	print OZ "$from $to $z\n";
+    }
+    else {
+	@at = grep(/^$to/, @all);
+	$done{$to} = 1;
+	foreach $t (@at) {
+	    next if($t eq $from);
+	    $done{$t}=1;
+	    if($from gt $t) {
+		$first{substr($from,0,1)}=1;
+		print OZ "$t $from $z\n";
+	    }	
+	    else {
+		$first{substr($t,0,1)}=1;
+		print OZ "$from $t $z\n";
+	    }
+	}	
+    }	
+}    

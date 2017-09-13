@@ -1,0 +1,235 @@
+
+# $Id: README.LZS,v 1.4 1999/06/21 13:28:31 hipp Exp $
+
+*** ALPHA *** ALPHA *** ALPHA *** ALPHA *** ALPHA *** ALPHA *** ALPHA ***
+
+
+     LZS (aka Stac aka HiFn) compression support for I4L SyncPPP
+
+
+Some months ago I picked up a question in the de.alt.isdn4linux newsgroup
+asking "Is there Stac compression support for I4L ?". Due to a strange
+coincidence, I had found out before on this same day that RFC1974 is a
+somewhat complete documentation of the LZS CCP stuff and contains enough
+information to code a decompressor and compressor. Thus I answered the
+question like "a decompressor requires only some effort, a compressor
+is somewhat more complicated but clearly possible". At this time the real
+problem was that the isdn_ppp stuff in I4L was not ready for CCP modules at
+all, most hooks were still missing. But then Michael Hipp implemented
+the hooks in the newer CVS source of I4L and got BSD compression basically
+working, so the ball was at my foot again. Thus I decided to code that
+decompressor and eventually code a compressor, too.
+
+
+                            STATUS
+
+
+This code is very early alpha. The LZS compressor itself is quite complete
+IMHO, but we had to expand and change some portions of isdn_ppp, mainly
+those dealing with Reset Requests and -Acks. This code is raw and not yet
+finished, primarily because I didn't want to hack around in isdn_ppp but
+just wanted to write the LZS module. But LZS CCP is more complicated than
+most other CCP engines and required those changes. I hope someone with more
+insight into isdn_ppp will adopt and complete them. The API to the com-
+pressor could also get a general facelift, but one thing after the other.
+
+
+                           INSTALL
+
+
+The easiest way to build the module is to copy isdn_lzscomp.c to
+linux/drivers/isdn/ and to edit the Makefile in this directory, adding
+a line for LZS like:
+
+      ifdef CONFIG_ISDN_PPP
+        O_OBJS += isdn_ppp.o
+        M_OBJS += isdn_bsdcomp.o
++       M_OBJS += isdn_lzscomp.o
+      endif
+
+The module will be built on the next "make modules". If you want to use
+any CCP method with I4L, you must first load the relevant module(s). Then
+you start the connection. You may need to give options to ipppd in order
+to make sure negotiations succeed, see below.
+
+
+                       Supported Modes
+
+
+This set of sources supports LZS check mode 3 (the default of RFC1974)
+and LZS check mode 4 (the derivative used by Micro$oft in Win0.95). If your
+peer is an Ascend Max, the correct options are "Stac-9" for mode 3 and
+"MS-Stac" for mode 4. Ask your ISP for what their NAS speaks. Either mode
+is Ok, but if you insist on non-M$, I'm virtually yours.
+
+Note: If your peer sends you CCP with the LZS identity (0x11) but a
+      length of 6 bytes, it is not compatible with RFC1974 but uses
+      a proprietary predecessor of it. Typical case is an Ascend Max
+      that has never been set to something else but the default "Stac"
+      in "Answer" and doesn't override this per-profile, either. Ask
+      your ISP about changing this, nobody (but other Ascend boxes)
+      will ever be able to use this compression. Especially not Win95,
+      if the ISP wants interoperability with Win95 he needs to set
+      MS-Stac, and then this module works as well.
+
+If the NAS you are talking to will not negotiate gracefully you may want
+to wire the exact mode ipppd is requesting. For instance, an Ascend Max
+with a profile set to Stac-9, when asked for any number of histories but
+one or asked for check mode 4 will not NAK these options with the ones
+it likes better, but will reject LZS altogether. Your only chance to get
+it to negotiate LZS is to use the exact options it wants in the first
+place. To achieve that, ipppd got a new parameter:
+
+	lzs [recv-hists[:recv-mode[,xmit-hists[:xmit-mode]]]]
+
+		recv-hists	Downstream # of Histories	[8]
+		recv-mode	Mode used downstream		[3]
+		xmit-hists	Upstream # of Histories		[recv-hists]
+		xmit-mode	Upstream mode			[recv-mode]
+
+This option is, as always, accompanied by
+
+	-lzs
+	nolzs
+
+to prevent any LZS negotiations from happening. Some examples:
+
+	lzs 1			Mode 3 with 1 hist in both directions. This
+				will negotiate against a Max at Stac-9
+
+	lzs 1:4			Mode 4 with 1 hist in both directions. This
+				will negotiate against a Max at MS-Stac
+
+BTW, I don't know whether multi-history support works. I have no peer to
+test against. If your peer can send more than one history please inform
+me of the results. LZS4I4L cannot support more than one history in the
+compressor, at least not for some time to come.
+
+
+                        Module options
+
+
+When loading the isdn_lzscomp module, some options are available to tweak
+it for ones personal desires:
+
+	comp=n			n=0..9 [0]
+				Specifies the level of compression to be used.
+				The compressor is less complete compared to
+				the decompressor, play around with care.
+
+				0:	No compression at all.
+				1:	Absolutely minimal compression.
+				...
+				7:	Good compression.
+				8:	Heavy compression.
+				9:	Best compression, but eats more
+					cycles than most CPUs can dream of.
+
+				If you want to try upstream compression,
+				start with 7. Try 9 only for fun.
+
+	debug=n			n=0..3
+				Increasing levels of debug messages from
+				the LZS code. 3 includes full packet dumps
+				before and after compression and decompression.
+				More than 1 is overkill if you don't hunt
+				bugs.
+
+	tweak=n			n=tweak-flag-mask
+				Tweaks some aspects of the module to behave
+				strange or even violate RFCs in order to talk
+				to RFC-impaired peers. For Ascend, use 0x7.
+				If you want to know why, UTSL.
+
+
+
+                        PATENT ISSUES (argh)
+
+
+Please check whether using this code constitutes a crime in your country.
+While I just implemented a module that can source and sink the data format
+described by Stac/HiFn in RFC1974, they claim to have US Patents on
+practically every aspect of this format. Thus I assume that selling this
+code violates these US Patents. As this code is
+
+a) Freeware under GPL and
+b) Developed in Germany
+
+I hope I wont get any terror from the lawyers of the patent holders. I'm
+sure that the availability of this code will actually help HiFn sales
+because more users (the Linux community) will ask their ISPs for LZS
+support on their NASes and these NASes will contain HiFn chips for that
+purpose. Then again, after they claimed even deflate would be covered by
+their patents and tried to sue Netscape for using deflate in the PNG code
+of Mozilla, they are probably not on the planet for good will games.
+We'll see.
+
+FMI, surf www.patents.ibm.com and search for "stac".
+
+                               BUGS
+
+
+I said it's ALPHA already, didn't I ? There are bugs for sure. Because
+this is a kernel module, chances are that they crash the whole system.
+I _have_ seen crashes. They mostly appeared when a connection severly
+hung due to non-working reset handling. Seems to be a NULL pointer de-
+reference is still hiding somewhere in isdn_ppp.c or even isdn_lzscomp.c.
+I've got the feeling those crashes occur when unloading isdn_lzscomp
+but dunno exactly. Then again, I've done large downloads and surfed the
+net for more than a hour without any problem. Your milage may vary.
+
+
+                               TODO
+
+
+- Cleanup MTU weirdness in the compressor
+- Implement the remaining modes from RFC1974 provided anyone finds a peer
+  NAS that speaks one of them. I don't expect that ever happens ;)
+- Thoroughly revise and clean up the changes done to isdn_ppp in order
+  to get in-kernel CCP reset handling. I assume the bug mentioned above
+  sits there.
+- Fix the bugs you find.
+
+
+                               FMI
+
+
+The source code isdn_lzscomp.c is heavily commented (so I can still read it
+in a month). It contains a thorough description of the compression algo-
+rithm used and how I came to it. This in turn involves Credits to the
+net.persons who helped me with getting that compressor faster. When we
+are at it:
+
+
+                             Credits
+
+Phil Katz and L. Peter Deutsch
+	for the zlib and deflate format and specifications
+
+Jean-loup Gailly and Mark Adler
+	for deflate, gzip and zlib as well as the comp.compression FAQ
+
+David Carr
+	for a lot of general tips, hints and tricks speeding up a
+	compressor, pointers to freeze and the sigma buffer and especially
+	explaining to me the concept of the barrier hash until I finally
+	got it
+
+Leonid Broukis
+	for the freeze implementation with the sigma buffer which
+	inspired my 8-buffer and for pointing out how memcmp(3) can
+	be used in match searching
+
+Ojala Pasi 'Albert'
+	for general tips and his website which was the first reading
+	I had about speeding up a compressor beyond brute force
+
+
+                             Contact
+
+
+You can reach me by EMail: beck@ibh.de
+Discussion will take place at de.alt.comm.isdn4linux, the USENET mirror
+of the official I4L Mailing List.
+Check http://www.ibh-dd.de/~beck/stuff/lzs4i4l/ for new versions.
+

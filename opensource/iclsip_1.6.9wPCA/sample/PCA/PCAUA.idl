@@ -1,0 +1,19 @@
+
+	// PCAUA.idl : IDL source for PCAUA.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (PCAUA.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+[
+	uuid(1C52A891-BB37-44CA-898E-026164B43E02),
+	version(1.0),
+	helpstring("PCAUA 1.0 Type Library")
+]
+library PCAUALib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+};
+
+	

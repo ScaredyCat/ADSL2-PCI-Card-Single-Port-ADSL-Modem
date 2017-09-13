@@ -1,0 +1,140 @@
+#
+# $Id: README,v 1.15 2000/06/20 10:30:39 keil Exp $
+#
+This is the README file for the "isdn4k-utils" package from "The i4l-crew".
+
+This package contains the following stuff:
+
+1. Runtime configuration tools:
+  isdnctrl,   general link-level setup utility.
+  iprofd,     daemon for realizing AT&W0 on ttyI's.
+  icnctrl,    setup utility for the icn driver.
+  hisaxctrl,  setup utility for the HiSax driver.
+  pcbitctl,   setup utility for the pcbit driver.
+  avmcapictrl setup utility for the avmb1 driver.
+  actctrl     setup utility for the act2000 driver.
+  eiconctrl   setup utility for the eicon driver.
+  divertctrl  setup utility for dss1 diversion services
+
+2. Tools for monitoring activity:
+  imon,       a ncurses based utility for monitoring ISDN-activities.
+  imontty,    a tty based utility for monitoring ISDN-activities.
+  isdnlog,    a set of utilities for connection logging.
+  ipppstats   a utility for showing syncPPP statistics.
+  xisdnload,  an xload-like meter.
+  xmonisdn,   a utility for monitoring and controlling ISDN-activity.
+  isdnmon,    a Tcl/Tk based utility for monitoring ISDN-activities.
+
+3. Applications:
+  vbox,       an answering machine/voice mailbox.
+  ipppd,      daemon need for syncPPP and MPP.
+
+4. Miscellaneous:
+  scripts/makedev.sh   for creating the ISDN device files under /dev .
+
+5. Documentation:
+  A very detailed FAQ and the generic manpages ttyI.4, isdninfo.4,
+  isdn_audio.4 and isdn_cause.7.
+  Manpages for the above utilities:
+  actctrl.8 avmcapictrl.8, hisaxctrl.8 icnctrl.8, eiconctrl.8, imon.8, ipppd.8,
+  ipppstats.8, iprofd.8, isdnctrl.8, isdnlog.8, isdnrep.1,
+  isdnrate.1, rate-files.5, xisdnload.1x and xmonisdn.1x
+
+IMPORTANT:
+  This will be the last release of isdn4k-utils as is. From now 
+  (February 2000) on, the package will be splitted into the 
+  following packages:
+
+  base: common configuration tools and Documentation
+  isdnlog: D-Channel logging, charge calculation etc.
+  audio: the answering machine vbox
+  additional: ipppcomp ipppstats iprofd xisdnload xmonisdn
+
+  hardware-dependent packages:
+  hisax:   tools for passive isdn cards
+  avmb1:   tools for the AVM B1/T1/M1/M2 *active* cards
+           (not for Fritz!classic, Fritz!pnp, Fritz!PCI, these are in hisax)
+  act2000: tools for IBM Active 2000
+  eicon:   tools for Eicon.Diehl *active* cards
+  icn:     tools for ICN 2B and 4B 
+  pcbit:   tools for PCBIT-D
+  loop:    tools for the loopback isdn device
+
+  These packages will appear on ftp.isdn4linux.de when they are ready.
+
+COPYRIGHT/COPYING:
+
+  Until explicitely stated, all programs in this package can be freely
+  redistributed and/or modified under the terms of the GNU General
+  Public License as published by the Free Software Foundation; either
+  version 2, or (at your option) any later version.
+
+  This package is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details. (File: COPYING)
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
+
+System prerequisites:
+
+  To use this package, you need a kernel with an ISDN-subsystem configured.
+  To get a such a kernel, take a clean standard-kernel (Version > 2.0.37 or
+  > 2.2.14 resp.) enable the isdn-related features you want and build the
+  kernel as usual. Older kernels may work as well, but bugs have been found 
+  and fixed, so better use the recommended versions (or above)
+
+3. Configuration, Compilation.
+
+   Run "make config"
+
+   This will run an interactive configuration tool and the various
+   configuration-scripts for each sub-package. (You may know that
+   tool from kernel menuconfig.)
+   There is a global configuration directory, where most programs
+   expect their configuration files. The default is /etc/isdn.
+
+   - Alternatively you can edit the .config file by hand (once that
+     has been created once with "make config"), and run "make subconfig"
+     instead. This might be useful if you want to automate the building
+     of the package, e.g. for a Red Hat rpm or a Debian deb.
+   
+   Run "make"
+
+   This builds all previously selected utilities.
+
+4. Installation
+
+   For the following steps, root permissions are necessary
+
+   Install the utilities, the man pages and config-files:
+
+     make install
+
+   The config files usually are installed in /etc/isdn if not
+   specified otherwise during configuration.
+
+   If no existing ISDN devices in /dev are detected (via an admittedly
+   simple test), script/makedev.sh is run during "make install". Check
+   that the permissions / groups are suitable for your needs.
+   You can run the makedev.sh script again if necessary.
+
+5. Application
+
+   The directory ./etc contains an example startup-script which gets
+   not installed automatically, because it MUST BE CONFIGURED IN ANY
+   CASE! Please don't try to connect to the Internet without setting
+   your own IP-addresses. This script is intended to be used with
+   the modularised version of the ISDN-subsystem. Refer to the
+   Documentation/isdn subdirectory of your kernel-source-tree for
+   more information on configuring Lowlevel drivers.
+
+   For the utilities refer to the man pages or look into their
+   subdirectories for Documentation.
+
+   For tips, troubleshooting etc. look into the FAQ subdirectory.
+
+ -Fritz

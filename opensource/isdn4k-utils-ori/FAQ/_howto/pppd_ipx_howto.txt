@@ -1,0 +1,80 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA57240; Mon, 3 Feb 1997 02:10:16 +0100
+Received: from rachael.franken.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id CAA02823; Mon, 3 Feb 1997 02:11:22 +0100
+Received: from oops.franken.de by rachael.franken.de with smtp
+	(Smail3.1.29.1 #8) id m0vrBVK-000oIZa; Mon, 3 Feb 97 00:39 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vrBSm-001IbJa; Mon, 3 Feb 97 00:36 MET
+Received: from hub-wue.franken.de by oops.franken.de  with smtp
+	(Linux Smail3.1.29.1 #1) id m0vrBSf-001IbGE; Mon, 3 Feb 97 00:36 MET
+Received: from oops.franken.de by hub-wue.franken.de with smtp
+	(Smail3.1.29.1 #1) id m0vrBTn-000Bm0C; Mon, 3 Feb 97 00:37 MET
+Received: by oops.franken.de (Linux Smail3.1.29.1 #1)
+	id m0vrBSa-001IbGE; Mon, 3 Feb 97 00:36 MET
+To: isdn4linux@hub-wue.franken.de
+Xref: oops de.alt.comm.isdn4linux:1297
+From: Jens Brambring <jens.brambring@p-net.de>
+Newsgroups: de.alt.comm.isdn4linux
+Subject: IPX/SPX ueber isdn4linux und WIN95
+Date: Mon, 03 Feb 1997 01:33:41 +0100
+Organization: Customer of EUnet Germany; Info: info@Germany.EU.net
+Lines: 41
+Distribution: world
+Message-Id: <32F53265.5E65@p-net.de>
+Nntp-Posting-Host: peu-62.d.eunet.de
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 3.01Gold [de] (Macintosh; I; 68K)
+Sender: owner-isdn4linux@hub-wue.franken.de
+Precedence: bulk
+Status:   
+
+Hallo, es geht!!!!
+
+Man muss nur den normalen pppd auf einem isd4linux ttyIx verwenden!
+(Setzt natuerlich einen mgetty oder aehnliches auf dem device voraus)
+
+Zunaechst habe ich mir einen User ppptest eingerichtet dessen
+startshell auf /usr/sbin/diplogin eingetragen ist (/etc/passwd), 
+
+Inhalt der Datei diphosts in /etc:
+ppptest::192.9.215.80:192.9.215.70:255.255.255.0::PPP,296
+
+Inhalt der Datei /etc/ppp/options:
+        -detach 
+        192.9.215.80:192.9.215.70 
+         defaultroute 
+         mru 1524
+         debug
+         /dev/ttyI1 
+         ipx-routing 2
+         ipxcp-max-failure 20
+         ipx-node 4:5
+         ipx-network 0x3000
+
+
+Hierbei scheint die Angabe von ipx-network sehr wichtig zu sein!!!!!
+Die ip-Adressen koennen vermutlich entfallen!
+
+Dann legt man auf den ethernetstrang ein normales ipxinterface an
+und startet ipxd (aus dem ipxripd).
+
+Unter Windows muss dann beim DFUE-Netzwerk noch ein entsprechendes
+script eingerichtet
+werden und dann sollte es eigentlich funken.
+
+Bin leider schon etwas Muede vom ganzen Probieren, werde eventuell noch
+mal eine
+Ausfuehrliche Beschreibung senden.
+
+Bin aber fuer alle Fragen offen!
+
+Ciao, Jens
+---------------------------------------------------
+To remove yourself from this mailing list send
+email to majordomo@hub-wue.franken.de containing
+"unsubscribe isdn4linux <your_email_address>" in
+the message body [-vg]

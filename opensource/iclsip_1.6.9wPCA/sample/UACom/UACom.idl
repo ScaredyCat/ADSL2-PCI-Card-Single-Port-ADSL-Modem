@@ -1,0 +1,157 @@
+// UACom.idl : IDL source for UACom.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (UACom.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "olectl.h"
+	
+
+	[
+		object,
+		uuid(4A91A134-1B60-497E-87EE-23C97B2A6D84),
+		dual,
+		helpstring("IUAControl Interface"),
+		pointer_default(unique)
+	]
+	interface IUAControl : IDispatch
+	{
+		[id(1), helpstring("method Initialize")] HRESULT Initialize([in] BSTR realm, [in] BSTR userid, [in] BSTR password);
+		[id(2), helpstring("method CancelCall")] HRESULT CancelCall();
+		[id(3), helpstring("method DropCall")] HRESULT DropCall([in] int dlgHandle);
+		[id(4), helpstring("method AnswerCall")] HRESULT AnswerCall([in] int dlgHandle);
+		[id(5), helpstring("method RejectCall")] HRESULT RejectCall([in] int dlgHandle);
+		[id(6), helpstring("method MakeCall")] HRESULT MakeCall([in] BSTR dialURL, [out,retval] int* retval);
+		[id(7), helpstring("method ShowPreferences")] HRESULT ShowPreferences([out,retval] BOOL* pChanged);
+		[id(8), helpstring("method Test")] HRESULT Test([in] BSTR tmpStr);
+		[id(9), helpstring("method HoldCall")] HRESULT HoldCall();
+		[id(10), helpstring("method UnHoldCall")] HRESULT UnHoldCall([in] int dlgHandle);
+		[id(11), helpstring("method UnAttendXfer")] HRESULT UnAttendXfer([in] int dlgHandle, [in] BSTR xferURL);
+		[id(12), helpstring("method AttendXfer")] HRESULT AttendXfer([in] int dlgHandle1, [in] int dlgHandle2);
+		[id(13), helpstring("method GetRemoteParty")] HRESULT GetRemoteParty([in] int dlgHandle, [out,retval] BSTR* retval);
+		[id(14), helpstring("method StartLocalVideo")] HRESULT StartLocalVideo();
+		[id(15), helpstring("method StopLocalVideo")] HRESULT StopLocalVideo();
+		[id(16), helpstring("method Register")] HRESULT Register();
+		[id(17), helpstring("method UnRegister")] HRESULT UnRegister();
+		[id(18), helpstring("method RegQuery")] HRESULT RegQuery();
+		[id(19), helpstring("method SwitchLocalVideo")] HRESULT SwitchLocalVideo();
+		[id(20), helpstring("method Stop")] HRESULT Stop();
+		[propget, id(21), helpstring("property LocalIP")] HRESULT LocalIP([out, retval] BSTR *pVal);
+		[propput, id(21), helpstring("property LocalIP")] HRESULT LocalIP([in] BSTR newVal);
+		[id(22), helpstring("method SendDTMF0")] HRESULT SendDTMF0();
+		[id(23), helpstring("method SendDTMF1")] HRESULT SendDTMF1();
+		[id(24), helpstring("method SendDTMF2")] HRESULT SendDTMF2();
+		[id(25), helpstring("method SendDTMF3")] HRESULT SendDTMF3();
+		[id(26), helpstring("method SendDTMF4")] HRESULT SendDTMF4();
+		[id(27), helpstring("method SendDTMF5")] HRESULT SendDTMF5();
+		[id(28), helpstring("method SendDTMF6")] HRESULT SendDTMF6();
+		[id(29), helpstring("method SendDTMF7")] HRESULT SendDTMF7();
+		[id(30), helpstring("method SendDTMF8")] HRESULT SendDTMF8();
+		[id(31), helpstring("method SendDTMF9")] HRESULT SendDTMF9();
+		[id(32), helpstring("method SendDTMFP")] HRESULT SendDTMFP();
+		[id(33), helpstring("method SendDTMFS")] HRESULT SendDTMFS();
+		[propget, id(34), helpstring("property bSingleCall")] HRESULT bSingleCall([out, retval] BOOL *pVal);
+		[propput, id(34), helpstring("property bSingleCall")] HRESULT bSingleCall([in] BOOL newVal);
+		[id(35), helpstring("method Reset")] HRESULT Reset();
+		[id(36), helpstring("method GetAudioType")] HRESULT GetAudioType([out,retval] int *retval);
+		[id(37), helpstring("method GetVideoType")] HRESULT GetVideoType([out,retval] int *retval);
+		[id(38), helpstring("method GetVideoSize")] HRESULT GetVideoSize([out,retval] int *retval);
+		[id(39), helpstring("method GetRemotePartyDisplayName")] HRESULT GetRemotePartyDisplayName([in] int dlgHandle, [out,retval] BSTR* retval);
+		[id(40), helpstring("method GetMediaReceiveQuality")] HRESULT GetMediaReceiveQuality( [out,retval] int* retval);
+		[id(41), helpstring("method StartRemoteVideo")] HRESULT StartRemoteVideo([in] int x, [in] int y, [in] int scale);
+		[id(42), helpstring("method StopRemoteVideo")] HRESULT StopRemoteVideo();
+		[id(43), helpstring("method StartLocalVideoEx")] HRESULT StartLocalVideoEx([in] int nhwnd, [in] int x, [in] int y, [in] int scale);
+		[id(44), helpstring("method StartRemoteVideoEx")] HRESULT StartRemoteVideoEx([in] int nhwnd, [in] int x, [in] int y, [in] int scale);
+		[id(45), helpstring("method SendText")] HRESULT SendText([in] BSTR dialURL, [in] BSTR tmpstr);
+		[id(46), helpstring("method AddBuddy")] HRESULT AddBuddy([in] BSTR buddyURI);
+		[id(47), helpstring("method AuthorizeBuddy")] HRESULT AuthorizeBuddy([in] BSTR buddyURI);
+		[id(48), helpstring("method UnauthorizeBuddy")] HRESULT UnauthorizeBuddy([in] BSTR buddyURI);
+		[id(49), helpstring("method DelBuddy")] HRESULT DelBuddy([in] BSTR buddyURI);
+		[id(50), helpstring("method BlockBuddy")] HRESULT BlockBuddy([in] BSTR buddyURI);
+		[id(51), helpstring("method UnBlockBuddy")] HRESULT UnBlockBuddy([in] BSTR buddyURI);
+		[id(52), helpstring("method GetBuddyCount")] HRESULT GetBuddyCount([out, retval] int* retval);
+		[id(53), helpstring("method GetBuddyURI")] HRESULT GetBuddyURI([in] int number, [out, retval] BSTR* retval);
+		[id(54), helpstring("method UpdateBasicStatus")] HRESULT UpdateBasicStatus([in] BOOL bOpen);
+		[id(55), helpstring("method GetBuddyINSubState")] HRESULT GetBuddyINSubState([in] BSTR buddyURI, [out, retval] int* SubState);
+		[id(56), helpstring("method GetBuddyOUTSubState")] HRESULT GetBuddyOUTSubState([in] BSTR buddyURI, [out, retval] int* SubState);
+		[id(57), helpstring("method GetBuddyBasicStatus")] HRESULT GetBuddyBasicStatus([in] BSTR buddyURI, [out, retval] int* BasicStatus);
+		[id(58), helpstring("method SubscribeBuddy")] HRESULT SubscribeBuddy([in] BSTR buddyURI);
+		[id(59), helpstring("method UnsubscribeBuddy")] HRESULT UnsubscribeBuddy([in] BSTR buddyURI);
+		[id(60), helpstring("method IsBuddyBlock")] HRESULT IsBuddyBlock([in] BSTR buddyURI, [out, retval] BOOL* retval);
+		[id(61), helpstring("method IsBuddyAuthorized")] HRESULT IsBuddyAuthorized([in] BSTR buddyURI, [out, retval] BOOL* retval);
+		[id(62), helpstring("method SendInfo")] HRESULT SendInfo([in] BSTR bstrURL, [in] BSTR bstrContentType, [in] BSTR bstrBody);
+		[id(63), helpstring("method SubscribeWinfo")] HRESULT SubscribeWinfo([in] BSTR buddyURI);
+		[id(64), helpstring("method SubscribePres")] HRESULT SubscribePres([in] BSTR buddyURI);
+		[id(65), helpstring("method SubscribeResLst")] HRESULT SubscribeResLst([in] BSTR ResourceURI);
+		[id(66), helpstring("method UnsubscribeWinfo")] HRESULT UnsubscribeWinfo([in] BSTR buddyURI);
+		[id(67), helpstring("method UnsubscribePres")] HRESULT UnsubscribePres([in] BSTR buddyURI);
+		[id(68), helpstring("method UnsubscribeResLst")] HRESULT UnsubscribeResLst([in] BSTR ResourceURI);
+		[id(69), helpstring("method PublishStatus")] HRESULT PublishStatus([in] BSTR szURI, [in] BOOL bStatus);
+	};
+
+[
+	uuid(37F06A57-5ED1-4F73-9BEA-92050B195C20),
+	version(1.0),
+	helpstring("UACom 1.0 Type Library")
+]
+library UACOMLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(3DFB7930-376E-44FD-822A-617CC4764FFA),
+		helpstring("_IUAControlEvents Interface")
+	]
+	dispinterface _IUAControlEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method OnShowText")] HRESULT ShowText(BSTR strText);
+		[id(2), helpstring("method OnRingback")] HRESULT Ringback(int dlgHandle);
+		[id(3), helpstring("method OnAlerting")] HRESULT Alerting(int dlgHandle);
+		[id(4), helpstring("method OnProceeding")] HRESULT Proceeding(int dlgHandle);
+		[id(5), helpstring("method OnConnected")] HRESULT Connected(int dlgHandle);
+		[id(6), helpstring("method OnDisconnected")] HRESULT Disconnected(int dlgHandle, int StatusCode);
+		[id(8), helpstring("method TimeOut")] HRESULT TimeOut(int dlgHandle);
+		[id(9), helpstring("method Dialing")] HRESULT Dialing(int dlgHandle);
+		[id(10), helpstring("method Busy")] HRESULT Busy(int dlgHandle);
+		[id(11), helpstring("method Rejcet")] HRESULT Reject(int dlgHandle);
+		[id(12), helpstring("method Transferred")] HRESULT Transferred(int dlgHandle, BSTR xferURL);
+		[id(13), helpstring("method Held")] HRESULT Held(int dlgHandle);
+		[id(14), helpstring("method RegistrationDone")] HRESULT RegistrationDone();
+		[id(15), helpstring("method RegistrationFail")] HRESULT RegistrationFail(int StatusCode);
+		[id(16), helpstring("method NeedAuthentication")] HRESULT NeedAuthentication(BSTR strRealmName);
+		[id(17), helpstring("method Waiting")] HRESULT Waiting(int dlgHandle);
+		[id(18), helpstring("method RegistrationTimeout")] HRESULT RegistrationTimeout();
+		[id(19), helpstring("method Cancelling")] HRESULT Cancelling(int dlgHandle);
+		[id(20), helpstring("method TransportErr")] HRESULT TransportErr(int dlgHandle);
+		[id(21), helpstring("method RegistrationTxpErr")] HRESULT RegistrationTxpErr();
+		[id(22), helpstring("method BuddyAllowSubscription")] HRESULT BuddyAllowSubscription(BSTR buddyURI);
+		[id(23), helpstring("method BuddyDenySubscription")] HRESULT BuddyDenySubscription(BSTR buddyURI);
+		[id(24), helpstring("method BuddyPendingSubscription")] HRESULT BuddyPendingSubscription(BSTR buddyURI);
+		[id(25), helpstring("method BuddyRemoveSubscription")] HRESULT BuddyRemoveSubscription(BSTR buddyURI);
+		[id(26), helpstring("method BuddyUpdateBasicStatus")] HRESULT BuddyUpdateBasicStatus(BSTR buddyURI, BOOL bOpen, BSTR pStatus, BSTR cStatus);
+		[id(27), helpstring("method BuddyRequestForContact")] HRESULT BuddyRequestForContact(BSTR buddyURI);
+		[id(28), helpstring("method BuddyAddContact")] HRESULT BuddyAddContact(BSTR buddyURI);
+		[id(29), helpstring("method BuddyRemoveContact")] HRESULT BuddyRemoveContact(BSTR buddyURI);
+		[id(30), helpstring("method ReceivedText")] HRESULT ReceivedText(BSTR remoteURI, BSTR tmpstr);
+		[id(31), helpstring("method InfoResponse")] HRESULT InfoResponse([in] BSTR remoteURI, [in] int statusCode, [in] BSTR bstrContentType, [in] BSTR body);
+		[id(32), helpstring("method InfoRequest")] HRESULT InfoRequest([in] BSTR remoteURI, [in] BSTR bstrContentType, [in] BSTR body, [in,out] long* pStatusCode, [in,out] BSTR* pbstrContentType, [in,out] BSTR* pbstrBody);
+		[id(33), helpstring("method NeedAuthorize")] HRESULT NeedAuthorize(BSTR strURI);
+		[id(34), helpstring("method ReceivedOfflineMsg")] HRESULT ReceivedOfflineMsg(BSTR rcv_msg,BSTR rcv_date,BSTR rcv_from);
+		[id(35), helpstring("method RegisterExpired")] HRESULT RegisterExpired();
+	};
+
+	[
+		uuid(D851737B-22E8-4947-B812-5FF1F9212732),
+		helpstring("UAControl Class")
+	]
+	coclass UAControl
+	{
+		[default] interface IUAControl;
+		[default, source] dispinterface _IUAControlEvents;
+	};
+};

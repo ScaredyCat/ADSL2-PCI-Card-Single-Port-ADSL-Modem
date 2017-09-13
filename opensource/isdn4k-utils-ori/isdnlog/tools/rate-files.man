@@ -1,0 +1,355 @@
+'\" t
+'\" ** above should format a table **
+.\" CHECKIN $Date: 2002/06/25 08:01:43 $
+.TH rate-files 5 "@MANDATE@" -lt-
+.SH NAME
+rate-files \- Format of rate-files
+.SH DESCRIPTION
+The rate-files used by isdnlog(8) and by isdnrate(1) are textfiles
+defining the telephone fees for different destinations at certain dates/times
+for all providers of one country.
+.br
+The rate-files have the following overall layout:
+.P
+.I Header entries
+.P
+.I Provider entries
+.P
+Comments starting with a hash-sign '#'
+and empty lines are ignored. The first letter (tag) followed by a colon
+separates the entries. Additional white space may be used after the tags
+to group content more readably.
+.SS Special entries
+.P
+.B I:includefile
+.P
+.B i:includefile
+.br
+.IP
+.I includefile
+get's substituted at the current position. There are two possibilities. In
+the rate source file (which is prepared by
+.IR pp_rate )
+a small
+.I 'i'
+puts the contents of the include file in the outputfile.
+An
+.IR 'I' -Tag
+means, for the preprocessor, write a new output file (the includefile) and
+leave the tag in the rate-files. This is for real include files.
+.br
+Includes may be nested twice. The filename should not contain any paths
+(except for 'i' of course), they are taken relative to their parent file.
+.IP
+.SS Header entries
+.P
+.B V:versionsstring
+.IP
+e.g.
+V:1.0-Germany [18-Mar-1999]
+.P
+.B S:Servicename
+.P
+.B N:Servicenumber[,Servicenumber...]
+.IP
+This defines telephone services with special numbers. Special numbers are numbers which
+a) start with no '0' or b) can not be dialed with every provider. A number
+with a variable length should have the wildcard '*' at the end, eg.
+.I 07189*
+which matches all numbers starting with
+.IR 07189 .
+Numbers with wildcards should be placed after numbers which would match the
+wildcard, because matching is done straight top down.
+There may be multiple
+.B N:
+tags for one telephone service.
+.IP
+e.g.
+.br
+S:Internet
+.br
+N:07189*,19430
+.br
+N:19440
+.P
+.B U:currencyfmt currency
+.IP
+e.g.
+U:%.3f DEM
+.P
+.B X:num_wildcard = provider[zZone] [,...]
+.IP
+Define exception. If a certain number is always routed to a certain provider
+and not to the preselected provider, you should use this tag.
+.br
+e.g. in Austria, online service numbers 194x or 07189 go always via Telekom,
+ignoring your preselection:
+.br
+X: 194*=1,07189*=1 
+.br
+or
+.br
+X: 194*=1z6	# Provider 1 Zone 6
+.SS Provider entries
+A new provider starts always with a
+.B P:
+tag and consists of a
+.I Providerheader
+followed by
+.I Providerzones.
+.SS Providerheader
+.P
+.BR P: [ daterange ] " providernumber providername"
+.IP
+.I daterange
+is
+.BR [ [ fromDate ] "" [ -toDate ] ]
+.br
+This defines a time range for the validity of rates for this provider. Dates have to
+be numeric in format
+.BR dd.mm.yyyy .
+Note: as time is assumed as 00:00, take for
+.I toDate
+the day+1. The daterange has to be enclosed in square brackets. Either
+.I fromDate
+or
+.I -toDate
+or both may be given.
+.br
+The
+.I providernumber
+may be a simple number, normally the last digits of the VBN-number, or
+.B providernumber,variant
+if a provider has different connection fees.
+.br
+e.g.
+.br
+P:02 UTA
+.br
+or
+.br
+P:[01.01.1999] 1,1 Telekom Minimumfee
+.P
+.B B:vbn
+.P
+VBN-Number for provider
+.IP
+e.g.
+B:1002
+.br
+This is the number to select this provider and depends on your country.
+.P
+.B C:COMMENT: comment
+.P
+.B COMMENT
+may be an arbitrary string, but the following entries are used already:
+.IP
+.TS
+tab (@);
+l l.
+\fBC:Name:\fP@Providername
+\fBC:Maintainer:\fP@Who did the hard work
+\fBC:TarifChanged:\fP@and when
+\fBC:Address:\fP@Provideraddress
+\fBC:Homepage:\fP@http:URL for provider
+\fBC:TarifURL:\fP@URL for tarif info
+\fBC:EMail:\fP@EMail-Address
+\fBC:Telefon:\fP@Telefon number
+\fBC:Telefax:\fP@Fax number
+\fBC:Hotline:\fP@Telefon number
+\fBC:Zone:\fP@Textual info about zones
+\fBC:Special:\fP@Guess
+\fBC:GT:\fP@Additional charge text
+\fBC:GF:\fP@Additional charge formula
+.TE
+.P
+If there are multiple comments with the same comment name, they get appended
+separated by a newline char.
+.P
+.B D:zone
+.P
+Name of zone file (inserted for
+.B %s
+.RI "in ZONEFILE = /usr/lib/isdn/zone-" CC "-%s.dat from isdn.conf)"
+.IP
+e.g.
+D:1001 # zone file is zone-at-1001.gdbm
+.P
+Note: if the provider has no different domestic zones, you should not define a D:tag.
+.SS Providerzones
+A Providerzone entry starts with a
+.B Z:
+tag followed by one or more
+.B A:
+and
+.B T:
+tags.
+.P
+A zone is a region of areas, for which the same rates apply. Domestic and
+foreign zones should not be mixed and all foreign zones should follow
+domestic zones.
+.P
+.B R:prov, sub ; zonelist
+.P
+Read zones from provider
+.I prov
+subprovider number
+.IR sub .
+A
+.I zonelist
+is defined below.
+If the referenced provider doesn't have a subprovider number, the
+.I sub
+must be -1. The referenced provider
+may be defined before or after the R:-tag. The referenced zones must be real
+Z:-entries, not references themself. The zone numbers and names are taken from
+the referenced provider. The last
+.I to_zone
+may be missing then all zones from the start zone are used.
+.br
+e.g.
+.br
+R:1,1 ; 1-4,6, 10-
+.br
+.P
+.B Z:zonelist zonename
+.P
+where
+.I zonelist
+is
+.BR zone [ -to_zone ][ ,... ]
+.IP
+e.g.
+Z:1-2,4 Interior
+.br
+.P
+.BR A:area [ ,area... ]
+.P
+.I area
+may be a telephone number (including +countrycode for numbers which may
+be reached from everywhere, a telephone number without +countrycode for numbers only reachable
+in the own country) or an area name or alias as defined in country.dat.
+Country names have to be translated to their code by the rate-preprocessor
+.IR pp_rate .
+.IP
+e.g.
+A:19430,07189 # Online
+.IP
+e.g.
+A:+31,Belgium # Int 1
+.P
+Note: There should always be exactly one zone with your countrycode
+or countryname respectively:
+.IP
+Z:4
+.br
+A:+49
+.br
+T:...
+.P
+Countrynames like
+.I Belgium
+in the above example are replaced by their ISO-Code (or TLD) with the
+rate preprocessor
+.IR pp_rate .
+.P
+.BR T: [ daterange ] daylist/timelist [ ! ] "=chargelist chargename"
+.P
+where
+.I daterange
+is
+.BR [ [ fromDate ] "" [ -toDate ] ]
+like the corresonding provider entry.
+Note that the
+.I daterange
+is enclosed in sqare brackets, either
+.I fromDate
+or
+.I -toDate
+are optional.
+.P
+.I daylist
+is
+.BR day [ -day ][ ,... ]
+and day is a daynumber (1=Mon, 2=Tue, ...) or W (weekday), E (weekend), H (holiday) or
+* (everyday).
+.P
+.I timelist
+is
+.BR hour [ -hour ][ ,hour ]
+where hour is a number 0..23 or * for everytime.
+.P
+After
+.I daylist/timelist
+follows
+.B =
+or
+.B !=
+which means, provider doesn't adjust rates on a rate boundary e.g. at 18h00.
+.P
+A
+.I chargelist
+consists of
+.P
+.RB [ MinCharge| ] Charge [ (Divider) ] /Duration [ :Delay ][ /Duration... ]
+.P
+where
+.I MinCharge|
+is an (optional) minimum charge,
+.I Charge
+the rate per
+.I Duration
+seconds or optional rate per
+.I (Divider)
+seconds,
+.I Duration
+is the length of one charge unit in seconds. After
+.I Delay
+the next duration is taken. If delay is not given it equals to the duration.
+The last duration may not have a delay and may not be zero.
+.IP
+EXAMPLES
+.br
+T:1-4/8-18=1.5(60)/60/1 workday
+.IP
+Monday until Thursday, daytime the charge is 1.50 per minute, first charge is for one minute
+after this charging is calculated in seconds interval.
+.IP
+T:W/18-8=0.30|1.2(60)/1 night
+.IP
+On weekday, night, charge is the bigger of 1.20 per minute or 0.30
+.IP
+T:*/*=0.50/0,1(60)/1 always
+.IP
+Everyday, everytime there is a connection fee of 0.50, then charge is 1 per minute.
+.IP
+T:H/*=0.5/60:600,0.5/30 holidays
+.IP
+On holidays, everytime a charge of 0.5 per minute in a minutes interval, after
+10 minutes 0.5 per half minute in half a minutes interval.
+.IP
+T:*/*=1.3/0,0/1
+.IP
+Everyday, everytime the charge is 1.30 independent of duration, which could also
+be written as T:*/*=1.3|0/1.
+.IP
+T: [-01.02.2000] */17-19=0.79(60)/60/1 Happy Hour
+.br
+T: [-01.02.2000] */19-17=0.90(60)/60/1 Normal
+.IP
+Until the first of Feb 0:00h (i.e. end is 31.1.2000 24:00), everyday between
+17 and 19h a charge of 0.79 per minute, the first minute is always charged fully,
+after this, charging is calculated in seconds interval.
+.br
+The second entry defines a charge of 0.90 in the time outside the happy hour.
+.IP
+T:[15.11.1999-01.02.2000]*/17-19=0.79(60)/60/1 HH
+.IP
+Like above, but a full date range is given.
+.P
+.SH SEE ALSO
+.IR isdnlog(8) ,
+.IR isdnrate(1) ,
+isdnlog/README, rate-at.dat
+.SH AUTHOR
+Leopold Toetsch <lt@toetsch.at> (of this man page of course).

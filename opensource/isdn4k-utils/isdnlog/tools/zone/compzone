@@ -1,0 +1,331 @@
+#!/usr/bin/perl
+
+# compare/verify zone entries
+#
+# Copyright 1999 by Leopold Toetsch <lt@toetsch.at>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# codefile:
+# 1
+# 2142
+# 2143
+# ...
+# zonefile
+# 1 2142 0
+# 1 2143 0
+# ...
+# reducedfile:
+# 1 252 1
+# ...
+# 1 2 0
+
+use strict;
+use GDBM_File;
+use Getopt::Std;
+
+my $LOOK = '/usr/bin/look';
+my $LINK = 127;
+
+my($L) = 'S'; # pack short
+$| =1;
+
+my($zonef, $reducedf, $from, $to, $auto,$verbose, $mem, %all, %link);
+my($halt, $codef, %zones, $reverse, $dbm, @nums);
+my $reduce_a=1; #dont't turn on, it doesn't work
+&getargs;
+if ($codef) {
+	&get_codes;
+}
+else {
+	&comp_zones;
+}
+
+# verify codefile against orig or reduced zone file
+sub get_codes {
+	open(IN, $codef) || die("Can't read $codef");
+	my (@codes, $num, $ort, $line);
+	while ($line = <IN>) {
+		($num, $ort) =split(/\t/, $line);
+		push(@codes, $num);
+	}	
+	close(IN);
+	if($mem && $reducedf) {
+    	    &read_compact;
+	}
+	else {    
+	    tie(%all, 'GDBM_File',$reducedf, GDBM_READER, 644);
+	}    
+	&read_orig if($mem==2);
+	printf "Verifying...\n" if($verbose);
+	my ($i,$j,$c,$n);
+	for ($i = 0; $i < @codes-1; $i++) {
+		for ($j = $i+1; $j < @codes; $j++) {
+			$from = $codes[$i];
+			$to = $codes[$j];
+			$c = $zonef? &get_orig($from,$to) : &get_compact($from, $to);
+			print "Loch $from $to\n" if ($c eq '');
+			exit 1 if ($halt && $c eq '');
+			print STDERR "$n\r" if ($verbose&& $n%100==0);
+			$n++;
+		}
+	}
+	unless($mem && $reducedf) {
+    	    untie(%all);
+	}    
+}
+sub min {
+ return $_[0] < $_[1] ? $_[0] : $_[1];
+} 
+sub read_compact {
+    my ($from,$to,$z,$n, $cc);
+    print "Reading $reducedf...\n" if($verbose);
+    if (!$dbm) {
+		open(IN, $reducedf) || die("Can't read $reducedf");
+		while (<IN>) {
+		    ($from,$to,$z) = split(/\s+/);
+		    $all{"$from $to"} = $z;
+			$link{$from} = $to if($z eq $LINK);
+		    print STDERR "$n\r" if ($verbose&& $n%1000==0);
+		    $n++;
+		}
+		close(IN);
+    }
+    else {
+		my(%db,$key,$value);	
+		tie(%db, 'GDBM_File',$reducedf, GDBM_READER, 644);
+		my ($vers) = $db{"vErSiO\x0"};
+		print "$vers\n" if($verbose);
+		my (@vinfo) = split(/ /, $vers);
+		my ($v, $pack_key, $pack_table, $n, $t, $i, $ind);
+		foreach (@vinfo) {
+			$v = $1 if(/V(.*)/);
+			$pack_key = $1 if(/K(\w)/);
+			$pack_table = $1 if(/C(\w)/);
+			$n = $1 if(/N(\d+)/);
+			$t = $1 if(/T(\d+)/);
+			$cc = $1 if(/A(\d+)/);
+		}
+		my($bnum) =	 $db{"_tAbLe\x0"};
+		my %len = ('C' => 1, 'S' => 2, 'L' => 4);
+		print "pack_table $pack_table pack_ke $pack_key\n" if($verbose>=2);
+		$i=min($n, 256);
+		@nums = unpack("$pack_table$i", $bnum);
+		print "$i:\n@nums\n" if($verbose>=3);
+		$n=0;
+		while ( ($key, $value) = each(%db) ) {
+		    next if ($key eq "_tAbLe\x0" || $key eq "vErSiO\x0");
+		    my($temp) = unpack($pack_key, $key);
+		    next if( $temp !~ /\d/);
+			if ($cc) {
+				my($ind);
+				my($ort) = substr($value,0, $ind=index($value, "\x0"));
+				$value = substr($value, $ind+1);
+			}	
+		    my($count) = unpack('S', $value);
+		    $value=substr($value, 2); # past count
+		    while ($count--) {
+				my($b, $z, $v);
+				$z = unpack("C", $value);
+			    $value=substr($value, 1);
+				$L = 'C';
+				$ind = 1;
+				if ($z >= 128) {
+					$z -= 128;
+					$L = $pack_key;
+					$ind=0;
+				}	
+				$b = unpack($L, $value);
+			    $value=substr($value, $len{$L});
+				print STDERR "$n\r" if ($verbose && $n%1000==0);
+				$n++;
+				$b = $nums[$b] if($ind);
+				$all{"$temp $b"} = $z;
+				$link{$temp} = $b if($z eq $LINK);
+			}    
+	    } # while each
+		print STDERR "$n\n" if ($verbose);
+		untie(%db);
+    }	
+    print STDERR "$n\n" if ($verbose);
+}
+
+sub read_orig {
+    my ($from,$to,$z,$n);
+    open(IN, $zonef) || die("Can't read $zonef");
+    print "Reading $zonef...\n" if($verbose);
+    while (<IN>) {
+	($from,$to,$z) = split(/\s+/);
+	$zones{"$from $to"} = $z;
+	print STDERR "$n\r" if ($verbose&& $n%1000==0);
+	$n++;
+    }
+    close(IN);
+}
+
+# compare a zone file against a reduced one
+sub comp_zones {
+	my ($errs) = 0;
+	my ($z, $cz, $i, $entry);
+	if ($mem) {
+	    &read_compact;
+	}
+	if ($mem == 2) {
+	    &read_orig;
+	}
+	printf "Verifying...\n" if($verbose);
+	if ($auto) {
+	    if ($mem==2) {
+		foreach $entry (keys (%zones)) {
+		    ($from, $to) = split(/\s/, $entry);
+		    if (($cz =&get_compact($from, $to)) == $zones{$entry}) {
+			print STDERR "$i\r" if ($verbose && $i%100==0);
+		    }
+		    else {
+			if ($verbose == 2) {
+			    $verbose=3;
+			    &get_compact($from, $to);
+			}    
+		    	print "$from $to $z - $cz NIX\n";
+			exit 1 if ($halt);
+			$errs++ ;
+		    }
+		    $i++;
+		}
+	    }
+	    else {
+		open(IN, $zonef) || die("Can't read $zonef");
+		while (<IN>) {
+			($from,$to,$z) = split(/\s+/);
+			if (($cz=&get_compact($from,$to)) == $z) {
+				print STDERR "$i\r" if ($verbose && $i%100==0);
+			}
+			else {
+			    if ($verbose == 2) {
+				$verbose=3;
+				&get_compact($from, $to);
+			    }    
+			    print "$from $to $z - $cz NIX\n";
+			    exit 1 if ($halt);
+			    $errs++ ;
+			}
+			$i++;
+		}
+	    } #mem
+	    print STDERR "$i\n" if ($verbose);
+	    print "\nThere where $errs Errs\n";    	
+	} #auto
+	else {
+		$z = &get_orig($from,$to);
+		$cz = &get_compact($from,$to);
+		print "$z, $cz\n";
+	}
+}
+
+sub getargs {
+	my(%opt);
+	$from = $to = '';
+	$auto=0;
+	$dbm=0;
+	$halt=1;
+	$mem=1; # for mem = 0, data must be resorted for 'look'
+	$verbose=1;
+	push(@ARGV,'-V'); # last options seems not to work, so I push 1 more
+	getopt('z:r:c:v:h:dxm:a', \%opt);
+	$zonef=$opt{'z'};
+	$reducedf=$opt{'r'};
+	$codef=$opt{'c'};
+	$auto=1 if ($codef || $reducedf);
+	$verbose=$opt{'v'} if($opt{'v'} ne '');
+	$halt=$opt{'h'} if($opt{'h'} ne '');
+	$auto=1 if($opt{'a'});
+	$dbm=1 if($opt{'d'});
+	$reverse=1 if($opt{'x'});
+	$mem=$opt{'m'} if($opt{'m'} ne ''); 
+	print "Mem = '$mem' Halt ='$halt' DBM='$dbm'\n";
+	foreach (@ARGV) {
+		$from=$1,next 		if (/^(\d+)/ && $from eq '');
+		$to=$1,next 	if (/^(\d+)/ && $to eq '');
+	}
+	&usage unless( (($zonef && $reducedf) && (($from && $to) || $auto)) ||
+	    ($codef && ($reducedf || $zonef)) );
+    if ($verbose) {
+		if ($from && $to) {
+		    print "Checking '$from' '$to' from '$zonef'\n";
+		}
+		elsif ($codef) {    
+		    print "Verifying Codefile '$codef' against '",$zonef?$zonef:$reducedf,"'\n";
+		}	
+		else {
+		    print "Verifying Reduced '$reducedf' against Zonefile '$zonef'\n";
+		}    
+    }
+	print STDERR "This requires resorting '$reducedf'" unless ($mem);
+}
+
+sub usage {
+	print "$0: -zZonefile -rReducedzonefile from to [-vVerboselevel ] [-m ]\n";
+	print "$0: -zZonefile -rReducedzonefile -auto   [-vVerboselevel ] [-m[2] ] [-h ]\n";
+	print "$0: -zZonefile -cCodefile [-vVerboselevel ] [-h ]\n";
+	print "\t-v = Verbose (1)\n";
+	print "\t-m read Reduced to mem (yes)\n";
+	print "\t-h = halt on errs (1)\n";
+	print "\t-ccodefile\n";
+	print "\t-m read Reduced to mem, -m2 Zonefile too\n";
+	exit 1;
+}
+
+
+sub get_orig {
+	my ($from, $to) = @_;
+	my ($q, $res);
+	die ("Can't read $zonef") if (! -f $zonef);
+	$q = "$from $to";
+	if ($mem==2) {
+	    return $zones{$q};
+	}    
+	$res = `$LOOK "$q" $zonef`;
+	return ((split(/\s+/, $res))[2]);
+}
+
+sub get_compact {
+    my ($from, $to) = @_;
+    ($from, $to) = ($to, $from) if($reverse);
+	my ($q, $res);
+	my ($i,$j,$t,$f);
+	die ("Can't read $reducedf") if (! -f $reducedf);
+	for ($i=0;$i < length($from) ;$i++) {
+		for ($j=0;$j<length($to);$j++) {
+			$f = $from;
+			$f = substr($f, 0, length($f)-$i);
+			$t = $to;
+			$t = substr($t, 0, length($t)-$j);
+			next unless(length($f) && length($t));
+			$q = "$f $t";
+			print "$q:\n" if($verbose==3);
+			if ($mem) {
+				$res = $all{$q};
+			}
+			else {
+				$res = `$LOOK "$q" $reducedf`;
+				if ($res ne '') {
+					print "$res" unless($auto);
+					$res= ((split(/\s+/, $res))[2]);
+				}
+			}
+			return $res if($res ne '');
+		}
+	}
+	if ($res eq '' && $link{$from}) {
+		return get_compact($link{$from}, $to);
+	}	
+    return '';
+}

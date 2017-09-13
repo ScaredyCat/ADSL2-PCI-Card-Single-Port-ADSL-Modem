@@ -1,0 +1,73 @@
+# $Id: Makefile.in,v 1.9 2002/07/19 19:03:52 keil Exp $
+#
+# Makefile for icnctrl
+# (C) 1997 Fritz Elfert
+#
+#
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2
+INCLUDES		= -I.
+DEFS			=
+LDFLAGS			= -L../lib @LIBS@
+PROGRAM			= icnctrl
+MODULES			= icnctrl.o
+MANPAGE			= icnctrl.8
+INSTALL			= @INSTALL@
+SBINDIR			= @CONFIG_SBINDIR@
+DATADIR			= @CONFIG_DATADIR@
+MANDIR			= @CONFIG_MANDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_DATA	= $(INSTALL) -o 0 -g 0 -m 0644
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+CC				= @CC@
+COPTS			=
+
+ifeq ("@CONFIG_ICNCTRL_DEBUG@","y")
+	COPTS		+= -D__DEBUGVAR__
+endif
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEFS) $(COPTS) -c -o $@ $<
+
+all: $(PROGRAM)
+
+config:
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+$(PROGRAM):	$(MODULES)
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEFS) $? $(LDFLAGS) -o $@
+
+install-data:
+	mkdir -p $(DESTDIR)$(DATADIR)
+	$(INSTALL_DATA) firmware/loadpg.bin $(DESTDIR)$(DATADIR)/loadpg.bin
+	$(INSTALL_DATA) firmware/pc_eu_ca.bin $(DESTDIR)$(DATADIR)/pc_eu_ca.bin
+	$(INSTALL_DATA) firmware/pc_1t_ca.bin $(DESTDIR)$(DATADIR)/pc_1t_ca.bin
+
+install-man: $(PROGRAM).man
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install: $(PROGRAM) install-man install-data
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+install-strip: $(PROGRAM)
+	$(INSTALL_PROGRAM) -s $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+uninstall:
+	rm -f $(DESTDIR)$(SBINDIR)/$(PROGRAM) $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+clean:
+	rm -f *.o *~ $(PROGRAM)
+
+distclean: clean
+	rm -f config.status config.cache config.log Makefile icnctrl.man

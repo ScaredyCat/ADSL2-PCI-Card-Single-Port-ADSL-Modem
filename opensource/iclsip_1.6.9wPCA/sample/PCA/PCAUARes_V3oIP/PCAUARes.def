@@ -1,0 +1,7 @@
+; PCAUARes.def : Declares the module parameters for the DLL.
+
+LIBRARY      "PCAUARes"
+DESCRIPTION  'PCAUARes Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

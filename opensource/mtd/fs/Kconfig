@@ -1,0 +1,68 @@
+config JFFS_FS
+	tristate "Journalling Flash File System (JFFS) support"
+	depends on MTD
+	help
+	  JFFS is the Journaling Flash File System developed by Axis
+	  Communications in Sweden, aimed at providing a crash/powerdown-safe
+	  file system for disk-less embedded devices. Further information is
+	  available at (<http://developer.axis.com/software/jffs/>).
+
+config JFFS_FS_VERBOSE
+	int "JFFS debugging verbosity (0 = quiet, 3 = noisy)"
+	depends on JFFS_FS
+	default "0"
+	help
+	  Determines the verbosity level of the JFFS debugging messages.
+
+config JFFS_PROC_FS
+	bool "JFFS stats available in /proc filesystem"
+	depends on JFFS_FS
+	help
+	  Enabling this option will cause statistics from mounted JFFS file systems
+	  to be made available to the user in the /proc/fs/jffs/ directory.
+
+config JFFS2_FS
+	tristate "Journalling Flash File System v2 (JFFS2) support"
+	depends on MTD
+	help
+	  JFFS2 is the second generation of the Journalling Flash File System
+	  for use on diskless embedded devices. It provides improved wear
+	  levelling, compression and support for hard links. You cannot use
+	  this on normal block devices, only on 'MTD' devices.
+
+	  Further information on the design and implementation of JFFS2 is
+	  available at <http://sources.redhat.com/jffs2/>.
+
+config JFFS2_FS_DEBUG
+	int "JFFS2 debugging verbosity (0 = quiet, 2 = noisy)"
+	depends on JFFS2_FS
+	default "0"
+	---help---
+	  This controls the amount of debugging messages produced by the JFFS2
+	  code. Set it to zero for use in production systems. For evaluation,
+	  testing and debugging, it's advisable to set it to one. This will
+	  enable a few assertions and will print debugging messages at the
+	  KERN_DEBUG loglevel, where they won't normally be visible. Level 2
+	  is unlikely to be useful - it enables extra debugging in certain
+	  areas which at one point needed debugging, but when the bugs were
+	  located and fixed, the detailed messages were relegated to level 2.
+
+	  If reporting bugs, please try to have available a full dump of the
+	  messages at debug level 1 while the misbehaviour was occurring.
+
+config JFFS2_FS_NAND
+	bool "JFFS2 support for NAND flash (EXPERIMENTAL)"
+	depends on JFFS2_FS && EXPERIMENTAL
+	default n
+	---help---
+	  This enables the experimental support for NAND flash in JFFS2. NAND
+	  is a newer type of flash chip design than the traditional NOR flash,
+	  with higher density but a handful of characteristics which make it
+	  more interesting for the file system to use. Support for NAND flash
+	  is not yet complete and may corrupt data. For further information,
+	  including a link to the mailing list where details of the remaining
+	  work to be completed for NAND flash support can be found, see the 
+	  JFFS2 web site at <http://sources.redhat.com/jffs2>.
+
+	  Say 'N' unless you have NAND flash and you are willing to test and
+	  develop JFFS2 support for it.

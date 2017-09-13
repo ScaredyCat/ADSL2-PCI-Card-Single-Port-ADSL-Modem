@@ -1,0 +1,3 @@
+p0:23:respawn:/usr/sbin/pppd call incoming cli 04711 192.168.0.1:192.168.0.2
+p1:23:respawn:/usr/sbin/pppd call incoming cli 04712 192.168.0.1:192.168.0.3
+p2:23:respawn:/usr/sbin/pppd call incoming cli 04713 192.168.0.1:192.168.0.4

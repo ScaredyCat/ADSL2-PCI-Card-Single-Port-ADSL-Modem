@@ -1,0 +1,68 @@
+isdnlog news
+
+========================================================================
+This file contains summaries for main changes and for new config options.
+For details please always consult Makefile.in in this directory.
+========================================================================
+
+lt 2001.03.13
+  added IIOCNETGPN support for kernel 2.0
+  s. isdnlog/kernel_2_0/README
+
+
+lt 2000.06.27
+
+  isdnlog/rate/rep use not cdb as default database.
+  s. tools/NEWS for details.
+
+
+lt 2000.03.08-09
+changed/new isdnlog options / parameters
+
+# -I			ciInterval="value[:value2]"
+# Print chargeint (CI) and AOC-D (EH) messages every value / value2 seconds.
+ciInterval=60:120
+
+# -d			abclcr="value"
+# Do active LCR for outgoing calls from your isdn card.
+# ATTENTION: SEMANTICS CHANGED
+#
+# Value is a bitmap:
+#	0 ... off
+#	1 ... calls to different area / country
+#	2 ... local calls too
+#	4 ... special numbers e.g. ISP
+# This needs a kernel patch to work. If the kernel patch is not found
+# a simulation is done.
+# Note: depending on your telefon provider local area calls may or may not
+# be routed to alternate providers.
+# For changing the ISP a script is called. s. next option 'providerchange'
+abclcr=3
+
+#			providerchange="path_top_script"
+# (There is no commandline option for this)
+# This script is called with 3 parameters, the new provider number
+# (fron rate-CC.dat) the number, which would be dialed, and the servicename.
+# The script should adjust routing, name resolution and so on to
+# connect to the ISP.
+# If the script returns non zero, LCR will not be done.
+
+providerchange = /etc/isdn/provider
+
+Note: you have to adjust this script.
+s. also samples/provider.
+
+
+lt 1999.11.16
+  isdnlog-3.66 writes wrong provider number into it's logfile isdn.log
+  there is a patch and a repair program available at
+  http://www.toetsch.at/linux/i4l/i4l-3_66.htm
+
+lt 1999.11.08
+
+  all utils:
+  initRate reads now all provider-variants.
+  Providers _must_ have a B:-Tag now in rate-CC.dat
+  e.g.
+    P:33
+    B:01033

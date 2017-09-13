@@ -1,0 +1,55 @@
+=head1 NAME
+
+cdbtest -- run test routines on a constant database
+
+=head1 SYNOPSIS
+
+cdbtest E<lt>F<file>
+
+=head1 DESCRIPTION
+
+B<cdbtest> outputs information about a constant database. 
+B<cdbtest> assumes that standard input has the database open in
+readable and seekable form (This means pipes will not work).
+
+B<cdbtest> outputs some statistics related to the hash mechanism of
+the constant databases:
+
+=over 4
+
+=item found
+
+number of records found by their keys
+
+=item different record
+
+number of records where a wrong value was found by the key. This
+should happen only if there are identical keys.
+
+=item bad length
+
+number of records which had the wrong data length. This should always
+be zero.
+
+=item not found
+
+number of records not found by their key. This should never happen.
+
+=item too long to test
+
+number of records with keys bigger than 1024 bytes. These are skipped
+to keep the B<cdbtest> program simple.
+
+=back
+
+=head1 RETURN VALUES
+
+0 on success, 1 on a syntax errors, 111 on transient errors.
+
+=head1 RESTRICTIONS
+
+Keys over 1024 bytes long are skipped.
+
+=head1 SEE ALSO
+
+L<cdbget(1)|cdbget(1)>, L<cdbdump(1)|cdbdump(1)>, L<cdbmake(1)|cdbmake(1)>

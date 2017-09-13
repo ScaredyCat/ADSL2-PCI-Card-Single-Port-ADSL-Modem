@@ -1,0 +1,546 @@
+#!/usr/bin/perl
+
+# redzone - reduce a zone file
+# Copyright 1999 by Leopold Toetsch <lt@toetsch.at>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+use strict;
+use Getopt::Std;
+
+# some global options vars
+my ($inf, $outf, $rc,$verbose, $normalize, $newinf, $oldinf, $keep_files, $LEN);
+my ($opt_only);
+# statistics
+my (@rem, $tot);
+my($OP) = 1;
+
+my $LINK = 127; # maxzone
+
+&getargs;
+$| = 1;
+&go;
+1;
+
+#======= subs
+# get commandline args
+#
+sub getargs {
+	my(%opt);
+	push(@ARGV,'-V');
+	$normalize = 0;	# defaultvalues to keep the compiler happy
+	$keep_files = 0;
+	$rc = 4;
+	$verbose = 2;
+	$LEN = 4;
+	getopt('z:r:v:nl:ko', \%opt);
+	$inf = $opt{'z'};
+	$outf = $opt{'r'};
+	$verbose = $opt{'v'} if($opt{'v'} ne '');
+	$normalize=1 if($opt{'n'});
+	$LEN = $opt{'l'} if ($opt{'l'});
+	$keep_files=1 if(defined $opt{'k'});
+	$opt_only=1 if(defined $opt{'o'});
+	$rc = $LEN-1;
+	&usage unless($inf && $outf);
+}
+
+# don't remember, what this sub is for
+sub usage {
+	print "$0 -z infile -r outfile [ -v verboselevel ] [ -n ] [ -l len ] [ -k ]\n";
+	print "\tDefaults:\n";
+	print "\tverboselevel = 2\n\tnormalize = NO (aussume is already)\n\tlen = 4\n\tkeep inetermediate files = NO\n";
+	exit 1;
+}
+
+# main routine
+sub go {
+#
+# first check, we can read and write
+#
+	my ($i);
+	for ($i=0; $i<20; $i++) {
+	    $rem[$i] = 0;
+	}
+	open(IN, "$inf") or die("Can't read $inf");
+	open(OUT, ">$outf") or die("Can't write $outf");
+#
+#	if data are not normalized i.e. sorted ascending and from < to
+#	then we do it here
+#
+	if ($normalize) {
+		print "Normalizing ...\n" if ($verbose);
+		&normalize;
+	}
+	else {
+		$tot = `wc --lines $inf`;
+		$tot =~ /(\d+)\s/;
+		$tot = $1;
+	}	
+	printf "%d initial records\n", $tot if($verbose);
+#	
+#	data are prepared now, let's do the real work
+#
+	if($opt_only) {
+		&optimize;
+	}
+	else {
+		&reduce;
+		&optimize;
+	}
+	&clean_up unless($keep_files);
+	if ($verbose) {
+		my $rem = $rem[$OP + 10];
+	  	my $redt = $tot-$rem;
+		my $perc = $tot?($redt)/$tot*100:0;
+		print "Finito:\t$redt of $tot data where eliminated\n";
+		printf "\tThis is a reduction of %5.2f %%\n", $perc;
+		if ($verbose > 1) {
+			my ($ab, $r);
+			print "\nDetails\n";
+			printf "Total records\t%6d\n", $tot;
+			foreach $ab ('b','o') {
+				for ($i=1; $i<=$rc; $i++) {
+					$r = $rem[$i + 10*($ab eq 'o')];
+					printf "Pass %s-%d\t%6d\n", $ab, $i, $r;
+					last if($ab eq 'o' and $i >= $OP);
+				}
+			}
+			printf "Remaing recs\t%6d\n", $r;
+		}
+	}
+}
+
+sub clean_up {
+    system("rm $inf.{a,b,n}* t1~ t2~ 2>/dev/null");
+}
+
+## sort data correctly
+#
+sub normalize {
+	my($from, $to, $z, $i);
+	$i=0;
+	while (<IN>) {
+		chomp;
+		($from, $to, $z) = split(/\s+/);
+		$from .= 'X' x ($LEN-length($from));
+		$to .= 'X' x ($LEN-length($to));
+		($to, $from) = ($from, $to) if ($from gt $to);
+		print OUT "$from $to $z\n";
+		print STDERR "$i\r" if ($verbose >= 2 && $i%1000==0);
+		$i++;
+	}
+	$tot=$i;
+	sort_them('n0');
+}
+
+## open a new infile, outfile
+# also deletes previous infile
+#
+sub open_new {
+	my $f = shift;
+	close(IN);
+	close(OUT);
+	unlink($oldinf) if ($oldinf && ! $keep_files);
+	$oldinf = $newinf;
+	$newinf = $f;
+	unlink($newinf);
+	rename($outf, $newinf) || die ("Can't rename $outf => $newinf");
+	open(IN, "$newinf") || die("Can't read $newinf");
+	open(OUT, ">$outf") or die("Can't write $outf");
+	print "mv $outf $newinf\t open(r,$newinf)\t open(w,$outf)\n" if($verbose>2);
+}
+
+
+# reducing looks like this
+# a    b    z
+# 1234 2345 1
+# 1234 2346 1
+# 1234 2347 2
+#
+# 1234 2347 2
+# 1234 234X 1
+
+sub sort_them {
+	my($x) = $_[0];
+	open_new("$inf.$x.sort");
+	close(IN);
+	close(OUT);
+	my($pass)=substr($x,1);
+	print "Sorting ...\n" if ($verbose);
+	if ($pass eq $rc) {
+	    system(qq(export TMPDIR=.;sort < $newinf | sed -e"s/X\\+//g" > $outf));
+	}
+	else {
+	    if ($x eq 'n0') {
+		    system(qq(export TMPDIR=.;sort < $newinf | uniq > $outf));
+		}
+		else {
+		    system(qq(export TMPDIR=.;sort < $newinf > $outf));
+		}
+	}
+	open_new("$inf.$x.sorted");
+}
+
+sub reduce {
+	my ($pass);
+	for ($pass = 1; $pass <= $rc; $pass++) {
+		&reduce_2($pass);
+		sort_them('b'.$pass);
+	}
+}
+sub reduce_2 {
+	my ($pass) = $_[0];
+	my($from, $to, $z, $i, $old, $olda, $j, $k, $rem);
+	my (@from, @to, @z, %zc, $redc, $eof, $line, $oldto);
+	my ($which) = $LEN-$pass;
+	print "Starting Pass b-$pass ...\n" if ($verbose);
+	$old = $olda = '';
+	my $XXX = 'X' x $pass;
+	$rem = 0;
+	$i=0;
+	while (1) {
+		print STDERR "$i $rem\r" if ($verbose == 2 && $i%1000==0);
+		$i++;
+		if (!$eof) {
+			$eof = 1 unless defined ($line = <IN>);
+		}
+		if (!$eof) {
+			chomp($line);
+			($from, $to, $z) = split(/\s+/, $line);
+			print "R: '$from' '$to' '$z'\n" if($verbose>=4);
+			$to .= 'X' x ($LEN-length($to)) if($pass==1);
+			#
+			# read one bunch with same <pass> digs at <LEN-pass> for constant <a>
+			#
+#			if ($pass > 1 && $to !~ /${XXX}$/) { # exception
+#				print OUT "$from $to $z\n";
+#				$rem++;
+#				next;
+#			}
+			if ((substr($to, $which-1, $pass+1) =~ /^$old$/ || $old eq '') &&
+			    ($olda eq $from || $olda eq '') &&
+			    ($LEN-$pass-1 <= 0 ||
+			         substr($to, 0, $LEN-$pass-1) eq substr($oldto,0, $LEN-$pass-1) ||
+				 $oldto eq '')) {
+				push(@from, $from);
+				push(@to, $to);
+				push(@z, $z);
+				$old = substr($to, $which-1, 1) . '[X\d]' x $pass;
+				$olda = $from;
+				$oldto = $to;
+				next;
+			}
+		} # not eof
+		#
+		# now we have some data, what is the most used zone in them
+		#
+		my $n = @to;
+		last unless $n;
+		%zc = ();
+		foreach (@z) {
+			$zc{$_}++;
+		}
+		$redc = ((sort {$zc{$b} <=> $zc{$a} } (keys(%zc)))[0]);
+		print "Got $n: ($from[0] $to[0] - $to[$#to]) Red $redc Old '$old'\n" if ($verbose >= 3);
+                print "There are ",scalar(keys(%zc))," zones\n" if($verbose>=3);
+
+		#if there is a shorter one than this is the default
+		if (scalar(keys(%zc)) == 1) { # write shortcut
+		    $k=0;
+		    substr($to[$k], $which, $pass) = 'X' x $pass;
+		    print OUT "$from[$k] $to[$k] $z[$k]\n";
+		    $rem++;
+	        }
+		else {
+		my ($l);
+		$l = $LEN-$pass+1;
+		for ($j=1 ;$j < $n; $j++) {
+		    $to[$j] =~ /^\d+/;
+		    if (length($&) == $LEN-$pass) {
+				$l = length($&);
+				$redc = $z[$j];
+				print "But '$from[$j] $to[$j]' is shorter Red $redc now\n" if ($verbose >= 3);
+		    }
+		}
+		$k=-1;
+		for ($j=0 ;$j < $n; $j++) {
+			$to[$j] =~ /^\d+/;
+			if ($z[$j] == $redc && length($&) == $l) {
+				$k=$j;
+				next;
+			}
+			print OUT "$from[$j] $to[$j] $z[$j]\n";
+			$rem++;
+		}
+		# now write the default
+		if ($k >= 0) {
+		    substr($to[$k], $which, $pass) = 'X' x $pass;
+		    print OUT "$from[$k] $to[$k] $z[$k]\n";
+		    $rem++;
+		}
+		}
+		# clean up & init for next bunch
+		@from = @to = @z = ();
+		push(@from, $from); # these we have already read
+		push(@to, $to);
+		push(@z, $z);
+		if (length($to) > $which) {
+		    $old = substr($to, $which-1, 1) . '[X\d]' x $pass;
+		}
+		$olda = $from;
+		$oldto = $to;
+		# are we ready?
+		last if ($eof);
+	} # while
+	$rem[$pass] = $rem;
+	print "Pass b-$pass: $rem remaining\n" if ($verbose);
+}
+
+sub optimize {
+	my ($pass);
+	for ($pass = 1; $pass <= $OP; $pass++) {
+		&optimize_2($pass);
+		open_new("$inf.a-${pass}p");
+		&sort_opt($pass);
+		open_new("$inf.a-${pass}s") if ($pass < $OP);
+	}
+}
+sub sort_opt {
+    my($pass) = $_[0];
+    my ($from, $to, $z);
+    print "Sorting ...\n" if($verbose);
+    while (<IN>) {
+		chomp;
+		($from, $to, $z) = split(/ /);
+		$from .= 'X' x ($LEN-length($from)); # sort shorter after others
+		$to .= 'X' x ($LEN-length($to));
+		$to = "X$to" if ($z eq $LINK); # sort link after others
+		print OUT "$from $to $z\n";
+    }
+    close(IN);
+    close(OUT);
+    $newinf = "$inf.a-${pass}q";
+    rename($outf, $newinf);
+    system(qq(sort < $newinf |uniq | sed -e"s/X\\+//g"  > $outf));
+	my ($rem, $wc);
+	$wc = `wc --lines $outf`;
+	$wc =~ /(\d+)\s/;
+	$rem = $1;
+    print "Pass o-$pass: $rem remaining\n" if ($verbose);
+    $rem[$pass + 10] = $rem;
+
+}
+
+
+sub optimize_2 {
+    my ($pass) = $_[0];
+    my ($from, $to, $z, $i, $old, $oldfr1, $oldfr2,  $j, $rem, $k, $jj);
+    my (@from, @to, @z, %zc, $redc, $eof, $line, $stopped);
+    my (@fr1, @to1, @z1);
+    my (@fr2, @to2, @z2, %used1, %used2, %toprint);
+    print "Starting Pass o-$pass ...\n" if ($verbose);
+    $old = $oldfr1 = $oldfr2 = '';
+    $rem = 0;
+    $i = 0;
+    while (1) {
+		print STDERR "$i $rem\r" if ($verbose == 2 && $i%100==0);
+		$i++;
+		if (!$eof) {
+    	    $eof = 1 unless defined ($line = <IN>);
+		}
+		if (!$eof) {
+	    	chomp($line);
+		    ($from, $to, $z) = split(/\s+/, $line);
+			#
+			# read one bunch with same digs at begin and same len
+			#
+		    if ($old eq '' ||
+				(substr($from, 0 ,length($old)) eq $old &&
+				length($from)==length($old)+1)) {
+				push(@from, $from);
+				push(@to, $to);
+				push(@z, $z);
+				$toprint{"$from $to $z"}=1;
+				$old = substr($from,0, length($from)-1);
+				next;
+	    	}
+		} # not eof
+		$oldfr1 = $from[0];
+		my ($next1, $next2, %udif, %short);
+		$stopped = 0;
+		$next1 = 0;
+		push(@from,'end'); # for the loop to finish
+		OUTER:
+		for ($jj = 0; $jj < @from; $jj++) {
+	    	if ($from[$jj] eq $oldfr1) {
+				if ($from[$jj] ne 'end') {
+		    		push(@fr1, substr($from[$jj],0,length($old)));
+				    push(@to1, $to[$jj]);
+				    push(@z1, $z[$jj]);
+				}
+		    }
+		    else {
+				$next2 = $jj;
+				$oldfr2 = $from[$next2];
+				print "Now Outer $from[$next1]\n" if($verbose==4);
+				goto N1 if ($used2{$from[$next1]}); # this has already a link
+				open(T1, ">t1~") || die("cant write t1~");
+				for ($k=0; $k < @to1; $k++) {
+				    print T1 "$fr1[$k] $to1[$k] $z1[$k]\n";
+				}
+				close(T1);
+		INNER:
+				for ($j = $next2; $j < @from; $j++) {
+			    	if ($from[$j] eq $oldfr2) {
+						if ($from[$j] ne 'end') {
+						    push(@fr2, substr($from[$j],0,length($old)));
+					    	push(@to2, $to[$j]);
+						    push(@z2, $z[$j]);
+						}
+				    }
+				    else {
+						print "Now Inner $from[$next2]\n" if($verbose==4);
+						print "Diffs $oldfr1 - $oldfr2=\n" if($verbose==3);
+						print "Diffs $oldfr1 - $oldfr2=\n1:@to1\n2:@to2\n" if($verbose==4);
+		    			$oldfr2 = $from[$j];
+						open(T2, ">t2~") || die("cant write t2~");
+    					for ($k=0; $k<@to2; $k++) {
+						    print T2 "$fr2[$k] $to2[$k] $z2[$k]\n";
+						}
+						close(T2);
+						my(@difls) = `diff -U0 t1~ t2~`;
+						print "Are:@difls\n" if($verbose==4);
+						my($add);
+						$add=1;
+						foreach (@difls) {
+			    			my($l1, $c1, $l2, $c2, $l, $p);
+						    if (/@@ -(\d+)(,(\d+))? \+(\d+)(,(\d+))?/) {
+						        ($l1, $c1, $l2, $c2) = ($1,$3,$4,$6);
+			    			    $c1 = !defined $c1 ? 1 : $c1;
+			        			$c2 = !defined $c2 ? 1 : $c2;
+						        foreach ($l=-1; $l<$c1-1; $l++) {
+									# now look, what zone is this in @to2
+									# and write it
+									my ($m, $n, $t, $q, $o);
+									$t = $to[$next1+$l1+$l];
+#									$add++;
+									NL: while(length($t)) {
+										for ($m=0; $m<@to2; $m++) {
+											if ($to2[$m] eq $t) {
+												$q="$from[$next2] $to[$next1+$l1+$l] $z2[$m]";
+												$udif{$q}=1 if($z2[$m] ne $z[$next1+$l1+$l]);
+												# and all longer that match
+												$t = $to[$next1+$l1+$l];
+												for ($o = 0; $o < @to2; $o++) {
+													if ($t ne $to2[$o] && $to2[$o] =~ /^$t/) {
+														$udif{"$from[$next2] $to2[$o] $z2[$o]"}=1;
+														print "\tAnd longer2 $from[$next2] $to2[$o] $z2[$o]\n" if($verbose==4);
+													}
+												}
+												last NL;
+											}
+										} # for m
+										$t = substr($t,0,length($t)-1);
+									} # while
+								    if ($verbose==4) {
+				    				    $p="$from[$next1] $to[$next1+$l1+$l] $z[$next1+$l1+$l]";
+										print "\t$p = $q\n";
+								    }
+								}
+								if($c2) {
+								    foreach ($l=-1; $l<$c2-1; $l++) {
+										my ($m, $t);
+										$t = $to[$next2+$l2+$l];
+										$udif{"$from[$next2] $t $z[$next2+$l2+$l]"}=1;
+										if ($verbose==4) {
+										    $p="$from[$next2] $t $z[$next2+$l2+$l]";
+										    print "\t$p\n";
+										}
+										for ($m = 0; $m < @to2; $m++) {
+											if ($t ne $to2[$m] && $to2[$m] =~ /^$t/) {
+												$udif{"$from[$next2] $to2[$m] $z2[$m]"}=1;
+												print "\tAnd longer $from[$next2] $to2[$m] $z2[$m]\n" if($verbose==4);
+											}
+										}
+										# also write all longer matching
+								    } #foreach
+								} #if c2
+			    			} #if
+						} # foreach difls
+						if (keys(%udif)+$add < @fr2) {
+					    	print "Used $from[$next1] $from[$next2]\n" if($verbose==4);
+						    my %found;
+							my $p;
+							if (!$used1{$from[$next1]}) {
+							    for ($k=0; $k < @fr1; $k++) {
+									$p="$from[$next1+$k] $to1[$k] $z1[$k]";
+									print OUT "$p\n";
+									$found{$to1[$k]}=1;
+									delete $toprint{$p};
+							    }
+							}
+						    $used1{$from[$next1]}=1;
+						    $used2{$from[$next2]}=1;
+						    for ($k=0; $k < @fr2; $k++) {
+							   delete $toprint{"$from[$next2+$k] $to2[$k] $z2[$k]"};
+						    }
+						    print OUT "$from[$next2] $from[$next1] $LINK\n";
+						    foreach $k (keys(%udif)) {
+								print OUT "$k\n";
+					    	}
+						    #goto N1;
+						}
+						else {
+						    print "Too many diffs $from[$next1] $from[$next2]\n" if($verbose>2);
+						}
+				N2:
+	    				%udif = ();
+						@fr2 = @to2 = @z2 = ();
+						push(@fr2, substr($from[$j],0,length($old)));
+						push(@to2, $to[$j]);
+						push(@z2, $z[$j]);
+						$next2 = $j;
+				    }  # else
+				} # for $j
+			N1:
+    			%udif = ();
+				foreach $k (keys(%toprint)) {
+					print OUT "$k\n";
+					$rem++;
+				}
+				%toprint = ();
+				@fr2 = @to2 = @z2 = ();
+				@fr1 = @to1 = @z1 = ();
+				if ($from[$jj] ne 'end') {
+					push(@fr1, substr($from[$jj],0,length($old)));
+					push(@to1, $to[$jj]);
+					push(@z1, $z[$jj]);
+				}
+				$oldfr1 = $from[$jj];
+				$next1 = $jj;
+			} # else
+
+		} # for	jj
+		@fr2 = @to2 = @z2 = ();
+		@fr1 = @to1 = @z1 = ();
+		%used1 = %used2 = %toprint = ();
+		$oldfr1 = $oldfr2 = '';
+		# clean up & init for next bunch
+		@from = @to = @z = ();
+		push(@from, $from); # these we have already red
+		push(@to, $to);
+		push(@z, $z);
+		$toprint{"$from $to $z"}=1;
+		$old = '';
+		last if($eof);
+    } # while
+} # optimize

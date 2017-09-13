@@ -1,0 +1,30 @@
+# @configure_input@
+# generated from $Id: Rules.make.in,v 1.5 2002/07/19 21:23:52 keil Exp $ 
+CRYPTLIB = @LIBCRYPT@
+CONFIG_EFTD = @CONFIG_EFTD@
+CONFIG_EFTD_WUAUTH = @CONFIG_EFTD_WUAUTH@
+CONFIG_EFTP = @CONFIG_EFTP@
+CONFIG_EFTP_SETUID = @CONFIG_EFTP_SETUID@
+CONFIG_EFTP_READLINE = @CONFIG_EFTP_READLINE@
+CONFIG_EFT_INSTALL_CONF = @CONFIG_EFT_INSTALL_CONF@
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_DATA = @INSTALL_DATA@
+#
+# default values as inherited from gnu autoconf.
+#
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+bindir = @bindir@
+sbindir = @sbindir@
+localstatedir = @localstatedir@
+#
+#
+SBINDIR = @SBINDIR@
+BINDIR = @BINDIR@
+RUNDIR = @RUNDIR@
+SYSVINIT_RC_DIR = @SYSVINIT_RC_DIR@
+I4LCONFDIR = @I4LCONFDIR@
+
+

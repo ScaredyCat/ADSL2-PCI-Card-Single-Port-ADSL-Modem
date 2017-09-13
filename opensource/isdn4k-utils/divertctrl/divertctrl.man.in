@@ -1,0 +1,156 @@
+.\" $Id: divertctrl.man.in,v 1.4 2001/06/10 17:38:25 werner Exp $
+.\"
+.\" CHECKIN $Date: 2001/06/10 17:38:25 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii divertctrl.8 for ASCII output, or
+.\" groff -man -Tps divertctrl.8 for PostScript output
+.\"
+.TH divertctrl 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+divertctrl \- set/query ISDN diversion services for (E)DSS1 protocol 
+.SH SYNOPSIS
+.BI divertctrl " [wait] command driverid " ...
+.SH DESCRIPTION
+.B divertctrl
+is used to de/activate call diversions and query actual activated diversion rules. 
+The i4l diversion services only work using the (E)DSS1 D-channel protocol in conjunction with the HiSax passive card driver. For using the services the global isdn drivers need to be compiled with support for the diversion services.
+Additionally the dss1_divert module has to be loaded. This module doesn't require nor support any parameters at load time. 
+After successfully loading the module an entry /proc/net/isdn/divert should appear in the filesystem. When called without any parameters the divertctrl program outputs a short help screen. Otherwise the first parameter needs to be a command followed by a valid driver id. The command may be preceeded by the optional wait keyword specifying the program to wait until the desired command could be completed or failed returning the result via the exitcode. Otherwise the programm immediately returns after invoking the desired action which may not be completed at this moment. 
+ For some commands the value "-" may be used as a valid driver id specifying all available drivers. The driver id is equivalent to the id parameter specified when loading the HiSax driver for a particular card.
+All further parameters are command dependant.    
+The divertctrl program may only be used with root access for security reasons.
+.LP 
+The diversion services for i4l may be used in two independant ways:
+.HP
+.SH 1. Static call diversion   
+First possibility to handle diversions of incoming calls is to use static diversion
+provided inside the providers exchange.
+A static diversion once activated inside the providers exchange requires no interaction with i4l. The machine may even be shut down, but the diversion keeps active until it is explicitely deactivated.     
+The divertctrl tool allows to set/reset and query such static rules if the service is supported and has been subscribed at the providers side.
+This services are only available in some countries like germany. In other countries (like the netherlands) keypad control is used to de/activate such static rules.    
+Static rules may be set/reset and queried independantly by MSN (multiple subscriber number), basic service (telephony, digital data, ..) and diversion procedure. Three diversion procedures are defined in the ETSI specs and may be used with the i4l diversion services:
+.LP
+.B CFU (call forward unconditional) 
+is a procedure diverting all incoming calls unconditionally for the programmed MSN and basic service. The call will never be announced at your side until CFU is deactivated again. 
+.LP
+.B CFNR (call forward not reachable) 
+is a procedure diverting all incoming calls for the programmed MSN and basic service after locally signalling and waiting a certain timeout period.
+If the call is not answered during this timeout period it will be diverted to the new destination. The timeout period is fixed in the providers exchange and is normally 3 rings (about 12 to 15 seconds).
+.LP
+.B CFB (call forward busy) 
+is a procedure diverting all incoming calls for the programmed MSN and basic service when all local resources taking the call are exhausted and busy.
+.HP
+.SH Commands for handling static call diversions
+.B activate 
+driverid <cfu,cfnr,cfb> msn service destination
+.LP
+Activate a static diversion for the given driver, msn and service diverting the call to the specified destination. All parameters need to be supplied, no wildcards are allowed. Only one of the three diversion procedures cfu, cfnr, cfb must be supplied.
+The value for the service may be taken from the table of numeric codes of basic services. The value 0 specifies all available/subscribed services.      
+.LP
+.B deactivate 
+driverid <cfu,cfnr,cfb> msn service
+.LP
+Deactivate a static diversion for the given driver, msn and service. All parameters need to be supplied, no wildcards are allowed. Only one of the three diversion procedures cfu, cfnr, cfb must be supplied.
+The value for the service may be taken from the table of numeric codes of basic services. The value 0 specifies all available/subscribed services.      
+.LP
+.B interrogate 
+driverid <cfu,cfnr,cfb> [msn] [service]
+.LP 
+Query static diversions for the given driver, msn and service. Only one of the three diversion procedures cfu, cfnr, cfb must be supplied. The msn and service parameters are optional.
+The value for the service may be taken from the table of numeric codes of basic services. The value 0 specifies all available/subscribed services.      
+If msn and/or service parameters are not specified all matching diversions are reported via stdout. But it is advisable always to specify all parameters to keep the list as short as possible. All known providers exchanges refuse to return diversion lists longer than 256 bytes. In this case an empty response is generated by the exchange even if there are diversions active ! 
+.HP
+.SH 2. Dynamic call diversion   
+Additionally the i4l diversion services offer a more flexible possibility to control call forwarding. Using the dynamic call diversion the user has the possibilty to specify rules for call forwarding by additional criterias. The reaction to an incoming call may be dependant of MSN, basic service, caller id, local subaddress, caller subaddress and local resource (busy) state. The parameters may be specified with wildcards, so that call criterias may be grouped to match.
+Additionally the diversion actions may be supplied with a precise timeout value which is not dependant on any providers defaults. In order to work, the supplumentary service CD (call deflection) has to be available and subscribed at the providers exchange. 
+The dynamic diversion services are fully handled inside your machine, so it must be powered up and activated for the required purpose. After a successfull dynamic diversion (so called deflection) no local line resources are required. The lines are free for further incoming calls.
+.LP
+Dynamic Call deflection is controlled by a rule chain the user has to supply using the divertctrl program. When an incoming call arrives, calling data is compared against the rules in the chain. If an incoming call matches a rule, this rule is taken to execute the desired action. All following rules are ignored. 
+If there is no rule match the diversion services simply ignore the call.        
+.HP
+.SH Commands for handling dynamic call diversions
+.B flushrules
+[driverid]
+.LP
+Flushes (deletes) all rules for the selected driver. If no driverid is given or it is specified as wilcard - all rules for all drivers are removed.
+It is advisable to call this command first when a complete new ruleset is to be generated, to avoid conflicts with previous set rules.  
+.LP
+.B appendrule
+driverid action msn si1 si2 callerid screen delay option destnumber
+.LP 
+This command appends a single rule at the end of the existing rule chain.
+If the call arrives through the desired driver, addresses the selected msn, si1, si2 and matches the desired callerid and option the specified action is executed.
+A value of - may be specified for the driverid to match the rule for all available drivers. The msn may be specified with a trailing - wildcard. 
+for example the value 123 only matches an incoming call to msn 123, but specifying 123- matches all msn starting with 123 followed by any digits or subaddresses which will not verified. If only - is specified the rule matches all msn and subaddresses.
+If your isdn line supports subaddressing it is advisable to terminate all msn values with a - because the msn check includes a possibly available subadress which then may be reported as 123.456 for msn 123 with subaddresses 456 for example.
+Subaddressing is a special DSS1 feature not available in most countries and normally needs to be specially subscribed. So most people need not to think about it.
+The value of si1 represents the numeric code of the desired and checked basic service for the incoming call. This value may be selected from the table below or just the value 0 specified for all services to match.
+The value of si2 represents an additional service indicator for high layer compatibilty and is only included for completeness. Just set it to 0 at the moment.
+The callerid must match the number of the caller including the subaddress if available. Again the special wildcard - may be used to match specific groups of numbers. 
+Additionally a simple value of 0 may be specified. In this case the rule will match only calls coming in without a caller indentification. This will be the case if the caller originates from a network not supporting callerids or the caller suppressed the identification.
+The option parameter may take the values 0 to 2 and specifies whether the rule applies only during special local busy states.
+The value of 0 lets the rule be valid during any local busy state. A value of 1 lets the rule only apply to incoming calls if the call is in a non waiting state.
+A value of 2 applies te rule only to such calls which arrive as waiting. This is normally the case when all local resources (B-channels) are already in use.
+If the rule criterias mentioned before match the incoming call, no following rules will be checked and the desired action will be executed. The value for the parameter action is numeric and may take the values 0 to 5 at the moment.
+A value of 0 lets the call to be ignored. The call will not be reported through the ascii interface and not checked against any following rules.
+A value of 1 will report the call through the ascii interface but no other action will take place. If the value 2 is specified the call will be reported through the ascii interface and actively put in a local proceeding state.
+This means that the providers exchange is told, that your side needs more time to check whether the call may be handled and in which way this will be done.
+This value only is intended for use with local or remote client software watching the ascii interface and deciding what to do. No ringing signal is send to the caller until the decision has been made or a timeout (typically 5 to 15 seconds) occurs.
+An example would be a software which announces the call to a user and requests the desired action. At the moment a client software is under development, but still not available, so this value may only be intersting for programmers which want to write their own client.
+If value of 4 is specified the call will be actively rejected.
+The value of 5 is not primary an diversion function and allows an i4l
+network device to be started for dialing out when the rule
+matches. The destination number parameter specifies the network device
+(for example ippp0) to e dialed. The incoming call itself is not accepted. 
+The values from 0-2 and 4 don't require a destination number to be specified, as the incoming call will not be deflected in this cases.
+The last, but most interesting value for most people will be the value 3. Specifying it, will let the call to be deflected/diverted actively.
+For this reason additional parameters are taken for interpretation. First of all destnumber specifies the final number the call should be diverted to.
+The parameter delay specifies after how many seconds the call will be diverted towards the new destination. A value of 0 deflects the call immediately like the cfu in static diversons, any other value first announces the caller a ringing state until the time is elapsed and then the call will be diverted like in static cfnr.
+During the ringing phase every other device on your line may pick up the call of course.          
+The value of the parameter screen may take the values 0 to 2 and specifies if the diversion is presented to the caller. A value of 0 denies to show the caller that and where the call has been deflected. Specifying a value of 1 only shows that the call has been diverted but doesn't show to which final destination this will happen. A value of 2 lets the caller know all information of the diversion (fact of diversion and number diverted to).
+.LP
+.B insertrule
+driverid action msn si1 si2 callerid screen delay option destnumber
+.LP 
+This command inserts a single rule at the beginning before the first already existing rule in the chain. 
+All parameters and descriptions are the same as for the appendrule command.
+
+.LP
+.SH Numeric codes of basic services
+  0  all services
+  1  speech
+  2  unrestricted digital information 
+  3  audio 3.1 kHz
+  4  unrestricted digital info with tone announcements
+  5  multirate
+ 32  telephony 3.1 kHz
+ 33  teletex
+ 34  telefax group 4 class 1
+ 35  videotex syntax based
+ 36  videotelephony
+ 37  telefax group 2/3
+ 38  telephony 7 kHz
+ 39  eurofiletransfer
+ 40  filetransfer and access management
+ 41  videoconference
+ 42  audio graphic conference
+
+When diversion of speech calls is desired at least services 1, 2 and 32 should be specified.
+
+
+.LP
+.SH Interfacing to other programs
+The /proc/net/isdn/divert device may be used for debug purposes or interfacing the diversion services to other programs. It may be multiple opened. All operations as well as incoming calls may be watched reading the ascii output of the interface. One possible application would be a remote client announcing and logging incoming calls and diversion actions inside the local network. Such logging service could be invoked via inetd.    
+      
+.LP
+.SH BUGS
+With some commands an explicit driverid needs to be specified under certain conditions even if wildcards should be allowed. If you get a core dump using wildcards try to use a cmd line specifying a single interface. 
+This man page is still not complete.
+
+.LP
+.SH AUTHOR
+Werner Cornelius <werner@isdn4linux.de or werner@isdn-development.de>
+
+
+

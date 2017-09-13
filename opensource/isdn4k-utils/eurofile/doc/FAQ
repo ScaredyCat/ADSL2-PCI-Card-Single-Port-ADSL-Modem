@@ -1,0 +1,72 @@
+$Id: FAQ,v 1.4 2000/01/26 20:11:33 he Exp $
+
+QUESTION: How can I control the amount of debugging output?
+=========
+
+ANSWER: 
+
+The eftd server now also allows to
+control the amount of debugging output via command line arguments,
+refer to the eftd(8) man page for further info.
+
+eftd.c and eftp.c contain a global variable tdu_stderr_mask.
+Locate this and change the comment characters (/* .. */). For only
+logging Error events, the final active statement should be
+
+        tdu_stderr_mask = TDU_LOG_ERR | TDU_LOG_IER;
+
+To remove isdnlog output to stderr, you can also comment out the
+'tdu_open_isdtlog()' statement.
+
+
+
+QUESTION: I don't want anonymous users to dial in without a MSN
+=========
+
+If a client without a MSN dials in, the ISDN number 0 is assumed.
+With the line "guestservers 1* 2* 3* 4* 5* 6* 7* 8* 9*" in 
+/etc/isdn/eftaccess connections with ISDN numbers beginning with 
+"0" are refused. Don't forget the option "-a" for eftd to let is use 
+the file /etc/isdn/eftaccess.
+(What's about international connections then? Do they begin with "0"?
+I dont'n know, never had one...)
+
+
+QUESTION: Why do I not get full 64 kBit/s transfer speed.
+=========
+
+First note that an isdn B channel supports 64*1000 Bit/s,
+not 64*1024 Bit/s.
+
+Second, note that eftp4linux is very careful not to overestimate
+the measured transfer speed (certain ftp clients don't properley
+measure data in OS-internal queues and falsly report transfer speeds
+larger than the network bandwidth for short files. Be aware of this if
+you do comparisions)
+
+With standard protocol configuration, data is transferred in chunks of
+around 1000 Bytes. The headers of the 3 protocol layers
+X.75/LapB (2 bytes), X.25 DTE-DTE (3 bytes), and the EUROFILE layer
+itsself (typically 6--7 bytes for large files) add slightly
+more than 1% overhead in total (which is significiently lower than
+a tcp/ip/ppp stack).
+
+The hdlc framing additionally adds 2 bytes for the CRC and 2 flags to
+each frame, the hdlc bit stuffing adds around 3% extra bits for
+random data. (The exact value depends on the data and might be
+between 0 and 20 %. For comparisions: as syncppp uses the same hdlc
+framing, the same overhead applies here.)
+
+All in all, there is an expected protocol overhead of around 4.5%,
+which should allow to transfer around 7640 bytes/s.
+
+Note that the current eftp4linux is not especially tuned for
+speed. It is compiled without optimization. If debugging output of
+eftp4linux isself or the drivers (e.g. by means of hisaxctrl,
+x25trace) is activated, additional computation time is required.
+If certain protocol parameters (in particular X.25 or eurofile window
+sizes of one) are in effect, transfer speed might also decrease.
+Other additional delays, such as waiting for disk or NFS IO or
+waiting for beeing scheduled on a heavily loaded system, might also
+decrease the transfer speed.
+

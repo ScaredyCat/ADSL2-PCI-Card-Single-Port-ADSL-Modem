@@ -1,0 +1,293 @@
+$Id: eftd,v 1.1 1999/06/30 16:51:05 he Exp $
+
+Sorry, rather incomplete and not in man page format.
+
+But feel free to submit patches :-)
+
+
+eftd:  eftp4linux EUROFILE transfer server.
+
+eftd allows clients to connect to your machine via the ISDN and to
+transfer files by means of the EUROFILE transfer protocol. That
+protocol is specified by ETSI norms ETS 300-075 and ETS 300-383.
+
+Unless the -s option is given, the server loops forever waiting for
+incoming connections and forks a child process for each connection
+received.
+	
+
+Synopsis:
+
+As this is alpha test software, options might change with each release!
+
+	eftd [-a [ACCESS_FILE]] [-IlsV?] [-d LEVEL] [-D MASK]
+		[-b LOGFILE] [-l LEVEL] [-L MASK]
+		[-U FALLBACK_USER_ID] [-x ADDR]
+	
+OPTIONS
+
+	-a	Expects a string argument interpreted as a file name.
+		If eftd is compiled with the CONFIG_EFTD_WUAUTH
+		option, eftd reads ACCESS_FILE and uses the contents
+		for user authentication similarly to wu-ftpd's
+		ftpaccess file. See eftaccess(5) for further details.
+	
+	-b	Expects a string argument interpreted as a file	name.
+		Communication events selected by the -l or -L option
+		are logged (appended) to the file specified by the
+		option's argument. (This is the 'LogBook' file in
+		terms of ETS 300 383, thus the 'b'). If this option is
+		omitted, a system dependent default (i.e.
+		/var/log/eftd.log) is used. Opening of the LogBook
+		file can be supressed simply by not suppling any -l or
+		-L option.
+	
+	-d	Expects an integer argument which is interpreted as a
+		log level. Protocol or internal events up to the level
+		are logged to stderr.
+
+		For levels 0 - 3, see the -l option.
+
+		Higher values include more events in the log,
+		such as low level protocol and call traces and
+		temporarily inserted debugging output statements.
+
+		Use of -d as well as level > 3 is primarily intended
+		for debugging purpose. This also implies that the
+		output caused by log levels > 3 is not documented and
+		likely to change between releases.
+
+	-D	The bitmask argument allows for low level grained
+		control of stderr output. It overrides previous
+		-I and augments -d options. For maximum amount of
+		debugging output use "-D -1". As this is really
+		intended to be used for low level debugging, examine
+		the eftp4linux sources (start by reading the source
+		file src/lib/tdu_user.h) if you really want to use
+		this option on your own.
+
+	-I	Logs the contents of /dev/isdnctrl to stderr. For this
+		to work, other processes reading /dev/isdnctrl (i.e.
+		isdnlog) should be stopped before). This option is
+		intended for debugging purpose only.
+
+	-l	The integer argument specifies the log level for
+		selecting the events written to the LogBook file
+		(as specified by the -b option). Levels are
+
+		 0	No events at all.
+		 1	Important events related to session start
+			and end (login and logout)
+		 2	Important events during each session.
+			Also adds some events related session
+			start/stop of minor priority.
+		 3	Other minor priority events.
+		>3	Low level events. As these are primarily
+			useful for debugging purpose, it's probably
+			better (but not strictly necessary) to log
+			them by means of the -d option. See the latter
+			for more info.
+
+		CAUTION: this log feature is currently new, extremly
+		unfinished, incomplete and subject to improvements
+		(volunteers welcome) and not my highest priority item.
+		Thus, don't expect the current format of the messages
+		to be fixed forever.
+	
+	-L	Conceptually similar to -D (see the latter). Allows
+		fine grained control for selecting the events logged
+		to the LogBook (-b) file.
+
+	-x	The string type argument should consist of up to 15
+		digits which specify the X.25 [X.121/X.301] address
+		the servers listens on for incoming connections. As
+		EUROFILE is usually used with ISO-8208 X.25 DTE-DTE
+		mode, you should use the empty string as argument
+		here, which is the default. Thus, it is extremely
+		unlikely that you want to use this option at all.
+	
+		This option can be given two times, allowing the
+		server to listen on two different x25 addresses
+		simultaneously.
+	
+	-s	Single process mode. If this option is given, the
+		server just serves the first incoming connection and
+		exits when the session is finished. It does not fork a
+		child process for serving that connection.
+
+		This is mainly useful for running eftd under the
+		control of a debugger (such as gdb). If you want to
+		debug eftd like this, also make sure that the '-m'
+		option is not set. (As the -m option forks an additional
+		supervisor process, -s alone will not result in a
+		debuggable single process eftd). Further, as the
+		single process will not run under root permissions any
+		longer after an EUROFile connection has been accepted,
+		eftd can not clear isdn connections on its own, you
+		may need to do so yourself. 
+	
+	-m	Multiple connection mode. If this option is given, the
+		server immidiately continues to accept new connections
+		without waiting for the just accepted session to finish.
+		The number of simultaneous served connections is not
+		internally limited by the server. However, upper
+		limits might be imposed by the mumber of physically
+		available isdn B-channels, the number of running
+		incoming isdn network interfaces configured with
+		"encap x25iface", or by the authentification procedure
+		(i.e. group limits configured in /etc/isdn/eftaccess).
+	
+		When multi mode is activated, the server forks an
+		extra privileged supervisor process for each accepted
+		connections which takes care of clearing the isdn
+		connection after the session is finished. Thus, if N
+		EURFILE sessions are active, there will be 2N+1 eftd
+		processes.
+
+	-U USER	When this option is specified, a login attempt
+                with a user name not in the passwd database will
+		be using USER as the login name (with empty password).
+
+		You might use '-U ftp' if you have configured
+		anonymous access and want that unknown user ids
+		should be handled as an anonymous eft access.
+		Unknown user ids frequently occur as many clients
+		insert some dummy user name in the t_associate request
+		if no user name was configured.
+ 
+	-V	Prints version.
+
+	-?	prints usage message.
+
+FEATURES
+
+The server supports most of the EUROFILE primitives,
+including navigation and extended directory format.
+However, T-RENAME, T-DELETE, and LIST are not supported yet.
+
+If eftd is compiled with the CONFIG_EFTD_WUAUTH option, user access
+is granted using an authentication procedure derived from wu-ftpd,
+the Washington University ftp server. Refer to the eft_wuauth man
+page for further details.
+
+Transfers can be logged to /var/log/eft_xferlog. The format of this file
+is compatible with the wu-ftpd xferlog format. Refer to the
+eft_xferlog man page for details. Also see event logging below.
+
+
+eftd can also be invoked (and then stopped) by means of the eftd.sh
+shell script:
+
+	eftd.sh start|stop
+
+This script reads configuration parameters (usually from
+/etc/isdn/eft.conf). You might want to edit this file before
+starting it.
+
+Besides starting eftd, the script also takes care of setting up
+the necessary isdn network interfaces. The script can be used by
+sysvinit to automatically start eft service as part of the system boot
+precedure. (But make sure it is called after isdn and x25 modules are
+loaded).
+
+
+TRANSFER NAMES
+
+The EUROFILE protocol identifies files to be transferred by means of a
+so called `transfer name'. According to ETS 300-383/ETS 300-075,
+a transfer name may constist up to 8 keywords separated by the '/'
+character. Each keyword may constist of up to 12 printable
+(between 0x21 and 0x7e) ascii characters except '(', ')', '*',
+'+', and '/'. The total length of the transfer name must not exceed 70
+bytes.
+
+The transfer names generated by eftd (and which will be displayed in
+response to a T-Directory request) will always conform to this.
+
+eftd will also accept transfer names within incoming request
+(T-Load and T-Save request) that do not conform to the standards.
+If a transfer name in an incoming request is valid, it is processed
+by a mapping procedure which resolves to a file name. Transfer names
+not conforming to the standard are not subject to mapping. They are
+treated literally as POSIX filenames.
+
+
+TRANSFER NAME MAPPING
+
+eftd maps transfer names to file names by means of two different
+methods. If the current working directory is writable by the user,
+a database is used that maps between transfer names and file names.
+
+The database is currently implemented by means of symlinks which are
+created in the working directory. Symlinks matching .++eft_fn.TRANSFER_NAME
+contain the file name corresponding to TRANSFER_NAME. Symlinks
+matching .++eft_tn.FILE_NAME contain the transfer name name
+corresponding to FILE_NAME. You can clean tha database by just
+removing all those symlinks (rm .++eft_[ft]n.*).
+
+If the directory is not writable by the user, an algorithm based ob
+the file/transfer name and the file's inode number is used to map between
+transfer names and file names.
+
+
+
+EVENT LOGGING
+
+eftd provides for two event logging channels. The first is always
+stderr, the other is the so called LogBook file (an ETS 300 383 term)
+(which might be altered by means of the -b option) 
+
+The amount of events logged can be controlled by a log level, which
+may be supplied by means of the -d (for stderr channel) or the -l (for
+LogBook file channel). An even finer grained (but even less portable)
+control is possible by means of bitmask arguments supplied with the
+-D or -L option. 
+
+For debugging purpose, it is somtimes helpful to write the standard
+error messages syncronized with the logged events into the same stream.
+Thus, for generating debugging logs, it is preferable to use the
+stderr channel. For debugging certain very low (i.e. Linux kernel)
+level protocol problems, it is even desirable to write the isdn
+events (as read from /dev/isdnctrl) to the same stream. eftd provides
+for a -I option to achieve this goal as close as possible (however,
+synchronity cannot be granted here).
+
+Wenn large log levels are used, huge amounts of stderr output will be
+generated. Thus you might consider to redirect stderr to a disk file
+in such a case.
+
+Writing to a log file might block the eftd process, which might
+result in timing problems if the process is blocked for a very long
+(several seconds) time. Thus, it is not advisable to log events to
+files (i.e. located on unreliable NFS servers) which are likly to
+cause such blocking.
+
+
+INTERWORKING PROBLEMS
+
+The majority of DOS/Windows based clients implicitly assume that
+file transfer names fulfil DOS file name conventions and don't
+distinguish between upper and lower case names. This is in violation
+to the ETSI norms and might cause inter-working problems.
+The server provides for a compatibility mode to inter-operate
+with such clients. In order to activate that compatibility mode,
+prepend a '+' character to the login name when connecting to the
+server. See the doc/INTERWOKING file for details. 
+
+If you intend to offer files for public download via eft,
+it is recommended to use file names that match DOS conventions
+only.
+
+
+RESTRICTIONS (also called BUGS :-)
+
+Renaming and deleting (T-RENAME, T-DELETE) of files is not supported yet.
+The S-LIST primitive (recursivly listing all directories) is not
+supported. 
+
+Compression is not supported. This is not a serious limitation
+nowadays because on-disk compression formats like [g]zip are widley
+available, compress better, and also save disk storage.
+
+
+

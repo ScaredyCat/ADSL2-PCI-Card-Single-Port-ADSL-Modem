@@ -1,0 +1,152 @@
+Was noch nicht tut:
+
+-Telefonnummern werden mit "ALL" nicht angezeigt (geaendert!)
+
+-print_msg waehrend des einlesens von read_user_access (geaendert!)
+
+-Einheitliche Ausgabe von read_user_access-File ueberall (geaendert!)
+
+-change_channel (Schlaegt fehl, da Old_Channel nicht existiert) (teilsweise fixed!)
+
+-Optionen von MSN (mehrere Nummern) werden nicht angezeigt, im Debugger schon
+ Problem: strtok() ist Buggy
+ Eventuell mit String_To_Array() auswechseln -> umbauen! (fixed!)
+
+-User_Get_Message tut nicht! (erledigt!)
+
+-isdnlog darf nur im extremfall beendet werden, wenn ein Fehler in der Datei
+ user-access-file auftritt, darf nur ein Warning kommen! (fixed!)
+
+-xisdn bekommt irgendwelche Meldungen waehrend des Verbindungsaufbaus ;-) (fixed!)
+
+-isdnlog stuerzt mit vielen Clients einfach ab ;-) (fixed!)
+
+-die Laufende Zeit bei aktuellen Gesprachen ist gleich der Connect-Uhrzeit.
+ Manchmal ist auch die Verbindungs-Uhrzeit die Gespraechsdauer (also genau
+ verdreht). (Workaround;-))
+
+-sscanf() beim Lesen der Datei isdnlog.users tut nicht bei gcc-2.7.x (fixed!)
+
+-0130 wird mit 12Pf berechnet. (fixed: AK:26-Apr-96)
+
+-Hoerer abnehmen und auflegen ebenfalls (fixed: AK:26-Apr-96)
+
+-Wenn beide Leitungen in Gebrauch sind kann (muss nicht!) die zweite
+ Verbindung die erste ueberschreiben.
+
+-Option -t setzt nicht auf Universal-Time
+ (doch: genau darauf! AK:22-Apr-96)
+
+-Wenn man in dem Fenster "New Caller" auf <Hilfe> klickt, verschwindet das
+ Fenster wieder.
+
+-Fenster "New Caller" muss nach 1-2 Min. wieder geschlossen werden, da sonst
+ der Bildschirm "vollgemuellt" wird.
+
+-Wenn waehrend eines Gespraeches der xisdn gestartet wird, wird das aktuelle
+ Gespraech nicht dargestellt. (fixed!)
+
+-Teilweise ist im xisdn zwischen zwei laufenden Gespraechen ein oder mehrere
+ Leerzeilen (fixed!)
+
+-Geqoutete Zeichen '\' muessen noch realisiert werden in isdnlog.{users,conf}.
+ (fixed: sl:27-Apr-96)
+
+-Hinweis in Doku, das Xisdn nicht in XENVIRONMENT gesetzt werden muss fehlt
+ wieder. (fixed!)
+
+-Bei "Client rejected" kommen beim xisdn zwei Fenster hoch.
+
+-Mit "make xall" kommen noch warnings. (fixed!)
+
+-Interval tut noch nicht.
+
+-Bei unbekannten Telefonnummer ist call[chan].confentry[0|1] == 0, sollte -1 sein.
+ (fixed: AK:22-Apr-96)
+
+-Falsche Zeilennummer (letzte Zeile) beim Fehler Flag einlesen,
+ fehlendes ";" am Ende. (fixed: sl:23-Apr-96)
+
+-Beim Programmstart von "xisdn" kommt
+   "Warning: Cannot convert string "ISDN" to type ..."
+
+-Alle Message-Fenster vom "xisdn" fehlen
+
+TODO-Liste:
+
+-Umprogrammieren des "isdnctrl huptimeout" _nicht_ beim Verbindungsaufbau,
+ sondern - falls kommt - bei jedem Gebuehrenimpuls machen!
+
+-Durchsatzrate evtl. so wie im xisdnload berechnen (d.h. pro Meldung neu -
+ nicht bezogen auf die gesamte Verbindung)?
+
+-Automatisches Einlesen der Datei "isdnlog.conf" bei Aenderungen.
+
+-xisdn Fenster "Alte Gespraeche" sollte aehnlich wie isdnrep aufgebaut werden.
+
+-xisdn Fenster "Alte Gespraeche": Wenn man die einzelnen Zeilen anklickt,
+ sollte entweder das Fenster "New Caller" oder "Notizbuch" erscheinen.
+
+-Wenn bei Option -S in isdnlog.conf das Wort "CMD" erscheint, dann wird
+ das ersetzt durch die "Variable" "CMD="
+
+-Makeln und parken muss uebermittelt werden mit MSG_CALL_INFO.
+
+-isdnlog muss mehrere /dev/isdnctrlX ueberwachen; anstatt von /dev/isdnctrlX
+ nur noch /dev/isdninfo angeben.
+
+-Adressdatenbank
+
+-Fenster fuer alle nicht absolvierten Gespraeche.
+
+-evtl. ein Fenster fuer alle gestartenten Programme von isdnlog (wie bekommt
+ man Daten ueber laufende Prozesse, ausser im Verz. /proc nachzuschauen).
+
+-Englische Doku ;-)))
+ (Macht Babsi: AK:22-Apr-96)
+
+-isdnlog.pid beim natuerlichen (resp. unnatuerlichen ;-) Programmende
+ wieder loeschen.
+
+-xisdn sollte sich (fuer den naechsten Programmstart) merken, auf
+ welche Groesse ich den resized habe, und mit derselben Groesse wieder
+ hochkommen.
+
+-Ueber dem Haupt-Fenster von xisdn eine Ueberschrift:
+
+   Anfang   Dauer  Kosten   Caller   Called
+
+-Unter dem Hauptfenster des "xisdn" eine Summenzeile:
+
+   - Summe Geld
+   - Summe Dauer
+   - Anzahl REIN,
+   - Anzahl RAUS - Verbindungen
+ Von dem, was man im Haupt-Fenster sieht.
+
+-Das Feld rechts vom zweiten Alias des xisdn "aufraeumen"
+      1. Wenn's ein BUSY oder ERROR gab, die entsprechende Cause als Klartext
+         (entsprechend "CauseValue[]" aus "tools/tools.c")
+         anzeigen
+
+      2. Wenn's eine Durchsatz-Rate gab, Summe Bytes REIN, Summe Bytes RAUS
+         anzeigen
+
+      3. Sonst gar nix anzeigen
+
+-In dem "aktuelle Verbindung" Fenster die aktuelle Durchsatz-Rate
+    soweit nach links ruecken, damit man die auch bei der Original-
+    Fenstergroesse sehen kann.
+
+-Anstelle von "0,00 DM" im "xisdn" besser nur Blank's anzeigen - erhoeht
+ die Lesbarkeit!
+
+-Koennte man den "xisdnload" nicht irgendwie als 3. Fenster in den
+ "xisdn" integrieren?
+
+-Die MAX_PRINTS_IN_QUEUE noch einstellbar machen! (fixed:sl)
+
+-D-Kanal-Protokoll der ICN-Karte implementieren
+
+-Fehler bei den Conditions vom Einlesen der Configdateien muessen
+ dokumentiert werden

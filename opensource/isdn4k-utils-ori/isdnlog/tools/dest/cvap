@@ -1,0 +1,35 @@
+#! /usr/bin/perl
+
+open(IN,'airports.txt') || die("Can't read");
+open(OUT,'>airports.dat') || die('Write');
+
+while (<IN>) {
+    if (/^#/) {
+	print OUT;
+	next;
+    }	
+    chomp;
+    ($c,$rest)=split(/\t/);
+    @a=split(/,\s+/, $rest);
+    $cou = $a[$#a];
+    $rest='';
+    if ($a[0] =~ s/\s(\[.*?\])//) {
+        $rest=$1;
+    }	    
+    if ($a[0] =~ s/\s(\(.*?\))//) { # alternate spelling
+	$t = $1;
+	$t =~ s/[()]//g;
+	print OUT "$t\t$c\t$a[$#a]\t# ";
+	for $i (1..$#a-1) {
+	    print OUT $a[$i];
+	}	    
+	print OUT " $rest\n";
+    }
+    print OUT "$a[0]\t$c\t$a[$#a]\t# ";
+    for $i (1..$#a-1) {
+        print OUT $a[$i];
+    }	    
+    print OUT " $rest\n";
+}
+close IN; 
+close OUT;

@@ -1,0 +1,130 @@
+.\" based on: $XConsortium: xload.man,v 1.29 94/04/17 20:43:44 matt Exp $
+.TH XISDNLOAD 1 "Release 6" "X Version 11"
+.SH NAME
+xisdnload \- ISDN load average display for X
+.SH SYNOPSIS
+.ta 6n
+\fBxisdnload\fP	[-\fItoolkitoption\fP ...] [-scale \fIinteger\fP] [-update \fIseconds\fP] [-hl \fIcolor\fP] [-highlight \fIcolor\fP] [-online \fIcolor\fP] [-active \fIcolor\fP] [-trying \fIcolor\fP] [-activate \fIcommand\fP] [-deactivate \fIcommand\fP] [-jumpscroll \fIpixels\fP] [-number \fIregexp\fP] [-label \fIstring\fP] [-nolabel]
+.SH DESCRIPTION
+The 
+.I xisdnload 
+program displays a periodically updating histogram of the ISDN load average.
+.SH OPTIONS
+.PP
+.I Xisdnload
+accepts all of the standard X Toolkit command line options (see \fIX(1)\fP).
+The order of the options in unimportant.  \fIxisdnload also accepts the
+following additional options:
+.PP
+.TP 8
+.B \-hl \fIcolor\fP or \-highlight \fIcolor\fP
+This option specifies the color of the scale lines.  
+.TP 8
+.B \-online \fIcolor\fP
+This option specifies the background color when one or more ISDN
+channels are online.
+.TP 8
+.B \-active \fIcolor\fP
+This option specifies the background color when any route is found that is
+directed to an interface named isdn* or ippp*.
+.TP 8
+.B \-trying \fIcolor\fP
+This option specifies the background color when at least one attempt
+to setup a cennection is pending.
+.TP 8
+.B \-jumpscroll \fPnumber of pixels\fP
+The number of pixels to shift the graph to the left when the graph
+reaches the right edge of the window.  The default value is 1/2 the width
+of the current window.  Smooth scrolling can be achieved by setting it to 1.
+.TP 8
+.B \-label \fIstring\fP
+The string to put into the label above the load average when beeing
+online. It is interpreted as a standard format string and may contain
+the dialed number (%s), the minutes (%d) and seconds (%d) being
+online, the actual cps rate (%f), the amount of kbytes transfered
+(%d) and a connection history (%s) in this sequence.
+.TP 8
+.B \-nolabel
+If this command line option is specified then no label will be
+displayed above the load graph.
+.TP 8
+.B \-scale \fIinteger\fP
+This option specifies the minimum number of tick marks in the histogram,
+where one division represents one load average point.  If the load goes
+above this number, \fIxisdnload\fP will create more divisions, but it will never
+use fewer than this number.  The default is 1.
+.PP
+.TP 8
+.B \-update \fIseconds\fP
+This option specifies the interval in seconds at which \fIxisdnload\fP
+updates its display.  The minimum amount of time allowed between updates
+is 1 second.  The default is 10.
+.PP
+.TP 8
+.B \-activate \fIcommand\fP
+This option specifies a command to be executed when 
+dial-on-demand is not active and you clicked on the xisdnload
+stripchart. A typical command might be something like
+`sudo /etc/init.d/isdn start' to start up your connection.
+.PP
+.TP 8
+.B \-deactivate \fIcommand\fP
+This option specifies a command to be executed when 
+dial-on-demand is active and you clicked on the xisdnload
+stripchart. A typical command might be something like
+`sudo /etc/init.d/isdn stop' to shut down your connection.
+.PP
+.TP 8
+.B \-number \fIregexp\fP
+The supplied regular expression is used to limit the set numbers
+to be observed by \fIxisdnload\fP.
+.SH RESOURCES
+See the resource file for the available resources.
+.SH WIDGETS
+In order to specify resources, it is useful to know the hierarchy of
+the widgets which compose \fIxisdnload\fR.  In the notation below,
+indentation indicates hierarchical structure.  The widget class name
+is given first, followed by the widget instance name.
+.sp
+.nf
+.ta .5i 1.0i 1.5i 2.0i
+XISDNLoad  xisdnload
+	    Paned  paned
+		    Label  label
+		    StripChart  load
+.fi
+.sp
+.SH ENVIRONMENT
+.PP
+.TP 8
+.B DISPLAY
+to get the default host and display number.
+.TP 8
+.B XENVIRONMENT
+to get the name of a resource file that overrides the global resources
+stored in the RESOURCE_MANAGER property.
+.SH FILES
+<XRoot>/lib/X11/app-defaults/XISDNLoad - specifies required resources.
+.br
+/proc/net/route - kernel routing table. The proc filesystem is needed
+by xisdnload to detect wheather a dial-on-demand is active.
+.br
+.SH SEE ALSO
+X(1), xrdb(1), xload(1), mem(4), Athena StripChart Widget.
+.SH BUGS
+Certainly a lot.
+.SH COPYRIGHT
+This program is based on \fIxload\fP
+which is Copyright (1988) X Consortium.
+See \fIX(1)\fP for a full statement of rights and permissions.
+.SH AUTHORS
+Besides the basic xload stuff, the ISDN parts are added by
+.br
+Frank Strauss <strauss@escape.de>
+(escape e.V., Braunschweig, Germany). In January 1998
+Michael Deindl <olmur@dwarf.bb.bawue.de> contributed the `yellow'
+patch to make xisdnload recognize the phase of trying to connect
+and show this by a different background color.
+Markus Pilzecker <mp@timesink.pilzecker.de> detected a bug in
+the color assignment code resulting in seg faults which has been
+fixed in January 1998.

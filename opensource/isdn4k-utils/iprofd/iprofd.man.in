@@ -1,0 +1,39 @@
+.\" $Id: iprofd.man.in,v 1.2 1999/09/06 08:03:25 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:25 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii iprofd.8 for ASCII output, or
+.\" groff -man -Tps iprofd.8 for PostScript output
+.\"
+.TH IPROFD 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+iprofd \- Modem-register daemon
+.SH SYNOPSIS
+.BI iprofd " registerfile"
+.SH DESCRIPTION
+.B iprofd
+is used to make the modem-register settings of the isdn-ttys AT-emulator
+permanent and restore them during boot-time. It is usually started from within
+a rc-script and puts itself into background. If
+.I registerfile
+already exists at startup, all modem-registers are restored from it's
+contents. After that,
+.B iprofd
+waits for getting a signal from the isdn-subsystem. Every time, a 'AT&W0'
+command is given at an isdn-tty the isdn-subsystem sends a SIGIO and
+.B iprofd
+reads the current settings of the modem-registers and stores them into
+.IR registerfile .
+.LP
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.I ttyI\c
+\&(4),
+.I isdnctrl\c
+\&(8),
+.I isdninfo\c
+\&(4).
+

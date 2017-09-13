@@ -1,0 +1,53 @@
+
+Dokumentation ist noch nicht fertig ;-) Das Release ist mehr für Entwickler
+gedacht, um evtl. bestehende Software anzupassen.
+
+Kurze Anleitung um einen Benutzer einzurichten:
+
+$ cd /var/spool
+$ mkdir vbox
+$ mkdir vbox/peterlustig
+$ mkdir vbox/peterlustig/new
+$ mkdir vbox/peterlustig/msg
+$ mkdir vbox/peterlustig/tcl
+
+In `/var/spool/vbox/peterlustig' die Datei `vboxrc' anlegen (diese Datei
+fällt in Kürze weg und wird duch vboxcallerid.conf ersetze):
+
+-----schnipp-----
+[CALLERID]
+
+*               default         *** Unknown ***
+
+[DEFAULT]
+
+*	*	answercall.tcl	90	6	4
+-----schnapp-----
+
+Damit werden alle Anrufe nach 6x klingeln angenommen und es wird 90 Sekunden
+aufgezeichnet.
+
+Das Format der aufgezeichneten oder abgespielten Dateien ist ulaw! Andere
+Formate werden nicht mehr unterstützt. Kompression läßt sich mit externen
+Programmen wie gzip oder einem mp3programm erzeugen.
+
+Nachrichten können mit "cat </dev/audio >message.ulaw" mittels eines
+Mikrophons aufgezeichnet werden. Beim umwandeln von anderen Formaten muß
+nach ulaw mit 8000Hz gewandelt werden.
+
+Jetzt noch `vboxgetty.conf' anpassen (vboxcallerid.conf wird im Moment noch
+nicht verarbeitet) und den getty starten:
+
+vboxgetty -d ttyI0 -x FULL
+
+Wer isdnlog installiert hat, kann die Einträge in vboxgetty.conf in die
+isdn.conf eintragen und vboxgetty.conf als link auf isdn.conf anlegen (ist
+aber nicht getestet da ich keine isdnlog laufen habe).
+
+vboxd wird es nicht mehr geben, da es genug Programme gibt die Dateien über
+Netzwerk versenden. Die von vbox aufgezeichneten Nachrichten haben auch
+keinen Header mehr. Stattdessen wird eine Datei *.vbox angelegt, die Angaben
+zum Anrufer enthält.
+
+
+Have Fun ;-)

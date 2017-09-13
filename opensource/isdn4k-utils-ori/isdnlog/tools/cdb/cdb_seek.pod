@@ -1,0 +1,35 @@
+=head1 NAME
+
+cdb_seek -- search for a key in a constant database
+
+=head1 SYNOPSIS
+
+B<#include E<lt>freecdb.hE<gt>>
+
+int B<cdb_seek>(int fd, char *I<key>, unsigned int I<len>, uint32 *dlen);
+
+=head1 DESCRIPTION
+
+B<cdb_seek> looks up the key I<key> of length I<len> from the constant
+database open on file descriptor I<fd>.
+
+On success, it seeks I<fd> to the start of key value, and sets I<dlen> to
+the value size.
+
+=head1 RETURN VALUE
+
+1 on a match, 0 on a miss, -1 on error.
+
+=head1 RESTRICTIONS
+
+There is no way to read multiple records with the same key.
+
+Seeking modifes the location of the file descriptor. Don't try to do
+simultaneous searches.
+
+Updates to the constant database will only be seen after a
+L<close(2)|close(2)> and L<open(2)|open(2)>.
+
+=head1 SEE ALSO
+
+L<cdb_hash(3)|cdb_hash(3)>

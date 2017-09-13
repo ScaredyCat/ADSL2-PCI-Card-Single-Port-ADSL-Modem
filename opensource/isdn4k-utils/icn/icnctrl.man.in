@@ -1,0 +1,196 @@
+.\" $Id: icnctrl.man.in,v 1.8 1999/09/06 08:03:24 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:24 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii icnctrl.1 for ASCII output, or
+.\" groff -man -Tps icnctrl.1 for PostScript output
+.\"
+.TH ICNCTRL 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+icnctrl \- configure ICN ISDN adaptor
+.SH SYNOPSIS
+.B icnctrl [-d
+.IB Driver-Id ]
+.I action options
+.B ...
+.SH DESCRIPTION
+.B icnctrl
+is used to setup the ICN
+.SM ISDN
+device driver and for downloading the firmware into the
+.SM ISDN
+card.
+.LP
+The use of
+.I icnctrl
+makes sense, if you are using an ICN card only.
+.LP
+.SH OPTIONS
+.TP
+.BI "-d " Driver-Id
+selects the S0 interface named by
+.IR Driver-Id .
+Driver-Ids are defined during driver initialisation. See
+.BR icn (4)
+for a description of the syntax to be used for modularised and
+monolithic driver versions.
+This option
+.B must
+be used to identify the S0 interface if more than one S0 interface is
+existent. If a single ICN-2B is used, it may be omitted.
+If using more than one card, support for the other cards is enabled
+with the
+.B add
+action of icnctrl. Ids may
+.B not
+start with
+.B digits
+or small
+.BR x ,
+because these values are misinterpreted
+as numeric parameters by
+.BR insmod .
+For loading the module, always the
+newest
+.B modutils
+package should be used to avoid problems during load.
+.LP
+The following 
+.I actions
+may be given to
+.BR icnctrl .
+.TP
+.BI "add port [" id1 " [" id2 ]]
+enables support for an additional card in the driver. If
+.IR id1 " and " id2
+are missing, adds an ICN-2B with an id given by the system. with
+.I id2
+missing, adds an ICN-2B with an Id given by the user. With both Ids
+given, adds an ICN-4B with both Ids given by the user. There is
+.B no checking
+against port-conflicts. Ports are checked later during first activation
+while downloading the firmware and can be changed at runtime. Ids are
+checked against conflicts, and if a conflict happens, replaced by the
+system in the same manner as if no Id was supplied. It is
+.B not allowed,
+to add cards,
+.BR after " a " load
+was done.
+.TP
+.BI "io [" "base-address port" ]
+sets the address of the memory-mapped IO-region and the port-base.
+After loading the icn-module into kernel-space, this command
+should be used as the very first setup, if the hardware settings are
+different from the default settings below.
+If both parameters are omitted, prints out current settings. The
+default memory address is
+.IR 0xD0000 ,
+the default port-base is
+.IR 0x320 .
+An ICN card uses 4 port-addresses. The memory address is globally used
+for all cards (cards are mapped on demand), while each card has its
+own port range. Memory range is
+.IR 16k .
+.TP
+.B leased on|1|2|off
+switches between normal (dialup) and leased-line mode. Leased-line mode
+is intended for usage with S64K-lines or - if both channels are used -
+for S02. If the second parameter is
+.B 1
+, only one channel is enabled.
+If the second parameter is
+.BR 2 " or " on
+both channels are enabled. Leased lines do not have a D-channel. When
+leased-line mode is enabled, the driver simulates incoming calls using
+special "phone-numbers" for calling and called address which are generated
+as follows:
+.ie 1
+.RS
+Calling number:
+.RS
+.BI LEASED x
+.RS
+where
+.I x
+is the internal slot-number of the S0 interface. This number starts with
+.I 0
+for the first S0 interface and is incremented by one for every S0 interface
+configured using the
+.B add
+action.
+.RE
+.RE
+.ie 1
+Called number:
+.RS
+.I x
+.RS
+where
+.I x
+is equal to the channel number of the calling S0 interface starting with
+.IR 1 .
+.RE
+.RE
+.RE
+.TP
+.BI "load " boot-code " " firmware " [" firmware2 ]
+downloads the firmware into the card and starts operation. Using this
+command, after loading the icn-module into kernel-space the first real
+access to the hardware is done. Therefore the
+.B io
+action above, should be used before, if the hardware settings are different
+from the default settings.
+Usually the images are located in
+.IR @DATADIR@ .
+The boot-code is named
+.IR loadpg.bin .
+The firmware depends on the D-channel protocol of the
+.SM ISDN
+line. For German 1TR6-lines, the
+firmware is named
+.IR pc_1t_ca.bin .
+For Euro-ISDN-lines, it is named
+.IR pc_eu_ca.bin .
+When loading an ICN-4B,
+.B two
+firmware parameters have to be supplied. The first firmware is used for the
+upper S0 connector, the second firmware is used for the lower S0 connector
+(towards the card's slot connector).
+.TP
+.B dump
+is available if the program is configured using the
+.B --enable-dump
+option only. The contents of internal driver variables is dumped on stdout.
+.SH FILES
+.TP
+.I @DATADIR@/loadpg.bin
+This is the image of the bootstrap loader, which is loaded first, then
+loads the firmware into the card's memory and starts execution.
+.TP
+.I @DATADIR@/pc_1t_ca.bin
+This is the image of the firmware designed for the German 1TR6 protocol.
+.TP
+.I @DATADIR@/pc_eu_ca.bin
+This is the image of the firmware, designed for Euro ISDN.
+.LP
+.SH DIAGNOSTICS
+The following diagnostics may be issued on stderr:
+.TP
+.RI "Read error on " boot-code
+The file supplied as
+.I boot-code
+has less than 4096 bytes length or could not be read.
+.TP
+.RI "Read error on " firmware
+The file supplied as
+.I firmware
+has less than 65536 bytes length or could not be read.
+.LP
+.SH BUGS
+No bugs so far.
+.SH AUTHOR
+\(co 1997 by Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.BR isdnctrl "(8), " icn "(4), " isdnctrl "(4), " ttyI (4).

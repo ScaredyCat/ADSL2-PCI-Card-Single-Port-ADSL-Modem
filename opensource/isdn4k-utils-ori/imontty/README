@@ -1,0 +1,52 @@
+* tty line ISDN status monitor
+*
+* (c) 1995-97 Volker Götz
+*
+* $Id: README,v 1.2 1998/12/28 16:36:04 paul Exp $
+
+imontty 0.5
+===========
+
+This is version 0.5 of imontty, a handy program to print out the
+status of all ISDN lines of the isdn4linux package.
+
+
+INSTALLATION:
+-------------
+
+Check SBINPATH in the Makefile for the correct path where to
+install the binary.
+
+To build the binary just type
+
+make
+
+To install the binary in its final location type
+
+make install
+
+
+USAGE:
+------
+
+To print the status of the ISDN lines type "imontty". No command
+line options are supported. The output should look like this:
+
+ISDN channel status:
+
+Channel                 Usage Type  Number
+----------------------------------------------------------------------
+line0                   Out   Net   07900734
+line0                   Off
+
+
+Usage is one of Off(line), Out(going), In(coming) or Excl(usive).
+
+Type is one of raw (raw device), Modem (modem/tty emulation), Net
+(IP interface), Voice (voice call) or Fax (fax transmission).
+
+Number is either the called partys number (outgoing) or the
+calling party number (incoming).
+
+If you have any suggestions or error reports pleas let me know
+via email to volker@oops.franken.de.

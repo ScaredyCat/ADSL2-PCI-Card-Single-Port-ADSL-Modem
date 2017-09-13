@@ -1,0 +1,56 @@
+#! /usr/bin/perl
+
+# test dest.gdbm
+
+BEGIN { @AnyDBM_File::ISA = qw(GDBM_File NDBM_File DB_File ) }
+use AnyDBM_File;
+use POSIX;
+use strict;
+if (!@ARGV) {
+    print "usage:\n\ttestdest name | num ...\ttestdest -d | sort >destdump\n";
+    exit;
+}    
+$|=1;
+my $dest_gdbm = './dest.gdbm';
+my $dump=@ARGV[0] eq '-d';
+my(%db,$value,@answers,$r,$nam,$cod,$or,$first);	
+tie(%db, 'AnyDBM_File',$dest_gdbm, O_RDONLY ,644);
+if($dump) {
+    while (($r,$value) = each(%db)) {
+	chop $value; # x\00
+	print "$r=>$value\n"
+    }
+    untie(%db);
+    exit;
+}  
+    
+foreach $r (@ARGV) {
+    $or=$r;
+    $first=1;
+    @answers=();
+again:    
+    if ($value=$db{$r}) {
+	$first=0;
+        chop $value; # 0x00
+	push(@answers,$value);
+	while ($value =~ s/^://) {
+	    $value=$db{$value} || 'Unknown1';
+            chop $value; # 0x00
+	    push(@answers,$value);
+	}
+	($nam,$cod,$r) = split(/;/,$value); # split last
+	if ($r && $r =~ s/^://) {
+	    goto again;
+	}	    
+    }
+    else {
+	if($first && length($r)) {
+	    $r=substr($r,0,length($r)-1);
+	    goto again;
+	}    
+	push(@answers,'Unknown2');
+    }
+    print "$or = ",join(' - ',@answers), "\n";
+}    	
+untie(%db);
+

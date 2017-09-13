@@ -1,0 +1,598 @@
+#
+# This file is borrowed from the kernel configuration.
+#
+# Format of this file: description<nl>variable<nl>helptext<nl><nl>.
+# If the question being documented is of type "choice", we list
+# only the first occurring config variable. The help texts
+# must not contain empty lines. No variable should occur twice; if it
+# does, only the first occurrence will be used by Configure. The lines
+# in a help text should be indented two positions. Lines starting with
+# `#' are ignored. To be nice to menuconfig, limit your lines to 70
+# characters. Use emacs' kfill.el to edit this file or you lose.
+#
+Prompt for development and/or incomplete code
+CONFIG_EXPERIMENTAL
+  Some of the programs in this package may be incomplete or
+  instable.
+  Unless you intend to help test and develop a feature that
+  falls into this category, or you have a situation that requires
+  using these features you should probably say N here, which will
+  cause this configure script to present you with fewer choices. If
+  you say Y here, you will be offered the choice of using features or
+  that are currently considered to be in the alpha-test phase.
+
+CONFIG_BUILDX11
+  With this option you can disable the installation of all programs
+  which require X11. If xmkmf is missing, this option will be
+  automatically disabled for you.
+
+CONFIG_KERNELDIR
+  Some programs need special include files from non-standard locations
+  within the kernel source. The default is /usr/src/linux. Change this
+  setting to fit your local environment.
+
+Directory to install binaries
+CONFIG_BINDIR
+  This option tells the installation process, where to put those
+  programs which are usable for ordinary users. The administrative
+  programs (those, which are intended for configuration) are
+  installed in another directory, configurable in the next option.
+
+Directory to install administrative binaries
+CONFIG_SBINDIR
+  This option tess the installation process, where to put the
+  administrative programs. All other programs are installed in
+  another directory, configurable in the previous option.
+
+Directory to install man pages
+CONFIG_MANDIR
+  This option tells the installation process, where to put the
+  man pages. This is usually /usr/man or /usr/local/man. The
+  man pages go into some subdirectory below this directory
+  depending on the section they belong to.
+
+CONFIG_RUNDIR
+  Some applications create special files for managing their
+  process IDs. This option selects the directory where to create
+  these ".pid" files. Usually this is /var/run.
+
+CONFIG_LOCKDIR
+  Some applications create special files for resource locking.
+  This option selects the directory where to create these files.
+  Usually this is /var/lock.
+
+CONFIG_LOCKFILE
+  Some applications create special files for resource locking.
+  This option selects the fixed part of name for these files.
+  The variable part depends on the application. Usually you
+  can accept the "LCK.." default here.
+
+General configuration directory
+CONFIG_I4LCONFDIR
+  Some of the programs in this package need global configuration
+  files. This option tells them where to expect these files.
+  During installation, some sample files may be installed there
+  also.
+
+CONFIG_CONFFILE
+  This is the name of the global configuration file.
+
+CONFIG_CALLERIDFILE
+  This option defines the name for the global callerid file.
+  In this file, well-known names can be assigned to phone numbers.
+  Some of the applications then display the names instead of
+  phone numbers.
+
+CONFIG_USERCONFFILE
+  In addition to the global config file, some applications allow
+  user-specific settings. This option tells, which filename to
+  use for these settings.
+
+CONFIG_COUNTRY_PREFIX
+  This option defines the prefix to be dialed before the country code
+  on international calls.
+
+CONFIG_AREA_PREFIX
+  This option defines the prefix to be dialed before the area code
+  on national calls.
+
+CONFIG_COUNTRYCODE
+  Put your local country code WITHOUT prefix here.
+
+CONFIG_AREACODE
+  Put your local area code WITHOUT prefix here.
+
+CONFIG_LIB_AREACODE
+  For resolving areacodes to city names, a database library is used.
+  With this option, you can select between two database librarys.
+  The recommended library is "Areacode", however those who want to
+  reuse their old datafiles, can select the old "Avon" library here.
+
+CONFIG_DATADIR
+  With this option, the directory for the areacode database and
+  the firmware images of the various active cards can be selected.
+
+Build isdnctrl tool
+CONFIG_ISDNCTRL
+  This program is the main configuration utility for all linklevel
+  related configuration such as net-devices, mapping, encapsulation
+  etc. This program is documented in isdnctrl(8).
+
+Enable debugging features of isdnctrl
+CONFIG_ISDNCTRL_DEBUG
+  If enabled, a special feature 'debug' is available with isdnctrl.
+  With this feature, isdnctrl is able to dump internal data structures
+  of the linklevel part. This feature may be helpful when debugging
+  drivers or the linklevel itself.
+
+Enable config file option isdnctrl
+CONFIG_ISDNCTRL_CONF
+  If enabled, an option to read/write configfiles is built into
+  isdnctrl.  The manpage is extended automatically.
+
+Enable timru-controls
+CONFIG_ISDNCTRL_TIMRU
+  If enabled, support for the TIMRU extension is enabled. Note: TIMRU
+  is NOT supported by standard-kernels (as of 2.0.36).
+
+Build iprofd
+CONFIG_IPROFD
+  If enabled, iprofd, a special daemon will be built. This daemon is
+  used to permanently store profile data from the modem emulator
+  into a file whenever an AT&W0 command is given on any ttyI. It also
+  reads this file on startup and initializes the profile from its
+  contents.
+  This program is documented in iprofd(8).
+
+Build telesctrl
+CONFIG_TELESCTRL
+  This program is used to configure the teles driver (mainly debugging
+  options). For the HiSax driver, there is another tool, called
+  hisaxctrl. These are essentially the same binary, just with a
+  different name.
+  This program is documented in telesctrl(8).
+
+Build hisaxctrl
+CONFIG_HISAXCTRL
+  This program is used to configure the HiSax driver (mainly debugging
+  options). For the teles driver, there is another tool, called
+  telesctrl. These are essentially the same binary, just with a
+  different name.
+  This program is documented in hisaxctrl(8).
+
+Build icnctrl
+CONFIG_ICNCTRL
+  This program is used to configure the ICN driver. With this tool,
+  you can add cards, download protocol firmware into cards and
+  configure ports, memory, leased-line mode etc.
+  This program is documented in icnctrl(8).
+
+Enable debugging features of icnctrl
+CONFIG_ICNCTRL_DEBUG
+  If enabled, a special feature 'debug' is available with icnctrl.
+  With this feature, icnctrl is able to dump internal data structures
+  of the ICN driver. This feature may be helpful when debugging
+  the ICN driver.
+
+Build actctrl
+CONFIG_ACTCTRL
+  This program is used to configure the IBM Active 2000 driver. With
+  this tool, you can add cards, download protocol firmware into cards
+  and configure ports, irq, D-channel protocol etc.
+  This program is documented in actctrl (8).
+
+Enable debugging features of actctrl
+CONFIG_ACTCTRL_DEBUG
+  If enabled, a special feature 'debug' is available with actctrl.
+  With this feature, actctrl is able to dump internal data structures
+  of the IBM Active 2000 driver. This feature may be helpful when
+  debugging the driver.
+
+Build pcbitctl
+CONFIG_PCBITCTL
+  This program is used to configure the pcbit driver. With this tool
+  you can download protocol firmware into cards.
+  This program is documented in pcbitctl (8).
+
+Build eiconctrl
+CONFIG_EICONCTRL
+  This program is used to configure the Eicon driver. With
+  this tool, you can add cards, download protocol firmware into cards
+  and configure ports, irq, D-channel protocol etc.
+  This program is documented in eiconctrl (8).
+
+CONFIG_AVMCAPICTRL
+  This program is used to configure the avm-b1 driver. With this tool
+  you can download protocol firmware into cards.
+  This program is documented in avmcapictrl (8).
+
+CONFIG_DIEHLCTRL
+  This program is used to configure the diehl driver. With this tool
+  you can download protocol firmware into cards.
+  This program is documented in diehlctrl (8).
+
+CONFIG_LOOPCTRL
+  This program is used to configure the loop driver. This tool is
+  marked experimental, since the driver is NOT included in standard
+  kernel. It is mainly for testing purposes.
+  This program is documented in loopctrl (8).
+
+Build imon
+CONFIG_IMON
+  This is a userlevel program to monitor the activity of isdn4linux.
+  It is tty based and uses ncurses to produce a nice screen.
+  This program is documented in imon (1).
+
+Build imontty
+CONFIG_IMONTTY
+  This is a userlevel program to monitor the activity of isdn4linux.
+  It is tty based; does NOT use (n)curses.
+  This program is documented in imontty (1).
+
+Build isdnlog
+CONFIG_ISDNLOG
+  This program is mainly for monitoring activity. It has been extended
+  to do a lot of more however. See isdnlog/README for more info.
+
+Buid ipppstats
+CONFIG_IPPPSTATS
+  This programs displays statistics of synchronous PPP connections.
+  Using this program only makes sense if you use ipppd.
+
+Build xisdnload
+CONFIG_XISDNLOAD
+  This is a program for displaying traffic of ISDN-connections in an
+  X11-window. It shows a similar traffic-graph like xload.
+
+Build xmonisdn
+CONFIG_XMONISDN
+  This is an X11 based ISDN monitor.
+
+NetUP command
+CONFIG_XMONISDN_UPCMD
+  Enter the path of command to execute, if an ISDN-connection is
+  established.
+
+NetDOWN command
+CONFIG_XMONISDN_DOWNCMD
+  Enter the path of command to execute, if an ISDN-connection is
+  terminated.
+
+Install generic man pages
+CONFIG_GENMAN
+  If enabled, in addition to the tool's man pages, the following
+  generic man pages are installed:
+  isdninfo(4) ttyI(4) cui(4) isdn_audio(4) isdnctrl(4) isdn_cause(7)
+
+Generate FAQ
+CONFIG_FAQ
+  If enabled, the FAQ, available as html both unpacked and packed
+  with zip and gzip are generated. The FAQ is available in English
+  and German.
+
+Where to install the FAQ
+CONFIG_FAQDIR
+  Here you can tell where to put the FAQ.
+
+capifax CAPI based FAX application
+CONFIG_CAPIFAX
+  If enabled, a CAPI based FAX system will be build. It is realized
+  using two programs: capifax, a FAX-sending application and
+  faxrcvd, a daemon for receiving incoming Faximile. Since both
+  programs use the CAPI2.0 functionality, these programs are
+  currently ONLY USABLE IF YOU HAVE an AVM-B1 installed!
+
+Remote CAPI daemon
+CONFIG_RCAPID
+  If enabled, a daemon for exporting CAPI connectivity via local
+  Network will be build. The protocol used is based on the
+  specification published by Bintec on their web-site. On
+  the same web-site, there is an example client available.
+  THIS IS ONLY USABLE, IF YOU HAVE an AVM-B1 installed!
+
+ISDN answering machine
+CONFIG_VBOX
+  If enabled, an ISDN answering machine will be build. This program
+  does NOT with some ISDN cards which don't support transparent
+  B-channels: ICN, ACT2000 and Spellcaster.
+
+Voice message spool directory
+VBOX_SPOOLDIR
+  This is the directory under which incoming messages are stored.
+  A subdirectory under this directory will be created for each user.
+  /var/spool/vbox is usual.
+
+Vbox log directory
+VBOX_LOGDIR
+  Logs of incoming messages etc. will be stored in this directory.
+  /var/log/vbox is usual.
+
+Vbox PID directory
+VBOX_PIDDIR
+  Files storing the process ID of running vboxgetty processes will be
+  written in this directory (traditionally /var/run).
+
+Vbox lock directory
+VBOX_LOCKDIR
+  Lockfiles to ensure mutually exclusive access to devices will be
+  created in this directory. /var/lock is recommended.
+
+Vbox documentation directory
+VBOX_DOCDIR
+  Where the (currently only German) documentation is installed.
+
+Version of Tcl library to use
+VBOX_TCL
+  There are different versions of tcl available.. tcl8.0 is the
+  current one.
+
+Use a callid in SUSPEND
+VBOX_SUSPEND_ID
+  If suspending ("park") a call it is possible to assign a id to the
+  suspended call (value is 1). Some ISDN phones don't allow to resume
+  calls with an id.
+
+PPP daemon for syncPPP support
+CONFIG_IPPPD
+  Enabling this, builds a special PPP daemon called ipppd which
+  handles synchronous PPP and MPPP (multilink PPP). This program is
+  documented in ipppd(8).
+
+Support for MS chap secrets
+CONFIG_IPPPD_MSCHAP
+  If enabled, adds support for Microsoft's extension of CHAP
+  authentication. For compiling this, a DES-encryption library
+  libdes.a and its include file des.h needs to be installed on
+  your system. If the configuration process fails to find these,
+  this option is automatically disabled.
+
+Support for RADIUS protocol
+CONFIG_IPPPD_RADIUS
+  Enabling this option, adds support for RADIUS authentication. You
+  need libradiusclient installed on your system for enabling this.
+  See ipppd/README.RADIUS for more information.
+
+Support for RADIUS wtmp logging
+CONFIG_RADIUS_WTMP_LOGGING
+  With this option enabled, ipppd logs into wtmp database also. This
+  makes established connections visible with tools like w, last or
+  similar.
+
+radiusclient config file path
+RADIUS_CLIENT_CONFIG_FILE
+  Enter the full path to your radiusclient config file.
+
+Server listen at port
+CONFIG_ISDNLOG_SERV_PORT
+  Enter the portnumber where isdnlog should answer requests from
+  clients like xisdn or kisdnlog.
+
+User file
+CONFIG_ISDNLOG_USERFILE
+  Enter the full path of the authentication file for client-access
+  to isdnlog.
+
+Charge file
+CONFIG_ISDNLOG_CHARGEFILE
+  Enter the full path of the file where isdnlog should store charging
+  info (costs) during reboots.
+
+Log file
+CONFIG_ISDNLOG_LOGFILE
+  Enter the full path of the file where isdnlog should store the
+  connection informations.
+
+Reload command
+CONFIG_ISDNLOG_RELOADCMD
+  Enter the full path of a shell-sript which reloads the whole
+  I4L-system in case of a failure.
+
+Stop command
+CONFIG_ISDNLOG_STOPCMD
+  Enter the full path of a shell-script which stops the whole
+  I4L-system in case of a failure.
+
+Reboot command
+CONFIG_ISDNLOG_REBOOTCMD
+  Enter the full path of a shell-script which reboots Linux
+  in case of a failure.
+
+Old config directory
+CONFIG_ISDNLOG_OLDI4LCONFDIR
+  Enter the directory of your old (pre 3.0) isdnlog config-stuff.
+
+Old config file
+CONFIG_ISDNLOG_OLDI4LCONFFILE
+  Enter the filename of your old (pre 3.0) isdnlog config-file.
+
+Support postgres95 SQL-Database
+CONFIG_ISDNLOG_POSTGRES
+  Check this box if you plan to let isdnlog insert any connection
+  information into a postgres95 database.
+
+directory of postgres95
+CONFIG_ISDNLOG_POSTGRESDIR
+  Enter the full path of your postgres95 installation.
+
+Support mysql SQL-Database
+CONFIG_ISDNLOG_MYSQLDB
+  Check this box if you plan to let isdnlog insert any connection
+  information into a mysql database.
+
+directory of mysql
+CONFIG_ISDNLOG_MYSQLDIR
+  Enter the full path of your mysql installation.
+
+Country specific chargeinfo support
+CONFIG_ISDN_LOG_DE
+  Check exactly one box to integrate country specific support into
+  isdnlog.
+  If you country is not supported directly, please use 'XX'.
+
+Country code
+CONFIG_ISDN_LOG_CC
+  Enter your iso country code here, also knwon as TLD (top level domain).
+  Note: please use small letters. Note also: data files for your country
+  might not exist yet.
+  See isdnlog/README.Internationalization for more info.
+
+Primary language for country names
+CONFIG_ISDN_LOG_CC_DE
+  The destination database can be built with german or english
+  country names.
+
+National support for cities
+CONFIG_ISDN_LOG_DEST_DE
+  Select this, if you want to have German cities in the destination
+  database.
+  So isdnlog can show a city name instead of a number prefix.
+  In isdnrate you can type in known city names and countries.
+
+National support for cities
+CONFIG_ISDN_LOG_DEST_AT
+  S. above text for German cities.
+
+National support for cities
+CONFIG_ISDN_LOG_DEST_NL
+  S. above text for German cities.
+
+Diversion services support
+CONFIG_DIVERTCTRL
+  This program is needed to configure the supplementary diversion
+  services in conjunction with the HiSax driver on an EURO/DSS1
+  line. Supported options are CD (call deflection), CFU (Call
+  forward unconditional), CFB (Call forward when busy) and CFNR
+  (call forward not reachable).
+  Additionally the actual CFU, CFB and CFNR state may be
+  interrogated. The use of CFU, CFB, CFNR and interrogation may
+  be limited to some countries. The keypad protocol is still not
+  implemented.
+  CD should work in all countries if this service has been sub-
+  scribed.
+
+Eurofile Transfer Support
+CONFIG_EUROFILE
+  The Eurofile Transfer Protocol is a protocol standardized by ETSI
+  that allows computers to exchange files over the ISDN. ISDN
+  adapter boards for PCs are usually bundled with a file transfer
+  software that implements the above protocol. Typing 'y'
+  here will build the eftp4linux package, which will allow your
+  linux box to exchange files over isdn with such PCs.
+.
+  The package actually consists of a core library 'libeft' (which
+  mainly implements the protocols ETS 300-383 and ETS 300-075) and
+  some applications which use that library.
+.
+  Eurofile requires a 2.2.x kernel or newer to work. You can quickly
+  check if your Linux system is Eurofile-ready by running the
+  `check_system' script present in the eurofile/scripts/ directory.
+
+Build Eurofile server
+CONFIG_EFTD
+  This will build an eurofile server 'eftd' which allows to connect
+  from another computer to your linux computer via isdn and to
+  download or upload files.
+
+Use user authetication derived from wu-ftp
+CONFIG_EFTD_WUAUTH
+  Eurofile connections to your computer are granted on a
+  user name / password based authentication scheme. If you say 'y'
+  here, an authentication library derived from the Washinghton
+  University ftp server is used which allows you to configure fine
+  grained access control.
+.
+  The main reason why this is a config option is that wuftpd comes
+  with another license (Berkley style with advertising clause) which
+  is incompatible with the GPL (the eftp4linux code itsself is coverd
+  by the LGPL). Thus, the only reason to turn this off is probably if
+  you want to generate an eftd binary which can be distributed
+  under the TERMS terms of the GPL.
+
+MSN used to provide Eurofile service
+CONFIG_EFTD_SERVER_MSN
+  This is the MSN (ususally the telephone number without area code),
+  that another computer must call if it wants to connect to your
+  eftp4linux eurofile server. This only sets the default entry in
+  the example eft.conf file and you can always change this number
+  later by editing /etc/isdn/eft.conf.
+.
+  If you also use ISDN for connecting your computer to your internet
+  provider, it is recommended to use a different MSN than for
+  ippp/rawip (or whatever) network interfaces (in particular if
+  you use isdn network interfaces that accept incoming connections).
+
+Install eftd boot time script
+CONFIG_EFT_INSTALL_EFTD_SH
+  If this is enabled, a sysv compatible init rc script for starting
+  eftd during boot time will be installed when you do a `make install'.
+.
+  Actually, `make install' only  copies the script file to the sysv
+  init directory (currently hardcoded /sbin/init.d). It does not
+  configure the runlevels which still remains your own task. Please
+  refer to the doc of your Linux distribution on how to do this.
+.
+  You might want to say 'n' here if you already have an own costumized
+  version of the script installed which should not be overwritten when
+  doing `make install'
+
+Build Eurofile client
+CONFIG_EFTP
+  This will build an eurofile client 'eftp' which allows you to
+  connect to other computers from your linux computer via ISDN and
+  to download or upload files. eftp provides a command line user
+  interface somewhat similar to ftp (thus, the name).
+
+Command line editing for eftp
+CONFIG_EFTP_READLINE
+  This enables command line editing for eftp by means of the GNU
+  readline library. For this to work, your system needs a sufficiently
+  recent version of the GNU readline library installed which supports
+  the so called `alternate interface'. (If such a library is not fond,
+  readline support will be turned off automatically, thus you only
+  need to say 'n' here if you really don't want GNU readline support).
+
+Install eftp suid root
+CONFIG_EFTP_SETUID
+  For initiating outgoing connections, eftp needs to dynamically
+  configure isdn network interfaces and X.25 routes. This task
+  requires netadmin priviliges and access to /dev/isdnctrl files.
+  Thus, only root can dynamically initiate outgoing eurofile connections.
+.
+  If you say 'y' here, a `make install' will install eftp suid root.
+  This will allow normal users to initiate Eurofile connections.
+  suid eftp only initiates outgoing eurofile connections if the
+  user hase write permissions to /dev/ttyI0. Thus, even if you install
+  eftp suid root, only those user who can initiate outgoing isdn
+  calls anyway can do so by means of eftp.
+.
+  eftp will only perform the network setup (and cleanup) with super
+  user privileges, the whole other stuff is performed by a forked
+  child process that runs with real and effective user id of the
+  calling users. Thus, potential security holes are minimized.
+
+MSN used by outgoing Eurofile calls
+CONFIG_EFTP_CLIENT_MSN
+  This is the MSN used to identify your isdn access line
+  (used be the ISDN network to generate the called party number
+  in the isdn connect request message) when making outgoing calls
+  to other Eurofile servers.
+.
+  Some Eurofile servers base access control on the called party
+  number. Thus, when connecting to such a server, the success of
+  your connection attempt might depend on the proper setting of this.
+.
+  This only sets the default entry in the example eft.conf file and
+  you can always change this number later by editing /etc/isdn/eft.conf.
+
+Install default eft.conf file
+CONFIG_EFT_INSTALL_CONF
+  If this is enabled, the example eft.conf file will be installed
+  (usually as /etc/isdn/eft.conf). You might want to turn this off if
+  you already have an own costumized version of eft.conf installed
+  which should not be overwritten when doing `make install'
+
+# need an empty line after last entry, for sed script in Configure.
+
+
+
+

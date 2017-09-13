@@ -1,0 +1,90 @@
+$Id: PROBLEME.eftd,v 1.1 1999/06/30 16:50:59 he Exp $
+
+Die Implementierung ist noch nicht komplett, folgende Probleme sind
+bekannt:
+
+- Navigation (so heißt bei EUROfile alles, was mit Directories zu tun hat)
+  ist noch nicht vollständig protokollkonform unterstützt. Hier sind
+  zuvor noch einige offene Fragen zu klären. (s.u.)
+  Zur Zeit wird immer der durch realpath(3) kanonisierte Directory-Pfad als
+  Filestore-Name benutzt. Dies kann dazu führen, daß Filestorenamen
+  mehrfach auftreten, wenn sie unter verschiedenen Namen (symlinks)
+  erreichbar sind (oder gewisse Links ganz ausgeblendet werden).
+  Es wird auch noch keine global eindeutige Information über die
+  Anordnung der Filestores untereinander ("Filestore Reference")
+  erzeugt. Das könnte zu Problemen führen, wenn ein besonders
+  intelligenter Client versucht, die Directory-Struktur des Servers
+  local nachzubilden.
+
+- Bei einigen Clients wurden Probleme mit der Groß/Klein-schreibung
+  von Transfernamen beobachtet. Manche Clients benutzen sogar für
+  die Übertragung in der einen Richtung grundsätzlich Transfernamen in
+  Großbuchstaben, für die Gegenrichtung in Kleinbuchstaben. Da der Linux Server
+  die Transfernamen als Dateinamem (und nach Unix-Manier case sensitive)
+  interpretiert, können solche Clients ihre eigenen, gerade geschriebenen
+  Dateien nicht wieder zurücklesen. Nach den EUROFile Normen (ETS 300 383 /
+  ETS 300 075) sollten Transfernamen case-sensitive sein (zumindest steht
+  da nichts Gegenteiliges). Daher betrachte ich dieses Problem eigentlich
+  nicht als meines, bis mich jemand eines besseren belehrt. Seltsamerweise
+  habe ich auch schon connections von Clients gleicher Herstller gehabt, die
+  die Groß/Kleinschreibung konsistent benutzt haben. Daher vermute ich, daß das
+  Problem im User Interface der Software begründet ist und sich daher die
+  DOS, Win3.1, und Win95 Versionen oder gar dieselbe eft
+  Client-Version unter verschieden Windows-Version möglicherweise
+  unterschiedlich verhalten.
+
+  Wer einen Client mit solchen Problemen hat, kann einen
+  Kompatibilitätsmodus aktivieren, indem er dem Login-Namen ein
+  '+'-Zeichen voranstellt (z.B. userid "+ftp" statt "ftp"). Dann
+  wird Groß/Kleinschreibung bei Dateinamen ignoriert,
+  Directory-Prefixe werden stets in Kleinbuchstaben konvertiert.
+  Damit sind natürlich gewisse Dateien mit dem Eurofile-Protokoll
+  nicht mehr zugreifbar.
+
+- Die meisten Clients scheinen offenbar, wenn man keinen login Namen
+  angibt, irgendeinen Default Namen (z.B wurde "No Name" bei Teles
+  beobachtet) zu verwenden. Das Einloggen geht dann schief, wenn
+  kein login account mit Namen "No Name" existiert. Um dem
+  vorzubeugen, solltet ihr grundsätzlich einen login-namen explizit
+  angeben (und zwar "ftp" bzw. "+ftp" bei anonymem Zugang).
+
+- Die Datumsübertragung im ETS 300 075 Protokoll ist nicht y2k safe!
+
+- Die maximale Länge von übertragbaren Dateien ist durch gewisse
+  Restriktionen im ETS 300 075 Protokoll begrenzt (auf ca 64 MByte bei
+  üblicher 1k Blockgröße).
+
+
+
+Offene Fragen:
+
+UNIX geht davon aus, daß die Dateistruktur eine gemeinsame Wurzel "/"
+hat. Einzelne User haben darin Home-Directories.
+EUROFile geht davon aus, daß jeder User einen Default-Filestore
+(analog Home-Directory) hat, der gleichzeitig die logische Wurzel
+aller erreichbaren Sub-Filestore's (analog Sub-Directories) ist.
+Dieser Unterschied schlägt insbesondere bei Dateien zu, die nicht
+unterhalb des Home-Directories des Benutzers liegen.
+Die offene Frage ist, ob und wie diese unterschiedliche logische Sicht
+auf den Dateibaum im Server umgesetzt werden soll.
+
+Da die meisten Unix-ähnlichen Betriebssysteme Symlinks haben, ist
+dasselbe Directory unter Umständen unter mehreren verschiedenen Namen
+erreichbar, so daß die durch Datei/Directory-Namen beschriebene Struktur
+nicht zwangsläufig eine reine Baumstruktur darstellt. EUROFILE geht
+dagegen von einer logisch reinen Baumstruktur aus.
+Die offene Frage ist, ob und wie der Server den Zugriff auf
+Directories über Symlinks zulassen soll. Der einfachste Weg, eine
+logische Baumstruktur für eft zur Verfügung zu stellen, besteht darin,
+Symlinks zu Directories einfach auszublenden. Dann kann man natürlich
+die ganzen Vorteile, die Symlinks in der Administration bieten, für
+Eurofile nicht mehr nutzen (und z.B. bestehende ftp-Archive mit
+Symlinks nur eingeschränkt über EUROFile zuganglich machen).
+Vielleicht kann man auch die Einschränkungen aus ETS 300 383
+einfach ignorieren, aber das bringt unter Umständen
+protokollkonforme Clients durcheinander. Andere Lösungen
+(Vorschläge willkommen) erfordern wohl mehr Implementierungsaufwand.
+
+(Für die detailierte Beschreibung/Analyse der Interworking-Probleme siehe
+auch das File INTERWORKING in der Distribution).
+

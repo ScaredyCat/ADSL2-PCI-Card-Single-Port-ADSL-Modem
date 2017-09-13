@@ -1,0 +1,71 @@
+$Id: README.CVS,v 1.3 1999/07/01 18:00:16 he Exp $
+
+From version 0.0.11, eftp4linux is added to the isdn4linux cvs
+repository. This will allow bug fixes to be faster distributed. It
+will also increase availability.
+
+As long as it is considered alpha, it will only appear in the isdn4k-utils
+configuration menu if the "CONFIG_EXPERIMENTAL" option is set.
+(Currently, it even will not appear in the menu at all because
+eftp4linux is not added to the isdn4k-utils main config menu and
+main makefile yet).
+
+You can still cd to the eurofile subdirectory (as described in the
+INSTALL file) and compile eftp4linux stand-alone, but you will not
+inherit the isdn4k-utils main menu config options then.
+
+As long as it is alpha, it also might not be included with the beta-releases
+of the isdn4k-utils package. But in turn, stand-alone snapshots from
+the eftp4linux package will contiune to be distributed from
+ftp://ftp.hamburg.pop.de/pub/local/linux/i4l-eft/.
+However, not every change commited to cvs will be distributed on the
+ftp server. Only when important changes (important new features or
+important bug fixes) are present or when sufficiently
+many less important changes have accumulated, a new stand-alone release
+will be made.
+
+
+How to get a new versions from the CVS server
+=============================================
+
+If you already mirror the isdn4k-utils from the isdn4linux cvs server,
+you don't need to do anything special. eftp4linux should appear in the
+new eurofile subdirectory of the isdn4k-utils packages after your next
+cvs update.
+
+But you do not need to mirror the whole isdn4k-utils package just for
+getting the most actual eftp4linux sources. eftp4linux will continue
+to be installable stand-alone and it is sufficient to only mirror
+the eftp4linux part of the isdn4linux CVS repository.
+
+If you want to do so, type 
+
+    cvs --version
+
+from the shell. If this does not work (or the reported version number
+is too low), you need to install cvs 1.8 or newer on your system.
+
+Create a dirctory
+
+    mkdir ~/i4ldev
+    cd ~/i4ldev
+
+Next, do a
+    export CVSROOT=:pserver:guest@cvs.isdn4linux.de:/i4ldev
+    cvs login
+
+and enter an arbitray password if asked for. (csh or tcsh users need
+to type the equivalent setenv command instead of export).
+
+Initially check out the eurofile source tree by
+
+    cvs -z3 checkout  isdn4k-utils/eurofile
+
+
+If you later want to update your local copy, simply do
+
+    cd ~/i4ldev/isdn4k-utils/eurofile
+    cvs -z3 update -dP . 
+
+whenever you like. That's all. Type "make clean; make" to compile
+the updated version. 

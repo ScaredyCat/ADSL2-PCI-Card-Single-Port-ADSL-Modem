@@ -1,0 +1,57 @@
+eine headerdatei fuer alle -DDefines
+Dokumentation von USER/GROUP-Eintraegen
+Dokumentation von neuer Syntax
+Dokumentation von conffile.c
+Vervollstaendigen der README
+isdnrep modulariseren und print_msg einbauen
+Fehler in start_proc lt. Mail beheben
+Vorschlaege von ak realisieren
+
+ - Bedingt durch den neuen logger()-Modus muss die "/var/log/isdn.log"
+   (sowie die "/var/log/isdn.log.rep") nun existieren,
+   da isdnlog diese nicht mehr automatisch anlegt :-(
+
+ - ACHTUNG: die glibc definiert BUFSIZ mit 8192 !! (an welchen Stellen
+   	    bin ich unbewu·t von 512 Byte ausgegangen?
+
+ - decode() schie·t bei B1-Frames Åber das Ziel hinaus ...
+   Am Anfang von decode() ist nach einer "Calling party number"
+   p bereits auf dem nÑchsten Byte, nicht auf dem letzten!
+   (siehe "/tmp/b1", danach "Wolfgang <wood.stock@gmx.net>" Erfolg melden!)
+
+ - in tools/isdnconf.c Set_Globals() alle neueren conf-EntrÑge
+   (AMT, INTERNS0, usw.) parsen!
+
+ - "gsm" Frames pruefen, Funk-Rufnummern werden falsch zerlegt:
+   +49 /17332, Germany ?
+
+ - countrymatch() haut manchmal daneben!
+   Aus der Telefonnummer "+353 147" wird bei 01078:3U -> Irland Mobilfunk
+   "Usbekistan" wird manchmal nicht gefunden?
+
+ - "make install" mu· noch den neuen Eintrag
+   [ISDNLOG]
+   COUNTRYFILE    = /usr/lib/isdn/countries-de.dat
+   automatisch durchfÅhren!
+
+ - TEI Management fertig ausdecodieren!
+
+ - IDEE: Immer, wenn CHARGEMAX ausgegeben wird, und die Datei
+   "/etc/isdn/nohup" existiert, HUPTIMEOUT > CHARGEINT stellen
+
+ - FIXME's
+
+ - bekannte Probleme mit der Tarif-Datenbank:
+
+  - die erste Minute kostenlos, wenn Gespraechsdauer < 1 Minute
+  - die ersten 5 Sekunden kostenlos
+  - CityPlus, usw. der DTAG
+  - Viatel berechnet an Feiertagen nicht wie Wochenende, sondern wie normale Tage
+  - Rabatte
+  - einige Provider "vergessen", bei laufenden Gespaechen einen evtl.
+    Tarifwechsel abzurechnen
+      01050:Talkline
+      01079:Viatel
+      01015:RSL Com
+    machen *keinen* Tarifwechsel in einer laufenden Verbindung!
+  - Sonderbehandlung von 24. Dezember bis 31. Dezember (Telekom)

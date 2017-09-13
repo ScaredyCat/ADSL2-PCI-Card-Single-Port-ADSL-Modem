@@ -1,0 +1,71 @@
+XMONISDN
+
+1. Purpose
+
+After having installed the ISDN system I felt a bit uneasy since the
+system can initiate connections by itself. In fact, I have seen
+spontaneous connections when Netscape was running. 
+
+For this reason I wanted a monitor that does not consume too much CPU
+resource and displays the connection status in a concise way. Further,
+I wanted an easy method to control the ISDN connection, which means
+shutting down the ISDN subsystem or starting it up -- by clicking on
+an icon.
+
+Using the Xbiff program as a source of inspiration I implemented a tool 
+that has the functionality described above.
+
+
+2. Monitoring the ISDN Subsystem
+
+The state of the ISDN subsystem is displayed in a small window showing
+appropriate icons:
+
+- the ISDN subsystem is inactive: one solid terminal in the foreground,
+  another dashed terminal in the background
+- the ISDN subsystem is active, but there is no network connection over
+  the ISDN line: two terminals connected by dashed arrows
+- there is an incoming ISDN network connection or the ISDN system is dialing:
+  two terminals connected by solid arrows
+- there is an outgoing ISDN network connection: two terminals connected
+  by fat arrows in reverse video.
+
+When an outgoing connection is established or when the ISDN subsystem
+hangs up, the program beeps to signal this important state change.
+
+
+3. Controlling the ISDN Subsystem
+
+Pressing button 2 in the window while the ISDN system is inactive
+executes the command "/sbin/isdnnet start &" and pressing button 3
+executes "/sbin/isdnnet stop". Provided /sbin/isdnnet is a
+shell-script that can start and stop the ISDN subsystem and provided
+you are in the dialout group (and the ISDN devices in /dev are also
+in the dialout group) you can startup and stop the ISDN system in
+this way.
+
+An alternative is to install xmonisdn as setuid root, but that may
+have serious security problems, so that is strongly discouraged.
+If you insist on using xmonisdn as setuid root, read the manual
+page on info how to do that.  You could also install xmonisdn as
+setgid dialout, but that too is not without possible problems.
+
+
+4. Compilation and Installation
+
+After having installed the source directory type
+
+	xmkmf
+	make
+	make install.all
+
+which compiles and installs all files.
+
+Now you only have to setup the shell-script /sbin/isdnnet, which could
+simply be a link to the appropriate initialization script. I wrote a
+new script that includes a call to "sendmail -q" in order to deliver
+all mail that has been queued while the ISDN system was inactive.
+
+Bernhard Nebel, December 9, 1996
+
+Modified August 3, 1999 by Paul Slootman <paul@isdn4linux.de>

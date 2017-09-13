@@ -1,0 +1,30 @@
+V:1.0-Norway [21. Feb 2000. rufsen@nuts.edu]
+
+W:1		Mandag
+W:2		Tirsdag
+W:3		Onsdag
+W:4		Torsdag
+W:5		Fredag
+W:6		Lørdag
+W:7		Søndag
+W:W		Arbeidsdag
+W:E		Weekend
+W:H		Off. feriedag
+W:*		daglig
+
+D:1.1		Nyttårsdag
+D:easter-63	Septuage' sima
+D:easter-56	Sexage' sima
+D:easter-49	Fastelavnssøndag
+D:easter-3	Skjærtorsdag
+D:easter-2	Langfredag
+D:easter	1. Påskedag
+D:easter+1	2. Påskedag
+D:1.5		1. Mai
+D:17.5		17. Mai
+D:easter+39	Kristi Himmelfartsdag
+D:easter+49	1. Pinsedag
+D:easter+50	2. Pinsedag
+D:easter+56	Trefoldighetssøndag
+D:25.12		1. Juledag
+D:26.12		2. Juledag

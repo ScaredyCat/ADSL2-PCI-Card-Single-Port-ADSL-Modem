@@ -1,0 +1,533 @@
+.\" $Id: isdnlog.8.in,v 1.10 2002/03/11 16:13:38 paul Exp $
+.\" CHECKIN $Date: 2002/03/11 16:13:38 $
+.TH isdnlog 8 "@MANDATE_ISDNLOG8@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+.SH NAME
+isdnlog \- isdn log system (and more)
+
+.SH "DESCRIPTION"
+Isdnlog gets information from your isdn card, decodes this
+information, and can do anything with it, such as logging, starting
+programs, and more. All options to isdnlog can be given as command line
+flags, or you can specify a file with options (recommended).
+
+.SH "RESTRICTION"
+Isdnlog only works with the HiSax isdn driver. Other cards with their
+own driver are not supported. Additionally you need to enable d-channel logging
+(you can use "hisaxctrl <DriverId> 1 4" to do that, e.g. "hisaxctrl
+line0 1 4"). Isdnlog can only log outgoing calls that
+originate from
+your isdn card, and incoming calls. To get information about outgoing
+calls from other isdn devices (e.g. telephones), you need a second Teles
+isdn card, with crossed lines. Such a card is not usable for communicating,
+but can log
+outgoing calls from any device (see dual option below).
+
+.SH "GENERAL OPTIONS"
+
+.TP
+.B \-V
+show version information and exit.
+
+.TP
+.BI \-f FILE
+read options from the config file
+.IR FILE .
+The first line should be
+"[options]". You may use blank lines and comments (starting with a #).
+All config files for isdnlog have the format described in isdn.conf(5).
+Debug options must be given on the command line, they cannot be stored in a
+file.
+
+.TP
+.B /dev/DEVICE
+isdnlog will read from this device and from /dev/isdninfo. You should
+give /dev/isdnctrl0 for the first isdn card (or /dev/isdnctrl2 for the
+second).
+
+Isdnlog has a replay mode for debugging, where you can simulate previous
+recorded events. In that case use "-" instead of a device.
+
+.TP
+.B \-A\fIx\fB	amt="value"
+Set digits necessary to get an outside line, when connected through a PABX.
+You can
+give several codes padded with a ":" (e.g. -A0:80:81:82).
+
+.TP
+.B \-B\fIvbn\fB	vbn="value"
+Set the provider preselection to the given value. More prefixes may be separated
+by a ":".
+.br
+Values are e.g. "010" for DE, "10" for AT, "16:17" for NL, "9" for FR.
+
+.TP
+.B \-R\fIprefix\fB	preselected="value"
+Set the preselected (i.e the provider choosen, if no prefix is dialed)
+provider to value. Value should be without \fIvbn\fR.
+
+.TP
+.B \-0\fIx:y\fB	trim="value[:value]"
+Suppress leading digits. If isdnlog is connected through a PABX, it is
+sometimes not possible to let isdnlog distinguish between a national and an
+international call, even with help of the
+.B \-A
+option.
+.br
+This option requires two values separated with ":" as an argument. These values
+tell isdnlog how many leading digits to remove from incoming and outgoing calls
+respectively. If only one value is given, it is used for both incoming and outgoing calls.
+.br
+Don't use this in combination with the
+.B \-A
+option! This will confuse the system (and possibly you).
+
+Example: a PABX in Germany shows the number of an incoming call from Hamburg
+as "00040...".  When calling out to Hamburg, it shows the number as "0040...".
+This means that on incoming calls, three zeroes must be removed, and on
+outgoing calls two zeroes must be removed (the number must be normalized to
+be without any leading zeroes in the case of a national number; international
+numbers must have one leading zero). So, in this case, the option \fB-03:2\fR
+would be correct.
+
+.TP
+.B \-i\fIx\fB	internS0="value"
+Telefon number shorter then
+.I value
+are considered to be internal numbers one your PABX
+
+.TP
+.B \-o	other={yes|no}
+Normally "causes" (e.g. "non-selected user clearing") for other connected
+ISDN devices are not displayed, only those which are related to the connection
+will be shown. With this option the causes for the other devices are also
+displayed.
+
+.TP
+.B \-u\fIx\fB	ignoreRR="value"
+Ignore "housekeeping" frames.
+.I x
+may be 1 (ignore RR=Receiver ready) or 2 (ignore EMP=Euracom Management Protokoll) frames.
+
+.TP
+.B \-U\fIx\fB	ignoreCOLP="value"
+Ignore COLP/CLIP frames when value is 1.
+Value 0 is default, and tells isdnlog to not ignore COLP/CLIP frames.
+.br
+Sometimes the COLP number is a number in a different areacode to the
+number that was dialled, and then the cost calculation would be wrong.
+
+.TP
+.B \-2\fIx\fB	dual="value"
+Enable dual mode. You need this if you have a second isdn card attached with
+crossed lines so it can listen to what other isdn devices like telephones
+are doing. With \fIx\fR=2 you can increase the debug output - every single
+digit will be displayed.
+
+.TP
+.B \-1
+A HFC-based card is used for echo mode. Enable echo mode for the HFC card with
+.br
+.I hisaxctrl id 10 1
+.br
+.I hisaxctrl id 12 1
+
+.SH "DEBUG MODULE"
+
+.TP
+.B \-r
+Replay a debug file (e.g. /tmp/isdnctrl0) to find bugs. With this flag
+you should give a filename with the debug information instead of a device.
+It will also work with files not created by isdnlog (e.g.
+"cat /dev/isdnctrl0").
+
+.TP
+.B \-n	newline={yes|no}
+Display throughput messages on the same line (only useful with logging to
+stderr or a console device).
+
+.TP
+.B \-W\fIX\fR	width="value"
+Limit all messages to X characters per line.
+
+.TP
+.B \-v\fIX\fR	log=X
+Isdnlog can copy all information to /tmp/DEVICE (e.g. /tmp/isdnctrl0 if
+you started isdnlog with /dev/isdnctrl0). Choose what debugging you want
+from the following list, add the corresponding numbers together and use
+that for X:
+
+.RS
+.TP
+1
+copy all "HEX:" lines from the hisax isdn device driver.
+.TP
+2
+copy /dev/isdnctrl output (or whatever device you specified).
+.TP
+4
+copy /dev/isdninfo output
+.TP
+8
+copy transfer values ("ibyte","obyte").
+
+.in -7
+Isdnlog will close and reopen this file after a "kill -HUP".
+.RE
+
+.TP
+.B \-s	flush={yes|no}
+Isdnlog will flush the debug file /tmp/DEVICE (e.g. /tmp/isdnctrl0) after
+each write access.
+
+.TP
+.B \-P	pipe={yes|no}
+Copy the debug information to stdout. This way you can run isdnlog as the
+source of a pipe like "isdnlog -P /dev/isdnctrl0 |prog ... ".
+
+.TP
+.B \-D	daemon={yes|no}
+Start isdnlog as daemon: it will fork into the background, and use syslog
+as the default logging method (if you did not specify -m).
+
+.TP
+.B \-T
+Trace mode: isdnlog will wait for a key after processing a line from
+/dev/isdnctrl0 (or whatever device you specified).
+
+.TP
+.B \-K
+Print for every pressed key the thruput. Can not used together with option -d.
+
+.TP
+.B \-b
+If you are using a bilingual network terminator (NT), you must give this
+flag, or isdnlog will show the own MSN's incorrectly.
+
+.SH "NUMBER REWRITE MODULE"
+
+You can define aliases for telephone numbers (see callerid.conf(5) and
+isdn.conf(5) for more information). Isdnlog will compare all numbers to
+the list of aliases, and when a match is found, the alias is displayed
+instead of the number.
+
+.SH "LOG MODULE"
+Isdnlog can log information via syslog, to stdout, and send information
+to x11 clients. Calculate a code from these numbers by adding them, and
+activate logging with -s, -m or -x. You can use normal numbers or hex
+numbers. Default is stderr mode -m, unless daemon mode is enabled; then it's
+syslog mode -l.
+
+.TP
+0x1
+Errors
+
+.TP
+0x2
+Warnings
+
+.TP
+0x4
+Notice
+
+.TP
+0x8
+Log messages to /tmp/DEVICE (e.g. /tmp/isdnctrl0 if isdnlog is started
+with /dev/isdnctrl0)
+
+.TP
+0x10
+Show telephone numbers immediately.
+
+.TP
+0x20
+Show charge int and telephone costs with every charge signal
+(in Germany, and perhaps other countries, you have to pay to get these signals).
+
+.TP
+0x40
+Show connect messages.
+
+.TP
+0x80
+Show hang up messages.
+
+.TP
+0x100
+Show cause message on hang up.
+
+.TP
+0x200
+Show time messages.
+
+.TP
+0x400
+Show throughput in bytes (every -wX seconds).
+
+.TP
+0x800
+Show state of B-channels (use with -M monitor).
+
+.TP
+0x1000
+Show service indicator.
+.br
+You should log at least 0x7 (errors, warnings, notice) messages.
+
+.TP
+0x2000
+Log estimated time till next charge signal.
+
+.TP
+0x4000
+Show chargemax.
+
+.TP
+0x8000
+Enable
+.I core
+file on SIGSEGV.
+
+.TP
+0x10000 ... 0x800000, show more diagnostic and debug messages.
+
+.TP
+.B \-m\fIX\fB	stdout="value"
+Log to stderr.
+
+.TP
+.B \-O\fIX\fB	outfile="path"
+Log to file \fIX\fR instead of stderr. Isdnlog will close this device when it
+gets a signal -SIGHUP (-1). Only valid with -m option.
+.br
+If the name starts with a "+", new data will be appended to the existing file.
+Default behaviour is to truncate the file when isdnlog opens it.
+
+.TP
+.B \-C \fIX\fB 	console="path"
+Log to console \fIX\fR instead of stderr. You can use -O and -C together,
+so that isdnlog copies output to both. Specify a full pathname.
+Beware: you
+.ul
+must
+put a space between -C and X !
+
+.TP
+.B \-M	monitor={yes|no}
+With this flag, isdnlog will generate output for monitor programs like
+imon, imontty or isdnmon. You must also give -m with 0x800 enabled.
+
+.TP
+.B \-l\fIX\fB	syslog="value"
+Log to syslog. \fIX\fR is the log code. You can log to syslog and to stdout at
+the same time.
+
+.TP
+.B \-x\fIX\fB	xisdn="value"
+Pass information to x11 client. X is the log code. You can pass
+information to x11 clients and log to syslog and/or stdout at the same
+time.
+
+.TP
+.B \-p\fIPORT\fB port="value"
+Pass information to x11 client on this \fIPORT\fR.
+
+.TP
+.B \-c\fIX\fB	calls="value"
+Only with -x\fIX\fR : save the last \fIX\fR calls and pass this information to an
+x11 client. Default value is 100.
+
+.TP
+.B \-L\fIX\fB	xlog="value"
+Only with -x\fIX\fR : save the last \fIX\fR messages and pass this information to an
+x11 client. Default value is 500.
+
+.TP
+.B \-w\fIX\fB	thruput="value"
+If you enabled throughput logging (0x400), isdnlog will log the throughput
+every \fIX\fR seconds.
+
+.TP
+.B \-I\fIx:y\fB	ciinterval="value[:value]"
+Interval for printing of charge messages (0x20).
+.br
+The first value is the interval for the calculated CI, the second value
+for the EH (AOC-D) messages. If only one value is given, both intervals are
+set to this value.
+
+.SH LCR
+.TP
+.B \-d\fIx\fB	abclcr="value"
+Value is a bitmap:
+.br
+0 ... off
+.br
+1 ... calls to different area / country
+.br
+2 ... local calls too
+.br
+4 ... special numbers e.g. ISP
+.br
+This needs a kernel patch to work. If the kernel patch is not found
+a simulation is done.
+.br
+Note: depending on your telefon provider local area calls may or may not
+be routed to alternate providers.
+For changing the ISP a script is called. s. next option 'providerchange'
+
+.TP
+.B	providerchange="path_top_script"
+(There is no commandline option for this)
+This script is called with 3 parameters, the new provider number
+(fron rate-CC.dat) the number, which would be dialed, and the servicename.
+The script should adjust routing, name resolution and so on to
+connect to the ISP.
+If the script returns non zero, LCR will not be done.
+
+
+.SH "TIME MODULE"
+
+.TP
+.B \-t\fIX\fB	time={0|1|2}
+Isdnlog will set your local system time to the time transmitted by your
+isdn service provider: -t1 = once, -t2 = every time.
+
+.SH "CHARGEHUP MODULE"
+
+.TP
+.B \-h\fIX\fB	hangup="value"
+The isdn kernel system has a chargehup system, so it will hang up a few
+seconds before the next charge signal. If you don't get a charge
+signal from your phone company, isdnlog can emulate it.
+
+On every outgoing connection, isdnlog will calculate the charge
+time from day of week, time of day and the distance zone of the
+connection.
+
+The kernel needs to know how long the charge time is, and how many
+seconds before the next charge signal it should hang up. You have to set
+the second parameter with X in the form number:number (hang up seconds
+before next charge signal for charge times greater than or equal to 20
+seconds : for charge times of less than 20 seconds).
+
+With this information, isdnlog will call "isdnctrl chargeint <device>
+<charge time>" and "isdnctrl huptimeout <device> <seconds before charge
+signal>" (it actually communicates directly with isdn, without calling
+isdnctrl, but this would have the same effect).
+
+You should run isdnlog with -t1 or better with -t2, so isdnlog sets the
+local time in sync with telephone switching office.
+
+If there is a third number in value, this is the minimum connection time for providers
+charging a basic rate per connection.
+.br
+e.g. hangup 3:5:60
+
+
+.SH "START MODULE"
+
+isdnlog can react on any event and start programs. This feature is
+disabled unless you activate it with:
+
+.TP
+.B \-S	start={yes|no}
+active "START" feature. Please read callerid.conf(5) for more
+information.
+
+.SH "CONNECTION LOG MODULE"
+
+isdnlog will log all connections in @LOGFILE@. isdnrep can parse
+this file and calculate costs.
+
+.SH "SEVERAL ISDN CARDS"
+If you have more than one isdn card, you need to run one isdnlog for
+each card. And every process must have a different name, so you should
+create a symbolic link isdnlog1 -> isdnlog, and start isdnlog1 for the
+second card.
+
+.SH "UNLOADING KERNEL MODULES"
+You cannot unload isdn kernel modules while an isdn device is in use,
+e.g. a PPP interface is defined or isdnlog is running. Look at
+@RUNDIR@ for a file isdnlog.DEVICE.pid with the process id of isdnlog,
+and kill that. After that you should be able to unload your isdn kernel modules.
+
+.SH "FILES"
+.TP
+.B /dev/DEVICE
+isdnlog requires a device as a parameter to read from (e.g.
+/dev/isdnctrl0 for the 1st isdn card).
+
+.TP
+.B /tmp/DEVICE
+isdnlog can copy everything it reads to this file as debug information
+(e.g. /tmp/isdnctrl0 if you started isdnlog with /dev/isdnctrl0).
+
+.TP
+.B @RUNDIR@/isdnlog.DEVICE.pid
+isdnlog creates this file with its process id. Useful to see if
+isdnlog is running.
+
+.TP
+.B /var/lock/LCK..DEVICE
+isdnlog creates a lock file for the device, so no other processes will
+access that device.
+
+.TP
+.B @I4LCONFDIR@/@CONFFILE@
+isdnlog config file. Options to isdnlog can be given on the command line, can
+be stored in this file in [options] (with command line option
+-f@I4LCONFDIR@/@CONFFILE@), or in a different config file, but isdnlog will
+look at this file for sections [global] [variables] [isdnlog].
+
+.SH SIGNALS
+.TP
+.B SIGHUP (-1)
+On SIGHUP isdnlog restarts, and does therefore reread it's config files.
+
+.TP
+.B SIGINT (-2), SIGTERM (-15), SIGQUIT (-3)
+Isdnlog quits gracefully on receiving these termination signals.
+
+.TP
+.B SIGSEGV (-11)
+If the log level contains 0x8000 (and your ulimits permit this) isdlog will
+generate a
+.I core
+file before terminating.
+
+.SH EXAMPLE
+
+I start isdnlog with "isdnlog -f@I4LCONFDIR@/@CONFFILE@ /dev/isdnctrl0".
+This file contains a [options] section:
+
+.nf
+[options]
+#newline=no     # show all throughput messages in one line.
+#width=80       # limit log messages to 80 characters per line
+#amt=0:80:81    # digits to get a line through your PABX
+log=15          # maximum debug mode
+flush=no        # flush logfile after every write
+pipe=no         # pipe log messages to stderr
+daemon=yes      # run isdnlog as daemon
+stdout=0x1ff7   # stderr logging level
+outfile=+/var/log/isdn.log               # log to file
+#console=       # log to a console
+monitor=yes     # emulate output for  imon/imontty/...
+syslog=0x1ff7   # syslog logging level
+#xisdn=0x07ff   # x11 output level
+#calls=         # store call information for x11 client
+#xlog=          # store messages for x11 client
+thruput=60      # if throughput logging is enabled: log every X seconds
+time=2          # set time: 0 = never; 1 = once; 2 = every time
+#hangup=        # simulate charge signals
+start=yes       # enable starting programs
+
+.SH SEE ALSO
+.B isdnconf(1) isdn.conf(5) callerid.conf(5)
+.br
+.B isdnlog(5) isdnrep(1) rate-files(5) isdnrate(1)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux, updated by Leopold Toetsch
+<lt@toetsch.at>.

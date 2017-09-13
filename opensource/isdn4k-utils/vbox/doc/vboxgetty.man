@@ -1,0 +1,112 @@
+.\" $Id: vboxgetty.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxgetty 8 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.PD 0
+.SH NAME
+vboxgetty \- isdn voice box (getty)
+
+.SH SYNOPSIS
+.B vboxgetty
+.I "[OPTION] [OPTION] [...]"
+
+.SH "DESCRIPTION"
+Vboxgetty is the heart of vbox: it watches the isdn system and waits
+for incoming voice calls,
+
+.SH OPTIONS
+.TP
+.B \-f, \-\-file FILE
+Config file to use. Default is the file '@I4LCONFDIR@/vboxgetty.conf'.
+
+.TP
+.B \-d, \-\-device TTY
+ISDNdevice to use. You must use this option!
+
+.TP
+.B \-h, \-\-help
+Show summary of options.
+
+.TP
+.B \-v, \-\-version
+Show version of program.
+
+.SH CONFIGURING VBOX
+vboxgetty should be started from the init process. To do this you need
+one line per vboxgetty in /etc/inittab like this one:
+
+I5:2345:respawn:@SBINDIR@/vboxgetty -d /dev/ttyI5 
+
+The next step is to set up a working configuration for all ports in
+@I4LCONFDIR@/vboxgetty.conf: read vboxgetty.conf(5) how to do this and
+look at the example config file in /usr/doc/isdnutils/examples.
+
+You should then create the spool directories for each user:
+@SPOOLDIR@/<user>, @SPOOLDIR@/<user>/incoming and
+@SPOOLDIR@/<user>/messages. Copy the example config files vbox.conf
+and standard.tcl from /usr/doc/isdnutils/examples to
+@SPOOLDIR@/<user>, read the man pages vbox.conf(5) and vboxtcl(5)
+and edit these config files. 
+
+Change the owner of all files in @SPOOLDIR@/<user> with "chown
+<user>.<group> @SPOOLDIR@/<user> -Rv" and correct the permissions
+with "chmod o-rwx,g-rwx @SPOOLDIR@/<user> -Rv".
+
+
+The last step: run "init q" to force init to reread /etc/inittab
+
+.SH HOW IT WORKS
+For each line in /etc/inittab one vboxgetty is started by init.  Make
+sure the first field (ID) and the device file are different. Each
+vboxgetty does this:
+
+First @I4LCONFDIR@/vbox.conf is read, the global settings are loaded and
+then the port specific settings. Then vboxgetty waits for an incoming
+call.
+
+On an incoming call vboxgetty reads @SPOOLDIR@/<user>/vbox.conf 
+(unless you change that name), and vboxgetty determines if it should
+take that call or how many RINGs it should wait. It also gets the
+name of the standard message, beep message, timeout message, if these
+should be played and an alias for the current caller, if there is one.
+
+If vbox has waited enough RINGs and the caller is still ringing, it
+takes the call and starts the tcl script
+@SPOOLDIR@/<user>/standard.tcl (unless you change that name), and
+this script will do the rest (normally: play standard and beep
+message, record and then play timeout message).
+
+.SH FILES
+.TP
+.B @I4LCONFDIR@/vboxgetty.conf
+default config file
+
+.TP
+.B /etc/inittab
+init starts vboxgetty via this file.
+
+.TP
+.B @I4LCONFDIR@/vboxgetty.conf
+the global vbox config file
+
+.TP
+.B @SPOOLDIR@/<user>/vbox.conf
+the per user configuration file for this port
+
+.TP
+.B @SPOOLDIR@/<user>/standard.tcl
+the tcl script used to communicate with the caller
+
+.TP
+.B @PIDFILEDIR@/vboxgetty-<device>.pid
+process id of the vboxgetty
+
+.TP
+.B @LOGFILEDIR@/vboxgetty-<device>.log
+logfile of the vboxgetty
+
+.SH SEE ALSO
+.B vboxgetty.conf(5), vbox.conf(5), vboxtcl(5), isdntime(5)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

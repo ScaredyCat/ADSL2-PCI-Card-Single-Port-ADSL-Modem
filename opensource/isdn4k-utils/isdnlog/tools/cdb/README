@@ -1,0 +1,60 @@
+What is freecdb?
+---------------
+
+It's a totally-public domain fork of cdb. cdb was originally created
+by Dan Bernstein. See the original web page at 
+ftp://koobera.math.uic.edu/www/cdb.html for more on cdb.
+
+
+Why did you rewrite everything except the C sources?
+---------------------------------------------------
+
+Because Dan Bernstein restricted their copying too much. I wanted to
+use cdb freely, and distribute as I wished.
+
+Please see http://www.debian.org/intro/free for a introduction on what
+I mean with "free".
+
+
+What did you do, exactly?
+------------------------
+
+I rewrote the man pages, build system and some other details.
+
+Converting the man pages to *roff format needs pod2man (from Perl),
+and the build system needs GNU Make. You want to install Perl and GNU
+Make anyway. You really do.
+
+
+But you broke portability!
+-------------------------
+
+Might very well be true. I don't have experience with much else than
+Linux, and I'm nowhere near as capable of ensuring portability as DJB
+himself. Please tell me what I broke and I'll fix it.
+
+
+It doesn't work anymore!
+-----------------------
+
+Oops. File a bug at http://bugs.debian.org/ and I'll see what I can do.
+
+
+I hate you for doing this! You free software biggots are all alike!
+------------------------------------------------------------------
+
+And you self-centered non-sharers, too! You don't frighten us, English
+pig-dogs! Go and boil your bottoms, sons of a silly person! Ah blow my
+nose at you, so-called Arthur king! You and all your silly English
+k-nnnnnn-ighuts! Pttttht!
+
+
+What a strange person!
+---------------------
+
+Ah don't wanna talk to you anymore, you empty-headed animal foodtrough
+water! I fart in your general direction! Your mother was a hamster,
+and your father smelled of elderberries!
+
+
+[Apologies to Monty Python]

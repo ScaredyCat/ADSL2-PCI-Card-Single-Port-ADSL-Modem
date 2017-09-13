@@ -1,0 +1,9 @@
+config.log
+config.h
+config.cache
+config.status
+stamp-h
+Makefile
+.deps
+stamp-h.in
+capiinfo

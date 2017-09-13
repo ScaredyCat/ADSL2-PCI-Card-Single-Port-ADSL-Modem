@@ -1,0 +1,101 @@
+This version of the driver is managed and controlled by the usual
+Linux tools (ifconfig, iwconfig, iwpriv) plus the wlanconfig tool
+included with the driver in the tools directory.
+
+A production release of the driver will include documentation
+for the tools directory and all the iwpriv commands.  Until then,
+this crib sheet must suffice.
+
+Building and loading the driver is as before.  The final step
+is "modprobe ath_pci" or the equivalent using "insmod".
+When the driver is successfully loaded it creates a device named
+"wifi0" rather than the expected "ath0" device.
+The output from iwconfig should look like this:
+
+    lo      no wireless extensions.
+    wifi0   no wireless extensions.
+
+This driver uses wifi%d only as a placeholder for the phyical device, 
+and will create one wifi device for each wireless NIC in the system.  
+These wifi devices will reject ifconfig and iwconfig commands.
+
+The next step is to bring one or more ath%d device into existence.
+All of the usual commands - ifconfig, iwconfig, iwpriv - should operate
+on the ath%d devices as expected with exceptions noted below.
+
+Here are some simple recipies.
+
+Station mode:
+
+    wlanconfig ath0 create wlandev wifi0 wlanmode sta
+
+This says create a device named ath0 to be associated with wireless
+device wifi0 and set it to be a station.  Now you can run iwconfig
+on the ath0 device.   Note that if you try "iwconfig ath0 mode AP",
+the command will be refused and will report an error.
+That's because the wlanmode mode of the underlying physical device
+is inherited by the upper level network device and may not be
+changed by the upper level device.
+
+Once ath0 is created it is possible to use "iwconfig ath0 essid my_AP"
+and other commands.
+
+Hopefully it is obvious that certain other properties of the underlying
+device (frequency, power level, QoS settings) are also inherited by
+the upper layer network devices.  These properties can be adjusted
+by the upper level device commands (ifconfig, iwconfig, etc).
+
+AP mode:
+
+    wlanconfig ath create wlandev wifi0 wlanmode ap
+    wlanconfig ath0 create wlandev wifi0 wlanmode ap
+
+These two commands have the same effect, assuming that they are
+the only instances of wlanconfig.   In other words, the driver
+will assign a device number to the ath device if one is not specified
+on the command line.  In both cases we have created an AP and
+all the iwconfig commands for setting the essid and cryptographic
+modes will operate in the same way as earlier versions of the driver.
+
+VAP mode (multiple APs):
+
+    wlanconfig ath0 create wlandev wifi0 wlanmode ap
+    wlanconfig ath1 create wlandev wifi0 wlanmode ap
+    wlanconfig ath2 create wlandev wifi0 wlanmode ap
+    iwconfig ath0 essid "public_AP"
+    iwconfig ath1 essid "XYZ Corp"
+    iwconfig ath2 essid "Something Else"
+
+Removing a device
+
+    An ath0 device is removed by "wlanconfig ath0 destroy".
+
+Changing the mode
+
+    It is not possible to change the mode of a device.
+    Instead, first destroy the device and then create a new one
+    with the desired mode.   Like this:
+        
+        ifdown ath0
+        wlanconfig ath0 destroy
+        wlanconfig ath0 create wlandev wifi0 wlanmode [ap,sta,adhoc,monitor]
+
+WDS bridge mode
+
+    First set up an ap, then a station.  Then have the station
+    associate with a target AP.  Then bring up the AP and enable
+    bridging between the two devices.  Like this:
+
+    wlanconfig ath0 create wlandev wifi0 wlanmode ap
+    wlanconfig ath1 create wlandev wifi0 wlanmode sta
+    iwconfig ath1 essid "target AP"         // bring up the station first
+    iwpriv ath1 wds 1                       // enable bridging mode on sta
+    iwconfig ath0 essid "local AP name"
+    brctl addbr br0                         // create a bridge device
+    brctl addif br0 ath0                    // add the wireless devices
+    brctl addif br0 ath1
+    ifconfig br0 [ip address for bridge] up
+
+    Note also that ip address for each of the ath devices in this
+    example can be set.  It is possible to ping both the sta
+    device and the ap device.

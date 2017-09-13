@@ -1,0 +1,12 @@
+$Id: LEGAL.ipppcomp,v 1.1 1999/11/04 23:12:31 he Exp $
+
+In certain countries, distributing or using the software contained
+in the 'ipppcomp' directory might conflict with patent law or the
+GNU General Public License, Version 2 (GPL). If this applies,
+you might need to modify this software package or take other actions
+prior to re-distributing this package. If in doubt, ask for legal
+advice.
+
+Please read the section 'PATENT ISSUES' of ipppcomp/README.LZS
+and the GPL (as present in the file COPYING) for details.
+

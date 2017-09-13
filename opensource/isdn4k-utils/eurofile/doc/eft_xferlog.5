@@ -1,0 +1,168 @@
+.\" $Id: eft_xferlog.5,v 1.1 1999/06/30 16:51:03 he Exp $
+.TH EFT_XFERLOG 5
+.SH NAME
+eft_xferlog \- EFT server logfile
+.SH DESCRIPTION
+.LP
+The
+.B eft_xferlog
+file contains logging information from the eftp4linux eurofile server daemon,
+.BR eftd (8).
+This file usually is found in /var/adm, but can be located anywhere by using a
+option to
+.BR eftd (8).
+.P
+eftd uses the same format as wu-ftpd for its log files. Thus, you
+might be able to use or adapt tools that have been written to analyse
+wu-ftpd xferlog files. However, for some fields of the log file 
+different semantics apply. This is because they are now
+related to the isdn domain rather than the internet.
+.P
+Each server entry is composed of a single line of the following form, 
+with all fields being separated by spaces.
+.IP
+.I
+current-time\ \  transfer-time\ \  remote-host\ \  file-size\ \  filename\ \  transfer-type\ \  special-action-flag\ \  direction\ \  access-mode\ \  username\ \  service-name\ \  authentication-method\ \  authenticated-user-id
+.LP
+.TP 20
+.I current-time
+is the current local time in the form "DDD MMM dd hh:mm:ss YYYY". Where DDD
+is the day of the week, MMM is the month, dd is the day of the month,
+hh is the hour, mm is the minutes, ss is the seconds, and YYYY is the year.
+.TP 
+.I transfer-time
+is the total time in seconds for the transfer.
+.TP
+.I remote-host
+is the remote host's isdn number.
+.TP
+.I file-size
+is the size of the transferred file in bytes.
+.TP
+.I filename
+is the name of the transferred file.
+.TP
+.I transfer-type
+is a single character indicating the type of transfer. Can be one of:
+.RS
+.RS
+.PD 0
+.TP 10
+.B a
+for an ascii transfer
+.TP
+.B b
+for a binary transfer
+.PD
+.RE
+.RE
+As eftp4linux only supports binary transfers, this will
+allways be 'b'.
+.TP
+.I special-action-flag
+is one or more single character flags indicating any special action taken. 
+Can be one or more of: 
+.RS
+.RS
+.PD 0
+.TP 10
+.B C
+file was compressed
+.TP
+.B U
+file was uncompressed
+.TP
+.B T
+file was tar'ed
+.TP
+.B _
+no action was taken
+.PD
+.RE
+.RE
+As on-the-fly-compression is not supported by eftp4linux,
+this will always be '_'.
+.TP
+.I direction
+is the direction of the transfer. Can be one of:
+.RS
+.RS
+.PD 0
+.TP 10
+.B o
+outgoing
+.TP
+.B i
+incoming
+.PD
+.RE
+.RE
+.TP
+.I access-mode
+is the method by which the user is logged in. Can be one of:
+.RS
+.RS
+.PD 0
+.TP 10
+.B a
+(anonymous) is for an anonymous guest user. 
+.TP
+.B g
+(guest) is for an passworded guest user (see the
+.BR guestgroup
+command in
+.BR eftaccess(5)
+). 
+.TP
+.B r
+(real) is for a local authenticated user.
+.PD
+.RE
+.RE
+.TP
+.I username
+is the local username, or if guest, the ID string given. 
+.TP
+.I service-name
+is the name of the service being invoked, which is EFT.
+.TP
+.I authentication-method
+is the method of authentication used. Can be one of:
+.RS
+.RS
+.PD 0
+.TP 10
+.B 0
+none
+.TP
+.B 1
+RFC931 Authentication
+.PD
+.RE
+.RE
+As RFC931 authentication is not used by eftp4linux, this will always
+be 0.
+.TP
+.I authenticated-user-id
+is the user id returned by the authentication method. 
+A * is used if an authenticated user id is not available. With
+eftp4linux, this will be the same as the user name.
+.SH CREDITS
+.LP
+This man page has been derived from the wuftpd
+.BR xferlog(5)
+man page. Please refer to the
+.BR eft_wuauth(5)
+man page for further details.
+.SH FILES
+.PD 0
+.TP 20
+.B /var/log/xferlog
+.SH "SEE ALSO"
+.BR ftpd(8),
+.BR ftpaccess(5),
+.BR xferlog(5),
+.BR eftd(8),
+.BR eftaccess(5),
+.BR eft_wuauth(5)
+

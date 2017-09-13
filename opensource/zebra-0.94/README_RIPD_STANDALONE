@@ -1,0 +1,64 @@
+Steps:
+======
+1. configureing ripd Standalone:
+    enable option 'ripd_standalone' in the configure script
+Example:
+>./configure --target=mips-linux --host=mips-linux --build=i386-pc-linux-gnu --prefix=/usr --disable-vtysh --disable-ipv6 --enable-ripd_standalone --disable-debug_ripd_standalone --disable-bgpd --disable-ripngd --disable-ospfd --disable-ospf6d --disable-bgp-announce IFX_CFLAGS="${IFX_CFLAGS} " LDFLAGS="${IFX_LDFLAGS}"
+
+
+2. Configuring ripd.conf 
+    Keep ripd.conf in the location as specified by 
+	${prefix}/etc/ripd.conf where as prefix is the value specified
+	in the configure script
+   
+	In the above example, place the ripd.conf in dir:  /usr/etc
+3. Run ripd 
+
+Enabling debugging of ripd:
+===========================
+	Enable the option debug-ripd_standalone option in the configure script
+
+Writing configuration file for ripd
+===================================
+The configuration commands supported are:
+
+enable/config commands:
+	debug rip events
+	debug rip packet
+	debug rip packet <send|recv>
+    
+    log stdout
+	log file <FILENAME>
+	log syslog
+
+interface commands:
+	interface <IFNAME>
+	ip rip send version <1|2>
+	ip rip send version 1 2
+	ip rip send version 2 1
+	ip rip receive version <1|2>
+	ip rip receive version 1 2
+	ip rip receive version 2 1
+	ip rip authentication mode <md5|text>
+	ip rip authentication key-chain <LINE>
+	ip rip authentication string <LINE>
+	ip split-horizon
+
+rip commands:
+	network <prefix/ifname>
+	neighbor <prefix>
+	default-information originate
+	version <1|2>
+	passive-interface <IFNAME>
+	default-metric <1-16>
+	timers basic <5-2147483647> <5-2147483647> <5-2147483647>
+	route <A.B.C.D/M>
+	distance <1-255>
+	distance <1-255> <A.B.C.D/M>
+	distance <1-255> <A.B.C.D/M> <WORD>  {WORD: accesslist name}
+
+IMPORTANT NOTE:
+===============
+1)You *MUST* give only ONE SPACE between the words in configuration commands, otherwise parser would fail.
+2) Use "!" or "#"  for comments in configuration file
+

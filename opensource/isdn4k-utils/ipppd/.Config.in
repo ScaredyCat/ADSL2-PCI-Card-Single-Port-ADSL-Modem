@@ -1,0 +1,7 @@
+mainmenu_option next_comment
+comment 'Options for ipppd'
+bool 'Support for MS chap secrets' CONFIG_IPPPD_MSCHAP
+bool 'Support for RADIUS protocol' CONFIG_IPPPD_RADIUS
+bool 'Support for RADIUS wtmp logging' CONFIG_RADIUS_WTMP_LOGGING
+string 'radiusclient config file path' RADIUS_CLIENT_CONFIG_FILE
+endmenu

@@ -1,0 +1,224 @@
+.TP 5
+.BI writeconf " file"
+Writes the configuration into a file. If
+.I file
+is omitted, the default file
+.B @I4LCONFDIR@/@I4LCONFFILE@
+will be used.
+.TP 5
+.BI readconf " file"
+Reads the configuration from a file. If
+.I file
+is omitted, the default file
+.B @I4LCONFDIR@/@I4LCONFFILE@
+will be used.
+
+.SS Syntax of the configuration file
+This syntax will be used for the options
+.B readconf
+and
+.B writeconf.
+
+All entries are included in the section
+.B [ISDNCTRL].
+This section contains an entry
+.B INTERFACES,
+which describes the interfaces. Each subsection 
+.BR [INTERFACE] " or " [SLAVE]
+describes one interface. There are the following entries possible:
+.TP 5
+.BI "NAME = " name
+The name of the interface.
+This entry is required.
+
+.B Example:
+NAME = ippp0
+.TP 5
+.BI "EAZ = " eaz
+Set the EAZ or the MSN.
+This entry is required.
+
+.B Example:
+EAZ = 4711
+.TP 5
+.BI "PHONE_IN = " num " [" num ...]
+Set the incoming phone number(s).
+It requires at least one blank between the different numbers.
+
+.B Example:
+PHONE_IN = 08151234 08151235 08151236
+.TP 5
+.BI "PHONE_OUT = " num " [" num ...]
+Set the outgoing phone number(s). 
+It requires at least one blank between the different numbers.
+
+.B Example:
+PHONE_OUT = 08151237 08151238
+.TP 5
+.B SECURE = on|off
+Turn on or off the security feature.
+
+.B Example:
+SECURE = on
+.TP 5
+.B CALLBACK = off|in|out
+Selects callback mode.
+
+.B Example:
+CALLBACK = in
+.TP 5
+.B CBHUP = on|off
+Turns on or off hangup before starting callback.
+
+.B Example:
+CBHUP = on
+.TP 5
+.BI "CBDELAY = " seconds
+Set the callback delay to
+.IR seconds .
+
+.B Example:
+CBDELAY = 5
+.TP 5
+.BI "DIALMAX = " num
+Set the number of dial atempts to
+.IR num .
+
+.B Example:
+DIALMAX = 1
+.TP 5
+.BI "HUPTIMEOUT = " seconds
+Set the hanguptime to
+.IR seconds .
+
+.B Example:
+HUPTIMEOUT = 20
+.TP 5
+.B IHUP = on|off
+Turns on or off the hangup timeout for incoming calls.
+
+.B Example:
+IHUP = on
+.TP 5
+.B CHARGEHUP = on|off
+Turns on or off hangup before next charge info.
+
+.B Example:
+CHARGEHUP = on
+.TP 5
+.BI "CHARGEINT = " seconds
+Sets the charge interval to
+.IR seconds .
+
+.B Example:
+CHARGEINT = 1
+.TP 5
+.BI "L2_PROT = " protocol
+Set the layer-2 protocol.
+Allowed values for
+.I protocol
+.RB are " x75i" , " x75ui" , " x75bui " and " hdlc" .
+
+.B Example:
+L2_PROT = hdlc
+.TP 5
+.BI "L3_PROT = " protocol
+Set the layer-3 protocol.
+Allowed value for
+.I protocol
+.RB "is only " trans .
+
+.B Example:
+L3_PROT = trans
+.TP 5
+.BI "ENCAP = " encapsulation
+Sets the encapsulation mode.
+Allowed values for
+.I encapsulation
+.RB are " rawip" , " ip" , " cisco_h" , " cisco_hk" , " ethernet" , " syncppp " and " uihdlc" .
+
+.B Example:
+ENCAP = rawip
+.TP 5
+.BI "ADDSLAVE = " slave
+Adds a slave interface for channel-bundling.
+
+.B Example:
+ADDSLAVE = s-ippp0
+.TP 5
+.BI "SDELAY = " seconds
+Set the delay in seconds for the slave-dialing.
+
+.B Example:
+SDELAY = 10
+.TP 5
+.BI "TRIGGER = " cps
+Set trigger level for slave-dialing.
+
+.B Example:
+TRIGGER = 4000
+.TP 5
+.BI "BIND = " driverId , channel
+Binds the current interface to a specific physical channel.
+Before and after the comma may not be a blank.
+
+.B Example:
+BIND = teles1,0
+.TP 5
+.BI "PPPBIND = " num
+Binds the current interface to the ippp device
+.BI /dev/ippp X .
+This works only for syncronous ppp.
+The value must be a number.
+
+.B Example:
+PPPBIND = 0
+
+.TP 5
+.B Example for a configuration file
+
+[ISDNCTRL]
+  INTERFACES = {
+    [INTERFACE]
+    NAME      = isdn0
+    EAZ       = 4711
+    PHONE_IN  = 08151234
+    PHONE_OUT = 08151234
+    SECURE    = on
+    DIALMAX   = 1
+    HUPTIMEOUT= 20
+    IHUP      = on
+    CHARGEHUP = on
+    L2_PROT   = hdlc
+    L3_PROT   = trans
+    ENCAP     = rawip
+    ADDSLAVE  = s-isdn0
+    SDELAY    = 10
+
+    [SLAVE]
+    NAME      = s-isdn0
+    EAZ       = 4711
+    PHONE_OUT = 08151234
+    SECURE    = on
+    DIALMAX   = 1
+    HUPTIMEOUT= 10
+    IHUP      = on
+    CHARGEHUP = on
+    L2_PROT   = hdlc
+    L3_PROT   = trans
+    ENCAP     = rawip
+
+    [INTERFACE]
+    NAME      = ippp0
+    EAZ       = 4712
+    PHONE_OUT = 08151235 08151236
+    SECURE    = on
+    DIALMAX   = 5
+    HUPTIMEOUT= 200
+    IHUP      = on
+    CHARGEHUP = on
+    L2_PROT   = hdlc
+    L3_PROT   = trans
+    ENCAP     = syncppp
+    PPPBIND   = 0
+  }

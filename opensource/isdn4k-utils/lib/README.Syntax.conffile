@@ -1,0 +1,138 @@
+Syntax zu den Konfigurationsdateien:
+====================================
+
+Leere Zeilen werden ignoriert. Wenn in einer Zeile ein '#' enthalten ist,
+so wird der Rest der Zeile als Kommentar gewertet.
+Wenn das Zeichen '#' verwendet werden soll, so muss dieses gequotet werden.
+Dieses erfolgt mit dem Zeichen '\'.
+
+Der folgende Zeile ist falsch, und fuehrt zu einem Fehler:
+
+[FR#ED]
+
+Richtig waere
+
+[FR\#ED]
+
+Steht am Ende einer Nicht-Kommentarzeile ein "\", so wird die Zeile mit der
+naechste Zeile zu einer "verschmolzen". Das Zeichen "\" muss als letztes
+Zeichen stehen, und darf nicht von Tab's oder Leerzeichen gefolgt werden.
+Innerhalb eines String braucht es nicht geqoutet werden.
+Ein Eintrag wie
+
+FRED = c:\sinnlos\
+\sinnlos.exe
+#                ^ Hier besagt es Zeilenende, die anderen beiden "\"
+#                  sind normale Zeichen.
+#                  Die zweite Zeile muss dann direkt am Anfang beginnen,
+#                  da sonst die Leerzeichen/Tabulatoren mit ausgewertet
+#                  werden.
+
+ist so erlaubt. Das Ergebnis dieser Zeile ist folgendes:
+
+FRED = c:\sinnlos\sinnlos.exe
+
+Die Datei hat eine aehnliche Syntax wie die smb.conf, win.ini usw.
+Es gibt dort Sektionen und darunter Eintraege.
+Die Syntax wurde allerdings um Untersektionen erweitert. Ein Eintrag kann
+wieder eine Sektion darstellen. Diese Untersektionen koennen beliebig oft
+verschachtelt sein.
+
+Alle Tabulatoren und Leerzeichen am Ende einer Zeile werden ignoriert.
+
+Es wird die Gross/Kleinschreibung bei den Eintrags- und Sektionsnamen
+ignoriert. Also vor dem Gleichheitszeichen. Danach wird sehr wohl in
+Gross und Kleinschreibung unterschieden.
+
+In den Sektions- und Eintragnamen duerfen folgende Zeichen nicht verwendet
+werden: "*?|&/"
+Wenn diese Zeichen erscheinen, werden sie beim Einlesen ignoriert.
+
+Am Anfang einer Zeile (sowohl Sektionsname als auch einem Eintrag) koennen
+beliebig viele Leerzeichen als auch Tabulatoren stehen:
+
+[SECTION]
+
+und 
+
+         [SECTION]
+
+sind equivalent.
+
+In dem folgenden Beispiel sind Kommentare enthalten, die weitere Regeln
+beschreiben, welche unbedingt beachtet werden muessen.
+
+Beispiel:
+
+BEGIN-OF-FILE
+
+[SECTION1]
+ENTRY1=blabla1
+entry2 = blabla2
+#     ^-^-------- Es duerfen vor und nach dem Gleichheitszeichen beliebig
+#                 Spaces und Tabulatoren verwendet werden.
+#                 Diese werden vom Interpreter ignoriert.
+#                 Das erste Zeichen des Wertes der Variablen 
+#                 (nach Gleichheitszeichen) darf weder ein Leerzeichen noch ein
+#                 Tabublator sein.
+#                 Auch ein quoten mit '\' ist nicht moeglich.
+  Entry3 = {
+#          ^----- Dieses Zeichen besagt, das dieser Eintrag ein oder mehrere
+#                 Untersektionen beinhaltet. Es MUSS in der gleichen Zeile
+#                 stehen, wie der Eintragsnamen und das Gleichheitszeichen.
+# ^^^^^^--------- "Entry3", "entry3" und "ENTRY3" sind equivalent!
+  [SUBSECTION1]
+  entry1 = bla1
+  ...
+
+  [ subsection2 ]
+#  ^-----------^- Hier koennen wieder beliebige Spaces und Tabulatoren stehen.
+#   ^^^^^^^^^^--- "subsection2" und "SUBSECTION2" sind equivalent!
+  ...
+  }
+# ^-------------- Hier wird das Ende von Eintrag "ENTRY3" eingeleitet.
+#                 Das Zeichen "}" muss in einer seperaten Zeile alleine
+#                 stehen.
+
+[SECTION2]
+...
+
+END-OF-FILE
+
+Anders als bei Windows und Samba wird hier das Zeichen ";" NICHT
+als Kommentarzeichen erkannt, sondern nur "#".
+
+Es ist möglich eine weitere Datei einzubinden. Das wird durch den Eintrag
+
+INCLUDE(Datei)
+
+erreicht. Wird "Datei" mit einem relativen Pfad (oder ganz ohne Pfad)
+angegeben, dann wird als aktuelles Verzeichnis, das angesehen,
+wo die Datei liegt, die dieses INCLUDE enthaelt. Die Zeile "INCLUDE"
+kann an beliebiger Stelle in der Konfigurationsdatei vorkommen.
+Der Dateiname darf allerdings keine Leerzeichen und Tabulatoren enthalten.
+
+Beispiel:
+
+Datei /etc/myconfig/fred enthaelt folgende Zeile:
+
+INCLUDE(../myinclude)
+
+Dann wird nach der Datei /etc/myinclude gesucht. Es ist voellig
+unabhaengig davon, in welchem Verzeichnis das Programm gestartet wurde,
+das die Konfigurationsdatei lesen soll.
+
+In der Include Datei muessen immer genau so viele geschweifte Klammern
+zugehen, wie aufgemacht worden sind. Eine Datei darf nicht folgenden Inhalt
+haben:
+
+[TEST1]
+testinhalt = 5
+{
+
+Dieses wird leider nicht gut erkannt und kann zur Zeit noch zum Absturz fuehren.
+Auf jeden Fall wird so die Konfigurationsdatei nicht sauber eingelesen!!!
+
+ACHTUNG:
+Wenn Dateien rekursiv eingebunden werden, fuehrt dieses mit Sicherheit
+zum Absturz des Programmes. Dieses wird von der Library nicht verhindert.

@@ -1,0 +1,213 @@
+dnl     This file is an input file used by the GNU "autoconf" program to
+dnl     generate the file "configure", which is run during vbox installation
+dnl     to configure the system for the local environment.
+
+AC_INIT(src/vboxgetty.h)
+AM_CONFIG_HEADER(src/config.h)
+
+dnl #------------------------------------------------------------------------#
+dnl # Version of the vbox package. Theres no need to change this ;-)         #
+dnl #------------------------------------------------------------------------#
+AM_INIT_AUTOMAKE(vbox,'2.0.0BETA5')
+VERDATE="17-NOV-98"
+
+dnl #------------------------------------------------------------------------#
+dnl # Some defaults:                                                         #
+dnl #------------------------------------------------------------------------#
+
+AC_PREFIX_DEFAULT()
+
+AC_DEFINE_UNQUOTED(PACKAGE, "${PACKAGE}")
+AC_DEFINE_UNQUOTED(VERSION, "${VERSION}")
+AC_DEFINE_UNQUOTED(VERDATE, "${VERDATE}")
+
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+AC_SUBST(VERDATE)
+
+dnl #------------------------------------------------------------------------#
+dnl # Checks for programs:                                                   #
+dnl #------------------------------------------------------------------------#
+
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+AC_PROG_LN_S
+
+AC_PATH_PROG(VBOX_RM, rm, "rm")
+AC_PATH_PROG(VBOX_MV, mv, "mv")
+AC_PATH_PROG(VBOX_SED, sed, "sed")
+AC_PATH_PROG(VBOX_MAIL, mail, "mail")
+AC_PATH_PROG(VBOX_AR, ar, "ar")
+AC_PATH_PROG(VBOX_RANLIB, ranlib, "ranlib")
+
+AC_SUBST(VBOX_RM)
+AC_SUBST(VBOX_MV)
+AC_SUBST(VBOX_SED)
+AC_SUBST(VBOX_MAIL)
+AC_SUBST(VBOX_AR)
+AC_SUBST(VBOX_RANLIB)
+
+dnl #------------------------------------------------------------------------#
+dnl # Checks for header files:                                               #
+dnl #------------------------------------------------------------------------#
+
+AC_HEADER_TIME
+AC_CHECK_HEADERS(sys/time.h)
+
+dnl #------------------------------------------------------------------------#
+dnl # Checks for typedefs, structures, and compiler characteristics:         #
+dnl #------------------------------------------------------------------------#
+
+AC_C_CONST
+AC_C_INLINE
+
+AC_CHECK_FUNCS(vsnprintf)
+
+dnl #------------------------------------------------------------------------#
+dnl # Checks for needed external packages:                                   #
+dnl #------------------------------------------------------------------------#
+
+GND_PACKAGE_NCURSES
+GND_PACKAGE_TCL
+
+
+   dnl #=================#
+   dnl # --with-spooldir #
+   dnl #=================#
+
+AC_MSG_CHECKING(where the messages are stored)
+
+VBOX_SPOOLDIR="`eval echo ${VBOX_SPOOLDIR:-"/var/spool/vbox"}`"
+
+AC_ARG_WITH(spooldir,
+	[  --with-spooldir=DIR     vbox's stores messages in DIR [/var/spool/vbox]],
+	VBOX_SPOOLDIR=${withval}
+)
+
+AC_MSG_RESULT(${VBOX_SPOOLDIR})
+
+AC_DEFINE_UNQUOTED(SPOOLDIR, "${VBOX_SPOOLDIR}")
+AC_SUBST(VBOX_SPOOLDIR)
+
+   dnl #===============#
+   dnl # --with-logdir #
+   dnl #===============#
+
+AC_MSG_CHECKING(where the logs are stored)
+
+VBOX_LOGDIR="`eval echo ${VBOX_LOGDIR:-"/var/log/vbox"}`"
+
+AC_ARG_WITH(logdir,
+	[  --with-logdir=DIR       logs are stored in DIR [/var/log/vbox]],
+	VBOX_LOGDIR=${withval}
+)
+
+AC_MSG_RESULT(${VBOX_LOGDIR})
+
+AC_DEFINE_UNQUOTED(LOGFILEDIR, "${VBOX_LOGDIR}")
+AC_SUBST(VBOX_LOGDIR)
+
+   dnl #===============#
+   dnl # --with-piddir #
+   dnl #===============#
+
+AC_MSG_CHECKING(where the pids are stored)
+
+VBOX_PIDDIR="`eval echo ${VBOX_PIDDIR:-"/var/run"}`"
+
+AC_ARG_WITH(piddir,
+	[  --with-piddir=DIR       pids are stored in DIR [/var/run]],
+	VBOX_PIDDIR=${withval}
+)
+
+AC_MSG_RESULT(${VBOX_PIDDIR})
+
+AC_DEFINE_UNQUOTED(PIDFILEDIR, "${VBOX_PIDDIR}")
+AC_SUBST(VBOX_PIDDIR)
+
+   dnl #================#
+   dnl # --with-lockdir #
+   dnl #================#
+
+AC_MSG_CHECKING(where the locks are made)
+
+VBOX_LCKDIR="`eval echo ${VBOX_LOCKDIR:-"/var/lock"}`"
+
+AC_ARG_WITH(lockdir,
+	[  --with-lockdir=DIR      locks are made in DIR [/var/lock]],
+	VBOX_LCKDIR=${withval}
+)
+
+AC_MSG_RESULT(${VBOX_LCKDIR})
+
+AC_DEFINE_UNQUOTED(LCKFILEDIR, "${VBOX_LCKDIR}")
+AC_SUBST(VBOX_LCKDIR)
+
+   dnl #===================#
+   dnl # --with-i4lconfdir #
+   dnl #===================#
+
+AC_MSG_CHECKING(where the isdn configuration is stored)
+
+ISDN_GLOBAL_CONFIG="`eval echo ${CONFIG_I4lCONFDIR:-"/etc/isdn"}`"
+
+AC_ARG_WITH(confdir,
+	[  --with-i4lconfdir=DIR   global isdn configuration directory [\$I4LCONFDIR] ],
+	ISDN_GLOBAL_CONFIG=${withval}
+)
+
+AC_MSG_RESULT(${ISDN_GLOBAL_CONFIG})
+
+AC_DEFINE_UNQUOTED(I4LCONFDIR, "${ISDN_GLOBAL_CONFIG}")
+
+dnl #------------------------------------------------------------------------#
+dnl # Check and optimize compiler flags:                                     #
+dnl #------------------------------------------------------------------------#
+
+if (test "${ac_cv_prog_CC}" = "gcc")
+then
+   if (test "${CFLAGS}" != "")
+   then
+      FLAGOPMZ="no"
+      FLAGWARN="no"
+
+      for i in ${CFLAGS}
+      do
+         case "$i" in
+
+            -O*) FLAGOPMZ="yes"
+                 ;;
+            -W*) FLAGWARN="yes"
+                 ;;
+         esac
+      done
+
+      if (test "${FLAGOPMZ}" = "no")
+      then
+         CFLAGS="-O2 ${CFLAGS}"
+      fi
+
+      if (test "${FLAGWARN}" = "no")
+      then
+         CFLAGS="-Wall ${CFLAGS}"
+      fi
+   else
+      CFLAGS="-Wall -O2 ${CFLAGS}"
+   fi
+fi
+
+dnl #------------------------------------------------------------------------#
+dnl # Creates output files:                                                  #
+dnl #------------------------------------------------------------------------#
+
+AC_SUBST(ISDN_GLOBAL_CONFIG)
+AC_SUBST(VERDATE)
+AC_SUBST(CONFIG_BINDIR)
+AC_SUBST(CONFIG_MANDIR)
+AC_SUBST(CONFIG_SBINDIR)
+AC_SUBST(CONFIG_I4LCONFDIR)
+AC_SUBST(VBOX_LOCKDIR)
+AC_SUBST(VBOX_DOCDIR)
+
+AC_OUTPUT(Makefile src/Makefile doc/Makefile doc/de/Makefile utils/Makefile)

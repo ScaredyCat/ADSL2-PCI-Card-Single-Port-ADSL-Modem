@@ -1,0 +1,19 @@
+V:0.02-Luxemburg [18.01.2000]
+
+U:%.3f LUF
+
+P: 01              P&T Luxembourg
+B:1001 # Fixme: ???
+
+Z:1 			Inland 	# Ganzes Land
+A:+352
+T:W/8-19=0.25/240 	Werktag
+T:W/6-8,19-23=0.25/480 	Sparzeit
+T:6/6-23=0.25/480 	Samstag
+#
+# line below works onyl f. isdnlog/rate >= 4.02
+# else you have to set all dates/times separatedly
+T:*/*=0.25/960 		Sonstige Zeit
+
+
+

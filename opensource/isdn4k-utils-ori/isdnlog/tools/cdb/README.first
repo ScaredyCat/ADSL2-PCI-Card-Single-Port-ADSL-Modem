@@ -1,0 +1,13 @@
+This is an implementation of the Constant Data Base (cdb),
+s. more in README
+
+The main interface to i4l-tools is the file i4l_cdb.c, which
+simulates a DB-interface. The higher level routines are in cdb.c.
+
+The original cdb is from
+ftp://ftp.debian.org/debian/dists/potato/main/source/utils/freecdb_0.61.tar.gz
+
+Currently only the utility cdbmake is used, so you don't have to
+install the cdb package.
+
+- lt <lt@toetsch.at>

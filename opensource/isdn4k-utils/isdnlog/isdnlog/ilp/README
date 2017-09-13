@@ -1,0 +1,95 @@
+/*
+ * modilp,ilp ... Kernelmodul for displaying B-channel usage
+ *
+ * Copyright 1999 by Leopold Toetsch <lt@toetsch.at>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+ 
+
+What ist it?
+
+modilp is a small kernel module providing /proc/isdninfo. This file shows
+the connection state of 2 ISDN B-Channels.
+The information shown in /proc/isdnlog is written by isdnlog in the states
+CONNECT and RELEASE.
+For best usage (all devices on the S0 bus shown) you should use a HFCS-based
+ISDN card or a second reversed card (s. FAQ).
+
+
+Installation
+
+  Kernel 2.4.x
+
+  - Modify drivers/isdn/Makefile:
+
+  obj-$(CONFIG_ISDN) 	+= isdn.o
+  obj-$(CONFIG_ISDN) 	+= modilp.o	#<<<<<<<<< INSERTED
+
+  
+  Kernel 2.0.x (2.2 ??)
+  
+  ifeq ($(CONFIG_ISDN),m)
+    M_OBJS += isdn.o
+    M_OBJS += modilp.o         #<<<<<<<<<< INSERTED
+
+  - copy modilp.c to drivers/isdn/
+  
+  - "make dep" after modifying the Makefile
+  - then build your kernel as usual  "make modules modules_install"
+  
+
+  or manually
+
+  Adjust Makefile for your kernel-gcc and options, then 
+  $ make
+
+  
+  $ su -c "insmod modilp.o"
+  $ cat /proc/isdnlog
+
+  $ make ilp
+  $ su -c "./ilp"
+  $ cat /proc/isdnlog
+
+  should show a dummy entry
+  
+
+  Make isdnlog:
+
+  $ cd ../..
+  $ make clean
+  $ make ILP=1
+  
+  as root, copy bin/isdnlog to /sbin/isdnlog and restart em.
+  
+  watch /proc/isdnlog
+  
+  
+  to revert to old isdnlog do:
+  
+  touch isdnlog/processor.c isdnlog/functions.c
+  make
+  
+
+TODO
+
+After this integrate into build process.
+Remove PRT_INFO in modilp.c.
+
+Have fun!
+
+ 

@@ -1,0 +1,61 @@
+freecdb (0.61) unstable; urgency=low
+
+  * Add dummy --center and --release params to pod2man so the manpages
+    don't mention perl.
+
+ -- Tommi Virtanen <tv@debian.org>  Mon,  6 Dec 1999 00:34:18 +0200
+
+freecdb (0.60) unstable; urgency=low
+
+  * Rewrote/removed all the non-free parts. CDB is now public domain
+    and eligible for main. The cdb-src package is history.
+  * Renamed to freecdb. Now this is a Debian-native package.
+    Increased version number appropriately.
+
+ -- Tommi Virtanen <tv@debian.org>  Sun,  5 Dec 1999 22:25:38 +0200
+
+cdb (0.55-6) unstable; urgency=low
+
+  * Include cdb.h in the package (Closes: #49761).
+
+ -- Tommi Virtanen <tv@debian.org>  Mon, 22 Nov 1999 21:45:19 +0200
+
+cdb (0.55-5) unstable; urgency=low
+
+  * Get rid of build-time perl dependency.
+  * FHS.
+  * Policy 3.0.0.
+
+ -- Tommi Virtanen <tv@debian.org>  Tue,  2 Nov 1999 20:56:56 +0200
+
+cdb (0.55-4) unstable; urgency=low
+
+  * Removed debhelper dependency.
+
+ -- Tommi Virtanen <tv@debian.org>  Thu,  8 Jul 1999 00:11:00 +0300
+
+cdb (0.55-3) unstable; urgency=low
+
+  * Cleaned the .diff.gz
+  * Included libcdb.a in the package
+
+ -- Tommi Virtanen <tv@debian.org>  Mon, 31 May 1999 22:21:29 +0300
+
+cdb (0.55-2) unstable; urgency=low
+
+  * Corrected a typo in debian/control.real
+    Thanks to Branden Robinson <branden@ecn.purdue.edu>
+  * Made a link from build-cdb.1 to undocumented.7
+
+ -- Tommi Virtanen <tv@debian.org>  Mon, 18 Jan 1999 09:47:46 +0200
+
+cdb (0.55-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Tommi Virtanen <tv@debian.org>  Sun, 17 Jan 1999 22:21:06 +0200
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "tv@debian.org"
+End:

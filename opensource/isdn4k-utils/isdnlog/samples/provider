@@ -1,0 +1,112 @@
+#!/bin/sh
+
+# provider pnum telnum servicename
+#
+# switch providers, called by isdnlog, if abc_lcr is installed
+# and -d7 is enabled
+#
+# (c) 2000 by Leopold Toetsch <lt@toetsch.at>
+# This script is EXPERIMENTELL. Use at your own risk.
+# It also will not work for ippp-Numers >= 10 without adjusting
+#
+
+PROVIDER=$1
+TELNUM=$2
+SERVICE=$3
+
+# adjust here
+# default gw ip for ippp
+GW=192.168.2.2
+# service name for Internet
+INTERNET=Internet
+# route program
+ROUTE=/sbin/route
+# config for named
+NAMEDFILE=/etc/named.boot
+# prepare /etc/named.boot.ippp0, /etc/named.boot.ippp1 ...
+# before using this script
+NAMEDPID=/var/run/named.pid
+# location where active ippp is remembered
+OLDPPP=/etc/ppp/active_ippp
+# change ippp in su1.priv
+SUFILE=/etc/su1.priv
+
+
+# for testing turn on these 2 lines
+#logger -t PROVIDERCHANGE "called with $1 $2 $3"
+#exit 0
+
+
+# calc ippp? from provider
+# adjust here
+case $PROVIDER in
+    1 ) ppp=0
+    ;;
+    2 ) ppp=1
+    ;;
+    24 ) ppp=2
+    ;;
+    list )
+	oldppp=`cat $OLDPPP`
+        echo "ippp? now is $oldppp"
+	exit 0
+    ;;
+    * )
+	echo "Usage: $0 pnum|'list' telnum servicename"
+	exit 1
+    ;;
+esac
+
+# check service
+case $SERVICE in
+    $INTERNET ) ok=1 ;;
+    * ) ok=0 ;;
+esac
+
+# no action to be done
+if [ ! $ok ] ; then
+    exit 0
+fi
+
+oldppp=`cat $OLDPPP`
+echo "New '$ppp' old '$oldppp'"
+
+if [ $ppp = $oldppp ] ; then
+    exit 0
+fi
+echo "Changing to '$ppp'"
+echo $ppp > $OLDPPP
+
+# change route.conf
+# clear old routing
+if [ -x /etc/rc.d/route ] ; then
+    /etc/rc.d/route stop
+else
+    $ROUTE del default gw $GW
+    $ROUTE del -host $GW dev ippp$oldppp
+fi
+f=/etc/route.conf
+if [ -e $f ] ; then
+    cp $f $f.old
+    sed -e"s/ippp./ippp$ppp/" < $f.old > $f
+fi
+# set new route
+if [ -x /etc/rc.d/route ] ; then
+    /etc/rc.d/route start
+else
+    $ROUTE add -host $GW dev ippp$oldppp
+    $ROUTE add default gw $GW
+fi
+
+# change named.boot
+
+if [ -n "$NAMEDFILE" -a -e "$NAMEDFILE" -a -e $NAMEDFILE.ippp$ppp ] ; then
+    cp $NAMEDFILE.ippp$ppp $NAMEDFILE
+    kill -HUP `cat $NAMEDPID`
+fi
+
+# change /etc/su1.priv
+if [ -n "$SUFILE" -a -e $SUFILE ] ; then
+    cp $SUFILE $SUFILE.old
+    sed -e"s/ippp./ippp$ppp/" < $SUFILE.old > $SUFILE
+fi

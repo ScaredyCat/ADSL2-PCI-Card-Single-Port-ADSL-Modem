@@ -1,0 +1,133 @@
+Return-Path: POPmail
+Received: from hsun6.wi-inf.uni-essen.de by aixrs1.hrz.uni-essen.de (AIX 4.1/UCB 5.64/4.03)
+          id AA65252; Wed, 12 Feb 1997 08:00:58 +0100
+Received: from anna-atm.rz.uni-frankfurt.de by hsun6.wi-inf.uni-essen.de (SMI-8.6/SMI-SVR4)
+	id IAA07066; Wed, 12 Feb 1997 08:02:04 +0100
+Received: from bob.renderserve.de (actually dialin055.rz.uni-frankfurt.de) 
+          by amalia-atm.rz.uni-frankfurt.de with Local SMTP (PP);
+          Wed, 12 Feb 1997 05:02:14 +0000
+Sender: Okane@em.uni-frankfurt.de
+Message-Id: <330125B3.5921AC58@em.uni-frankfurt.de>
+Date: Wed, 12 Feb 1997 03:06:43 +0100
+From: "Robert O'Kane" <okane@em.uni-frankfurt.de>
+Organization: OTHERSPACE
+X-Mailer: Mozilla 3.01Gold (X11; I; Linux 2.0.29 i586)
+Mime-Version: 1.0
+To: Matthias Hessler <hessler@wi-inf.uni-essen.de>
+Cc: joe@odel.on.ca, isdn4linux@hub-wue.franken.de
+Subject: Re: MP
+References: <199702111612.RAA03177@james.mathes.uni-essen.de>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Status:   
+
+Matthias Hessler wrote:
+> 
+> Hi Joe,
+> 
+> On Mon, 10 Feb 1997 17:48:23 -0500 (EST), joe@odel.on.ca wrote:
+> >       Hi ISDN4Linux'ers. I have a two Spellcaster BRI cards and two
+> > linux boxes. One box is at my ISP's side and the other is in my office.
+> > I have obtained and compiled ISDN4LINUX, spellcasters I4L driver without
+> > many problems. I have ISDN support compiled into the kernel as well as
+> > SyncPPP support and load the driver (sc.o) with modprobe with no problems.
+> > I have a couple of questions I hope aren't too stupid. I have a feeling
+> > they have been answered in German, but unfortunately I don't (yet) speak
+> > or read German very well so please excuse my ignorance.
+> 
+> No worries - you are very welcome to write in English.
+> 
+> I'm not using the MP stuff, but I got the script from Robert O'Kane
+>   that he uses. It is appended at the end. From the first look it
+>   doesn't look too much different - but maybe you find something.
+> 
+> As far as I understand the ipppd can dial out on demand (if the route
+>   exists and ip packages are coming). Or you can trigger the dialing
+>   with "isdnctrl dial". Very strange that you have to do latter at
+>   _both_ stations. That sounds very wrong.
+> 
+
+Hello, (Robert here :-0 )
+
+   The scripts I sent in are for the "built-in" function of ISDN4Linux
+when
+using the rawip/ethernet/...  encapsulation. PPP (SyncPPP) encapsulation
+doesnt
+seem to be supported for the "automatic" functions of I4L!
+
+MIXING THE SLAVE (autodial/autohangup) functions with SyncPPP doesn't
+work:
+ 1: reliably-  relying on the auto hangup appears to work until the 2nd
+-> 5th
+               time. Then the kernel gets "a bit" disturbed.
+
+ 2: Not at all- auto dial never works with syncPPP. As far as I know
+(and can
+                see), the only way to add channels to SyncPPP is to
+MANUALLY
+                "addlink" and "removelink" the devices.  Of course you
+need to
+                have the devices pre-defined for the I4L system and for
+the PPP
+                program.
+
+I am still looking over (and into) these issues and hope to have more
+later.
+But for now I must say that the scripts I sent to the FAQ (and the
+list?) are
+for the rawip/ethernet encapsulations. SyncPPP is another animal (user
+space)
+and will require other links between the system (kernel) and the ppp
+program
+(user space).
+
+I am also still (ja ja...) porting the ITK Columbus Card driver from
+Frank Mohr
+to the HiSax device driver system. (Thanks Karsten!!)
+
+> > I have read the faq but I don't seem to be able to make it work.
+> 
+> Did you get the right FAQ? There is an english version available on:
+>   ftp://ftp.franken.de/pub/isdn4linux/FAQ
+> and:
+>   http://www.lrz-muenchen.de/~ui161ab/www/isdn/
+> which also contains some bug fixes for the MPPP stuff. Also there are
+>   two ways of using multiple links with isdn4linux. One is with ipppd,
+>   the other is with rawip.
+> 
+> More we can't say without more logging. If you can't locate your
+>   problem just log the handshaking of the ipppd (see FAQ how to do
+>   that). Then we can say more.
+> 
+> 
+> Other than that I'm VERY interested in hearing about this spellcaster
+>   BRI card - and the driver you were talking about. Can you please
+>   send me more info on that so that we can incorporate it into the
+>   FAQ? There are often questions about isdn4linux in America and so
+>   far we don't have any information about what works and what works
+>   not... :-(
+> Please, already a www link would help very much... Are there more
+>   cards available but the spellcaster? How expensive is it and are you
+>   using the EURO-ISDN standard?
+> 
+> Bye,
+> Matthias
+> 
+
+<patch stuff deleted as it doesn't help here:  See appropriate FAQ >
+
+-Happy ISDN'ing
+
+-Robert O'Kane
+
+-- 
+----------------------------------------------
+Robert O'Kane
+OTHERSPACE
+Founding Member and Linker
+
+URL  : http://www.rz.uni-frankfurt.de/~okane
+email: okane@em.uni-frankfurt.de
+----------------------------------------------
+
+

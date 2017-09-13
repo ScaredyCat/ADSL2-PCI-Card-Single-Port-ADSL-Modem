@@ -1,0 +1,597 @@
+.\" $Id: isdnctrl.man.in,v 1.22 2002/02/07 10:43:24 paul Exp $
+.\"
+.\" CHECKIN $Date: 2002/02/07 10:43:24 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii isdnctrl.8 for ASCII output, or
+.\" groff -man -Tps isdnctrl.8 for PostScript output
+.\"
+.TH isdnctrl 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+isdnctrl \- get/set ISDN device information
+.SH SYNOPSIS
+.BI isdnctrl " action device " ...
+.SH DESCRIPTION
+.B isdnctrl
+is used to create and delete network interfaces for
+.SM ISDN,
+set up the various parameters and phone numbers for dial in and dial
+out. It is also used to list the current parameters of an already
+configured network interface.
+.BR isdnctrl " is " not
+needed for configuration of
+.SM ISDN
+ttys!
+.LP
+The use of
+.B isdnctrl
+is independent of the hardware driver.
+.LP
+.SH OPTIONS
+The following 
+.B actions
+may be given to
+.BR isdnctrl .
+.TP
+.BI addif " name"
+Adds a new
+.SM ISDN
+interface
+.IR name " to the kernel. If " name
+is omitted, the kernel will use
+.BI eth X,
+where
+.I X
+is an increasing number starting from 0. This is probably not useful with
+.SM ISDN
+so using a name like
+.B isdn0
+(for raw ip interfaces) or
+.B ippp0
+(for synchronous PPP interfaces)
+is always recommended.
+.TP
+.BI delif " name " [force]
+Removes the
+.SM ISDN
+interface
+.I name
+from the kernel. If the optional keyword
+.B force
+is appended,
+.BR isdnctrl " executes"
+.BI ifconfig " name " down
+before removing it.
+.TP
+.B reset [force]
+Removes all
+.SM ISDN
+interfaces from the kernel if it is possible. If the optional keyword
+.B force
+is appended,
+.BR isdnctrl " executes"
+.BI ifconfig " name " down
+before removing an interface.
+.TP
+.BI ifdefaults " name "
+resets the interface
+.IR name
+to some reasonable defaults.
+.TP
+.BI dialmode " name " [ off | manual | auto ]
+Sets the dial mode of the interface to one of:
+.LP
+.RS
+.B off
+.br
+no connection can be made; an existing connection is terminated immediately.
+Incoming connections are also not possible.
+.LP
+.B manual
+.br
+manual dialing / hangup;
+a connection will only be made after
+.B isdnctrl dial
+.I name
+but the line will be disconnected after the huptimeout value set if using
+kernel drivers updated since 1 Nov 1998; otherwise an explicit
+.B isdnctrl hangup
+.I name
+will be needed to cause the connection to be dropped.
+.br
+Incoming connections are possible; however, if this interface is configured in
+.BR "callback in"
+mode, the callback dial will not happen (as this is actually an outgoing
+connection, not an incoming one).
+.LP
+.B auto
+.br
+autodial mode; an outgoing packet will trigger a dialout, and a hangup will
+occur after the huptimeout value specified (see below).
+.br
+An interface in
+.BR auto
+dial mode will call another system back (if configured in
+.BR "callback in"
+mode).
+.LP
+.br
+.B auto
+was the "old" behaviour (as it was before
+.BR dialmode
+was implemented).
+.br
+.LP
+.br
+If no argument is given, the current dialmode value is displayed.
+.br
+.LP
+.br
+You can give
+.BR all
+as the interface name; the command will then be executed for all interfaces.
+.RE
+.TP
+.BI addphone " name " out " num"
+Adds the phone number
+.I num
+to the list of outgoing numbers of the
+.SM ISDN
+interface
+.IR name .
+Numbers in this list are used to dial the remote station if
+the connection is down and packets are to be sent via the interface
+(Dial on demand). More than one number can be set by calling
+.B isdnctrl addphone
+repeatedly. If more than one number is set, these will be tried
+one after another (the last added number is tried first, etc.).
+When using a german SPV-type connection,
+the number has to be prefixed by a capital S.
+.TP
+.BI addphone " name " in " num"
+Adds the phone number
+.I num
+to the list of incoming numbers of the
+.SM ISDN
+interface
+.IR name .
+Numbers in this list are used to verify access permission of
+the remote station if an incoming call is received. The verification
+can be disabled by setting the interface into insecure mode using
+.BI isdnctrl " name " secure " off."
+If the list is empty, incoming calls are disabled.
+More than one number can be added by calling
+.B isdnctrl addphone
+repeatedly. Also wildcards can be used (see below).
+.TP
+.BI delphone " name " in|out " num"
+Removes phone number
+.I num
+from the incoming or outgoing phone list.
+.TP
+.BI eaz " name " [ num ]
+Set the EAZ (German 1TR6 protocol) or MSN (Euro-ISDN E-DSS1) for
+.SM ISDN
+interface
+.IR name " to " num .
+For an EAZ this is only one digit, while for an MSN
+.I num
+is the whole MSN (usually the local phone number). If
+.I num
+is omitted,
+.B isdnctrl
+prints the current setting for
+.SM ISDN
+interface
+.IR name .
+.TP
+.BI huptimeout " name " [ seconds ]
+Set the hangup timeout for
+.SM ISDN
+interface
+.IR name " to " seconds .
+If there is inactivity (i.e. no traffic on the interface) for the
+given time the driver automatically shuts down the connection.
+If
+.I seconds
+is omitted
+.B isdnctrl
+prints the current setting for interface
+.IR name .
+.TP
+.BI cbdelay " name " [ seconds ]
+Set the callback delay for
+.SM ISDN
+interface
+.IR name " to " seconds .
+If callback mode for this interface is
+.BR in ,
+dialing is delayed the given time. If the callback mode is
+.BR out ,
+after dialing out and waiting the given time, a hangup is
+issued to free the line for the incoming callback from the remote
+machine. This hangup-after-dial is disabled by setting
+.B cbdelay
+to 0. If
+.I seconds
+is omitted
+.B isdnctrl
+prints the current setting for interface
+.IR name .
+.TP
+.BI dialmax " name " [ num ]
+Set the number of dial attempts for
+.SM ISDN
+interface
+.IR name " to " num .
+If dialing, each phone number is tried this many times before giving up.
+If
+.I num
+is omitted
+.B isdnctrl
+prints the current setting for interface
+.IR name .
+.TP
+.BI ihup " name " [on|off]
+Turn on or off the hangup timeout for incoming calls on
+interface
+.IR name .
+If on or off is omitted the current setting is printed.
+.TP
+.BI chargehup " name " [on|off]
+Turn on or off hangup before next charge info for interface
+.IR name .
+This can only be used if the
+.SM ISDN
+provider transmits charge info during and after the connection.
+If set to on, the driver will close the connection just before the
+next charge info will be received if the interface is inactive. If
+on or off is omitted the current setting is printed.
+.TP
+.BI chargeint " name " [ seconds ]
+If
+.I seconds
+are given, the charge interval for the given
+interface is set. This may be useful on
+.SM ISDN
+lines with no chargeinfo or no online chargeinfo. The connection
+will be closed 2 seconds before the end of the next estimated
+charge interval if 
+.I huptimeout
+seconds of inactivity have been reached. If 
+.I ihup 
+is
+.BR on ,
+incoming connections are closed by this mechanism also.
+On lines with online charge info you also might ask by 
+.BI chargeint " name"
+for the current charge interval as delivered from the
+telecom on a given interface.
+.TP
+.BI secure " name " [on|off]
+Turns on or off the security feature for interface 
+.IR name .
+If set to
+.BR on ,
+incoming calls will only be accepted if the calling number can be
+found in the incoming access list. See description of action
+.B addphone
+for information about how to add numbers to this list.
+.RB If " on " or " off
+is omitted, the current setting is printed.
+.TP
+.BI callback " name " [ mode ]
+Set callback mode for interface 
+.IR name " to mode " mode .
+If callback mode is
+.BR in ,
+then after getting an incoming call, a callback is triggered. If
+callback mode is
+.BR out ,
+then the local system does the initial call and then waits for callback of
+the remote machine. The option
+.B on
+is available only for compatibility with older versions. Its meaning is
+the same like
+.BR in .
+If callback mode is
+.BR off ,
+calls are handled normally without special processing.
+.TP
+.BI cbhup " name " [on|off]
+Turns on or off Hangup (Reject) for interface 
+.I name
+before starting callback. If cbhup is
+.BR on ,
+when receiving an incoming call, the interface first rejects that
+call before the callback sequence is started. If
+.BR on " or " off
+is omitted, the current setting is printed.
+.TP
+.BI encap " name " [ encapsulation ]
+Set the encapsulation mode for interface
+.IR name .
+Possible encapsulations are:
+.LP
+.RS
+.B rawip
+.br
+raw ip encapsulation (default)
+.LP
+.B ip
+.br
+IP + typefield encapsulation
+.LP
+.B cisco-h
+.br
+Special mode for communicating with a Cisco in HDLC-mode with
+Cisco-keepalive switched off.
+.LP
+.B ethernet
+.br
+ethernet over
+.SM ISDN
+(MAC-header included)
+.LP
+.B syncppp
+.br
+Synchronous PPP over
+.SM ISDN
+.LP
+.B uihdlc
+.br
+raw ip with additional ui-header
+.LP
+.B cisco-hk
+.br
+Special mode for communicating with a Cisco in HDLC-mode with
+Cisco-keepalive switched on.
+.LP
+.B x25iface
+.br
+Provides an interface as required by the Linux X.25 PLP protocol
+implementation (requires Linux 2.1.x or newer).
+.RE
+.LP
+If
+.I encapsulation
+is omitted, the current setting is printed.
+.TP
+.BI l2_prot " name " [ protocol ]
+Set the layer-2 protocol for interface 
+.IR name .
+Possible values for 
+.IR protocol " are:"
+.br
+.BR x75i ", " x75ui ", " x75bui " and " hdlc .
+If
+.I protocol
+is omitted the current setting is printed.
+.TP
+.B l3_prot " name " [ protocol ]
+Set the layer-3 protocol for interface 
+.IR name .
+At the moment only
+.B trans
+is supported here.
+If
+.I protocol
+is omitted the current setting is printed.
+.TP
+.BI list " name"
+List all parameters and the charge info for interface
+.IR name .
+If
+.I name
+is
+.BR all ,
+then all interfaces are listed.
+.TP
+.BI status " name"
+Show the connection status for interface
+.IR name .
+The output can be one of the following types:
+.RS
+.LP
+.B
+ippp0 not connected
+.br
+There is no connection
+.LP
+.B
+ippp0 connected to 0123456789
+.br
+There is an outgoing connection to phone number 0123456789
+.LP
+.B
+ippp0 connected from 0123456789
+.br
+There is an incoming connection from phone number 0123456789
+.RE
+
+If the interface is connected, the exit status of the command is true,
+else it is false.
+.br
+If
+.I name
+is
+.BR all ,
+then the connection status for all interfaces is shown. The exit status is
+always true in this case.
+.TP
+.BI verbose " num"
+Set verbosity level to
+.IR num .
+.TP
+.BI hangup " name"
+The connection of interface
+.I name
+is closed immediately. 
+.TP
+.BI bind " name driverId" , "channel " [exclusive]
+Binds an interface
+.I name
+to a physical channel.
+The
+.I driverId
+identifies a specific S0-Port. The channels of a port start
+counting with zero. If 
+.B exclusive
+is given, other interfaces cannot use that channel anymore.
+Otherwise, the channel may be used by other interfaces.
+.TP
+.BI unbind " name"
+Unbinds a the previously bound interface
+.IR name .
+.TP
+.BI pppbind " name " [ num ]
+Binds the interface
+.I name
+to an ippp device
+.BI /dev/ippp num .
+This works only for synchronous ppp. The value must be a number.
+If
+.I num
+is omitted and
+.I name
+is called
+.BI ippp X
+, then the interface is bound to
+.BI /dev/ippp X .
+.TP
+.BI pppunbind " name"
+Unbinds the previously bound interface
+.IR name .
+
+.TP
+.BI busreject " driverId " [on|off]
+If switched
+.BR on ,
+instead of ignoring incoming calls not matching any interface,
+isdn4linux responds with a
+.B REJECT
+to those calls. If switched
+.BR off ,
+isdn4linux is passive, allowing other devices connected to the same
+S0-bus to answer the call.
+You normally should
+.B not
+enable this feature, if the
+.SM ISDN
+adaptor is not the only device connected to the S0-bus.
+Otherwise it could happen, that isdn4linux rejects an incoming call
+which belongs to another device on the bus.
+
+.TP
+.BI addslave " name slave"
+Adds a slave interface named
+.I slave
+to interface
+.I name
+for raw channel-bundling. For bundling of more than two channels, any number
+of slaves can be added to an interface by using this command repeatedly.
+.I name
+must refer to an existing "master" interface (not a slave). Slave
+interfaces are not visible to the kernel, however all usual
+.SM ISDN
+settings can be configured. Because slave interfaces are not visible
+to the kernel, they are configured "through" their "master", so
+.B it is important
+that slave interfaces are added
+.B before
+the corresponding "master" is started by
+.BR ifconfig .
+If the "master" is already up, it has to be shutdown with
+.B ifconfig down ...
+otherwise the
+.B addslave
+command will be rejected.
+
+.TP
+.BI sdelay " name num"
+Set delay for slave-dialing.
+The master interface
+.I name
+has to have a load of more than
+.B trigger
+cps for at least
+.I num
+seconds, before its slave starts dialing.
+.br
+Note that this only works for rawIP, not MPPP!
+
+.TP
+.BI trigger " name num"
+Set trigger level for slave-dialing.
+The master interface
+.I name
+has to have a load of more than
+.I num
+cps for at least
+.B sdelay
+seconds, before its slave starts dialing.
+.br
+Note that this only works for rawIP, not MPPP!
+
+.TP
+.BI addlink " name"
+For MPPP, this adds a slave interface to the existing connection,
+i.e. connect the extra channel now. It is like a
+.B dial
+command for the extra channel.
+.br
+This also means that
+.B addlink
+will only work if the master interface
+.I name
+must already be connected! Also, the
+.B dialmode
+for the slave interface must be \fIauto\fR.
+
+.TP
+.BI removelink " name"
+For MPPP, this removes a slave interface from the existing connection,
+i.e. hangup the extra channel now.
+
+.TP
+.BI dial " name"
+Force dialing of interface
+.IR name .
+.TP
+.BI mapping " driverId MSN0" [, MSN1 [, MSN2 "]] ... [," MSN9 ]
+Installs a mapping-table for MSN<->EAZ-mapping. See README for details.
+@MANINC_CONF@ @MAN8DIR@/.isdnctrl_conf.8
+.SH WILDCARDS
+When using
+.BI "isdnctrl addphone " name " in " num
+to add phone numbers to the incoming-call accept-list of an interface,
+wildcards similar to shell wildcards can be used.
+The following wildcards are supported:
+
+.TP 7
+.B ?
+one arbitrary digit
+.TP 7
+.B *
+zero or arbitrary number of digits
+.TP 7
+.BI [ list ]
+one of the digits in
+.I list
+.TP 7
+.BI [ 1 - 5 ]
+one digit in the range of (including)
+.IR 1 " and " 5 .
+.TP 7
+.B ^
+if this appears as the first character in a list, inverts the list.
+.LP
+.SH BUGS
+This man page is not complete.
+.LP
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.BR ttyI "(4), " isdnctrl "(4), " isdninfo "(4), " isdn_audio "(4), "
+.BR isdn_cause (7).

@@ -1,0 +1,43 @@
+.\" $Id: vboxmode.man,v 1.2 2000/09/15 09:10:10 paul Exp $
+.\" CHECKIN $Date: 2000/09/15 09:10:10 $
+.TH vboxmode 1 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+vboxmode \- detect format of isdn voice file
+.SH SYNOPSIS
+.B vboxmode
+.I "[OPTION] [OPTION] [...] FILENAME"
+.SH "DESCRIPTION"
+Vboxmode detects format of isdn voice files and au files (sun audio
+format).
+.SH OPTIONS
+.TP
+.B \-q, \-\-quiet
+Don't print information about the file, only detect format and return
+an error code.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-v, \-\-version
+Show version of program.
+.SH "RETURN CODE"
+The format of the file is returned as an error code:
+
+.PD 0
+.TP
+.B o
+for .au files a value between 128 and 150
+.TP
+.B o
+for vbox files a value between 2 and 6
+.TP
+.B o
+for unknown format or errors 255
+
+
+.SH SEE ALSO
+.B autovbox(1), rmdtovbox(1), vboxtoau(1), vboxcnvt(1), vbox(5)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.

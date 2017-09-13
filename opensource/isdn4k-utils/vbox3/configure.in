@@ -1,0 +1,62 @@
+
+dnl Process this file with autoconf to produce a configure script.
+
+## init ###################################################################
+
+AC_INIT(acinclude.m4)
+
+AC_CANONICAL_SYSTEM
+AC_ARG_PROGRAM
+
+AM_INIT_AUTOMAKE(vbox, 3.0B1)
+
+AC_PREFIX_DEFAULT(/opt/vbox)
+
+AM_CONFIG_HEADER(config.h)
+
+## programs ###############################################################
+
+AC_PROG_CC
+AC_PROG_CC_WORKS
+AC_PROG_CC_GNU
+
+AC_PROG_RANLIB
+AM_PROG_INSTALL
+
+## libraries ##############################################################
+
+AC_PATH_TCL
+
+## headers ################################################################
+
+AC_HEADER_STDC
+AC_HEADER_TIME
+AC_CHECK_HEADERS(sys/time.h)
+
+## typedefs ###############################################################
+
+## structures #############################################################
+
+## compiler characteristics ###############################################
+
+AC_C_CONST
+AC_C_INLINE
+
+## library functions ######################################################
+
+AC_CHECK_FUNCS(siginterrupt)
+
+## system services ########################################################
+
+AC_PATH_PKGLOGDIR
+AC_PATH_PKGLOCKDIR
+AC_PATH_PKGPIDDIR
+
+## output #################################################################
+
+AC_OUTPUT(Makefile \
+   vboxgetty/Makefile \
+   vboxgetty/docs/Makefile \
+   vboxgetty/docs/de/Makefile \
+   vboxgetty/examples/Makefile \
+   vboxgetty/examples/scripts/Makefile)

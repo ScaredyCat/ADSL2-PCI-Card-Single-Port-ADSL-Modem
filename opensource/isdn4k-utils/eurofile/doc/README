@@ -1,0 +1,6 @@
+$Id: README,v 1.1 1999/06/30 16:51:00 he Exp $
+
+For previewing man pages (i.e. efthosts.5), use
+
+nroff -man efthosts.5 | less
+

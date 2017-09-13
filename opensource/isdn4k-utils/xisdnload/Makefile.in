@@ -1,0 +1,40 @@
+#
+# This Makefile is used for compatibility to the
+# isdn4k-utils package. In order to superseede
+# the original Makefile, it is called GNUmakefile.
+#
+
+EDEF=$(CFLAGS)
+ifeq (../.config,$(wildcard ../.config))
+	include ../.config
+	MAN1DIROPT = MANDIR=$(CONFIG_MANDIR)/man1
+	MAN3DIROPT = LIBMANDIR=$(CONFIG_MANDIR)/man3
+	MAN5DIROPT = FILEMANDIR=$(CONFIG_MANDIR)/man5
+	MANDIROPTS = $(MAN1DIROPT) $(MAN3DIROPT) $(MAN5DIROPT)
+	BINDIROPT = BINDIR=$(CONFIG_BINDIR)
+endif
+
+all: xisdnload
+
+xisdnload:
+	CFLAGS= ; MAKEFLAGS= ; $(MAKE) -f Makefile EXTRA_DEFINES="$(EDEF)"
+
+config:
+	@cp Makefile.in GNUmakefile
+	@xmkmf
+
+clean:
+	$(MAKE) -f Makefile clean
+
+distclean: clean
+	rm -f Makefile Makefile.bak GNUmakefile
+
+install-man: xisdnload.man
+	$(MAKE) -f Makefile $(MANDIROPTS) install.man
+
+install: xisdnload install-man
+	$(MAKE) -f Makefile $(BINDIROPT) install
+
+uninstall:
+	rm -f $(DESTDIR)$(CONFIG_BINDIR)/xisdnload
+	find $(DESTDIR)$(CONFIG_MANDIR) -name "xisdnload.*" -exec rm -f {} \;

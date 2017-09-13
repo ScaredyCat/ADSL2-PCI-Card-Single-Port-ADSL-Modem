@@ -1,0 +1,165 @@
+$Id: INTERWORKING,v 1.2 1999/07/01 18:00:21 he Exp $
+
+The following classes of inter-working problems have been identified
+====================================================================
+
+Some clients rely on a particular order of file header parameters
+appearing in file headers or description files resulting from an
+extended format directory request. In particular, they fail when
+optional parameters appear before the mandatory ones. 
+The current eftp4linux implementation works around this (without violating
+protocol specifications) by providing
+the mandatory parameters at the front of the file header or directory
+records and in the same order as appearing in ETS 300 383 (which
+does, however, not require for a particular order).
+
+FileHeaderOrder (!)   client depends on file attribute parameters
+                      appearing in a particular order inside file headers.
+
+XDirOrder       (!)   client depends on file attribute parameters
+                      appearing in a particular order inside
+                      description file records resulting from an
+                      extended format directory request.
+
+
+Clients can ask the server for a list of files or subdirectories
+present the current working directory (by the T-DIR or S-LIST
+primitives). The server responds by sending back a file containing
+so-called transfer names (those are used to identify the files,
+but are not necessarily equal to the file
+names) or a list of subdirectory (`sub-filestore') names. Now,
+if the client wants to load a certain file or change to a certain
+directory, they need to send a request containing the desired transfer
+name or sub-filestore name. However, several clients don't use the
+transfer name as received from the server:
+
+TransNameCases (+)   upper/lower case letters are not preserved in
+                     transfer names
+DirNameCases   (+)   upper/lower case are not preserved in
+                     sub-filestore names
+DirNameSlash   (+)   client replaces slashes by backslashes in
+                     directory names
+
+The eftp4linux server can work around those, but such workarounds
+impose additional restrictions. For example, if a there were two
+files README and ReadMe, with the work around active you cannot access
+both files any longer even when your clients is compliant with the
+protocol specification. Thus, the corresponding workarounds are not
+turned on by default, you need to explicitly request for them
+(currently, by prepending an '+' character in front of your user id).
+
+TransNameTruncated   the clients truncates parts of the transfer name 
+                     (usually at the part until the last '/' character) 
+DirNameTruncated (!) the clients truncates parts of the directory name 
+                     (usually at the part until the last '/' character) 
+
+Truncating the transfer name at '/' has caused interworking problems
+with eftp4liux version 0.0.2 because that eftp4linux implementation
+inserted backslashes in filenames which are longer that 12 characters
+As a result, clients suffering from this bug could not access files
+with long file names.
+
+ETS 300 383 refers to ETS 300 075 4.4.4,
+which requires transfer names to be composed by '/' separated
+words (each word not longer than 12 characters). By inserting '/'
+characters, the resulting transfer name becomes compliant with
+ETS 300 075 4.4.4, but the real originating file name is still
+guessible by a human reader (at least much better than something
+like "~FILE~.124"). Unfortunately, many clients have more problems
+with compliant transfer names than with non-compliant names. 
+eftp4linux version 0.0.3 uses a database for mapping
+between transfer names an file names, this will hopefully solve
+that particual interwoking problem.
+
+Truncating a directory name to its basename does not hurt so much
+because the basename is sufficient for identifying a directory inside the
+current working directory. (This will, however, currently not work if the
+directory name is a symlink). 
+
+Keep in mind that, even when your client's protocol implementation is
+able to access long file names, it might fail to load them because if
+your operating system does not support long file names.
+
+x   suffers from the problem
++   suffers from the problem, but frequently works when compatibility mode
+    ("+userid") is activated.
+!   suffers from the problem, but frequently that does not matter
+    because current eftp4linux frequently can work around this without
+    implying other restrictions.
+-   suffers from the problem, but that does not matter any more 
+    because the current eftp4linux generally works around this.
+
+
+
+                      FileHeaderOrder      
+                      |     XDirOrder    
+                      |     |     TransNameCases 
+                      |     |     |     DirNameCases
+                      |     |     |     |     DirNameSlash
+                      |     |     |     |     |    TransNameTruncated
+                      |     |     |     |     |    |    DirNameTruncated
+
+eftp4linux client :-)
+
+TELES.Fix 2.5
+TELES.Fix 4.0               -                      x
+TELES.Fix 6.0
+
+AVM/FRITZ             -           +     +
+
+RVS-COM                                            x    !
+BIANCA ISDN
+
+(As BIANCA supports unix, the developers might have been aware of the
+case sensitiveness problems. But unfortunately, I don't have any
+logs from BIANCA sessions where a long name file was tried to be
+downloaded.
+
+
+If blank, then nothing is known because, i.e.,
+- I received no connections attempting to use the corresponding feature
+- I received such attempts only after the corresponding workarounds
+  were already implemented
+- the client does not support this feature at all
+- it works as it should work
+
+Other observed connection attempts which were rejected due to wrong
+user IDs (not "ftp" or "+ftp")
+
+TELES.FIX 3.07
+TELES.Fix 5.0
+TELES.Fix 6.01NT
+
+
+
+There also seem to be inter-working problems related the ISO 8208
+(X.25 DTE-DTE) protocol which is used in the lower layers by Eurofile.
+(This is usually implemented by the CAPI driver)
+
+Some broken clients (i.e. those based on the xxxx isdn toolbox) miss
+to pass mandatory X.25/ISO-8208 parameters with the X.25 call request
+(CAPI Connect-B3-Request). If the Capi driver is also buggy and does
+not detect and correct this, a misformatted, X.25 packet
+(violating X.25 specs) is send. Such packets currently confuse the
+Linux X.25 Layer. This has been observed with clients based on the 
+CSD isdn toolbox. Similar symptoms observed with certain RVS clients
+might be caused by the same problem.
+
+
+There is a kernel patch, ix25-2.1.128.diff, which detects the misformatted
+packets and clears the call as required by the X.25 specification.
+However, this will not fix the interworking problem. For this, 
+activate (uncomment) the #define at the last line of
+include/net/x25.h. This partially helps, but is not bullet proof.
+It has been reported to result in hangs when the buggy clients connect
+and try to download files. For interworking with such clients, try
+setting the facilities.winsize_in and facilities.winsize_out variable
+in eftd.c to 1.
+
+
+Miscc/open questions
+
+Should the .. directory be present in the file generated in response
+to an [S]LIST request? AVM/Fritz clients generate this entry locally
+which causes .. to be displayed twice if the server also included a ..
+entry in the SLIST response file.

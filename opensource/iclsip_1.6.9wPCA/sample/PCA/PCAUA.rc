@@ -1,0 +1,1197 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (Taiwan) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL
+#pragma code_page(950)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 1\r\n"
+    "#pragma code_page(950)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\PCAUA.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.cht\\afxres.rc""          // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_WAVE_BUSYTONE       WAVE    DISCARDABLE     "res\\BusyTone.wav"
+IDR_WAVE_BEEPTONE       WAVE    DISCARDABLE     "res\\beeptone.wav"
+IDR_WAVE_RINGTONE       WAVE    DISCARDABLE     "res\\RingTone.wav"
+IDR_WAVE_RINGBACKTONE   WAVE    DISCARDABLE     "res\\RingbackTone.wav"
+IDR_WAVE_WAITINGTONE    WAVE    DISCARDABLE     "res\\WaitingTone.wav"
+IDR_WAVE_HOLDTONE       WAVE    DISCARDABLE     "res\\HoldTone.wav"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VOICEMAILLOGIN DIALOG DISCARDABLE  0, 0, 213, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "VoiceMail Login"
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "Account",IDC_STATIC,7,7,32,9
+    EDITTEXT        IDC_VOICEMAILACCOUNT,48,7,113,14,ES_AUTOHSCROLL
+    LTEXT           "Password",IDC_STATIC,7,25,28,8
+    EDITTEXT        IDC_VOICEMAILPWD,48,24,113,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,48,46,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,111,46,50,14
+    LTEXT           "Server IP",IDC_STATIC,9,57,31,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_VOICEMAILIP,50,51,113,14,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    LTEXT           "Port",IDC_STATIC,169,57,13,8,NOT WS_VISIBLE
+    EDITTEXT        IDC_VOICEMAILPORT,194,49,11,15,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+END
+
+IDD_SET_EMAIL_DIALOG DIALOG DISCARDABLE  0, 0, 201, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set Email Notify and Password"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,23,188,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,128,188,50,14
+    GROUPBOX        "Notify Service",IDC_STATIC,15,7,167,58
+    CONTROL         "No Email Notify",IDC_STOP_NOTIFY_RADIO,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,28,21,67,10
+    CONTROL         "Send Notify Only",IDC_NOTIFY_RADIO,"Button",
+                    BS_AUTORADIOBUTTON,28,35,71,10
+    CONTROL         "Send Notify with Message  attached",IDC_ATTACH_RADIO,
+                    "Button",BS_AUTORADIOBUTTON,28,49,132,10
+    GROUPBOX        "Email Address",IDC_STATIC,15,72,167,34
+    EDITTEXT        IDC_EMAIL_EDIT,28,83,144,14,ES_AUTOHSCROLL
+    GROUPBOX        "New Password",IDC_STATIC,15,111,167,34
+    EDITTEXT        IDC_PASSWORD_EDIT,28,123,145,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "Interval",IDC_STATIC,15,150,167,34
+    LTEXT           "Check voice mail every",IDC_STATIC,28,165,74,8
+    EDITTEXT        IDC_INTERVAL_EDIT,107,163,26,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "min.",IDC_STATIC,138,166,15,8
+END
+
+IDD_PERSON_ADD_USERNAME DIALOG DISCARDABLE  0, 0, 156, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Input Display Name"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,36,52,36,12
+    PUSHBUTTON      "Cancel",IDCANCEL,88,52,35,12
+    LTEXT           "Please input the Display name for Tel:",IDC_STATIC,16,
+                    10,130,8
+    EDITTEXT        IDC_ADD_USER_NAME,15,32,125,14,ES_AUTOHSCROLL
+    LTEXT           "Static",IDC_STATIC1,70,21,19,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SET_EMAIL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 194
+        VERTGUIDE, 15
+        VERTGUIDE, 23
+        VERTGUIDE, 28
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_PERSON_ADD_USERNAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 149
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "保留",                        IDM_HOLDCALL
+        MENUITEM "轉接",                        IDM_TRANSFERCALL
+        MENUITEM SEPARATOR
+        MENUITEM "設定...",                     IDM_PREFERENCE
+        MENUITEM SEPARATOR
+        MENUITEM "關於...",                     IDM_SHOWABOUT
+        MENUITEM "結束",                        IDM_EXITPROG
+    END
+    POPUP "DialPop"
+    BEGIN
+        MENUITEM "重撥上一通",                  IDM_REDIAL
+        MENUITEM "輸入 URI",                    IDM_DIALURI
+    END
+    POPUP "CallLogPop"
+    BEGIN
+        MENUITEM "撥號",                        IDM_CallLogDial
+        MENUITEM "使用者資料",                  IDM_CallLogPro
+        MENUITEM "刪除",                        IDM_CallLogErase
+        MENUITEM "詳細資料",                    IDM_CallLogDetail
+    END
+    POPUP "AddressBookPop"
+    BEGIN
+        MENUITEM "撥號",                        IDM_AddressBkDial
+        MENUITEM "傳送訊息",                    IDM_AddressBkIM
+        MENUITEM "傳送離線訊息",                IDM_AddressBkOfflineMsg
+        MENUITEM SEPARATOR
+        MENUITEM "新增",                        IDM_AddressBkAdd
+        MENUITEM "刪除",                        IDM_AddressBkDelete
+        MENUITEM "修改",                        IDM_AddressBkEdit
+        MENUITEM SEPARATOR
+        MENUITEM "匯出",                        IDM_EXPORT
+        MENUITEM "匯入",                        IDM_IMPORT
+    END
+    POPUP "MCPop"
+    BEGIN
+        MENUITEM "接聽",                        IDM_MC_ANSWER
+        MENUITEM "保留",                        IDM_MC_HOLD
+        MENUITEM "拒絕",                        IDM_MC_REJECT
+        MENUITEM "轉接",                        IDM_MC_TRANSFER
+    END
+    POPUP "VideoPop"
+    BEGIN
+        MENUITEM "原始大小 (&1x)",              ID_ZOOM1
+        MENUITEM "放大&2倍",                    ID_ZOOM2
+        MENUITEM "放大&3倍",                    ID_ZOOM3
+        MENUITEM "放大&4倍",                    ID_ZOOM4
+    END
+    POPUP "IM and Presence"
+    BEGIN
+        MENUITEM "Message To:",                 ID_MESSAGE_TO
+        MENUITEM "Message URI...",              ID_MESSAGE_URI
+        MENUITEM SEPARATOR
+        MENUITEM "離線",                        IDM_PRESENCE_OFFLINE
+        MENUITEM "線上",                        IDM_PRESENCE_ONLINE
+        MENUITEM "會議中",                      IDM_PRESENCE_MEETING
+        MENUITEM "忙碌",                        IDM_PRESENCE_BUSY
+        MENUITEM "外出用餐",                    IDM_PRESENCE_EAT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\PCAUA.ico"
+IDI_MESSAGE             ICON    DISCARDABLE     "res\\message.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_PCAUA               REGISTRY DISCARDABLE    "PCAUA.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "res\\cursor1.cur"
+#endif    // Chinese (Taiwan) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MESSAGE DIALOG DISCARDABLE  0, 0, 222, 201
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Instant Message"
+FONT 9, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_MESSAGE,"RICHEDIT",ES_MULTILINE | ES_AUTOVSCROLL | 
+                    WS_BORDER | WS_VSCROLL | WS_TABSTOP,3,144,174,34
+    DEFPUSHBUTTON   "Send",IDC_SEND,181,144,36,34
+    CONTROL         "",IDC_DIALOG,"RICHEDIT",ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | WS_BORDER | WS_VSCROLL | WS_TABSTOP,3,29,
+                    214,111
+    LTEXT           "Static",IDC_LABEL,5,3,207,22,SS_NOPREFIX
+    LTEXT           "",IDC_STATIC_HINT,4,186,213,12,SS_CENTERIMAGE
+END
+
+IDD_CallLog DIALOG DISCARDABLE  0, 0, 252, 101
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Call Log"
+FONT 9, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,200,80,43,14
+    PUSHBUTTON      "Delete...",IDC_BTN_Del,152,80,43,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Profile...",IDC_BTN_Edit,103,80,43,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Dial",IDC_BTN_DIAL,7,80,43,14,NOT WS_VISIBLE
+    LTEXT           "Tel",IDC_STATIC,7,7,11,8
+    LTEXT           "URI",IDC_STATIC,7,25,14,8
+    LTEXT           "Type",IDC_STATIC,7,43,16,8
+    EDITTEXT        IDC_CallLog_Tel,29,7,82,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_CallLog_URI,29,25,82,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_CallLog_Type,29,43,82,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Start Time",IDC_STATIC,117,7,41,8
+    LTEXT           "End Time",IDC_STATIC,117,25,41,8
+    LTEXT           "Duration",IDC_STATIC,117,43,41,8
+    EDITTEXT        IDC_CallLog_Start,158,7,87,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_CallLog_End,158,25,87,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_CallLog_Interval,158,43,87,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Add",IDC_BTN_Add,56,80,43,14,NOT WS_VISIBLE
+END
+
+IDD_CallLogDel DIALOG DISCARDABLE  0, 0, 217, 94
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Erase Call Log "
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,108,73,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,160,73,50,14
+    CONTROL         "Delete call logs older than selected days",IDC_RADIO1,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,7,7,138,10
+    CONTROL         "Delete call logs before selected date",IDC_RADIO2,
+                    "Button",BS_AUTORADIOBUTTON,7,25,125,10
+    COMBOBOX        IDC_COMBO_CallLogDel,150,7,60,62,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_CallLogDel,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_DISABLED | 
+                    WS_TABSTOP,150,25,60,13
+    CONTROL         "Delete all call logs",IDC_RADIO3,"Button",
+                    BS_AUTORADIOBUTTON,7,42,69,10
+    CONTROL         "Delete selected call logs",IDC_RADIO4,"Button",
+                    BS_AUTORADIOBUTTON,7,61,84,10
+END
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 9, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Version",IDC_APPNAME_VER,40,26,135,9,SS_NOPREFIX
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "Copyright (C) 2005 CCL/ITRI. All rights reserved.",
+                    IDC_COPYRIGHT,40,46,188,19
+    LTEXT           "SoftPhone",IDC_APPNAME,40,14,132,8
+END
+
+IDD_ENTERURI DIALOG DISCARDABLE  0, 0, 212, 47
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter URI"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Dial",IDOK,103,26,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,155,26,50,14
+    LTEXT           "URI:",IDC_STATIC,7,9,19,9
+    EDITTEXT        IDC_EDIT1,26,7,179,12,ES_AUTOHSCROLL
+END
+
+IDD_PREFERENCE DIALOG DISCARDABLE  0, 0, 229, 330
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SoftPhone Preference"
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "Environment Mode:",IDC_STATIC,9,9,64,8
+    COMBOBOX        IDC_CONFIG_MODE,77,7,140,73,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Basic",IDC_STATIC,7,37,213,65
+    LTEXT           "Select Local IP Address:",IDC_STATIC,14,51,76,8
+    COMBOBOX        IDC_LOCALIPLIST,99,49,114,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "User Name:",IDC_STATIC,14,67,37,8
+    EDITTEXT        IDC_EDIT_USERNAME,55,65,158,14,ES_AUTOHSCROLL
+    GROUPBOX        "Authentication",IDC_STATIC,7,97,213,65
+    LTEXT           "Realm:",IDC_STATIC,14,113,23,8
+    EDITTEXT        IDC_CRE_REALM,50,110,163,14,ES_AUTOHSCROLL
+    LTEXT           "Account: ",IDC_STATIC,14,128,36,8
+    EDITTEXT        IDC_CRE_ACCOUNT,50,126,163,14,ES_AUTOHSCROLL
+    LTEXT           "Password:",IDC_STATIC,14,143,36,8
+    EDITTEXT        IDC_CRE_PASSWORD,50,142,163,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,7,166,213,56
+    CONTROL         "Use Deploy Server",IDC_USEDEPLOY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,165,74,10
+    LTEXT           "Address:",IDC_STATIC,14,182,28,8
+    EDITTEXT        IDC_DSIP,46,180,113,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,166,182,16,8
+    EDITTEXT        IDC_EDIT_DSPORT,185,180,28,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Check for new version automatically",IDC_UPDATE_CHK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,196,130,10
+    CONTROL         "Auto start SoftPhone when user login Windows",
+                    IDC_AUTOSTART_CHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    13,208,185,10
+    GROUPBOX        "",IDC_STATIC,7,226,213,48
+    CONTROL         "Use VoiceMail Integration",IDC_USEVM,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,12,226,97,10
+    LTEXT           "VoiceMail Box No:",IDC_STATIC,13,242,62,8
+    EDITTEXT        IDC_VMACCOUNT,81,240,132,14,ES_AUTOHSCROLL
+    LTEXT           "VoiceMail Password:",IDC_STATIC,13,258,66,8
+    EDITTEXT        IDC_VMPASSWORD,81,256,132,14,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,117,311,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,311,50,14
+    PUSHBUTTON      "Advanced...",IDC_BTN_ADVANCED,7,311,50,14
+    CONTROL         "Better",IDC_RAD_BETTER,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,77,24,35,10
+    CONTROL         "Faster",IDC_RAD_FASTER,"Button",BS_AUTORADIOBUTTON,119,
+                    24,34,10
+    LTEXT           "Quality:",IDC_STATIC,9,24,26,8
+    CONTROL         "Accept Call Waiting",IDC_CALL_WAITING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,82,198,10
+    GROUPBOX        "",IDC_STATIC,7,278,213,29
+    CONTROL         "Use LMS",IDC_USELMS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,12,278,44,10
+    LTEXT           "Address:",IDC_STATIC,15,292,28,8
+    EDITTEXT        IDC_LMSIP,47,290,113,14,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC_STATIC,167,292,16,8
+    EDITTEXT        IDC_LMSPORT,186,290,28,14,ES_AUTOHSCROLL | ES_NUMBER
+END
+
+IDD_SPLASH DIALOG DISCARDABLE  0, 0, 185, 76
+STYLE DS_MODALFRAME | WS_POPUP
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "SoftPhone",IDC_APPNAME,34,22,137,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,9,14,20,20
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,4,4,177,68
+    LTEXT           "",IDC_SPLASH_MSG,34,37,141,29
+END
+
+IDD_DIALOG_Search DIALOG DISCARDABLE  0, 0, 187, 130
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Search"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Search",IDOK,75,109,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,130,109,50,14
+    LTEXT           "Name",IDC_STATIC,13,8,19,8
+    LTEXT           "ID",IDC_STATIC,13,24,8,8
+    LTEXT           "Division \n(Company)",IDC_STATIC,13,43,42,18
+    LTEXT           "Department \nID",IDC_STATIC,13,66,42,16
+    LTEXT           "Extension \n(telephone)",IDC_STATIC,13,88,42,21
+    EDITTEXT        IDC_EDIT_SearchName,66,7,114,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SearchID,66,24,114,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SearchDivision,66,43,114,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SearchDepart,66,66,114,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SearchTel,66,88,114,14,ES_AUTOHSCROLL
+END
+
+IDD_PERSONAL_ADD DIALOG DISCARDABLE  0, 0, 213, 203
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add New"
+FONT 9, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,102,182,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,156,182,50,14
+    RTEXT           "Name",IDC_STATIC,7,7,48,8
+    EDITTEXT        IDC_PERSONAL_ADD_NAME,60,7,146,14,ES_AUTOHSCROLL
+    RTEXT           "Telephone",IDC_STATIC,7,25,48,8
+    EDITTEXT        IDC_PERSONAL_ADD_TEL,60,25,146,14,ES_AUTOHSCROLL
+    RTEXT           "Company",IDC_STATIC,7,43,48,8
+    EDITTEXT        IDC_PERSONAL_ADD_COMPANY,60,43,146,14,ES_AUTOHSCROLL
+    RTEXT           "Remark",IDC_STATIC,7,61,48,8
+    EDITTEXT        IDC_PERSONAL_ADD_REMARK,60,61,146,14,ES_AUTOHSCROLL
+    RTEXT           "Group",IDC_STATIC,7,79,48,8
+    COMBOBOX        IDC_PERSONAL_ADD_GROUP,60,80,87,72,CBS_DROPDOWN | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Photo",IDC_STATIC,7,95,48,8
+    PUSHBUTTON      "Select...",IDC_PERSONAL_ADD_OPENFILE,60,95,35,14
+    EDITTEXT        IDC_PERSONAL_ADD_PIC,60,114,86,14,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+END
+
+IDD_PERSONAL_EDIT DIALOG DISCARDABLE  0, 0, 217, 191
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Address Record"
+FONT 9, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Update",IDOK,106,168,50,16
+    PUSHBUTTON      "Cancel",IDCANCEL,160,168,50,16
+    EDITTEXT        IDC_PERSON2_NAME,60,7,150,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PERSON2_TELEPHONE,60,26,111,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Dial",IDC_BTN_DIAL,177,26,33,13
+    EDITTEXT        IDC_PERSON2_COMPANY,60,46,150,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PERSON2_REMARK,60,66,150,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_PERSON2_GROUP,60,83,92,72,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Select...",IDC_PERSON2_OPENFILE,60,99,35,13
+    EDITTEXT        IDC_PERSON2_PIC,60,117,13,16,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE | WS_DISABLED
+    RTEXT           "Name",IDC_STATIC,7,7,47,8
+    RTEXT           "Telephone",IDC_STATIC,7,26,47,8
+    RTEXT           "Company",IDC_STATIC,7,46,47,8
+    RTEXT           "Remark",IDC_STATIC,7,66,47,8
+    RTEXT           "Group",IDC_STATIC,7,83,47,8
+    RTEXT           "Photo",IDC_STATIC,7,99,47,8
+END
+
+IDD_DIALOG_HELP DIALOGEX 0, 0, 207, 115
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "PCA SoftPhone Help Desk"
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "User Guide",IDC_BTN_USERGUIDE,16,16,66,20,BS_CENTER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Hotline",IDC_BTN_CALL,16,38,66,20,BS_CENTER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Email",IDC_BTN_EMAIL,16,59,66,20,BS_CENTER,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Web Support",IDC_BTN_WEB,16,81,66,20,BS_CENTER,
+                    WS_EX_STATICEDGE
+    LTEXT           "Browse online user manual.",IDC_STATIC,88,22,105,8
+    LTEXT           "Call service hotline",IDC_STATIC,88,43,105,8
+    LTEXT           "Send email to technical support",IDC_STATIC,88,65,105,8
+    LTEXT           "Self-help on the web",IDC_STATIC,88,88,105,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,7,192,101
+END
+
+IDD_BROWSER DIALOGEX 0, 0, 49, 44
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Browser"
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_EXPLORER,"{8856F961-340A-11D0-A96B-00C04FD705A2}",
+                    WS_TABSTOP,7,9,25,25
+END
+
+IDD_UACOM DIALOGEX 0, 0, 191, 126
+STYLE DS_MODALFRAME | WS_POPUP
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_UACONTROL1,"{D851737B-22E8-4947-B812-5FF1F9212732}",
+                    WS_TABSTOP,10,10,96,96
+END
+
+IDD_INFOTEST DIALOG DISCARDABLE  0, 0, 294, 123
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Send SIP INFO"
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "Target URI:",IDC_STATIC,7,9,38,8
+    EDITTEXT        IDC_TARGET_URI,47,7,181,14,ES_AUTOHSCROLL
+    LTEXT           "Body:",IDC_STATIC,24,31,20,8
+    EDITTEXT        IDC_INFO_BODY,47,29,181,87,ES_MULTILINE | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,237,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,237,24,50,14
+END
+
+IDD_JOIN_MESSAGE DIALOG DISCARDABLE  0, 0, 297, 205
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Invite Someone to Join Message Conference"
+FONT 9, "MS Sans Serif"
+BEGIN
+    CONTROL         "Select From Addressbook",IDC_FROM_ADDRBOOK,"Button",
+                    BS_AUTORADIOBUTTON,7,7,256,10
+    CONTROL         "List1",IDC_ADDRBOOK,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,19,283,143
+    CONTROL         "Input Number or URI",IDC_FROM_URI,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED,7,170,212,10
+    EDITTEXT        IDC_URI,7,184,226,14,ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "OK",IDOK,240,167,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,240,184,50,14
+END
+
+IDD_RIGHT_PANEL DIALOGEX 0, 0, 681, 354
+STYLE WS_POPUP
+FONT 9, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,624,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,624,24,50,14
+    DEFPUSHBUTTON   "OK",IDOK2,260,7,50,14
+    PUSHBUTTON      "CANCEL",IDCANCEL2,260,23,50,14
+    PUSHBUTTON      "ITRI",IDC_BTNITIR,37,29,50,14
+    PUSHBUTTON      "Personal",IDC_BTNPERSONAL,111,30,50,14
+    PUSHBUTTON      "Search",IDC_BTNSEARCH,186,31,50,14
+    CONTROL         "List1",IDC_LISTITRI,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,91,104,101
+    CONTROL         "List2",IDC_LISTPERSONAL,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,148,90,148,100
+    LTEXT           "Search Phone Number",IDC_STATIC_SPN,325,63,65,8
+    PUSHBUTTON      "Add...",IDC_BTNPERSONAL_ADD,150,65,50,14,0,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "Delete",IDC_BTNPERSONAL_DEL,206,65,50,14,0,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "NEW",IDC_BTNITRI_ADD,7,64,50,14
+    PUSHBUTTON      "DELETE",IDC_BTNITRI_DEL,61,64,50,14
+    CONTROL         "List1",IDC_LISTSEARCH,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,328,90,148,98
+    PUSHBUTTON      "Phone Book",IDC_BTNPhone,79,7,37,14
+    PUSHBUTTON      "Call Log",IDC_BTNCallLog,117,7,30,14
+    CONTROL         "List1",IDC_LISTCallLog,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,512,90,117,95
+    PUSHBUTTON      "Edit",IDC_BTNPERSONAL_Edit,261,65,50,14,0,
+                    WS_EX_STATICEDGE
+    PUSHBUTTON      "VoiceMail",IDC_BTNVoiceMail,14,217,50,14
+    PUSHBUTTON      "Receive",IDC_BTNVoiceMailReceive,14,237,50,14
+    PUSHBUTTON      "Delete",IDC_BTNVoiceMailDelete,67,237,50,14
+    PUSHBUTTON      "Play",IDC_BTNVoiceMailPlay,67,221,50,14
+    CONTROL         "List1",IDC_LISTVoiceMail,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,14,263,128,84
+    PUSHBUTTON      "Profile",IDC_BTN_CallLog_Profile,524,63,50,14
+    PUSHBUTTON      "Detail",IDC_BTN_CallLog_Detail,585,63,50,14
+    EDITTEXT        IDC_ITRI_EmployId,194,267,52,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITRI_DepartmentId,257,243,52,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITRI_CName,195,289,52,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITRI_Email,257,265,52,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ITRI_Ext,196,309,52,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Search",IDC_ITRI_Search,259,290,50,14
+    COMBOBOX        IDC_ITRI_LAB,195,242,52,120,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Clear",IDC_ITRI_CLEAR,260,310,50,14
+END
+
+IDD_GROUP_NEW DIALOG DISCARDABLE  0, 0, 154, 61
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Group Management"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,37,35,38,12
+    PUSHBUTTON      "Cancel",IDCANCEL,91,35,45,11
+    LTEXT           "New Group",IDC_STATIC,14,10,37,8
+    EDITTEXT        IDC_EDIT1,53,9,88,12,ES_AUTOHSCROLL
+END
+
+IDD_GROUP_DELETE DIALOG DISCARDABLE  0, 0, 160, 65
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "Delete",IDOK,27,36,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,87,36,50,14
+    COMBOBOX        IDC_DeleteCombo,57,13,89,54,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Group Name",IDC_STATIC,13,14,42,8
+END
+
+IDD_GROUP_EDIT DIALOG DISCARDABLE  0, 0, 159, 82
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Group"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,28,52,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,90,53,50,14
+    LTEXT           "Group Name",IDC_STATIC,10,15,42,8
+    LTEXT           "Change to ",IDC_STATIC,11,32,36,8
+    COMBOBOX        IDC_EDITCOMBO,53,15,95,60,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT1,47,31,99,14,ES_AUTOHSCROLL
+END
+
+IDD_GROUP_MESSAGE DIALOG DISCARDABLE  0, 0, 162, 60
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Group select"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,27,36,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,87,36,50,14
+    COMBOBOX        IDC_GroupCombo,57,13,89,46,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Group Name",IDC_STATIC,13,14,42,8
+END
+
+IDD_SIGNALLIST_DIALOG DIALOGEX 0, 0, 293, 282
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Signal Strength List"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "Associate",IDOK,179,142,50,16
+    PUSHBUTTON      "Cancel",IDCANCEL,236,142,50,16
+    CONTROL         "",IDC_PROGRESS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,
+                    7,279,128
+    LTEXT           "hint",IDC_HINT,7,143,156,15,NOT WS_VISIBLE
+    COMBOBOX        IDC_ADAPTERSELCOMBO,13,190,267,44,CBS_DROPDOWN | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Default Adapter",IDC_STATIC,13,179,54,10
+    LTEXT           "Network Address:",IDC_STATIC,13,217,67,10
+    LTEXT           "IPADDR",IDC_STATIC_IPADDR,98,217,82,10,0,WS_EX_RIGHT
+    LTEXT           "SUBNET",IDC_STATIC_SUBNET,98,230,82,10,0,WS_EX_RIGHT
+    LTEXT           "DEF GATEWAY",IDC_STATIC_GATEWAY,98,241,82,10,0,
+                    WS_EX_RIGHT
+    LTEXT           "IPTYPE",IDC_STATIC_IPTYPE,84,206,96,10,0,WS_EX_RIGHT
+    LTEXT           "Primary DNS",IDC_STATIC_DNSONE,98,254,82,10,0,
+                    WS_EX_RIGHT
+    LTEXT           "Secondary DNS",IDC_STATIC_DNSTWO,98,265,82,10,0,
+                    WS_EX_RIGHT
+    LTEXT           "Default Gateway:",IDC_STATIC,13,241,67,10
+    LTEXT           "Subnet Mask:",IDC_STATIC,13,230,67,10
+    LTEXT           "Primary DNS:",IDC_STATIC,13,254,67,10
+    LTEXT           "Address Type:",IDC_STATIC,13,206,67,10
+    LTEXT           "Seconary DNS:",IDC_STATIC,13,265,67,10
+    PUSHBUTTON      "Set Default NIC",IDC_SETDEFAULT,203,234,76,14
+    PUSHBUTTON      "Change to Default",IDC_CHANGEDEF,203,255,76,14
+    GROUPBOX        "Network Interface Information",IDC_STATIC,7,165,279,110
+END
+
+IDD_PREFERENCE_IP DIALOG DISCARDABLE  0, 0, 229, 53
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "IP Preference"
+FONT 9, "MS Sans Serif"
+BEGIN
+    LTEXT           "Select Local IP Address:",-1,9,12,76,8
+    COMBOBOX        IDC_LOCALIPLIST,98,10,114,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,161,29,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MESSAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 217
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_CallLog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 245
+        VERTGUIDE, 29
+        VERTGUIDE, 111
+        VERTGUIDE, 117
+        VERTGUIDE, 158
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 94
+        HORZGUIDE, 7
+        HORZGUIDE, 25
+        HORZGUIDE, 43
+    END
+
+    IDD_CallLogDel, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+        HORZGUIDE, 7
+        HORZGUIDE, 25
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        VERTGUIDE, 40
+        HORZGUIDE, 7
+    END
+
+    IDD_ENTERURI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 205
+        VERTGUIDE, 26
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 40
+    END
+
+    IDD_PREFERENCE, DIALOG
+    BEGIN
+        VERTGUIDE, 9
+        VERTGUIDE, 73
+        BOTTOMMARGIN, 309
+        HORZGUIDE, 284
+    END
+
+    IDD_SPLASH, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 181
+        VERTGUIDE, 34
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_DIALOG_Search, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        VERTGUIDE, 13
+        VERTGUIDE, 55
+        VERTGUIDE, 66
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 123
+        HORZGUIDE, 24
+        HORZGUIDE, 43
+        HORZGUIDE, 66
+        HORZGUIDE, 88
+    END
+
+    IDD_PERSONAL_ADD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 206
+        VERTGUIDE, 55
+        VERTGUIDE, 60
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+        HORZGUIDE, 25
+        HORZGUIDE, 43
+        HORZGUIDE, 61
+        HORZGUIDE, 78
+    END
+
+    IDD_PERSONAL_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        VERTGUIDE, 54
+        VERTGUIDE, 60
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+        HORZGUIDE, 26
+        HORZGUIDE, 46
+        HORZGUIDE, 66
+        HORZGUIDE, 83
+        HORZGUIDE, 168
+    END
+
+    IDD_DIALOG_HELP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        VERTGUIDE, 16
+        VERTGUIDE, 82
+        VERTGUIDE, 88
+        VERTGUIDE, 193
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 108
+    END
+
+    IDD_INFOTEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 287
+        VERTGUIDE, 47
+        VERTGUIDE, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 116
+    END
+
+    IDD_JOIN_MESSAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 290
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_RIGHT_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 674
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 347
+    END
+
+    IDD_GROUP_NEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 147
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 54
+    END
+
+    IDD_GROUP_DELETE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 153
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 58
+    END
+
+    IDD_GROUP_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDD_GROUP_MESSAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 155
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 53
+    END
+
+    IDD_SIGNALLIST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 286
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    IDD_PREFERENCE_IP, DIALOG
+    BEGIN
+        VERTGUIDE, 9
+        VERTGUIDE, 73
+        BOTTOMMARGIN, 43
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "Hold",                        IDM_HOLDCALL
+        MENUITEM "Transfer",                    IDM_TRANSFERCALL
+        MENUITEM SEPARATOR
+        MENUITEM "Preference...",               IDM_PREFERENCE
+        MENUITEM SEPARATOR
+        MENUITEM "Help...",                     IDM_HELP
+        MENUITEM "About...",                    IDM_SHOWABOUT
+        MENUITEM "Exit",                        IDM_EXITPROG
+    END
+    POPUP "DialPop"
+    BEGIN
+        MENUITEM "Redial Last Call",            IDM_REDIAL
+        MENUITEM "Dial URI",                    IDM_DIALURI
+    END
+    POPUP "CallLogPop"
+    BEGIN
+        MENUITEM "Delete",                      IDM_CallLogErase
+        MENUITEM "Detail",                      IDM_CallLogDetail
+        MENUITEM "Profile",                     IDM_CallLogPro
+        MENUITEM "Dial",                        IDM_CallLogDial
+    END
+    POPUP "AddressBookPop"
+    BEGIN
+        MENUITEM "Make Call",                   IDM_AddressBkDial
+        MENUITEM "Send Message",                IDM_AddressBkIM
+        MENUITEM "Send Offline Message",        IDM_AddressBkOfflineMsg
+        MENUITEM "Send Group Message",          IDM_AddressBkGroupMsg
+        MENUITEM "Block",                       IDM_AddressBkBlock
+        MENUITEM "Unblock",                     IDM_AddressBkUnBlock
+        MENUITEM SEPARATOR
+        MENUITEM "Add...",                      IDM_AddressBkAdd
+        MENUITEM "Delete",                      IDM_AddressBkDelete
+        MENUITEM "Edit...",                     IDM_AddressBkEdit
+        MENUITEM SEPARATOR
+        MENUITEM "New Group...",                IDM_NewGroup
+        MENUITEM "Delete Group",                IDM_DeleteGroup
+        MENUITEM "Edit Group...",               IDM_EditGroup
+        MENUITEM SEPARATOR
+        MENUITEM "Export",                      IDM_EXPORT
+        MENUITEM "Import",                      IDM_IMPORT
+        MENUITEM SEPARATOR
+        MENUITEM "Set Online",                  IDM_PRESENCE_STATUS_ONLINE
+        MENUITEM "Set Offline",                 IDM_PRESENCE_STATUS_OFFLINE
+        MENUITEM SEPARATOR
+        MENUITEM "Send Message To...",          IDM_AddressBkIMTo
+    END
+    POPUP "MCPop"
+    BEGIN
+        MENUITEM "Answer",                      IDM_MC_ANSWER
+        MENUITEM "Hold",                        IDM_MC_HOLD
+        MENUITEM "Reject",                      IDM_MC_REJECT
+        MENUITEM "Transfer",                    IDM_MC_TRANSFER
+        MENUITEM "Audio Conference",            IDM_MC_CONFERENCE
+        MENUITEM "Video Conference",            IDM_MC_VIDEO_CONFERENCE
+    END
+    POPUP "VideoPop"
+    BEGIN
+        MENUITEM "Original Size (&1x)",         ID_ZOOM1
+        MENUITEM "Zoom &2x",                    ID_ZOOM2
+        MENUITEM "Zoom &3x",                    ID_ZOOM3
+        MENUITEM "Zoom &4x",                    ID_ZOOM4
+    END
+    POPUP "IM and Presence"
+    BEGIN
+        MENUITEM "Message To:",                 ID_MESSAGE_TO
+        MENUITEM "Message URI...",              ID_MESSAGE_URI
+        MENUITEM SEPARATOR
+        MENUITEM "Offline",                     IDM_PRESENCE_OFFLINE
+        MENUITEM "Ready",                       IDM_PRESENCE_ONLINE
+        MENUITEM "Meeting",                     IDM_PRESENCE_MEETING
+        MENUITEM "Busy",                        IDM_PRESENCE_BUSY
+        MENUITEM "Eating",                      IDM_PRESENCE_EAT
+    END
+END
+
+IDR_MESSAGE MENU DISCARDABLE 
+BEGIN
+    MENUITEM "&Invite...",                  ID_JOIN_CONFERENCE
+    MENUITEM "Font...",                     ID_SETFONT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_CallLogDel DLGINIT
+BEGIN
+    IDC_COMBO_CallLogDel, 0x403, 7, 0
+0x3031, 0x6420, 0x7961, "\000" 
+    IDC_COMBO_CallLogDel, 0x403, 7, 0
+0x3032, 0x6420, 0x7961, "\000" 
+    IDC_COMBO_CallLogDel, 0x403, 10, 0
+0x2031, 0x2020, 0x6f6d, 0x746e, 0x0068, 
+    IDC_COMBO_CallLogDel, 0x403, 10, 0
+0x2032, 0x2020, 0x6f6d, 0x746e, 0x0068, 
+    IDC_COMBO_CallLogDel, 0x403, 10, 0
+0x2033, 0x2020, 0x6f6d, 0x746e, 0x0068, 
+    0
+END
+
+IDD_BROWSER DLGINIT
+BEGIN
+    IDC_EXPLORER, 0x376, 160, 0
+0x0000, 0x0000, 0x004c, 0x0000, 0x052b, 0x0000, 0x052b, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x004c, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 
+0x0000, 0xd0e0, 0x0057, 0x3573, 0x11cf, 0x69ae, 0x0008, 0x2e2b, 0x6212, 
+0x0002, 0x0000, 0x0000, 0x0000, 0x004c, 0x0000, 0x1401, 0x0002, 0x0000, 
+0x0000, 0x00c0, 0x0000, 0x0000, 0x4600, 0x0080, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+    0
+END
+
+IDD_RIGHT_PANEL DLGINIT
+BEGIN
+    IDC_ITRI_LAB, 0x403, 1, 0
+"\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x7cb0, 0xa1b3, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x71b9, 0x71b3, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x71b9, 0x6ca4, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xf7be, 0xf1b1, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xf7a7, 0xc6ae, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xe0af, 0xeab8, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xc6a4, 0x75a4, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x71b6, 0xfab4, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xfaa5, 0x71b9, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xf4c0, 0x77a6, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x74a8, 0xceb2, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xcda5, 0xe5c2, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xb9b4, 0xf9a4, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x67b8, 0xeab8, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xe6a6, 0x46ac, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xeab8, 0x54b0, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xdea7, 0xe0c2, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x7cb7, 0x70ad, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0x60a9, 0xcca6, "\000" 
+    IDC_ITRI_LAB, 0x403, 5, 0
+0xc7be, 0x7cb0, "\000" 
+    0
+END
+
+IDD_UACOM DLGINIT
+BEGIN
+    IDC_UACONTROL1, 0x376, 16, 0
+0x0000, 0x0000, 0x0300, 0x0000, 0x13d8, 0x0000, 0x13d8, 0x0000, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS DISCARDABLE 
+BEGIN
+    "0",            ID_KEY_0,               VIRTKEY, NOINVERT
+    "1",            ID_KEY_1,               VIRTKEY, NOINVERT
+    "2",            ID_KEY_2,               VIRTKEY, NOINVERT
+    "3",            ID_KEY_3,               VIRTKEY, NOINVERT
+    "3",            ID_KEY_P,               VIRTKEY, SHIFT, NOINVERT
+    "4",            ID_KEY_4,               VIRTKEY, NOINVERT
+    "5",            ID_KEY_5,               VIRTKEY, NOINVERT
+    "6",            ID_KEY_6,               VIRTKEY, NOINVERT
+    "7",            ID_KEY_7,               VIRTKEY, NOINVERT
+    "8",            ID_KEY_8,               VIRTKEY, NOINVERT
+    "8",            ID_KEY_STAR,            VIRTKEY, SHIFT, NOINVERT
+    "9",            ID_KEY_9,               VIRTKEY, NOINVERT
+    "I",            ID_KEY_INFOTEST,        VIRTKEY, CONTROL, ALT, NOINVERT
+    "P",            ID_KEY_UACOMPREF,       VIRTKEY, CONTROL, ALT, NOINVERT
+    VK_BACK,        ID_KEY_BACK,            VIRTKEY, NOINVERT
+    VK_DECIMAL,     ID_KEY_DEL,             VIRTKEY, NOINVERT
+    VK_DELETE,      ID_KEY_DEL,             VIRTKEY, NOINVERT
+    VK_ESCAPE,      ID_KEY_ESC,             VIRTKEY, NOINVERT
+    VK_F1,          ID_KEY_F1,              VIRTKEY, NOINVERT
+    VK_F10,         ID_KEY_F10,             VIRTKEY, NOINVERT
+    VK_MULTIPLY,    ID_KEY_STAR,            VIRTKEY, NOINVERT
+    VK_NUMPAD0,     ID_KEY_0,               VIRTKEY, NOINVERT
+    VK_NUMPAD1,     ID_KEY_1,               VIRTKEY, NOINVERT
+    VK_NUMPAD2,     ID_KEY_2,               VIRTKEY, NOINVERT
+    VK_NUMPAD3,     ID_KEY_3,               VIRTKEY, NOINVERT
+    VK_NUMPAD4,     ID_KEY_4,               VIRTKEY, NOINVERT
+    VK_NUMPAD5,     ID_KEY_5,               VIRTKEY, NOINVERT
+    VK_NUMPAD6,     ID_KEY_6,               VIRTKEY, NOINVERT
+    VK_NUMPAD7,     ID_KEY_7,               VIRTKEY, NOINVERT
+    VK_NUMPAD8,     ID_KEY_8,               VIRTKEY, NOINVERT
+    VK_NUMPAD9,     ID_KEY_9,               VIRTKEY, NOINVERT
+    VK_RETURN,      ID_KEY_ENTER,           VIRTKEY, NOINVERT
+    VK_SPACE,       ID_KEY_SPACE,           VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_REG_FAIL            "Unable to register call server.\nYou can change preference settings or retry later.\nDo you want to change preference setting?"
+    IDS_NOTIFY_NEW_VERSION  "SoftPhone has newer version now.\nDo you want to download the latest version?"
+    IDS_ABOUT_PCAUA         "Version %s"
+    IDS_REG_FAIL2           "Press Yes to stop SoftPhone and try later, or press No to run it without server."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "PCA SoftPhone"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHT)
+#ifdef _WIN32
+LANGUAGE 4, 1
+#pragma code_page(950)
+#endif //_WIN32
+#include "res\PCAUA.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.cht\afxres.rc"          // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

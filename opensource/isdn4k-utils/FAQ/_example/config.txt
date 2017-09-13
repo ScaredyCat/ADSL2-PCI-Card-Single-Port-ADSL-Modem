@@ -1,0 +1,113 @@
+From: Torsten Hentschel <Torsten.Hentschel@DInet.de> Subject: Re: Now i found something else to wonder about.. (was: Re: options files) To: isdn4linux@hub-wue.franken.de
+Date: Thu, 24 Oct 1996 22:47:17 +0200 (MET DST) Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+Hello Emil & Mogens!
+
+> Hello Mogens,
+> 
+> You wrote:
+> > isdnctrl addif ippp0
+> > isdnctrl pppbind ippp0
+> > ifconfig ippp0 193.89.84.10 p-t-p 193.89.84.11
+                ---
+> > route add -net 194.192.159.0 metric 1 netmask 255.255.255.224 ippp0
+> > ipppd user XXX1 /dev/ippp0 193.89.84.10:193.89.84.11 file
+> > /etc/ppp/options.ippp0
+> 
+> > isdnctrl addif ippp1
+> > isdnctrl pppbind ippp1
+> > ifconfig ippp0 193.89.84.10 p-t-p 193.89.84.13
+                ---   why do you repeat the ifconfig?
+                      probably it should be "ippp1" here?
+> > route add -net 192.168.1.0 metric 1 netmask 255.255.255.0 ippp1
+> > ipppd user XXX2 /dev/ippp1 193.89.84.10:193.89.84.11 file
+> > /etc/ppp/options.ippp1
+> 
+> Compare the two ifconfig commands, they are for the same interface.
+> And AFAIK the two interfaces need different ip-adresses.
+
+With this I do not agree. It is simply possible to give two interfaces the same local ip address. You may even establish two routes on them. But only the first one found in the routing table will be used by the kernel. So the other route won't have any effect.
+
+Configuring two interfaces with the same local IP address does make sense if you want to use as less IP adresses as possible (very honorable as long as IPv6 is not common practice).
+An interface IP-Adress is used by the kernel to give outgoing packets (not the forwarded packets) a sender IP address within the IP header.
+
+To make the IP address 193.89.84.10 (as used in the above example) pingable I would suggest the following (changes ar marked at the right margin):
+
+| ifconfig dummy0 193.89.84.10    # module has to be loaded before | route add -host 193.89.84.10    # only to have 193.89.84.10 reachable
+                                  # all the time
+
+  isdnctrl addif ippp0
+| ifconfig ippp0 down       # to make it exclusively bindable
+  isdnctrl pppbind ippp0
+| ifconfig ippp0 193.89.84.10 p-t-p 193.89.84.11 up | route add -host 193.89.84.11 metric 1 ippp0 | route add -net 194.192.159.0 metric 1 \ |       netmask 255.255.255.224 gw 193.89.84.11
+  ipppd user XXX1 /dev/ippp0 193.89.84.10:193.89.84.11 \
+        file /etc/ppp/options.ippp0
+
+  isdnctrl addif ippp1
+| ifconfig ippp1 down       # to make it exclusively bindable
+  isdnctrl pppbind ippp1
+| ifconfig ippp1 193.89.84.10 p-t-p 193.89.84.13 up | route add -host 193.89.84.13 metric 1 ippp0 | route add -net 192.168.1.0 metric 1 \ |       netmask 255.255.255.0 gw 193.89.84.13
+  ipppd user XXX2 /dev/ippp1 193.89.84.10:193.89.84.11 \
+        file /etc/ppp/options.ippp1
+
+
+You may even try the following to "emulate" cisco's dialer rotary group where you may put several BRIs (basic rate interfaces = ISDN S0 [gr.]) into one netmask. Therefore the example would look like (changes aren't marked any more; completely different):
+
+  #!/bin/bash
+
+  # assuming, we are using a network of
+  #   193.89.84.0/255.255.255.240
+  # for a dial up server where
+  #   193.89.84.1     is the IP for the server    and
+  #   193.89.84.2-14  are the addresses for remote interfaces.
+
+  ifconfig dummy0 193.89.84.1     # module has to be loaded before
+  route add -host 193.89.84.1     # only to have 193.89.84.1 reachable
+                                  # all the time
+
+  USER_ippp0="XXX1"
+  RMTNET_ippp0=194.192.159.0
+  RMTMSK_ippp0=255.255.255.224
+
+  USER_ippp1="XXX2"
+  RMTNET_ippp1=192.168.1.0        # masquerading is great!
+  RMTMSK_ippp1=255.255.255.0
+
+  USER_ippp2="XXX3"
+  RMTNET_ippp2=""                 # you may leave 'em blank
+  RMTNET_ippp2=""                 # if there is no remote net
+
+  [...]                           # fill out to your needs
+
+  for x in 2 3 4 5 6 7 8 9 10 11 12 13 14
+  do
+    IFNAME="ippp$[$x-2]"
+    isdnctrl addif $IFNAME
+    ifconfig $IFNAME down       # to make it exclusively bindable
+    isdnctrl pppbind $IFNAME
+    ifconfig $IFNAME 193.89.84.1 netmask 255.255.255.240 up
+    route add -host 193.89.84.$x metric 1 $IFNAME
+    eval NET="\${RMTNET_${IFNAME}}"
+    eval MSK="\${RMTNET_${IFNAME}}"
+    if [ -n "$NET" -a -n "$MSK" ]
+    then
+      route add -net $NET metric 1 netmask $MSK gw 193.89.84.$x
+    fi
+    eval USER="\${USER_${IFNAME}}"
+    ipppd user "$USER" /dev/$IFNAME 193.89.84.1:193.89.84.$x \
+          file /etc/ppp/options.$IFNAME
+  done
+
+
+No warranty, it's untested.
+But please yell at me (politely) if I'm wrong.
+
+
+Regards,
+
+  Torsten
+
+
+-- 
+  /\                                     Delta Internet GmbH  /  \     DI Delta Internet GmbH         von-Siemens-Str. 12 /____\   Netzwerkdienst & Vertrieb       59757 Arnsberg
+    ALLES NUR AUS LINUX                  Tel. +49 2932 916 132  Fax 191 --------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

@@ -1,0 +1,87 @@
+.\" $Id: isdnlog.5.in,v 1.5 2002/01/31 19:56:43 paul Exp $
+.\" CHECKIN $Date: 2002/01/31 19:56:43 $
+.TH isdnlog 5 "@MANDATE_ISDNLOG5@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+.SH NAME
+@LOGFILE@ \- isdn log file
+.SH DESCRIPTION
+The main purpose of
+.B isdnlog
+is to create a log file with information
+about all incoming and outgoing calls, namely: this file.
+
+The file has 19 fields, separated by pipe characters "|" with fixed
+length.  The fields are:
+
+.PD 0
+.TP 4
+ 1
+Time of connect
+.TP
+ 2
+Caller's number (if transmitted)
+.TP
+ 3
+Called number
+.TP
+ 4
+Duration of connection in seconds
+.TP
+ 5
+Duration of connection in 1/100 seconds
+.TP
+ 6
+Time of connect (as usual in seconds since 1970)
+.TP
+ 7
+Number of charge signals received (-1 if you don't get charge signals)
+.TP
+ 8
+I = Incoming or O = Outgoing
+.TP
+ 9
+Cause Code if connection was not established
+.TP
+10
+Number of bytes transferred (incoming)
+.TP
+11
+Number of bytes transferred (outgoing)
+.TP
+12
+Version number of
+.B isdnlog
+.TP
+13
+ISDN Service Code
+.TP
+14
+1 = called by isdn user, 0 = called by analog user
+.TP
+15
+Costs per charge unit (e.g. 0.062 in Germany)
+.TP
+16
+Currency of charge unit (e.g. EUR in most parts of Europe)
+.TP
+17
+Total cost of connection
+.TP
+18
+Provider
+.TP
+19
+Zone
+
+.SH FILES
+.TP
+.I @LOGFILE@
+This file: isdnlog log file.
+
+.SH "SEE ALSO"
+.BR isdnlog (8)
+
+.SH AUTHOR
+This manual page was written by Andreas Jellinghaus <aj@dungeon.inka.de>,
+for Debian GNU/Linux and isdn4linux.
+.br
+Now maintained by Paul Slootman <paul@debian.org>.

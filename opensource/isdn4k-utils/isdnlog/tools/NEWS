@@ -1,0 +1,354 @@
+NEWS for tools: (rate, isdnrate, isdnrep)
+
+2000.08.16
+  isdnrep: new option -S (summary)
+  -lt
+
+2000.08.09
+  Reimplemted cdb based on the free cdb_0.61 from debian
+  -lt <lt@toetsch.at>
+
+2000.07.27
+
+  The isdnlog/rep/rate have now a new default database. It is cdb
+  (Constant DataBase from D. J. Bernstein <http://cr.yp.to/cdb.html>)
+
+  If for some reason you don't want to use it, rename or remove
+  the file /cdb/i4l_cdb.c, and run the procedure below.
+
+  To use the new (or switch) datafiles do in subdir isdnlog:
+
+    make clean
+    cd ..
+    make subconfig
+    cd isdnlog
+    make
+    su -c "make install"
+
+    Note: sometimes (after a small chhange in cdb) after leaving cdb,
+          make shows an error
+          "undefined reference to 'main'"
+	  because $(PROGRAM) is lost in zone/Makefile, restarting make
+	  then works. I don't know, what's goin on here - anyone?
+
+    After installing them change the two .gdbm entries in
+    /etc/isdn/isdn.conf to .cdb. You could also remove the *.gdbm in
+    /usr/lib/isdn.
+
+  The cdb data files are a lot smaller then the default gdbm we used,
+  The database seems to be much faster too.
+
+  -lt <lt@toetsch.at>
+
+
+2000.07.17
+  all tools and rate-files
+
+  R:prov, sub ; zonelist
+
+  defines zone references. Zones are read from provider 'prov', subnummer
+  'sub' (which has to be -1, if there is no subnumber). The referenced zones
+  must be real zones (Z:-entries) not references themself.
+  s. samples/rtest.dat for an example.
+  --lt
+
+2000.05.06
+  all tools and rate-files
+
+  New syntax X:Numregexp=Provider['z'Zone] , ... Defines exceptions for
+  numbers, which alwyas get serviced by a certain provider or for special
+  charging models like "5 friends", where you pay less when dialing predefined
+  numbers. For details on syntax please consult man rate-files, or
+  rate-files.man befor installation.
+
+  This feature requires, fnmatch.h and the function fnmatch. If your
+  clib doesnt't have it, let me know.
+  -lt
+
+2000.04.27
+  all tools:
+    If you use the English country names or the NL cities you should
+    rebuild you destintation database, there are more and corrected
+    entries now.
+
+    chdir to isdnlog/tools/dest
+    and do
+      $ make dataclean
+      $ make data
+    if you have a valid top level configuration
+    or
+      $ make alldata
+    for including all known countries.
+    Copy the resulting dest.gdbm to your isdn data dir (e.g. /usr/lib/isdn).
+
+2000.02.28
+  isdnrate.c:
+    A isdnrate daemon restarts now on the SIGHUP signal.
+
+1999.12.21
+  rate.c:
+    date-range for T:Tag s. man rate-files
+    date-range for P:Tag replaces G:
+
+  doc: moved isdnrate.man, rate-files.man to tools, fixes & updates
+  telrate.cgi: tmp below telrate, workaround for NN bug with grafic
+  zone, dest : new target dataclean in Makefile, clean doesn't del data anymore
+
+1999.12.17
+  all:
+  renabled warnings to get clearer messages/responses from users
+  to disable them do in
+    isdnlog set logoptions, last nibble to 1 e.g. 0xf1
+    isdnrate/rep don't start with -v (verbose)
+
+  isdnrep:
+    old option -v (print connections with errors) is now -E,
+    -v is verbose now
+    obsolete option -c removed
+
+1999.12.14
+  isdnrate:
+    new option -O socket-file-name
+    fixed SIGSEGV, when -P was not given with -D
+  telrate.cgi:
+    starts now automatically an isdnrate daemon, with configured options
+    (s. also telrate/configure)
+
+1999.12.01
+  isdnrate:
+    new option -P piddir
+
+1999.11.30
+  isdnrate:
+    new option -s shows services
+    e.g.
+     isdnrate -s Internet
+
+1999.11.28
+  isdnrate:
+    new option -o shows only booked providers
+
+1999.11.08
+  all utils:
+  initRate reads now all provider-variants.
+  Providers _must_ have a B:-Tag now in rate-CC.dat
+  e.g.
+    P:33
+    B:01033
+
+1999.11.07
+  isdnrate
+    new option Z (add LCR info)
+    e.g.
+
+      isdnrate -ZX 19430
+
+  rate.c / getLeastCost
+    if number is  a special number, this function looks at the service
+    and performs LCR for all numbers listet in this service.
+    So its possible now to find the cheapest online number / provider.
+
+1999.10.21
+  Destination DB runs with isdnrate / isdnlog
+  Removed a lot of country-specific stuff in various files
+
+  all
+    new entries in isdn.conf section
+      [ISDNLOG]
+      DESTFILE=/usr/lib/isdn/dest.gdbm
+      VBN=Providerselection-Prefix (DE 010, AT 10, NL 16:17)
+      VBNLEN=Number of digits following VBN (DE 2:3, AT 2, NL 1 ??, FR 1)
+      PRESELECTED=provider# (DE 33, AT 1, NL 999)
+      s. isdnlog/samples or isdnlog/README
+
+  isdnrep.c
+     shows now zone names from rate-CC.dat
+
+  isdnrate.c
+    new option -N
+      show info about number parsing
+      e.g. isdnrate -N 1234 01234 001234 Dubai
+
+1999.10.08
+  started with tools/dest
+
+1999.09.15
+  isdnrate.c
+      neue Varianten
+        -X51 Inlandszonen
+	-X50 Auslandszonen
+
+1999.09.07
+  rate-CC.dat: Syntaxerweiterung im C:Tag
+
+      C:TarifChanged:dd.mm.yyyy
+          (Datum der letzten Tarifwartung)
+
+1999.09.05
+
+    telrate.cgi:
+      uses now gd 1.6.3, GD 1.21  with PNG instead of GIF
+      (smaller, no licence troubles)
+
+      requires
+        gd 1.6.3 which
+           requires
+	      libz, libpng
+	        (e.g. ln -s /usr/X11R6/lib/libz.so /usr/lib/libz.so
+		    ln -s /usr/X11R6/lib/libpng.so /usr/lib/libpng.so
+		    ln -s /usr/X11R6/include/png.h /usr/local/include/png.h
+		    ln -s /usr/X11R6/include/pngconf.h /usr/local/include/pngconf.h
+		)
+    or from GD README
+    Make sure you have downloaded and installed the following packages:
+
+	a. Perl 5.004 or higher:
+		http://www.perl.com/
+	b. The gd graphics library, version 1.6.3 or higher:
+		http://www.boutell.com/gd/
+	c. The PNG graphics library:
+		http://www.cdrom.com/pub/png/
+	d. The zlib compression library:
+		http://www.cdrom.com/pub/infozip/zlib/
+
+    dann noch ein kleiner Patch in GD.c, weiss der Geier warum
+
+--- GD.c	Sat Sep  4 19:06:37 1999
++++ GD.c.leo	Sat Sep  4 19:01:46 1999
+@@ -1974,7 +1974,8 @@
+ #ifdef __cplusplus
+ extern "C"
+ #endif
+-XS(boot__CAPI_entry)
++/* XS(boot__CAPI_entry) */
++XS(boot_GD)
+ {
+     dXSARGS;
+     char* file = __FILE__;
+@@ -2039,7 +2040,7 @@
+     XSRETURN_YES;
+ }
+
+-
++#if 0
+ #define XSCAPI(name) void name(CV* cv, void* pPerl)
+
+ #ifdef __cplusplus
+@@ -2051,3 +2052,4 @@
+     boot__CAPI_entry(cv);
+ }
+
++#endif
+
+
+1999.09.04
+
+    isdnrate.c:
+      -p, -x take now an additional argument 'B'
+      -pB ... show only business providers
+      -xB ... don't show
+
+      The provider is considered as a business-provider if the
+      C:GT:-Tag contains the string "Business" (uppercase)
+
+
+1999.09.03
+
+    holiday.c: holiday-CC.dat
+    ...
+      W:H	Feiertag
+      W:*	Immer 		# APPEND THIS
+
+    Hat ein Provider jeden Tag den gleichen Tarif (T:*/...) wird nun statt
+    dem Wochentag 'Immer' ausgegeben. Damit ist eine klarere Unterscheidung
+    zu Providern mit tagesabhaengigen Tarifen gegeben.
+
+
+1999.09.01
+
+  Neues Feld in struct RATE
+      double Sales; (Mindestgesprächsgebühr)
+
+  rate-CC.dat: Syntaxerweiterung im T:Tag
+
+      T:*.*=0.30|2.20(60)/1
+          Mindestens 0.30, sonst 2.20 per Minute
+
+      aber:
+
+      T:*.*=0.30/0,2.20(60/1
+          0.30 + 2.20/Min (0.30 = Herstellungsgebühr)
+
+  rate-CC.dat: Syntaxerweiterung im C:Tag
+
+      gleichlautende C:Tags werden per '\n' appended
+
+  telnum.c:
+      Dirty hack fuer +1, +7  (s. _getCountry...)
+
+  isdnrate.c:
+      Neue Option -S[v|n] (sort VBN oder Name statt Preis)
+
+      z.B.
+          isdnrate -C -Sv -XHomepage
+	  (sortierte Proiderliste mit Homepage)
+
+
+
+1999.08.24
+
+  rate-CC.dat: Syntaxerweiterung im C:Tag
+
+    folgende C:-Tags sind dzt. in Verwendung:
+
+    C:Name:Provider-Firmenbezeichnung
+    C:Address:Provider-Adresse
+    C:Homepage:http://www.provider.CC
+    C:TarifURL:http://www.provider.CC/tarife/
+    C:EMail:info@povider.CC
+    C:Telefon:0800 123 123
+    C:Telefax:0800 123 123
+    C:Hotline:0800 123 123
+    C:Maintainer:lt@toetsch.at
+    C:Special:Nur Businesskunden
+    C:Zone:Fernzone ab 100 Km
+    C:GT:Gebühentext z.B. 200 Mindestumsatz
+    C:GF:Formeln f. Gebühren
+     (Diese Formeln werden von telrate.cgi - Gesprächsmix ausgewertet)
+	z.B.
+	C:GT:99 Mindestumsatz (per Monat)
+	C:GF:Cost = Ch > 99 ? 0 : 99
+
+	C:GT:Businesskunden ab 5000 Umsatz
+	C:GF:Ch >= 5000 ? 1 : -1
+
+	C:GT:Freischaltgebühr einmalig 480
+	C:GF:Cost = 480/12
+
+    Vom telrate.cgi sind dzt. die Variablen
+	'Ch' ... Kosten pro Mix
+	'MaxCh' ... Teuerste Spalte im Mix
+	'Cost' ... Angefallenen Kosten
+    definiert.
+
+    Ist der Rückgabewert (i.e. die letzte Expression) -1, wird der
+    Provider verworfen (z.B. Mindestumsatz nicht erreicht).
+
+
+  isdnrate:
+
+      isdnrate -D2
+          begibt sich nach dem Starten in den Hintergund
+      isdnrate -CX9 Argentinien
+          verbindet ich mit dem oben gestarteten Daemon und wirft die
+          Tarifliste aus.
+      isdnrate -CD3
+      killed den Daemon wieder
+
+
+1999.08.24
+
+  Neues Feld in struct RATE
+      double Rhythm[2]; (Takt z.B. 60,1)
+
+-lt-

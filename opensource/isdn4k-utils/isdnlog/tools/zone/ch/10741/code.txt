@@ -1,0 +1,35 @@
+01	Zurich
+021	Lausanne
+022	Geneva
+024	Lausanne
+026	Fribourg
+027	Sion
+031	Berne
+032	Biel
+034	Berne
+040	Paging System
+041	Lucerne
+046	HCD
+048	Voice Mail
+049	Telepac
+050	Special Services
+051	SBB
+052	Winterthur
+055	Rapperswil
+056	Baden
+061	Basel
+062	Olten
+071	St. Gallen
+074	Paging Service
+076	Orange Mobile
+077	Natel C
+078	Diax Mobile
+079	Swisscom Mobile
+080	Freephone
+081	Chur
+084	IN-based services
+086	Message box
+087	IN-based services
+090	Swiss Premium Rate
+091	Bellinzona
+099	VPN-service ID

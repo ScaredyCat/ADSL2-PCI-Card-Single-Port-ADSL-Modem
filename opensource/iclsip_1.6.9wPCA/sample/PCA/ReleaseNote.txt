@@ -1,0 +1,1564 @@
+PCA UA Release Note
+
+------------------
+
+Version 1,2,1,3
+2006/12/11  by sjhuang
+[New Feature]
+	- define test version.
+
+	#define EXPIRE_VERSION in PCAUADlg.cpp
+
+[Changes]
+	- none
+	
+[Bug Fix]
+	- none
+
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+------------------
+
+Version 1,2,1,2
+2006/11/16 ~ 11/29 by sjhuang
+[New Feature]
+	- detect ip address, if ip address change, let user choose new ip, but
+	  if ip address not change but has more than one ip, no need to choose 
+	  ip.
+
+	  new class ( IPPrefDlg.cpp/IPPrefDlg.h )
+
+[Changes]
+	- none
+	
+[Bug Fix]
+	- enhance audio quality on XP version, using DSound initial.
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+------------------
+
+Version 1,2,1,1
+2006/10/30 ~ 11/15 by sjhuang
+[New Feature]
+	- add wireless detect. -> UpdateBSSignal()
+	- add detect wireless skin. ( update PCAUARes.dll & PCAUAResd.dll )
+
+[Changes]
+	- if no use registra, display name ( ua1 ), otherwise display name ( ua1 online ) when 
+	  using registra.
+	
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.3.6 [1,2,1,0]
+2006/08/01 by sjhuang
+[New Feature]
+	- Add debug information, config.ini, will generate PCA_DebugMsg.log file.
+	  [PCAUA]
+	  DEBUG_MSG=0
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- resolve uacom bug. 
+	  [Version 1.3.2.4]
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.3.5
+2006/07/21 by sjhuang
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- select multi-interface problem.
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.3.4
+2006/07/06 by sjhuang
+[New Feature]
+	- none
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- After set preference, and re-initial, local video will show on incorrect position, fix it.
+	- When start PCA, dial button will not enable, fix it.
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.3.3
+2006/06/20 by sjhuang
+[New Feature]
+	- none
+	
+[Changes]
+	- when user press answer button, the answer button must disable and the AniRingBack must set to FALSE.
+	
+[Bug Fix]
+	- Fix the bug when setting prference and ip.
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.3.2
+2005/12/22 by sjhuang
+[New Feature]
+	- Add Presence function including Basice(online/offline), Mood, Activity
+	- Add indication set-up page
+	- Add basic set-up page
+	- Add mood set-up page
+	- Add activity set-up page
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- Fix the bug which call log automatic add some dutty data when logout
+	
+[Known Bugs]
+	- When logout, call log automatic add some dutty data
+	
+[Future UI Look and Feel]
+	- New IMPS IM function
+	- New IMPS photo function
+	- Using ini file to integral all other skin buttons
+	
+-------------------
+Version 2.0.3.1
+2005/12/19 by sjhuang
+[New Feature]
+	- Add immediatly start DND
+	- Add show unanswer call number
+	- Add p2p DTMF Tone ( UALib no more DTMF Tone resource, so write them in PCAUA )
+	- Personel Status Set-up
+	
+[Changes]
+	- none
+	
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- PhoneBook List
+	- Support notify when hoding 
+	
+-------------------
+Version 2.0.3.0
+2005/12/12 by sjhuang
+[New Feature]
+	- Add Xfer function and Xfer buttons in "CallList" list UI
+[Changes]
+	- none
+	
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- none
+	
+-------------------
+Version 2.0.2.3
+2005/12/9 by sjhuang
+[New Feature]
+	- none
+[Changes]
+	- Modify uaprofile problem ( UALib )
+	
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- 
+	
+-------------------
+Version 2.0.2.2
+2005/12/7 by sjhuang
+[New Feature]
+	- none
+	
+[Changes]
+	- 整理PCAUA程式碼
+[Bug Fix]
+	- audio performace good
+	- none
+	
+[Known Bugs]
+	- none
+	
+[Future UI Look and Feel]
+	- Add Xfer function and UI
+	
+-------------------
+Version 2.0.2.1
+2005/12/2 by sjhuang
+[New Feature]
+	- Interworking with new version of IMPS
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- Audio performace bad
+	- UALib let system busy
+	
+[Future UI Look and Feel]
+	- PCAUA automatic update
+	
+-------------------
+Version 2.0.2.0
+2005/11/30 by sjhuang
+[New Feature]
+	- Change below UACom to UALib
+	- Change all API from UACom to UALib
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- none
+	
+-------------------
+Version 2.0.1.3
+2005/11/4 by sjhuang
+[New Feature]
+	- Complete "dial incoming notify" window
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- none
+
+-------------------
+Version 2.0.1.2
+2005/10/28 by sjhuang
+[New Feature]
+	- The operation of IM 
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- Login Window
+	- Dial incoming Notify window
+	- Video 嵌入 in IM Window
+	- Add "buddy control of right control panel" with call function including transfer/park etc...
+	
+	
+-------------------
+Version 2.0.1.1
+2005/10/26 by sjhuang
+[New Feature]
+	- Start to design IM Window UI
+	- Add "input message panel"
+	- Add "show message panel"
+	- Add "right control panel"
+	- Add "buddy control of right control panel"
+	- Add "buddy control" function ( interworking with PCAUA )
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- Does "show message panel" transparent ?
+	- Video in "right control panel" ?
+	- Glorify IM Window 
+
+-------------------
+Version 2.0.1.0
+2005/10/25 by sjhuang
+[New Feature]
+	- Complete "BuddyList" list UI as "tree look and feel"
+	- Complete BuddyList function
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- none
+	
+-------------------
+Version 2.0.0.6
+2005/10/19 by sjhuang
+[New Feature]
+	- Complete "CallLog", "CallList" list UI ( reference Control Object List )
+	- Start to design "BuddyList" and "PhoneBook" UI as "tree look and feel"
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- BuddyList list
+	- PhoneBook list
+	
+-------------------
+Version 2.0.0.5
+2005/10/14 by sjhuang
+[New Feature]
+	- All List(Buddy, PhoneBook, CallLog, CallList) using CDialogSK class to let
+	  BackGround can strenth.
+	
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- Add call log using SetTimer();
+	
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- 透明( read png file) ?
+	- 主視窗拖曳縮放 ?
+	
+-------------------
+Version 2.0.0.4
+2005/10/11 by sjhuang
+[New Feature]
+	- Design bitmap component with layer idea
+	
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+
+[Known Bugs]
+	- Why can not add call log in PCAUA ?
+	
+[Future UI Look and Feel]
+	- In "Call List" list, 外框, Icon(dial in, dial out, Xfer), Text(show infomation) ?
+	
+-------------------
+Version 2.0.0.3
+2005/9/29 by sjhuang
+[New Feature]
+	- Add IM(Instant Message) Window
+	- In Main Window, add "input sip uri" UI
+	- In PhoneBook Window, add "make call" UI and function
+	- In IM Window, add "make call" UI and function
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- In IM Window, how let button trasport ?
+	- In IM Window, right photo control ?
+
+-------------------
+Version 2.0.0.2
+2005/9/25 by sjhuang
+[New Feature]
+	- New UI Skin Main Window
+	- Add Buddy List Window
+	- Add Call List Window
+	- Add Call Log Window
+	- Add Phone Book Window
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+
+[Known Bugs]
+	- none
+
+-------------------
+Version 2.0.0.1
+2005/9/12 by sjhuang
+[New Feature]
+	- New UI Skin Design
+	
+[Changes]
+	- none
+
+[Bug Fix]
+	- none
+
+[Known Bugs]
+	- none
+
+[Future UI Look and Feel]
+	- Main Window, including "BuddyList" list, "PhoneBook" list, "Call Log" list, and "Call List" list
+	- IM Window, including "Input panel", "Show Text panel", "audio control", "photo control"
+	-  
+
+-------------------
+Version 1.1.1.5
+2005/5/24 by lj
+
+[Bug Fix]
+        - #578 在E-NUM Deploy的環境下 (with ALG)
+               PCA無法在通訊錄上選擇好友Make Call
+
+-------------------
+Version 1.1.1.4
+2005/4/21 by lj
+
+[Bug Fix]
+        - #310 在sipproxy註冊完成功後將MENU→preference→authentication內容
+               刪除並重開PCA，authentication的值依然會存在, fixed
+        - #490 if user use the message funtion of simple server 
+               through ALG, the messages reach the destination very slow, wont' 
+               fix
+        - #492 instable of the PCAUA thought ALG, won't fix
+        - #574 504 Server Time-out cause crash , fixed at UACore
+        - #567 cannot cancel registration by using "Cancel" in [advanced] 
+               when PCA register fails, merged to #566
+        
+[Known Bugs]
+        - #542 when user change username in preference, PCA is hanged up
+        - #551 installation need some DLL 	
+        - #554 cannot use preference-advanced to restart PCA 	
+        - #556 LMS setting does not work 	
+        - #557 *UI feature suggestion* User Authentication 	
+        - #566 cannot cancel registration by using "Cancel" in [preference] 
+               when PCA register fails
+        - #568 occur "network error" when use "repair" to upgrade PCA version
+        - #573 change LMS in PCA: phone book can't  reload contact list	
+
+
+
+-------------------
+Version 1.1.1.2
+2005/4/21 by lj
+
+[New Feature]
+        - Added backup registrar setting for IMPS testing
+
+[Bug Fix]
+        - #539 PCA can't do the line feed
+        - #575 IM window should be able to focus when an IM is coming
+
+[Known Bugs]
+
+        - #310 在sipproxy註冊完成功後將MENU→preference→authentication內容
+               刪除並重開PCA，authentication的值依然會存在
+        - #490 if user use the message funtion of simple server 
+               through ALG, the messages reach the destination very slow
+        - #492 instable of the PCAUA thought ALG 	
+        - #542 when user change username in preference, PCA is hanged up
+        - #551 installation need some DLL 	
+        - #554 cannot use preference-advanced to restart PCA 	
+        - #556 LMS setting does not work 	
+        - #557 *UI feature suggestion* User Authentication 	
+        - #566 cannot cancel registration by using "Cancel" in [preference] 
+               when PCA register fails
+        - #567 cannot cancel registration by using "Cancel" in [advanced] 
+               when PCA register fails
+        - #568 occur "network error" when use "repair" to upgrade PCA version
+        - #573 change LMS in PCA: phone book can't  reload contact list	
+        - #574 504 Server Time-out
+        
+
+
+
+-------------------
+Version 1.1.1.0
+2005/4/13 by lj
+
+IMPS testing baseline release
+
+-------------------
+Version 0.9.5.2
+2003/1/12 by sam
+
+[Bug Fix]
+	- #462 [testing] reject button is disable.
+
+-------------------
+Version 0.9.5.1
+2003/12/24 by sam
+
+[Bug Fix]
+	- (UACom 1.0.3.5) Accept error SDP from FCI phone if PCA enable video.
+
+-------------------
+Version 0.9.5.0
+2003/12/23 by shen
+
+[Bug Fix]
+	- Instant message shows in different windows for the same destination.
+
+-------------------
+Version 0.9.4.9
+2003/12/8 by sam
+
+[Bug Fix]
+	- #267  nor  P2  PC  sam  REOP   [testing] Hold call x 4 + consult call + drop call failed  
+	- #339  nor  P2  PC  sam  REOP   [Feature Request] Call Server 增加對 SIP Conference Call ...  
+	- #408  nor  P5  PC  sam  RESO  FIXE  [testing]when PCA use hold function, the status display w...  
+	- #413  nor  P3  PC  sam  RESO  FIXE  [Testing]PCA outside ALG transfer call to Rolm phone fail...  
+	- #431  nor  P3  PC  sam  NEW   [testing]PCA have 4 call,answer excluding No.1 call,it au...  
+	- #432  nor  P4  PC  sam  NEW   [testing]digit Long Number PCA is Dead.  
+	- #433  nor  P3  PC  sam  RESO  FIXE  [testing]"hold" and "hang up" in the meantime Press,two P...  
+	- #347  nor  P4  PC  shen  RESO  FIXE  [testing]HOLD與Transfer喪失功能(轉送錯誤的狀態下)  
+	- Didn't re-subscribe phone book after change UACom setting
+	- Hide 'ITRI' phone book button if public address book feature is not enabled by DeployServer
+	- (UACom 1.0.3.3) Support G.723 DTMF tone transport
+
+[Changes]
+	- Extends hold music from 10 seconds to 60 seconds.
+
+-------------------
+Version 0.9.4.8
+2003/12/3 by sam
+
+[Bug Fix]
+	- Sometimes the call be held will display 'holding' but not 'held'
+
+-------------------
+Version 0.9.4.7
+2003/12/3 by sam
+
+[Changes]
+	- (UACom 1.0.3.2) Use uaDlgGetRemoteParty() instead of uaDlgGetRemoteTarget() for
+	  IUAControl::GetRemoteTarget() for compatibility on conference request
+[Bug Fix]
+	- (UACom 1.0.3.2) Prevent playing incorrect RTP packet by detecting wrong payload type in RTP header
+
+-------------------
+Version 0.9.4.6
+2003/11/27 by sam
+
+[Changes]
+	- (UACom 1.0.3.1) Support 'tel:' in dial uri.
+
+-------------------
+Version 0.9.4.5
+2003/11/26 by shen
+
+[Changes]
+	- Resource Dll updated. Remove all bmp resource to Dll project.
+	- Build new resource Dll project for different application title.
+
+-------------------
+Version 0.9.4.4
+2003/11/25
+
+[Bug Fix]
+	- (UACom 1.0.3.0) for G.711alaw/ulaw, Audio RTP packetize period < 20 will cause no RTP
+	  transmition.
+	- (UACom 1.0.3.0) auto reject call if no acceptable codec in peer SDP of the INVITE request
+
+[New Feature]
+	- If don't use deploy server, disable the settings about deploy server in the preference dialoig.
+	- If don't use VM, disable the settings about VM in the preference dialoig.
+	- Add two configurations : Debug without SIMPLE and Release without SIMPLE.
+	- Display 'Not Acceptable' if peer can not accept any codec provided by caller
+
+-------------------
+Version 0.9.4.3
+2003/11/24
+
+[Bug Fix]
+	- (UACom) while using SIP Relay and make call to a uri with parameters 
+	  (ex: sip:123@host;user=phone) will not able to drop it.
+
+-------------------
+Version 0.9.4.2
+2003/11/19
+
+[New Feature]
+	- support TURN-based NAT traversal, must work with SIPRelay Gateway 0.6.0.1 and above
+	- need zero configuration. auto switch to TRUN-mode if SIP proxy and registrar is a 
+	  SIPRelay Gateway with PCA NAT tranversal function enabled.
+
+-------------------
+Version 0.9.4.1
+2003/11/17
+
+[Changes]
+	- ITRI Search updated by shen.
+	
+-------------------
+Version 0.9.4.0
+2003/11/17
+
+[Bug Fixed]
+	- Fixed a lot of memory bugs in PCA, UACom, and SIP stack. PCA is much much stable now.
+	
+-------------------
+Version 0.9.3.3
+2003/11/14
+
+[Bug Fixed]
+	- sometimes instant message reply message will show in another window
+	- (UACom) sometimes subscribe presence data for personal addressbook will fail
+
+[Changes]
+	- (UACom) great performance improvement in G.723 codec
+
+-------------------
+Version 0.9.3.2
+2003/11/13
+
+[Bug Fixed]
+	- instant message join conference dialog display wrong presence state
+	- personal address book display wrong presence state
+
+[Changes]
+	- because UACom.dll often crash while re-init or shutdown sip stack
+	  so I decide to remove un-initialize code in UACom.
+	  This will cause memory leak while user change local UA setting
+
+-------------------
+Version 0.9.3.1
+2003/11/10
+
+[New Features]
+	- support difference local and remote video size in a call
+	- support Dial-in Video Conference with CCL SIP MCU
+	- support Adhoc Video Conferen with CCL SIP MCU
+	- Read SIMPLE server config from DeployServer's ServerConfig.xml
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+	...
+		<SIMPLEServer>
+			<Use> 0 | 1 </Use>
+			<IPAddress> xxx.xxx.xxx.xxx </IPAddress>
+			<Port> 5080 </Port>
+		</SIMPLEServer>
+	</DeployConfigSection>
+
+
+[Bug Fixed]
+	- (UACom) sometimes can not answer a alerting call
+	- (UACom) video stream bitrate control not work
+
+-------------------
+Version 0.9.3.0
+2003/11/9
+
+[New Features]
+	- support Instant Message and Presence from this build
+	- support peer-to-peer text chat
+	- support multi-party chat room 
+	- support message presence state
+	- support call presence state
+	- instant message & presence integrated with personal address book
+	- There are two new column in PhoneBook.
+	  Presence : show the presence status.
+	  There are six status : Offline, Ready, Busy, Meeting, Eating and Unknown.
+	  Call Status : show the call status.
+	  There are three status : Offline, Online and Unknown.
+	- You can change your presence status from the IM button.
+	- As adding a new person to PhoneBook, PCA subscribe it at the same time.
+	- As deleting a person from PhoneBook, PCA unsubscribe it at the same time.
+	- The current presence of the PCA is shown in the main windows.
+
+[Bug Fixed]
+	- Bug#374 [testing]Hold call x 4 + consult call + drop call failed
+	- Bug#376 [testing]multitype hold PCA is dead
+	- Bug#377 [testing]PCA make call other PCA when it config UA preference
+
+
+-------------------
+Version 0.9.2.88
+2003/11/2
+[New Features]
+	- PCA can display different disconnect call reason as follows:
+		"Disconnected"	- normal drop call
+		"Invalid Argument" - call serverinternal error
+		"Unauthornized" - authentication required
+		"Not Online" - target is not in service
+		"Not Exist" - target not exist
+		"Do Not Distrub" - target enable do not distrub
+		"Busy" - target is busy
+		"Call Canceled" - target or local cancel the call
+		"Authentication failed" - authentication failed
+		"Wrong Number" - wrong number aginst numbering plan
+		"Wrong Target" - wrong URI format
+		"No Privilege" - caller has no privilege to target
+		"Server Error" - call server internal error
+		"Make Call Error" - UACom/UACore internal error
+		"Call Rejected" - local reject call
+		"No Response" - target response timeout
+		"Server Timeout" - call server response timeout
+
+[Bug Fixed]
+	- Bug#358
+	- Bug#360
+	- Bug#362
+	- Bug#364
+	- Bug#365
+	- Bug#366
+	- Bug#368
+
+-------------------
+Version 0.9.2.87
+2003/10/31
+[New Features]
+	- Add FeaturePanel in PCA. PCA will download the FeaturePanel from the ServerConfig.xml
+	- ServerConfig.xml need to add this:
+	  <FeaturePanels>
+		<FeaturePanel>
+			<Title>Group Pickip</Title>
+			<Dial>sip:vontel-pick-up-call-service@140.96.102.4</Dial>
+		</FeaturePanel>
+		<FeaturePanel>
+			<Title>Camp Call</Title>
+			<Dial>sip:vontel-camp-call-service@140.96.102.4</Dial>
+		</FeaturePanel>	
+	  </FeaturePanels>
+
+	- Add adhoc conference support in PCA. 
+
+-------------------
+Version 0.9.2.86
+2003/10/27
+
+[Changes]
+	- UACom updated
+
+[New Feature]
+	- support status indicators, now supported status indicator are 
+	'Follow'(==direct forward) and 'Do not Dirsurb'
+	the status indicators will changed immediately after any admin tool change it status
+
+	- support QoS by setting different ToS bits for SIP signal, RTP audio and RTP video
+	   this feature must config in DeployServer's ServerConfig.xml
+
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+		<QoS>
+			<ToS>
+				<SIPSignal> 7 </SIPSignal>
+				<RTPAudio> 5 </RTPAudio>
+				<RTPVideo> 3 </RTPVideo>
+			</ToS>
+		</QoS>
+	</DeployConfigSection>
+	
+	NOTE: For Windows 2000 and XP,
+	Client PC MUST specify HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\DisableUserTOSSetting = 0
+	And REBOOT to allow application set ToS bits in IP layer
+
+-------------------
+Version 0.9.2.85
+2003/10/24
+
+[New Feature]
+	- Add 'Allow Call Waiting' checkbox in preference dialog
+	- User can decide using call waiting feature or not.
+	
+	- press DTMF buttons during the call will sent SIP INFO to peer UA,
+	  designed for VoicePortal to detect DTMF events.
+
+		<?xml version=\"1.0\" ?>
+		<VONTEL-Extend-Request version=\"1.0\">
+			<DTMFRelay>%c</DTMFRelay>
+		</VONTEL-Extend-Request>
+
+	  %c is the DTMF a digit or string with multiple digit
+
+
+[Bug Fix]
+	- Change Deploy Server address will not change 'Feature button' enable 
+	  unless restart PCA. 
+
+	- If connect to call server failed at startup, user can not open
+	  preference dialog.
+
+-------------------
+Version 0.9.2.84
+2003/10/23
+
+[Changes]
+	- UACom.dll update
+	- Change the update flow for setting email/password. The email/password
+	  settings combined together, but call different XMLRPC.  If both email
+	  and password were modified, call VoiceMailServer.SetEmailPassword.
+	  If only email setting was modified, call VoiceMailServer.SetEmail.
+	  If only password setting was modified, call VoiceMailServer.SetPassword.
+	- Add authentication loop for user to try to access voice service, 
+	  instead of opening the preference dialog.	
+
+[New Features]
+	- Add the interval setting for checking voice mail. The interval was
+	  stored in registry HKCU\Software\CCL,ITRI\PCAUA\VoiceMailInterval
+
+[Fixed Bugs]
+	- Store email/password settings to registry when successfully update.
+	- Bug#358 unable to hold call
+	- unable to retrieve call 
+
+-------------------
+Version 0.9.2.83
+2003/10/22
+
+[Changes]
+	- UACom.dll update
+
+[New Feature]
+	- Add STUN support (ydlin)
+	- DeployServer's ServerConfig.xml add STUN related config (ydlin)
+	
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+	...
+		<STUNServer>
+			<Use> 0 | 1 </Use>
+			<IPAddress> xxx.xxx.xxx.xxx </IPAddress>
+		</STUNServer>
+	</DeployConfigSection>
+
+	- always disable STUN function if DeployServer disabled
+
+	- Add QuickConfig support
+	- DeployServer's ServerConfig.xml add QuickConfig related setting
+
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+	...
+	<QuickConfigMode>
+		<Mode>
+			<ID>1</ID>
+			<Title>LAN User</Title>
+			<BetterQuality>
+				<AudioCodec><ID>0</ID><ID>8</ID><ID>18</ID><ID>4</ID></AudioCodec>
+				<VideoCodec><ID>96</ID><ID>34</ID></VideoCodec>
+				<UserVideo>1</UserVideo>
+				<VideoBitrate>400</VideoBitrate>
+				<VideoFramerate>5</VideoFramerate>
+				<VideoSizeFormat>2</VideoSizeFormat>
+				<UseVideoQuant>1</UseVideoQuant>
+				<VideoQuant>7</VideoQuant>
+				<VideoEncodeIFrameOnly>1</VideoEncodeIFrameOnly>
+				<G711PacketizePeriod>20</G711PacketizePeriod>
+				<RTPPacketizePeriod>20</RTPPacketizePeriod>			
+			</BetterQuality>
+			<FasterQuality>
+				<AudioCodec><ID>18</ID><ID>4</ID><ID>0</ID><ID>8</ID></AudioCodec>
+				<VideoCodec><ID>34</ID><ID>96</ID></VideoCodec>
+				<UserVideo>1</UserVideo>
+				<VideoBitrate>200</VideoBitrate>
+				<VideoFramerate>15</VideoFramerate>
+				<VideoSizeFormat>2</VideoSizeFormat>
+				<UseVideoQuant>0</UseVideoQuant>
+				<VideoQuant>10</VideoQuant>
+				<VideoEncodeIFrameOnly>0</VideoEncodeIFrameOnly>
+				<G711PacketizePeriod>20</G711PacketizePeriod>
+				<RTPPacketizePeriod>20</RTPPacketizePeriod>
+			</FasterQuality>
+		</Mode>
+	</QuickConfigMode>
+	</DeployConfigSection>
+
+	special values are
+	audiocodec: 0=G.711u, 8=G.711a, 4=G.723, 18=G.729
+	videocodec: 34=H.263, 96=MPEG4
+	videosize: 2=QCIF, 3=CIF
+	
+
+
+[Bug Fixed]
+	- (UACom) CIF video size is not work for MPEG4 or H.263
+	- Bug#349 PCA hangin on "initlaize UAControl" with STUN enable
+	- Bug#335 click dial button twice might occur 'answer call failed' dialog
+	- use bottom call list to hangup a inbound connected call will occur 'answer call failed' dialog
+	- sometime exit PCA will hang. must use task manger to kill it.
+	- PCA database error on some English Windows XP/2000 OS
+	- if DeployServer's ServerConfig.xml > 4K will parse error. extent buffer to 40K
+
+-------------------
+Version 0.9.2.82
+2003/10/21
+
+[Changes]
+	- different local holding from remote held. 
+	  when remote held local call, user will not able to 
+	  Hold, Retrieve, Consult, Transfer or Conference call.
+
+	- must set HKCU\Software\CCL, ITRI\PCAUA\AllowRunWithoutServer = 1, or
+	  PCA will stop itself if register to Call Server failed.
+	- NOTE: if HKCU\Software\CCL, ITRI\UACom\Registrar\Use_Registrar = 0,
+	  PCA will never register to Call Server and never failed.
+
+[New Features]
+	- play hold music while remote held call
+
+	- allow administrator to set rule convert raw digits to URI
+	   in DeployServer's ServerConfig.xml
+
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+	...
+		<NumberingPlan>
+			<NumberToURITemplate>
+				sip:$dial_number$@$registrar$;user=phone
+			</NumberToURITemplate>
+		</NumberingPlan>
+	...
+	</DeployConfigSection>
+
+	support variables:
+	$dial_number$ = user's input digit
+	$registrar$ = registrar's host name or ip
+
+	default NumberToURITemplate = 'sip:$dial_number$@$registrar$'
+
+	this will convert '12312' to 'sip:12312@140.96.186.232;user=phone'
+
+[Fixed Bugs]
+	- PCA crashed while program exiting in void CCallLog::storeAllRecord() and BOOL CDBAccess::MoveNext()
+	- access violation in void CSortListCtrl::FreeItemMemory( const int iItem )
+	- access violation in VOID CDBAccess::GetStringFromField(INT fIndex,CHAR *outString, int bufsize);
+	- (UACom) unable to specify different local IP
+	- Bug#329 (UACom) MPEG-4 video transmit error
+
+
+-------------------
+Version 0.9.2.81
+2003/10/21
+
+
+[Changes]
+  - modified by shen for using Res Dll 
+
+  - must have 'PCAUARes.dll' in 
+	1. program local directory
+	2. system directory
+	3. current directory to execute PCAUA.exe
+
+
+-------------------
+Version 0.9.2.8
+2003/10/17
+
+[Changes]
+  - (#338)hide ftp url field in voice mail list 
+
+[Fixed Bugs]
+  - (#325)ITRI/Search UI bug
+  - (#260)not restart UACOM after preference setting changed
+  - (#317)lost hotkey focus if phone book,call log, voice mail opened
+  - (#335)minor bugs of UI(Hold, Answer)
+
+
+Version 0.9.1.13
+2003/10/8
+
+[Changes/Fixed Bugs]
+  - merge changes by shen from 0.9.0.55 and 0.9.1.12
+
+
+-------------------
+Version 0.9.1.12
+
+[Changes]
+  - Environment mode added quality options(Batter,Faster) in Preference Dialog
+
+[New Features]
+  - add Voice Mail settings to voice mail window
+
+[Fixed Bugs]
+  - none.
+
+
+-------------------
+Version 0.9.0.55
+2003/10/7
+
+[Fixed Bugs]
+  - (Bug#333) hold status display wrong.
+
+-------------------
+Version 0.9.0.54
+2003/10/1
+
+[Fixed Bugs]
+  - (UACom) something PCA might crash
+  - Can not exit program if not registered to SIP server
+
+
+-------------------
+Version 0.9.0.53
+2003/10/1
+
+[Fixed Bugs]
+  - (UACom) can not display caller number
+  - Require VMServer password all the time
+  - (UACom) drop connected call takes more than 5 seconds to complete
+  - (UACom) no answer forward not working
+
+-------------------
+Version 0.9.0.52
+2003/9/30
+
+[Changes/Fixed Bugs]
+  - merge changes by sam from 0.8.6.55(9/1) to 0.8.7.14(9/17)
+
+
+Version 0.9.0.50
+2003/9/21
+
+[Changes]
+  - after call connected, click 'hang up' button drop the call directly(#247)
+    instead of clearing digit input
+
+[New Fetures]
+  - add configuration mode to preference dialog, configuration mode definition
+    read from deploy server (#260)
+  - add ITRI Search on phone book
+
+[Fixed Bugs]
+  - main window coverd by video window after zoom (sam) (#222-4)
+  - add attented transfer call
+
+
+
+Version 0.8.7.14
+2003/9/17(Sam)
+
+[Changes]
+  - (UACom) add framerate control setting in advanced preference dialog
+
+[Bug Fixed]
+  - (UACom) no 'green screen' effect while video session just connected
+
+
+Version 0.8.7.13
+2003/9/9(Sam)
+
+[Changes]
+  - do NOT play hold music while holding or held
+
+[Bug Fixed]
+  - (UACom) re-REGISTER message error after expire time 
+
+
+Version 0.8.7.12
+2003/9/2(Sam)
+
+[New Features]
+  - add tool links and config link on UI
+    these links are setting in DeployServer's ServerConfig.xml
+
+	<?xml version="1.0" ?>
+	<DeployConfigSection>
+	...
+	...
+
+		<ToolLinks>
+			<ToolLink>
+				<Title>General Link</Title>
+			</ToolLink>
+			<ToolLink>
+				<Title>V3oIP Homepage</Title>
+				<Link>http://12888.itri.org.tw</Link>
+				<Position x='100' y='100' h='400' w='200' />
+			</ToolLink>
+			<ToolLink>
+				<Title>Query ITRI Employee Info</Title>
+				<Link>http://itriap.itri.org.tw/tele/nteleqry.asp?no=$remote_displayname$</Link>
+				<Position x='100' y='100' h='400' w='200' />
+			</ToolLink>
+			...
+		</ToolLinks> 
+
+		<ConfigLink>
+			<Title>V3oIP SoftPhone Configurations</Title>
+			<Link>http://12888.itri.org.tw/SelfConfig/index.asp?user=$username$</Link>			
+			<Position x='100' y='100' h='400' w='200' />
+		</ConfigLink>
+
+		<DisplayControl>
+			<AppName>PCA SoftPhone</AppName>
+			<HelpDialog>
+				<Title>PCA SoftPhone Help Desk</Title>
+				<UserGuide><Link>http://12888.itri.org.tw/userguide.htm</Link></UserGuide>
+				<Hotline><Number>12888</Number></Hotline>
+				<EMail>12888@itri.org.tw</EMail>
+				<WebSupport><Link>http://12888.itri.org.tw</Link></WebSupport>
+			</HelpDialog>
+			<AboutDialog>
+				<Title>About PCA SoftPhone</Title>
+				<ProductName>PCA SoftPhone</ProductName>
+				<Copyright>Copyright (C) 2003 CCL/ITRI. All rights reserved.</Copyright>
+			</AboutDialog>
+		</DisplayControl>
+
+		<FeatureControl>
+			<Video><Enabled/></Video>
+			<InstantMessage><Enabled/></InstantMessage>
+			<LocalAddressBook><Enabled/></LocalAddressBook>
+			<PublicAddressBook><Enabled/></PublicAddressBook>
+			<CallLog><Enabled/></CallLog>
+			<VoiceMail><Disabled/></VoiceMail>
+		</FeatureControl>
+ 
+	</DeployConfigSection>
+
+  - supported $variable$ in url link are:
+	$username$ = user name
+	$remote_displayname$ = remote number/alias on the screen
+
+
+Version 0.8.6.56
+2003/9/2(Sam)
+
+[Changes]
+  - UACom.dll 1.0.2.5
+
+[Fixed Bugs]
+  - (UACom) add crash guard to protect video codec
+  - (UACom) won't transmit G.723/G.729 codec if RTP packetize time too short
+
+
+Version 0.8.6.55
+2003/9/1(Sam)
+
+[Changes]
+  - play hold music while holding or held
+
+[Fixed Bugs]
+  - hold / retrieve problem 
+    (require UACom.dll 1.0.2.4 and SIPAdapter 1.2.0.14)
+  - transfer problem
+    (require UACom.dll 1.0.2.4)
+
+
+Version 0.8.6.51
+2003/8/25(Sam)
+
+[Changes]
+  - don't play DTMF from speaker, prevent echo to micphone and
+    cause Media Server DTMF detection error.
+  - some minor UI bugs
+  - support remote video zoom from 100% to 400%
+  - uacom.dll 1.0.2.2
+	
+
+Version 0.8.6.41
+2003/8/21(Sam)
+
+[Changes]
+    - source code merged with Jason's 0.8.6.40
+    - merge voice mail login dialog into perference dialog
+
+[Fixed Bugs]
+    - delete voice mail error
+
+
+Version 0.8.6.40
+2003/8/19
+
+[Changes]
+	- add Credential settings to Preference dialog
+[New Features]
+	- ask account and password of voicemail when first time connrcting to voicemail
+	  server
+	- get voicemail server address and port settings from deploy server
+[Fixed Bugs]
+	- minor bug in voice mail UI
+
+
+Version 0.8.6.29
+2003/8/11
+
+[Changes]
+  - Automatically prompt user to setup preference after first time runing PCA
+  - Change all "softphone" to "SoftPhone"
+
+[New Features]
+  - phone book now accepts CSV file format for import/export
+    CSV field order: 1.Name 2.Employee ID 3.Division 4.Department 5.Telephone 6.Remark
+
+[Fixed Bugs]
+  - unable to import/export while phone book is empty
+
+
+Version 0.8.5.66
+2003/7/10
+
+[Changes]
+  - uacom.dll v1.0.1.3
+  - separate local video and remote video in two windows
+  - Phone UI hook button and unhook button color changed
+  - reject imcoming calls if already 4 calls is connected
+  - continue program if UI cannot get response from uacom after registering 
+    more than 10 seconds
+  - added an option on preference dialog to disable/enable connecting to 
+    deploy server while softphone is starting up
+
+[New Features]
+  - voice mail
+  - phone book import/export
+
+[Fixed Bugs]
+  - unable to hang up call after dialing while network is not connected
+
+
+Version 0.8.4.24
+2003/6/19
+
+[Changes]
+  - uacom.dll v1.0.1.2
+  - change all "PCA UA" text(and images) to "V3oIP Softphone"
+
+[New Features]
+  - phone screen flash while call alerting
+
+[Fixed Bugs]
+  - none
+
+
+Version 0.8.3.24
+2003/6/13
+
+[Changes]
+  - uacom.dll v1.0.1.1
+  - do not force UACom enable video while startup
+  - support scale remote video size from 100% to 400%
+    (right-click on the video windows title)
+  - adjust bitmap of some buttons of phone UI
+  - added two buttons(profile,detail) to call log
+  - removed all buttons besides 'close' button in call log detail dialog
+  - on call log profile, if the number is not exist, prompt user to add a
+    new record to phone book
+  - added two options "delete all logs" and "delete selected logs" to call
+    log delete dialog
+  - added "detail" to call log right-ckick popup menu
+
+[New Features]
+  - automaticly minimize window when the program is auto-started
+
+[Fixed Bugs]
+  - autostartup function not  works correctly after re-installation
+  - uncorrect button rect near the "ip phone" switch of phone UI
+
+
+Version 0.8.2.35
+2003/6/5
+
+[Changes]
+  - uacom.dll v1.0.0.9 (5/30)
+  - adjust photo position, bitmap of some buttons of phone UI 
+  - use new XMLRPC lib for voice mail client
+
+[New Features]
+  - added buttons(add,delete,edit...) to phone book/call log window UI
+  - added status icon to multiple call area of phone UI
+
+[Fixed Bugs]
+  - phone book/call log and video window closed by pressing ESC
+
+
+Version 0.8.1.53
+2003/5/29
+
+[Changes]
+  - uacom.dll v1.0.0.9
+  - call log default sorting order change to newest log on top of list [bug#164]
+  - text color changed on phone's display screen [bug#164]
+  - show user phone number with "ready" message [bug#164]
+  - apply new UI to phone book/call log window
+  - multiple call control via popup menu
+  - user cannot retrive call from main menu under multiple calls status
+
+[New Features]
+  - added media receive quility indicator on phone UI
+  - call log icon can distinct the result of this call(normal, missed, rejected
+    , fail) [bug#164]
+
+[Fixed Bugs]
+  - "clear" and "hang up" button status not correct [bug#164]
+
+
+Version 0.8.0.14
+2003/5/21
+
+[Changes]
+  - uacom.dll v1.0.0.8
+  - automatically drop all calls before program exit
+  - automatically change video window size to CIF/QCIF
+  - layout changed on phone's display screen
+
+[New Features]
+  - support multiple call functions, includes hold/retrive calls, consult call
+    and call waiting
+
+[Fixed Bugs]
+  - database error cause by address book name contains quote mark
+  - memory leak bug in UI resource
+
+
+Version 0.7.8.12
+2003/5/15
+
+[Changes]
+  - uacom.dll v1.0.0.7(new)
+  - apply new phone skin bitmap
+  - display "meaningful" caller number
+
+[New Features]
+  - right-click popup menu on addressbook
+
+[Fixed Bugs]
+  - fix [bug#138] autorun on windows startup
+  - fix [bug#137] reinstallation bug
+
+Version 0.7.7.14
+2003/5/9
+
+[Changes]
+  - UACom.dll version 1.0.0.7
+  - call log & address book button change to "switch & open/close" mode
+  - keep disconnect message on screen for 5 seconds
+
+[New Features]
+  - support multiple deletion on personal address book
+  - double-click on personal address book records to dial
+  - add a "edit" button on personal address book
+  - right-click popup menu on call log
+  - add call log record to address book (telephone number field only)
+  - video window snapping
+
+[Fixed Bugs]
+  - fix bug unable to bring PCA to foreground while call was incoming
+  - fix bug of sorting on callog and address book
+
+
+Version 0.7.5.89
+2003/4/22
+
+[Changes]
+  - User can use Ctrl-Alt-P while PCA startup fail to do low-level configuration
+    of uacom
+  - Press "hangup" button can clear all digits after wrong dialing(BUG#108)
+  - Use msxml instead of msxml3 for better compatibility of win98
+
+[New Features]
+  - Show number of unanswer calls
+  - Call log
+  - Play busy tone while makecall fail
+  - PCA help desk
+
+[Fixed Bugs]
+  - Unregister call server before exit program
+  - Fixed some minor bugs when running under win98
+
+
+Version 0.7.4.42
+2003/4/16
+
+[Changes]
+  - Show "ready" message while phone is in idle state (on-hook).
+  - Disable Ctrl-Alt-P hot key while phone is not in idle state.
+  - User cannot start program if PCA is not newest version.
+  - Single file installer(.msi).
+
+[New Features]
+  - none
+
+[Fixed Bugs] 
+  - Unable to initial uacontrol in machines with multiple network interface
+  - Misspelling in button's tool tip and message
+
+
+Version 0.7.3.89
+2003/4/11
+
+[Changes]
+  - Copyright info in "About" dialog was changed.
+  - Startup flow changed. If register fail and preference settings was changed, 
+    PCAUA will restart automatically.
+  - DB access changed from DAO to ADO for compatibility.
+
+[New Features]
+  - none
+
+[Fixed Bugs]
+  - Set user name & local IP in preference dialog, but not work correctly.
+  - Unable to initialize database while access personal address book
+
+
+Version 0.7.2.5
+2003/4/9
+
+[Changes]
+  - Program starup flow changed.
+
+[New Features]
+  - Added an item in Preference dialog to let user enter IP address of deploy
+    server
+  - Added an item in Preference dialog to let user enter SIP phone user name
+  - Automatically download server configuration data from deploy server
+
+[Fixed Bug]
+  - none
+
+
+Version 0.7.1.39
+2003/4/7
+
+[Changes]
+  - Before initialize UAControl, PCAUA confirms the default port number
+    (defined in UAControl's registry) is available for use. If not, it will
+	find an unused port and overwrite the default setting.
+
+[New Features]
+  - Personal address book
+  - Peer user information display
+  - direct dial from address book
+
+[Fixed bugs]
+  - not handle exception when UAControl is unable to initialize
+
+
+Version 0.6.2.28
+2003/3/31
+
+[Changes]
+  - Set "UseVideo" attribute to "on" before initialize UAControl.
+  - Terminate program if it fail to register call server.
+
+[New Features]
+  - Automatically connect deploy server to check new version of PCA UA while 
+    the program is starting. This feature can be enable/disable in Preference
+    dialog.
+  - Added an option in Preference dialog to let user select local IP address used
+    by UAControl.
+  - Added a "Splash Window" at starting of program to display initialization
+    status.
+
+[Fixed bugs]
+  - Not re-register after UAControl preference changed.
+  - Program degrade system performance (or even worse crash itself) after running
+    a couple of hours.
+  - Not handle "Timeout" event from UAControl.
+  - Some minor memory leak bugs.
+
+
+Version 0.6.0.57
+2003/3/21
+
+[Changes]
+  - New UI skin design
+  - Phone buttons reallocated, keep frequently used button(dial, hangup, number)
+    only, the other call functions(transfer,ignore,conference...) moved into the
+    new "menu" button.
+  - Select "Preference" item in main menu has no longer open UACOM's preference
+    dialog, a new PCAUA preference dialog instead.
+
+[New Features]
+  - Added "Dial URI" in dial button, user can enter any URI string to dial
+  - Added open/close video window.
+  - Added hotkey Ctrl-Alt-P to bring out UACOM preference dialog.
+  - Added "auto startup" option.
+  
+[Fixed Bugs]
+  - Fixed the UI "flickering" bug while other window is moving accross the
+    phone window.
+  - Fixed the bug cannot send DTMF tone while the call is connected.
+  
+
+Version 0.5.0.3
+2003/3/7
+
+  - First release

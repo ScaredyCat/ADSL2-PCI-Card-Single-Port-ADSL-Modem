@@ -1,0 +1,76 @@
+.\" Process this file with groff -man -Tascii vboxputty.8
+.TH VBOXPUTTY 8 "13. January 2000"
+.UC 4
+.SH NAME
+vboxputty \- a self-dialing/-calling vboxgetty
+.SH SYNOPSIS
+.B vboxputty 
+.B "\-d"
+.IR device
+.RB [ "\-f"
+.IR config-file ]
+.RB [ "\-c"
+.IR phonenumber ]
+.RB [ "\-s"
+.IR ring-timeout ]
+.RB [ "\-w"
+.IR wait ]
+.RB [ "\-t"
+.IR redial ]
+.RB [ "\-r"
+.IR redial-pause ]
+.LP
+.B vboxputty 
+.RB [\- "hv" ]
+.SH DESCRIPTION
+.I vboxputty
+is a vboxgetty, not waiting for, but triggering a call. After
+connect, vboxputty is acting exactly like vboxgetty.
+.I vboxputty
+exits with 0 if a connection was established, 99 on BUSY.
+.LP
+.SH OPTIONS
+.IP -h
+display a short help
+.IP -v
+display the version information
+.IP "-f config-file"
+use
+.I config-file
+instead of the default vboxgetty.conf
+.IP "-d device"
+use
+.I device
+(/dev/ttyI*) for dialout
+.IP "-c phonenumber"
+the phonenumber to be called
+.IP "-s ring-timeout"
+vboxputty will dial the 
+.I phonenumber
+and wait
+.I ring-timeout
+seconds for the called party to accept the call, if
+.I ring-timeout
+seconds are ellapsed before connect, vboxputty will hangup.
+.IP "-w wait"
+after the connection is established, vboxputty will wait
+.I wait
+seconds before starting the tcl-script
+.IP "-t redial"
+if the called party is BUSY, vboxputty will try
+.I redial
+times to get a connect
+.IP "-r redial-pause"
+vboxputty waits
+.I redial-pause
+seconds between BUSY-redials
+.SH FILES
+.I /usr/local/vbox/etc/vboxgetty.conf
+.SH AUTHOR
+Gerrit Pape <pape@innominate.de>
+.LP
+.SH "SEE ALSO"
+.B
+the vbox-documentation
+
+

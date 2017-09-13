@@ -1,0 +1,34 @@
+HKCR
+{
+	UACom.UAControl.1 = s 'UAControl Class'
+	{
+		CLSID = s '{D851737B-22E8-4947-B812-5FF1F9212732}'
+	}
+	UACom.UAControl = s 'UAControl Class'
+	{
+		CLSID = s '{D851737B-22E8-4947-B812-5FF1F9212732}'
+		CurVer = s 'UACom.UAControl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D851737B-22E8-4947-B812-5FF1F9212732} = s 'UAControl Class'
+		{
+			ProgID = s 'UACom.UAControl.1'
+			VersionIndependentProgID = s 'UACom.UAControl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 102'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '131473'
+			}
+			'TypeLib' = s '{37F06A57-5ED1-4F73-9BEA-92050B195C20}'
+			'Version' = s '1.0'
+		}
+	}
+}

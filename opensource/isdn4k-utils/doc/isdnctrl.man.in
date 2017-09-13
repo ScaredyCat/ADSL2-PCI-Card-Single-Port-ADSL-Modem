@@ -1,0 +1,471 @@
+.\" $Id: isdnctrl.man.in,v 1.4 1999/09/06 08:03:23 fritz Exp $
+.\"
+.\" CHECKIN $Date: 1999/09/06 08:03:23 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii isdnctrl.4 for ASCII output, or
+.\" groff -man -Tps isdnctrl.4 for PostScript output
+.\"
+.TH isdnctrl 4 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Special files"
+.SH NAME
+isdnctrl \- ISDN control device
+.SH SYNOPSIS
+.B #include <linux/isdn.h>
+.SH DESCRIPTION
+.I /dev/isdnctrl
+is a character device with major number
+.B 45
+and minor numbers
+.BR 64 " to " 127 .
+It allows controlling functionality of the Linux
+.SM ISDN
+subsystem.
+.SH IOCTL FUNCTIONS
+Currently, the following ioctl calls are supported:
+.TP
+.B IIOCNETAIF
+Add an
+.SM ISDN
+network interface.
+.RS
+This function adds a network interface to the kernel's device table.
+This interface can be used just like normal eth interfaces.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters.
+if
+.I arg
+is NULL, the kernel assigns a name.
+.TP
+Return:
+On success, the name of the new interface is copied to
+.IR arg .
+and the call returns 0. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETASL
+Create a slave interface.
+.RS
+Creates a slave interface for RAW-device channel-bundling.
+These devices behave like network-interfaces, execpt they
+are invisible to user. Only
+.SM ISDN
+parameters can be controlled, but no IP-parameters. IP-parameters
+are inherited from the corresponding master-device.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 21 characters
+containing two comma-separated names. The first part is the name
+of an existing
+.SM
+ISDN
+network device, which will be master. The second part will be the
+name of the new slave interface. 
+.TP
+Return:
+On success, the name of the new interface is copied to
+.IR arg .
+and the call returns 0. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETDIF
+Delete a network-interface.
+.RS
+This call deletes an existing
+.SM ISDN
+network interface.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters
+naming an existing interface which will be deleted. If the interface
+is a master interface, all it's slave-interfaces will be deleted also.
+.TP
+Return:
+On success, the call returns 0. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETSCF
+Set configurable parameters of an
+.SM ISDN
+network interface.
+.RS
+This call replaces all
+.SM ISDN
+related parameters of an interface by the parameters given.
+.TP
+Argument:
+.I arg
+shoud point to a
+.I struct isdn_net_ioctl_cfg
+(defined in linux/isdn.h)
+.TP
+Return:
+On success, the call returns 0. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETGCF
+Get configurable parameters of an
+.SM ISDN
+network interface.
+.RS
+This call returns all
+.SM ISDN
+related parameters of an interface.
+.TP
+Argument:
+.I arg
+shoud point to a
+.I struct isdn_net_ioctl_cfg
+(defined in linux/isdn.h) which will be filled by the current setup.
+.TP
+Return:
+On success, the call returns 0 and the interface-setup is copied to
+*arg. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETANM
+Add a phone number to an
+.SM ISDN
+network interface.
+.RS
+This call adds a phone number to an existing network interface.
+.TP
+Argument:
+.I arg
+shoud point to a
+.I struct isdn_net_ioctl_phone
+which contains necessary information.
+.TP
+Return:
+On success, the call returns 0 and the phone number is added to
+either outgoing or incoming number list. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETDNM
+Delete a phone number from an
+.SM ISDN
+network interface.
+.RS
+This call deletes a phone number from an existing network interface.
+.TP
+Argument:
+.I arg
+shoud point to a
+.I struct isdn_net_ioctl_phone
+which contains necessary information.
+.TP
+Return:
+On success, the call returns 0 and the phone number is deleted from
+either outgoing or incoming number list. On failure, an error code is returned.
+.RE
+.TP
+.B IIOCNETGNM
+Get list of phone numbers from an
+.SM ISDN
+network interface.
+.RS
+This call returns the list of phone numbers associated to an existing
+network interface.
+.TP
+Argument:
+.I arg
+shoud point to a a union of
+.I struct isdn_net_ioctl_phone
+and a buffer, large enough to hold a concatenated list of
+strings containing the phone numbers.
+.TP
+Return:
+On success, the call returns 0 and the list of phone numbers is
+returned as a space-separated list of number-strings terminated by a
+NULL byte.
+.RE
+.TP
+.B IIOCNETDIL
+Trigger dialing of an
+.SM ISDN
+network interface.
+.RS
+This call initiates dialing of an
+.SM ISDN
+network interface, if it is not connected. Normally, this ioctl is not
+needed, because
+.SM ISDN
+network interface perform dial on demand by deafult.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters naming
+the desired interface.
+.TP
+Return:
+On success, the call returns 0 and the interface starts dialing.
+.RE
+.TP
+.B IIOCNETHUP
+Hangup an
+.SM ISDN
+network interface.
+.RS
+This call initiates hangup of an
+.SM ISDN
+network interface, if it is connected.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters naming
+the desired interface.
+.TP
+Return:
+On success, the call returns 0 and the interface hangs up.
+.RE
+.TP
+.B IIOCNETALN
+Add a link of an MPP-configured
+.SM ISDN
+network interface.
+.RS
+This call initiates dialing of a Multilink-PPP slave
+.SM ISDN
+network interface, if it is not connected.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters naming
+the desired interface.
+.TP
+Return:
+On success, the call returns 0 and the interface starts dialing.
+.RE
+.TP
+.B IIOCNETDLN
+Hangup an MPP-configured
+.SM ISDN
+network interface.
+.RS
+This call initiates hangup of an Multilink-PPP
+.SM ISDN
+network interface, if it is connected.
+.TP
+Argument:
+.I arg
+should point to a zero terminated string of max. 10 characters naming
+the desired interface.
+.TP
+Return:
+On success, the call returns 0 and the interface hangs up.
+.RE
+.TP
+.B IIOCNETARU
+Add a timeout rule to an
+.SM ISDN
+network interface.
+.RS
+This call adds a timeout rule to an existing interface.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_timeout_rule
+containing the necessary parameters.
+.TP
+Return:
+On success, the call returns 0 and the rule is added to the
+rule list of the interface.
+.RE
+.TP
+.B IIOCNETDRU
+Delete a timeout rule from an
+.SM ISDN
+network interface.
+.RS
+This call deletes a timeout rule from an existing interface.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_timeout_rule
+containing the necessary parameters.
+.TP
+Return:
+On success, the call returns 0 and the rule is deleted from the
+rule list of the interface.
+.RE
+.TP
+.B IIOCNETGRU
+Get a timeout rule from an
+.SM ISDN
+network interface.
+.RS
+This call returns a timeout rule from an existing interface.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_timeout_rule
+containing the necessary parameters.
+.TP
+Return:
+On success, the call returns 0 and the struct is filled from the
+rule list of the interface.
+.RE
+.TP
+.B IIOCNETBUD
+Handle budget accounting of an
+.SM ISDN
+network interface.
+.RS
+.TP
+Argument and Return:
+to be defined.
+.RE
+.TP
+.B IIOCSETVER
+Set verbosity of link level.
+.RS
+.TP
+Argument:
+.I arg
+is an integer, defining the new verbose value.
+.TP
+Return:
+This call always returns 0.
+.RE
+.TP
+.B IIOCSETGST
+Set global stop flag of link level.
+.RS
+.TP
+Argument:
+.I arg
+is an integer, defining the new stop flag value (0 or !0).
+.TP
+Return:
+This call always returns 0.
+.RE
+.TP
+.B IIOCSETBRJ
+Set busreject flag of a lowlevel driver.
+.RS
+.TP
+Argument:
+.I arg
+should point to an
+.I struct isdn_ioctl_struct
+containing the driver's ID and the value of the busreject flag.
+.TP
+Return:
+On success, the call returns 0 and the busreject flag of the selected
+driver is set according the given parameter.
+.RE
+.TP
+.B IIOCSIGPRF
+Enable signaling on change of modem profiles.
+.RS
+With this call, the calling process is registered to receive
+a SIGIO on every change of any register of any ttyI. Thus it can
+read register settings and save them to a file. The calling process
+has to keep the device open in order to receive notifications.
+As soon as it closes the device, registration is deleted.
+.TP
+Argument:
+none
+.TP
+Return:
+This call always returns 0.
+.RE
+.TP
+.B IIOCGETPRF
+Get all modem register settings.
+.RS
+With this call, all modem registers of all ttyI devices can be
+read.
+.TP
+Argument:
+.I arg
+should point to a buffer of length
+.RB "( " ISDN_MODEM_ANZREG " + " ISDN_MSNLEN " ) * " ISDN_MAX_CHANNELS .
+.TP
+Return:
+On return, the provided buffer is filled with the register values.
+.RE
+.TP
+.B IIOCSETPRF
+Set all modem register settings.
+.RS
+With this call, all modem registers of all ttyI devices can be
+written.
+.TP
+Argument:
+.I arg
+should point to a buffer of length
+.RB "( " ISDN_MODEM_ANZREG " + " ISDN_MSNLEN " ) * " ISDN_MAX_CHANNELS .
+filled with the values of all modem registers.
+.TP
+Return:
+On return, the modem registers are set from the contents of the
+provided buffer.
+.RE
+.TP
+.B IIOCSETMAP
+Set Mapping table.
+.RS
+This call is used to set EAZ/MSN mapping of a lowlevel driver.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_struct
+containing the necessary parameters.
+.TP
+Return:
+On success, the mapping table is set from the given parameters
+an the call returns 0.
+.RE
+.TP
+.B IIOCGETMAP
+Get Mapping table.
+.RS
+This call is used to get EAZ/MSN mapping of a lowlevel driver.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_struct
+containing the necessary parameters.
+.TP
+Return:
+On success, the current mapping table of the given driver is returned
+and the call returns 0.
+.RE
+.TP
+.B IIOCDRVCTL
+Lowlevel driver ioctl.
+.RS
+This call is used for controlling various lowlevel drivers. The
+ioctl-code for this command is assembled by adding IIOCDRVCTL (128)
+and the desired driver ioctl-code. Therefore, a lowlevel driver
+can understand a maximum of 127 different ioctls.
+.TP
+Argument:
+.I arg
+should point to a
+.I struct isdn_ioctl_struct
+containing the necessary parameters, especially the driver-Id must be
+filled correctly. The arg component inside isdn_ioctl_struct is
+handed down to the driver's ioctl function. Its meaning is not
+defined here and depends on the lowlevel driver. See documentation
+for the various lewlevel drivers for information about driver-
+specific ioctl.
+.TP
+Return:
+The return code depends on the driver's ioctl function. Usually,
+0 means no error.
+.RE
+
+.SH AUTHOR
+Fritz Elfert <fritz@isdn4linux.de>
+.SH SEE ALSO
+.BR isdninfo "(4), " icnctrl (4).

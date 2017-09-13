@@ -1,0 +1,10 @@
+mainmenu_option next_comment
+comment 'Options for vbox package'
+string 'Voice message spool directory' VBOX_SPOOLDIR
+string 'Log directory' VBOX_LOGDIR
+string 'PID directory' VBOX_PIDDIR
+string 'Lock directory' VBOX_LOCKDIR
+string 'Documentation directory' VBOX_DOCDIR
+string 'Version of Tcl library to use' VBOX_TCL
+bool 'Use a callid in SUSPEND' VBOX_SUSPEND_ID
+endmenu

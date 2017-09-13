@@ -1,0 +1,65 @@
+makedest makes a destination database
+
+ usage:
+   makedest [-en] [-a] [-v[2]] [cc ...] [ -cCC file|-]
+   eg.
+   $ makedest at de nl
+   which is the same as
+   $ makedest
+   $ makedest -a at de nl
+   or
+   $ makedest -a -c43 somecodes
+
+   -a ... append country cc to database
+   -en .. write english names for countries
+   -v ... verbose, -v2 warns also for duplicate city names, which can be many
+   -c ... appends file or stdin to country CC (CC may be number or isocode)
+
+  input files:
+    global (de/en) /usr/lib/isdn/country.dat
+
+    code-files /usr/lib/isdn/code-CC.dat or ../zone/CC/code
+      where CC is the given countrycode
+    code-files (and input for stdin) consists of lines
+	number\tcity[\tlen of prefix]
+
+  outputfile dest.gdbm is written to current directory and shoud be
+  installed to desired destination.
+
+Troubleshooting:
+
+ Jochen Erwied reported that he had troubles building the destination database
+ (a empty dest.gdbm was built).
+ After updateing from perl 5.004_04 to 5.005_02 everything worked fine.
+
+Author: Leopold Toetsch <lt@toetsch.at>
+Licence: GPL
+makedest makes a destination database
+
+ usage:
+   makedest [-en] [-a] [-v[2]] [cc ...] [ -cCC file|-]
+   eg.
+   $ makedest at de nl
+   which is the same as
+   $ makedest
+   $ makedest -a at de nl
+   $ makedest -a -c43 somecodes
+   
+   -a ... append country cc to database
+   -en .. write english names for countries
+   -v ... verbose, -v2 warns also for duplicate city names, which can be many
+   -c ... appends file or stdin to country CC (CC may be number or isocode)
+   
+  input files:
+    global (de/en) /usr/lib/isdn/country.dat  
+    
+    code-files /usr/lib/isdn/code-CC.dat or ../zone/CC/code
+      where CC is the given countrycode
+    code-files (and input for stdin) consists of lines
+	number\tcity[\tlen of prefix]
+	  
+  outputfile dest.gdbm is written to current directory and shoud be
+  installed to desired destination      
+   
+Author: Leopold Toetsch <lt@toetsch.at>
+Licence: GPL

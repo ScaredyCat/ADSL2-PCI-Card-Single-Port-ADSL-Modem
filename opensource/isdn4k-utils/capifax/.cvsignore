@@ -1,0 +1,9 @@
+config.log
+config.h
+config.cache
+config.status
+stamp-h
+Makefile
+.deps
+capifax
+capifaxrcvd

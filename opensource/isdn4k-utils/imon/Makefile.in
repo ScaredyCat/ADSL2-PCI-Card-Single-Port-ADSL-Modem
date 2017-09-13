@@ -1,0 +1,69 @@
+# $Id: Makefile.in,v 1.6 2002/07/19 19:03:53 keil Exp $
+#
+# Makefile for iMON
+#
+# (C) Michael Knigge, 1995
+# (C) 1996 Fritz Elfert
+#
+#
+SHELL			= /bin/sh
+CFLAGS			= -Wall -O2
+INCLUDES		= -I.
+LDFLAGS			= -L../lib @LIBS@
+PROGRAM			= imon
+MODULES			= imon.o
+MANPAGE			= imon.8
+HEADERS			= config.h
+MANDIR			= @CONFIG_MANDIR@
+SBINDIR			= @CONFIG_SBINDIR@
+MAN8DIR			= $(MANDIR)/man8
+INSTALL			= @INSTALL@
+INSTALL_PROGRAM	= $(INSTALL) -o 0 -g 0 -m 0750
+INSTALL_MAN		= $(INSTALL) -o 0 -g 0 -m 0644
+prefix			= @prefix@
+exec_prefix		= @exec_prefix@
+CC				= @CC@
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
+
+all: $(PROGRAM)
+
+config:
+	@./configure
+
+config.h: config.h.in
+	@./configure
+
+Makefile: Makefile.in config.status
+	./config.status
+
+config.status: configure
+	./config.status --recheck
+
+$(MODULES): $(HEADERS)
+
+$(PROGRAM):	$(MODULES)
+	$(CC) $(CFLAGS) $? $(LDFLAGS) -o $@
+
+install-man: imon.man
+	mkdir -p $(DESTDIR)$(MAN8DIR)
+	$(INSTALL_MAN) $< $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+install: $(PROGRAM) install-man
+	$(INSTALL_PROGRAM) $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+install-strip: $(PROGRAM)
+	$(INSTALL_PROGRAM) -s $(PROGRAM) $(DESTDIR)$(SBINDIR)/$(PROGRAM)
+
+uninstall:
+	rm -f $(DESTDIR)$(SBINDIR)/$(PROGRAM) $(DESTDIR)$(MAN8DIR)/$(MANPAGE)
+
+clean:
+	rm -f *.o *~ $(PROGRAM)
+
+distclean: clean
+	rm -f config.h config.status config.cache config.log *.man Makefile

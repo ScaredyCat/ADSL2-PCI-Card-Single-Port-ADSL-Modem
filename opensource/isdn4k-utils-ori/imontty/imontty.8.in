@@ -1,0 +1,67 @@
+.\" $Id: imontty.8.in,v 1.2 2000/03/13 16:32:07 paul Exp $
+.\"
+.\" CHECKIN $Date: 2000/03/13 16:32:07 $
+.\"
+.\" Process this file with
+.\" groff -man -Tascii imontty.8 for ASCII output, or
+.\" groff -man -Tps imontty.8 for PostScript output
+.\"
+.TH IMONTTY 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.SH NAME
+imontty \- display status of all ISDN lines
+.SH SYNOPSIS
+.BI imontty
+[ phonebook ]
+.br
+.SH DESCRIPTION
+.I imontty
+displays the status of all ISDN lines. No options are supported. Read access
+to \fI/dev/isdninfo\fR is required.
+
+It is possible to supply the name of a phonebook file. The phonebook file
+has the following format:
+.nf
+
+   number<tab>name for number
+
+.fi
+The number must be the first thing on the line (no leading spaces).
+The name is separated from the number by a tab.
+Lines beginning with # are ignored, as are empty lines.
+
+The output is similar to this:
+.nf
+
+ISDN channel status:
+
+Channel                 Usage Type  Number
+----------------------------------------------------------
+line0                   Out   Net   0204229700                  
+line0                   Off         
+
+.fi
+.I
+Usage
+is one of \fBOff\fR(line), \fBOut\fR(going), \fBIn\fR(coming) or
+\fBExcl\fR(usive).
+
+.I
+Type
+is one of \fBraw\fR (raw device), \fBModem\fR (modem/tty emulation),
+\fBNet\fR (IP interface), \fBVoice\fR (voice call) or
+\fBFax\fR (fax transmission).
+
+.I
+Number
+is either the called party's number (outgoing) or the
+calling party number (incoming).
+
+.LP
+.SH AUTHOR
+Volker Götz volker@oops.franken.de
+.br
+manpage adapted from the README by Paul Slootman <paul@isdn4linux.de>
+.LP
+.SH SEE ALSO
+.I imon\c
+\&(8)

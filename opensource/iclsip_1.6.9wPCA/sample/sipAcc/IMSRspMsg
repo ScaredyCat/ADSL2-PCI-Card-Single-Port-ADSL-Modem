@@ -1,0 +1,34 @@
+SIP/2.0 404 Not Found
+Accept:application/sdp;level=1;q=0.5,application/x-private,text/html
+Accept-Encoding:gzip;q=1.0,identity;q=0.5,*;q=0
+Accept-Language:da,en-gb;q=0.8,en;q=0.7
+Allow:INVITE,ACK,OPTIONS
+Call-ID:f81d4fae-7dec-11d0-a765-00a0c91e6bf6@PUNTO.ccl.itri.org.tw
+Contact:"Mr. Watson"<sip:watson@worcester.bell-telephone.com>
+Content-Encoding:gzip;q=1.0,identity;q=0.5,*;q=0
+Content-Length:66
+Content-Type:text/html;charset=ISO-8859-4
+CSeq:4711 INVITE
+Date:Thu, 31 Aug 2000 11:23:05 GMT
+Encryption:PGP version=2.6.2,encoding=ascii
+Expires:3600
+From:"A. G. Bell"<sip:agb@bell-telephone.com>;tag=9883742
+Min-SE:30
+Organization:No example...
+Proxy-Authenticate:Digest realm="MCI WorldCom SIP",domain="wcom.com",nonce="123"
+Record-Route:<sip:a.g.bell@bell-telephone.com>,<sip:a.bell@ieee.org>
+Retry-After:Mon, 01 Jan 9999 00:00:00 GMT(Dear John: Don't call me back, ever);duration=3600
+Server:CERN/3.0 libwww/2.17
+Timestamp:123.456 0.789
+To:Anonymous<sip:+12125551212@server.phone2net.com>;tag=7654321
+Unsupported:com.example.billing
+User-Agent:CERN-LineMode/2.15 libwww/2.17b3
+Warning:307 isi.edu "Session parameter 'foo' not understood",309 acer.itri "Another parameter"
+Via:SIP/2.0/UDP  first.example.com:4000;ttl=16;maddr=224.2.0.1;branch=a7c6a8d1ze(Example)
+WWW-Authenticate:Digest realm="MCI WorldCom SIP",domain="wcom.com",nonce="ea9c8e88df84f1cec4341ae6cbe5a359",opaque="",stale=FALSE,algorithm=MD5
+P-Associated-URI:
+Service-Route:<sip:P2.HOME.EXAMPLE.COM;lr>,<sip:HSP.HOME.EXAMPLE.COM;lr>
+
+v=0
+o=userl 53655765 2353687637 IN IP4 128.3.4.5
+s=Mbone Audio

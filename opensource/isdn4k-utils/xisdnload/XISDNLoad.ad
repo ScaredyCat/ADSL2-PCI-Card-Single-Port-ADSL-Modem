@@ -1,0 +1,15 @@
+XISDNLoad.geometry:		250x100
+*Label*Justify:			left
+*Label*Label:			%7s %3d:%02d %4.0fcps %ldkB - %-100s
+! *minScale:			8
+*minScale:			1
+*JumpScroll:			1
+*update:			1
+*internalBorderWidth:		0
+*showGrip:			FALSE
+*onlineColor:			red
+*tryingColor:			yellow
+*activeColor:			green
+! *activate:			sudo route add default dev isdn2 &
+! *deactivate:			sudo route del default ; root isdnctrl hangup isdn2 &
+*number:			.*

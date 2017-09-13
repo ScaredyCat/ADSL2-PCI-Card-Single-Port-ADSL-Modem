@@ -1,0 +1,78 @@
+#! /bin/sh
+##
+## vboxplay v@VERSION@ (@VERDATE@)
+
+#----------------------------------------------------------------------------#
+# Usage: vboxplay SAMPLENAME [ VOLUME ]                                      #
+#        If you want to change this, copy it to /etc/isdn/vboxplay and edit  #
+#        the copy there.                                                     #
+#----------------------------------------------------------------------------#
+
+if [ "$0" != /etc/isdn/vboxplay -a -x /etc/isdn/vboxplay ]; then
+	exec /etc/isdn/vboxplay "$@"
+	echo "Can't execute /etc/isdn/vboxplay"
+fi
+
+SAMPLE=$1
+VOLUME=$2
+if [ "$VOLUME" == "" ]; then
+   VOLUME=5;
+fi
+
+
+   # Replace this with your own play command. You also can use the pvftools
+   # (or some other) to convert and play the messages.
+
+# check whether NAS is running, and adjust DOPLAY to correspond
+# check two locations, apparently it moves around...
+PLAY=/auplay-not-found-so-dont-use-it
+[ -x /usr/bin/auplay     ] && PLAY=/usr/bin/auplay
+[ -x /usr/bin/X11/auplay ] && PLAY=/usr/bin/X11/auplay
+if [ -x $PLAY ]; then
+	AU=/au-not-found-so-dont-use-it
+	[ -x /usr/bin/au     ] && AU=/usr/bin/au
+	[ -x /usr/bin/X11/au ] && AU=/usr/bin/X11/au
+	if ps aw | grep -v grep | grep $AU > /dev/null; then
+        	DOPLAY="$PLAY -audio localhost:0 -volume $VOLUME"
+	else
+		PLAY=/auplay-not-usable-so-dont-use-it
+	fi
+fi
+if [ ! -x $PLAY ]; then	# try aplay (from alsautils) instead
+	if [ -x /usr/bin/aplay ]; then
+		PLAY=/usr/bin/aplay
+		# if anyone has a better suggestion,
+		# send email to isdnutils@packages.debian.org!
+                # thankfully, aplay understands '-' to mean stdin
+		DOPLAY="$PLAY -q -u -"
+	fi
+fi
+if [ ! -x $PLAY ]; then	# use play (from sox) instead
+	# we need to convert to decimal for 'play'. Try 'dc'.
+	if [ -x /usr/bin/dc ]; then
+		soxvolume=`echo "2k $VOLUME 100/ps." | /usr/bin/dc`
+	else
+		# fall back to (slower) perl, which is always there
+		soxvolume=`/usr/bin/perl -e "printf '%.02f', $VOLUME/100"`
+	fi
+        DOPLAY="/usr/bin/play -t au - -v $soxvolume"
+fi
+
+@BINDIR@/vboxmode $SAMPLE
+
+case $? in
+
+   2|3|4|6) @BINDIR@/vboxtoau <$SAMPLE | $DOPLAY
+            ;;
+         *) echo "$0: unknown vbox message format!"
+            ;;
+esac
+
+# Example with pvftools:
+#
+# vboxtoau <$SAMPLE | \
+#           autopvf | \
+#           pvfamp $VOLUME | \
+#           pvfcut 0.20 | \
+#           pvftoau 8000 | \
+#           auplay

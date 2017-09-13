@@ -1,0 +1,13 @@
+cat Verzonung.dat | while read L; do
+xIFS="$IFS"
+IFS=';'
+set -- $L
+IFS=$xIFS
+
+if [ -n $1 ]; then
+echo $1:$3:C:`rdde.pl -v $1 -c`:R:`rdde.pl -v $1 -r`
+else
+echo UNKNOWN: $L
+fi
+done
+

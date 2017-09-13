@@ -1,0 +1,132 @@
+#
+# $Id: config.in,v 1.36 2000/06/20 10:16:16 keil Exp $
+#
+# The whole configuration stuff is borrowed from the kernel
+# configuration.
+#
+# For a description of the syntax of this configuration file,
+# see the Menuconfig script.
+#
+CONFIG_HASX11=n
+if [ "`type -p xmkmf`" != "" ]; then
+CONFIG_HASX11=y
+fi
+mainmenu_name "isdn4k-utils Configuration"
+
+mainmenu_option next_comment
+comment 'Code maturity level options'
+bool 'Prompt for development and/or incomplete code' CONFIG_EXPERIMENTAL
+endmenu
+mainmenu_option next_comment
+comment 'General configuration'
+comment 'Build options'
+dep_bool 'Build programs which need X11 installed' CONFIG_BUILDX11 $CONFIG_HASX11
+string 'Kernel source directory' CONFIG_KERNELDIR
+comment 'Destination directories'
+string 'Directory to install binaries' CONFIG_BINDIR
+string 'Directory to install admin binaries' CONFIG_SBINDIR
+string 'Directory to install man pages' CONFIG_MANDIR
+comment 'Runtime defaults'
+string 'Write .pid files here' CONFIG_RUNDIR
+string 'Write lock files here' CONFIG_LOCKDIR
+string 'Prefix for the lock file' CONFIG_LOCKFILE
+string 'General configuration directory' CONFIG_I4LCONFDIR
+string 'Global configuration file' CONFIG_CONFFILE
+string 'Global phone number file' CONFIG_CALLERIDFILE
+string 'User configuration file' CONFIG_USERCONFFILE
+comment 'Configuration library options'
+string 'Your country code' CONFIG_COUNTRYCODE
+string 'Your area code' CONFIG_AREACODE
+string 'Default country prefix' CONFIG_COUNTRY_PREFIX
+string 'Default area prefix' CONFIG_AREA_PREFIX
+string 'Directory to install fixed data' CONFIG_DATADIR
+#choice 'Database for area codes' \
+#        "Areacode CONFIG_LIB_AREACODE \
+#        Avon CONFIG_LIB_AVON"
+#if [ "$CONFIG_LIB_AVON" = "y" ]; then
+#	string 'Directory to install avon database' CONFIG_AVON_DATA
+#fi
+endmenu
+mainmenu_option nextcomment
+comment 'Runtime configuration tools'
+bool 'isdnctrl' CONFIG_ISDNCTRL
+if [ "$CONFIG_ISDNCTRL" = "y" ]; then
+#	bool 'Enable isdnctrl debug-option' CONFIG_ISDNCTRL_DEBUG
+	bool 'Enable configfile-option (uses dbm lib)' CONFIG_ISDNCTRL_CONF
+	bool 'Enable timru-controls' CONFIG_ISDNCTRL_TIMRU
+	if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+		bool 'Enable udp-info-controls' CONFIG_ISDNCTRL_DWABC_UDP_INFO
+	fi
+fi
+bool 'iprofd' CONFIG_IPROFD
+bool 'divertctrl' CONFIG_DIVERTCTRL
+endmenu
+mainmenu_option nextcomment
+comment 'Card configuration tools'
+bool 'hisaxctrl' CONFIG_HISAXCTRL
+bool 'icnctrl' CONFIG_ICNCTRL
+if [ "$CONFIG_ICNCTRL" = "y" ]; then
+	bool 'Enable icnctrl debug-option' CONFIG_ICNCTRL_DEBUG
+fi
+bool 'pcbitctl' CONFIG_PCBITCTL
+bool 'avmcapictrl / capiinit' CONFIG_AVMCAPICTRL
+if [ -f $CONFIG_KERNELDIR/drivers/isdn/act2000/act2000.h ] ; then
+	bool 'actctrl' CONFIG_ACTCTRL
+fi
+bool 'eiconctrl' CONFIG_EICONCTRL
+if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+	bool 'loopctrl' CONFIG_LOOPCTRL
+	if [ "$CONFIG_LOOPCTRL" = "y" ]; then
+		# string 'Sourcedir of isdnloop module' CONFIG_LOOPCTRL_LOOPDIR
+		bool 'Enable loopctrl debug-option' CONFIG_LOOPCTRL_DEBUG
+	fi
+fi
+endmenu
+mainmenu_option nextcomment
+comment 'Tools for monitoring activity'
+bool 'imon' CONFIG_IMON
+bool 'imontty' CONFIG_IMONTTY
+bool 'isdnlog' CONFIG_ISDNLOG
+if [ "$CONFIG_ISDNLOG" = "y" ] ; then
+	source isdnlog/.Config.in
+fi
+comment ''
+bool 'ipppstats' CONFIG_IPPPSTATS
+dep_bool 'xisdnload' CONFIG_XISDNLOAD $CONFIG_BUILDX11
+dep_bool 'xmonisdn' CONFIG_XMONISDN $CONFIG_BUILDX11
+if [ "$CONFIG_XMONISDN" = "y" ] ; then
+	mainmenu_option nextcomment
+	comment 'Options for xmonisdn'
+	string 'NetUP command' CONFIG_XMONISDN_UPCMD
+	string 'NetDOWN command' CONFIG_XMONISDN_DOWNCMD
+	endmenu
+fi
+endmenu
+mainmenu_option nextcomment
+comment 'Applications'
+bool 'vbox' CONFIG_VBOX
+if [ "$CONFIG_VBOX" = "y" ]; then
+	source vbox/.Config.in
+fi
+bool 'ipppd' CONFIG_IPPPD
+if [ "$CONFIG_IPPPD" = "y" ]; then
+	source ipppd/.Config.in
+fi
+if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+	bool 'capifax' CONFIG_CAPIFAX
+	bool 'rcapid' CONFIG_RCAPID
+	bool 'pppdcapiplugin' CONFIG_PPPDCAPIPLUGIN
+fi
+if [ "$CONFIG_EXPERIMENTAL" = "y" ]; then
+	bool 'eurofile' CONFIG_EUROFILE
+		source eurofile/.Config.in
+fi
+endmenu
+mainmenu_option nextcomment
+comment 'Documentation'
+bool 'Install generic pages' CONFIG_GENMAN
+bool 'Generate FAQ' CONFIG_FAQ
+if [ "$CONFIG_FAQ" = "y" ]; then
+	string 'Directory to install FAQ' CONFIG_FAQDIR
+fi
+endmenu

@@ -1,0 +1,24 @@
+.\" $Id: vboxmail.man,v 1.1 1998/11/17 18:23:00 paul Exp $
+.\" CHECKIN $Date: 1998/11/17 18:23:00 $
+.TH vboxmail 8 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+
+.SH NAME
+vboxmail \- script to send notification of new voice message
+
+.SH SYNOPSIS
+.B vboxmail
+messagename callername callerid mail-to-address
+
+.SH DESCRIPTION
+.B vboxmail
+is used by
+.B vboxgetty
+to send notification of a new voice message via email. It is not meant
+to be called directly by any user.
+
+.SH SEE ALSO
+.B vboxgetty(8), vboxgetty.conf(5)
+
+.SH AUTHOR
+This manual page was written by Paul Slootman <paul@debian.org>,
+for Debian GNU/Linux and isdn4linux.

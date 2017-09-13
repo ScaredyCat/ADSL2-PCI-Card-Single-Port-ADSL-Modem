@@ -1,0 +1,175 @@
+#!/bin/sh
+#
+# This script is obsolete now. See INSTALL file for further info.
+#
+@EFT_AUTOCONF_WARNING@
+#
+# generated from $Id: eftp.sh.in,v 1.4 2002/07/19 21:23:53 keil Exp $
+#
+# This opens an eurofile session to a remote eurofile server
+#
+# Usage: eftp.sh PHONE_NUMBER [USER[/PASSWORD]]
+#
+# PHONENUMBER can also be "localhost" in which case a local loopback
+# connection on top of the isdnloop driver will be used.
+#
+# There must be no x25 route set up before this script is called.
+#
+#
+# READ and EDIT this script before using it!
+#
+#          For this script to work, the basic setup for the isdn and x25
+#          drivers must be done. The following three modules must be loaded
+#          (or compiled into the kernel) before calling this script:
+#
+#            "x25"       (insmod x25)  
+#            "isdn"      (insmod isdn)
+#            An isdn HL driver which supports l2_prot x75i 
+#                        (i.e. insmod hisax ...)
+#
+#
+#*****************************
+#
+# Parameters to be configured by the user of this script
+#
+#******************************
+#
+#Location of my developement kernel. Modules are not installed
+#(no 'make modules_install' after compiling the kernel) but loaded
+#directly from the kernel source tree location.
+#
+# The directory where all my development kernel trees are located
+#
+KHOME=/home/kernel
+#
+#The basename of the directory where the linux kernel with experimental
+# "x25-on-top-of-isdn"-extensions is located. (To override the default
+# location set the environment variable KERNEL before calling this script)
+#
+#
+#Where the x25 utility package is located
+#
+X25UTIL=$KHOME/util/x25/x25-utils-2.1.20
+X25ROUTE=@X25ROUTE@
+#
+# Location of the loopctrl binary from the isdn4k-util package
+#
+LOOPCTRL=@LOOPCTRL@
+#
+# Location of the (patched) isdnctrl binary that supports the x25 features
+#
+ISDNCTRL=@ISDNCTRL@
+#
+#you will need an actual version of insmod working with your current 2.1.x
+#kernel. I didn't install this in /sbin, thus
+#
+INSMOD=@INSMOD@
+#
+#
+#if insmod shall load the isdnloop module directly from the devolpement kernel
+# source tree (or somewhere else), add something like
+#
+# MODPATH=${MODPATH:-$KHOME/$KERNEL/modules/}; export MODPATH
+#
+# The remaining parameters are only needed if you want to set up
+# connections on top of real isdn HL drivers. If you only want to use
+# loopback connections (on top of the isdnloop HL driver) you are done now.
+#
+#The following parameters are usually imported from @I4LCONFDIR@/eft.conf
+#MSNs used for outgoing and incoming eurofile connections.
+EFT_CLIENT_MSN=XXXXXX
+EFT_SERVER_MSN=xxxxx
+# The user id is switched before the eftp program is started.
+EFT_CLIENT_USERID=xxx
+#
+#
+# ISDN number of your remote peer
+DIALOUT=$1
+RCFILE=@I4LCONFDIR@/eft.conf
+if [ -f $RCFILE ]; then
+    . $RCFILE
+fi
+
+#
+#**********************************************
+#
+# End of user variable configuration section
+#
+#**********************************************
+#
+
+
+trap "" 2 3
+
+case x$DIALOUT in
+xlocalhost)
+    echo "NOTE: This script is obsolete now. Consider  eftp -x 1 $2 instead"
+    echo "      See the INSTALL file for more info"
+    # for local testing of x.25 connections we load the isdnloop driver
+    $INSMOD -m isdnloop isdnloop_id=isdnfake > /var/modules/isdnloop.map
+    $LOOPCTRL -d isdnfake start dss1 00000 $EFT_CLIENT_MSN $EFT_SERVER_MSN
+    sleep 1
+    # A local outgoing interface operating on top of (bound to) the
+    # isdnloop driver. X.25 call requests to arbitray X.25 addresses will be
+    # routet to the outgoing interface isdnxlo1. That call request will be
+    # looped back to our own machine (and received at the incoming
+    # interface created for the eft daemon).
+
+    $ISDNCTRL addif isdnxout
+    $ISDNCTRL eaz isdnxout $EFT_CLIENT_MSN
+    $ISDNCTRL addphone isdnxout out $EFT_SERVER_MSN
+    $ISDNCTRL l2_prot isdnxout x75i
+    $ISDNCTRL encap isdnxout  x25iface
+    $ISDNCTRL huptimeout isdnxout 1800
+#Kernels without i4l-cvs don't support dialmode, just trash error message 
+    $ISDNCTRL dialmode isdnxout auto > /dev/null 2>&1
+    $ISDNCTRL bind isdnxout isdnfake,0
+;;
+x[0-9]*)
+
+    # outgoing interface operating on top of real HL driver (i.e. HiSax).
+    # A HL driver must already have been loaded and support l2_prot x75i.
+    # This will set up a real isdn connection and therefore might leave
+    # traces on your phone bill.
+
+    echo "NOTE: This script is obsolete now. Consider  eftp -i $1 $2 instead"
+    echo "      See the INSTALL file for more info"
+
+    $ISDNCTRL addif isdnxout 
+    $ISDNCTRL eaz isdnxout $EFT_CLIENT_MSN
+    $ISDNCTRL addphone isdnxout out $DIALOUT
+    $ISDNCTRL l2_prot isdnxout x75i
+    $ISDNCTRL encap isdnxout  x25iface
+    $ISDNCTRL huptimeout isdnxout 200
+    $ISDNCTRL secure isdnxout on
+#Kernels without i4l-cvs don't support dialmode, just trash error message 
+    $ISDNCTRL dialmode isdnxout auto > /dev/null 2>&1
+#    $ISDNCTRL bind isdnxout bri_t0,0
+;;
+*)
+    echo "incorrect number: $DIALOUT"
+    exit 1;
+;;
+esac
+
+#~kernel/eftp4linux-work/scripts/oops.sh
+echo ifconfig isdnxout up
+ifconfig isdnxout up
+
+echo $X25ROUTE add 0/0 isdnxout
+$X25ROUTE add 0/0 isdnxout
+
+cd /tmp
+eftpbin=@EFT_TOPDIR@/src/eftp/eftp
+su $EFT_CLIENT_USERID -c "$eftpbin -x '' -u $2"
+
+$ISDNCTRL hangup isdnxout
+$X25ROUTE del 0/0 isdnxout
+ifconfig isdnxout down
+$ISDNCTRL delif isdnxout
+
+if [ $DIALOUT = localhost ]; then
+    sleep 2
+    echo removing isdnloop module
+    @RMMOD@ isdnloop
+fi

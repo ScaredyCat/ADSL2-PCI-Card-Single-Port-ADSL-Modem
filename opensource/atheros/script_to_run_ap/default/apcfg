@@ -1,0 +1,6 @@
+export AP_IPADDR=192.168.1.10
+export AP_NETMASK=255.255.255.0
+export AP_CONTROL_CH=6
+# AP_EXTN_CH_OFFSET may not be negative for channels 1 to 4.
+export AP_EXTN_CH_OFFSET=-1
+export AP_SSID=Atheros_XSpan

@@ -1,0 +1,65 @@
+.\" $Id: vboxctrl.man,v 1.2 1998/12/02 16:54:25 paul Exp $
+.\" CHECKIN $Date: 1998/12/02 16:54:25 $
+.TH vboxctrl 1 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+
+.SH NAME
+vboxctrl \- control vbox functions
+
+.SH SYNOPSIS
+.B vboxctrl
+[{-c | -r}] {-a | -n | -p | -j} [-s spool]
+.br
+.B vboxctrl
+-v
+
+.SH DESCRIPTION
+.B vboxctrl
+controls a number of vbox functions. The user's password is asked before
+performing the requested action.
+.SS OPTIONS
+.TP
+.I "\-c, \-\-create"
+Creates a control file.
+.TP
+.I "\-r, \-\-remove"
+Removes a control file (default).
+.TP
+.I "\-n, \-\-answernow"
+Control file "vboxctrl-answernow".
+.TP
+.I "\-a, \-\-answerall"
+Control file "vboxctrl-answerall".
+.TP
+.I "\-p, \-\-stop"
+Control file "vboxctrl-stop".
+.TP
+.I "\-j, \-\-reject"
+Control file "vboxctrl-reject".
+.TP
+.I "\-s, \-\-spooldir"
+Spooldirectory in which to create/remove control files.
+.TP
+.I "\-v, \-\-version"
+Displays package version.
+.TP
+.I "\-h, \-\-help"
+Displays a usage message.
+.TE
+.br
+The spool directory is taken from one of the following:
+.TP
+.I 1
+the default builtin value
+.TP
+.I 2
+The value of the environment variable VBOXSPOOL, if set.
+.I 3
+The directory of the command line option "--spooldir".
+.TE
+
+.SH SEE ALSO
+.B vbox(1), vboxd(8)
+
+.SH AUTHOR
+This manual page was written by Paul Slootman <paul@debian.org>,
+for Debian GNU/Linux and isdn4linux.

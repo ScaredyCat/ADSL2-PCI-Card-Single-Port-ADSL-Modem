@@ -1,0 +1,36 @@
+XCOMM $XConsortium: Imakefile,v 1.28 93/07/29 14:01:59 rws Exp $
+        DEPLIBS = XawClientDepLibs
+LOCAL_LIBRARIES = XawClientLibs
+#if defined(SunArchitecture) && defined(i386Architecture)
+  SYS_LIBRARIES = -lkvm
+#endif
+#if SystemV4
+#ifdef SonyArchitecture
+  SYS_LIBRARIES = -lmld
+#else
+  SYS_LIBRARIES = -lelf
+#endif
+#endif
+#ifdef SGIArchitecture
+  SYS_LIBRARIES = -lmld
+#endif
+#ifdef BSD386Architecture
+  SYS_LIBRARIES = -lutil -lkvm
+#endif
+           SRCS = xisdnload.c
+           OBJS = xisdnload.o
+ OSMAJORVERSION = OSMajorVersion
+ OSMINORVERSION = OSMinorVersion
+      DEFINES = -DOSMAJORVERSION=$(OSMAJORVERSION) -DOSMINORVERSION=$(OSMINORVERSION) -DREGEX_NUMBER
+
+AllTarget(xisdnload)
+NormalProgramTarget(xisdnload,$(OBJS),$(DEPLIBS),$(LOCAL_LIBRARIES),NullParameter)
+
+InstallProgram(xisdnload,$(BINDIR))
+InstallAppDefaults(XISDNLoad)
+InstallManPage(xisdnload,$(MANDIR))
+
+DependTarget()
+
+dist:
+	tar cvzCf .. ../`basename \`pwd\``.tar.gz `basename \`pwd\``

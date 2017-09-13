@@ -1,0 +1,83 @@
+#
+# This Makefile is used for compatibility to the
+# isdn4k-utils package. In order to supercede
+# the original Makefile, it is called GNUmakefile.
+#
+
+# Add security check:
+#  - executed commands must be owned by root
+#    and only writable by owner.
+
+# Additional security stuff:
+#
+#  - don't be setuid root, and check for this; Bad Things can be done with
+#    setting IFS and/or PATH before invoking xmonisdn!
+#
+#  - It's better to make the ISDN devices group `dialout' (or so), and put
+#    the user also into that group. Then no setuid/setgid bits are needed.
+#
+#  - Cater for users who think they know what they are doing: refuse to run
+#    setuid root unless an option `-r' is given; hide this option in the
+#    docs where the problems with setuid programs are explained :-)
+
+I4LU_DEFINES := $(CFLAGS) -DPARANOIA_CHECK -I.
+ifeq (../.config,$(wildcard ../.config))
+	include ../.config
+	ifneq ($(CONFIG_XMONISDN_UPCMD),"")
+		I4LU_DEFINES += -DNETUP_COMMAND=\\\"'$(shell echo $(CONFIG_XMONISDN_UPCMD))'\\\"
+	endif
+	ifneq ($(CONFIG_XMONISDN_DOWNCMD),"")
+		I4LU_DEFINES += -DNETDOWN_COMMAND=\\\"'$(shell echo $(CONFIG_XMONISDN_DOWNCMD))'\\\"
+	endif
+    MAN1DIROPT = MANDIR=$(CONFIG_MANDIR)/man1
+    MAN3DIROPT = LIBMANDIR=$(CONFIG_MANDIR)/man3
+    MAN5DIROPT = FILEMANDIR=$(CONFIG_MANDIR)/man5
+    MANDIROPTS = $(MAN1DIROPT) $(MAN3DIROPT) $(MAN5DIROPT)
+	BINDIROPT  = BINDIR=$(CONFIG_BINDIR)
+endif
+
+all: xmonisdn.man xmonisdn
+
+#
+# Bug in original Makefile:
+# Bitmaps are expected to be already installed.
+# We create a temporary X11 subdir and add -I.
+# instead.
+#
+xmonisdn:
+	mkdir -p X11/bitmaps
+	cp netinactive netwaiting netactive \
+		netactiveout netstart netstop X11/bitmaps
+	CFLAGS= ; MAKEFLAGS= ; $(MAKE) -f Makefile EXTRA_DEFINES="$(I4LU_DEFINES)"
+	rm -rf X11
+
+xmonisdn.man: xmonisdn.man.in Makefile
+	MANDATE=`grep CHECKIN $< | awk '{print $$4}'`; \
+	XUP=`echo ${CONFIG_XMONISDN_UPCMD}|sed 's/&/\\\&/g'`; \
+	XDOWN=`echo ${CONFIG_XMONISDN_DOWNCMD}|sed 's/&/\\\&/g'`; \
+	sed \
+	   -e "s#\@MANDATE\@#$${MANDATE}#g" \
+	   -e "s#\@I4LVERSION\@#${I4LVERSION}#g" \
+           -e "s,\@CONFIG_XMONISDN_UPCMD\@,$${XUP},g" \
+           -e "s,\@CONFIG_XMONISDN_DOWNCMD\@,$${XDOWN},g" \
+	   < $< > $@
+
+config:
+	@cp Makefile.in GNUmakefile
+	@xmkmf
+
+clean:
+	$(MAKE) -f Makefile clean
+
+distclean: clean
+	rm -f Makefile GNUmakefile Makefile.bak xmonisdn.man
+
+install-man: xmonisdn.man
+	$(MAKE) -f Makefile $(MANDIROPTS) install.man
+
+install: xmonisdn install-man
+	$(MAKE) -f Makefile $(BINDIROPT) install.all
+
+uninstall:
+	rm -f $(DESTDIR)$(CONFIG_BINDIR)/xmonisdn
+	find $(DESTDIR)$(CONFIG_MANDIR) -name "xmonisdn.*" -exec rm -f {} \;

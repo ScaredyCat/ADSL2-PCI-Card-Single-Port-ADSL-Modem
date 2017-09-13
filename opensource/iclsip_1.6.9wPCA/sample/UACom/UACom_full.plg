@@ -1,0 +1,110 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: UACom - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x404 /fo"..\temp\Debug\UACom_full/UACom.res" /d "_DEBUG" "D:\ITRI\ReleasePack\sip\sample\UACom\UACom.rc"" 
+Creating temporary file "C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD4.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /I ".\\" /I ".\include" /I "..\..\src\\" /I "..\..\utillib\\" /D "DEBUG_DEBUG" /D "UACOM_USE_G729A" /D "UACOM_USE_G711" /D "_simple" /D "_FOR_VIDEO" /D "_ATL_STATIC_REGISTRY" /D "_DEBUG" /D "_WIN32" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "_WINDLL" /FR"..\temp\Debug\UACom_full/" /Fo"..\temp\Debug\UACom_full/" /Fd"..\temp\Debug\UACom_full/" /FD /GZ /GZ /c 
+"D:\ITRI\ReleasePack\sip\sample\UACom\UACom.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\UAControl.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\UA\CallManager.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\UA\MediaManager.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\UA\UACommon.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\UI\VideoPage.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\SIMPLE\PresManager.cpp"
+"D:\ITRI\ReleasePack\sip\sample\UACom\VIDEO\VideoManager.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD4.tmp" 
+Creating temporary file "C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD5.tmp" with contents
+[
+core.lib UACoresd.lib simpleapid.lib rtpd.lib libeay32.lib ssleay32.lib cpim.lib winfo.lib xmltok.lib xmlparse.lib iLBC.lib G711.lib G723A.lib G729A.lib vfw32.lib ws2_32.lib wsock32.lib dsound.lib dxguid.lib DxErr9.lib /nologo /subsystem:windows /dll /incremental:yes /pdb:"..\Debug/UACom.pdb" /debug /machine:I386 /nodefaultlib:"libcd.lib" /def:".\UACom.def" /out:"..\Debug\UACom.dll" /implib:"..\Debug/UACom.lib" /pdbtype:sept /libpath:"..\..\src\lib\debug" /libpath:".\lib" 
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\StdAfx.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UACom.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UAControl.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\CallManager.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\cclRtp.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\DxInOut.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\Inifile.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\MediaManager.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\SDPManager.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UACommon.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UAProfile.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\Wave.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\WaveBuffer.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\WaveThread.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\WavInOut.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\AudioPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\ConfirmDeleteDlg.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\CredentialEditDlg.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\CredentialPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\PreferSheet.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\PropPageFrame.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\PropPageFrameDefault.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\RTPPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\ServerPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\SIPExtPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\TreePropSheet.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UserPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\VideoPage.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\PresManager.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UABuddy.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\cclRtpVideo.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\tmn.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\utility.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\VFWCamera.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\VideoBuff.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\VideoManager.obj
+\ITRI\ReleasePack\sip\sample\temp\Debug\UACom_full\UACom.res
+]
+Creating command line "link.exe @C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD5.tmp"
+Creating temporary file "C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD6.bat" with contents
+[
+@echo off
+regsvr32 /s /c "\ITRI\ReleasePack\sip\sample\Debug\UACom.dll"
+echo regsvr32 exec. time > ".\..\Debug\regsvr32.trg"
+]
+Creating command line "C:\DOCUME~1\shinjan\LOCALS~1\Temp\RSPD6.bat"
+Compiling resources...
+Compiling...
+UACom.cpp
+Generating Code...
+Compiling...
+UAControl.cpp
+CallManager.cpp
+d:\itri\releasepack\sip\sample\uacom\stdafx.h(12) : warning C4005: 'STRICT' : macro redefinition
+        c:\program files\microsoft visual studio\vc98\mfc\include\afxv_w32.h(19) : see previous definition of 'STRICT'
+d:\itri\releasepack\sip\sample\uacom\uacomcp.h(809) : warning C4800: 'long *' : forcing value to bool 'true' or 'false' (performance warning)
+        d:\itri\releasepack\sip\sample\uacom\uacomcp.h(790) : while compiling class-template member function 'long __thiscall CProxy_IUAControlEvents<class CUAControl>::Fire_InfoRequest(unsigned short *,unsigned short *,unsigned short *,long *,unsigned short ** ,unsigned short ** )'
+d:\itri\releasepack\sip\sample\uacom\uacomcp.h(810) : warning C4800: 'unsigned short ** ' : forcing value to bool 'true' or 'false' (performance warning)
+        d:\itri\releasepack\sip\sample\uacom\uacomcp.h(790) : while compiling class-template member function 'long __thiscall CProxy_IUAControlEvents<class CUAControl>::Fire_InfoRequest(unsigned short *,unsigned short *,unsigned short *,long *,unsigned short ** ,unsigned short ** )'
+d:\itri\releasepack\sip\sample\uacom\uacomcp.h(811) : warning C4800: 'unsigned short ** ' : forcing value to bool 'true' or 'false' (performance warning)
+        d:\itri\releasepack\sip\sample\uacom\uacomcp.h(790) : while compiling class-template member function 'long __thiscall CProxy_IUAControlEvents<class CUAControl>::Fire_InfoRequest(unsigned short *,unsigned short *,unsigned short *,long *,unsigned short ** ,unsigned short ** )'
+MediaManager.cpp
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(408) : warning C4101: 'pData' : unreferenced local variable
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(395) : warning C4101: 'codecType' : unreferenced local variable
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(404) : warning C4101: 'extpara' : unreferenced local variable
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(395) : warning C4101: 'frameType' : unreferenced local variable
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(844) : warning C4101: 'pData' : unreferenced local variable
+d:\itri\releasepack\sip\sample\uacom\ua\mediamanager.cpp(1541) : warning C4018: '>=' : signed/unsigned mismatch
+UACommon.cpp
+VideoPage.cpp
+PresManager.cpp
+VideoManager.cpp
+d:\itri\releasepack\sip\sample\uacom\video\videomanager.cpp(739) : warning C4244: 'argument' : conversion from '__int64' to 'unsigned long', possible loss of data
+Generating Code...
+Linking...
+<h3>Output Window</h3>
+Performing registration
+
+
+
+<h3>Results</h3>
+UACom.dll - 0 error(s), 11 warning(s)
+</pre>
+</body>
+</html>

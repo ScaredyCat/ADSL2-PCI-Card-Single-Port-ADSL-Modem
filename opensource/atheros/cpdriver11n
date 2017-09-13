@@ -1,0 +1,19 @@
+cp -f madwifi/ath/ath_pci.o    release/wireless_demo
+cp -f madwifi/ath_hal/ath_hal.o release/wireless_demo
+# cp -f dfs/ath_dfs.o release/wireless_demo
+cp -f madwifi/net80211/wlan_acl.o release/wireless_demo
+cp -f ratectrl/ath_rate_atheros.o release/wireless_demo
+cp -f madwifi/net80211/wlan.o    release/wireless_demo
+cp -f madwifi/net80211/wlan_xauth.o release/wireless_demo
+cp -f madwifi/net80211/wlan_ccmp.o release/wireless_demo
+cp -f madwifi/net80211/wlan_wep.o release/wireless_demo
+cp -f madwifi/net80211/wlan_tkip.o release/wireless_demo
+cp -f madwifi/net80211/wlan_scan_ap.o release/wireless_demo
+cp -f madwifi/net80211/wlan_scan_sta.o release/wireless_demo
+cp -f madwifi/tools/wlanconfig    release/wireless_demo
+#cp -f hostapd/hostapd release/wireless_demo
+#cp -f hostapd.conf release/wireless_demo
+#cd release/wireless_demo 
+#mips-linux-strip   --strip-unneeded *
+#cd -
+#cp -r release/wireless_demo/ ~/danube_build/root_filesystem/usr/

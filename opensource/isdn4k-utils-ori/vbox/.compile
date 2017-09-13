@@ -1,0 +1,10 @@
+#! /bin/sh
+
+./configure --prefix=/opt/vbox \
+	    --exec-prefix=/opt/vbox \
+	    --sysconfdir=/etc/opt/vbox \
+	    --with-spooldir=/var/spool/vbox \
+	    --with-logdir=/var/log/vbox \
+	    --with-piddir=/var/run \
+	    --with-lockdir=/var/lock
+

@@ -1,0 +1,26 @@
+V:1.00-Luxemburg [16-Jan-2000]
+# s. http://www.itm.etat.lu/droit/de/2/3/2.htm
+
+W:1		Montag
+W:2		Dienstag
+W:3		Mittwoch
+W:4		Donnerstag
+W:5		Freitag
+W:6		Samstag
+W:7		Sonntag
+W:W		Werktag
+W:E		Wochenende
+W:H		Feiertag
+
+D:1.1		Neujahr
+D:easter	Ostersonntag
+D:easter+1	Ostermontag
+D:1.5           1. Mai
+D:easter+39	Christi Himmelfahrt
+D:easter+49	Pfingstsonntag
+D:easter+50	Pfingstmontag
+D:23.6          Grossherzogs Geburtstag
+D:15.8		Maria Himmelfahrt
+D:1.11		Allerheiligen
+D:25.12		1. Weihnachtsfeiertag
+D:26.12		2. Weihnachtsfeiertag

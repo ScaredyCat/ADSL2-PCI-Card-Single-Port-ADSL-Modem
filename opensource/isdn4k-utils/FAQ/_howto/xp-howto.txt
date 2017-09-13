@@ -1,0 +1,277 @@
+========
+Newsgroups: uninews.comp
+Subject: Mit Crosspoint an der Uni pollen.
+From: mklose@UNI-DUISBURG.DE (Michael Klose)
+Date: 28 Jul 1996 23:26:00 +0200
+
+Hallo!
+
+Ich wollte was erklären (siehe Betreff):
+
+Für die Leute, die nicht wissen, was Crosspoint (ab hier mit XP abgekürzt)  
+ist, hier ein kleiner Ausschnitt aus der Dok:
+
+-------------------------------------------------------------------------
+
+        CrossPoint  ist  eine Multinetz-Pointsoftware.  Oder  ausführlicher:
+        CrossPoint  ist ein  Programm, mit  dem Sie  auf sehr  bequeme Weise
+        Daten mit Mailboxen austauschen und  insbesondere elektronische Post
+        (E-Mail)  versenden,  empfangen und  verwalten können.  Wichtig  ist
+        dabei,   daß  CrossPoint  verschiedene,  technische  Mailbox-(Netz)-
+        Standards unterstützt. Dadurch benötigen Sie für  verschiedene Netze
+        nur EIN Programm mit einer einheitlichen Benutzeroberfläche. Wichtig
+        ist auch,  daß CrossPoint nicht nur den kleinsten gemeinsamen Nenner
+        der verschiedenen Netze bildet, sondern Ihnen zusätzlich ermöglicht,
+        die Features einzelner Netze voll auszunutzen.  Dazu zählen z.B. das
+        Bestellen von Dateien im FidoNet, Löschnachrichten im Usenet und das
+        Nachrichtenstatus-System im MausNet.
+
+-------------------------------------------------------------------------
+
+Crosspoint bietet aber leider nur für Usenet eine Möglichkeit per UUCP zu  
+pollen, nicht mit einer PPP oder SLIP Verbindung.
+
+Es geht aber trotzdem, und zwar mit einem Zusatztool (UKA_PPP), welches  
+sogar Freeware ist.
+
+Leider funktioniert UKA_PPP nicht richtig unter NT :-(( Windows 95 weiß  
+ich nicht, ich kann nur sagen, daß es unter DOS und Win 3.11 läuft.
+
+Warum also Crosspoint benutzen?
+
+Crosspoint ist IMHO der beste Maileditor, den es gibt, er ist nicht nr für  
+e-Mail, sondern auch ein Newsreader. Ich habe bisher noch kein einziges  
+Programm gesehen, welches solch einen Funktionsumfang hat. Sogar PGP  
+Unterstützung ist eingebaut, MIME sowieso (obwohl hier eines der wenigen  
+Schwachstellen in XP liegt, er beherrscht keine Multipart MIME Mails).
+
+Vor allem kann man es für fast alle Netze einsetzten: ich verwende es für  
+meine beiden Fido Adressen, für meine Internetaccounts und für den T- 
+Online Zugang meines Vaters.
+
+Wer XP noch nicht hat, kann es sich z.B. bei mvmpc9.ciw.uni-karlsruhe.de  
+holen zusammen mit UKA_PPP. (Egal ob mit FTP oder WWW).
+
+Benötigt werden folgende Pakete:
+
+XP311-1.EXE
+XP311-2.EXE
+XP311-U.EXE (so heißt das DIng glaube ich - auf jednen Fall der UUCP Teil)
+
+Wer es noch für FIDO nutzen möchte auch noch:
+
+XP311-F.EXE
+
+Fangen wir an:
+
+Wer XP schon installiert hat für Fido, der braucht nur die UUZ.EXE aus dem  
+UUCP Paket - eine erneute Registrierung (falls nur für Fido regristriert)  
+ist nicht erforderlich, so steht es jedenfalls in der DOK von UKA_PPP.
+
+Was ist UKA_PPP?
+
+UKA_PPP ist ein Paket, welches es ermöglicht unter DOS eine PPP/SLIP/CSLIP  
+Verbindung aufzubauen, und womit man den POP, SMPT und NEWS Server  
+ansprechen kann. Zusätzlich beigefügt ist ein Telnet und Ftp Client.
+
+BTW: UKA_PPP bekommt man am besten direkt beim Autor: Wieder:  
+mvmpc9.ciw.uni-karlsruhe.de
+
+Aktuell ist die Version 1.51.
+
+Möchte man, daß sich UKA_PPP ins Verzeichnis \DFUe installiert (Umlaute im  
+Verzeichnisnamen stören UKA_PPP zwar nicht, aber falls man später PGP  
+installieren möchte, dann ist es empfehlenswert gleich ein Verzeichnis  
+ohne Umlaute zu wählen, da PGP diese nicht mag).
+
+Wo waren wir? Verzeichnic anlegen:
+
+md \DFUe
+cd \DFUe
+[Verzeichnis, wo die UKA_PPP.EXE steht]\UKA_PPP
+
+Jetzt entpackt UKA_PPP alle seine Installationsdateien.
+Jetzt die SETUP.BAT laufen lassen.
+Es richtet automatisch ein Unterverzeichnis für UKA_PPP ein.
+
+Es erscheint jetzt ein Setup Bildschirm:
+
+Jetzt 'Default' angeben.
+
+Jetzt werden zuerst nach den Schnittstellenparameter gefragt:
+
+Falls das Modem an COM2 hängt, 2F8  angeben, falls an COM1 3F8.
+Wenn COM2, dann IRQ3 sonst IRQ4.
+
+Bei der Baudrate 57600 angeben.
+
+Bei der Initstring verwendet man am besten ATZ (ENTER)
+Dann verwendet das Modem die gespeicherten Einstellungen.
+
+Jetzt muß man die Anwahlstring des Internetproviders angeben.
+
+Falls Pulswahl ATDP02033789353 btw. Tonwahl: ATDT02033789353
+
+Dann fragt er uns nach dem Protokoll. PPP wählen.
+
+Beim Packettreiberinterrupt, einfach ENTER drücken um die  
+Defaulteinstellung von 61h zu nehmen.
+
+Jetzt bekommen wir einen neuen Bildschirm. Es steht zwar geschrieben, daß  
+wir die Infos erst später eingeben müssen, aber wir geben sie jetzt  
+trotzdem ein.
+
+Dommain Suffix ist bei uns: uni-duisburg.de
+IP OF Nameserver ist bei uns: 134.91.3.16
+Unser IP ist egal, weil die wegen der PPP Verbindung dynamisch zugewiesen  
+wird, hier einfach ENTER drücken.
+
+Unsere Gateway ist 134.91.4.1, da wir uns über die 0203/3789353 eingewählt  
+haben. Irgendwie bekomme ich bei der 0203/378950 keine PPP Verbindung zu  
+Stande mit UKA_PPP,  unter Windows habe ich auch nur diese Nummer  
+konfiguriert, die andere habe ich noch gar nicht versucht.
+
+Und er soll natürlich den internen Packet Treiber verwenden. :-))
+
+Als nächstes werden die Server für die E-Mail konfiguriert:
+
+POP Srever ist der Rechner, auf dem das Home Verzeichnis liegt, bei mir  
+e45-hrze.uni-duisburg.de
+
+POP USER ID ist der Loginusername, bei mir sl652kl
+
+POP PASSWORD ist das Passwort, was es bei mir ist, sage ich nicht! :-)
+
+Jetzt fragt er nach dem SMPT Server. Das ist bei uns die unidui.uni- 
+duisburg.de
+
+Timeserver haben wir nicht, also 0 eingeben. Den Vorgeschlagenen Server  
+der Uni Karlsruhe können wir nicht benutzen, da wir mit unserer PPP  
+Verbindung keine Rechner außerhalb der Uni ohne Proxies ansprechen können  
+:-(((
+
+Time Offset ist -1.
+
+Jetzt wieder Default eingeben (also 3).
+
+News ist als Newsserver OK, also ENTER eingeben.
+
+Nein, jetzt keine Newsgroup abbonnieren.
+
+YARN brauchen wir nicht zu installieren, also n.
+
+Jetzt möchte er eine Probeverbindung aufbauen, um das Login zu 'lernen'. y  
+für Ja eingeben.
+
+Jetzt baut er eine Verbindung auf. Bei der Frage Host: einfach PPP und  
+Enter eingeben, eine Sekunde warten, bis komische Zeichen erscheinen  
+(dürfte dann fat sofort passieren), dann ALT-X drücken.
+
+UKA_PPP meldet sich jetzt akustisch, daß er es geschafft hat eine PPP  
+Verbindung aufzubauen.
+
+Jetzt solange ENTER drücken, bis wir am Bildschirm sind, wo er wieder  
+fragt Compuserve, Default oder T-Online steht. Hier natürlich wieder  
+Default wählen.
+
+Jetzt kommt eine Fehlermeldung, naja, eigentlich nur eine Warnung, daß wir  
+Online sind, einfach mit ENTER weiter.
+
+Jetzt landen wir im Hauptmenü von UKA_PPP. UKA_PPP ist jetzt fertig  
+installiert.
+
+Testweise kann man sich eine Telnetverbindung aufbauen zu seinem  
+Homeverzeichnis.
+
+Auf jeden Fall sollte man nicht vergessen aufzulegen! :-)
+
+
+Den größten Schritt haben wir jetzt hinter uns. Jetzt muß UKA_PPP nur noch  
+in Crosspoint eingebunden werden.
+
+Das ist aber gar nicht so schwer.
+
+Unter EDIT/BOXEN eine neue ZCONNECT Box anlegen.
+
+
+Boxname: UNI-DUISBURG (eigentlich egal)
+Username: Der alias oder falls nicht vorhanden, die Benutzerkennung.
+(bei mir: mklose)
+
+
+Kommentar: (beliebig), bei mir Uni-Duisburg Account
+
+MAPS-NAME: Spielt keine Rolle, egal was hier steht.
+
+Realname: Dein ECHTER Name mit Vor und Nachname. Bei mir Michael Klose
+
+Domain: .DE
+
+Jetzt auf den neuen EIntrag gehen, und (E)DIT/(P)oint.
+
+Unter Pointname hier die Benutzerkennung eingeben (bei mir sl652kl). Der  
+Rest ist egal (einfach so lassen)
+
+Unter (E)dit/(D)iverses unter Eingangsfilter (da steht als Überschrift  
+Filter dann da drunter Eingang und Ausgang, der Eingangsfilter ist  
+wichtig) folgendes eintragen:
+
+[UKA_PPP VERZEICHNIS]\x_script.exe xpnews
+
+Das ist bei diesem Bildschirm alles, was eingestellt werden muß.
+
+Jetzt unter /(E)dit/(S)ysopmode folgendes eintragen:
+
+Eingangspuffer: [UKA_PPP Verzeichnis]\INFILE.Z
+
+Ausgangspuffer: [UKA_PPP Verzeichnis]\OUTFILE.Z
+
+Herzlichen Glückwunsch! Crosspoint ist jetzt für den Uni Zugang  
+eingerichtet! Jetzt kann man ganz normal unter /Netcall/Einzeln pollen!
+
+Newsgroups kann man aber nicht an/abbestellen in Crosspoint. Das An/ 
+Absbestellen von Newsgroups geht über die UKA_PPP Programme SUBSCRIBE und  
+UNSUBSCRIBE oder so ähnlich. Einfacher ist es ins UKA_PPP Verzeichnis zu  
+gehen, und die Batchdatei GO aufzurufen:
+
+Jetzt unter:
+
+Setup/Server kann man Unsubscribe oder Subsrcribe wählen.
+
+Dieses macht vor dem ersten poll wenig Sinn, da UKA_PPP sich noch keine  
+Newsgroupliste geholt hat.
+
+
+------------- Kleine Anmerkung(en) --------------------------------------
+
+
+Wundert EUch nicht darüber, daß zuerst die ganzen Newsgroup Messages in  
+/Junk wandern. Dieses liegt am folgendem:
+
+Wenn eine Mail in *einem* Brett kommt, und dieses Brett noch nicht  
+existiert, so legt XP das neue Brett an.
+
+Kommen aber nur tausend Crosspostings, weiß XP nicht in welcher Gruppe er  
+es hinlegen soll, da er keine Lust hat tausend Bretter anzulegen.
+
+Meistens gibt es aber doch ein paar Mails, die nur zu der bestellten  
+Newsgroup gehören, und dann auch ein Brett angelegt wird.
+
+Falls mehrere der Bretter, wo die Mail cross gepostet ist, in XP angelegt  
+sind, so ist der Artikel in jeder von diesen zu sehen.
+
+Das nur so als kleien Anmerkung. ich habe auch zuerst gedacht, daß UKA_PPP  
+Scheiße baut, ist aber nicht so.
+
+BTW: Für XP kann ich noch dringend den Filter Crosssecretary empfehlen.
+
+
+Ciao!
+
+Michael
+
+Fido: 2:2446/301.7				      [PGP KEY per EB]
+Internet: mklose@uni-duisburg.de                      ET 2. Semester
+
+...Diese Zeile ist Werbefrei und Unzensiert!
+

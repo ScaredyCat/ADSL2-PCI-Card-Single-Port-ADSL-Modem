@@ -1,0 +1,182 @@
+.\" $Id: eft_wuauth.5,v 1.1 1999/06/30 16:51:02 he Exp $
+.\" Copyright (c) 1985, 1988 The Regents of the University of California.
+.\" All rights reserved.
+.\"
+.\" Redistribution and use in source and binary forms are permitted provided
+.\" that: (1) source distributions retain this entire copyright notice and
+.\" comment, and (2) distributions including binaries display the following
+.\" acknowledgement:  ``This product includes software developed by the
+.\" University of California, Berkeley and its contributors'' in the
+.\" documentation or other materials provided with the distribution and in
+.\" all advertising materials mentioning features or use of this software.
+.\" Neither the name of the University nor the names of its contributors may
+.\" be used to endorse or promote products derived from this software without
+.\" specific prior written permission.
+.\" THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR IMPLIED
+.\" WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+.\"
+.\"	ORIGINAL: ftpd.8	6.8 (Berkeley) 6/24/90
+.\"
+.\"	@(#)$Original-Id: ftpd.8,v 1.5 1997/01/14 22:45:27 sob Exp sob $
+.\"
+.TH EFT_WUAUTH 5 "Jan 10, 1997"
+.UC 5
+.SH NAME
+eft_wuauth \- authentication for eftp4linux Eurofile server based on wuftpd.
+.SH DESCRIPTION
+If the eftp4linux Eurofile server
+.I eftd
+is compiled with the CONFIG_EFTD_WUAUTH configuration option,
+it uses user authentication code derived from
+.I wuftpd,
+the Washington University ftp daemon.
+.PP
+In that case
+.I eftd
+authenticates users according to four rules. 
+.IP 1)
+The user name must be in the password data base,
+.IR /etc/passwd ,
+or whatever is appropriate for the operating system,
+and the password must not be null.  In this case a password
+must be provided by the client before any file operations
+may be performed.
+.IP 2)
+The user name must not appear in the file
+.IR /etc/isdn/eftusers .
+.IP 3)
+The user must have a standard shell returned by 
+.IR getusershell (3).
+If login failed for certain users, maybe that's because their login
+shell is not listed in /etc/shells.
+.IP 4)
+If the user name is ``anonymous'' or ``ftp'', an
+anonymous ftp account must be present in the password
+file (user ``ftp'').  In this case the user is allowed
+to log in by specifying any password (by convention this
+is given as the client host's name).
+.PP
+In the last case, 
+.I eftd
+takes special measures to restrict the client's access privileges.
+The server performs a 
+.IR chroot (2)
+command to the home directory of the ``ftp'' user.
+In order that system security is not breached, it is recommended
+that the ``ftp'' subtree be constructed with care;  the following
+rules are recommended.
+.IP ~ftp)
+Make the home directory owned by super-user and unwritable by anyone.
+.IP ~ftp/bin)
+Make this directory owned by the super-user and unwritable by
+anyone.  This contains auxilary programs that might be forked by
+.IR eftd(8) 
+or
+.IR ftpd(8).
+These programs should have mode 111.
+.IR eftd(8) 
+currently does not need any auxilary programs. Thus, you only need to
+put files here if you also want to provide anonymous ftp service.
+.IP ~ftp/etc)
+Make this directory owned by the super-user and unwritable by
+anyone.  The files
+.IR passwd (5)
+and
+.IR group (5)
+must be present for eftd 
+to be able to produce owner names rather than numbers in file headers
+and extended format directory (T-DIR primitive) listings. Depending
+on the operating system, there may be other required files. Check your
+manual page for the 
+.IR getpwent (3)
+library routine.
+The password field in
+.I passwd
+is not used, and should not contain real encrypted passwords.
+These files should be mode 444 and owned by the super-user.
+Don't use the system's /etc/passwd file as the password file or
+the system's /etc/group file as the group file in the ~ftp/etc directory.
+.IP ~ftp/pub)
+Create a subdirectory in ~ftp/pub
+with the appropriate mode (777 or 733) if you want to allow normal
+users to upload files.
+
+.PP
+The Eurofile file server also allows for finer grained access control
+by means of the files /etc/isdn/eftaccess and /etc/isdn/efthosts.
+
+.SH "COPYING"
+The main part of eftp4linux is licensed under the LGPL. However,
+eft servers using the wuauth authentication libray also contain code
+copyrighted by the University of California, Berkeley,
+by the Washington University in Saint Louis, and their contributors.
+That code is subject to a BSD style licences with advertisment clause:
+
+Copyright (c) 1990 The Regents of the University of California.
+All rights reserved.
+
+This code is derived from software contributed to Berkeley by
+Chris Torek.
+Redistribution and use in source and binary forms are permitted
+provided that: (1) source distributions retain this entire
+copyright notice and comment, and (2) distributions including binaries
+display the following acknowledgement:  ``This product includes software
+developed by the University of California, Berkeley and its contributors''
+in the documentation or other materials provided with the distribution
+and in all advertising materials mentioning features or use of this
+software. Neither the name of the University nor the names of its
+contributors may be used to endorse or promote products derived
+from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+
+Copyright (c) 1993, 1994  Washington University in Saint Louis
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met: 1. Redistributions of source code must retain the above
+copyright notice, this list of conditions and the following
+disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+notice, this list of conditions and the following disclaimer in the
+documentation and/or other materials provided with the distribution.
+3. All advertising materials mentioning features or use of this
+software must display the following acknowledgement: This product
+includes software developed by the Washington University in Saint
+Louis and its contributors.
+4. Neither the name of the University nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY WASHINGTON UNIVERSITY AND CONTRIBUTORS
+``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL WASHINGTON
+UNIVERSITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+
+ 
+.SH "SEE ALSO"
+.BR eftd(1) ,
+.BR shells(5) ,
+.BR getusershell(3) ,
+.BR eftaccess(5) ,
+.BR efthosts(5) ,
+.BR eft_xferlog(5) ,
+.BR umask(2)
+.SH BUGS
+The anonymous account is inherently dangerous and should be
+avoided when possible.
+
+The eftaccess amd efthosts files are currently not yet working as documented.

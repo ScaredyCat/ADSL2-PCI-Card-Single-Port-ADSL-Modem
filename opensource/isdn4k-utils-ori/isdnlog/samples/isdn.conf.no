@@ -1,0 +1,37 @@
+# /etc/isdn/isdn.conf V. 1.0 Norwegian, rufsen@nuts.edu
+
+[GLOBAL]
+COUNTRYPREFIX	= +
+COUNTRYCODE	= 47
+AREAPREFIX	= 0
+AREACODE	= 0
+
+[VARIABLES]
+
+[ISDNLOG]
+ILABEL	= %b %e %T %ICall to tei %t from %N2 on %n2 on B%B
+OLABEL	= %b %e %T %Itei %t calling %N2 with %n2 from B%B
+REPFMTWWW	= "%X %D %17.17H %T %-17.17F %-20.20l SI: %S %9u %U %I %O"
+REPFMTSHORT	= "%X%D %8.8H %T %-14.14F%U%I %O"
+REPFMT	= "  %X %D %15.15H %T %-15.15F %7u %U %I %O"
+CHARGEMAX	= 200.00
+CALLFMT  = %b %e %T  %N7 %N3 %N4 %N5 %N6
+
+# Although no AOCD is used by Telenor and Tele2, this CURRENCY puts NOK
+# in /var/log/isdn.log and makes isdnrep think in NOK:
+CURRENCY = 0.22,NOK
+
+# How to select provider:
+#	edit /etc/isdn/rate.conf
+
+VBN=15
+PRESELECTED=1
+VBNLEN=2
+
+CALLFILE = /var/log/caller.log
+LOGFILE	= /var/log/isdn.log
+HOLIDAYS = /usr/lib/isdn/holiday-no.dat
+RATEFILE = /usr/lib/isdn/rate-no.dat
+COUNTRYFILE=/usr/lib/isdn/country.dat
+DESTFILE= /usr/lib/isdn/dest.cdb
+

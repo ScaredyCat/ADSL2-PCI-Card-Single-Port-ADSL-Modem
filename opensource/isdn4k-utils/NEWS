@@ -1,0 +1,39 @@
+Recent changes made to the isdn4k-utils archive are listed here,
+most recent on top.
+------------------
+
+2000/01/26 armin (Armin Schindler <mac@melware.de>)
+	eiconctrl - updates for isdnlog and V1.1 package.
+
+1999/10/12 lt   (Leopold Toetch <lt@toetsch.at>)
+	Destination database replaces country stuff and getAreacode
+	
+1999/10/08 he   (Henner Eisen <eis@baty.hanse.de)
+	eurofile  - further integration in isdn4k-utils config/built,
+		    removed entry from distexclude file. 
+
+1999/09/06 hessler (Matthias Hessler <hessler@isdn4linux.de>
+    New FAQ is now moved from FAQ2 to FAQ.
+
+1999/08/18 armin (Armin Schindler <mac@melware.de>)
+	eiconctrl - XLOG retrieve function for all supported active cards added.
+
+1999/08/03 paul (Paul Slootman <paul@isdn4linux.de>)
+        ipppd     - It's not fatal if a route exists when adding it.
+	xmonisdn  - possible security problems
+		    See manpage 'SECURITY ISSUES' section for details. In short,
+		    xmonisdn now refuses to run setuid root to prevent shell
+		    scripts being run with root permissions.
+
+1999/06/23 paul (Paul Slootman <paul@isdn4linux.de>)
+	xisdnload - fixed problem when more than one channel is in use.
+
+1999-06-29 he   (Henner Eisen <eis@baty.hanse.de)
+	eurofile - eftp4linux EUROFILE implementation initially checked in
+
+1999/06/07 paul (Paul Slootman <paul@isdn4linux.de>)
+	This file started!
+	isdnctrl - added `status' command, which shows the connection status of
+		   interfaces (connected yes/no, to what number).
+	ipppd	 - now should work on kernel 2.3.x (allocation failed in
+		   SIOCGIFCONF ioctl)

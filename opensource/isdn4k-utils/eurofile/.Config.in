@@ -1,0 +1,19 @@
+mainmenu_option next_comment
+comment 'Options for eurofile'
+comment 'eftp4linux, an implementation of the EUROFILE transfer protocol'
+bool 'eftd, an EUROFILE server / daemon' CONFIG_EFTD
+if [ "$CONFIG_EFTD" = "y" ]; then
+	bool   '    use wu-ftpd authentication for eftd' CONFIG_EFTD_WUAUTH
+	string '    default MSN used to listen on for incoming connections' CONFIG_EFTD_SERVER_MSN
+	bool   '    install a default sysvinit compatible eftd.sh file' CONFIG_EFT_INSTALL_EFTD_SH
+fi	
+bool 'eftp, an EUROFILE client with command line user interface' CONFIG_EFTP
+if [ "$CONFIG_EFTP" = "y" ]; then
+	bool   '    command line editing with GNU readline for eftp' CONFIG_EFTP_READLINE
+	bool   '    install eftp client suid root' CONFIG_EFTP_SETUID
+	string '    default MSN used for outgoing connections' CONFIG_EFTP_CLIENT_MSN
+fi	
+bool 'install a default eft.conf file' CONFIG_EFT_INSTALL_CONF
+endmenu
+
+

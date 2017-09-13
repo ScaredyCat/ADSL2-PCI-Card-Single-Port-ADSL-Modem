@@ -1,0 +1,156 @@
+From: Torsten Hentschel <Torsten.Hentschel@DInet.de> Subject: Re: ISDN - POOL
+To: isdn4linux@hub-wue.franken.de
+Date: Sun, 10 Nov 1996 14:15:22 +0100 (MET) Sender: owner-isdn4linux@hub-wue.franken.de Reply-To: isdn4linux@hub-wue.franken.de
+
+Hallo Georg!
+
+> nachdem ich I4L nun seit 8 Monaten erfolgreich und voellig _ohne_ Probleme
+> betreibe (Hut ab vor den Entwicklern), ist noch eine einzige Geschichte,
+> die ich gerne geloest haette.
+
+Jau, ueber die Arbeit der I4L-Entwickler auch meinen Dank. Das Zeug ist wunderbar.
+
+> Ich betreibe I4L Router, die verschiedene Subnetze verbinden. Dies sind aber
+> alles feste routen, ich benutze _kein_ pppd oder ipppd. ISDN Device mit isdnctrl
+> definieren und mit ifconfig / route einrichten - fertig. Die Gegenstellen
+> waehlen sich auf eine feste Nummer rein, diese muss dann natuerlich frei sein.
+> 
+> Dies laeuft alles ganz hervorragend, jetzt aber die Frage:
+> 
+> Ich benutze einen "eigenen" NTBA nur fuer I4L, waere es moeglich, das dieser als
+> Pool fungiert ?
+> Ich meine, ich definiere 10 IP Verbindungen und gebe jeder (secure on) eine
+> Eingehende Nummer. Die Gegenstellen bekommen alle 3 Rufnummern und waehlen diese
+> der Reihe nach durch.
+
+Genau sowas haben wir hier an zwei Standorten realisiert.
+Gerne beschreibe ich Dir Moeglichkeiten und Probleme.
+Auch wir haben das hier ohne ipppd gemacht, weil der leider noch so ein paar Tuecken hat.
+
+Wenn ich recht verstehe hast Du momentan folgende Konstellation (habe neben S0 jeweils eine Beispiel-Telephonnummer geschrieben, drunter und drueber stehen beispielhafte Namen fuer die ISDN-Devices).
+
+    "draussen"                                    "pool"
+
+    Router  A   8989 S0 <------ISDN--\        raw0  \
+                                      +---> SO 3434  |
+    Router  B   7676 S0 <------ISDN--/        raw1   | ein Master-Router
+                                                     |
+    Router  C   6565 S0 <------ISDN--\        raw2   | ein Master-Router
+                                      +---> SO 6565  |
+    Router  D   2332 S0 <------ISDN--/        raw3   | ein Master-Router
+                                                     |
+    Router  E   6344 S0 <------ISDN--\        raw4   | ein Master-Router
+                                      +---> SO 3454  | 
+    Router  F   1023 SO <------ISDN--/        raw5  /
+
+Die Router draussen waehlen sich also auf Deinem zentralen Router ein. Bisher hast Du dafuer die ISDN-Nummern bei den Routern draussen so verteilt, dass kein Konflikt durch "Besetzt" entstehen kann.
+
+Bei den Beispiel-Routern sei vereinbart, dass sie alle Ihr ISDN-Device mit "raw0" benannt haben. Auch werde ich annehmen, dass alle in derselben Orstnetzkennzahl liegen.
+
+Nun habe ich Dich so verstanden, dass Du auf Deinem Master-Router die Kosten fuer die einzelnen Basis-Anschluesse senken willst, indem Du auf jedem Basisanschluss mehr als zwei Rechner einwaehlen laesst.
+Am liebsten auf allen drei beispielhaften Anschluessen mit 6 Kanaelen gleich 10 externe Router auf einmal. Bei 10 Routern ist noch recht selten, dass alle 6 Kanaele des Master-Routers gleichzeitig besetzt sind, wenn man eine "gemaessigte" Benutzung voraussetzt.
+
+> Am einfachsten waere dies zu realisieren, wenn die Slave Devices einen Anruf
+> annehmen, auch wenn der Master _NICHT_ aktiv ist. Die Master Rufnummer waere in
+> diesem Fall durch einen Anruf auf eben dieser Nummer von einer anderen
+> Gegenstelle blockiert.
+
+Nee, mit slave-Devices solltes Du das nicht probieren. Dafuer sind die nicht gedacht.
+
+> Oder ich kann einem Device mehrere MSN zuweisen, oder ich kann es so aufsetzen,
+> das es _immer_ rangeht, bzw wenn secure = true ist.
+
+Ja, genau das ist mein Vorschlag.
+
+Konkret haette ich dafuer den folgenden Vorschlag:
+
+a)  Bei allen externen Routern muessen alle Nummern der
+    SO-Anschluesse des Master-Routers eingetragen werden.
+    Jedesmal, wenn Du zentral einen S0-Anschluss aufnimmst,
+    bedeutet das auf den externen Routern ein wenig arbeit.
+    Also bei jedem Router draussen:
+       vorwahl="2932"  # ohne Null!
+       for number in 3434 6565 3454
+       do
+         isdnctrl addphone raw0 in ${vorwahl}${number}
+         isdnctrl addphone raw0 out ${number}
+       done
+
+b)  Bei den ISDN-Netzinterfacen raw0 bis raw5 kannst Du nur eine
+    MSN angeben. Auf jedem Euro-ISDN-Basisanschluss liegen
+    aber mehrere MSNs und die sind auch noch alle verschieden.
+    Bei 1TR6 war das anders und deshalb funktionierte das damals
+    mit der Realisierung einer Einwaehlreihenfolge ganz problemlos.
+    Die EAZs von 1TR6-Anschluessen waren naemlich alle einziffrig
+    und wenn alle externen Router dieselben Durchwahlnummern verwendet
+    haben (mit derselben angehaengten EAZ), dann hat automatisch
+    jedes Netzinterface auf allen SO-Anschluessen reagiert.
+
+    Aus diesem Grunde scheint eine sehr nette und durchdachte
+    Sache von Fritz Elfert in das ISDN-Basissystem von Linux
+    eingefuegt worden zu sein: Das EAZ-MSN-Mapping.
+
+    Fuer die Treiber der einzelnen S0-Anschluesse auf dem
+    zentralen Router hast Du ja mit dem insmod Namen vergeben.
+    Ich nehme mal an, die Namen sind wie folgt vergeben:
+
+           MSN        Treibername
+           3434       bri0
+           6565       bri1
+           3454       bri2
+
+    BRI kommt von basic rate interface und ist die englische
+    Bezeichnung fuer den Steckanschluss eines ISDN-Graetes.
+    Für die Treiber setzt Du nun die folgenden Befehle ab:
+
+           isdnctrl mapping bri0 "-,3434,3435,3436"
+           isdnctrl mapping bri1 "-,6565,6566,6567"
+           isdnctrl mapping bri2 "-,3454,3455,3456"
+
+    Das bedeutet nun, dass ein auf der Nummer 3434 ankommender
+    Ruf nun bei den Netzinterfaces und den ttyI-Interfaces
+    die MSN 1 liefert und nicht mehr die MSN 3434. Ebenso
+    klingelt ein Ruf auf 6565 nicht mehr auf MSN 656, sondern
+    auf MSN 1 und der Ruf auf 3454 auch.
+
+    Nun stell auf allen Netzinterfaces Deines zentralen Routers
+    diese "virtuelle" MSN ein:
+
+           isdnctrl eaz raw0 1
+           isdnctrl eaz raw1 1
+           isdnctrl eaz raw2 1
+           isdnctrl eaz raw3 1
+           isdnctrl eaz raw4 1
+           isdnctrl eaz raw5 1
+
+    Bei dem "isdnctrl mapping" entscheidet die Position der "echten"
+    MSN ueber die EAZ die sie liefert. Die Position "0" ist durch
+    ein Minuszeichen unbelegt gelassen, da dies der "global call" ist.
+    Bitte benutz den global call vorerst nicht, solange Du ihn nicht
+    genauer kennst (alle nicht identifizierten Rufe auf unbekannter
+    EAZ landen auf dem "global call" mit der Nummer "0"; der klingelte
+    bei 1TR6 dann bei allen am selben Bus angeschlossenen Geraeten).
+
+    Nun siehst Du auch, dass ich beim Mapping noch mehr Nummern mit
+    angegeben habe. Hier in Deutschland werden EURO-ISDN-Anschluesse
+    meist mit 3 MSNs ausgeliefert. Diese drei MSNs kannst Du natuerlich
+    auf verschiedene EAZs mappen. Dadurch ergibt sich folgender Spiel-
+    raum: Draussen kannst Du router stehen haben, die verschiedene
+    Protokolle haben und diese anhand der angerufenen Nummer unterscheiden
+    (z.B. konfigurierst Du alle Netzinterfaces fuer rawip auf EAZ=1,
+    alle fuer syncppp auf EAZ=2 und alle fuer X.75 auf EAZ=3).
+
+Hoffentlich ist es das, was Du gesucht hast.
+Jedenfalls war ich von diesen Moeglichkeiten von I4L wahnsinnig begeistert. Cisco kann sowas (Multi-Protkoll auf einem dialer rotary group) nicht ansatzweise. ;-)
+
+
+Gruesse,
+
+  Torsten
+
+
+-- 
+                                        http://www.DInet.de/
+    /\                                  von-Siemens-Str. 12 
+   /  \       Delta Internet GmbH       59757 Arnsberg
+  /    \   Netzwerkdienst & Vertrieb    Tel. +49 2932 91 61 32  /______\                               Fax. +49 2932 91 61 91 --------------------------------------------------- To remove yourself from this mailing list send email to majordomo@hub-wue.franken.de containing "unsubscribe isdn4linux <your_email_address>" in the message body [-vg]

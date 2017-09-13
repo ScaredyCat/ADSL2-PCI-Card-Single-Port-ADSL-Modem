@@ -1,0 +1,239 @@
+#! /usr/bin/perl
+
+use wld;
+use strict;
+use IO::File;
+$|=1;
+use vars qw( %names $COUNTRY %myalias );
+$COUNTRY = '../country';
+
+&get_country;
+&get_alias;
+&prep_rate;
+1;
+
+sub get_country {
+    my ($name, $alias, $key, $nn, $na);
+    sub add1 {
+	my (@all, $a);
+	$names{lc $name}=$key;
+	$nn++;
+	@all=split(/\s*,\s*/, $alias);
+	foreach $a (@all) {
+	    $na++;
+	    $names{lc $a}=$key;
+	}
+    }
+    my $co_dat = '/usr/lib/isdn/country-de.dat';
+    open(IN,$co_dat) || die("Cant read $co_dat");
+    while (<IN>) {
+	chomp;
+	s/\s*#.*$//;
+	s/\s+$//;
+	if (/^N:(.*)/) {
+	    &add1;
+	    $alias='';
+	    $name=$1;
+	}
+	elsif (/^[AE]:(.*)/) {
+	    $alias = $alias ne '' ? "$alias,$1" : $1;
+	}
+	elsif (/^T:(.*)/) {
+	    $key=$1;
+	}
+    }
+    &add1;
+    close IN;
+    print "$nn Countrys $na Aliases loaded\n";
+}
+
+sub get_alias {
+    `cp ~/.country-alias .country-alias`;
+    open(IN, ".country-alias");
+    while (<IN>) {
+    	chomp;
+	my($c,$a) = split(/\t/);
+	$myalias{$c}=$a;
+    }
+    close(IN);
+}
+
+sub prep_rate {
+    my ($l, $infile, $outfile);
+    my (@lines, @files, @ofiles, @streams, @outf);
+    my ($include, $wrinclude);
+    my $MAX_INCLUDE=3;
+    $wrinclude = $include = 0;
+    my $inc_mode;
+    $infile = $ARGV[0] || '/usr/lib/isdn/rate-at.dat';
+    $outfile = $ARGV[1] || "$infile.new";
+    $files[$include]=$infile;
+    $ofiles[$wrinclude]=$outfile;
+wopen:
+    $outf[$wrinclude] = new IO::File ("$ofiles[$wrinclude]",'w');
+    die("Cant write $ofiles[$wrinclude]") unless defined $outf[$wrinclude];
+ropen:
+    $lines[$include] = $l = 0;
+    $streams[$include] = new IO::File($files[$include]) || die("Can't read $files[$include]");
+ragain:
+    print("\nReading $files[$include]\n");
+    print("Writing $ofiles[$wrinclude]\n");
+    while ($_=$streams[$include]->getline) {
+	my($a,@a, $c, $oc, $r, $d, @keys, $name, $m, $tf);
+	$l++;
+	print "$l\r";# if $l % 10 == 0;
+	if (/^([Ii]):\s*(\S+)/) {
+	  my $f = $2;
+	  $inc_mode = $1;
+          $f =~ s/\s*#.*$//;
+	  if ($include >= $MAX_INCLUDE+1) {
+	    print("Include nested to deeply - ignored\n");
+	    next;
+	  }
+          $lines[$include] = $l;
+	  $include++;
+	  if ($f =~ m#/#) {
+	    $files[$include] = $f;
+	  }
+	  else {
+	    my $n = $files[0];
+	    $n =~ s#(.*/).*#$1#;
+	    $n .= $f;
+	    $files[$include] = $n;
+	  }
+	  if ($inc_mode eq 'i') { # include and put contents in same outfile
+            goto ropen;
+	  }
+	  else {		# make real include file
+	    $wrinclude++;
+	    if ($f =~ m#/#) {
+	      $ofiles[$wrinclude] = "$f.inc";
+	    }
+	    else {
+	      my $n = $ofiles[0];
+	      $n =~ s#(.*/).*#$1#;
+	      $n .= $f;
+	      $ofiles[$wrinclude] = $n;
+	    }
+	    if($ofiles[$wrinclude] eq $files[$include]) {
+	      $ofiles[$wrinclude] .= '.inc';
+	    }
+	    $f = $ofiles[$wrinclude];
+	    $f =~ s#.*/##;
+	    $outf[$wrinclude-1]->print ("I:$f\n");
+	    goto wopen;
+	  }
+	}
+	elsif (/^A:(.*)/) {
+	    $a=$1;
+	    $a =~ s/\s*#.*$//;
+	    $a =~ s/[,\s]+$//;
+	    @a=split(/\s*,\s*/, $a);
+	    foreach $c (@a) {
+		next if ($c eq '');
+		$c = lc $c;
+ok:
+	    	if ($c =~ /^\+?\d+/ || $c eq '+') {
+		    push(@keys,$c);
+		}
+		elsif ($d=$names{$c}) {
+		    push(@keys,$d);
+		}
+		elsif ($d=$names{$myalias{$c}}) {
+		    push(@keys,$d);
+		}
+		else {
+		    $oc = $c;
+again:
+		    print "'$c'";
+		    $m=99; $tf='';
+		    if ($COUNTRY) {
+			my $cc = `$COUNTRY "$c"`;
+			($tf, $m) = $cc =~ /<.*?>=<(.*?)>\sd=(\d+)/;
+			$m=99 if ($cc =~/unknown/);
+			$tf = lc $tf;
+		    }
+		    else {
+		    	foreach $name (keys(%names)) {
+				if (($r=wld($name,$c)) < $m) {
+			    	$m=$r; $tf=$name;
+			    	last if($m==0);
+			    }
+			}
+		    }
+		    if ($tf && $m<=1) {
+			push(@keys,$names{$tf});
+			$names{$oc}=$names{$tf};
+			$myalias{$oc}=$tf;
+			print " -> $tf\n";
+		    }
+		    else {
+			my($x);
+			print "\nLine $l: $c => $tf  ($m)\n ? [j,q,[+|=]...,/] : ";
+			$x = <STDIN>;
+			chomp($x);
+			if ($x =~ /^=(.*)/) {
+			    $c = $1 if($1 ne '');
+			    goto again;
+			}
+			elsif ($x =~ /^\+(.*)/) {
+			    $c = $oc . $1;
+			    goto again;
+			}
+			elsif ($x =~ /^\/(.*)/) {
+			    print `grep -3 -i $1 /usr/lib/isdn/country-de.dat`;
+			    goto again;
+			}
+			if ($x eq 'j') {
+			    $c = $tf;
+			    $myalias{$oc}=$tf;
+			    $names{$oc}=$names{$tf};
+			    goto ok;
+			}
+			elsif ($x eq 'h') {
+			    print "j	=> Vorschlag annehmen\n";
+			    print "q	=> abbrechen\n";
+			    print "n	=> unbekannt ignorieren (gilt dann fuer die gesamte Datei)\n";
+			    print "+xx	=> xx an unbekannt anhaengen\n";
+			    print "= SO => SO uebernehmen\n";
+			    print "=	=> unbekannt uebernehmen\n";
+			    print "/xx	=> in country-de.dat nach xx greppen\n";
+			    print "xx	=> xx ausprobieren\n";
+			    goto again;
+			}
+			elsif ($x eq 'q') {
+			    exit;
+			}
+			else {
+			    $c = $x;
+			}
+			goto again;
+		    }
+		}   # else found
+	    } # foreach
+	    $outf[$wrinclude]->print ("A:", join(',',@keys),"\n") || die("can' write");
+	} # if A
+	else {
+	    $outf[$wrinclude]->print( $_);
+	}
+    } # while IN
+    close($streams[$include]);
+    if($include) {
+      $include--;
+      $l = $lines[$include];
+      $infile=$files[$include];
+      if ($inc_mode eq 'I') { # write separate files
+        close($outf[$wrinclude]);
+	$wrinclude--;
+      }
+      goto ragain;
+    }
+    close($outf[$wrinclude]);
+    open(OUT, ">.country-alias") || die("Can't write .country-alias");
+    foreach my $c (sort(keys(%myalias))) {
+    	print OUT "$c\t",$myalias{$c},"\n";
+    }
+    close(OUT);
+    `mv .country-alias ~/.country-alias`;
+    print "\nOk.\n";
+} # prep_rate

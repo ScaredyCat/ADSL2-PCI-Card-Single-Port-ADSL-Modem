@@ -1,0 +1,24 @@
+.\" $Id: vboxplay.man,v 1.2 1998/12/02 16:54:26 paul Exp $
+.\" CHECKIN $Date: 1998/12/02 16:54:26 $
+.TH vboxplay 1 "@MANDATE@" "ISDN 4 Linux @I4LVERSION@" "Linux System Administration"
+
+.SH NAME
+vboxplay \- play vbox sound files
+
+.SH SYNOPSIS
+.B vboxplay
+soundfile [volume]
+
+.SH DESCRIPTION
+.B vboxplay
+interfaces with
+.B sox
+to play the specified sound file. Note that currently the volume parameter
+is ignored.
+
+.SH SEE ALSO
+.B sox(1)
+
+.SH AUTHOR
+This manual page was written by Paul Slootman <paul@debian.org>,
+for Debian GNU/Linux and isdn4linux.

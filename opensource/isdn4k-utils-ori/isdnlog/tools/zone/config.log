@@ -1,0 +1,22 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:532: checking for gcc
+configure:609: checking whether the C compiler (gcc  ) works
+configure:623: gcc -o conftest    conftest.c  1>&5
+configure:643: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:648: checking whether we are using GNU C
+configure:672: checking whether gcc accepts -g
+configure:729: checking for a BSD compatible install
+configure:783: checking for bzip2
+configure:964: checking how to run the C preprocessor
+configure:1025: checking for ANSI C header files
+configure:1132: checking for unistd.h
+configure:1170: checking for size_t
+configure:1204: checking size of char
+configure:1243: checking size of short
+configure:1282: checking size of long
+configure:1321: checking size of int
+configure:1360: checking whether byte ordering is bigendian
+configure:1456: checking for strdup
+configure:1456: checking for strtoul

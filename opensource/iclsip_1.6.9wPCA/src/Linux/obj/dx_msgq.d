@@ -1,0 +1,17 @@
+../Linux/obj/dx_msgq.o ../Linux/obj/dx_msgq.d: dx_msgq.c \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/stdlib.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/features.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/uClibc_config.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/cdefs.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/lib/gcc-lib/mips-linux-uclibc/3.3.6/include/stddef.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/memory.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/string.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/sys/timeb.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/time.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/types.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/kernel_types.h \
+  ../common/cm_def.h ../low/cx_misc.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/errno.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/errno.h \
+  /opt/uclibc-toolchain/ifx-lxdb-1-1/gcc-3.3.6/toolchain-mips/mips-linux-uclibc/sys-include/bits/errno_values.h \
+  ../low/cx_mutex.h dx_msgq.h ../common/cm_trace.h dx_vec.h

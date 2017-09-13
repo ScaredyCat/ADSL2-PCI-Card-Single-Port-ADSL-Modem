@@ -1,0 +1,28 @@
+#!/usr/bin/perl
+
+# make uta zoneall from code.bl
+# Z1 = bundesland (W,N) is same
+# Z2 = oesterr
+
+@a = <STDIN>;
+open OUT, ">zoneall.uta.temp" || die "Can't write";
+foreach $a (@a) {
+ foreach $b (@a) {
+  ($na, $bla) = split(/\s+/,$a);	
+  ($nb, $blb) = split(/\s+/,$b);	
+  $na = substr($na,1);
+  $nb = substr($nb,1);
+   if (($bla eq $blb) || 
+   	($bla eq 'W' && $blb =~ /^N/) ||
+	($blb eq 'W' && $bla =~ /^N/) ||
+   	($na =~ /^5/ && $nb =~ /^5/) # Tirol=Vorarlb
+	) {
+		print OUT "$na $nb 1\n";
+	}
+	else {	
+		print OUT "$na $nb 2\n";
+	}	
+ }
+} 	
+close(OUT);
+system('sort <zoneall.uta.temp|uniq>zoneall.uta && rm zoneall.uta.temp');

@@ -1,0 +1,40 @@
+
+	     ated - user space ATE agent program
+          for RT28xx linux driver, Ralink Tech. Corp.
+=================================================================
+This is the README file for the RT28xx ATE daemon - ated, which comes with RT28xx linux driver.
+This README explains the relationship between the linux driver, Windows QA GUI and RT28xx ATE daemon.
+In addtion, this will teach you how to use this ATE daemon.
+
+I.  Introduction
+=================================================================
+The ated is an optional user space component for RT28xx linux driver. 
+When QA GUI starts, AP enters ATE mode (i.e.,ATESTART) immediately.
+It behaves as a proxy between Windows QA GUI and RT28xx linux driver when ATE process proceeds.
+The ated will be killed automatically when Windows QA GUI is closed.
+You can kill it manually, too(for example, type '$killall ated').
+RT28xx linux driver will leave ATE mode either ated is killed or QA GUI is closed.
+
+II.  Environment setup
+=================================================================
+1. Connect the platform you want to test directly with a Windows host by ether network line.
+2. In the Windows host, run WinPcap_4_0.exe for the QA GUI.
+
+III.  How to use ated for ATE purpose
+=================================================================
+0. First you should set both "HAS_ATE=y" and "HAS_28xx_QA=y" in the file ~/Module/os/linux/config.mk and compile the driver.
+1. Modify the Makefile according to our target "PLATFORM".
+2. Change the path of "CROSS_COMPILE" if needed.
+3. Then type 'make' command to compile the source code of the daemon.
+4. After the driver interface has started up, attach both of the wireless interface and the ethernet interface
+   to the bridge interface.
+5. After the interfaces have entered forwarding states, manually start ated, type '$./ated -bbrX -iraY'.
+6. If your WLAN interface and Bridge interface is "ra0" and "br0" respectively, just type $./ated.
+   (For further usage of options, type $./ated -h)
+7. In the Windows host, run RT28xxQA_ATE.exe.
+8. Select the wired network adapter, then press OK and wait for a moment.
+9. If the Windows host cannot tolerate such a broadcast storm from ated,
+please run ated with option -u.(for example : '$./ated -ira1 -u')
+
+Note : The names of WLAN interface(default is "ra0") and Bridge interface(default is "br0") must be specified manually
+      (for example : '$./ated -bbr1 -ira2') if your WLAN interface or Bridge interface is not "ra0" or "br0" respectively !

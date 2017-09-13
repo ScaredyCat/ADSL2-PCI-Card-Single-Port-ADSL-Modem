@@ -1,0 +1,384 @@
+include $(RT28xx_DIR)/os/linux/config.mk
+
+ifeq ($(RT28xx_MODE),AP)
+MOD_NAME = rt$(CHIPSET)ap
+DAT_PATH = /etc/Wireless/RT$(CHIPSET)AP
+DAT_FILE_NAME = RT$(CHIPSET)AP.dat
+else
+ifeq ($(RT28xx_MODE), STA)
+MOD_NAME = rt$(CHIPSET)sta
+DAT_PATH = /etc/Wireless/RT$(CHIPSET)STA
+DAT_FILE_NAME = RT$(CHIPSET)STA.dat
+else
+ifeq ($(RT28xx_MODE), APSTA)
+MOD_NAME = rt$(CHIPSET)apsta
+endif
+endif
+endif
+
+obj-m := $(MOD_NAME).o
+
+rt$(CHIPSET)ap-objs := \
+	../../common/md5.o\
+	../../common/mlme.o\
+	../../common/rtmp_wep.o\
+	../../common/action.o\
+	../../common/ba_action.o\
+	../../common/cmm_data.o\
+	../../common/rtmp_init.o\
+	../../common/rtmp_tkip.o\
+	../../common/cmm_sync.o\
+	../../common/eeprom.o\
+	../../common/cmm_sanity.o\
+	../../common/cmm_info.o\
+	../../common/cmm_wpa.o\
+	../../common/dfs.o\
+	../../ap/ap.o\
+	../../ap/ap_assoc.o\
+	../../ap/ap_auth.o\
+	../../ap/ap_authrsp.o\
+	../../ap/ap_connect.o\
+	../../ap/ap_mlme.o\
+	../../ap/ap_sanity.o\
+	../../ap/ap_sync.o\
+	../../ap/ap_wpa.o\
+	../../ap/ap_data.o\
+	../../ap/ap_uapsd.o\
+	../../ap/ap_mbss.o\
+	../../os/linux/rt_linux.o\
+	../../os/linux/rt_profile.o\
+	../../os/linux/rt_main_dev.o\
+	../../os/linux/ap_ioctl.o\
+	../../ap/ap_autoChSel.o\
+	../../ap/ap_qload.o
+
+ifeq ($(CHIPSET),2860)
+rt$(CHIPSET)ap-objs += \
+	../../common/2860_rtmp_init.o\
+	../../os/linux/2860_main_dev.o\
+	../../common/cmm_data_2860.o
+endif
+
+ifeq ($(CHIPSET),2870)
+rt$(CHIPSET)ap-objs += \
+	../../os/linux/2870_main_dev.o\
+	../../common/2870_rtmp_init.o\
+	../../common/rtusb_io.o\
+	../../common/rtusb_bulk.o\
+	../../common/rtusb_data.o\
+	../../common/cmm_data_2870.o
+endif
+
+ifeq ($(HAS_ATE),y)
+rt$(CHIPSET)ap-objs += ../../os/linux/rt_ate.o
+endif
+
+ifeq ($(HAS_WSC),y)
+rt$(CHIPSET)ap-objs += \
+	../../common/wsc.o\
+	../../common/wsc_tlv.o\
+	../../common/sha2.o\
+	../../common/hmac.o\
+	../../common/dh_key.o\
+	../../common/evp_enc.o	
+endif
+
+
+ifeq ($(HAS_WDS),y)
+rt$(CHIPSET)ap-objs += ../../ap/ap_wds.o
+endif
+
+ifeq ($(HAS_APCLI),y)
+rt$(CHIPSET)ap-objs += \
+	../../ap/ap_apcli.o \
+	../../ap/apcli_ctrl.o \
+	../../ap/apcli_sync.o \
+	../../ap/apcli_auth.o \
+	../../ap/apcli_assoc.o \
+	../../common/mlme_ex.o \
+	../../common/cmm_mat.o \
+	../../common/cmm_mat_iparp.o \
+	../../common/cmm_mat_pppoe.o \
+	../../common/cmm_mat_ipv6.o
+endif
+
+ifeq ($(HAS_BLOCK_NET_IF),y)
+rt$(CHIPSET)ap-objs += ../../common/netif_block.o
+endif
+
+ifeq ($(HAS_IGMP_SNOOP_SUPPORT),y)
+rt$(CHIPSET)ap-objs += ../../common/igmp_snoop.o
+endif
+
+ifeq ($(HAS_QOS_DLS_SUPPORT),y)
+rt$(CHIPSET)ap-objs += ../../ap/ap_dls.o
+endif
+
+ifeq ($(HAS_IDS_SUPPORT),y)
+rt$(CHIPSET)ap-objs += ../../ap/ap_ids.o
+endif
+
+ifeq ($(PLATFORM),IKANOS_V160)
+rt$(CHIPSET)ap-objs += ../../common/vr_ikans.o
+endif
+
+ifeq ($(PLATFORM),IKANOS_V180)
+rt$(CHIPSET)ap-objs += ../../common/vr_ikans.o
+endif
+
+ifeq ($(HAS_MESH_SUPPORT),y)
+rt$(CHIPSET)ap-objs += \
+	../../common/mesh_bmpkt.o \
+	../../common/mesh_ctrl.o \
+	../../common/mesh_link_mng.o \
+	../../common/mesh_sanity.o \
+	../../common/mesh_tlv.o \
+	../../common/mesh.o \
+	../../common/mesh_forwarding.o \
+	../../common/mesh_path_mng.o \
+	../../common/mlme_ex.o
+endif
+
+rt$(CHIPSET)sta-objs := \
+	../../common/md5.o\
+	../../common/mlme.o\
+	../../common/rtmp_wep.o\
+	../../common/action.o\
+	../../common/ba_action.o\
+	../../common/cmm_data.o\
+	../../common/rtmp_init.o\
+	../../common/rtmp_tkip.o\
+	../../common/cmm_sync.o\
+	../../common/eeprom.o\
+	../../common/cmm_sanity.o\
+	../../common/cmm_info.o\
+	../../common/cmm_wpa.o\
+	../../common/dfs.o\
+	../../sta/assoc.o\
+	../../sta/aironet.o\
+	../../sta/auth.o\
+	../../sta/auth_rsp.o\
+	../../sta/sync.o\
+	../../sta/sanity.o\
+	../../sta/rtmp_data.o\
+	../../sta/connect.o\
+	../../sta/wpa.o\
+	../../os/linux/rt_linux.o\
+    ../../os/linux/rt_profile.o\
+	../../os/linux/rt_main_dev.o\
+	../../os/linux/sta_ioctl.o
+
+#ifdef ETH_CONVERT
+ifeq ($(HAS_ETH_CONVERT_SUPPORT), y)
+rt$(CHIPSET)sta-objs += \
+	../../common/cmm_mat.o \
+	../../common/cmm_mat_iparp.o \
+	../../common/cmm_mat_pppoe.o \
+	../../common/cmm_mat_ipv6.o
+endif
+#endif // ETH_CONVERT //
+
+ifeq ($(HAS_WSC),y)
+rt$(CHIPSET)sta-objs += \
+	../../common/wsc.o\
+	../../common/wsc_tlv.o\
+	../../common/sha2.o\
+	../../common/hmac.o\
+	../../common/dh_key.o\
+	../../common/evp_enc.o	
+endif
+
+ifeq ($(HAS_BLOCK_NET_IF),y)
+rt$(CHIPSET)sta-objs += ../../common/netif_block.o
+endif
+
+ifeq ($(CHIPSET),2860)
+rt$(CHIPSET)sta-objs += \
+	../../common/2860_rtmp_init.o\
+	../../os/linux/2860_main_dev.o\
+	../../common/cmm_data_2860.o
+endif
+
+ifeq ($(CHIPSET),2870)
+rt$(CHIPSET)sta-objs += \
+	../../os/linux/2870_main_dev.o\
+	../../common/2870_rtmp_init.o\
+	../../common/rtusb_io.o\
+	../../common/rtusb_bulk.o\
+	../../common/rtusb_data.o\
+	../../common/cmm_data_2870.o
+endif
+
+ifeq ($(HAS_ATE),y)
+rt$(CHIPSET)sta-objs += ../../os/linux/rt_ate.o
+endif
+
+rt$(CHIPSET)apsta-objs := \
+	../../common/md5.o\
+	../../common/mlme.o\
+	../../common/rtmp_wep.o\
+	../../common/action.o\
+	../../common/ba_action.o\
+	../../common/cmm_data.o\
+	../../common/rtmp_init.o\
+	../../common/rtmp_tkip.o\
+	../../common/cmm_sync.o\
+	../../common/eeprom.o\
+	../../common/cmm_sanity.o\
+	../../common/cmm_info.o\
+	../../common/cmm_wpa.o\
+	../../common/dfs.o\
+	../../ap/ap.o\
+	../../ap/ap_assoc.o\
+	../../ap/ap_auth.o\
+	../../ap/ap_authrsp.o\
+	../../ap/ap_connect.o\
+	../../ap/ap_mlme.o\
+	../../ap/ap_sanity.o\
+	../../ap/ap_sync.o\
+	../../ap/ap_wpa.o\
+	../../ap/ap_data.o\
+	../../ap/ap_uapsd.o\
+	../../ap/ap_mbss.o\
+	../../sta/assoc.o\
+	../../sta/aironet.o\
+	../../sta/auth.o\
+	../../sta/auth_rsp.o\
+	../../sta/sync.o\
+	../../sta/sanity.o\
+	../../sta/rtmp_data.o\
+	../../sta/connect.o\
+	../../sta/wpa.o\
+	../../os/linux/rt_linux.o\
+	../../os/linux/rt_profile.o\
+	../../os/linux/rt_main_dev.o\
+	../../os/linux/ap_ioctl.o\
+	../../os/linux/sta_ioctl.o\
+	../../ap/ap_autoChSel.o\
+	../../ap/ap_qload.o
+
+ifeq ($(CHIPSET),2860)
+rt$(CHIPSET)apsta-objs += \
+	../../common/2860_rtmp_init.o\
+	../../os/linux/2860_main_dev.o\
+	../../common/cmm_data_2860.o
+endif
+
+ifeq ($(CHIPSET),2870)
+rt$(CHIPSET)apsta-objs += \
+	../../os/linux/2870_main_dev.o\
+	../../common/2870_rtmp_init.o\
+	../../common/rtusb_io.o\
+	../../common/rtusb_bulk.o\
+	../../common/rtusb_data.o\
+	../../common/cmm_data_2870.o
+endif
+
+ifeq ($(HAS_ATE),y)
+rt$(CHIPSET)apsta-objs += ../../os/linux/rt_ate.o
+endif
+
+ifeq ($(HAS_WSC),y)
+rt$(CHIPSET)apsta-objs += \
+	../../common/wsc.o\
+	../../common/wsc_tlv.o\
+	../../common/sha2.o\
+	../../common/hmac.o\
+	../../common/dh_key.o\
+	../../common/evp_enc.o	
+endif
+
+
+ifeq ($(HAS_WDS),y)
+rt$(CHIPSET)apsta-objs += ../../ap/ap_wds.o
+endif
+
+ifeq ($(HAS_QOS_DLS_SUPPORT),y)
+rt$(CHIPSET)apsta-objs += ../../ap/ap_dls.o
+endif
+
+ifeq ($(HAS_IDS_SUPPORT),y)
+rt$(CHIPSET)apsta-objs += ../../ap/ap_ids.o
+endif
+
+ifeq ($(HAS_APCLI),y)
+rt$(CHIPSET)apsta-objs += \
+	../../ap/ap_apcli.o \
+	../../ap/apcli_ctrl.o \
+	../../ap/apcli_sync.o \
+	../../ap/apcli_auth.o \
+	../../ap/apcli_assoc.o \
+	../../common/mlme_ex.o \
+	../../common/cmm_mat.o \
+	../../common/cmm_mat_iparp.o \
+	../../common/cmm_mat_pppoe.o \
+	../../common/cmm_mat_ipv6.o
+endif
+
+#ifdef ETH_CONVERT
+ifeq ($(HAS_ETH_CONVERT_SUPPORT), y)
+rt$(CHIPSET)apsta-objs += \
+	../../common/cmm_mat.o \
+	../../common/cmm_mat_iparp.o \
+	../../common/cmm_mat_pppoe.o \
+	../../common/cmm_mat_ipv6.o
+endif
+#endif // ETH_CONVERT //
+
+ifeq ($(HAS_BLOCK_NET_IF),y)
+rt$(CHIPSET)apsta-objs += ../../common/netif_block.o
+endif
+
+ifeq ($(HAS_IGMP_SNOOP_SUPPORT),y)
+rt$(CHIPSET)apsta-objs += ../../common/igmp_snoop.o
+endif
+
+ifeq ($(HAS_MESH_SUPPORT),y)
+rt$(CHIPSET)sta-objs += \
+	../../common/mesh_bmpkt.o \
+	../../common/mesh_ctrl.o \
+	../../common/mesh_link_mng.o \
+	../../common/mesh_sanity.o \
+	../../common/mesh_tlv.o \
+	../../common/mesh.o \
+	../../common/mesh_forwarding.o \
+	../../common/mesh_path_mng.o \
+	../../common/mlme_ex.o
+endif
+
+clean:
+	rm -f ../../common/*.o
+	rm -f ../../common/.*.{cmd,flags,d}
+	rm -f ../../os/linux/*.{o,ko,mod.{o,c}}
+	rm -f ../../os/linux/.*.{cmd,flags,d}
+	rm -fr ../../os/linux/.tmp_versions
+ifeq ($(RT28xx_MODE),AP)
+	rm -f ../../ap/*.o
+	rm -f ../../ap/.*.{cmd,flags,d}
+else
+ifeq ($(RT28xx_MODE),STA)
+	rm -f ../../sta/*.o
+	rm -f ../../sta/.*.{cmd,flags,d}
+else
+ifeq ($(RT28xx_MODE),APSTA)
+	rm -f ../../ap/*.o
+	rm -f ../../ap/.*.{cmd,flags,d}
+	rm -f ../../sta/*.o
+	rm -f ../../sta/.*.{cmd,flags,d}
+endif
+endif
+endif
+
+install:
+	rm -rf $(DAT_PATH)
+	$(shell [ ! -f /etc/Wireless ] && mkdir /etc/Wireless)
+	mkdir $(DAT_PATH)
+	cp $(RT28xx_DIR)/$(DAT_FILE_NAME) $(DAT_PATH)/.
+	install -d $(LINUX_SRC_MODULE)
+	install -m 644 -c $(addsuffix .ko,$(MOD_NAME)) $(LINUX_SRC_MODULE)
+	/sbin/depmod -a ${shell uname -r}
+
+uninstall:
+#	rm -rf $(DAT_PATH)
+	rm -rf $(addprefix $(LINUX_SRC_MODULE),$(addsuffix .ko,$(MOD_NAME)))
+	/sbin/depmod -a ${shell uname -r}

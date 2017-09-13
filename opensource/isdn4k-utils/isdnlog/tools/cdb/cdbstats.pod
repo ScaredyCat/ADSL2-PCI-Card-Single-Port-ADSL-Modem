@@ -1,0 +1,44 @@
+=head1 NAME
+
+cdbstats -- output a summary of a constant database
+
+=head1 SYNOPSIS
+
+cdbstats E<lt>F<file>
+
+=head1 DESCRIPTION
+
+B<cdbstats> outputs summary information about a constant database. 
+B<cdbstats> assumes that standard input has the database open in
+readable and seekable form (This means pipes will not work).
+
+B<cdbstats> outputs some statistics related to the hash mechanism of
+the constant databases:
+
+=over 4
+
+=item slots
+
+number of hash positions
+
+=item records
+
+number of records
+
+=item dI<N>
+
+number of records I<N> locations away from their hash
+
+=item >I<N>
+
+number of records more than I<N> locations away from their hash
+
+=back
+
+=head1 RETURN VALUES
+
+0 on success, 1 on a syntax errors, 111 on transient errors.
+
+=head1 SEE ALSO
+
+L<cdbget(1)|cdbget(1)>, L<cdbdump(1)|cdbdump(1)>, L<cdbmake(1)|cdbmake(1)>

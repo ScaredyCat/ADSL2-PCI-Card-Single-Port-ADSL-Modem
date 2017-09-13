@@ -1,0 +1,7 @@
+This version of "iproute" includes the HTB Linux queuing discipline
+explained in http://luxik.cdi.cz/~devik/qos/htb/
+
+You need to patch your running kernel in order to use it; patches
+can be found in the following URLs:
+	http://luxik.cdi.cz/~devik/qos/htb/v2/htb2_2.2.17.diff
+	http://luxik.cdi.cz/~devik/qos/htb/v2/htb2_2.4.17.diff

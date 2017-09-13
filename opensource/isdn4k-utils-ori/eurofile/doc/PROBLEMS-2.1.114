@@ -1,0 +1,44 @@
+$Id: PROBLEMS-2.1.114,v 1.2 1999/07/01 18:00:25 he Exp $
+
+Known problems observed when using X.25 on top of isdn with kernels
+===================================================================
+
+The X.25 PLP implementation was originally designed to be used on top
+of a synchronous line (accessed via an X.25 network device driver)
+or on top of lan (IEEE 802 LLC type 2). Furthermore, the X.25
+implementation as well as the related isdn4linux extensions are labelled
+as "EXPERIMENTAL" code in the kernel source tree. Thus, the X.25 protocol
+sometimes doesn't behave as you would expect, in particular when used
+on top of isdn.
+
+
+Problems related to isdn drivers:
+=================================
+
+The isdnloop HL driver apparently has problems to re-establish a
+connection that has been hung up from the outgoing device. You have to
+unload the isdnloop driver after the faked isdn-connection is closed
+and insmod it again. With the Hisax driver, this problem is not present.
+
+When ifconfig'ing isdn network interfaces (with encap x25iface set) down,
+"disconnect indication while unconfigured" messages might appear in
+the syslog. This does not indicate any problem and can be ignored.
+
+When establishing the first X.25 connection on a link, there is a
+delay of some seconds until the link becomes established. This is only
+a performance problem and harmless. Furthermore, this is fixed with
+recent isdn4linux versions from the isdn4linux CVS tree. Kernel
+2.2.10 still contains this outdated isdn4linux version.
+
+Problems related to the X.25 PLP implementation:
+================================================
+
+isdn B channels are not closed automatically when the X.25 PLP
+connection is closed. If you are lucky, your peer does it. eftd
+and the eftp.sh shell script also try to close connection. But this
+might sometime fail due to bugs. Thus, 
+monitor your isdn connections while using X.25 on top of isdn4linux
+(i.e. by watching syslog messages or by an isdn monitor program).
+You can close the B channel connection by hand (using the
+"isdnctrl hangup" command) or rely on the isdn network interface's
+hangup timeout.

@@ -1,0 +1,16 @@
+Source: iproute
+Section: net
+Priority: extra
+Maintainer: Juan Cespedes <cespedes@debian.org>
+Standards-Version: 3.5.5
+Build-Depends: tetex-bin, atm-dev
+
+Package: iproute
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Professional tools to control the networking in Linux kernels
+ This is `iproute', the professional set of tools to control the
+ networking behavior in kernels 2.2.x and later.
+ .
+ At least, the options CONFIG_NETLINK and CONFIG_RTNETLINK must
+ be compiled in the running kernel

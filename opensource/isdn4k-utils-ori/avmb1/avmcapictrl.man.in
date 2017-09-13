@@ -1,0 +1,156 @@
+.\" $Id: avmcapictrl.man.in,v 1.4 2000/01/28 16:36:19 calle Exp $
+.\"
+.\" CHECKIN $Date: 2000/01/28 16:36:19 $
+.\"
+.TH AVMCAPICTRL 8 "@MANDATE@" isdn4k-utils-@I4LVERSION@ "Linux System Administration"
+.UC 4
+.SH NAME
+avmcapictrl \- Add, reset or remove active AVM cards and load firmware
+.SH SYNOPSIS
+avmcapictrl add <portbase> <irq> <type>
+.br
+avmcapictrl load <bootcode> [<contrnr> [<protocol>
+.br
+    [P2P | <dn1>:<spid1> [<dn2>:<spid2>]]]]
+.br
+avmcapictrl reset [contrnr]
+.br
+avmcapictrl remove [contrnr]
+.br
+avmcapictrl trace [contrnr] [off|short|on|full|shortnodata|nodata]
+.br
+avmcapictrl addcard <driver> <portbase> <irq> [ <membase> [ <cardnr> ] ]
+.SH DESCRIPTION
+.I avmcapictrl
+is used to register active AVM ISA cards kernelcapi system and
+therewith to the isdn system. You need it also to upload the
+firmware to any active AVM card. If an error occure please also
+check the kernel error messages by using the command dmesg(8).
+.LP
+.SH COMMANDS
+.TP 5
+.B add <portbase> <irq> <type>
+is used to add a ISA card to the kernel-capi2.0 system.
+The
+.I portbase
+can have the values 0x150, 0x250, 0x300 and 0x340 for
+the B1 ISA cards, look at the jumper on the card.
+For a T1-ISA (HEMA) card you can select an wide range
+of ports.
+.br
+.I irq
+can be selected from the following values:
+.br
+3, 4, 5, 6, 7, 9, 10, 11, 12 and 15.
+.br
+.I type
+can be B1 or T1.
+.LP
+.TP 5
+.B load <bootcode> [<contrnr> [<protocol>
+.B      [P2P | <dn1>:<spid1> [<dn2>:<spid2>]]]]
+is used to load the firmware to a card
+.I bootcode
+is a t4-file. The actual versions of the t4-files for the different
+d-channel protocols can be found at
+ftp://ftp.avm.de/cardware/b1/linux/firmware.
+.br
+You need different t4-files for different d channel protocols:
+b1-1tr6.t4 for 1TR6, b1.t4 for DSS1 and
+.br 
+b1-usa.t4 for 5ESS and NI1 (DSS1 is also supported).
+.br
+For M1/M2 PCMCIA cards you need m1-s10.t4 or m1-s4.t4 depending on the
+handy type used.
+.br
+.I contrnr
+is the number of the controller (card) starting from 1.
+.br
+.I protocol
+can be DSS1, CT1, VN3, AUSTEL, 5ESS or NI1.
+.br
+.I P2P
+point to point
+.br
+.I DN1:SPID1 DN2:SPID2
+is for the american protocols 5ESS and NI1.
+.LP
+.TP 5
+.B reset [contrnr]
+is used to reset a card if loading has failed.
+This function only make sence if card is not successfully loaded.
+.br
+.I contrnr
+is the number of the controller (card) starting from 1.
+.LP
+.TP 5
+.B remove [contrnr]
+is used to remove a card previous added. You can also remove
+automatic added cards (for example a B1-PCI card).
+.br
+.I contrnr
+is the number of the controller (card) starting from 1.
+.LP
+.TP 5
+.B trace [contrnr] [off|short|on|full|shortnodata|nodata]
+is used to trace CAPI2.0 messages. The trace will be done
+as kernel messages, see dmesg(8).
+.br
+.I contrnr
+is the number of the controller (card) starting from 1.
+.br
+.I off
+switch traceing off
+.br
+.I short
+switch one line per CAPI2.0 message tracing on
+.br
+.I on | full
+switch on full decode tracing
+.br
+.I shortnodata
+switch on line per CAPI2.0 message tracing on, but exclude
+DATA_B3_IND and DATA_B3_REQ messages.
+.br
+.I on | full
+switch on full decode tracing, but exclude
+DATA_B3_IND and DATA_B3_REQ messages.
+.LP
+.TP 5
+.B addcard <driver> <portbase> <irq> [ <membase> [ <cardnr> ] ]
+is used to add a card, this is more generic than 
+.I add.
+.br
+.I driver
+currently b1isa or t1isa
+.br
+.I portbase
+can have the values 0x150, 0x250, 0x300 and 0x340 for
+the b1isa driver, look at the jumper on the card.
+For t1isa driver you can select an wide range
+of ports.
+.br
+.I irq
+can be selected from the following values:
+3, 4, 5, 6, 7, 9, 10, 11, 12 and 15.
+.br
+.I membase
+memory address if needed by driver
+.br
+.I cardnr
+only usefull with driver t1isa
+
+.SH AUTHOR
+Carsten Paeth <calle@calle.in-berlin.de>
+.LP
+.SH SEE ALSO
+.I ttyI\c
+\&(4),
+.I isdnctrl\c
+\&(8),
+.I isdninfo\c
+\&(4).
+.I dmesg\c
+\&(8).
+.I syslogd\c
+\&(8).

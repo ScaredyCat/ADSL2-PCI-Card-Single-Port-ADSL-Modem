@@ -1,0 +1,40 @@
+#lib_LTLIBRARIES = libatm.la libatmd.la
+lib_LTLIBRARIES = libatm.la
+
+# ATMLIBS_VERSION comes from configure.in in the toplevel directory
+LDFLAGS = -nostdlib -version-info @LIBVER_CURRENT@:@LIBVER_REVISION@:@LIBVER_AGE@	$(IFX_LDFLAGS)
+CFLAGS = @CFLAGS@ $(IFX_CFLAGS)
+
+
+if IFX_OPT_FOR_SMALL_SIZE
+libatm_la_SOURCES =  text2atm.c atm2text.c atmequal.c \
+text2qos.c qos2text.c qosequal.c \
+misc.c ans.c common.c diag.c text2ip.c timer.c unix.c res_search.c
+else
+
+libatm_la_SOURCES = text2atm.c atm2text.c atmequal.c sdu2cell.c text2qos.c \
+			qos2text.c qosequal.c sap2text.c text2sap.c sapequal.c \
+			misc.c atmres.h ans.c common.c diag.c kptr.c text2ip.c \
+			timer.c unix.c res_search.c
+endif
+
+libatm_la_LIBADD = -lresolv
+libatm_la_DEPENDENCIES = $(top_builddir)/src/include/atm.h \
+				$(top_builddir)/src/include/atmsap.h \
+				$(top_builddir)/src/include/stdint.h \
+				$(top_builddir)/src/include/atmd.h
+
+
+#libatm_la_SOURCES = text2atm.c atm2text.c atmequal.c sdu2cell.c text2qos.c \
+#			qos2text.c qosequal.c sap2text.c text2sap.c sapequal.c \
+#			misc.c atmres.h ans.c
+#libatm_la_LIBADD = -lresolv
+#libatm_la_DEPENDENCIES = $(top_builddir)/src/include/atm.h \
+#				$(top_builddir)/src/include/atmsap.h \
+#				$(top_builddir)/src/include/stdint.h
+#
+#libatmd_la_SOURCES = common.c diag.c kptr.c text2ip.c timer.c unix.c
+#libatmd_la_DEPENDENCIES = $(top_builddir)/src/include/atm.h \
+#				$(top_builddir)/src/include/atmd.h \
+#				$(top_builddir)/src/include/stdint.h
+

@@ -1,0 +1,4 @@
+./configure \
+    --cgibin perl \
+    --cc at \
+    && make install
